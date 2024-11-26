@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InstallationComponent } from './installation.component';
+import { DownloadButtonComponent } from './download-button.component';
 
-describe('InstallationComponent', () => {
-  let component: InstallationComponent;
-  let fixture: ComponentFixture<InstallationComponent>;
+describe('DownloadButtonComponent', () => {
+  let component: DownloadButtonComponent;
+  let fixture: ComponentFixture<DownloadButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InstallationComponent]
+      imports: [DownloadButtonComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InstallationComponent);
+    fixture = TestBed.createComponent(DownloadButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -27,6 +27,11 @@
               {
                 "glob": "**/*",
                 "input": "projects/docs/public"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/ng-verse/src/lib",
+                "output": "ng-verse"
               }
             ],
             "styles": ["projects/docs/src/styles.scss"],

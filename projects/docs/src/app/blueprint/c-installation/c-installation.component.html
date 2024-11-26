@@ -1,2 +1,11 @@
 <h4 class="text-xl font-medium my-4">Installation</h4>
-<doc-source-code code="var a =5" language="ts"></doc-source-code>
+<doc-download-button (click)="download()"></doc-download-button>
+<div class="component-source">
+  <h3>Source Code</h3>
+  <doc-source-code language="ts" [code]="component()"></doc-source-code>
+  <doc-source-code language="html" [code]="html()"></doc-source-code>
+
+  <doc-source-code language="scss" [code]="style()"></doc-source-code>
+
+  <doc-source-code language="ts" [code]="spec()"></doc-source-code>
+</div>
