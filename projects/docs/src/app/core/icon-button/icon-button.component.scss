@@ -1,0 +1,8 @@
+:host {
+  @apply cursor-pointer p-2 rounded-md;
+
+  &:hover {
+    --tw-bg-opacity: 0.2;
+    background: rgba($color: #fff, $alpha: 0.3);
+  }
+}

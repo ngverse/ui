@@ -1,3 +1,16 @@
-<div class="sidebar w-[300px] border-0 border-solid border-r-gray-300 h-[600px] border-r pt-10">
-  <p class="m-0">sidebar works!</p>
+<div
+  class="sidebar w-[300px] h-[600px] border-0 border-solid border-gray-200 border-r pt-4 content-height overflow-auto"
+>
+  <nav>
+    @for (route of routes; track $index) {
+    <ul class="list-none pl-0">
+      <li class="mb-3">{{route.name}}</li>
+      @for (link of route.children; track $index) {
+      <li class="ml-0 my-3">
+        <a [routerLinkActive]="'selected'" class="cursor-pointer font-light" [routerLink]="link.url">{{ link.name }}</a>
+      </li>
+      }
+    </ul>
+    }
+  </nav>
 </div>

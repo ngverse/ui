@@ -1,0 +1,8 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.selected {
+  @apply border-0 border-b border-solid  border-primary;
+}

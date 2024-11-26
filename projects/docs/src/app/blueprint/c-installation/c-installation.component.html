@@ -1,11 +1,18 @@
 <h4 class="text-xl font-medium my-4">Installation</h4>
 <doc-download-button (click)="download()"></doc-download-button>
-<div class="component-source">
-  <h3>Source Code</h3>
-  <doc-source-code language="ts" [code]="component()"></doc-source-code>
-  <doc-source-code language="html" [code]="html()"></doc-source-code>
-
-  <doc-source-code language="scss" [code]="style()"></doc-source-code>
-
-  <doc-source-code language="ts" [code]="spec()"></doc-source-code>
+<div class="mt-4">
+  <doc-tabs>
+    <doc-tab-item label="HTML">
+      <doc-source-code language="html" [code]="html()"></doc-source-code>
+    </doc-tab-item>
+    <doc-tab-item label="TS">
+      <doc-source-code language="ts" [code]="component()"></doc-source-code>
+    </doc-tab-item>
+    <doc-tab-item label="SCSS">
+      <doc-source-code language="scss" [code]="style()"></doc-source-code>
+    </doc-tab-item>
+    <doc-tab-item label="SPEC">
+      <doc-source-code language="ts" [code]="spec()"></doc-source-code>
+    </doc-tab-item>
+  </doc-tabs>
 </div>
