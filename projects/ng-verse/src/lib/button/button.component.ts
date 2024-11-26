@@ -15,7 +15,7 @@ type BUTTON_VARIANT_TYPES =
   | 'warning';
 
 @Component({
-  selector: 'app-button',
+  selector: 'doc-button',
   standalone: true,
   imports: [NgClass],
   templateUrl: './button.component.html',
