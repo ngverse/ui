@@ -2,5 +2,4 @@
  * Public API Surface of ng-verse
  */
 
-export * from './lib/ng-verse.service';
-export * from './lib/ng-verse.component';
+export * from './lib/button/button.component';
