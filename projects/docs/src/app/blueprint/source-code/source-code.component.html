@@ -1,0 +1,15 @@
+<doc-icon-button
+  [cdkCopyToClipboard]="code()"
+  (click)="copy()"
+  class="copy-button"
+>
+  @if(copied()){
+  <doc-check-icon></doc-check-icon>
+  } @else{
+  <doc-copy-icon></doc-copy-icon>
+
+  }
+</doc-icon-button>
+<pre>
+  <code class="rounded-md" [highlight]="code()" [language]="language()">
+  </code></pre>

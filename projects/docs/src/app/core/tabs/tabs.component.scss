@@ -1,0 +1,7 @@
+.selected{
+  @apply border-0 border-b-2 border-solid border-b-primary;
+}
+
+.tab-header{
+  @apply cursor-pointer px-4 py-3;
+}

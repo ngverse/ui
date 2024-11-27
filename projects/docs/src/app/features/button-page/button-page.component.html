@@ -1,0 +1,31 @@
+<doc-blueprint-page
+  [subTitle]="'Button component that wraps native html Button'"
+  [title]="'Button'"
+>
+  <doc-c-installation name="button"></doc-c-installation>
+  <doc-show-case>
+    <div class="flex gap-2">
+      <app-button color="primary">Primary</app-button>
+      <app-button color="secondary">Secondary</app-button>
+      <app-button color="tertiary">Tertiary</app-button>
+      <app-button color="danger">Danger</app-button>
+      <app-button color="success">Success</app-button>
+      <app-button color="warning">Warning</app-button>
+      <app-button color="primary" [loading]="true">Loading</app-button>
+    </div>
+  </doc-show-case>
+  <doc-api-info>
+    <p>Button component wraps native html button element</p>
+    <p class="font-medium">color</p>
+    <ul>
+      <li>primary</li>
+      <li>secondary</li>
+      <li>tertiary</li>
+      <li>danger</li>
+      <li>success</li>
+      <li>warning</li>
+    </ul>
+    <p class="font-medium">loading (boolean)</p>
+    <p>adds loading if neccessary</p>
+  </doc-api-info>
+</doc-blueprint-page>
