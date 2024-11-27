@@ -6,7 +6,7 @@ import {
   input,
 } from '@angular/core';
 
-type BUTTON_VARIANT_TYPES =
+type COLOR_TYPES =
   | 'primary'
   | 'secondary'
   | 'tertiary'
@@ -23,7 +23,7 @@ type BUTTON_VARIANT_TYPES =
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  variant = input<BUTTON_VARIANT_TYPES>('primary');
+  color = input<COLOR_TYPES>('primary');
 
   disabled = input(undefined, { transform: booleanAttribute });
 

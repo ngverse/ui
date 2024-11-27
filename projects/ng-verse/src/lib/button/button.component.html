@@ -2,7 +2,7 @@
   class="button"
   [attr.disabled]="disabled() || loading()"
   [class.loading]="loading()"
-  [ngClass]="variant()"
+  [ngClass]="color()"
   [attr.type]="type()"
 >
   @if(loading()){
