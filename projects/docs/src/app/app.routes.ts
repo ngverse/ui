@@ -15,6 +15,20 @@ export const routes: Routes = [
             (b) => b.ButtonPageComponent
           ),
       },
+      {
+        path: 'accordion',
+        loadComponent: () =>
+          import('./features/accordion-page/accordion-page.component').then(
+            (b) => b.AccordionPageComponent
+          ),
+      },
+      {
+        path: 'outside-click',
+        loadComponent: () =>
+          import(
+            './features/outside-click-page/outside-click-page.component'
+          ).then((b) => b.OutsideClickPageComponent),
+      },
     ],
   },
   {

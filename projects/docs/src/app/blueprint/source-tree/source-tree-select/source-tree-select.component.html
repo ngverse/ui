@@ -1,0 +1,25 @@
+<div class="relative">
+  <div
+    (click)="open()"
+    class="rounde-md border-gray-200 border border-solid px-3 py-2 w-[400px] rounded-md"
+  >
+    accordion-item.component.html
+  </div>
+  @if(isOpen()){
+  <div
+    (outsideClicked)="close()"
+    [appOutsideClick]="isOpen()"
+    class="absolute top-10 shadow-xl z-50 bg-white border-gray-300 rounded-md border border-solid w-[400px] p-3"
+  >
+    @for (folder of sourceTree(); track $index) { @if(!folder.hideName){
+    <div class="px-3 font-medium">{{ folder.name }}</div>
+    } @for (file of folder.files; track $index) {
+    <div (click)="fileSelect(file)" class="select-option " [class.px-5]="!folder.hideName" [class.px-3]="folder.hideName">
+      {{ file.name }}
+    </div>
+
+    } }
+  </div>
+
+  }
+</div>

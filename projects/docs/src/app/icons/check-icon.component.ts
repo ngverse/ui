@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
       }
     `,
   ],
-  template: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+  template: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512">
     <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
     <path
       fill="currentColor"

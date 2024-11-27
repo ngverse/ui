@@ -26,6 +26,19 @@ export class SidebarComponent {
           name: 'Button',
           url: '/doc/button',
         },
+        {
+          name: 'Accordion',
+          url: '/doc/accordion',
+        },
+      ],
+    },
+    {
+      name: 'Directives',
+      children: [
+        {
+          name: 'OutsideClick',
+          url: '/doc/outside-click',
+        },
       ],
     },
   ];
