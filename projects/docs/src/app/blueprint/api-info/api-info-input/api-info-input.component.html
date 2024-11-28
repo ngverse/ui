@@ -1,0 +1,8 @@
+<b>{{ name() }}</b>
+<ul>
+  <li><b>Type:</b> {{ type() }}</li>
+  @if(default()){
+  <li><b>Default:</b> {{ default() }}</li>
+  }
+  <li><b>Description:</b> {{ description() }}</li>
+</ul>
