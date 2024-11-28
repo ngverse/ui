@@ -1,64 +1,6 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, effect, input, output, signal } from '@angular/core';
 import { OutsideClickDirective } from '../../../../../../ng-verse/src/lib/outside-click/outside-click.directive';
-export type SourceTreeFolder = {
-  name: string;
-  files: SourceTreeFile[];
-  hideName?: boolean;
-};
-
-export type SourceTreeFile = {
-  name: string;
-  path: string;
-  language: string;
-};
-
-export function genFolder(
-  name: string,
-  root: string,
-  process: (root: string) => SourceTreeFile[],
-  hideName?: boolean
-): SourceTreeFolder {
-  return {
-    name: name,
-    files: process(root),
-    hideName,
-  };
-}
-
-export function getRegularFile(
-  name: string,
-  rootPath: string,
-  extension = 'ts'
-) {
-  return {
-    name: `${name}.component.${extension}`,
-    path: `ng-verse/${rootPath}/${name}.${extension}`,
-    language: extension,
-  };
-}
-
-export function genComponentFile(
-  name: string,
-  rootPath: string,
-  extension = 'ts'
-): SourceTreeFile {
-  return {
-    name: `${name}.component.${extension}`,
-    path: `ng-verse/${rootPath}/${name}.component.${extension}`,
-    language: extension,
-  };
-}
-
-export function genFullComponentFiles(
-  name: string,
-  rootPath: string
-): SourceTreeFile[] {
-  return [
-    genComponentFile(name, rootPath, 'ts'),
-    genComponentFile(name, rootPath, 'html'),
-    genComponentFile(name, rootPath, 'scss'),
-  ];
-}
+import { SourceTreeFile, SourceTreeFolder } from '../source-tree-builder';
 
 @Component({
   selector: 'doc-source-tree-select',
@@ -70,7 +12,23 @@ export class SourceTreeSelectComponent {
   isOpen = signal(true);
   fileSelected = output<SourceTreeFile>();
 
+  selectedFile = signal<SourceTreeFile | undefined>(undefined);
+
   sourceTree = input<SourceTreeFolder[]>([]);
+
+  constructor() {
+    effect(() => {
+      if (this.selectedFile()) {
+        return;
+      }
+      const sourceTree = this.sourceTree();
+      if (sourceTree.length) {
+        const newFile = sourceTree[0].files[0]
+        this.selectedFile.set(newFile);
+        this.fileSelect(newFile)
+      }
+    });
+  }
 
   close() {
     this.isOpen.set(false);
@@ -82,6 +40,7 @@ export class SourceTreeSelectComponent {
 
   fileSelect(file: SourceTreeFile) {
     this.fileSelected.emit(file);
+    this.selectedFile.set(file);
     this.close();
   }
 }

@@ -1,5 +1,5 @@
 .select-option {
-  @apply cursor-pointer my-2;
+  @apply cursor-pointer my-2 flex items-center gap-1;
   @apply hover:bg-sky-100;
 }
 

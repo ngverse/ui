@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CInstallationComponent } from '../../blueprint/c-installation/c-installation.component';
@@ -9,13 +9,7 @@ import { AccordionHeaderComponent } from '../../../../../ng-verse/src/lib/accord
 import { AccordionBodyComponent } from '../../../../../ng-verse/src/lib/accordion/accordion-item/accordion-body.component';
 import { SourceCodeComponent } from '../../blueprint/source-code/source-code.component';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import {
-  genFullComponentFiles,
-  genComponentFile,
-  SourceTreeFolder,
-  genFolder,
-  getRegularFile,
-} from '../../blueprint/source-tree/source-tree-select/source-tree-select.component';
+import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
 
 @Component({
   selector: 'doc-accordion-page',
@@ -29,26 +23,32 @@ import {
     AccordionHeaderComponent,
     AccordionBodyComponent,
     SourceTreeComponent,
+    CInstallationComponent
   ],
   templateUrl: './accordion-page.component.html',
   styleUrl: './accordion-page.component.scss',
 })
 export class AccordionPageComponent {
-  sourceTree: SourceTreeFolder[] = [
-    genFolder(
-      'accordion',
-      'accordion',
-      (root) => [...genFullComponentFiles('accordion', root)],
+  sourceTreeBuilder = inject(SourceTreeBuilder);
+  sourceTree = this.sourceTreeBuilder.sourceTree('accordion', (root) => [
+    this.sourceTreeBuilder.folder(
+      root,
+      root,
+      () => this.sourceTreeBuilder.fullComponent('accordion', root),
       true
     ),
-    genFolder('accordion-item', 'accordion/accordion-item', (root) => [
-      ...genFullComponentFiles('accordion-item', root),
-      genComponentFile('accordion-body', root),
-      genComponentFile('accordion-header', root),
-      genComponentFile('expand-icon', root),
-      getRegularFile('animations', root, 'ts'),
-    ]),
-  ];
+    this.sourceTreeBuilder.folder(
+      'accordion-item',
+      `${root}/accordion-item`,
+      (root) => [
+        ...this.sourceTreeBuilder.fullComponent('accordion-item', root),
+        this.sourceTreeBuilder.component('accordion-header', root),
+        this.sourceTreeBuilder.component('accordion-body', root),
+        this.sourceTreeBuilder.component('expand-icon', root),
+        this.sourceTreeBuilder.file('animations', root),
+      ]
+    ),
+  ]);
 
   items = [
     {

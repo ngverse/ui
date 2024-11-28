@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
+import { SourceTreeFolder } from '../blueprint/source-tree/source-tree-builder';
+import { map } from 'rxjs/operators';
+import { lastValueFrom } from 'rxjs';
 
 interface FileType {
   name: string;
@@ -18,6 +21,51 @@ export class FileService {
     return this.http.get(path, {
       responseType: 'text',
     });
+  }
+
+  downloadSourceTree(zipName: string, sourceTree: SourceTreeFolder[]) {
+    const zip = new JSZip();
+    const filePromises: Promise<void>[] = [];
+
+    for (const folder of sourceTree) {
+      let jsFolder: JSZip | null;
+      if (!folder.hideName) {
+        jsFolder = zip.folder(folder.name);
+      }
+      for (const file of folder.files) {
+        // Wrap the subscription in a Promise
+        const filePromise = lastValueFrom(
+          this.getFile(file.path).pipe(
+            map((content) => {
+              if (folder.hideName) {
+                zip.file(file.name, content);
+              } else {
+                jsFolder?.file(file.name, content);
+              }
+            })
+          )
+        );
+
+        filePromises.push(filePromise);
+      }
+    }
+
+    // Wait for all file promises to resolve
+    Promise.all(filePromises)
+      .then(() => {
+        // Generate ZIP file and trigger download
+        zip
+          .generateAsync({ type: 'blob' })
+          .then((blob) => {
+            saveAs(blob, zipName);
+          })
+          .catch((error) => {
+            console.error('Error generating ZIP', error);
+          });
+      })
+      .catch((error) => {
+        console.error('Error processing files', error);
+      });
   }
 
   downloadFile(zipName: string, file: FileType) {
