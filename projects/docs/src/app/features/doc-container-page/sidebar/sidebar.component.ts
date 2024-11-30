@@ -41,5 +41,14 @@ export class SidebarComponent {
         },
       ],
     },
+    {
+      name: 'Pagination',
+      children: [
+        {
+          name: 'Pagination',
+          url: '/doc/pagination',
+        },
+      ],
+    },
   ];
 }

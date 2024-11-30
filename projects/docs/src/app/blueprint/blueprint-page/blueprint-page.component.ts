@@ -8,6 +8,6 @@ import { SeparateComponent } from "../separate/separate.component";
   styleUrl: './blueprint-page.component.scss',
 })
 export class BlueprintPageComponent {
-  title = input.required<string>();
+  label = input.required<string>();
   subTitle = input<string>();
 }

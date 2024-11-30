@@ -1,0 +1,18 @@
+.pagination-numbers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page {
+  background: white;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  cursor: pointer;
+  &:hover,
+  &.selected {
+    background: #f4f4f5;
+  }
+}

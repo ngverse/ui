@@ -1,19 +1,13 @@
 import { Component, inject, input, signal } from '@angular/core';
-import { SourceCodeComponent } from '../source-code/source-code.component';
 import { DownloadButtonComponent } from '../download-button/download-button.component';
 import { zip } from 'rxjs';
 import { FileService } from '../../services/file.service';
-import { TabsComponent } from '../../core/tabs/tabs.component';
-import { TabItemComponent } from '../../core/tabs/tab-item/tab-item.component';
 import { SourceTreeFolder } from '../source-tree/source-tree-builder';
 
 @Component({
   selector: 'doc-c-installation',
   imports: [
-    SourceCodeComponent,
     DownloadButtonComponent,
-    TabsComponent,
-    TabItemComponent,
   ],
   templateUrl: './c-installation.component.html',
   styleUrl: './c-installation.component.scss',
