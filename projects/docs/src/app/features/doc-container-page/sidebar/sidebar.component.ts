@@ -50,5 +50,14 @@ export class SidebarComponent {
         },
       ],
     },
+    {
+      name: 'Checkbox',
+      children: [
+        {
+          name: 'Cagination',
+          url: '/doc/checkbox',
+        },
+      ],
+    },
   ];
 }

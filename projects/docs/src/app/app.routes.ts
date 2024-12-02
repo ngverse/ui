@@ -36,6 +36,13 @@ export const routes: Routes = [
             (p) => p.PaginationPageComponent
           ),
       },
+      {
+        path: 'checkbox',
+        loadComponent: () =>
+          import('./features/checkbox-page/checkbox-page.component').then(
+            (c) => c.CheckboxPageComponent
+          ),
+      },
     ],
   },
   {

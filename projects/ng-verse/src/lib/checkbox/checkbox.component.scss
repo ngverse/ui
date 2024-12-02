@@ -1,0 +1,16 @@
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+:host.ng-invalid.ng-touched {
+  .checkbox {
+    color: #dc2626;
+  }
+}
+
+.disabled {
+  color: #9ca3af;
+}
