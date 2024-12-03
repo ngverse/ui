@@ -43,6 +43,13 @@ export const routes: Routes = [
             (c) => c.CheckboxPageComponent
           ),
       },
+      {
+        path: 'radio-button',
+        loadComponent: () =>
+          import('./features/radio-button-page/radio-button-page.component').then(
+            (c) => c.RadioButtonPageComponent
+          ),
+      },
     ],
   },
   {

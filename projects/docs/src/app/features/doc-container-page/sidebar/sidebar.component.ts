@@ -30,6 +30,18 @@ export class SidebarComponent {
           name: 'Accordion',
           url: '/doc/accordion',
         },
+        {
+          name: 'Pagination',
+          url: '/doc/pagination',
+        },
+        {
+          name: 'Checkbox',
+          url: '/doc/checkbox',
+        },
+        {
+          name: 'Radio Button',
+          url: '/doc/radio-button',
+        },
       ],
     },
     {
@@ -38,24 +50,6 @@ export class SidebarComponent {
         {
           name: 'OutsideClick',
           url: '/doc/outside-click',
-        },
-      ],
-    },
-    {
-      name: 'Pagination',
-      children: [
-        {
-          name: 'Pagination',
-          url: '/doc/pagination',
-        },
-      ],
-    },
-    {
-      name: 'Checkbox',
-      children: [
-        {
-          name: 'Cagination',
-          url: '/doc/checkbox',
         },
       ],
     },
