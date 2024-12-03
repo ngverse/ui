@@ -20,7 +20,7 @@ export class CheckboxPageComponent {
 
   constructor() {
     this.formControl.valueChanges.subscribe(() => {
-      console.log('VALUE CAHNGED');
+      console.log(this.formControl.value);
     });
   }
 }
