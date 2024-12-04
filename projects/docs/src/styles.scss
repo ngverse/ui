@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 @import 'highlight.js/styles/atom-one-light.css';
+@import '@angular/cdk/overlay-prebuilt.css';
 
 html,
 body {

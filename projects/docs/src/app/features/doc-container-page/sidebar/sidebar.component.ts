@@ -42,6 +42,10 @@ export class SidebarComponent {
           name: 'Radio Button',
           url: '/doc/radio-button',
         },
+        {
+          name: 'Select',
+          url: '/doc/select',
+        },
       ],
     },
     {

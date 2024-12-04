@@ -46,8 +46,15 @@ export const routes: Routes = [
       {
         path: 'radio-button',
         loadComponent: () =>
-          import('./features/radio-button-page/radio-button-page.component').then(
-            (c) => c.RadioButtonPageComponent
+          import(
+            './features/radio-button-page/radio-button-page.component'
+          ).then((c) => c.RadioButtonPageComponent),
+      },
+      {
+        path: 'select',
+        loadComponent: () =>
+          import('./features/select-page/select-page.component').then(
+            (c) => c.SelectPageComponent
           ),
       },
     ],
