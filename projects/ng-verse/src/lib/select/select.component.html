@@ -1,1 +1,36 @@
-<ng-content select="app-option"></ng-content>
+<button
+  class="select-button"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+  #triggerElement
+  (click)="toggle()"
+>
+  <span>{{ displayValue() }}</span>
+  <lucide-angular
+    class="select-button-icon"
+    [class.opened]="isOpen()"
+    role="radio"
+    size="20"
+    [img]="ChevronDown"
+  ></lucide-angular>
+</button>
+<ng-template
+  (backdropClick)="close()"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayBackdropClass]="'cdk-backdrop-transparent'"
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen()"
+>
+  <ul
+    [cdkListboxValue]="listBoxValue()"
+    (cdkListboxValueChange)="valueChange($event)"
+    cdkListbox
+    class="select-options"
+    [style.width.px]="overlayWidth()"
+  >
+    @for (option of options(); track $index) {
+    <li class="select-option" [cdkOption]="option">{{ option }}</li>
+    }
+  </ul>
+</ng-template>

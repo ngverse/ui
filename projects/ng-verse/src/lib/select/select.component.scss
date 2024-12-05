@@ -1,0 +1,33 @@
+.select-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 1px solid #9ca3af;
+
+  .select-button-icon {
+    transition: transform 0.15s ease-in-out;
+    display: flex;
+
+    &.opened {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.select-options {
+  width: 100%;
+  margin-top: 6px;
+  border: 1px solid #9ca3af;
+  max-height: 300px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.select-option {
+  width: 100%;
+  cursor: pointer;
+  &.cdk-option-active {
+    background: #e0f2fe;
+  }
+}
