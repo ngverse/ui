@@ -16,7 +16,6 @@ export class DialogPageComponent {
       .confirm({
         title: 'HELLO',
         description: 'Welcome',
-        hasBackdrop: false,
       })
       .subscribe((value) => {
         console.log('VALUE ', value);

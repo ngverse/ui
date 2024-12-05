@@ -1,8 +1,7 @@
-import { CdkTrapFocus } from '@angular/cdk/a11y';
-import { Component, inject } from '@angular/core';
 import { DIALOG_DATA, DialogConfig, DialogRef } from '@angular/cdk/dialog';
+import { Component, inject } from '@angular/core';
 
-export interface ConfirmOptions<T = boolean, K = boolean>
+export interface ConfirmDialogOptions<T = boolean, K = boolean>
   extends Pick<DialogConfig, 'disableClose' | 'hasBackdrop'> {
   title: string;
   description: string;
@@ -11,16 +10,13 @@ export interface ConfirmOptions<T = boolean, K = boolean>
 }
 
 @Component({
-  selector: 'app-confirm',
-  imports: [CdkTrapFocus],
-  templateUrl: './confirm.component.html',
-  styleUrl: './confirm.component.scss',
-  host: {
-    role: 'dialog',
-  },
+  selector: 'app-confirm-dialog',
+  imports: [],
+  templateUrl: './confirm-dialog.component.html',
+  styleUrl: './confirm-dialog.component.scss',
 })
-export class ConfirmComponent {
-  dialogData = inject<ConfirmOptions>(DIALOG_DATA);
+export class ConfirmDialogComponent {
+  dialogData = inject<ConfirmDialogOptions>(DIALOG_DATA);
   dialogRef = inject(DialogRef);
 
   get title() {
