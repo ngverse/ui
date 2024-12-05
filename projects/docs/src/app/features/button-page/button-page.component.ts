@@ -8,6 +8,7 @@ import { ApiInfoInputComponent } from '../../blueprint/api-info/api-info-input/a
 import { ApiInfoInputContainerComponent } from '../../blueprint/api-info/api-info-input-container/api-info-input-container.component';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
+import { SimpleButtonComponent } from '../../../../../examples/src/lib/button/simple-button/simple-button.component';
 
 @Component({
   selector: 'doc-button-page',
@@ -15,12 +16,12 @@ import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-build
     BlueprintPageComponent,
     CInstallationComponent,
     ShowCaseComponent,
-    ButtonComponent,
     ShowCaseComponent,
     ApiInfoComponent,
     ApiInfoInputComponent,
     ApiInfoInputContainerComponent,
     SourceTreeComponent,
+    SimpleButtonComponent,
   ],
   templateUrl: './button-page.component.html',
   styleUrl: './button-page.component.scss',
