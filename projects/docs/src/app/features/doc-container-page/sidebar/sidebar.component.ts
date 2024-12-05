@@ -50,6 +50,10 @@ export class SidebarComponent {
           name: 'Dialog',
           url: '/doc/dialog',
         },
+        {
+          name: 'Skeleton',
+          url: '/doc/skeleton',
+        },
       ],
     },
     {

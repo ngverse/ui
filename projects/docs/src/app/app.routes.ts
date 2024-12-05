@@ -64,6 +64,13 @@ export const routes: Routes = [
             (d) => d.DialogPageComponent
           ),
       },
+      {
+        path: 'skeleton',
+        loadComponent: () =>
+          import('./features/skeleton-page/skeleton-page.component').then(
+            (d) => d.SkeletonPageComponent
+          ),
+      },
     ],
   },
   {
