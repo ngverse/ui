@@ -1,12 +1,21 @@
 {
   "name": "ng-verse",
   "version": "0.0.1",
+  "schematics": "./schematics/collection.json",
   "peerDependencies": {
     "@angular/common": "^19.0.0",
     "@angular/core": "^19.0.0"
   },
+  "scripts": {
+    "build": "tsc -p tsconfig.schematics.json",
+    "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json ../../dist/ng-verse/"
+  },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "copyfiles": "file:../../node_modules/copyfiles",
+    "typescript": "file:../../node_modules/typescript"
   },
   "sideEffects": false
 }

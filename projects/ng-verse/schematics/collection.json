@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "blueprint": {
+      "description": "Generate a blueprint in the project.",
+      "factory": "./blueprint/index#blueprint",
+      "schema": "./blueprint/schema.json"
+    }
+  }
+}
