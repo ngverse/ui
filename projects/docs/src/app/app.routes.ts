@@ -57,6 +57,13 @@ export const routes: Routes = [
             (c) => c.SelectPageComponent
           ),
       },
+      {
+        path: 'dialog',
+        loadComponent: () =>
+          import('./features/dialog-page/dialog-page.component').then(
+            (d) => d.DialogPageComponent
+          ),
+      },
     ],
   },
   {

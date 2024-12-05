@@ -1,8 +1,4 @@
-import {
-  Rule,
-  SchematicContext,
-  Tree,
-} from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { join } from 'path';
 
 // A function that will generate a Rule to copy the specified component folder
@@ -22,12 +18,7 @@ export function blueprint(options: Schema): Rule {
     //   );
     // }
 
-    const applicationPath = join(
-      'src',
-      'app',
-      'components',
-      options.name
-    );
+    const applicationPath = join('src', 'app', 'components', options.name);
 
     // Copy component files from the library to the application
     tree.getDir(componentsPath).visit((filePath) => {

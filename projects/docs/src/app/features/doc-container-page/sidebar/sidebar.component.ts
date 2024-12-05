@@ -46,6 +46,10 @@ export class SidebarComponent {
           name: 'Select',
           url: '/doc/select',
         },
+        {
+          name: 'Dialog',
+          url: '/doc/dialog',
+        },
       ],
     },
     {
