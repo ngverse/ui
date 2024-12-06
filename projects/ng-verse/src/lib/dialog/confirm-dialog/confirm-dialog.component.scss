@@ -1,0 +1,17 @@
+.confirm-actions {
+  display: flex;
+  justify-content: end;
+  gap: 12px;
+
+  .confirm-action {
+    border: 0;
+    background: transparent;
+  }
+}
+
+.confirm {
+  border-radius: 12px;
+  background: white;
+  padding: 12px 16px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}

@@ -1,0 +1,17 @@
+<div class="confirm" cdkTrapFocus>
+  <h2 class="confirm-title">{{ title }}</h2>
+  <p class="confirm-description">{{ description }}</p>
+  <div class="confirm-actions">
+    <button
+      type="button"
+      (click)="yes()"
+      cdkFocusInitial
+      class="confirm-action"
+    >
+      {{ yesLabel }}
+    </button>
+    <button type="button" class="confirm-action" (click)="no()">
+      {{ noLabel }}
+    </button>
+  </div>
+</div>

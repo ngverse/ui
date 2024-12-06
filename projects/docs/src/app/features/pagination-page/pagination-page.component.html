@@ -1,0 +1,9 @@
+<doc-blueprint-page label="Pagination">
+  <doc-show-case>
+    <app-pagination
+      [currentPage]="currentPage()"
+      (pageChange)="pageChange($event)"
+      [pageSize]="100"
+    ></app-pagination>
+  </doc-show-case>
+</doc-blueprint-page>

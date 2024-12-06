@@ -1,0 +1,11 @@
+<h4 class="text-3xl font-bold my-4">Source Code</h4>
+<div>
+  <doc-source-tree-select
+    [sourceTree]="sourceTree()"
+    (fileSelected)="fileSelected($event)"
+    class="block mb-3"
+  ></doc-source-tree-select>
+</div>
+<div>
+  <doc-source-code [code]="code()" language="ts"></doc-source-code>
+</div>

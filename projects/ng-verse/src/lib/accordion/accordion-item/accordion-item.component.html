@@ -1,0 +1,11 @@
+<div>
+  <div class="accordion-item-header" (click)="toggle()">
+    <ng-content select="app-accordion-header"></ng-content>
+    <app-expand-icon [class.icon-opened]="isOpen()" class="expand-icon"></app-expand-icon>
+  </div>
+  @if(isOpen()){
+  <div @expandOnEnter @collapseOnLeave class="accordion-item-body">
+    <ng-content select="app-accordion-body"></ng-content>
+  </div>
+  }
+</div>

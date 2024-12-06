@@ -1,0 +1,30 @@
+<doc-blueprint-page [subTitle]="'I am accordion'" [label]="'Accordion'">
+  <doc-c-installation [sourceTree]="sourceTree" name="accordion"></doc-c-installation>
+  <doc-source-tree [sourceTree]="sourceTree" name="accordion"></doc-source-tree>
+  <doc-show-case>
+    <div class="flex gap-2">
+      <app-accordion class="w-full">
+        @for (item of items; track $index) {
+        <app-accordion-item>
+          <app-accordion-header>{{ item.title }}</app-accordion-header>
+          <app-accordion-body>{{ item.description }}</app-accordion-body>
+        </app-accordion-item>
+        }
+      </app-accordion>
+    </div>
+  </doc-show-case>
+  <doc-api-info>
+    <p>Button component wraps native html button element</p>
+    <p class="font-medium">color</p>
+    <ul>
+      <li>primary</li>
+      <li>secondary</li>
+      <li>tertiary</li>
+      <li>danger</li>
+      <li>success</li>
+      <li>warning</li>
+    </ul>
+    <p class="font-medium">loading (boolean)</p>
+    <p>adds loading if neccessary</p>
+  </doc-api-info>
+</doc-blueprint-page>

@@ -26,6 +26,51 @@ export class SidebarComponent {
           name: 'Button',
           url: '/doc/button',
         },
+        {
+          name: 'Accordion',
+          url: '/doc/accordion',
+        },
+        {
+          name: 'Pagination',
+          url: '/doc/pagination',
+        },
+        {
+          name: 'Checkbox',
+          url: '/doc/checkbox',
+        },
+        {
+          name: 'Radio Button',
+          url: '/doc/radio-button',
+        },
+        {
+          name: 'Select',
+          url: '/doc/select',
+        },
+        {
+          name: 'Dialog',
+          url: '/doc/dialog',
+        },
+        {
+          name: 'Skeleton',
+          url: '/doc/skeleton',
+        },
+        {
+          name: 'Switch',
+          url: '/doc/switch',
+        },
+        {
+          name: 'Tab',
+          url: '/doc/tab',
+        },
+      ],
+    },
+    {
+      name: 'Directives',
+      children: [
+        {
+          name: 'OutsideClick',
+          url: '/doc/outside-click',
+        },
       ],
     },
   ];

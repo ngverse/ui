@@ -1,0 +1,9 @@
+<div class="checkbox" [class.disabled]="disabled()" (click)="toggle()">
+  <lucide-angular
+    role="checkbox"
+    [attr.aria-checked]="value()"
+    size="24"
+    [img]="value() ? SquareCheck : Square"
+  ></lucide-angular>
+  <label> <ng-content></ng-content> </label>
+</div>

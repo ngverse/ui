@@ -1,0 +1,14 @@
+.tab-group-header {
+  display: flex;
+  position: relative;
+}
+
+.tab-ink {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #007bff;
+  transition: left 0.3s ease, width 0.3s ease;
+}
