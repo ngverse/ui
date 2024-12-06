@@ -78,6 +78,13 @@ export const routes: Routes = [
             (d) => d.SwitchPageComponent
           ),
       },
+      {
+        path: 'tab',
+        loadComponent: () =>
+          import('./features/tab-page/tab-page.component').then(
+            (d) => d.TabPageComponent
+          ),
+      },
     ],
   },
   {

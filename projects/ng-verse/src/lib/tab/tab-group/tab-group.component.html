@@ -1,0 +1,15 @@
+<div #tabMainHeader class="tab-group-header">
+  @for (tab of tabs(); track $index) {
+  <div #tabHeader (click)="selectTab($index)">
+    {{ tab.label() }}
+  </div>
+  }
+  <div #tabInk class="tab-ink"></div>
+</div>
+@for (tab of tabs(); track $index) { @if(tab.templatePortal(); as
+templatePortal){ @if(isSelected($index)){
+<div [hidden]="!isSelected($index)">
+  <ng-template [cdkPortalOutlet]="templatePortal"></ng-template>
+</div>
+
+} } }
