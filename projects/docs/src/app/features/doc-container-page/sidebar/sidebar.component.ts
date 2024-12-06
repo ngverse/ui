@@ -54,6 +54,10 @@ export class SidebarComponent {
           name: 'Skeleton',
           url: '/doc/skeleton',
         },
+        {
+          name: 'Switch',
+          url: '/doc/switch',
+        },
       ],
     },
     {

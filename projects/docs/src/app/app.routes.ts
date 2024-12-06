@@ -71,6 +71,13 @@ export const routes: Routes = [
             (d) => d.SkeletonPageComponent
           ),
       },
+      {
+        path: 'switch',
+        loadComponent: () =>
+          import('./features/switch-page/switch-page.component').then(
+            (d) => d.SwitchPageComponent
+          ),
+      },
     ],
   },
   {
