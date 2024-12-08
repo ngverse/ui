@@ -26,7 +26,7 @@ export class SourceTreeComponent {
     });
   }
 
-  download(){
-    console.log("DOWNLAOD")
+  download() {
+    this.fileService.downloadSourceTree('button', this.sourceTree());
   }
 }

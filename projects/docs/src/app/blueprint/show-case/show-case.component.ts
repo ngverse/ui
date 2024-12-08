@@ -9,17 +9,26 @@ import { SourceCodeComponent } from '../source-code/source-code.component';
   styleUrl: './show-case.component.scss',
 })
 export class ShowCaseComponent {
-  data = ['PREVIEW', 'HTML', 'SCSS', 'TS'];
+  tabs = ['preview', 'ts', 'html', 'scss'];
   fileService = inject(FileService);
-  selectedTab = signal('Preview');
+  selectedTab = signal('preview');
   code = signal<string>('');
+  name = input.required<string>();
 
-  selectTab() {
-    this.selectedTab.set('HTML');
-    this.fileService
-      .getFile(`examples/button/simple-button/simple-button.component.html`)
-      .subscribe((response) => {
-        this.code.set(response);
-      });
+  selectTab(tab: string) {
+    this.selectedTab.set(tab);
+    if (tab !== 'preview') {
+      this.fileService
+        .getFile(
+          `examples/${this.name()}/show-case-${this.name()}/show-case-${this.name()}.component.${tab}`
+        )
+        .subscribe((response) => {
+          if (!response) {
+            this.code.set('Empty File');
+          } else {
+            this.code.set(response);
+          }
+        });
+    }
   }
 }

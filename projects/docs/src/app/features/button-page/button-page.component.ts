@@ -27,32 +27,12 @@ import { CommandInstallationComponent } from '../../blueprint/command-installati
 })
 export class ButtonPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
-  // sourceTree = this.sourceTreeBuilder.sourceTree('button', (root) => [
-  //   this.sourceTreeBuilder.folder(
-  //     root,
-  //     root,
-  //     () => this.sourceTreeBuilder.fullComponent('button', root),
-  //     true
-  //   ),
-  // ]);
-
-  sourceTree = this.sourceTreeBuilder.sourceTree('accordion', (root) => [
+  sourceTree = this.sourceTreeBuilder.sourceTree('button', (root) => [
     this.sourceTreeBuilder.folder(
       root,
       root,
-      () => this.sourceTreeBuilder.fullComponent('accordion', root),
+      () => this.sourceTreeBuilder.fullComponent('button', root),
       true
-    ),
-    this.sourceTreeBuilder.folder(
-      'accordion-item',
-      `${root}/accordion-item`,
-      (root) => [
-        ...this.sourceTreeBuilder.fullComponent('accordion-item', root),
-        this.sourceTreeBuilder.component('accordion-header', root),
-        this.sourceTreeBuilder.component('accordion-body', root),
-        this.sourceTreeBuilder.component('expand-icon', root),
-        this.sourceTreeBuilder.file('animations', root),
-      ]
     ),
   ]);
 }

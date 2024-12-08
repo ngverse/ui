@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfirmDialogComponent } from './confirm-dialog.component';
+import { ShowCaseButtonComponent } from './show-case-button.component';
 
-describe('ConfirmDialogComponent', () => {
-  let component: ConfirmDialogComponent;
-  let fixture: ComponentFixture<ConfirmDialogComponent>;
+describe('ShowCaseButtonComponent', () => {
+  let component: ShowCaseButtonComponent;
+  let fixture: ComponentFixture<ShowCaseButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConfirmDialogComponent]
+      imports: [ShowCaseButtonComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ConfirmDialogComponent);
+    fixture = TestBed.createComponent(ShowCaseButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,23 +1,85 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ButtonComponent } from './button.component';
+import { Component, DebugElement, signal } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('ButtonComponent', () => {
-  let component: ButtonComponent;
-  let fixture: ComponentFixture<ButtonComponent>;
+  let fixture: ComponentFixture<ButtonTest>;
+  let debugElement: DebugElement;
+  let htmlElement: HTMLElement;
+  let rootComponent: ButtonTest;
+  let buttonComponent: ButtonComponent;
+  let buttonRootElement: HTMLElement;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ButtonComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(ButtonComponent);
-    component = fixture.componentInstance;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ButtonComponent],
+    });
+    fixture = TestBed.createComponent(ButtonTest);
+    debugElement = fixture.debugElement;
+    htmlElement = fixture.debugElement.nativeElement;
+    rootComponent = fixture.componentInstance;
+    buttonComponent = debugElement.query(By.directive(ButtonComponent))
+      .componentInstance as ButtonComponent;
+    buttonRootElement = htmlElement.querySelector('button') as HTMLElement;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(buttonComponent).toBeTruthy();
+  });
+
+  it('should add disable attribute on disable', () => {
+    rootComponent.disabled.set(true);
+    fixture.detectChanges();
+    expect(buttonRootElement.hasAttribute('disabled')).toBeTrue();
+  });
+
+  it('should add outline class on variant type change', () => {
+    rootComponent.variant.set('outline');
+    fixture.detectChanges();
+    expect(buttonRootElement.classList.contains('outline')).toBeTrue();
+  });
+  it('should add proper color type', () => {
+    rootComponent.color.set('secondary');
+    fixture.detectChanges();
+    expect(buttonRootElement.classList.contains('secondary')).toBeTrue();
+  });
+  it('should add proper button type', () => {
+    rootComponent.type.set('submit');
+    fixture.detectChanges();
+    expect(buttonRootElement.getAttribute('type')).toBe('submit');
+  });
+  it('should show spinner on loading', () => {
+    rootComponent.loading.set(true);
+    fixture.detectChanges();
+    const hasButtonLoader =
+      buttonRootElement.querySelector('.button-loader') !== null;
+
+    expect(hasButtonLoader).toBeTrue();
+  });
+  it('should display text in button', () => {
+    expect(buttonRootElement.textContent?.trim()).toBe('Test Button');
   });
 });
+
+@Component({
+  imports: [ButtonComponent],
+  template: `<app-button
+    [color]="color()"
+    [variant]="variant()"
+    [disabled]="disabled()"
+    [type]="type()"
+    [loading]="loading()"
+  >
+    Test Button
+  </app-button>`,
+})
+class ButtonTest {
+  disabled = signal<boolean>(false);
+  variant = signal<string | undefined>('fill');
+  color = signal<string | undefined>('primary');
+  type = signal<string>('button');
+  loading = signal(false);
+}

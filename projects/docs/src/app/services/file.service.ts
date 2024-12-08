@@ -3,8 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 import { SourceTreeFolder } from '../blueprint/source-tree/source-tree-builder';
-import { map } from 'rxjs/operators';
-import { lastValueFrom } from 'rxjs';
+import { delay, map, tap } from 'rxjs/operators';
+import { lastValueFrom, of } from 'rxjs';
 
 interface FileType {
   name: string;
@@ -16,11 +16,21 @@ interface FileType {
 })
 export class FileService {
   private http = inject(HttpClient);
+  private _cache = new Map<string, string>();
 
   getFile(path: string) {
-    return this.http.get(path, {
-      responseType: 'text',
-    });
+    if (this._cache.has(path)) {
+      return of(this._cache.get(path) as string).pipe(delay(0));
+    }
+    return this.http
+      .get(path, {
+        responseType: 'text',
+      })
+      .pipe(
+        tap((response) => {
+          this._cache.set(path, response);
+        })
+      );
   }
 
   downloadSourceTree(zipName: string, sourceTree: SourceTreeFolder[]) {

@@ -14,6 +14,8 @@ type COLOR_TYPES =
   | 'success'
   | 'warning';
 
+type VARIANT_TYPES = 'fill' | 'outline';
+
 @Component({
   selector: 'app-button',
   standalone: true,
@@ -24,6 +26,8 @@ type COLOR_TYPES =
 })
 export class ButtonComponent {
   color = input<COLOR_TYPES>('primary');
+
+  variant = input<VARIANT_TYPES>('outline');
 
   disabled = input(undefined, { transform: booleanAttribute });
 
