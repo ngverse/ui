@@ -5,18 +5,12 @@ import { join } from 'path';
 export function blueprint(options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const componentsPath = join(
-      'projects',
+      'node_modules',
       'ng-verse',
       'src',
       'lib',
       options.name
     );
-    // console.log(componentsPath)
-    // if (!tree.exists(componentsPath)) {
-    //   throw new SchematicsException(
-    //     `Component ${options.name} does not exist.`
-    //   );
-    // }
 
     const applicationPath = join('src', 'app', 'components', options.name);
 

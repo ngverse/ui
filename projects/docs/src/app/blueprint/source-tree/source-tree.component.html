@@ -1,4 +1,13 @@
-<h4 class="m-0 text-xl font-normal mb-3">Source Code</h4>
+<div class="flex items-center justify-between mb-3">
+  <h4 class="m-0 text-xl font-normal ">Source Code</h4>
+  <button
+    (click)="download()"
+    class="h-8 bg-transparent border border-solid border-primary px-3 cursor-pointer hover:bg-amber-50"
+  >
+    Download (.zip)
+  </button>
+</div>
+
 <div class="rounded-md border border-solid border-gray-300">
   <div class="flex items-center justify-between p-3">
     <doc-source-tree-select
@@ -6,12 +15,6 @@
       (fileSelected)="fileSelected($event)"
       class="block"
     ></doc-source-tree-select>
-    <button
-      (click)="download()"
-      class="h-8 bg-transparent border border-solid border-primary px-3 cursor-pointer hover:bg-amber-50"
-    >
-      Download (.zip)
-    </button>
   </div>
   <div>
     <doc-source-code [code]="code()" language="ts"></doc-source-code>

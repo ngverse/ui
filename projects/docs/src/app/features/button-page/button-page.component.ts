@@ -1,7 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
-import { CInstallationComponent } from '../../blueprint/c-installation/c-installation.component';
-import { ButtonComponent } from '../../../../../ng-verse/src/public-api';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import { ApiInfoInputComponent } from '../../blueprint/api-info/api-info-input/api-info-input.component';
@@ -9,14 +7,12 @@ import { ApiInfoInputContainerComponent } from '../../blueprint/api-info/api-inf
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
 import { SimpleButtonComponent } from '../../../../../examples/src/lib/button/simple-button/simple-button.component';
-import { SourceCodeComponent } from "../../blueprint/source-code/source-code.component";
-import { CommandInstallationComponent } from "../../blueprint/command-installation/command-installation.component";
+import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 
 @Component({
   selector: 'doc-button-page',
   imports: [
     BlueprintPageComponent,
-    CInstallationComponent,
     ShowCaseComponent,
     ShowCaseComponent,
     ApiInfoComponent,
@@ -24,9 +20,8 @@ import { CommandInstallationComponent } from "../../blueprint/command-installati
     ApiInfoInputContainerComponent,
     SourceTreeComponent,
     SimpleButtonComponent,
-    SourceCodeComponent,
-    CommandInstallationComponent
-],
+    CommandInstallationComponent,
+  ],
   templateUrl: './button-page.component.html',
   styleUrl: './button-page.component.scss',
 })
@@ -60,5 +55,4 @@ export class ButtonPageComponent {
       ]
     ),
   ]);
-
 }

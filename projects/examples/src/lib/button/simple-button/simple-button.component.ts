@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from '../../../../../ng-verse/src/public-api';
+import { ButtonComponent } from '../../../../../ng-verse/src/lib/button/button.component';
 
 @Component({
   selector: 'exp-simple-button',

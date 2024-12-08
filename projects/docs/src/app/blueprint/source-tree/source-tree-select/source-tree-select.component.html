@@ -3,19 +3,13 @@
     (click)="open()"
     class="font-medium flex items-center gap-1 cursor-pointer"
   >
-    button.component.html
+    {{ selectedFile()?.name }}
     <lucide-angular
       class="flex"
       size="20"
       [img]="ChevronsUpDown"
     ></lucide-angular>
   </div>
-  <!-- <div
-    (click)="open()"
-    class="rounde-md border-gray-200 border border-solid px-3 py-2 w-[400px] rounded-md cursor-pointer "
-  >
-    {{ selectedFile()?.name }}
-  </div> -->
   @if(isOpen()){
 
   <div

@@ -3,7 +3,6 @@ import { SeparateComponent } from "../separate/separate.component";
 
 @Component({
   selector: 'doc-blueprint-page',
-  imports: [SeparateComponent],
   templateUrl: './blueprint-page.component.html',
   styleUrl: './blueprint-page.component.scss',
 })
