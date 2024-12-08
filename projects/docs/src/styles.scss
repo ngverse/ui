@@ -5,11 +5,17 @@
 @import 'highlight.js/styles/atom-one-light.css';
 @import '@angular/cdk/overlay-prebuilt.css';
 
+:root {
+  --color-text-primary: #09090b;
+  --color-primary: #f59e0b;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  color: var(--color-text-primary);
 }
 .content-area {
   max-width: 1440px;

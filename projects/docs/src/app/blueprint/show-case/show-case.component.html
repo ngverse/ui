@@ -1,4 +1,24 @@
-<h4 class="text-3xl font-bold my-4">Show Case</h4>
-<div class="rounded-md border border-solid border-gray-200 p-10">
-  <ng-content></ng-content>
+<h5 class="text-2xl my-0 mb-3 font-normal">Show Case</h5>
+<div class="rounded-md border border-solid border-gray-200">
+  <div class="flex border-0 border-b border-solid border-gray-300">
+    @for (item of data; track $index) {
+    <div
+      (click)="selectTab()"
+      [class.active-tab]="$index === 0"
+      class="text-center border-0 px-4 cursor-pointer py-3"
+    >
+      {{ item }}
+    </div>
+    }
+  </div>
+  <div class="bg-gray-100">
+    @if(selectedTab() ==='Preview'){
+    <div class="p-10">
+      <ng-content></ng-content>
+    </div>
+    } @else {
+    <doc-source-code [code]="code()" language="html"></doc-source-code>
+
+    }
+  </div>
 </div>

@@ -25,4 +25,8 @@ export class SourceTreeComponent {
       this.code.set(data);
     });
   }
+
+  download(){
+    console.log("DOWNLAOD")
+  }
 }

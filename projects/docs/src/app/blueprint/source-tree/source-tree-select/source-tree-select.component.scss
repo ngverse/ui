@@ -1,6 +1,6 @@
 .select-option {
-  @apply cursor-pointer my-2 flex items-center gap-1;
-  @apply hover:bg-sky-100;
+  @apply cursor-pointer h-8 flex items-center gap-1;
+  @apply hover:font-medium;
 }
 
 // border-0 border-b border-solid border-gray-200

@@ -1,9 +1,14 @@
-<h1 class="text-5xl font-bold mb-2">{{ label() }}</h1>
-@if(subTitle()){
-<p class="font-light text-lg m-0">{{ subTitle() }}</p>
-}
-<doc-separate></doc-separate>
-<ng-content select="doc-show-case"></ng-content>
-<ng-content select="doc-c-installation"></ng-content>
-<ng-content select="doc-source-tree"></ng-content>
-<ng-content select="doc-api-info"></ng-content>
+<div class="flex flex-col gap-10">
+  <div>
+    <h1 class="text-5xl font-bold mb-2">{{ label() }}</h1>
+    @if(subTitle()){
+    <p class="font-light text-lg m-0">{{ subTitle() }}</p>
+    }
+  </div>
+
+  <ng-content select="doc-show-case"></ng-content>
+  <ng-content select="doc-command-installation"></ng-content>
+  <ng-content select="doc-source-tree"></ng-content>
+  <ng-content select="doc-api-info"></ng-content>
+  <ng-content></ng-content>
+</div>

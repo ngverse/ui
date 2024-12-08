@@ -1,10 +1,11 @@
 import { Component, effect, input, output, signal } from '@angular/core';
 import { OutsideClickDirective } from '../../../../../../ng-verse/src/lib/outside-click/outside-click.directive';
 import { SourceTreeFile, SourceTreeFolder } from '../source-tree-builder';
+import { LucideAngularModule, ChevronsUpDown } from 'lucide-angular';
 
 @Component({
   selector: 'doc-source-tree-select',
-  imports: [OutsideClickDirective],
+  imports: [OutsideClickDirective, LucideAngularModule],
   templateUrl: './source-tree-select.component.html',
   styleUrl: './source-tree-select.component.scss',
 })
@@ -16,6 +17,8 @@ export class SourceTreeSelectComponent {
 
   sourceTree = input<SourceTreeFolder[]>([]);
 
+  ChevronsUpDown = ChevronsUpDown;
+
   constructor() {
     effect(() => {
       if (this.selectedFile()) {
@@ -23,9 +26,9 @@ export class SourceTreeSelectComponent {
       }
       const sourceTree = this.sourceTree();
       if (sourceTree.length) {
-        const newFile = sourceTree[0].files[0]
+        const newFile = sourceTree[0].files[0];
         this.selectedFile.set(newFile);
-        this.fileSelect(newFile)
+        this.fileSelect(newFile);
       }
     });
   }

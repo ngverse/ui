@@ -1,19 +1,31 @@
 <div class="relative">
   <div
     (click)="open()"
+    class="font-medium flex items-center gap-1 cursor-pointer"
+  >
+    button.component.html
+    <lucide-angular
+      class="flex"
+      size="20"
+      [img]="ChevronsUpDown"
+    ></lucide-angular>
+  </div>
+  <!-- <div
+    (click)="open()"
     class="rounde-md border-gray-200 border border-solid px-3 py-2 w-[400px] rounded-md cursor-pointer "
   >
     {{ selectedFile()?.name }}
-  </div>
+  </div> -->
   @if(isOpen()){
+
   <div
     (outsideClicked)="close()"
     [appOutsideClick]="isOpen()"
-    class="absolute top-10 shadow-xl z-50 bg-white border-gray-300 rounded-md border border-solid w-[400px] p-3"
+    class="absolute -top-[100px] shadow-md z-50 bg-white border-gray-300 rounded-md border border-solid w-[400px] py-2"
   >
     @for (folder of sourceTree(); track $index) { @if(!folder.hideName){
-    <div class="px-3 font-medium flex items-center gap-1">
-      <img src="images/folder.svg" width="16" height="16" /> {{ folder.name }}
+    <div class="px-3 flex items-center h-8 gap-1 select-none">
+      <img src="images/folder.svg" width="14" height="14" /> {{ folder.name }}
     </div>
     } @for (file of folder.files; track $index) {
     <div
@@ -22,12 +34,11 @@
       [class.px-5]="!folder.hideName"
       [class.px-3]="folder.hideName"
     >
-      <img width="16" height="16" [src]="'images/' + file.language + '.svg'" />
+      <img width="14" height="14" [src]="'images/' + file.language + '.svg'" />
       {{ file.name }}
     </div>
 
     } }
   </div>
-
   }
 </div>
