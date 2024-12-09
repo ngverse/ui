@@ -4,13 +4,6 @@ module.exports = {
     preflight: false,
   },
   content: ['./projects/docs/src/**/*.{html,ts}'],
-  theme: {
-    extend: {
-      colors: {
-        primary: '#fbbf24',
-        textPrimary: '#09090b',
-      },
-    },
-  },
+  theme: {},
   plugins: [],
 };

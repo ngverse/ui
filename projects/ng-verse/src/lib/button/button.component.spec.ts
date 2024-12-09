@@ -62,6 +62,11 @@ describe('ButtonComponent', () => {
   it('should display text in button', () => {
     expect(buttonRootElement.textContent?.trim()).toBe('Test Button');
   });
+  it('should change the size class', () => {
+    rootComponent.size.set('lg');
+    fixture.detectChanges();
+    expect(buttonRootElement.classList.contains('lg')).toBeTrue();
+  });
 });
 
 @Component({
@@ -72,6 +77,7 @@ describe('ButtonComponent', () => {
     [disabled]="disabled()"
     [type]="type()"
     [loading]="loading()"
+    [size]="size()"
   >
     Test Button
   </app-button>`,
@@ -82,4 +88,5 @@ class ButtonTest {
   color = signal<string | undefined>('primary');
   type = signal<string>('button');
   loading = signal(false);
+  size = signal<string>('sm');
 }
