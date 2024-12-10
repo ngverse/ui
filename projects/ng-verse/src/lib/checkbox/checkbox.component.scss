@@ -5,6 +5,17 @@
   cursor: pointer;
 }
 
+.checkbox-button {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+lucide-angular {
+  display: flex;
+}
+
 :host.ng-invalid.ng-touched {
   .checkbox {
     color: #dc2626;
