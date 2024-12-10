@@ -1,5 +1,4 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { LucideAngularModule, Circle, CircleCheck } from 'lucide-angular';
 import { RadioButtonState } from './radio-button.state';
 import { RadioButtonIconComponent } from './radio-button-icon.component';
 
@@ -10,9 +9,6 @@ import { RadioButtonIconComponent } from './radio-button-icon.component';
   styleUrl: './radio-button.component.scss',
 })
 export class RadioButtonComponent {
-  Circle = Circle;
-  CircleCheck = CircleCheck;
-
   disabled = input<boolean>();
 
   radioButtonState = inject(RadioButtonState);
