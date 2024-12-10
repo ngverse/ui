@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
-import { CInstallationComponent } from '../../blueprint/c-installation/c-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { AccordionComponent } from '../../../../../ng-verse/src/lib/accordion/accordion.component';
 import { AccordionItemComponent } from '../../../../../ng-verse/src/lib/accordion/accordion-item/accordion-item.component';
@@ -23,7 +22,6 @@ import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-build
     AccordionHeaderComponent,
     AccordionBodyComponent,
     SourceTreeComponent,
-    CInstallationComponent
   ],
   templateUrl: './accordion-page.component.html',
   styleUrl: './accordion-page.component.scss',
