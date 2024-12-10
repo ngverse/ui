@@ -1,6 +1,7 @@
 .select-option {
-  @apply cursor-pointer h-8 flex items-center gap-1;
-  @apply hover:font-medium;
-}
+  @apply cursor-pointer h-8 flex items-center gap-1 my-2 hover:bg-gray-100;
 
-// border-0 border-b border-solid border-gray-200
+  &.selected {
+    @apply bg-gray-100;
+  }
+}

@@ -1,7 +1,12 @@
 import { Component, effect, input, output, signal } from '@angular/core';
 import { OutsideClickDirective } from '../../../../../../ng-verse/src/lib/outside-click/outside-click.directive';
 import { SourceTreeFile, SourceTreeFolder } from '../source-tree-builder';
-import { LucideAngularModule, ChevronsUpDown } from 'lucide-angular';
+import {
+  LucideAngularModule,
+  ChevronsUpDown,
+  Folder,
+  ChevronDown,
+} from 'lucide-angular';
 
 @Component({
   selector: 'doc-source-tree-select',
@@ -17,7 +22,8 @@ export class SourceTreeSelectComponent {
 
   sourceTree = input<SourceTreeFolder[]>([]);
 
-  ChevronsUpDown = ChevronsUpDown;
+  ChevronDown = ChevronDown;
+  Folder = Folder;
 
   constructor() {
     effect(() => {

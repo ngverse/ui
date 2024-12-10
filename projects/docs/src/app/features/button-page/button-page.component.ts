@@ -7,7 +7,11 @@ import { ApiInfoInputContainerComponent } from '../../blueprint/api-info/api-inf
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
-import { ShowCaseButtonComponent } from "../../../../../examples/src/lib/button/show-case-button/show-case-button.component";
+import { ShowCaseButtonComponent } from '../../../../../examples/src/lib/button/show-case-button/show-case-button.component';
+import {
+  ApiInputsComponent,
+  ApiInputType,
+} from '../../blueprint/api-info/api-inputs/api-inputs.component';
 
 @Component({
   selector: 'doc-button-page',
@@ -20,8 +24,9 @@ import { ShowCaseButtonComponent } from "../../../../../examples/src/lib/button/
     ApiInfoInputContainerComponent,
     SourceTreeComponent,
     CommandInstallationComponent,
-    ShowCaseButtonComponent
-],
+    ShowCaseButtonComponent,
+    ApiInputsComponent,
+  ],
   templateUrl: './button-page.component.html',
   styleUrl: './button-page.component.scss',
 })
@@ -35,4 +40,29 @@ export class ButtonPageComponent {
       true
     ),
   ]);
+
+  apiInputs: ApiInputType[] = [
+    {
+      name: 'color',
+      type: 'primary | secondary | danger | success',
+      description:
+        "Defines the button's color type, which affects its background style.",
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      description: 'disables the button',
+    },
+    {
+      name: 'type',
+      type: 'submit | reset | button',
+      description: 'sets the native button type attribute',
+    },
+    {
+      name: 'loading',
+      type: 'boolean',
+      description:
+        'adds spinner on the button. The button will not emit any event while loading is true',
+    },
+  ];
 }

@@ -1,30 +1,28 @@
 <div class="relative">
   <div
     (click)="open()"
-    class="font-medium flex items-center gap-1 cursor-pointer"
+    class="font-medium flex items-center gap-1 cursor-pointer h-10 rounded-md border border-solid border-gray-300 px-3"
   >
     {{ selectedFile()?.name }}
-    <lucide-angular
-      class="flex"
-      size="20"
-      [img]="ChevronsUpDown"
-    ></lucide-angular>
+    <lucide-angular class="flex" size="20" [img]="ChevronDown"></lucide-angular>
   </div>
   @if(isOpen()){
 
   <div
     (outsideClicked)="close()"
     [appOutsideClick]="isOpen()"
-    class="absolute -top-[100px] shadow-md z-50 bg-white border-gray-300 rounded-md border border-solid w-[400px] py-2"
+    class="absolute top-12 shadow-md z-50 bg-white border-gray-300 rounded-md border border-solid w-[400px] py-2"
   >
     @for (folder of sourceTree(); track $index) { @if(!folder.hideName){
     <div class="px-3 flex items-center h-8 gap-1 select-none">
-      <img src="images/folder.svg" width="14" height="14" /> {{ folder.name }}
+      <lucide-angular class="flex" size="20" [img]="Folder"></lucide-angular>
+      {{ folder.name }}
     </div>
     } @for (file of folder.files; track $index) {
     <div
       (click)="fileSelect(file)"
       class="select-option"
+      [class.selected]="file.name === selectedFile()?.name"
       [class.px-5]="!folder.hideName"
       [class.px-3]="folder.hideName"
     >
