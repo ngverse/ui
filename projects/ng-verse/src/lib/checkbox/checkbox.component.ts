@@ -7,7 +7,6 @@ import {
   model,
   signal,
 } from '@angular/core';
-import { LucideAngularModule, Square, SquareCheck } from 'lucide-angular';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -17,6 +16,7 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
+import { CheckboxIconComponent } from './checkbox-icon.component';
 
 type VALUE_TYPE = boolean | undefined | null;
 
@@ -32,7 +32,7 @@ type ValidatorChangeFunction = (() => void) | undefined;
 
 @Component({
   selector: 'app-checkbox',
-  imports: [LucideAngularModule],
+  imports: [CheckboxIconComponent],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss',
   providers: [
@@ -50,8 +50,6 @@ type ValidatorChangeFunction = (() => void) | undefined;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent implements ControlValueAccessor, Validator {
-  Square = Square;
-  SquareCheck = SquareCheck;
   value = signal<VALUE_TYPE>(undefined);
 
   private _registerOnChange: OnChangeFunction;

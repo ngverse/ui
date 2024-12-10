@@ -26,7 +26,10 @@ export class CheckboxPageComponent {
     this.sourceTreeBuilder.folder(
       'checkbox',
       root,
-      (root) => this.sourceTreeBuilder.fullComponent('checkbox', root),
+      (root) => [
+        ...this.sourceTreeBuilder.fullComponent('checkbox', root),
+        this.sourceTreeBuilder.file('checkbox-icon.component', root),
+      ],
       true
     ),
   ]);

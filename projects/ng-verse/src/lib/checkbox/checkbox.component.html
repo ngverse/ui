@@ -9,7 +9,7 @@
     [attr.aria-checked]="value()"
     [disabled]="disabled()"
   >
-    <lucide-angular [img]="value() ? SquareCheck : Square"></lucide-angular>
+    <app-checkbox-icon [checked]="value()"></app-checkbox-icon>
   </button>
 
   <label>
