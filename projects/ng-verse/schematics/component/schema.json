@@ -1,17 +1,18 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "SchematicsMyService",
-  "title": "My Service Schema",
+  "$id": "SchematicsComponent",
+  "title": "Generate Component Schema",
   "type": "object",
   "properties": {
     "name": {
-      "description": "The name of the service.",
-      "type": "string"
+      "description": "The name of the component.",
+      "type": "string",
+      "positional": true
     },
     "path": {
       "type": "string",
       "format": "path",
-      "description": "The path to create the service.",
+      "description": "The path to create the component.",
       "visible": false
     },
     "project": {

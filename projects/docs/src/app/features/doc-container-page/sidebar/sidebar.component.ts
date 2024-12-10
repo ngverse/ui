@@ -27,16 +27,16 @@ export class SidebarComponent {
           url: '/doc/button',
         },
         {
+          name: 'Checkbox',
+          url: '/doc/checkbox',
+        },
+        {
           name: 'Accordion',
           url: '/doc/accordion',
         },
         {
           name: 'Pagination',
           url: '/doc/pagination',
-        },
-        {
-          name: 'Checkbox',
-          url: '/doc/checkbox',
         },
         {
           name: 'Radio Button',

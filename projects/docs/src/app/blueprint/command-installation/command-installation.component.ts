@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { SourceCodeComponent } from '../source-code/source-code.component';
 
 @Component({
@@ -7,4 +7,10 @@ import { SourceCodeComponent } from '../source-code/source-code.component';
   templateUrl: './command-installation.component.html',
   styleUrl: './command-installation.component.scss',
 })
-export class CommandInstallationComponent {}
+export class CommandInstallationComponent {
+  type = input.required<string>();
+  name = input.required<string>();
+  installation = computed(
+    () => `ng generate ng-verse:${this.type()} ${this.name()}`
+  );
+}
