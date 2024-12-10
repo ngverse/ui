@@ -1,9 +1,14 @@
 .button {
+  --primary-color: #0f172a;
+  --secondary-color: #737373;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+
   position: relative;
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  font-weight: 500;
+  font-weight: 600;
   color: #fff;
   background: white;
   border-width: 1px;
@@ -28,62 +33,53 @@
 
   &.primary {
     &.fill {
-      background-color: #a855f7;
+      background-color: var(--primary-color);
     }
     &.outline {
-      border-color: #a855f7;
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      .spinner {
+        border-color: var(--primary-color);
+      }
     }
   }
 
-  &.fill {
-    &.primary {
-      background-color: #a855f7;
+  &.secondary {
+    &.fill {
+      background-color: var(--secondary-color);
+    }
+    &.outline {
+      border-color: var(--secondary-color);
+      color: var(--secondary-color);
+      .spinner {
+        border-color: var(--secondary-color);
+      }
     }
   }
 
-  &.fill {
-    &.button.secondary {
-      background-color: #0891b2;
+  &.success {
+    &.fill {
+      background-color: var(--success-color);
     }
-
-    &.button.danger {
-      background-color: #e11d48;
-    }
-
-    &.button.tertiary {
-      background-color: #475569;
-    }
-
-    &.button.success {
-      background-color: #059669;
-    }
-
-    &.button.warning {
-      background-color: #d97706;
+    &.outline {
+      border-color: var(--success-color);
+      color: var(--success-color);
+      .spinner {
+        border-color: var(--success-color);
+      }
     }
   }
 
-  &.outline {
-    color: black;
-
-    &.button.secondary {
-      border-color: #0891b2;
+  &.danger {
+    &.fill {
+      background-color: var(--danger-color);
     }
-
-    &.button.danger {
-      border-color: #e11d48;
-    }
-
-    &.button.tertiary {
-      border-color: #475569;
-    }
-
-    &.button.success {
-      border-color: #059669;
-    }
-
-    &.button.warning {
-      border-color: #d97706;
+    &.outline {
+      border-color: var(--danger-color);
+      color: var(--danger-color);
+      .spinner {
+        border-color: var(--danger-color);
+      }
     }
   }
 }
@@ -115,7 +111,7 @@
   width: 20px;
   height: 20px;
   border: 3px solid #fff;
-  border-bottom-color: transparent;
+  border-bottom-color: transparent !important;
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
