@@ -1,5 +1,4 @@
 import { Component, input } from '@angular/core';
-import { SeparateComponent } from "../separate/separate.component";
 
 @Component({
   selector: 'doc-blueprint-page',
