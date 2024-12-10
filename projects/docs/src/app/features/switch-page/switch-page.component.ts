@@ -17,10 +17,4 @@ import { FormsModule } from '@angular/forms';
 })
 export class SwitchPageComponent {
   value = model();
-
-  constructor() {
-    effect(() => {
-      console.log('VALUE CHANGED ', this.value());
-    });
-  }
 }

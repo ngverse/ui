@@ -30,12 +30,6 @@ export class RadioButtonPageComponent {
     },
   ];
 
-  constructor() {
-    this.formControl.valueChanges.subscribe(() => {
-      console.log('VALUE IS ', this.formControl.value);
-    });
-  }
-
   compare(o1: any, o2: any) {
     return o1?.age === o2?.age;
   }

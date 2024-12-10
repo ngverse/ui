@@ -45,10 +45,4 @@ export class TabComponent {
     return this.preservedContent;
   });
   tabBody = contentChild(TabBodyDirective);
-
-  constructor() {
-    effect(() => {
-      console.log(this.tabBody());
-    });
-  }
 }

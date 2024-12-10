@@ -59,6 +59,7 @@ describe('ButtonComponent', () => {
 
     expect(hasButtonLoader).toBeTrue();
   });
+
   it('should display text in button', () => {
     expect(buttonRootElement.textContent?.trim()).toBe('Test Button');
   });

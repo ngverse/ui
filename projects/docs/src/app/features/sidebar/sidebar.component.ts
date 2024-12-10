@@ -20,6 +20,23 @@ type Link = {
 export class SidebarComponent {
   routes: Group[] = [
     {
+      name: 'Getting Started',
+      children: [
+        {
+          name: 'Introduction',
+          url: '/doc/introduction',
+        },
+        {
+          name: 'Installation',
+          url: '/doc/installation',
+        },
+        {
+          name: 'Theming',
+          url: '/doc/theming',
+        },
+      ],
+    },
+    {
       name: 'Components',
       children: [
         {
