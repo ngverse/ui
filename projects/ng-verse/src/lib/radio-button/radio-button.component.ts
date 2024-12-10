@@ -1,17 +1,11 @@
-import {
-  Component,
-  computed,
-  effect,
-  inject,
-  input,
-  signal,
-} from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { LucideAngularModule, Circle, CircleCheck } from 'lucide-angular';
 import { RadioButtonState } from './radio-button.state';
+import { RadioButtonIconComponent } from './radio-button-icon.component';
 
 @Component({
   selector: 'app-radio-button',
-  imports: [LucideAngularModule],
+  imports: [RadioButtonIconComponent],
   templateUrl: './radio-button.component.html',
   styleUrl: './radio-button.component.scss',
 })

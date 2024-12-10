@@ -1,8 +1,4 @@
 <div class="radio-button" [class.disabled]="disabled()" (click)="toggle()">
-  <lucide-angular
-    role="radio"
-    size="24"
-    [img]="selected() ? CircleCheck : Circle"
-  ></lucide-angular>
+  <app-radio-button-icon [checked]="selected()"></app-radio-button-icon>
   <label> <ng-content></ng-content> </label>
 </div>
