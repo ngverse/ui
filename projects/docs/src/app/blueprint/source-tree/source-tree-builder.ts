@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-type EXTENSION_TYPE = 'ts' | 'html' | 'scss' | 'spec' | 'spec.ts';
+export type SOURCE_FILE_EXTENSION_TYPE = 'ts' | 'html' | 'scss' | 'spec.ts';
 
 export type SourceTreeFolder = {
   name: string;
@@ -11,7 +11,7 @@ export type SourceTreeFolder = {
 export type SourceTreeFile = {
   name: string;
   path: string;
-  language: EXTENSION_TYPE;
+  language: SOURCE_FILE_EXTENSION_TYPE;
 };
 
 @Injectable({
@@ -30,7 +30,11 @@ export class SourceTreeBuilder {
     };
   }
 
-  file(name: string, rootPath: string, extension: EXTENSION_TYPE = 'ts') {
+  file(
+    name: string,
+    rootPath: string,
+    extension: SOURCE_FILE_EXTENSION_TYPE = 'ts'
+  ) {
     return {
       name: `${name}.${extension}`,
       path: `ng-verse/${rootPath}/${name}.${extension}`,
@@ -38,7 +42,11 @@ export class SourceTreeBuilder {
     };
   }
 
-  component(name: string, rootPath: string, extension: EXTENSION_TYPE = 'ts') {
+  component(
+    name: string,
+    rootPath: string,
+    extension: SOURCE_FILE_EXTENSION_TYPE = 'ts'
+  ) {
     return {
       name: `${name}.component.${extension}`,
       path: `ng-verse/${rootPath}/${name}.component.${extension}`,

@@ -1,5 +1,5 @@
 <div class="flex items-center justify-between mb-3">
-  <h4 class="m-0 text-xl font-normal ">Source Code</h4>
+  <h4 class="m-0 text-xl font-normal">Source Code</h4>
   <button
     (click)="download()"
     class="h-8 bg-transparent border border-solid border-primary px-3 cursor-pointer hover:bg-amber-50"
@@ -17,6 +17,6 @@
     ></doc-source-tree-select>
   </div>
   <div>
-    <doc-source-code [code]="code()" language="ts"></doc-source-code>
+    <doc-source-code [code]="code()" [language]="language()"></doc-source-code>
   </div>
 </div>
