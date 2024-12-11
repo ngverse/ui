@@ -44,6 +44,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'toast',
+        loadComponent: () =>
+          import('./features/toast-page/toast-page.component').then(
+            (b) => b.ToastPageComponent
+          ),
+      },
+      {
         path: 'button',
         loadComponent: () =>
           import('./features/button-page/button-page.component').then(

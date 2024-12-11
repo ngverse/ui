@@ -1,0 +1,6 @@
+<div class="toast" [ngClass]="action()" @slide>
+  {{ message() }}
+  @if(showCloseIcon()){
+  <toast-close-icon></toast-close-icon>
+  }
+</div>

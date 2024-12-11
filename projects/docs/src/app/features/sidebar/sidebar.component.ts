@@ -44,6 +44,10 @@ export class SidebarComponent {
           url: '/doc/button',
         },
         {
+          name: 'Toast',
+          url: '/doc/toast',
+        },
+        {
           name: 'Tooltip',
           url: '/doc/tooltip',
         },
