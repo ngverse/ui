@@ -1,4 +1,4 @@
-<div class="tooltip" [ngClass]="position()">
+<div class="tooltip" role="tooltip" [ngClass]="position()">
   @if(contentPortal()){
   <ng-container [cdkPortalOutlet]="contentPortal()"></ng-container>
 
