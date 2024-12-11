@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccordionPageComponent } from './accordion-page.component';
+import { ShowCaseTooltipComponent } from './show-case-tooltip.component';
 
-describe('AccordionPageComponent', () => {
-  let component: AccordionPageComponent;
-  let fixture: ComponentFixture<AccordionPageComponent>;
+describe('ShowCaseTooltipComponent', () => {
+  let component: ShowCaseTooltipComponent;
+  let fixture: ComponentFixture<ShowCaseTooltipComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AccordionPageComponent]
+      imports: [ShowCaseTooltipComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AccordionPageComponent);
+    fixture = TestBed.createComponent(ShowCaseTooltipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

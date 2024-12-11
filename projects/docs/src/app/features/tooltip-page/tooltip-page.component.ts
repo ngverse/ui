@@ -6,6 +6,7 @@ import { CommandInstallationComponent } from '../../blueprint/command-installati
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { TooltipDirective } from '../../../../../ng-verse/src/lib/tooltip/tooltip.directive';
+import { ShowCaseTooltipComponent } from '../../../../../examples/src/lib/tooltip/show-case-tooltip/show-case-tooltip.component';
 
 @Component({
   selector: 'doc-tooltip-page',
@@ -14,7 +15,7 @@ import { TooltipDirective } from '../../../../../ng-verse/src/lib/tooltip/toolti
     ShowCaseComponent,
     ShowCaseComponent,
     CommandInstallationComponent,
-    TooltipDirective,
+    ShowCaseTooltipComponent,
   ],
   templateUrl: './tooltip-page.component.html',
   styleUrl: './tooltip-page.component.scss',

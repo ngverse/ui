@@ -12,7 +12,6 @@ import {
   NgZone,
   numberAttribute,
   OnDestroy,
-  signal,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
