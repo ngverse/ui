@@ -11,11 +11,16 @@
       tooltipEvent="focus"
       tooltipDelay="1000"
       tooltipPosition="left"
+      [tooltipContent]="tooltipContent"
     />
+    <ng-template #tooltipContent>
+      <h1>I AM CONTENT!</h1>
+    </ng-template>
     <h4 appTooltip="olaa" tooltipPosition="top">HELLO I AM TOOLTIP</h4>
+    <!--
     <h4 appTooltip="olaa" tooltipPosition="right">HELLO I AM TOOLTIP</h4>
     <h4 appTooltip="olaa" tooltipPosition="bottom">HELLO I AM TOOLTIP</h4>
-    <h4 appTooltip="olaa" tooltipPosition="left">HELLO I AM TOOLTIP</h4>
+    <h4 appTooltip="olaa" tooltipPosition="left">HELLO I AM TOOLTIP</h4> -->
   </doc-show-case>
   <doc-command-installation type="component" name="button">
   </doc-command-installation>
