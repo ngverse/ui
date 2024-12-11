@@ -44,6 +44,10 @@ export class SidebarComponent {
           url: '/doc/button',
         },
         {
+          name: 'Tooltip',
+          url: '/doc/tooltip',
+        },
+        {
           name: 'Checkbox',
           url: '/doc/checkbox',
         },

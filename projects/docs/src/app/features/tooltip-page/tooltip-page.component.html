@@ -1,0 +1,26 @@
+<doc-blueprint-page
+  [subTitle]="
+    'Button component wraps the native HTML button element and adds additional functionality'
+  "
+  [label]="'Tooltip'"
+>
+  <doc-show-case name="button">
+    <input
+      placeholder="tooltip input"
+      appTooltip="tooltip input"
+      tooltipEvent="focus"
+      tooltipDelay="1000"
+      tooltipPosition="left"
+    />
+    <h4 appTooltip="olaa" tooltipPosition="top">HELLO I AM TOOLTIP</h4>
+    <h4 appTooltip="olaa" tooltipPosition="right">HELLO I AM TOOLTIP</h4>
+    <h4 appTooltip="olaa" tooltipPosition="bottom">HELLO I AM TOOLTIP</h4>
+    <h4 appTooltip="olaa" tooltipPosition="left">HELLO I AM TOOLTIP</h4>
+  </doc-show-case>
+  <doc-command-installation type="component" name="button">
+  </doc-command-installation>
+  <!-- <doc-source-tree [sourceTree]="sourceTree" name="button"></doc-source-tree>
+  <doc-api-info>
+    <doc-api-inputs [apiInputs]="apiInputs"></doc-api-inputs>
+  </doc-api-info> -->
+</doc-blueprint-page>

@@ -37,6 +37,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'tooltip',
+        loadComponent: () =>
+          import('./features/tooltip-page/tooltip-page.component').then(
+            (b) => b.TooltipPageComponent
+          ),
+      },
+      {
         path: 'button',
         loadComponent: () =>
           import('./features/button-page/button-page.component').then(
