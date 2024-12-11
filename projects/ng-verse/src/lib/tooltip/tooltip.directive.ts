@@ -28,10 +28,10 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
   message = input.required<string>({ alias: 'appTooltip' });
   tooltipPosition = input<TOOLTIP_POSITIONS>('top');
   tooltipEvent = input<TOOLTIP_EVENT>('both');
-  protected focusMonitor = inject(FocusMonitor);
-  protected ngZone = inject(NgZone);
-  protected overlay = inject(Overlay);
-  protected overlayRef: OverlayRef | undefined;
+  focusMonitor = inject(FocusMonitor);
+  ngZone = inject(NgZone);
+  overlay = inject(Overlay);
+  overlayRef: OverlayRef | undefined;
   tooltipDelay = input(0, { transform: numberAttribute });
   timeoutId: unknown | undefined;
 
@@ -44,6 +44,11 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
   vf = inject(ViewContainerRef);
 
   ngAfterViewInit(): void {
+    this.focusListener();
+    this.mouseListener();
+  }
+
+  private focusListener() {
     this.sub.add(
       this.focusMonitor
         .monitor(this.el.nativeElement)
@@ -63,6 +68,9 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
           }
         })
     );
+  }
+
+  private mouseListener() {
     const filter$ = filter(
       () => this.tooltipEvent() === 'both' || this.tooltipEvent() === 'hover'
     );
@@ -70,12 +78,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
       fromEvent(this.el.nativeElement, 'mouseenter')
         .pipe(filter$)
         .subscribe(() => {
-          if (
-            this.tooltipEvent() === 'both' ||
-            this.tooltipEvent() === 'hover'
-          ) {
-            this.show();
-          }
+          this.show();
         })
     );
 
