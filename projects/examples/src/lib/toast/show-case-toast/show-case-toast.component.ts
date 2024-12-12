@@ -10,12 +10,14 @@ import { ToastService } from '../../../../../ng-verse/src/lib/toast/toast.servic
 export class ShowCaseToastComponent {
   toastService = inject(ToastService);
 
+  ngOnInit() {
+    this.showToast();
+  }
+
   showToast() {
-    // setInterval(() => {
-    //   this.toastService.open({
-    //     message: 'I AM TOASTTTT ' + new Date().toTimeString(),
-    //     position: 'right_center',
-    //   });
-    // }, 1000);
+    this.toastService.open({
+      message: 'I AM TOASTTTT ' + new Date().toTimeString(),
+      position: 'right_bottom',
+    });
   }
 }

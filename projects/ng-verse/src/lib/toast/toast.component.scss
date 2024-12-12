@@ -1,0 +1,22 @@
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 12px 16px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  font-size: 14px;
+}
+
+.toast-close-button {
+  margin-left: auto;
+  display: flex;
+  background: transparent;
+  outline: none;
+  border: 0;
+  color: #9ca3af;
+  fill: white;
+  cursor: pointer;
+}

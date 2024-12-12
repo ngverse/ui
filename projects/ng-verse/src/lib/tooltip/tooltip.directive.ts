@@ -133,6 +133,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
   protected clearSchedule() {
     if (this.timeoutId) {
       clearTimeout(this.timeoutId as number);
+      this.timeoutId = undefined;
     }
   }
 
@@ -161,6 +162,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
     this.clearSchedule();
     if (this.overlayRef?.hasAttached()) {
       this.overlayRef.detach();
+      this.overlayRef = undefined;
     }
   }
 
