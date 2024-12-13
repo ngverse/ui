@@ -1,7 +1,7 @@
 :host {
   display: block;
   margin-bottom: 12px;
-  border-bottom: 1px solid #d1d5db;
+  border-bottom: 1px solid var(--color-border);
   padding-bottom: 12px;
 }
 
@@ -9,10 +9,15 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  background: transparent;
+  border: 0;
+  width: 100%;
+  font-size: 1rem;
 }
 
 .accordion-item-body {
   margin-top: 12px;
+  padding:0px 6px;
 }
 
 .expand-icon {

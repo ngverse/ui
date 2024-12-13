@@ -1,17 +1,6 @@
 <doc-blueprint-page [subTitle]="'I am accordion'" [label]="'Accordion'">
   <doc-source-tree [sourceTree]="sourceTree" name="accordion"></doc-source-tree>
-  <doc-show-case name="accordion">
-    <div class="flex gap-2">
-      <app-accordion class="w-full">
-        @for (item of items; track $index) {
-        <app-accordion-item>
-          <app-accordion-header>{{ item.title }}</app-accordion-header>
-          <app-accordion-body>{{ item.description }}</app-accordion-body>
-        </app-accordion-item>
-        }
-      </app-accordion>
-    </div>
-  </doc-show-case>
+  <doc-show-case name="accordion"> </doc-show-case>
   <doc-api-info>
     <p>Button component wraps native html button element</p>
     <p class="font-medium">color</p>

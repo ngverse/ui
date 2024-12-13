@@ -6,8 +6,13 @@
 @import '@angular/cdk/overlay-prebuilt.css';
 
 :root {
-  --color-text-primary: #09090b;
-  --color-primary: #f59e0b;
+  --color-primary: #1a73e8;
+  --color-secondary: #34a853;
+  --color-accent: #fbbc05;
+  --color-background: #ffffff;
+  --color-text: #000000;
+  --color-border: #dadce0;
+  --color-focus: #007bff;
 }
 
 html,

@@ -40,6 +40,10 @@ export class SidebarComponent {
       name: 'Components',
       children: [
         {
+          name: 'OTP Input',
+          url: '/doc/otp-input',
+        },
+        {
           name: 'Progress Bar',
           url: '/doc/progress-bar',
         },

@@ -37,6 +37,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'otp-input',
+        loadComponent: () =>
+          import('./features/otp-input-page/otp-input-page.component').then(
+            (b) => b.OtpInputPageComponent
+          ),
+      },
+      {
         path: 'progress-bar',
         loadComponent: () =>
           import(
