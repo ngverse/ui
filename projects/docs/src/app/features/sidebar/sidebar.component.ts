@@ -40,6 +40,10 @@ export class SidebarComponent {
       name: 'Components',
       children: [
         {
+          name: 'Progress Bar',
+          url: '/doc/progress-bar',
+        },
+        {
           name: 'Button',
           url: '/doc/button',
         },

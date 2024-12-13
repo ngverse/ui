@@ -37,6 +37,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'progress-bar',
+        loadComponent: () =>
+          import(
+            './features/progress-bar-page/progress-bar-page.component'
+          ).then((b) => b.ProgressBarPageComponent),
+      },
+      {
         path: 'tooltip',
         loadComponent: () =>
           import('./features/tooltip-page/tooltip-page.component').then(
