@@ -40,6 +40,14 @@ export class SidebarComponent {
       name: 'Components',
       children: [
         {
+          name: 'Accordion',
+          url: '/doc/accordion',
+        },
+        {
+          name: 'Alert',
+          url: '/doc/alert',
+        },
+        {
           name: 'OTP Input',
           url: '/doc/otp-input',
         },
@@ -63,10 +71,7 @@ export class SidebarComponent {
           name: 'Checkbox',
           url: '/doc/checkbox',
         },
-        {
-          name: 'Accordion',
-          url: '/doc/accordion',
-        },
+
         {
           name: 'Pagination',
           url: '/doc/pagination',

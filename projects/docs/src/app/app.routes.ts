@@ -37,6 +37,20 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'accordion',
+        loadComponent: () =>
+          import('./features/accordion-page/accordion-page.component').then(
+            (b) => b.AccordionPageComponent
+          ),
+      },
+      {
+        path: 'alert',
+        loadComponent: () =>
+          import('./features/alert-page/alert-page.component').then(
+            (b) => b.AlertPageComponent
+          ),
+      },
+      {
         path: 'otp-input',
         loadComponent: () =>
           import('./features/otp-input-page/otp-input-page.component').then(
@@ -69,13 +83,6 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/button-page/button-page.component').then(
             (b) => b.ButtonPageComponent
-          ),
-      },
-      {
-        path: 'accordion',
-        loadComponent: () =>
-          import('./features/accordion-page/accordion-page.component').then(
-            (b) => b.AccordionPageComponent
           ),
       },
       {
