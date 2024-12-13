@@ -1,6 +1,17 @@
-import { Component, output, signal } from '@angular/core';
-import { COLLAPSE_ON_LEAVE, EXPAND_ON_ENTER_ANIMATION } from './animations';
+import { Component, input, output, signal } from '@angular/core';
 import { ExpandIconComponent } from './expand-icon.component';
+import { COLLAPSE_ON_LEAVE, EXPAND_ON_ENTER_ANIMATION } from './accordion-animations';
+
+let accordionId = 0;
+let accordionContentId = 0;
+
+function genId() {
+  return `accordion-item-${accordionId++}`;
+}
+
+function genAccordionContentId() {
+  return `accordion-item-content-${accordionContentId++}`;
+}
 
 @Component({
   selector: 'app-accordion-item',
@@ -13,6 +24,10 @@ export class AccordionItemComponent {
   opened = output();
   closed = output();
   isOpen = signal(false);
+  disabled = input<boolean>();
+
+  id = input(genId());
+  accordionContentId = genAccordionContentId();
 
   toggle() {
     const newIsOpen = !this.isOpen();

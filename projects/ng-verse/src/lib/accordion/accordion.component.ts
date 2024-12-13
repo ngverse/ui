@@ -5,8 +5,8 @@ import {
   input,
   OnDestroy,
 } from '@angular/core';
-import { AccordionItemComponent } from './accordion-item/accordion-item.component';
 import { Subscription } from 'rxjs';
+import { AccordionItemComponent } from './accordion-item.component';
 
 @Component({
   selector: 'app-accordion',

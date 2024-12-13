@@ -1,18 +1,25 @@
-<doc-blueprint-page [subTitle]="'I am accordion'" [label]="'Accordion'">
+<doc-blueprint-page
+  [subTitle]="
+    'An accordion is a vertically stacked set of interactive headings that each contain a title and expandable content.'
+  "
+  [label]="'Accordion'"
+>
   <doc-source-tree [sourceTree]="sourceTree" name="accordion"></doc-source-tree>
-  <doc-show-case name="accordion"> </doc-show-case>
+  <doc-show-case name="accordion">
+    <exp-show-case-accordion></exp-show-case-accordion>
+  </doc-show-case>
+  <doc-command-installation
+    type="component"
+    name="accordion"
+  ></doc-command-installation>
   <doc-api-info>
-    <p>Button component wraps native html button element</p>
-    <p class="font-medium">color</p>
-    <ul>
-      <li>primary</li>
-      <li>secondary</li>
-      <li>tertiary</li>
-      <li>danger</li>
-      <li>success</li>
-      <li>warning</li>
-    </ul>
-    <p class="font-medium">loading (boolean)</p>
-    <p>adds loading if neccessary</p>
+    <doc-api-inputs
+      name="accordion"
+      [apiInputs]="accordionInputs"
+    ></doc-api-inputs>
+    <doc-api-inputs
+      name="accordion-item"
+      [apiInputs]="accordionItemInputs"
+    ></doc-api-inputs>
   </doc-api-info>
 </doc-blueprint-page>

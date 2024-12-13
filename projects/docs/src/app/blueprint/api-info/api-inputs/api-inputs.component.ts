@@ -4,6 +4,7 @@ export type ApiInputType = {
   name: string;
   type: string;
   description: string;
+  default?:string;
 };
 
 @Component({
@@ -14,4 +15,5 @@ export type ApiInputType = {
 })
 export class ApiInputsComponent {
   apiInputs = input.required<ApiInputType[]>();
+  name = input('Inputs')
 }

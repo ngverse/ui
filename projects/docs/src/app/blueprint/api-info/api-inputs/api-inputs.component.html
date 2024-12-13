@@ -1,18 +1,19 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
+<h5>{{ name() }}</h5>
+<div class="api-inputs">
+  <div class="api-inputs-header">
+    <div>Name</div>
+    <div>Type</div>
+    <div>Description</div>
+    <div>Default</div>
+  </div>
+  <div class="api-inputs-body">
     @for (item of apiInputs(); track $index) {
-    <tr>
-      <td>{{ item.name }}</td>
-      <td>{{ item.type }}</td>
-      <td>{{ item.description }}</td>
-    </tr>
+    <div class="api-inputs-row">
+      <div>{{ item.name }}</div>
+      <div>{{ item.type }}</div>
+      <div>{{ item.description }}</div>
+      <div>{{ item.default }}</div>
+    </div>
     }
-  </tbody>
-</table>
+  </div>
+</div>

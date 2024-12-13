@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
-import { AccordionComponent } from '../../../../../ng-verse/src/lib/accordion/accordion.component';
-import { AccordionItemComponent } from '../../../../../ng-verse/src/lib/accordion/accordion-item/accordion-item.component';
-import { AccordionHeaderComponent } from '../../../../../ng-verse/src/lib/accordion/accordion-item/accordion-header.component';
-import { AccordionBodyComponent } from '@ng-verse/accordion/accordion-item/accordion-body.component';
+import { AccordionBodyComponent } from '@ng-verse/accordion/accordion-body.component';
+import { AccordionHeaderComponent } from '@ng-verse/accordion/accordion-header.component';
+import { AccordionItemComponent } from '@ng-verse/accordion/accordion-item.component';
+import { AccordionComponent } from '@ng-verse/accordion/accordion.component';
 
 @Component({
-  selector: 'exp-accordion-show-case',
+  selector: 'exp-show-case-accordion',
   imports: [
     AccordionComponent,
     AccordionItemComponent,
     AccordionHeaderComponent,
     AccordionBodyComponent,
   ],
-  templateUrl: './accordion-show-case.component.html',
-  styleUrl: './accordion-show-case.component.scss',
+  templateUrl: './show-case-accordion.component.html',
+  styleUrl: './show-case-accordion.component.scss',
 })
-export class AccordionShowCaseComponent {
+export class ShowCaseAccordionComponent {
   items = [
     {
       title: 'Frequently Asked Questions',
