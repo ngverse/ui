@@ -51,6 +51,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'breadcrumb',
+        loadComponent: () =>
+          import('./features/breadcrumb-page/breadcrumb-page.component').then(
+            (b) => b.BreadcrumbPageComponent
+          ),
+      },
+      {
         path: 'otp-input',
         loadComponent: () =>
           import('./features/otp-input-page/otp-input-page.component').then(

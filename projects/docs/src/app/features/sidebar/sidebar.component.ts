@@ -48,6 +48,10 @@ export class SidebarComponent {
           url: '/doc/alert',
         },
         {
+          name: 'Breadcrumb',
+          url: '/doc/breadcrumb',
+        },
+        {
           name: 'OTP Input',
           url: '/doc/otp-input',
         },
