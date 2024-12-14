@@ -1,0 +1,5 @@
+.alert {
+  &.success {
+    @apply rounded-md bg-green-600 text-white p-4;
+  }
+}

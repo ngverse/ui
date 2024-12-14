@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 
 @Component({
   selector: 'app-alert',
@@ -8,5 +8,5 @@ import { Component, signal } from '@angular/core';
   styleUrl: './alert.component.scss',
 })
 export class AlertComponent {
-  type = signal<'default' | 'success' | 'danger' | 'warning'>('default');
+  type = input<'default' | 'success' | 'danger' | 'warning'>('default');
 }
