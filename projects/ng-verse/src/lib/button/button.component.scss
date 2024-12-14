@@ -1,16 +1,10 @@
 .button {
-  --primary-color: #0f172a;
-  --secondary-color: #737373;
-  --success-color: #22c55e;
-  --danger-color: #ef4444;
-
   &.loading {
     pointer-events: none;
   }
 
   position: relative;
   cursor: pointer;
-  border: none;
   border-radius: 8px;
   font-weight: 600;
   color: #fff;
@@ -37,11 +31,11 @@
 
   &.primary {
     &.fill {
-      background-color: var(--primary-color);
+      @apply bg-blue-600;
     }
     &.outline {
-      border-color: var(--primary-color);
-      color: var(--primary-color);
+      @apply border-blue-600;
+      @apply text-blue-600;
       .spinner {
         border-color: var(--primary-color);
       }
@@ -50,11 +44,11 @@
 
   &.secondary {
     &.fill {
-      background-color: var(--secondary-color);
+      @apply bg-fuchsia-600;
     }
     &.outline {
-      border-color: var(--secondary-color);
-      color: var(--secondary-color);
+      @apply border-fuchsia-600 text-fuchsia-600;
+
       .spinner {
         border-color: var(--secondary-color);
       }
@@ -63,11 +57,10 @@
 
   &.success {
     &.fill {
-      background-color: var(--success-color);
+      @apply bg-green-500;
     }
     &.outline {
-      border-color: var(--success-color);
-      color: var(--success-color);
+      @apply border-green-500 text-green-500;
       .spinner {
         border-color: var(--success-color);
       }
@@ -76,11 +69,10 @@
 
   &.danger {
     &.fill {
-      background-color: var(--danger-color);
+      @apply bg-red-500;
     }
     &.outline {
-      border-color: var(--danger-color);
-      color: var(--danger-color);
+      @apply border-red-500 text-red-500;
       .spinner {
         border-color: var(--danger-color);
       }
