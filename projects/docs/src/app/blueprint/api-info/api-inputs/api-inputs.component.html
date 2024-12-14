@@ -1,5 +1,3 @@
-
-<h5 class="pb-2 pl-1 italic font-light">{{ name() }}</h5>
 <div class="relative overflow-x-auto border border-slate-200 rounded-md mb-10">
   <table
     class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
@@ -16,6 +14,35 @@
       </tr>
     </thead>
     <tbody>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <td
+          class="px-6 py-4 italic font-light text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          accordion-item
+        </td>
+      </tr>
+      @for (item of apiInputs(); track $index) {
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          {{ item.name }}
+        </th>
+        <td class="px-6 py-4">{{ item.type }}</td>
+        <td class="px-6 py-4">{{ item.default }}</td>
+
+        <td class="px-6 py-4">{{ item.description }}</td>
+      </tr>
+
+      }
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <td
+          class="px-6 py-4 italic font-light text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          accordion-item
+        </td>
+      </tr>
       @for (item of apiInputs(); track $index) {
       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th
