@@ -1,6 +1,6 @@
-<h5 class="text-2xl my-0 mb-3 font-normal">Show Case</h5>
-<div class="rounded-md border border-solid border-gray-200">
-  <div class="flex border-0 border-b border-solid border-gray-300">
+<h5 class="text-lg my-0 mb-3 font-medium">Showcase</h5>
+<div class="rounded-md border border-solid border-slate-200">
+  <div class="flex border-0 border-b border-solid border-slate-300">
     @for (item of tabs; track $index) {
     <div
       (click)="selectTab(item)"
@@ -11,7 +11,7 @@
     </div>
     }
   </div>
-  <div class="border border-b border-gray-100 w-[600px]">
+  <div class="mx-6 mb-6">
     @if(selectedTab() ==='preview'){
     <div class="p-10">
       <ng-content></ng-content>

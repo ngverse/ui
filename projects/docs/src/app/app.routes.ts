@@ -155,6 +155,11 @@ export const routes: Routes = [
             (d) => d.TabPageComponent
           ),
       },
+      {
+        path: '',
+        redirectTo: 'button',
+        pathMatch: 'full',
+      },
     ],
   },
   {

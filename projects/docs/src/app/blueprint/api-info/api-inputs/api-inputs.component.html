@@ -1,19 +1,36 @@
-<h5>{{ name() }}</h5>
-<div class="api-inputs">
-  <div class="api-inputs-header">
-    <div>Name</div>
-    <div>Type</div>
-    <div>Description</div>
-    <div>Default</div>
-  </div>
-  <div class="api-inputs-body">
-    @for (item of apiInputs(); track $index) {
-    <div class="api-inputs-row">
-      <div>{{ item.name }}</div>
-      <div>{{ item.type }}</div>
-      <div>{{ item.description }}</div>
-      <div>{{ item.default }}</div>
-    </div>
-    }
-  </div>
+
+<h5 class="pb-2 pl-1 italic font-light">{{ name() }}</h5>
+<div class="relative overflow-x-auto border border-slate-200 rounded-md mb-10">
+  <table
+    class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
+  >
+    <thead
+      class="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Name</th>
+        <th scope="col" class="px-6 py-3">Type</th>
+        <th scope="col" class="px-6 py-3">Default</th>
+
+        <th scope="col" class="px-6 py-3">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of apiInputs(); track $index) {
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          {{ item.name }}
+        </th>
+        <td class="px-6 py-4">{{ item.type }}</td>
+        <td class="px-6 py-4">{{ item.default }}</td>
+
+        <td class="px-6 py-4">{{ item.description }}</td>
+      </tr>
+
+      }
+    </tbody>
+  </table>
 </div>

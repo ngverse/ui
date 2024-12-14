@@ -55,17 +55,13 @@ export class AccordionPageComponent {
       name: 'disabled',
       type: 'boolean',
       description: 'disables the button',
+      default:"false"
     },
     {
       name: 'type',
       type: 'submit | reset | button',
       description: 'sets the native button type attribute',
-    },
-    {
-      name: 'loading',
-      type: 'boolean',
-      description:
-        'adds spinner on the button. The button will not emit any event while loading is true',
+      default:''
     },
   ];
 

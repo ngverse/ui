@@ -1,22 +1,23 @@
 <div class="flex items-center justify-between mb-3">
-  <h4 class="m-0 text-xl font-normal">Source Code</h4>
+  <h5 class="text-lg my-0 mb-3 font-medium">Source code</h5>
+
   <button
     (click)="download()"
-    class="h-8 bg-transparent border border-solid border-primary px-3 cursor-pointer hover:bg-amber-50"
+    class="h-10 bg-transparent border border-solid border-blue-600 text-blue-600 rounded-md px-3 cursor-pointer hover:bg-blue-50"
   >
     Download (.zip)
   </button>
 </div>
 
 <div class="rounded-md border border-solid border-gray-300">
-  <div class="flex items-center justify-between p-3">
+  <div class="flex items-center justify-between pt-1">
     <doc-source-tree-select
       [sourceTree]="sourceTree()"
       (fileSelected)="fileSelected($event)"
       class="block"
     ></doc-source-tree-select>
   </div>
-  <div>
+  <div class="px-4">
     <doc-source-code [code]="code()" [language]="language()"></doc-source-code>
   </div>
 </div>
