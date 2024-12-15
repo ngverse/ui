@@ -1,0 +1,35 @@
+name: PR Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test-and-build:
+    name: Test and Build Projects
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        project: [docs, ng-verse]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Specify your Node.js version
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test -- --project=${{ matrix.project }}
+
+      - name: Build project
+        run: npm run build -- --project=${{ matrix.project }}
