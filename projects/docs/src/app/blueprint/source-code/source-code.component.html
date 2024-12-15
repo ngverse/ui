@@ -1,3 +1,4 @@
+@if(showCopy()){
 <doc-icon-button
   [cdkCopyToClipboard]="code()"
   (click)="copy()"
@@ -10,6 +11,8 @@
 
   }
 </doc-icon-button>
-<pre class="m-0 max-h-[600px] text-xs overflow-auto" >
+}
+
+<pre class="m-0 max-h-[600px] text-xs overflow-auto">
   <code class="rounded-md !bg-slate-900" [highlight]="code()" [language]="language()">
   </code></pre>

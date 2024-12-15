@@ -1,4 +1,4 @@
-import { Component, effect, input, output, signal } from '@angular/core';
+import { Component, effect, input, model, output, signal } from '@angular/core';
 import { ExpandIconComponent } from './expand-icon.component';
 import {
   COLLAPSE_ON_LEAVE,
@@ -26,7 +26,7 @@ function genAccordionContentId() {
 export class AccordionItemComponent {
   opened = output();
   closed = output();
-  isOpen = signal(false);
+  isOpen = model(false);
   disabled = input<boolean>();
   expanded = input();
 

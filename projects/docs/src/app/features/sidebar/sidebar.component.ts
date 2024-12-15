@@ -47,63 +47,63 @@ export class SidebarComponent {
           name: 'Alert',
           url: '/doc/alert',
         },
-        {
-          name: 'Breadcrumb',
-          url: '/doc/breadcrumb',
-        },
-        {
-          name: 'OTP Input',
-          url: '/doc/otp-input',
-        },
-        {
-          name: 'Progress Bar',
-          url: '/doc/progress-bar',
-        },
-        {
-          name: 'Button',
-          url: '/doc/button',
-        },
-        {
-          name: 'Toast',
-          url: '/doc/toast',
-        },
-        {
-          name: 'Tooltip',
-          url: '/doc/tooltip',
-        },
-        {
-          name: 'Checkbox',
-          url: '/doc/checkbox',
-        },
+        // {
+        //   name: 'Breadcrumb',
+        //   url: '/doc/breadcrumb',
+        // },
+        // {
+        //   name: 'OTP Input',
+        //   url: '/doc/otp-input',
+        // },
+        // {
+        //   name: 'Progress Bar',
+        //   url: '/doc/progress-bar',
+        // },
+        // {
+        //   name: 'Button',
+        //   url: '/doc/button',
+        // },
+        // {
+        //   name: 'Toast',
+        //   url: '/doc/toast',
+        // },
+        // {
+        //   name: 'Tooltip',
+        //   url: '/doc/tooltip',
+        // },
+        // {
+        //   name: 'Checkbox',
+        //   url: '/doc/checkbox',
+        // },
 
-        {
-          name: 'Pagination',
-          url: '/doc/pagination',
-        },
-        {
-          name: 'Radio Button',
-          url: '/doc/radio-button',
-        },
-        {
-          name: 'Select',
-          url: '/doc/select',
-        },
-        {
-          name: 'Dialog',
-          url: '/doc/dialog',
-        },
-        {
-          name: 'Skeleton',
-          url: '/doc/skeleton',
-        },
-        {
-          name: 'Switch',
-          url: '/doc/switch',
-        },
-        {
-          name: 'Tab',
-          url: '/doc/tab',
-        },
+        // {
+        //   name: 'Pagination',
+        //   url: '/doc/pagination',
+        // },
+        // {
+        //   name: 'Radio Button',
+        //   url: '/doc/radio-button',
+        // },
+        // {
+        //   name: 'Select',
+        //   url: '/doc/select',
+        // },
+        // {
+        //   name: 'Dialog',
+        //   url: '/doc/dialog',
+        // },
+        // {
+        //   name: 'Skeleton',
+        //   url: '/doc/skeleton',
+        // },
+        // {
+        //   name: 'Switch',
+        //   url: '/doc/switch',
+        // },
+        // {
+        //   name: 'Tab',
+        //   url: '/doc/tab',
+        // },
       ],
     },
     {

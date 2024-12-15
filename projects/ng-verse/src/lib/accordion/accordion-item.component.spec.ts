@@ -37,11 +37,11 @@ describe('AccordionItemComponent', () => {
     const headerButton = fixture.debugElement.query(
       By.css('.accordion-item-header')
     );
-    headerButton.nativeElement.click(); // Open
+    headerButton.nativeElement.click();
     fixture.detectChanges();
     expect(headerButton.attributes['aria-expanded']).toBe('true');
 
-    headerButton.nativeElement.click(); // Close
+    headerButton.nativeElement.click();
     fixture.detectChanges();
     expect(headerButton.attributes['aria-expanded']).toBe('false');
   });

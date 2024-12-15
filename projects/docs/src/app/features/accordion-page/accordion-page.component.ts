@@ -54,12 +54,6 @@ export class AccordionPageComponent {
           description: 'allows multiple panels to be open simultaneously',
           default: 'false',
         },
-        {
-          name: 'disabled',
-          type: 'boolean',
-          description: 'disables the button',
-          default: 'false',
-        },
       ],
     },
     {
@@ -69,6 +63,12 @@ export class AccordionPageComponent {
           name: 'disabled',
           type: 'boolean',
           description: 'disables accordion-item',
+          default: 'false',
+        },
+        {
+          name: 'expanded',
+          type: 'boolean',
+          description: 'opens the accordion-item',
           default: 'false',
         },
       ],
