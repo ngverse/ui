@@ -26,6 +26,8 @@ export class SourceTreeComponent {
 
   sourceTree = input<SourceTreeFolder[]>([]);
 
+  name = input.required<string>();
+
   fileSelected(file: SourceTreeFile) {
     this.language.set(file.language === 'spec.ts' ? 'ts' : file.language);
     this.fileService.getFile(file.path).subscribe((data) => {
@@ -34,6 +36,6 @@ export class SourceTreeComponent {
   }
 
   download() {
-    this.fileService.downloadSourceTree('button', this.sourceTree());
+    this.fileService.downloadSourceTree(this.name(), this.sourceTree());
   }
 }
