@@ -7,8 +7,8 @@ import { ShowCaseAccordionComponent } from '@examples/accordion/show-case-accord
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import {
+  ApiInputs,
   ApiInputsComponent,
-  ApiInputType,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 
 @Component({
@@ -44,33 +44,34 @@ export class AccordionPageComponent {
     ),
   ]);
 
-  accordionInputs: ApiInputType[] = [
+  inputs: ApiInputs[] = [
     {
-      name: 'multi',
-      type: 'boolean',
-      description: 'allows multiple panels to be open simultaneously',
-      default: 'false',
+      name: 'accordion',
+      inputs: [
+        {
+          name: 'multi',
+          type: 'boolean',
+          description: 'allows multiple panels to be open simultaneously',
+          default: 'false',
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          description: 'disables the button',
+          default: 'false',
+        },
+      ],
     },
     {
-      name: 'disabled',
-      type: 'boolean',
-      description: 'disables the button',
-      default:"false"
-    },
-    {
-      name: 'type',
-      type: 'submit | reset | button',
-      description: 'sets the native button type attribute',
-      default:''
-    },
-  ];
-
-  accordionItemInputs: ApiInputType[] = [
-    {
-      name: 'disabled',
-      type: 'boolean',
-      description: 'disables accordion-item',
-      default: 'false',
+      name: 'accordion-item',
+      inputs: [
+        {
+          name: 'disabled',
+          type: 'boolean',
+          description: 'disables accordion-item',
+          default: 'false',
+        },
+      ],
     },
   ];
 }

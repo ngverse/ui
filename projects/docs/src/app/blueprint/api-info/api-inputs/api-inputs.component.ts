@@ -1,10 +1,17 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
-export type ApiInputType = {
+type ApiInputType = {
   name: string;
   type: string;
   description: string;
-  default?:string;
+  default?: string;
+};
+
+export const EMPTY_API_INPUT_DEFAULT_VALUE = '--';
+
+export type ApiInputs = {
+  name: string;
+  inputs: ApiInputType[];
 };
 
 @Component({
@@ -14,6 +21,6 @@ export type ApiInputType = {
   styleUrl: './api-inputs.component.scss',
 })
 export class ApiInputsComponent {
-  apiInputs = input.required<ApiInputType[]>();
-  name = input('Inputs')
+  apiInputs = input.required<ApiInputs[]>();
+  name = input('Inputs');
 }

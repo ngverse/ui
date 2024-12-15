@@ -14,50 +14,28 @@
       </tr>
     </thead>
     <tbody>
+      @for (apiInputs of apiInputs(); track $index) { @if(apiInputs.name){
       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <td
           class="px-6 py-4 italic font-light text-gray-900 whitespace-nowrap dark:text-white"
         >
-          accordion-item
+          {{ apiInputs.name }}
         </td>
       </tr>
-      @for (item of apiInputs(); track $index) {
+      } @for(apiInput of apiInputs.inputs;track $index){
       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th
           scope="row"
           class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
         >
-          {{ item.name }}
+          {{ apiInput.name }}
         </th>
-        <td class="px-6 py-4">{{ item.type }}</td>
-        <td class="px-6 py-4">{{ item.default }}</td>
+        <td class="px-6 py-4">{{ apiInput.type }}</td>
+        <td class="px-6 py-4">{{ apiInput.default }}</td>
 
-        <td class="px-6 py-4">{{ item.description }}</td>
+        <td class="px-6 py-4">{{ apiInput.description }}</td>
       </tr>
-
-      }
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <td
-          class="px-6 py-4 italic font-light text-gray-900 whitespace-nowrap dark:text-white"
-        >
-          accordion-item
-        </td>
-      </tr>
-      @for (item of apiInputs(); track $index) {
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th
-          scope="row"
-          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-        >
-          {{ item.name }}
-        </th>
-        <td class="px-6 py-4">{{ item.type }}</td>
-        <td class="px-6 py-4">{{ item.default }}</td>
-
-        <td class="px-6 py-4">{{ item.description }}</td>
-      </tr>
-
-      }
+      } }
     </tbody>
   </table>
 </div>

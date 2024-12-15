@@ -2,15 +2,14 @@ import { Component, inject } from '@angular/core';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
-import { ApiInfoInputComponent } from '../../blueprint/api-info/api-info-input/api-info-input.component';
-import { ApiInfoInputContainerComponent } from '../../blueprint/api-info/api-info-input-container/api-info-input-container.component';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseButtonComponent } from '../../../../../examples/src/lib/button/show-case-button/show-case-button.component';
 import {
+  ApiInputs,
   ApiInputsComponent,
-  ApiInputType,
+  EMPTY_API_INPUT_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 
 @Component({
@@ -39,28 +38,37 @@ export class ButtonPageComponent {
     ),
   ]);
 
-  apiInputs: ApiInputType[] = [
+  apiInputs: ApiInputs[] = [
     {
-      name: 'color',
-      type: 'primary | secondary | danger | success',
-      description:
-        "Defines the button's color type, which affects its background style.",
-    },
-    {
-      name: 'disabled',
-      type: 'boolean',
-      description: 'disables the button',
-    },
-    {
-      name: 'type',
-      type: 'submit | reset | button',
-      description: 'sets the native button type attribute',
-    },
-    {
-      name: 'loading',
-      type: 'boolean',
-      description:
-        'adds spinner on the button. The button will not emit any event while loading is true',
+      name: 'button',
+      inputs: [
+        {
+          name: 'color',
+          type: 'primary | secondary | danger | success',
+          description:
+            "Defines the button's color type, which affects its background style.",
+          default: 'primary',
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          description: 'disables the button',
+          default: 'false',
+        },
+        {
+          name: 'type',
+          type: 'submit | reset | button',
+          description: 'sets the native button type attribute',
+          default: EMPTY_API_INPUT_DEFAULT_VALUE,
+        },
+        {
+          name: 'loading',
+          type: 'boolean',
+          description:
+            'adds spinner on the button. The button will not emit any event while loading is true',
+          default: 'false',
+        },
+      ],
     },
   ];
 }

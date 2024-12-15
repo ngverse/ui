@@ -3,7 +3,6 @@ import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
-import { ApiInputType } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { ShowCaseBreadcrumbComponent } from '../../../../../examples/src/lib/examples/show-case-breadcrumb/show-case-breadcrumb.component';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 
@@ -29,29 +28,4 @@ export class BreadcrumbPageComponent {
       true
     ),
   ]);
-
-  apiInputs: ApiInputType[] = [
-    {
-      name: 'color',
-      type: 'primary | secondary | danger | success',
-      description:
-        "Defines the button's color type, which affects its background style.",
-    },
-    {
-      name: 'disabled',
-      type: 'boolean',
-      description: 'disables the button',
-    },
-    {
-      name: 'type',
-      type: 'submit | reset | button',
-      description: 'sets the native button type attribute',
-    },
-    {
-      name: 'loading',
-      type: 'boolean',
-      description:
-        'adds spinner on the button. The button will not emit any event while loading is true',
-    },
-  ];
 }
