@@ -1,5 +1,13 @@
 .alert {
+  padding: 16px;
+  border-radius: 6px;
   &.success {
-    @apply rounded-md bg-green-600 text-white p-4;
+    color: white;
+    background: #16a34a;
+  }
+
+  &.danger {
+    color: white;
+    background: #dc2626;
   }
 }
