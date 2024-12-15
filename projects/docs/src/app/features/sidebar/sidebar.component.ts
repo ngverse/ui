@@ -47,6 +47,10 @@ export class SidebarComponent {
           name: 'Alert',
           url: '/doc/alert',
         },
+        {
+          name: 'Button',
+          url: '/doc/button',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',

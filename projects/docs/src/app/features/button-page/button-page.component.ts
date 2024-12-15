@@ -46,8 +46,15 @@ export class ButtonPageComponent {
           name: 'color',
           type: 'primary | secondary | danger | success',
           description:
-            "Defines the button's color type, which affects its background style.",
+            "Defines the button's color type",
           default: 'primary',
+        },
+        {
+          name: 'size',
+          type: 'sm | md | lg',
+          description:
+            'changes the size of the button',
+          default: 'md',
         },
         {
           name: 'disabled',
