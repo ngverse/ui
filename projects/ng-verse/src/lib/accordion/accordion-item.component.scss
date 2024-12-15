@@ -1,7 +1,7 @@
 :host {
   display: block;
   margin-bottom: 12px;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid #e2e8f0;
   padding-bottom: 12px;
 }
 
@@ -15,7 +15,7 @@
   font-size: 1rem;
   &:disabled {
     color: var(--color-disabled-text);
-    fill:var(--color-disabled-text);
+    fill: var(--color-disabled-text);
   }
 }
 

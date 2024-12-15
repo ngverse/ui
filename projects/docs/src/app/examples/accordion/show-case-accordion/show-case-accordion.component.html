@@ -1,5 +1,5 @@
-<div class="flex gap-2">
-  <app-accordion class="w-full" [multi]="true">
+<div class="show-case">
+  <app-accordion>
     @for (item of items; track $index) {
     <app-accordion-item [expanded]="$index === 0">
       <app-accordion-header>{{ item.title }}</app-accordion-header>

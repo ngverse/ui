@@ -11,7 +11,7 @@
   <div
     (outsideClicked)="close()"
     [appOutsideClick]="isOpen()"
-    class="absolute top-12 shadow-md z-50 bg-white border-gray-300 rounded-md border border-solid w-[400px] py-2"
+    class="absolute top-12 shadow-lg z-50 bg-white border-slate-400 left-2 rounded-md border border-solid w-[400px] py-2"
   >
     @for (folder of sourceTree(); track $index) { @if(!folder.hideName){
     <div class="px-3 flex items-center h-8 gap-1 select-none">
