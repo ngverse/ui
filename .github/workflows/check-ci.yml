@@ -29,7 +29,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm run test -- --project=${{ matrix.project }}
+        run: npx ng test --no-watch --no-progress --browsers=ChromeHeadless --project=${{ matrix.project }}
 
       - name: Build project
-        run: npm run build -- --project=${{ matrix.project }}
+        run: npx ng build --project=${{ matrix.project }}
