@@ -1,10 +1,16 @@
 .button {
-  &.loading {
+  --primary-color: #0284c7;
+  --secondary-color: #d946ef;
+  --success-color: #16a34a;
+  --danger-color: #dc2626;
+
+  &.loading{
     pointer-events: none;
   }
 
   position: relative;
   cursor: pointer;
+  border: none;
   border-radius: 8px;
   font-weight: 600;
   color: #fff;
@@ -31,11 +37,11 @@
 
   &.primary {
     &.fill {
-      @apply bg-blue-600;
+      background-color: var(--primary-color);
     }
     &.outline {
-      @apply border-blue-600;
-      @apply text-blue-600;
+      border-color: var(--primary-color);
+      color: var(--primary-color);
       .spinner {
         border-color: var(--primary-color);
       }
@@ -44,11 +50,11 @@
 
   &.secondary {
     &.fill {
-      @apply bg-fuchsia-600;
+      background-color: var(--secondary-color);
     }
     &.outline {
-      @apply border-fuchsia-600 text-fuchsia-600;
-
+      border-color: var(--secondary-color);
+      color: var(--secondary-color);
       .spinner {
         border-color: var(--secondary-color);
       }
@@ -57,10 +63,11 @@
 
   &.success {
     &.fill {
-      @apply bg-green-500;
+      background-color: var(--success-color);
     }
     &.outline {
-      @apply border-green-500 text-green-500;
+      border-color: var(--success-color);
+      color: var(--success-color);
       .spinner {
         border-color: var(--success-color);
       }
@@ -69,10 +76,11 @@
 
   &.danger {
     &.fill {
-      @apply bg-red-500;
+      background-color: var(--danger-color);
     }
     &.outline {
-      @apply border-red-500 text-red-500;
+      border-color: var(--danger-color);
+      color: var(--danger-color);
       .spinner {
         border-color: var(--danger-color);
       }
@@ -101,6 +109,7 @@
   align-items: center;
   background: rgba($color: #fff, $alpha: 0.3);
   cursor: wait;
+  pointer-events: none;
 }
 
 .spinner {
