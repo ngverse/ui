@@ -17,9 +17,7 @@ export class DialogPageComponent {
         title: 'HELLO',
         description: 'Welcome',
       })
-      .subscribe((value) => {
-        console.log('VALUE ', value);
-      });
+      .subscribe((value) => {});
   }
 
   ngOnInit() {

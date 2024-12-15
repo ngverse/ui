@@ -17,6 +17,7 @@ export type CompareWith = (o1: unknown, o2: unknown) => boolean;
 export class RadioButtonState {
   private _radioButtons = new Set<RadioButtonComponent>();
   private _value = signal<unknown>(undefined);
+  name = signal<string>('');
 
   registerOnChange: OnChangeFunction;
   validatorChangeFn: ValidatorChangeFunction;
@@ -39,6 +40,10 @@ export class RadioButtonState {
 
   writeValue(value: unknown) {
     this._value.set(value);
+  }
+
+  setName(name: string) {
+    this.name.set(name);
   }
 
   getValue() {

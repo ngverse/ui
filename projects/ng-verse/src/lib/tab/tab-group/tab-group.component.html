@@ -1,6 +1,12 @@
-<div #tabMainHeader class="tab-group-header">
+<div
+  #tabMainHeader
+  class="tab-group-header"
+  cdkListbox
+  cdkListboxOrientation="horizontal"
+  (cdkListboxValueChange)="selectTab($event.value)"
+>
   @for (tab of tabs(); track $index) {
-  <div #tabHeader (click)="selectTab($index)">
+  <div #tabHeader class="tab-header" [cdkOption]="$index">
     {{ tab.label() }}
   </div>
   }

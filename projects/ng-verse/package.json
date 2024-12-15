@@ -1,6 +1,6 @@
 {
   "name": "ng-verse",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "schematics": "./schematics/collection.json",
   "peerDependencies": {
     "@angular/common": "^19.0.0",

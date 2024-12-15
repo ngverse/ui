@@ -1,0 +1,47 @@
+.progress-bar-container {
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.progress-bar {
+  transition: width 0.1s ease-in-out;
+  background: black;
+  border-radius: 8px;
+  height: 6px;
+  text-align: center;
+}
+
+// .progress-bar {
+//   position: relative;
+//   width: 100%; /* Adjust width as needed */
+//   height: 8px; /* Adjust height as needed */
+//   background-color: #e0e0e0; /* Background color of the progress bar */
+//   border-radius: 4px; /* Rounded corners */
+//   overflow: hidden; /* Prevent overflow of the indeterminate animation */
+// }
+
+// /* Indeterminate animation */
+// .progress-bar-indeterminate {
+//   position: absolute;
+//   width: 30%; /* Width of the animated bar */
+//   height: 100%;
+//   background-color: #4caf50; /* Color of the progress bar */
+//   border-radius: 4px; /* Match the parent's border-radius */
+//   animation: indeterminate 1s infinite;
+// }
+
+// /* Keyframes for the indeterminate animation */
+// @keyframes indeterminate {
+//   0% {
+//     left: -30%;
+//     width: 30%;
+//   }
+//   50% {
+//     left: 35%;
+//     width: 50%;
+//   }
+//   100% {
+//     left: 100%;
+//     width: 30%;
+//   }
+// }

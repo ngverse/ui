@@ -1,9 +1,18 @@
-<div class="checkbox" [class.disabled]="disabled()" (click)="toggle()">
-  <lucide-angular
+<div
+  class="checkbox"
+  [class.disabled]="disabled()"
+  (click)="!disabled() && toggle()"
+>
+  <button
+    class="checkbox-button"
     role="checkbox"
     [attr.aria-checked]="value()"
-    size="24"
-    [img]="value() ? SquareCheck : Square"
-  ></lucide-angular>
-  <label> <ng-content></ng-content> </label>
+    [disabled]="disabled()"
+  >
+    <app-checkbox-icon [checked]="value()"></app-checkbox-icon>
+  </button>
+
+  <label>
+    <ng-content></ng-content>
+  </label>
 </div>

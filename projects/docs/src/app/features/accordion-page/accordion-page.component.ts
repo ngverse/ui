@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
-import { CInstallationComponent } from '../../blueprint/c-installation/c-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
-import { AccordionComponent } from '../../../../../ng-verse/src/lib/accordion/accordion.component';
-import { AccordionItemComponent } from '../../../../../ng-verse/src/lib/accordion/accordion-item/accordion-item.component';
-import { AccordionHeaderComponent } from '../../../../../ng-verse/src/lib/accordion/accordion-item/accordion-header.component';
-import { AccordionBodyComponent } from '../../../../../ng-verse/src/lib/accordion/accordion-item/accordion-body.component';
-import { SourceCodeComponent } from '../../blueprint/source-code/source-code.component';
-import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
+import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
+import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
+import {
+  ApiInputs,
+  ApiInputsComponent,
+} from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import { ShowCaseAccordionComponent } from '../../examples/accordion/show-case-accordion/show-case-accordion.component';
 
 @Component({
   selector: 'doc-accordion-page',
@@ -18,12 +18,10 @@ import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-build
     ShowCaseComponent,
     ShowCaseComponent,
     ApiInfoComponent,
-    AccordionComponent,
-    AccordionItemComponent,
-    AccordionHeaderComponent,
-    AccordionBodyComponent,
     SourceTreeComponent,
-    CInstallationComponent
+    ShowCaseAccordionComponent,
+    CommandInstallationComponent,
+    ApiInputsComponent,
   ],
   templateUrl: './accordion-page.component.html',
   styleUrl: './accordion-page.component.scss',
@@ -34,47 +32,46 @@ export class AccordionPageComponent {
     this.sourceTreeBuilder.folder(
       root,
       root,
-      () => this.sourceTreeBuilder.fullComponent('accordion', root),
-      true
-    ),
-    this.sourceTreeBuilder.folder(
-      'accordion-item',
-      `${root}/accordion-item`,
-      (root) => [
+      () => [
+        ...this.sourceTreeBuilder.fullComponent('accordion', root),
         ...this.sourceTreeBuilder.fullComponent('accordion-item', root),
         this.sourceTreeBuilder.component('accordion-header', root),
         this.sourceTreeBuilder.component('accordion-body', root),
         this.sourceTreeBuilder.component('expand-icon', root),
-        this.sourceTreeBuilder.file('animations', root),
-      ]
+        this.sourceTreeBuilder.file('accordion-animations', root),
+      ],
+      true
     ),
   ]);
 
-  items = [
+  inputs: ApiInputs[] = [
     {
-      title: 'Frequently Asked Questions',
-      description:
-        'Find answers to the most commonly asked questions about our product and services.',
+      name: 'accordion',
+      inputs: [
+        {
+          name: 'multi',
+          type: 'boolean',
+          description: 'allows multiple panels to be open simultaneously',
+          default: 'false',
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          description: 'disables the button',
+          default: 'false',
+        },
+      ],
     },
     {
-      title: 'Key Features and Benefits',
-      description:
-        'Discover the unique features that set our product apart and how they can benefit you.',
-    },
-    {
-      title: 'How to Get Started',
-      description:
-        'A step-by-step guide on setting up your account and making the most of our platform.',
-    },
-    {
-      title: 'Troubleshooting Tips',
-      description:
-        'Common issues and quick solutions to help you get back on track without a hitch.',
-    },
-    {
-      title: 'Product Specifications',
-      description:
-        'Detailed technical specifications of our product, including dimensions, materials, and performance capabilities.',
+      name: 'accordion-item',
+      inputs: [
+        {
+          name: 'disabled',
+          type: 'boolean',
+          description: 'disables accordion-item',
+          default: 'false',
+        },
+      ],
     },
   ];
 }

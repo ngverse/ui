@@ -2,4 +2,4 @@
  * Public API Surface of ng-verse
  */
 
-export * from './lib/button/button.component';
+export * from './mock-export';

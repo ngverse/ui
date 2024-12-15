@@ -16,11 +16,11 @@ import {
 } from '@angular/cdk/listbox';
 import {
   ControlValueAccessor,
-  FormControl,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { LucideAngularModule, ChevronDown } from 'lucide-angular';
+import { SelectIconComponent } from './select-icon.component';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 // @ts-ignore
@@ -41,7 +41,7 @@ type Option = unknown;
     CdkListbox,
     CdkOption,
     ReactiveFormsModule,
-    LucideAngularModule,
+    SelectIconComponent,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
@@ -56,8 +56,6 @@ type Option = unknown;
 export class SelectComponent implements ControlValueAccessor {
   isOpen = signal(false);
   options = input.required<Array<Option>>();
-
-  ChevronDown = ChevronDown;
 
   cdkListPost = viewChild(CdkListbox);
 

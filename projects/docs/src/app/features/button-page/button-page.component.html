@@ -4,38 +4,13 @@
   "
   [label]="'Button'"
 >
-  <doc-c-installation name="button"></doc-c-installation>
-  <doc-show-case>
-    <exp-simple-button></exp-simple-button>
+  <doc-show-case name="button">
+    <exp-show-case-button></exp-show-case-button>
   </doc-show-case>
+  <doc-command-installation type="component" name="button">
+  </doc-command-installation>
   <doc-source-tree [sourceTree]="sourceTree" name="button"></doc-source-tree>
   <doc-api-info>
-    <p>Button component wraps native html button element</p>
-    <doc-api-info-input-container>
-      <doc-api-info-input
-        name="color"
-        type="primary | secondary | tertiary | danger | success | warning"
-        description="Defines the button's color type, which affects its background style."
-        default="primary"
-      ></doc-api-info-input>
-
-      <doc-api-info-input
-        name="disabled"
-        type="boolean"
-        description="Disables the button, making it non-interactive. When true, it changes the style to indicate that the button is disabled."
-      ></doc-api-info-input>
-
-      <doc-api-info-input
-        name="type"
-        type="submit | reset | button"
-        description="Defines the HTML type attribute of the button. It can be used to specify whether the button should submit a form, reset a form, or simply be a generic button."
-      ></doc-api-info-input>
-
-      <doc-api-info-input
-        name="loading"
-        type="boolean"
-        description="Indicates if the button is in a loading state. If true, the button shows a spinner, and its text content is temporarily hidden."
-      ></doc-api-info-input>
-    </doc-api-info-input-container>
+    <doc-api-inputs [apiInputs]="apiInputs"></doc-api-inputs>
   </doc-api-info>
 </doc-blueprint-page>

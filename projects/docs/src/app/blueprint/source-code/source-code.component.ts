@@ -2,18 +2,11 @@ import { Component, input, signal } from '@angular/core';
 import { Highlight } from 'ngx-highlightjs';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CopyIconComponent } from '../../icons/copy-icon.component';
-import { IconButtonComponent } from '../../core/icon-button/icon-button.component';
 import { CheckIconComponent } from '../../icons/check-icon.component';
 
 @Component({
   selector: 'doc-source-code',
-  imports: [
-    Highlight,
-    ClipboardModule,
-    CopyIconComponent,
-    IconButtonComponent,
-    CheckIconComponent,
-  ],
+  imports: [Highlight, ClipboardModule, CopyIconComponent, CheckIconComponent],
   templateUrl: './source-code.component.html',
   styleUrl: './source-code.component.scss',
 })

@@ -1,5 +1,13 @@
-<doc-blueprint-page label="Checkbox">
-  <doc-show-case>
-    <app-checkbox [formControl]="formControl">I am checkbox</app-checkbox>
+<doc-blueprint-page
+  label="Checkbox"
+  subTitle="Checkbox provides the same functionality as a native enhanced with design."
+>
+  <doc-show-case name="checkbox">
+    <exp-show-case-checkbox></exp-show-case-checkbox>
   </doc-show-case>
+  <doc-command-installation
+    type="component"
+    name="checkbox"
+  ></doc-command-installation>
+  <doc-source-tree [sourceTree]="sourceTree" name="button"></doc-source-tree>
 </doc-blueprint-page>

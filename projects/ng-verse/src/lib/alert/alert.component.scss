@@ -1,0 +1,13 @@
+.alert {
+  padding: 16px;
+  border-radius: 6px;
+  &.success {
+    color: white;
+    background: #16a34a;
+  }
+
+  &.danger {
+    color: white;
+    background: #dc2626;
+  }
+}

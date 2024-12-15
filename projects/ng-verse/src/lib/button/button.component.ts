@@ -1,18 +1,11 @@
 import { NgClass } from '@angular/common';
-import {
-  booleanAttribute,
-  ChangeDetectionStrategy,
-  Component,
-  input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-type COLOR_TYPES =
-  | 'primary'
-  | 'secondary'
-  | 'tertiary'
-  | 'danger'
-  | 'success'
-  | 'warning';
+type COLOR_TYPES = 'primary' | 'secondary' | 'danger' | 'success';
+
+type VARIANT_TYPES = 'fill' | 'outline';
+
+type SIZE_TYPES = 'sm' | 'md' | 'lg';
 
 @Component({
   selector: 'app-button',
@@ -25,9 +18,13 @@ type COLOR_TYPES =
 export class ButtonComponent {
   color = input<COLOR_TYPES>('primary');
 
-  disabled = input(undefined, { transform: booleanAttribute });
+  variant = input<VARIANT_TYPES>('fill');
+
+  disabled = input<boolean>();
 
   type = input<'submit' | 'reset' | 'button'>();
+
+  size = input<SIZE_TYPES>('md');
 
   loading = input<boolean>();
 }

@@ -25,6 +25,12 @@ import {
   RadioButtonState,
 } from '../radio-button.state';
 
+let inputName = 0;
+
+function getInputName() {
+  return `radio-group-${inputName++}`;
+}
+
 @Component({
   selector: 'app-radio-group',
   imports: [],
@@ -52,7 +58,15 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
   compareWith = input<CompareWith>();
   required = input(undefined, { transform: booleanAttribute });
 
+  name = input(getInputName());
+
+  direction = signal<'horizontal' | 'vertical'>('horizontal');
+
   constructor() {
+    effect(() => {
+      this._state.setName(this.name());
+    });
+
     effect(() => {
       const compareWith = this.compareWith();
       if (compareWith) {

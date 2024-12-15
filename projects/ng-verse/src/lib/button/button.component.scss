@@ -1,34 +1,91 @@
 .button {
+  --primary-color: #0284c7;
+  --secondary-color: #d946ef;
+  --success-color: #16a34a;
+  --danger-color: #dc2626;
+
+  &.loading{
+    pointer-events: none;
+  }
+
   position: relative;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  color: #fff;
   cursor: pointer;
-}
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #fff;
+  background: white;
+  border-width: 1px;
+  border-style: solid;
 
-.button.primary {
-  background-color: #2563eb;
-}
+  &.sm {
+    height: 32px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
 
-.button.secondary {
-  background-color: #0891b2;
-}
+  &.md {
+    height: 40px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  &.lg {
+    height: 48px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
 
-.button.danger {
-  background-color: #e11d48;
-}
+  &.primary {
+    &.fill {
+      background-color: var(--primary-color);
+    }
+    &.outline {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      .spinner {
+        border-color: var(--primary-color);
+      }
+    }
+  }
 
-.button.tertiary {
-  background-color: #475569;
-}
+  &.secondary {
+    &.fill {
+      background-color: var(--secondary-color);
+    }
+    &.outline {
+      border-color: var(--secondary-color);
+      color: var(--secondary-color);
+      .spinner {
+        border-color: var(--secondary-color);
+      }
+    }
+  }
 
-.button.success {
-  background-color: #059669;
-}
+  &.success {
+    &.fill {
+      background-color: var(--success-color);
+    }
+    &.outline {
+      border-color: var(--success-color);
+      color: var(--success-color);
+      .spinner {
+        border-color: var(--success-color);
+      }
+    }
+  }
 
-.button.warning {
-  background-color: #d97706;
+  &.danger {
+    &.fill {
+      background-color: var(--danger-color);
+    }
+    &.outline {
+      border-color: var(--danger-color);
+      color: var(--danger-color);
+      .spinner {
+        border-color: var(--danger-color);
+      }
+    }
+  }
 }
 
 .button:hover {
@@ -52,13 +109,14 @@
   align-items: center;
   background: rgba($color: #fff, $alpha: 0.3);
   cursor: wait;
+  pointer-events: none;
 }
 
 .spinner {
   width: 20px;
   height: 20px;
   border: 3px solid #fff;
-  border-bottom-color: transparent;
+  border-bottom-color: transparent !important;
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;

@@ -2,6 +2,13 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'home',
+    loadComponent: () =>
+      import('./features/home-page/home-page.component').then(
+        (h) => h.HomePageComponent
+      ),
+  },
+  {
     path: 'doc',
     loadComponent: () =>
       import('./features/doc-container-page/doc-container-page.component').then(
@@ -9,10 +16,24 @@ export const routes: Routes = [
       ),
     children: [
       {
-        path: 'button',
+        path: 'introduction',
         loadComponent: () =>
-          import('./features/button-page/button-page.component').then(
-            (b) => b.ButtonPageComponent
+          import(
+            './features/introduction-page/introduction-page.component'
+          ).then((i) => i.IntroductionPageComponent),
+      },
+      {
+        path: 'installation',
+        loadComponent: () =>
+          import(
+            './features/installation-page/installation-page.component'
+          ).then((i) => i.InstallationPageComponent),
+      },
+      {
+        path: 'theming',
+        loadComponent: () =>
+          import('./features/theming-page/theming-page.component').then(
+            (t) => t.ThemingPageComponent
           ),
       },
       {
@@ -20,6 +41,55 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/accordion-page/accordion-page.component').then(
             (b) => b.AccordionPageComponent
+          ),
+      },
+      {
+        path: 'alert',
+        loadComponent: () =>
+          import('./features/alert-page/alert-page.component').then(
+            (b) => b.AlertPageComponent
+          ),
+      },
+      {
+        path: 'breadcrumb',
+        loadComponent: () =>
+          import('./features/breadcrumb-page/breadcrumb-page.component').then(
+            (b) => b.BreadcrumbPageComponent
+          ),
+      },
+      {
+        path: 'otp-input',
+        loadComponent: () =>
+          import('./features/otp-input-page/otp-input-page.component').then(
+            (b) => b.OtpInputPageComponent
+          ),
+      },
+      {
+        path: 'progress-bar',
+        loadComponent: () =>
+          import(
+            './features/progress-bar-page/progress-bar-page.component'
+          ).then((b) => b.ProgressBarPageComponent),
+      },
+      {
+        path: 'tooltip',
+        loadComponent: () =>
+          import('./features/tooltip-page/tooltip-page.component').then(
+            (b) => b.TooltipPageComponent
+          ),
+      },
+      {
+        path: 'toast',
+        loadComponent: () =>
+          import('./features/toast-page/toast-page.component').then(
+            (b) => b.ToastPageComponent
+          ),
+      },
+      {
+        path: 'button',
+        loadComponent: () =>
+          import('./features/button-page/button-page.component').then(
+            (b) => b.ButtonPageComponent
           ),
       },
       {
@@ -85,11 +155,16 @@ export const routes: Routes = [
             (d) => d.TabPageComponent
           ),
       },
+      {
+        path: '',
+        redirectTo: 'button',
+        pathMatch: 'full',
+      },
     ],
   },
   {
     path: '',
-    redirectTo: 'doc',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
 ];

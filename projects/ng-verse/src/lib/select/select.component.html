@@ -6,13 +6,10 @@
   (click)="toggle()"
 >
   <span>{{ displayValue() }}</span>
-  <lucide-angular
+  <app-select-icon
     class="select-button-icon"
     [class.opened]="isOpen()"
-    role="radio"
-    size="20"
-    [img]="ChevronDown"
-  ></lucide-angular>
+  ></app-select-icon>
 </button>
 <ng-template
   (backdropClick)="close()"

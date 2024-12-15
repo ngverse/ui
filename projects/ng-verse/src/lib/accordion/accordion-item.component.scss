@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+}
+
+.accordion-item-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  width: 100%;
+  font-size: 1rem;
+  &:disabled {
+    color: var(--color-disabled-text);
+    fill:var(--color-disabled-text);
+  }
+}
+
+.accordion-item-body {
+  margin-top: 12px;
+  padding: 0px 6px;
+}
+
+.expand-icon {
+  margin-left: auto;
+}
+
+.expand-icon {
+  transition: transform 150ms ease-in-out;
+}
+.icon-opened {
+  transform: rotate(180deg);
+}

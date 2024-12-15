@@ -20,10 +20,4 @@ export class SelectPageComponent {
   options = ['one', 'two', 'three'];
 
   formControl = new FormControl('two');
-
-  constructor() {
-    this.formControl.valueChanges.subscribe(() => {
-      console.log('VALUE CHANGED ', this.formControl.value);
-    });
-  }
 }

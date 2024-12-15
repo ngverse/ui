@@ -1,0 +1,21 @@
+<div
+  class="sidebar w-[300px] h-[600px] border-0 border-solid border-gray-200 border-r pt-4 content-height overflow-auto px-5"
+>
+  <nav>
+    @for (route of routes; track $index) {
+    <ul class="list-none pl-0">
+      <li class="mb-3 font-medium">{{ route.name }}</li>
+      @for (link of route.children; track $index) {
+      <li>
+        <a
+          [routerLinkActive]="'selected'"
+          class="ml-0 my-3 hover:bg-slate-100 h-8 cursor-pointer flex px-2 rounded-md items-center text-textPrimary"
+          [routerLink]="link.url"
+          >{{ link.name }}</a
+        >
+      </li>
+      }
+    </ul>
+    }
+  </nav>
+</div>

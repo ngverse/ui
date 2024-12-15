@@ -1,0 +1,10 @@
+<div class="flex gap-2">
+  <app-accordion class="w-full" [multi]="true">
+    @for (item of items; track $index) {
+    <app-accordion-item [expanded]="$index === 0">
+      <app-accordion-header>{{ item.title }}</app-accordion-header>
+      <app-accordion-body>{{ item.description }}</app-accordion-body>
+    </app-accordion-item>
+    }
+  </app-accordion>
+</div>

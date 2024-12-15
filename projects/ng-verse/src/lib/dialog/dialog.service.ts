@@ -19,10 +19,7 @@ export class DialogService {
     const dialogRef = this.dialog.open<string>(DialogComponent, {
       width: '250px',
     });
-    dialogRef.closed.subscribe((result) => {
-      console.log('The dialog was closed');
-      // this.animal = result;
-    });
+    dialogRef.closed.subscribe((result) => {});
   }
 
   confirm(options: ConfirmDialogOptions) {

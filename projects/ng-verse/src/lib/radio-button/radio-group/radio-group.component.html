@@ -1,1 +1,3 @@
-<ng-content select="app-radio-button"></ng-content>
+<div class="radio-group" [class.vertical]="direction() === 'vertical'">
+  <ng-content select="app-radio-button"></ng-content>
+</div>

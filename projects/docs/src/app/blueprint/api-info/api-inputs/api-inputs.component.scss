@@ -1,0 +1,25 @@
+.api-inputs {
+  width: 100%;
+  overflow-x: auto;
+  .api-inputs-header {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    div {
+      width: 25%;
+    }
+  }
+
+  .api-inputs-body {
+    width: 100%;
+  }
+
+  .api-inputs-row {
+    display: flex;
+    gap: 12px;
+
+    div {
+      width: 25%;
+    }
+  }
+}
