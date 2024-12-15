@@ -1,0 +1,24 @@
+name: Commitlint
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install --save-dev @commitlint/{config-conventional,cli}
+
+      - name: Run Commitlint
+        run: npx commitlint --from=HEAD~10 --to=HEAD
