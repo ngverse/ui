@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { ProgressBarComponent } from '../../../../../ng-verse/src/lib/progress-bar/progress-bar.component';
+import { ProgressBarComponent } from '@ng-verse/progress-bar/progress-bar.component';
 
 @Component({
   selector: 'exp-show-case-progress-bar',

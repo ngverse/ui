@@ -5,12 +5,12 @@ import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
-import { ShowCaseButtonComponent } from '../../../../../examples/src/lib/button/show-case-button/show-case-button.component';
 import {
   ApiInputs,
   ApiInputsComponent,
   EMPTY_API_INPUT_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import { ShowCaseButtonComponent } from '../../examples/button/show-case-button/show-case-button.component';
 
 @Component({
   selector: 'doc-button-page',

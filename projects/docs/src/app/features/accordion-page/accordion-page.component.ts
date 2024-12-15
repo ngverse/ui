@@ -3,13 +3,13 @@ import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
-import { ShowCaseAccordionComponent } from '@examples/accordion/show-case-accordion/show-case-accordion.component';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import {
   ApiInputs,
   ApiInputsComponent,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import { ShowCaseAccordionComponent } from '../../examples/accordion/show-case-accordion/show-case-accordion.component';
 
 @Component({
   selector: 'doc-accordion-page',

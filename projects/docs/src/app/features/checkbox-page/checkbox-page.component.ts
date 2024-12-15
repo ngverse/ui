@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ShowCaseCheckboxComponent } from '../../../../../examples/src/lib/checkbox/show-case-checkbox/show-case-checkbox.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
+import { ShowCaseCheckboxComponent } from '../../examples/checkbox/show-case-checkbox/show-case-checkbox.component';
 
 @Component({
   selector: 'doc-checkbox-page',

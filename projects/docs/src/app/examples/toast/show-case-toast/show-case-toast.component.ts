@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ToastService } from '../../../../../ng-verse/src/lib/toast/toast.service';
+import { ToastService } from '@ng-verse/toast/toast.service';
 
 @Component({
   selector: 'exp-show-case-toast',
