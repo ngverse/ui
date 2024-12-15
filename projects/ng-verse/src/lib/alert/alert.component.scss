@@ -1,13 +1,20 @@
 .alert {
   padding: 16px;
   border-radius: 6px;
+  border-radius: 8px;
+  border-width: 1px;
   &.success {
     color: white;
     background: #16a34a;
+    border-color: #16a34a;
   }
 
   &.danger {
     color: white;
     background: #dc2626;
+    border-color: #dc2626;
+  }
+  &.default{
+    border-color: #cbd5e1;
   }
 }

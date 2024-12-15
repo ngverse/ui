@@ -4,7 +4,7 @@ import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import { ShowCaseAlertComponent } from '../../examples/show-case-alert/show-case-alert.component';
+import { ShowCaseAlertComponent } from '../../examples/alert/show-case-alert/show-case-alert.component';
 
 @Component({
   selector: 'doc-alert-page',
