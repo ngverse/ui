@@ -43,7 +43,6 @@ describe('CheckboxComponent', () => {
     expect(checkboxRootElement.classList).toContain('disabled');
   });
   it('should be true on change', () => {
-    console.log(checkboxNativeElement)
     checkboxNativeElement.dispatchEvent(new Event('change'));
     fixture.detectChanges();
     expect(rootComponent.formControl.value).toBeTrue();
