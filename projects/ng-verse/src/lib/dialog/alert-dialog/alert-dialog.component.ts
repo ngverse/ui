@@ -2,7 +2,7 @@ import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { DIALOG_DATA, DialogConfig, DialogRef } from '@angular/cdk/dialog';
 import { Component, inject } from '@angular/core';
 
-export interface AlertDialogOption<T = boolean, K = boolean>
+export interface AlertDialogOption
   extends Pick<DialogConfig, 'disableClose' | 'hasBackdrop'> {
   title: string;
   description: string;

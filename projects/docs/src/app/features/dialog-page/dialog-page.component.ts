@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
+import { DialogService } from '../../../../../ng-verse/src/lib/dialog/dialog.service';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
-import { DialogService } from '../../../../../ng-verse/src/lib/dialog/dialog.service';
 
 @Component({
   selector: 'doc-dialog-page',

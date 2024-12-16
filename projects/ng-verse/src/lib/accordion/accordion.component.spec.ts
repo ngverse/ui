@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AccordionComponent } from './accordion.component';
-import { AccordionItemComponent } from './accordion-item.component';
 import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { AccordionHeaderComponent } from './accordion-header.component';
 import { AccordionBodyComponent } from './accordion-body.component';
+import { AccordionHeaderComponent } from './accordion-header.component';
+import { AccordionItemComponent } from './accordion-item.component';
+import { AccordionComponent } from './accordion.component';
 
 @Component({
   selector: 'app-host',
@@ -30,7 +30,6 @@ import { AccordionBodyComponent } from './accordion-body.component';
 class HostComponent {}
 
 describe('AccordionComponent', () => {
-  let component: AccordionComponent;
   let fixture: ComponentFixture<HostComponent>;
 
   beforeEach(async () => {

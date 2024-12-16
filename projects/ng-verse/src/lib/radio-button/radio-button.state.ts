@@ -1,14 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { RadioButtonComponent } from './radio-button.component';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
 export type OnTouchedFunction = (() => void) | undefined;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
 export type OnChangeFunction = ((_: unknown) => void) | undefined;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
 export type ValidatorChangeFunction = (() => void) | undefined;
 
 export type CompareWith = (o1: unknown, o2: unknown) => boolean;

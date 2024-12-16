@@ -1,8 +1,9 @@
+import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
+import { CdkPortalOutlet } from '@angular/cdk/portal';
 import {
   afterNextRender,
   ChangeDetectionStrategy,
   Component,
-  computed,
   contentChildren,
   ElementRef,
   model,
@@ -10,8 +11,6 @@ import {
   viewChildren,
 } from '@angular/core';
 import { TabComponent } from '../tab.component';
-import { CdkPortalOutlet } from '@angular/cdk/portal';
-import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
 
 @Component({
   selector: 'app-tab-group',
@@ -38,7 +37,7 @@ export class TabGroupComponent {
     afterNextRender({
       mixedReadWrite: () => {
         setTimeout(() => {
-          const _ = this.selectedIndex();
+          this.selectedIndex();
           const tabMainHeader = this.tabMainHeader()?.nativeElement;
           const tabHeader = this.tabHeaders()[0].nativeElement;
 
@@ -55,10 +54,8 @@ export class TabGroupComponent {
     });
   }
 
-  inkPosition = computed(() => {});
-
-  selectTab(tabIndex: any) {
-    this.selectedIndex.set(tabIndex[0]);
+  selectTab() {
+    // this.selectedIndex.set(tabIndex[0]);
     this.moveInk();
   }
 

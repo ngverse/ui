@@ -1,9 +1,8 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
+import { ComponentPortal } from '@angular/cdk/portal';
 import {
   AfterViewInit,
-  Component,
   ComponentRef,
   Directive,
   ElementRef,
@@ -13,9 +12,9 @@ import {
   numberAttribute,
   OnDestroy,
   TemplateRef,
-  ViewContainerRef,
+  ViewContainerRef
 } from '@angular/core';
-import { filter, fromEvent, merge, Subscription } from 'rxjs';
+import { filter, fromEvent, Subscription } from 'rxjs';
 import { TooltipContainerComponent } from '../tooltip-container/tooltip-container.component';
 export type TOOLTIP_POSITIONS = 'top' | 'right' | 'bottom' | 'left';
 

@@ -1,7 +1,7 @@
 import { DIALOG_DATA, DialogConfig, DialogRef } from '@angular/cdk/dialog';
 import { Component, inject } from '@angular/core';
 
-export interface ConfirmDialogOptions<T = boolean, K = boolean>
+export interface ConfirmDialogOptions
   extends Pick<DialogConfig, 'disableClose' | 'hasBackdrop'> {
   title: string;
   description: string;

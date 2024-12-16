@@ -6,7 +6,8 @@
     "start": "ng serve --project=docs",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --project=ng-verse"
+    "test": "ng test --project=ng-verse",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -36,8 +37,10 @@
     "@angular/cli": "^19.0.2",
     "@angular/compiler-cli": "^19.0.0",
     "@types/jasmine": "~5.1.0",
+    "angular-eslint": "19.0.2",
     "autoprefixer": "^10.4.20",
     "copyfiles": "^2.4.1",
+    "eslint": "^9.16.0",
     "jasmine-core": "~5.4.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -47,6 +50,7 @@
     "ng-packagr": "^19.0.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.16",
-    "typescript": "~5.6.2"
+    "typescript": "~5.6.2",
+    "typescript-eslint": "8.18.0"
   }
 }

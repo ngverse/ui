@@ -3,13 +3,11 @@ import {
   Component,
   computed,
   contentChild,
-  effect,
   inject,
   input,
-  signal,
   TemplateRef,
   viewChild,
-  ViewContainerRef,
+  ViewContainerRef
 } from '@angular/core';
 import { TabBodyDirective } from './tab-body.directive';
 

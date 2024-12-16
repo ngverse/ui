@@ -1,6 +1,5 @@
-import { inject, Injectable } from '@angular/core';
 import { Dialog } from '@angular/cdk/dialog';
-import { DialogComponent } from './dialog/dialog.component';
+import { inject, Injectable } from '@angular/core';
 import {
   AlertDialogComponent,
   AlertDialogOption,
@@ -16,10 +15,9 @@ import {
 export class DialogService {
   private dialog = inject(Dialog);
   open() {
-    const dialogRef = this.dialog.open<string>(DialogComponent, {
-      width: '250px',
-    });
-    dialogRef.closed.subscribe((result) => {});
+    // const dialogRef = this.dialog.open<string>(DialogComponent, {
+    //   width: '250px',
+    // });
   }
 
   confirm(options: ConfirmDialogOptions) {
