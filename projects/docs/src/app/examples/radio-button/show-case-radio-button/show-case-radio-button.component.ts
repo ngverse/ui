@@ -1,4 +1,4 @@
-import { Component, model } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -20,21 +20,23 @@ import { RadioGroupComponent } from '@ng-verse/radio-button/radio-group/radio-gr
   styleUrl: './show-case-radio-button.component.scss',
 })
 export class ShowCaseRadioButtonComponent {
-  formControl = new FormControl(null, Validators.required);
   values = [
     {
-      firstName: 'luka',
-      age: 30,
+      firstName: 'Apple',
+      price: 30,
     },
     {
-      firstName: 'onik',
-      age: 40,
+      firstName: 'Orange',
+      price: 70,
+    },
+    {
+      firstName: 'Cherry',
+      price: 100,
     },
   ];
+  formControl = new FormControl({ ...this.values[0] }, Validators.required);
 
-  value = model(undefined);
-
-  compare(o1: { age: number }, o2: { age: number }) {
-    return o1?.age === o2?.age;
+  compare(o1: { price: number }, o2: { price: number }) {
+    return o1?.price === o2.price;
   }
 }
