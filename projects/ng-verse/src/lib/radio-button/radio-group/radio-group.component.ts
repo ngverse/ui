@@ -1,5 +1,4 @@
 import {
-  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   contentChildren,
@@ -56,7 +55,6 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
   value = signal<unknown>(undefined);
 
   compareWith = input<CompareWith>();
-  required = input(undefined, { transform: booleanAttribute });
 
   name = input(getInputName());
 
@@ -77,8 +75,7 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
     });
   }
   validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequired =
-      this.required() || control.hasValidator(Validators.required);
+    const hasRequired = control.hasValidator(Validators.required);
     return (hasRequired && control.value === undefined) ||
       control.value === null
       ? { required: true }

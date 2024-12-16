@@ -1,9 +1,6 @@
 import {
-  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
-  effect,
-  input,
   model,
   signal,
 } from '@angular/core';
@@ -52,17 +49,7 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
   private _validatorChangeFn: ValidatorChangeFunction;
   private _onTouched: OnTouchedFunction;
 
-  required = input(undefined, { transform: booleanAttribute });
   disabled = model<boolean>(false);
-
-  constructor() {
-    effect(() => {
-      this.required();
-      if (this._validatorChangeFn) {
-        this._validatorChangeFn();
-      }
-    });
-  }
 
   writeValue(obj: boolean | undefined | null): void {
     this.value.set(obj);
@@ -97,8 +84,7 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
   }
 
   validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequired =
-      this.required() || control.hasValidator(Validators.required);
+    const hasRequired = control.hasValidator(Validators.required);
     return hasRequired && control.value !== true ? { required: true } : null;
   }
 }

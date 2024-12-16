@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  effect,
   input,
   model,
   signal,
@@ -58,19 +57,9 @@ export class CheckboxComponent implements ControlValueAccessor, Validator {
   private _validatorChangeFn: ValidatorChangeFunction;
   private _onTouched: OnTouchedFunction;
 
-  required = input(false);
   disabled = model<boolean>(false);
 
   id = input(genId());
-
-  constructor() {
-    effect(() => {
-      this.required();
-      if (this._validatorChangeFn) {
-        this._validatorChangeFn();
-      }
-    });
-  }
 
   writeValue(obj: boolean | undefined | null): void {
     this.value.set(obj);
@@ -105,8 +94,7 @@ export class CheckboxComponent implements ControlValueAccessor, Validator {
   }
 
   validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequired =
-      this.required() || control.hasValidator(Validators.required);
+    const hasRequired = control.hasValidator(Validators.required);
     return hasRequired && control.value !== true ? { required: true } : null;
   }
 }
