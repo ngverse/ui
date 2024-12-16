@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  cursor: pointer;
 }
 
 .checkbox-button {
@@ -10,6 +9,12 @@
   padding: 0;
   margin: 0;
   border: 0;
+}
+
+.checked {
+  .checkbox-icon {
+    color: #0284c7;
+  }
 }
 
 lucide-angular {
@@ -24,4 +29,34 @@ lucide-angular {
 
 .disabled {
   color: #9ca3af;
+}
+
+.native-checkbox-container {
+  position: relative;
+  height: 24px;
+  width: 24px;
+}
+
+.native-checkbox {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  &:focus + .checkbox-icon {
+    outline: 1px solid #0284c7; /* Blue outline */
+    outline-offset: 1px;
+    border-radius: 4px; /* Optional for rounded corners */
+  }
+}
+
+.checkbox-icon {
+  cursor: pointer;
+  pointer-events: none;
+}
+
+label {
+  cursor: pointer;
 }

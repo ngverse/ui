@@ -17,6 +17,7 @@ describe('CheckboxComponent', () => {
   let rootComponent: CheckboxTest;
   let checkboxComponent: CheckboxComponent;
   let checkboxRootElement: HTMLElement;
+  let checkboxNativeElement: HTMLElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -29,6 +30,7 @@ describe('CheckboxComponent', () => {
     checkboxComponent = debugElement.query(By.directive(CheckboxComponent))
       .componentInstance as CheckboxComponent;
     checkboxRootElement = htmlElement.querySelector('.checkbox') as HTMLElement;
+    checkboxNativeElement = htmlElement.querySelector('input') as HTMLElement;
     fixture.detectChanges();
   });
 
@@ -40,8 +42,8 @@ describe('CheckboxComponent', () => {
     fixture.detectChanges();
     expect(checkboxRootElement.classList).toContain('disabled');
   });
-  it('should be true on click', () => {
-    checkboxRootElement.dispatchEvent(new Event('click'));
+  it('should be true on change', () => {
+    checkboxNativeElement.dispatchEvent(new Event('change'));
     fixture.detectChanges();
     expect(rootComponent.formControl.value).toBeTrue();
   });
