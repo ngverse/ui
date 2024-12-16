@@ -4,7 +4,7 @@ import { AlertHeaderComponent } from '@ng-verse/alert/alert-header/alert-header.
 import { AlertComponent } from '@ng-verse/alert/alert.component';
 
 @Component({
-  selector: 'exp-show-case-alert',
+  selector: 'doc-show-case-alert',
   imports: [AlertComponent, AlertHeaderComponent, AlertDescriptionComponent],
   templateUrl: './show-case-alert.component.html',
   styleUrl: './show-case-alert.component.scss',

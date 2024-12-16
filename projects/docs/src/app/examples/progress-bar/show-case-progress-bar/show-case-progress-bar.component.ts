@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { ProgressBarComponent } from '@ng-verse/progress-bar/progress-bar.component';
 
 @Component({
-  selector: 'exp-show-case-progress-bar',
+  selector: 'doc-show-case-progress-bar',
   imports: [ProgressBarComponent],
   templateUrl: './show-case-progress-bar.component.html',
   styleUrl: './show-case-progress-bar.component.scss',

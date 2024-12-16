@@ -1,9 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
-import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
-import { ButtonComponent } from '../../../../../ng-verse/src/lib/button/button.component';
+import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 
 @Component({
   selector: 'doc-outside-click-page',

@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
-type Group = {
+interface Group {
   name: string;
   children: Link[];
-};
+}
 
-type Link = {
+interface Link {
   name: string;
   url: string;
-};
+}
 
 @Component({
   selector: 'doc-sidebar',

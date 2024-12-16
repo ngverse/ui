@@ -1,13 +1,12 @@
 import { Component, inject, input, signal } from '@angular/core';
-import { zip } from 'rxjs';
 import { FileService } from '../../services/file.service';
 import { SourceCodeComponent } from '../source-code/source-code.component';
-import { SourceTreeSelectComponent } from './source-tree-select/source-tree-select.component';
 import {
   SOURCE_FILE_EXTENSION_TYPE,
   SourceTreeFile,
   SourceTreeFolder,
 } from './source-tree-builder';
+import { SourceTreeSelectComponent } from './source-tree-select/source-tree-select.component';
 
 @Component({
   selector: 'doc-source-tree',
