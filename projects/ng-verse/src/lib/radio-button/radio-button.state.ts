@@ -13,7 +13,7 @@ export class RadioButtonState {
   private _radioButtons = new Set<RadioButtonComponent>();
   private _value = signal<unknown>(undefined);
   name = signal<string>('');
-
+  disabled = signal(false);
   registerOnChange: OnChangeFunction;
   validatorChangeFn: ValidatorChangeFunction;
   onTouched: OnTouchedFunction;

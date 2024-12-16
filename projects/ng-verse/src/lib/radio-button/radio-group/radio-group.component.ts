@@ -60,7 +60,9 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
 
   name = input(getInputName());
 
-  direction = signal<'horizontal' | 'vertical'>('horizontal');
+  direction = input<'horizontal' | 'vertical'>('horizontal');
+
+  private _state = inject(RadioButtonState);
 
   constructor() {
     effect(() => {
@@ -85,8 +87,6 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   registerOnValidatorChange?(_fn: () => void): void {}
 
-  private _state = inject(RadioButtonState);
-
   writeValue(value: unknown): void {
     this._state.writeValue(value);
   }
@@ -97,6 +97,7 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
   registerOnTouched(fn: OnTouchedFunction): void {
     this._state.onTouched = fn;
   }
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setDisabledState?(): void {}
+  setDisabledState(isDisabled: boolean): void {
+    this._state.disabled.set(isDisabled);
+  }
 }

@@ -59,6 +59,10 @@ export class SidebarComponent {
           name: 'Skeleton',
           url: '/doc/skeleton',
         },
+        {
+          name: 'Radio Button',
+          url: '/doc/radio-button',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',
@@ -92,10 +96,7 @@ export class SidebarComponent {
         //   name: 'Pagination',
         //   url: '/doc/pagination',
         // },
-        // {
-        //   name: 'Radio Button',
-        //   url: '/doc/radio-button',
-        // },
+
         // {
         //   name: 'Select',
         //   url: '/doc/select',

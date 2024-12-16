@@ -1,6 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { RadioButtonState } from './radio-button.state';
 import { RadioButtonIconComponent } from './radio-button-icon.component';
+import { RadioButtonState } from './radio-button.state';
 
 let inputId = 0;
 
@@ -16,6 +16,10 @@ function genInputId() {
 })
 export class RadioButtonComponent {
   disabled = input<boolean>();
+
+  radioButtonDisabled = computed(
+    () => this.disabled() || this.radioButtonState.disabled()
+  );
 
   radioButtonState = inject(RadioButtonState);
 
@@ -33,7 +37,6 @@ export class RadioButtonComponent {
   });
 
   toggle() {
-    console.log('TOGGLED');
     this.radioButtonState.setValue(this.value());
   }
 }
