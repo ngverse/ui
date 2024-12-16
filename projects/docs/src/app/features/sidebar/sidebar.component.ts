@@ -55,6 +55,10 @@ export class SidebarComponent {
           name: 'Checkbox',
           url: '/doc/checkbox',
         },
+        {
+          name: 'Skeleton',
+          url: '/doc/skeleton',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',
