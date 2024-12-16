@@ -5,7 +5,7 @@ import { AccordionItemComponent } from '@ng-verse/accordion/accordion-item.compo
 import { AccordionComponent } from '@ng-verse/accordion/accordion.component';
 
 @Component({
-  selector: 'exp-show-case-accordion',
+  selector: 'doc-show-case-accordion',
   imports: [
     AccordionComponent,
     AccordionItemComponent,

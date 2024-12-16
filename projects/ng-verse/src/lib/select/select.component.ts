@@ -1,35 +1,30 @@
 import {
-  Component,
-  computed,
-  effect,
-  ElementRef,
-  inject,
-  input,
-  signal,
-  viewChild,
-} from '@angular/core';
-import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
-import {
   CdkListbox,
   CdkOption,
   ListboxValueChangeEvent,
 } from '@angular/cdk/listbox';
+import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
+import {
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  input,
+  signal,
+  viewChild,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { LucideAngularModule, ChevronDown } from 'lucide-angular';
 import { SelectIconComponent } from './select-icon.component';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
 type OnTouchedFunction = (() => void) | undefined;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
 type OnChangeFunction = ((_: any) => void) | undefined;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
+
 type ValidatorChangeFunction = (() => void) | undefined;
 
 type Option = unknown;
@@ -55,7 +50,7 @@ type Option = unknown;
 })
 export class SelectComponent implements ControlValueAccessor {
   isOpen = signal(false);
-  options = input.required<Array<Option>>();
+  options = input.required<Option[]>();
 
   cdkListPost = viewChild(CdkListbox);
 
@@ -112,7 +107,7 @@ export class SelectComponent implements ControlValueAccessor {
     }
   }
 
-  writeValue(obj: any): void {
+  writeValue(obj: unknown): void {
     this.value.set(obj);
   }
   registerOnChange(fn: OnChangeFunction): void {

@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxComponent } from '@ng-verse/checkbox/checkbox.component';
 
 @Component({
-  selector: 'exp-show-case-checkbox',
+  selector: 'doc-show-case-checkbox',
   imports: [ReactiveFormsModule, CheckboxComponent, FormsModule],
   templateUrl: './show-case-checkbox.component.html',
   styleUrl: './show-case-checkbox.component.scss',

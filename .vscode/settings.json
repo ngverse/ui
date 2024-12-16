@@ -8,5 +8,8 @@
     "**/Thumbs.db": true,
     "node_modules": true,
     "dist": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
   }
 }

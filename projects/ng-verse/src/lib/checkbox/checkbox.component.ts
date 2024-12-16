@@ -1,5 +1,4 @@
 import {
-  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   effect,
@@ -27,13 +26,10 @@ function genId() {
 type VALUE_TYPE = boolean | undefined | null;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
-type OnTouchedFunction = (() => void) | undefined;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
 type OnChangeFunction = ((_: any) => void) | undefined;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
+
+type OnTouchedFunction = (() => void) | undefined;
+
 type ValidatorChangeFunction = (() => void) | undefined;
 
 @Component({
@@ -69,7 +65,7 @@ export class CheckboxComponent implements ControlValueAccessor, Validator {
 
   constructor() {
     effect(() => {
-      const _ = this.required();
+      this.required();
       if (this._validatorChangeFn) {
         this._validatorChangeFn();
       }

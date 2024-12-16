@@ -1,9 +1,9 @@
-import { Component, effect, input, model, output, signal } from '@angular/core';
-import { ExpandIconComponent } from './expand-icon.component';
+import { Component, effect, input, model, output } from '@angular/core';
 import {
   COLLAPSE_ON_LEAVE,
   EXPAND_ON_ENTER_ANIMATION,
 } from './accordion-animations';
+import { ExpandIconComponent } from './expand-icon.component';
 
 let accordionId = 0;
 let accordionContentId = 0;

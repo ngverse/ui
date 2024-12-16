@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SelectComponent } from '../../../../../ng-verse/src/lib/select/select.component';
-import { OptionComponent } from '../../../../../ng-verse/src/lib/select/option/option.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'doc-select-page',

@@ -1,20 +1,15 @@
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CheckboxComponent } from './checkbox.component';
-import { Component, DebugElement, Type } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { Component, DebugElement } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { CheckboxComponent } from './checkbox.component';
 
 describe('CheckboxComponent', () => {
-  let fixture: ComponentFixture<CheckboxTest>;
+  let fixture: ComponentFixture<CheckboxTestComponent>;
   let debugElement: DebugElement;
   let htmlElement: HTMLElement;
-  let rootComponent: CheckboxTest;
+  let rootComponent: CheckboxTestComponent;
   let checkboxComponent: CheckboxComponent;
   let checkboxRootElement: HTMLElement;
   let checkboxNativeElement: HTMLElement;
@@ -23,7 +18,7 @@ describe('CheckboxComponent', () => {
     TestBed.configureTestingModule({
       imports: [CheckboxComponent],
     });
-    fixture = TestBed.createComponent(CheckboxTest);
+    fixture = TestBed.createComponent(CheckboxTestComponent);
     debugElement = fixture.debugElement;
     htmlElement = fixture.debugElement.nativeElement;
     rootComponent = fixture.componentInstance;
@@ -53,6 +48,6 @@ describe('CheckboxComponent', () => {
   imports: [CheckboxComponent, ReactiveFormsModule],
   template: `<app-checkbox [formControl]="formControl"> </app-checkbox>`,
 })
-class CheckboxTest {
+class CheckboxTestComponent {
   formControl = new FormControl();
 }

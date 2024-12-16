@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AccordionItemComponent } from './accordion-item.component';
-import { ExpandIconComponent } from './expand-icon.component';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccordionItemComponent } from './accordion-item.component';
 
 describe('AccordionItemComponent', () => {
   let component: AccordionItemComponent;

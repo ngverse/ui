@@ -1,11 +1,11 @@
 <div class="relative">
-  <div
+  <button
     (click)="open()"
     class="font-medium flex items-center gap-1 cursor-pointer h-10 rounded-md px-4"
   >
     {{ selectedFile()?.name }}
     <lucide-angular class="flex" size="20" [img]="ChevronDown"></lucide-angular>
-  </div>
+  </button>
   @if(isOpen()){
 
   <div
@@ -19,16 +19,16 @@
       {{ folder.name }}
     </div>
     } @for (file of folder.files; track $index) {
-    <div
+    <button
       (click)="fileSelect(file)"
       class="select-option"
       [class.selected]="file.name === selectedFile()?.name"
       [class.px-5]="!folder.hideName"
       [class.px-3]="folder.hideName"
     >
-      <img width="14" height="14" [src]="'images/' + file.language + '.svg'" />
+      <img width="14" [alt]="file.language" height="14" [src]="'images/' + file.language + '.svg'" />
       {{ file.name }}
-    </div>
+    </button>
 
     } }
   </div>

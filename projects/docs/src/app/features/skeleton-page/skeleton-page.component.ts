@@ -1,14 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
-import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
-import { SkeletonComponent } from '../../../../../ng-verse/src/lib/skeleton/skeleton.component';
-import { ShowCaseSkeletonComponent } from '../../examples/skeleton/show-case-skeleton/show-case-skeleton.component';
-import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
-import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import { ApiInputsComponent } from '../../blueprint/api-info/api-inputs/api-inputs.component';
-import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
-import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
 import { ApiDescriptionComponent } from "../../blueprint/api-info/api-description/api-description.component";
+import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
+import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
+import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
+import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
+import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
+import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
+import { ShowCaseSkeletonComponent } from '../../examples/skeleton/show-case-skeleton/show-case-skeleton.component';
 
 @Component({
   selector: 'doc-skeleton-page',
@@ -18,7 +16,6 @@ import { ApiDescriptionComponent } from "../../blueprint/api-info/api-descriptio
     CommandInstallationComponent,
     ShowCaseSkeletonComponent,
     SourceTreeComponent,
-    ApiInputsComponent,
     ApiInfoComponent,
     ApiDescriptionComponent
 ],

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
-import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RadioButtonComponent } from '../../../../../ng-verse/src/lib/radio-button/radio-button.component';
 import { RadioGroupComponent } from '../../../../../ng-verse/src/lib/radio-button/radio-group/radio-group.component';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
+import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 
 @Component({
   selector: 'doc-radio-button-page',
@@ -30,7 +30,7 @@ export class RadioButtonPageComponent {
     },
   ];
 
-  compare(o1: any, o2: any) {
+  compare(o1: { age: number }, o2: { age: number }) {
     return o1?.age === o2?.age;
   }
 }

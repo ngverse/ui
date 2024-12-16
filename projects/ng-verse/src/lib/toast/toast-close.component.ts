@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'toast-close-icon',
+  selector: 'app-toast-close-icon',
   styles: [
     `
       :host {

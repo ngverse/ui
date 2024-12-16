@@ -1,4 +1,4 @@
-import { Component, input, numberAttribute } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 const minMaxTransform = (value: number) => {
   if (value < 0) {

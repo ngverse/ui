@@ -3,11 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
-  EventEmitter,
   input,
-  Input,
   model,
-  Output,
   signal,
 } from '@angular/core';
 import {
@@ -19,15 +16,14 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
-type OnTouchedFunction = (() => void) | undefined;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
 type OnChangeFunction = ((_: any) => void) | undefined;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
+
+type OnTouchedFunction = (() => void) | undefined;
+
 type ValidatorChangeFunction = (() => void) | undefined;
+
 type VALUE_TYPE = boolean | undefined | null;
 
 @Component({
@@ -61,7 +57,7 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
 
   constructor() {
     effect(() => {
-      const _ = this.required();
+      this.required();
       if (this._validatorChangeFn) {
         this._validatorChangeFn();
       }

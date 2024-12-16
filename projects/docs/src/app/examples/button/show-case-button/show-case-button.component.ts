@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ButtonComponent } from '@ng-verse/button/button.component';
 
 @Component({
-  selector: 'exp-show-case-button',
+  selector: 'doc-show-case-button',
   imports: [ButtonComponent],
   templateUrl: './show-case-button.component.html',
   styleUrl: './show-case-button.component.scss',

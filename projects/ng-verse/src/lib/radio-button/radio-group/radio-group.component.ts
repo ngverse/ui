@@ -8,7 +8,6 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { RadioButtonComponent } from '../radio-button.component';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -18,6 +17,7 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
+import { RadioButtonComponent } from '../radio-button.component';
 import {
   CompareWith,
   OnChangeFunction,
@@ -82,7 +82,8 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
       ? { required: true }
       : null;
   }
-  registerOnValidatorChange?(fn: () => void): void {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+  registerOnValidatorChange?(_fn: () => void): void {}
 
   private _state = inject(RadioButtonState);
 
@@ -96,5 +97,6 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
   registerOnTouched(fn: OnTouchedFunction): void {
     this._state.onTouched = fn;
   }
-  setDisabledState?(isDisabled: boolean): void {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setDisabledState?(): void {}
 }

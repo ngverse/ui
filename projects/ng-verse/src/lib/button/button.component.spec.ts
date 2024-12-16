@@ -1,14 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ButtonComponent } from './button.component';
 import { Component, DebugElement, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { ButtonComponent } from './button.component';
 
 describe('ButtonComponent', () => {
-  let fixture: ComponentFixture<ButtonTest>;
+  let fixture: ComponentFixture<ButtonTestComponent>;
   let debugElement: DebugElement;
   let htmlElement: HTMLElement;
-  let rootComponent: ButtonTest;
+  let rootComponent: ButtonTestComponent;
   let buttonComponent: ButtonComponent;
   let buttonRootElement: HTMLElement;
 
@@ -16,7 +16,7 @@ describe('ButtonComponent', () => {
     TestBed.configureTestingModule({
       imports: [ButtonComponent],
     });
-    fixture = TestBed.createComponent(ButtonTest);
+    fixture = TestBed.createComponent(ButtonTestComponent);
     debugElement = fixture.debugElement;
     htmlElement = fixture.debugElement.nativeElement;
     rootComponent = fixture.componentInstance;
@@ -83,7 +83,7 @@ describe('ButtonComponent', () => {
     Test Button
   </app-button>`,
 })
-class ButtonTest {
+class ButtonTestComponent {
   disabled = signal<boolean>(false);
   variant = signal<string | undefined>('fill');
   color = signal<string | undefined>('primary');

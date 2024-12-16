@@ -1,10 +1,8 @@
-import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, computed, inject, output, signal } from '@angular/core';
-import { ToastCloseIconComponent } from './toast-close.component';
 import { NgClass } from '@angular/common';
+import { Component, computed, output, signal } from '@angular/core';
 import { TOAST_ANIMATIONS } from './toast-animations';
+import { ToastCloseIconComponent } from './toast-close.component';
 import { TOAST_POSITION } from './toast.service';
-import { OverlayRef } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-toast',

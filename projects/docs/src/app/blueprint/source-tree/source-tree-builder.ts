@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 
 export type SOURCE_FILE_EXTENSION_TYPE = 'ts' | 'html' | 'scss' | 'spec.ts';
 
-export type SourceTreeFolder = {
+export interface SourceTreeFolder {
   name: string;
   files: SourceTreeFile[];
   hideName?: boolean;
-};
+}
 
-export type SourceTreeFile = {
+export interface SourceTreeFile {
   name: string;
   path: string;
   language: SOURCE_FILE_EXTENSION_TYPE;
-};
+}
 
 @Injectable({
   providedIn: 'root',
