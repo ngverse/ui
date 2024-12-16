@@ -1,18 +1,18 @@
-<div
-  class="checkbox"
-  [class.disabled]="disabled()"
-  (click)="!disabled() && toggle()"
->
-  <button
-    class="checkbox-button"
-    role="checkbox"
-    [attr.aria-checked]="value()"
-    [disabled]="disabled()"
-  >
-    <app-checkbox-icon [checked]="value()"></app-checkbox-icon>
-  </button>
-
-  <label>
+<div class="checkbox" [class.checked]="value()" [class.disabled]="disabled()">
+  <div class="native-checkbox-container">
+    <input
+      [disabled]="disabled()"
+      (change)="toggle()"
+      class="native-checkbox"
+      [id]="id()"
+      [checked]="value()"
+      type="checkbox"
+    />
+    <div class="checkbox-icon">
+      <app-checkbox-icon [checked]="value()"></app-checkbox-icon>
+    </div>
+  </div>
+  <label [htmlFor]="id()">
     <ng-content></ng-content>
   </label>
 </div>

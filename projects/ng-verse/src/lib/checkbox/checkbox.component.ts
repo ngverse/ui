@@ -18,6 +18,12 @@ import {
 } from '@angular/forms';
 import { CheckboxIconComponent } from './checkbox-icon.component';
 
+let checkboxId = 0;
+
+function genId() {
+  return `checkbox-${checkboxId++}`;
+}
+
 type VALUE_TYPE = boolean | undefined | null;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -56,8 +62,10 @@ export class CheckboxComponent implements ControlValueAccessor, Validator {
   private _validatorChangeFn: ValidatorChangeFunction;
   private _onTouched: OnTouchedFunction;
 
-  required = input(undefined, { transform: booleanAttribute });
+  required = input(false);
   disabled = model<boolean>(false);
+
+  id = input(genId());
 
   constructor() {
     effect(() => {

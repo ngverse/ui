@@ -9,6 +9,8 @@ type ApiInputType = {
 
 export const EMPTY_API_INPUT_DEFAULT_VALUE = '--';
 
+export const AUTO_GENERATED_API_DEFAULT_VALUE = 'Auto Generated';
+
 export type ApiInputs = {
   name: string;
   inputs: ApiInputType[];
