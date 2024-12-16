@@ -1,1 +1,2 @@
-<app-checkbox [formControl]="formControl">I am checkbox</app-checkbox>
+<app-checkbox [(ngModel)]="value">I am checkbox</app-checkbox>
+<p class="checkbox-value">Value Is {{ value() }}</p>

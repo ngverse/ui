@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, model } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxComponent } from '@ng-verse/checkbox/checkbox.component';
 
 @Component({
   selector: 'exp-show-case-checkbox',
-  imports: [ReactiveFormsModule, CheckboxComponent],
+  imports: [ReactiveFormsModule, CheckboxComponent, FormsModule],
   templateUrl: './show-case-checkbox.component.html',
   styleUrl: './show-case-checkbox.component.scss',
 })
 export class ShowCaseCheckboxComponent {
-  formControl = new FormControl(false, Validators.required);
+  value = model();
 }
