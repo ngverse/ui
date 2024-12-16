@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Run lint
+        run: npx ng lint --project=${{ matrix.project }}
+
       - name: Run tests
         run: npx ng test --no-watch --no-progress --browsers=ChromeHeadless --project=${{ matrix.project }}
 
