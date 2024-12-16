@@ -1,5 +1,4 @@
 import {
-  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   contentChildren,
@@ -56,11 +55,12 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
   value = signal<unknown>(undefined);
 
   compareWith = input<CompareWith>();
-  required = input(undefined, { transform: booleanAttribute });
 
   name = input(getInputName());
 
-  direction = signal<'horizontal' | 'vertical'>('horizontal');
+  direction = input<'horizontal' | 'vertical'>('horizontal');
+
+  private _state = inject(RadioButtonState);
 
   constructor() {
     effect(() => {
@@ -75,8 +75,7 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
     });
   }
   validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequired =
-      this.required() || control.hasValidator(Validators.required);
+    const hasRequired = control.hasValidator(Validators.required);
     return (hasRequired && control.value === undefined) ||
       control.value === null
       ? { required: true }
@@ -84,8 +83,6 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
   }
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   registerOnValidatorChange?(_fn: () => void): void {}
-
-  private _state = inject(RadioButtonState);
 
   writeValue(value: unknown): void {
     this._state.writeValue(value);
@@ -97,6 +94,7 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
   registerOnTouched(fn: OnTouchedFunction): void {
     this._state.onTouched = fn;
   }
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setDisabledState?(): void {}
+  setDisabledState(isDisabled: boolean): void {
+    this._state.disabled.set(isDisabled);
+  }
 }

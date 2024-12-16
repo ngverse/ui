@@ -1,14 +1,19 @@
-<div class="radio-button" [class.disabled]="disabled()">
-  <div class="relative">
+<div class="radio-button" [class.disabled]="radioButtonDisabled()">
+  <div class="native-radio-button-container">
     <input
+      [disabled]="radioButtonDisabled()"
       (change)="toggle()"
       class="native-radio-button"
       [id]="id()"
       type="radio"
       [name]="name()"
-      [id]="id()"
     />
-    <app-radio-button-icon [checked]="selected()"></app-radio-button-icon>
+    <app-radio-button-icon
+      class="radio-button-icon"
+      [checked]="selected()"
+    ></app-radio-button-icon>
   </div>
-  <label [for]="id()"> <ng-content></ng-content> </label>
+  <label class="radio-button-label" [for]="id()">
+    <ng-content></ng-content>
+  </label>
 </div>

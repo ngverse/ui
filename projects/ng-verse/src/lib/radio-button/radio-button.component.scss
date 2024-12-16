@@ -1,3 +1,6 @@
+.native-radio-button-container {
+  position: relative;
+}
 .native-radio-button {
   position: absolute;
   opacity: 0;
@@ -10,10 +13,17 @@
 .radio-button {
   display: flex;
   align-items: center;
+
+  &.disabled {
+    color: gray;
+  }
 }
 
-// input[type='radio']:focus + app-radio-button-icon {
-//   outline: 2px solid #007bff; /* Blue outline */
-//   outline-offset: 2px; /* Offset for better visibility */
-//   box-shadow: 0 0 4px #007bff;
-// }
+.radio-button-label {
+  padding-left: 8px;
+}
+
+.radio-button-icon {
+  cursor: pointer;
+  pointer-events: none;
+}

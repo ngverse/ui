@@ -1,10 +1,9 @@
 <doc-blueprint-page label="Radio Button">
   <doc-show-case name="radio-button">
-    <app-radio-group [formControl]="formControl" [compareWith]="compare">
-      <app-radio-button [value]="null">Empty</app-radio-button>
-      @for (item of values; track $index) {
-      <app-radio-button [value]="item"> {{ item.firstName }}</app-radio-button>
-      }
-    </app-radio-group>
+    <doc-show-case-radio-button> </doc-show-case-radio-button>
   </doc-show-case>
+  <doc-source-tree [sourceTree]="sourceTree" name="radio-button"></doc-source-tree>
+  <doc-api-info>
+    <doc-api-inputs [apiInputs]="apiInputs"></doc-api-inputs>
+  </doc-api-info>
 </doc-blueprint-page>
