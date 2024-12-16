@@ -1,5 +1,17 @@
-<doc-blueprint-page label="Skeleton">
-  <doc-show-case name="Skeleton">
-    <app-skeleton></app-skeleton>
+<doc-blueprint-page
+  label="Skeleton"
+  subTitle="Skeleton is a placeholder to display while content is loading"
+>
+  <doc-show-case name="skeleton">
+    <doc-show-case-skeleton></doc-show-case-skeleton>
   </doc-show-case>
+  <doc-command-installation type="component" name="skeleton">
+  </doc-command-installation>
+  <doc-source-tree [sourceTree]="sourceTree" name="skeleton"></doc-source-tree>
+  <doc-api-info>
+    <doc-api-description>
+      The Skeleton component is an placeholder used to indicate loading content.
+      It can be styled with CSS to customize its size, shape.
+    </doc-api-description>
+  </doc-api-info>
 </doc-blueprint-page>
