@@ -8,7 +8,7 @@ import { SourceCodeComponent } from '../source-code/source-code.component';
   styleUrl: './command-installation.component.scss',
 })
 export class CommandInstallationComponent {
-  type = input.required<string>();
+  type = input('component');
   name = input.required<string>();
   installation = computed(
     () => `ng generate ng-verse:${this.type()} ${this.name()}`

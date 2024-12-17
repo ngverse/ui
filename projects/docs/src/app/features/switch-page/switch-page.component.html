@@ -1,5 +1,13 @@
-<doc-blueprint-page label="Switch">
+<doc-blueprint-page
+  label="Switch"
+  subTitle="A switch is an input widget that allows users to choose one of two values: true or false."
+>
   <doc-show-case name="switch">
-    <app-switch [(ngModel)]="value"></app-switch>
+    <doc-show-case-switch></doc-show-case-switch>
   </doc-show-case>
+  <doc-command-installation
+    type="component"
+    name="switch"
+  ></doc-command-installation>
+  <doc-source-tree [sourceTree]="sourceTree" name="button"></doc-source-tree>
 </doc-blueprint-page>

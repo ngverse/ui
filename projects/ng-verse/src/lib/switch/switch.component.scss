@@ -1,15 +1,28 @@
 .switch {
+  display: flex;
+  gap: 8px;
+}
+
+.disabled {
+  color: gray;
+
+  .toggle {
+    background: gray;
+  }
+}
+
+.switch-button {
   width: 50px;
   height: 25px;
   border-radius: 15px;
-  background-color: #ccc;
+  background-color: #cbd5e1;
   position: relative;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.switch.checked {
-  background-color: #4caf50;
+.switch-button.checked {
+  background-color: #0284c7;
 }
 
 .toggle {
@@ -23,6 +36,6 @@
   transition: left 0.3s;
 }
 
-.switch.checked .toggle {
+.switch-button.checked .toggle {
   left: 26px;
 }

@@ -25,8 +25,6 @@ type OnTouchedFunction = (() => void) | undefined;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type OnChangeFunction = ((_: any) => void) | undefined;
 
-type ValidatorChangeFunction = (() => void) | undefined;
-
 type Option = unknown;
 @Component({
   selector: 'app-select',
@@ -57,7 +55,6 @@ export class SelectComponent implements ControlValueAccessor {
   label = input.required<string>();
 
   private _registerOnChange: OnChangeFunction;
-  private _validatorChangeFn: ValidatorChangeFunction;
   private _onTouched: OnTouchedFunction;
 
   value = signal<unknown>(undefined);
@@ -112,9 +109,6 @@ export class SelectComponent implements ControlValueAccessor {
   }
   registerOnChange(fn: OnChangeFunction): void {
     this._registerOnChange = fn;
-  }
-  registerOnValidatorChange(fn: ValidatorChangeFunction): void {
-    this._validatorChangeFn = fn;
   }
 
   registerOnTouched(fn: OnTouchedFunction): void {

@@ -19,9 +19,13 @@ type OnChangeFunction = ((_: any) => void) | undefined;
 
 type OnTouchedFunction = (() => void) | undefined;
 
-type ValidatorChangeFunction = (() => void) | undefined;
-
 type VALUE_TYPE = boolean | undefined | null;
+
+let switchId = 0;
+
+function genId() {
+  return `switch-${switchId++}`;
+}
 
 @Component({
   selector: 'app-switch',
@@ -46,19 +50,17 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
   value = signal<VALUE_TYPE>(undefined);
 
   private _registerOnChange: OnChangeFunction;
-  private _validatorChangeFn: ValidatorChangeFunction;
   private _onTouched: OnTouchedFunction;
 
   disabled = model<boolean>(false);
+
+  id = genId();
 
   writeValue(obj: boolean | undefined | null): void {
     this.value.set(obj);
   }
   registerOnChange(fn: OnChangeFunction): void {
     this._registerOnChange = fn;
-  }
-  registerOnValidatorChange(fn: ValidatorChangeFunction): void {
-    this._validatorChangeFn = fn;
   }
 
   registerOnTouched(fn: OnTouchedFunction): void {
