@@ -1,3 +1,15 @@
-<button class="switch" [class.checked]="value()" (click)="toggle()">
-  <div class="toggle"></div>
-</button>
+<div class="switch" [class.disabled]="disabled()">
+  <button
+    [disabled]="disabled()"
+    [id]="id"
+    class="switch-button"
+    [class.checked]="value()"
+    [attr.aria-checked]="value()"
+    (click)="toggle()"
+  >
+    <div class="toggle"></div>
+  </button>
+  <label [htmlFor]="id">
+    <ng-content></ng-content>
+  </label>
+</div>

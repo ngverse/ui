@@ -63,6 +63,10 @@ export class SidebarComponent {
           name: 'Radio Button',
           url: '/doc/radio-button',
         },
+        {
+          name: 'Switch',
+          url: '/doc/switch',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',
