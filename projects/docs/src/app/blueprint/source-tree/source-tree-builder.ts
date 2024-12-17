@@ -24,7 +24,7 @@ export class SourceTreeBuilder {
 
   directive(name: string, root: string): SourceTreeFile {
     return {
-      name: `${name}.directive.ts}`,
+      name: `${name}.directive.ts`,
       path: `ng-verse/${root}/${name}.directive.ts`,
       language: 'ts',
     };
