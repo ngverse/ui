@@ -1,1 +1,25 @@
-<div appTooltip="HELLO">tooltip</div>
+<div class="tooltips">
+  <app-button appTooltip="Top tooltip" tooltipPosition="top"
+    >Top Tooltip</app-button
+  >
+  <app-button appTooltip="Right tooltip" tooltipPosition="right"
+    >Right Tooltip</app-button
+  >
+  <app-button appTooltip="Bottom tooltip" tooltipPosition="bottom"
+    >Bottom Tooltip</app-button
+  >
+  <app-button appTooltip="Left tooltip" tooltipPosition="left"
+    >Left Tooltip</app-button
+  >
+  <app-button
+    appTooltip
+    tooltipPosition="bottom"
+    [tooltipContent]="customContent"
+    >Custom Content Tooltip</app-button
+  >
+  <ng-template #customContent>
+    <div class="custom-tooltip-content">
+      <img src="logo.svg" alt="logo" width="50" height="50" /> I love ng-verse!
+    </div>
+  </ng-template>
+</div>

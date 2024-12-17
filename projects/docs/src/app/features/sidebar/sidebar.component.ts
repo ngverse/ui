@@ -71,6 +71,10 @@ export class SidebarComponent {
           name: 'Toast',
           url: '/doc/toast',
         },
+        {
+          name: 'Tooltip',
+          url: '/doc/tooltip',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',
@@ -87,10 +91,7 @@ export class SidebarComponent {
         //   name: 'Toast',
         //   url: '/doc/toast',
         // },
-        // {
-        //   name: 'Tooltip',
-        //   url: '/doc/tooltip',
-        // },
+
         // {
         //   name: 'Checkbox',
         //   url: '/doc/checkbox',

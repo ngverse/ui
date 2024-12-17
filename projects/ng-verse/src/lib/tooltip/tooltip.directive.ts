@@ -12,10 +12,10 @@ import {
   numberAttribute,
   OnDestroy,
   TemplateRef,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { filter, fromEvent, Subscription } from 'rxjs';
-import { TooltipContainerComponent } from '../tooltip-container/tooltip-container.component';
+import { TooltipContainerComponent } from './tooltip-container/tooltip-container.component';
 export type TOOLTIP_POSITIONS = 'top' | 'right' | 'bottom' | 'left';
 
 export type TOOLTIP_EVENT = 'hover' | 'focus' | 'both';
@@ -27,11 +27,11 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
   message = input.required<string>({ alias: 'appTooltip' });
   tooltipPosition = input<TOOLTIP_POSITIONS>('top');
   tooltipEvent = input<TOOLTIP_EVENT>('both');
+  tooltipDelay = input(0, { transform: numberAttribute });
   focusMonitor = inject(FocusMonitor);
   ngZone = inject(NgZone);
   overlay = inject(Overlay);
   overlayRef: OverlayRef | undefined;
-  tooltipDelay = input(0, { transform: numberAttribute });
   timeoutId: unknown | undefined;
 
   componentRef: ComponentRef<TooltipContainerComponent> | undefined;
@@ -112,9 +112,9 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
         };
       case 'bottom':
         return {
-          originX: 'start',
+          originX: 'center',
           originY: 'bottom',
-          overlayX: 'start',
+          overlayX: 'center',
           overlayY: 'top',
           offsetY: offset,
         };
