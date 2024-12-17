@@ -67,6 +67,10 @@ export class SidebarComponent {
           name: 'Switch',
           url: '/doc/switch',
         },
+        {
+          name: 'Toast',
+          url: '/doc/toast',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',
@@ -78,10 +82,6 @@ export class SidebarComponent {
         // {
         //   name: 'Progress Bar',
         //   url: '/doc/progress-bar',
-        // },
-        // {
-        //   name: 'Button',
-        //   url: '/doc/button',
         // },
         // {
         //   name: 'Toast',

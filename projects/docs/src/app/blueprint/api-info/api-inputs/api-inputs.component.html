@@ -1,3 +1,5 @@
+<h4 class="mb-6">{{ name() }}</h4>
+
 <div class="relative overflow-x-auto border border-slate-200 rounded-md mb-10">
   <table
     class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
@@ -33,7 +35,7 @@
         <td class="px-6 py-4">{{ apiInput.type }}</td>
         <td class="px-6 py-4">{{ apiInput.default }}</td>
 
-        <td class="px-6 py-4">{{ apiInput.description }}</td>
+        <td class="px-6 py-4 capitalize">{{ apiInput.description }}</td>
       </tr>
       } }
     </tbody>
