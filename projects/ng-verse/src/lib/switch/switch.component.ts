@@ -46,7 +46,6 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
   value = signal<VALUE_TYPE>(undefined);
 
   private _registerOnChange: OnChangeFunction;
-  private _validatorChangeFn: ValidatorChangeFunction;
   private _onTouched: OnTouchedFunction;
 
   disabled = model<boolean>(false);
@@ -56,9 +55,6 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
   }
   registerOnChange(fn: OnChangeFunction): void {
     this._registerOnChange = fn;
-  }
-  registerOnValidatorChange(fn: ValidatorChangeFunction): void {
-    this._validatorChangeFn = fn;
   }
 
   registerOnTouched(fn: OnTouchedFunction): void {

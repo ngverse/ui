@@ -81,8 +81,6 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
       ? { required: true }
       : null;
   }
-  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-  registerOnValidatorChange?(_fn: () => void): void {}
 
   writeValue(value: unknown): void {
     this._state.writeValue(value);
