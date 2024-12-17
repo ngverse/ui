@@ -1,22 +1,19 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ButtonComponent } from '@ng-verse/button/button.component';
 import { ToastService } from '@ng-verse/toast/toast.service';
 
 @Component({
   selector: 'doc-show-case-toast',
-  imports: [],
+  imports: [ButtonComponent],
   templateUrl: './show-case-toast.component.html',
   styleUrl: './show-case-toast.component.scss',
 })
-export class ShowCaseToastComponent implements OnInit {
+export class ShowCaseToastComponent {
   toastService = inject(ToastService);
-
-  ngOnInit() {
-    this.showToast();
-  }
 
   showToast() {
     this.toastService.open({
-      message: 'I AM TOASTTTT ' + new Date().toTimeString(),
+      message: 'Current time is: ' + new Date().toLocaleTimeString(),
       position: 'right_bottom',
     });
   }
