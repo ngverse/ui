@@ -24,6 +24,9 @@ type OnTouchedFunction = (() => void) | undefined;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type OnChangeFunction = ((_: any) => void) | undefined;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type CompareWith = (o1: any, o2: any) => boolean;
+
 @Component({
   selector: 'app-select',
   imports: [
@@ -56,17 +59,13 @@ export class SelectComponent implements ControlValueAccessor {
 
   value = signal<unknown>(undefined);
 
-  valueName = input<string>();
-  displayName = input<string>();
-
   optionsContainer = viewChild<ElementRef<HTMLElement>>('optionsContainer');
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  compareWith = (o1: unknown, o2: unknown) => o1 === o2;
+  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
 
   selectedOption = computed(() => {
     return this.options().find((opt) =>
-      this.compareWith(opt.value(), this.value())
+      this.compareWith()(opt.value(), this.value())
     );
   });
 
@@ -97,6 +96,7 @@ export class SelectComponent implements ControlValueAccessor {
         this.sub.add(
           option.clicked.subscribe(() => {
             this.value.set(option.value());
+            this.emitChangeValue();
             this.close();
           })
         );
@@ -119,10 +119,17 @@ export class SelectComponent implements ControlValueAccessor {
       const value = this.keyManager.activeItem?.value;
       if (value) {
         this.value.set(value());
+        this.emitChangeValue();
       }
       this.close();
     } else {
       this.keyManager.onKeydown($event);
+    }
+  }
+
+  emitChangeValue() {
+    if (this._registerOnChange) {
+      this._registerOnChange(this.value());
     }
   }
 

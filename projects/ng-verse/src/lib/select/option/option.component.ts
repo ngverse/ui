@@ -12,6 +12,9 @@ import {
   selector: 'app-option',
   templateUrl: './option.component.html',
   styleUrl: './option.component.scss',
+  host: {
+    class: 'hello',
+  },
 })
 export class OptionComponent implements Highlightable {
   value = input.required<unknown>();
