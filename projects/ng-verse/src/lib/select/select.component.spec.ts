@@ -1,7 +1,7 @@
 import { DOWN_ARROW, ENTER, UP_ARROW } from '@angular/cdk/keycodes';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OptionComponent } from './option/option.component';
 import { SelectComponent } from './select.component';
 describe('SelectComponent', () => {
@@ -119,6 +119,21 @@ describe('SelectComponent', () => {
     fixture.detectChanges();
     expect(component.formControl.value).toBe('one');
   });
+
+  it('required validation', () => {
+    component.formControl.addValidators(Validators.required);
+    fixture.detectChanges();
+    component.formControl.setValue(null);
+    fixture.detectChanges();
+    const selectElement = htmlElement.querySelector(
+      'app-select'
+    ) as HTMLElement;
+    expect(selectElement).toHaveClass('ng-invalid');
+    component.formControl.setValue('two');
+    fixture.detectChanges();
+    expect(selectElement).toHaveClass('ng-valid');
+  });
+
   it('compareWith should check against correct values', () => {
     const fixture = TestBed.createComponent(SelectTestComplexComponent);
     const fixtureElement = fixture.nativeElement as HTMLElement;

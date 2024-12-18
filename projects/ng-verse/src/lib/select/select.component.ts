@@ -11,9 +11,14 @@ import {
   viewChild,
 } from '@angular/core';
 import {
+  AbstractControl,
   ControlValueAccessor,
+  NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
+  ValidationErrors,
+  Validator,
+  Validators,
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { OptionComponent } from './option/option.component';
@@ -43,9 +48,14 @@ type CompareWith = (o1: any, o2: any) => boolean;
       multi: true,
       useExisting: SelectComponent,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: SelectComponent,
+      multi: true,
+    },
   ],
 })
-export class SelectComponent implements ControlValueAccessor {
+export class SelectComponent implements ControlValueAccessor, Validator {
   isOpen = signal(false);
 
   label = input.required<string>();
@@ -134,6 +144,9 @@ export class SelectComponent implements ControlValueAccessor {
   }
 
   panelOpened() {
+    if (this._onTouched) {
+      this._onTouched();
+    }
     const selectedOption = this.selectedOption();
     this.optionsContainer()?.nativeElement.focus();
     if (selectedOption) {
@@ -141,6 +154,14 @@ export class SelectComponent implements ControlValueAccessor {
     } else {
       this.keyManager.setFirstItemActive();
     }
+  }
+
+  validate(control: AbstractControl<boolean>): ValidationErrors | null {
+    const hasRequired = control.hasValidator(Validators.required);
+    return hasRequired &&
+      (control.value === null || control.value === undefined)
+      ? { required: true }
+      : null;
   }
 
   writeValue(obj: unknown): void {
