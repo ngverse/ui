@@ -2,5 +2,12 @@
   display: block;
 }
 .active {
-  background: gray;
+  background: var(--app-accent);
+  color: var(--app-accent-foreground);
+}
+
+.option-button {
+  width: 100%;
+  text-align: left;
+  padding: 8px 6px;
 }
