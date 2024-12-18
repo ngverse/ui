@@ -1,6 +1,9 @@
 <doc-blueprint-page label="Select">
   <doc-show-case name="select">
-    <app-select [formControl]="formControl" [options]="options" label="Users">
+    <app-select [formControl]="formControl" label="Users">
+      @for (item of options; track $index) {
+      <app-option [value]="item">{{ item }}</app-option>
+      }
     </app-select>
   </doc-show-case>
 </doc-blueprint-page>

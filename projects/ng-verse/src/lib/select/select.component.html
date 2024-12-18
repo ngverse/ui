@@ -5,7 +5,7 @@
   #triggerElement
   (click)="toggle()"
 >
-  <span>{{ displayValue() }}</span>
+  <span>{{ selectedOptionLabel() || label() }}</span>
   <app-select-icon
     class="select-button-icon"
     [class.opened]="isOpen()"
@@ -18,16 +18,16 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="trigger"
   [cdkConnectedOverlayOpen]="isOpen()"
+  (attach)="panelOpened()"
+  (detach)="close()"
 >
   <ul
-    [cdkListboxValue]="listBoxValue()"
-    (cdkListboxValueChange)="valueChange($event)"
-    cdkListbox
+    #optionsContainer
     class="select-options"
+    (keydown)="onKeydown($event)"
     [style.width.px]="overlayWidth()"
+    tabindex="0"
   >
-    @for (option of options(); track $index) {
-    <li class="select-option" [cdkOption]="option">{{ option }}</li>
-    }
+    <ng-content select="app-option"></ng-content>
   </ul>
 </ng-template>

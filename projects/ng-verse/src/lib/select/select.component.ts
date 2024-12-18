@@ -1,12 +1,9 @@
-import {
-  CdkListbox,
-  CdkOption,
-  ListboxValueChangeEvent,
-} from '@angular/cdk/listbox';
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
   Component,
   computed,
+  contentChildren,
   effect,
   ElementRef,
   input,
@@ -18,6 +15,8 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { OptionComponent } from './option/option.component';
 import { SelectIconComponent } from './select-icon.component';
 
 type OnTouchedFunction = (() => void) | undefined;
@@ -25,14 +24,11 @@ type OnTouchedFunction = (() => void) | undefined;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type OnChangeFunction = ((_: any) => void) | undefined;
 
-type Option = unknown;
 @Component({
   selector: 'app-select',
   imports: [
     CdkConnectedOverlay,
     CdkOverlayOrigin,
-    CdkListbox,
-    CdkOption,
     ReactiveFormsModule,
     SelectIconComponent,
   ],
@@ -48,31 +44,65 @@ type Option = unknown;
 })
 export class SelectComponent implements ControlValueAccessor {
   isOpen = signal(false);
-  options = input.required<Option[]>();
-
-  cdkListPost = viewChild(CdkListbox);
 
   label = input.required<string>();
 
   private _registerOnChange: OnChangeFunction;
   private _onTouched: OnTouchedFunction;
 
+  options = contentChildren(OptionComponent);
+
+  keyManager!: ActiveDescendantKeyManager<OptionComponent>;
+
   value = signal<unknown>(undefined);
 
   valueName = input<string>();
   displayName = input<string>();
 
-  displayValue = computed(() => {
-    const value = this.value();
-    if (value) {
-      return value;
-    }
-    return this.label();
+  optionsContainer = viewChild<ElementRef<HTMLElement>>('optionsContainer');
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  compareWith = (o1: unknown, o2: unknown) => o1 === o2;
+
+  selectedOption = computed(() => {
+    return this.options().find((opt) =>
+      this.compareWith(opt.value(), this.value())
+    );
   });
+
+  selectedOptionLabel = computed(() => {
+    const selectedOption = this.selectedOption();
+    if (selectedOption) {
+      return selectedOption.el.nativeElement.textContent;
+    }
+    return;
+  });
+
+  sub: Subscription | undefined;
 
   triggerElement = viewChild('triggerElement', {
     read: ElementRef,
   });
+
+  constructor() {
+    effect(() => {
+      const options = this.options();
+      this.keyManager?.destroy();
+      this.keyManager = new ActiveDescendantKeyManager(options).withWrap();
+
+      this.sub?.unsubscribe();
+      this.sub = new Subscription();
+
+      for (const option of options) {
+        this.sub.add(
+          option.clicked.subscribe(() => {
+            this.value.set(option.value());
+            this.close();
+          })
+        );
+      }
+    });
+  }
 
   overlayWidth = computed(() => {
     const triggerElement = this.triggerElement() as
@@ -84,23 +114,25 @@ export class SelectComponent implements ControlValueAccessor {
     return 0;
   });
 
-  listBoxValue = computed(() => [this.value()]);
-
-  constructor() {
-    effect(() => {
-      const list = this.cdkListPost();
-      if (list) {
-        list.focus();
+  onKeydown($event: KeyboardEvent) {
+    if ($event.key === 'Enter') {
+      const value = this.keyManager.activeItem?.value;
+      if (value) {
+        this.value.set(value());
       }
-    });
+      this.close();
+    } else {
+      this.keyManager.onKeydown($event);
+    }
   }
 
-  valueChange($event: ListboxValueChangeEvent<unknown>) {
-    const value = $event.value ? $event.value[0] : $event.value;
-    this.value.set(value);
-    this.close();
-    if (this._registerOnChange) {
-      this._registerOnChange(value);
+  panelOpened() {
+    const selectedOption = this.selectedOption();
+    this.optionsContainer()?.nativeElement.focus();
+    if (selectedOption) {
+      this.keyManager.setActiveItem(selectedOption);
+    } else {
+      this.keyManager.setFirstItemActive();
     }
   }
 
