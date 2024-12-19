@@ -60,7 +60,7 @@ export class DialogService {
       disableClose: disableClose,
       hasBackdrop: hasBackdrop,
     });
-    return dialogRef.closed;
+    return { close: dialogRef.close, closed: dialogRef.closed };
   }
 
   alert(options: AlertDialogOption) {
