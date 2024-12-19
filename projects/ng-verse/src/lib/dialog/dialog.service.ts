@@ -82,6 +82,6 @@ export class DialogService {
         description,
       },
     });
-    return dialogRef.closed;
+    return { close: dialogRef.close, closed: dialogRef.closed };
   }
 }
