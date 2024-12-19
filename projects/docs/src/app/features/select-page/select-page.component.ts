@@ -1,24 +1,18 @@
 import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { OptionComponent } from '@ng-verse/select/option/option.component';
-import { SelectComponent } from '../../../../../ng-verse/src/lib/select/select.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
+import { ShowCaseSelectComponent } from '../../examples/select/show-case-select/show-case-select.component';
 
 @Component({
   selector: 'doc-select-page',
   imports: [
-    SelectComponent,
     BlueprintPageComponent,
     ShowCaseComponent,
     ReactiveFormsModule,
-    OptionComponent,
+    ShowCaseSelectComponent,
   ],
   templateUrl: './select-page.component.html',
   styleUrl: './select-page.component.scss',
 })
-export class SelectPageComponent {
-  options = ['one', 'two', 'three'];
-
-  formControl = new FormControl(null, Validators.required);
-}
+export class SelectPageComponent {}
