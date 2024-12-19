@@ -7,5 +7,5 @@ import { Component, input } from '@angular/core';
   styleUrl: './progress-spinner.component.scss',
 })
 export class ProgressSpinnerComponent {
-  radius = input(50);
+  radius = input<number>(50);
 }

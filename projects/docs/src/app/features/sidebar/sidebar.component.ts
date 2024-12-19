@@ -83,6 +83,10 @@ export class SidebarComponent {
           name: 'Progress Spinner',
           url: '/doc/progress-spinner',
         },
+        {
+          name: 'Loading Overlay',
+          url: '/doc/loading-overlay',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',
