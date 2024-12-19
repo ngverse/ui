@@ -1,6 +1,7 @@
 import { afterNextRender, Component, inject } from '@angular/core';
 import { ButtonComponent } from '@ng-verse/button/button.component';
 import { DialogService } from '@ng-verse/dialog/dialog.service';
+import { ShowCaseTooltipComponent } from '../../tooltip/show-case-tooltip/show-case-tooltip.component';
 
 @Component({
   selector: 'doc-show-case-dialog',
@@ -13,11 +14,15 @@ export class ShowCaseDialogComponent {
 
   constructor() {
     afterNextRender(() => {
-      this.showConfirm();
+      this.showDialog();
     });
   }
 
-  showDialog() {}
+  showDialog() {
+    this.dialogService.open(ShowCaseTooltipComponent, {
+      title: 'Test dialog',
+    });
+  }
 
   showConfirm() {
     this.dialogService.confirm({

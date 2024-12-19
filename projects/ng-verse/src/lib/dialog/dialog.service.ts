@@ -1,4 +1,5 @@
 import { Dialog } from '@angular/cdk/dialog';
+import { ComponentType } from '@angular/cdk/portal';
 import { inject, Injectable } from '@angular/core';
 import {
   AlertDialogComponent,
@@ -8,16 +9,35 @@ import {
   ConfirmDialogComponent,
   ConfirmDialogOptions,
 } from './confirm-dialog/confirm-dialog.component';
+import { DialogComponent, DialogOptions } from './dialog/dialog.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DialogService {
   private dialog = inject(Dialog);
-  open() {
-    // const dialogRef = this.dialog.open<string>(DialogComponent, {
-    //   width: '250px',
-    // });
+  open(
+    component: ComponentType<unknown>,
+    options?: Omit<DialogOptions, 'component'>
+  ) {
+    const disableClose =
+      options?.disableClose === undefined ? false : options.disableClose;
+    const hasBackdrop =
+      options?.hasBackdrop === undefined ? true : options.hasBackdrop;
+    const title = options?.title;
+    const showClose =
+      options?.showClose === undefined ? true : options?.showClose;
+
+    const dialogRef = this.dialog.open<string>(DialogComponent, {
+      data: {
+        disableClose,
+        hasBackdrop,
+        title,
+        component,
+        showClose,
+      },
+    });
+    return dialogRef.closed;
   }
 
   confirm(options: ConfirmDialogOptions) {

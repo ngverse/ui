@@ -1,1 +1,12 @@
-<p>dialog works!</p>
+<div class="dialog">
+  <div class="dialog-header">
+    @if(title){
+    <h5>{{ title }}</h5>
+    } @if(showClose){
+    <button appDialogClose>
+      <app-dialog-close-icon></app-dialog-close-icon>
+    </button>
+    }
+  </div>
+  <ng-template [cdkPortalOutlet]="componentPortal"></ng-template>
+</div>
