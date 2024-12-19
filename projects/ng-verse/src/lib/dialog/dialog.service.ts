@@ -1,6 +1,5 @@
-import { Dialog, DialogRef } from '@angular/cdk/dialog';
+import { Dialog } from '@angular/cdk/dialog';
 import { inject, Injectable } from '@angular/core';
-import { filter, merge, take } from 'rxjs';
 import {
   AlertDialogComponent,
   AlertDialogOption,
@@ -22,18 +21,31 @@ export class DialogService {
   }
 
   confirm(options: ConfirmDialogOptions) {
-    const dialogRef = this.dialog.open<string>(ConfirmDialogComponent, {
-      width: '250px',
-      data: options,
-      disableClose: options.disableClose,
-      hasBackdrop: options.hasBackdrop,
+    const disableClose =
+      options.disableClose === undefined ? false : options.disableClose;
+    const hasBackdrop =
+      options.hasBackdrop === undefined ? true : options.hasBackdrop;
+    const yesLabel = options.yesLabel ?? 'Yes';
+    const noLabel = options.noLabel ?? 'No';
+    const title = options.title;
+    const description = options.description;
+
+    const dialogRef = this.dialog.open<boolean>(ConfirmDialogComponent, {
+      data: {
+        yesLabel,
+        noLabel,
+        title,
+        description,
+      },
+      disableClose: disableClose,
+      hasBackdrop: hasBackdrop,
     });
     return dialogRef.closed;
   }
 
   alert(options: AlertDialogOption) {
     const disableClose =
-      options.disableClose === undefined ? true : options.disableClose;
+      options.disableClose === undefined ? false : options.disableClose;
     const hasBackdrop =
       options.hasBackdrop === undefined ? true : options.hasBackdrop;
     const buttonLabel = options.buttonLabel ?? 'OK';
@@ -50,18 +62,6 @@ export class DialogService {
         description,
       },
     });
-    this.closeOnAction(dialogRef);
     return dialogRef.closed;
-  }
-
-  private closeOnAction<T>(dialogRef: DialogRef<T, unknown>) {
-    merge(
-      dialogRef.backdropClick,
-      dialogRef.keydownEvents.pipe(filter((event) => event.key === 'Escape'))
-    )
-      .pipe(take(1))
-      .subscribe(() => {
-        dialogRef.close();
-      });
   }
 }

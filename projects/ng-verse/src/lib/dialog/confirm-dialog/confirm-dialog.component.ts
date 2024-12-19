@@ -28,11 +28,11 @@ export class ConfirmDialogComponent {
   }
 
   get yesLabel() {
-    return this.dialogData.yesLabel ?? 'Yes';
+    return this.dialogData.yesLabel;
   }
 
   get noLabel() {
-    return this.dialogData.noLabel ?? 'No';
+    return this.dialogData.noLabel;
   }
 
   yes() {

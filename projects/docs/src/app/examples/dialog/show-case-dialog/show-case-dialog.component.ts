@@ -13,13 +13,18 @@ export class ShowCaseDialogComponent {
 
   constructor() {
     afterNextRender(() => {
-      this.showAlert();
+      this.showConfirm();
     });
   }
 
   showDialog() {}
 
-  showConfirm() {}
+  showConfirm() {
+    this.dialogService.confirm({
+      title: 'Immediate action',
+      description: 'Please review the document',
+    });
+  }
 
   showAlert() {
     this.dialogService.alert({
