@@ -87,6 +87,10 @@ export class SidebarComponent {
           name: 'Loading Overlay',
           url: '/doc/loading-overlay',
         },
+        {
+          name: 'Dialog',
+          url: '/doc/dialog',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',
@@ -117,10 +121,6 @@ export class SidebarComponent {
         // {
         //   name: 'Dialog',
         //   url: '/doc/dialog',
-        // },
-        // {
-        //   name: 'Skeleton',
-        //   url: '/doc/skeleton',
         // },
         // {
         //   name: 'Switch',
