@@ -75,6 +75,14 @@ export class SidebarComponent {
           name: 'Tooltip',
           url: '/doc/tooltip',
         },
+        {
+          name: 'Select',
+          url: '/doc/select',
+        },
+        {
+          name: 'Progress Spinner',
+          url: '/doc/progress-spinner',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',
@@ -102,10 +110,6 @@ export class SidebarComponent {
         //   url: '/doc/pagination',
         // },
 
-        // {
-        //   name: 'Select',
-        //   url: '/doc/select',
-        // },
         // {
         //   name: 'Dialog',
         //   url: '/doc/dialog',

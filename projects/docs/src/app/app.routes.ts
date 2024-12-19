@@ -156,6 +156,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'progress-spinner',
+        loadComponent: () =>
+          import(
+            './features/progress-spinner-page/progress-spinner-page.component'
+          ).then((d) => d.ProgressSpinnerPageComponent),
+      },
+      {
         path: '',
         redirectTo: 'button',
         pathMatch: 'full',
