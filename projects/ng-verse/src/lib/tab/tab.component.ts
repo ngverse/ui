@@ -7,9 +7,10 @@ import {
   input,
   TemplateRef,
   viewChild,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { TabBodyDirective } from './tab-body.directive';
+import { TabHeaderDirective } from './tab-header.directive';
 
 @Component({
   selector: 'app-tab',
@@ -21,26 +22,31 @@ export class TabComponent {
   label = input<string>();
   templateRef = viewChild(TemplateRef);
   vf = inject(ViewContainerRef);
-  lazyLoad = computed(() => this.tabBody() !== undefined);
-  preservedContent: TemplatePortal | undefined;
+  headerTemplate = contentChild(TabHeaderDirective);
+
+  bodyTemplate = contentChild(TabBodyDirective);
+
+  portal: TemplatePortal | undefined;
+
+  disabled = input(false);
+
+  headerTemplatePortal = computed(() => {
+    const headerTemplate = this.headerTemplate();
+    if (headerTemplate) {
+      return new TemplatePortal(headerTemplate.templateRef, this.vf);
+    }
+    return undefined;
+  });
 
   templatePortal = computed(() => {
-    if (this.preservedContent) {
-      return this.preservedContent;
+    const bodyTemplateRef = this.bodyTemplate()?.templateRef;
+    if (bodyTemplateRef) {
+      this.portal = new TemplatePortal(bodyTemplateRef, this.vf);
+      return this.portal;
     }
-    if (this.tabBody()) {
-      this.preservedContent = new TemplatePortal(
-        this.tabBody()?.templateRef as TemplateRef<unknown>,
-        this.vf
-      );
-    } else {
-      this.preservedContent = new TemplatePortal(
-        this.templateRef() as TemplateRef<unknown>,
-        this.vf
-      );
-    }
-
-    return this.preservedContent;
+    return new TemplatePortal(
+      this.templateRef() as TemplateRef<unknown>,
+      this.vf
+    );
   });
-  tabBody = contentChild(TabBodyDirective);
 }

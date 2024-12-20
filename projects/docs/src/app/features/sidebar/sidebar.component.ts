@@ -91,6 +91,10 @@ export class SidebarComponent {
           name: 'Dialog',
           url: '/doc/dialog',
         },
+        {
+          name: 'Tab',
+          url: '/doc/tab',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',

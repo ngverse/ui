@@ -1,11 +1,15 @@
 <doc-blueprint-page label="Tab">
   <doc-show-case name="tab">
-    <app-tab-group>
+    <app-tab-group [selectedIndex]="selectedIndex()">
       <app-tab label="Tab header 1">
         <h1>Tab Content 1</h1>
+        <test-tab></test-tab>
       </app-tab>
       <app-tab label="Tab header 2">
-        <ng-template tabBody>
+        <h1>Tab Content 2</h1>
+        <ng-template appTabBody>
+          <h1>I AM BUDYY</h1>
+          <test-tab></test-tab>
         </ng-template>
       </app-tab>
     </app-tab-group>

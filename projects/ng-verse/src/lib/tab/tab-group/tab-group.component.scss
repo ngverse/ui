@@ -1,16 +1,7 @@
 .tab-group-header {
   display: flex;
   position: relative;
-}
-
-.tab-ink {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 0;
-  background-color: #007bff;
-  transition: left 0.3s ease, width 0.3s ease;
+  border-bottom: 1px solid var(--app-separator-color);
 }
 
 .tab-header {
@@ -18,4 +9,26 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
+  position: relative;
+
+  &[aria-selected='true'] {
+    font-weight: 500;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #007bff;
+      height: 2px;
+    }
+  }
+
+  &.cdk-option-active {
+    outline-color: var(--app-ring-color);
+  }
+}
+
+.tab-body {
+  padding: 20px 10px;
 }
