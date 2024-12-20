@@ -1,1 +1,12 @@
+<div cdkListbox cdkListboxOrientation="horizontal" (paste)="onPaste($event)">
+  @for (item of codeLengthArray(); track $index) {
+  <input
+    #inputs
+    cdkOption="1"
+    (input)="onInput($event, $index)"
+    maxlength="1"
+    style="border: 1px solid black; width: 50px"
+  />
+  }
+</div>
 <p>otp-input works!</p>

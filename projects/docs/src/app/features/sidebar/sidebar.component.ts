@@ -103,6 +103,10 @@ export class SidebarComponent {
           name: 'Form Field',
           url: '/doc/form-field',
         },
+        {
+          name: 'OTP Input',
+          url: '/doc/otp-input',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',
