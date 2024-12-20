@@ -95,6 +95,10 @@ export class SidebarComponent {
           name: 'Tab',
           url: '/doc/tab',
         },
+        {
+          name: 'Input',
+          url: '/doc/input',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',

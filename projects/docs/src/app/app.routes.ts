@@ -170,6 +170,13 @@ export const routes: Routes = [
           ).then((d) => d.LoadingOverlayPageComponent),
       },
       {
+        path: 'input',
+        loadComponent: () =>
+          import('./features/input-page/input-page.component').then(
+            (d) => d.InputPageComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'button',
         pathMatch: 'full',
