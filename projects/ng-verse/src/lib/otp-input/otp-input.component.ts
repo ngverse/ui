@@ -1,27 +1,42 @@
 import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
+import { CdkAutofill } from '@angular/cdk/text-field';
 import {
   Component,
   computed,
   ElementRef,
   input,
   output,
+  viewChild,
   viewChildren,
 } from '@angular/core';
 
 @Component({
   selector: 'app-otp-input',
-  imports: [CdkListbox, CdkOption],
+  imports: [CdkListbox, CdkOption, CdkAutofill],
   templateUrl: './otp-input.component.html',
   styleUrl: './otp-input.component.scss',
 })
 export class OtpInputComponent {
   codeLength = input(4);
 
+  oneTimeCode = viewChild<ElementRef<HTMLInputElement>>('oneTimeCode');
+
   inputs = viewChildren<ElementRef<HTMLInputElement>>('inputs');
 
   codeLengthArray = computed(() => new Array(this.codeLength()).fill(1));
 
   filled = output<string>();
+
+  autoFilled() {
+    setTimeout(() => {
+      const oneTimeCodeValue = this.oneTimeCode()?.nativeElement?.value;
+      if (oneTimeCodeValue) {
+        this.fillFromText(oneTimeCodeValue);
+      }
+    }, 500);
+  }
+
+  chang() {}
 
   onInput(event: Event, index: number) {
     const inputEvent = event as InputEvent;
@@ -41,6 +56,10 @@ export class OtpInputComponent {
 
   onPaste(event: ClipboardEvent) {
     const text = event.clipboardData?.getData('text');
+    this.fillFromText(text);
+  }
+
+  fillFromText(text: string | undefined) {
     if (!text) {
       return;
     }

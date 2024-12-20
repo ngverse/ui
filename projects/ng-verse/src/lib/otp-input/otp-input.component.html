@@ -1,6 +1,14 @@
+<input
+  #oneTimeCode
+  type="text"
+  autocomplete="one-time-code"
+  inputmode="numeric"
+  (cdkAutofill)="autoFilled()"
+/>
 <div cdkListbox cdkListboxOrientation="horizontal" (paste)="onPaste($event)">
   @for (item of codeLengthArray(); track $index) {
   <input
+    autocomplete="off"
     #inputs
     cdkOption="1"
     (input)="onInput($event, $index)"
