@@ -1,14 +1,16 @@
-import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
+import {
+  CdkListbox,
+  CdkOption,
+  ListboxValueChangeEvent,
+} from '@angular/cdk/listbox';
 import { CdkPortalOutlet } from '@angular/cdk/portal';
 import {
-  afterNextRender,
+  afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
+  computed,
   contentChildren,
-  ElementRef,
   model,
-  viewChild,
-  viewChildren,
 } from '@angular/core';
 import { TabComponent } from '../tab.component';
 
@@ -23,54 +25,22 @@ export class TabGroupComponent {
   tabs = contentChildren(TabComponent);
   selectedIndex = model(0);
 
-  tabHeaders = viewChildren('tabHeader', { read: ElementRef<HTMLElement> });
+  listboxValue = computed(() => [this.selectedIndex()]);
 
-  tabMainHeader = viewChild('tabMainHeader', { read: ElementRef<HTMLElement> });
-
-  tabInk = viewChild('tabInk', { read: ElementRef<HTMLElement> });
-
-  isSelected(tabIndex: number) {
-    return this.selectedIndex() === tabIndex;
-  }
+  selectedTab = computed(() =>
+    this.tabs().find((_, index) => index === this.selectedIndex())
+  );
 
   constructor() {
-    afterNextRender({
+    afterRenderEffect({
       mixedReadWrite: () => {
-        setTimeout(() => {
-          this.selectedIndex();
-          const tabMainHeader = this.tabMainHeader()?.nativeElement;
-          const tabHeader = this.tabHeaders()[0].nativeElement;
-
-          const tabInk = this.tabInk()?.nativeElement;
-          if (tabHeader && tabMainHeader && tabInk) {
-            const tabRect = tabHeader.getBoundingClientRect();
-            const tabsRect = tabMainHeader.getBoundingClientRect();
-
-            tabInk.style.width = `${tabRect.width}px`;
-            tabInk.style.left = `${tabRect.left - tabsRect.left}px`;
-          }
-        }, 500);
+        console.log(this.tabs());
       },
     });
   }
 
-  selectTab() {
-    // this.selectedIndex.set(tabIndex[0]);
-    this.moveInk();
-  }
-
-  private moveInk() {
-    const selectedIndex = this.selectedIndex();
-    const tabMainHeader = this.tabMainHeader()?.nativeElement;
-    const tabHeader = this.tabHeaders()[selectedIndex].nativeElement;
-
-    const tabInk = this.tabInk()?.nativeElement;
-    if (tabHeader && tabMainHeader && tabInk) {
-      const tabRect = tabHeader.getBoundingClientRect();
-      const tabsRect = tabMainHeader.getBoundingClientRect();
-
-      tabInk.style.width = `${tabRect.width}px`;
-      tabInk.style.left = `${tabRect.left - tabsRect.left}px`;
-    }
+  listboxValueChange($event: ListboxValueChangeEvent<number>) {
+    const selectedIndex = $event.value[0];
+    this.selectedIndex.set(selectedIndex);
   }
 }
