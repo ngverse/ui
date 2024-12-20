@@ -13,7 +13,6 @@ import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component
     TabGroupComponent,
     TabComponent,
     TabBodyDirective,
-    TestTab,
   ],
   templateUrl: './tab-page.component.html',
   styleUrl: './tab-page.component.scss',
