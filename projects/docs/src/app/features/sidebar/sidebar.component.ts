@@ -99,6 +99,10 @@ export class SidebarComponent {
           name: 'Input',
           url: '/doc/input',
         },
+        {
+          name: 'Form Field',
+          url: '/doc/form-field',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',

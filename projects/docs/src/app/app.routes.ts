@@ -177,6 +177,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'form-field',
+        loadComponent: () =>
+          import('./features/form-field-page/form-field-page.component').then(
+            (d) => d.FormFieldPageComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'button',
         pathMatch: 'full',
