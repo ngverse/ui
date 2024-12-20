@@ -6,16 +6,6 @@ import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 
 @Component({
-  selector: 'test-tab',
-  template: ``,
-})
-export class TestTab {
-  constructor() {
-    console.log('EXECUTED');
-  }
-}
-
-@Component({
   selector: 'doc-tab-page',
   imports: [
     BlueprintPageComponent,
