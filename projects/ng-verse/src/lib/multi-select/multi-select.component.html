@@ -1,0 +1,31 @@
+<button
+  class="select-button"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+  #triggerElement
+  (click)="toggle()"
+>
+  <app-multi-select-icon
+    class="select-button-icon"
+    [class.opened]="isOpen()"
+  ></app-multi-select-icon>
+</button>
+<ng-template
+  (backdropClick)="close()"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayBackdropClass]="'cdk-backdrop-transparent'"
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen()"
+  (detach)="close()"
+>
+  <ul
+    tabindex="0"
+    #optionsContainer
+    class="select-options"
+    [style.width.px]="overlayWidth()"
+    tabindex="0"
+  >
+    <ng-content select="app-option"></ng-content>
+  </ul>
+</ng-template>

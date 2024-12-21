@@ -107,6 +107,10 @@ export class SidebarComponent {
           name: 'OTP Input',
           url: '/doc/otp-input',
         },
+        {
+          name: 'Multi Select',
+          url: '/doc/multi-select',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',
