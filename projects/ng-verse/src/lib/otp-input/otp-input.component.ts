@@ -36,8 +36,6 @@ export class OtpInputComponent {
     }, 500);
   }
 
-  chang() {}
-
   onInput(event: Event, index: number) {
     const inputEvent = event as InputEvent;
 
