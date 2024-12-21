@@ -170,6 +170,27 @@ export const routes: Routes = [
           ).then((d) => d.LoadingOverlayPageComponent),
       },
       {
+        path: 'input',
+        loadComponent: () =>
+          import('./features/input-page/input-page.component').then(
+            (d) => d.InputPageComponent
+          ),
+      },
+      {
+        path: 'form-field',
+        loadComponent: () =>
+          import('./features/form-field-page/form-field-page.component').then(
+            (d) => d.FormFieldPageComponent
+          ),
+      },
+      {
+        path: 'multi-select',
+        loadComponent: () =>
+          import(
+            './features/multi-select-page/multi-select-page.component'
+          ).then((d) => d.MultiSelectPageComponent),
+      },
+      {
         path: '',
         redirectTo: 'button',
         pathMatch: 'full',

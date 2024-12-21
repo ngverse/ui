@@ -1,1 +1,10 @@
-<p>input works!</p>
+<input
+  class="input"
+  [attr.value]="value()"
+  (change)="onInput($event)"
+  [attr.type]="type()"
+  [attr.readonly]="readonly()"
+  [attr.placeholder]="placeholder()"
+  [disabled]="disabled()"
+  (blur)="blur()"
+/>

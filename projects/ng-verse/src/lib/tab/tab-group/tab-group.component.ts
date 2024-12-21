@@ -5,12 +5,11 @@ import {
 } from '@angular/cdk/listbox';
 import { CdkPortalOutlet } from '@angular/cdk/portal';
 import {
-  afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
   computed,
   contentChildren,
-  model,
+  model
 } from '@angular/core';
 import { TabComponent } from '../tab.component';
 
@@ -30,14 +29,6 @@ export class TabGroupComponent {
   selectedTab = computed(() =>
     this.tabs().find((_, index) => index === this.selectedIndex())
   );
-
-  constructor() {
-    afterRenderEffect({
-      mixedReadWrite: () => {
-        console.log(this.tabs());
-      },
-    });
-  }
 
   listboxValueChange($event: ListboxValueChangeEvent<number>) {
     const selectedIndex = $event.value[0];

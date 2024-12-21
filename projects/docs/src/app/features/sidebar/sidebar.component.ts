@@ -95,6 +95,22 @@ export class SidebarComponent {
           name: 'Tab',
           url: '/doc/tab',
         },
+        {
+          name: 'Input',
+          url: '/doc/input',
+        },
+        {
+          name: 'Form Field',
+          url: '/doc/form-field',
+        },
+        {
+          name: 'OTP Input',
+          url: '/doc/otp-input',
+        },
+        {
+          name: 'Multi Select',
+          url: '/doc/multi-select',
+        },
         // {
         //   name: 'Breadcrumb',
         //   url: '/doc/breadcrumb',
