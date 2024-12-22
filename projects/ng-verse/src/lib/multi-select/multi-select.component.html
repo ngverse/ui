@@ -5,12 +5,21 @@
   #triggerElement
   (click)="toggle()"
 >
+  <span class="select-label">
+    @if (selectedLabel()) {
+      {{selectedLabel()}}
+    } @else {
+      {{label()}}
+    }
+  </span>
+
   <app-multi-select-icon
     class="select-button-icon"
     [class.opened]="isOpen()"
   ></app-multi-select-icon>
 </button>
 <ng-template
+  #optionsContainer="cdkConnectedOverlay"
   (backdropClick)="close()"
   [cdkConnectedOverlayHasBackdrop]="true"
   [cdkConnectedOverlayBackdropClass]="'cdk-backdrop-transparent'"
@@ -21,11 +30,9 @@
 >
   <ul
     tabindex="0"
-    #optionsContainer
     class="select-options"
     [style.width.px]="overlayWidth()"
-    tabindex="0"
   >
-    <ng-content select="app-option"></ng-content>
+    <ng-content select="app-multi-select-item"></ng-content>
   </ul>
 </ng-template>

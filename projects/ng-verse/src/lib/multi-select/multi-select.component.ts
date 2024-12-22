@@ -1,16 +1,20 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
+  afterRender,
   Component,
   computed,
-  contentChildren,
-  ElementRef,
+  contentChildren, effect,
+  ElementRef, inject, input,
   signal,
   viewChild,
 } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectIconComponent } from './multi-select-icon.component';
 import { MultiSelectItemComponent } from './multi-select-item/multi-select-item.component';
+import { CompareWith, MultiSelectState, OnTouchedFunction } from '@ng-verse/multi-select/multi-select.state';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { OnChangeFunction } from '@ng-verse/radio-button/radio-button.state';
 
 @Component({
   selector: 'app-multi-select',
@@ -22,26 +26,54 @@ import { MultiSelectItemComponent } from './multi-select-item/multi-select-item.
   ],
   templateUrl: './multi-select.component.html',
   styleUrl: './multi-select.component.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: MultiSelectComponent,
+    },
+    MultiSelectState
+  ]
 })
-export class MultiSelectComponent {
+export class MultiSelectComponent implements ControlValueAccessor {
+  label = input.required<string>();
+
   isOpen = signal(false);
-  selectionModel = new SelectionModel(true);
+  overlayWidth = signal(0);
 
-  options = contentChildren(MultiSelectItemComponent);
 
-  triggerElement = viewChild('triggerElement', {
+  selectedLabel = computed(() => {
+    return this.options().filter((option) =>
+      option.selected()).map((option) => option.innerText()).join(', ');
+  });
+
+  private readonly options = contentChildren(MultiSelectItemComponent);
+  private readonly optionsContainer = viewChild<CdkConnectedOverlay>('optionsContainer');
+  private readonly triggerElement = viewChild('triggerElement', {
     read: ElementRef,
   });
+  private readonly multiSelectState = inject(MultiSelectState);
 
-  overlayWidth = computed(() => {
-    const triggerElement = this.triggerElement() as
-      | ElementRef<HTMLElement>
-      | undefined;
-    if (triggerElement) {
-      return triggerElement.nativeElement.clientWidth;
+  constructor() {
+    this.updateOverlayWidth();
+    this.subscribeToSelectionChange();
+  }
+
+  writeValue(obj: unknown[] | unknown | null | undefined) {
+    if (Array.isArray(obj)) {
+      this.multiSelectState.setSelection(...obj);
+    } else {
+      this.multiSelectState.clear();
     }
-    return 0;
-  });
+  }
+
+  registerOnChange(fn: OnChangeFunction): void {
+    this.multiSelectState._onChange = fn;
+  }
+
+  registerOnTouched(fn: OnTouchedFunction): void {
+    this.multiSelectState._onTouched = fn;
+  }
 
   toggle() {
     this.isOpen.update((isOpen) => !isOpen);
@@ -53,5 +85,27 @@ export class MultiSelectComponent {
 
   open() {
     this.isOpen.set(true);
+  }
+
+  private updateOverlayWidth(): void {
+    afterRender({
+      read: () => {
+        this.overlayWidth.set(this.triggerElement()?.nativeElement.clientWidth);
+      }
+    } );
+  }
+
+  private subscribeToSelectionChange() {
+    this.multiSelectState.changed
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => {
+        setTimeout(() => {
+          this.updateOverlayPosition();
+        }, 1);
+
+      });
+  }
+  private updateOverlayPosition() {
+    this.optionsContainer()?.overlayRef?.updatePosition();
   }
 }

@@ -1,1 +1,5 @@
-<app-multi-select></app-multi-select>
+<app-multi-select label="Multi Select" [(ngModel)]="selectedOption">
+  @for (option of options(); track option.value) {
+    <app-multi-select-item [value]="option.value">{{ option.label }}</app-multi-select-item>
+  }
+</app-multi-select>

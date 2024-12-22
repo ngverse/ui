@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CheckboxComponent } from '../../../ng-verse/src/lib/checkbox/checkbox.component';
+import { CheckboxComponent } from '@ng-verse/checkbox/checkbox.component';
 
 @Component({
   selector: 'app-root',

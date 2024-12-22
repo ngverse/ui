@@ -1,3 +1,4 @@
-<div>
-  <app-multi-select-check-icon [checked]="true"></app-multi-select-check-icon>
+<app-multi-select-check-icon [checked]="selected()"></app-multi-select-check-icon>
+<div #itemContent>
+  <ng-content></ng-content>
 </div>
