@@ -31,6 +31,10 @@ export class MultiSelectState {
     })
   }
 
+  hasSelectedValues() {
+    return this.selectionModel.hasValue()
+  }
+
   toggle(comp: MultiSelectItemComponent) {
     this.selectionModel.toggle(comp.value());
     this._onChange?.(this.selectionModel.selected);

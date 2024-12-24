@@ -28,11 +28,12 @@
   [cdkConnectedOverlayOpen]="isOpen()"
   (detach)="close()"
 >
-  <ul
+  <div
     tabindex="0"
     class="select-options"
     [style.width.px]="overlayWidth()"
+    role="listbox"
   >
     <ng-content select="app-multi-select-item"></ng-content>
-  </ul>
+  </div>
 </ng-template>

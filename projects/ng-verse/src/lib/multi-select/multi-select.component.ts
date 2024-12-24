@@ -1,10 +1,10 @@
-import { SelectionModel } from '@angular/cdk/collections';
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
+  AfterContentInit,
   afterRender,
   Component,
   computed,
-  contentChildren, effect,
+  contentChildren,
   ElementRef, inject, input,
   signal,
   viewChild,
@@ -12,9 +12,10 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectIconComponent } from './multi-select-icon.component';
 import { MultiSelectItemComponent } from './multi-select-item/multi-select-item.component';
-import { CompareWith, MultiSelectState, OnTouchedFunction } from '@ng-verse/multi-select/multi-select.state';
+import { MultiSelectState, OnTouchedFunction } from '@ng-verse/multi-select/multi-select.state';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { OnChangeFunction } from '@ng-verse/radio-button/radio-button.state';
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-multi-select',
@@ -33,9 +34,12 @@ import { OnChangeFunction } from '@ng-verse/radio-button/radio-button.state';
       useExisting: MultiSelectComponent,
     },
     MultiSelectState
-  ]
+  ],
+  host: {
+    '(keydown)': 'onKeydown($event)'
+  }
 })
-export class MultiSelectComponent implements ControlValueAccessor {
+export class MultiSelectComponent implements ControlValueAccessor, AfterContentInit {
   label = input.required<string>();
 
   isOpen = signal(false);
@@ -53,10 +57,16 @@ export class MultiSelectComponent implements ControlValueAccessor {
     read: ElementRef,
   });
   private readonly multiSelectState = inject(MultiSelectState);
+  private keyManager!: ActiveDescendantKeyManager<MultiSelectItemComponent>;
 
   constructor() {
     this.updateOverlayWidth();
     this.subscribeToSelectionChange();
+  }
+
+  ngAfterContentInit() {
+    this.keyManager = new ActiveDescendantKeyManager(this.options())
+      .withWrap();
   }
 
   writeValue(obj: unknown[] | unknown | null | undefined) {
@@ -75,16 +85,28 @@ export class MultiSelectComponent implements ControlValueAccessor {
     this.multiSelectState._onTouched = fn;
   }
 
+  onKeydown(event: KeyboardEvent) {
+    if (event.key !== 'Enter') {
+      this.keyManager.onKeydown(event);
+      this.scrollToActiveOption();
+    } else if (this.keyManager.activeItem) {
+      event.stopPropagation();
+      event.preventDefault();
+      this.multiSelectState.toggle(this.keyManager.activeItem);
+    }
+  }
+
   toggle() {
     this.isOpen.update((isOpen) => !isOpen);
+
+    if (!this.multiSelectState.hasSelectedValues() && this.isOpen()) {
+      this.keyManager.setActiveItem(0);
+    }
   }
 
   close() {
     this.isOpen.set(false);
-  }
-
-  open() {
-    this.isOpen.set(true);
+    this.keyManager.setActiveItem(-1);
   }
 
   private updateOverlayWidth(): void {
@@ -107,5 +129,12 @@ export class MultiSelectComponent implements ControlValueAccessor {
   }
   private updateOverlayPosition() {
     this.optionsContainer()?.overlayRef?.updatePosition();
+  }
+
+  private scrollToActiveOption() {
+    const activeItem = this.keyManager.activeItem;
+    if (activeItem) {
+      activeItem.scrollIntoView();
+    }
   }
 }
