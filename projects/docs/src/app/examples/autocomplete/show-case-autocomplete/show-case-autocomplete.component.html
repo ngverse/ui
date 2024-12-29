@@ -1,0 +1,5 @@
+<app-autocomplete [label]="'Select Framework'" [(ngModel)]="currentFilter" requireSelection>
+  @for (item of filteredItems(); track $index) {
+    <app-autocomplete-item [value]="item">{{item}}</app-autocomplete-item>
+  }
+</app-autocomplete>

@@ -44,6 +44,10 @@ export class SidebarComponent {
           url: '/doc/accordion',
         },
         {
+          name: 'Autocomplete',
+          url: '/doc/autocomplete',
+        },
+        {
           name: 'Alert',
           url: '/doc/alert',
         },

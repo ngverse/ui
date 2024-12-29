@@ -1,0 +1,30 @@
+<input
+  class="select-button"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+  #triggerElement
+  (focus)="open()"
+  (click)="open()"
+  (input)="onInput($event)"
+  [ngModel]="filter()"
+  (ngModelChange)="filter.set($event)"
+ />
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen()"
+>
+  <div
+    #optionsContainer
+    tabindex="0"
+    class="select-options"
+    [style.width.px]="overlayWidth()"
+    role="listbox"
+  >
+    <ng-content select="app-autocomplete-item"></ng-content>
+  </div>
+</ng-template>
+
+<!--  (backdropClick)="backdropClick($event)"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayBackdropClass]="'cdk-backdrop-transparent'"-->

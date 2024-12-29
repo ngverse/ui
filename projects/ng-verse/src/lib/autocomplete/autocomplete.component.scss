@@ -1,0 +1,39 @@
+:host {
+  display: inline-block;
+}
+
+.select-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 1px solid var(--app-border-color);
+  border-radius: var(--app-border-radius);
+  padding: 4px 10px;
+  width: 200px;
+}
+
+.select-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.select-options {
+  width: 100%;
+  background: white;
+  margin-top: 6px;
+  border: 1px solid var(--app-border-color);
+  border-radius: var(--app-border-radius);
+  max-height: 300px;
+  overflow-y: auto;
+  list-style: none;
+  padding-left: 0;
+  outline-color: var(--app-ring-color);
+
+  &:empty {
+    border: none;
+  }
+
+}

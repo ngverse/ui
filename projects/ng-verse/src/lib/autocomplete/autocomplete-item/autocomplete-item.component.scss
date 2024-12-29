@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  cursor: pointer;
+  padding: 5px 4px;
+
+  &:hover {
+    background: #ededed;
+  }
+}
+
+:host(.selected) {
+  background: var(--app-primary-color);
+  color: #fff;
+}
+
+:host(.focused) {
+  background: var(--app-primary-color);
+  color: #fff;
+}
