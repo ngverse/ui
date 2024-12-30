@@ -1,11 +1,10 @@
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
-  AfterContentInit,
   afterRender,
   Component,
   computed,
   contentChildren,
-  ElementRef, inject, input,
+  ElementRef, inject, Injector, input,
   signal,
   viewChild,
 } from '@angular/core';
@@ -39,7 +38,7 @@ import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
     '(keydown)': 'onKeydown($event)'
   }
 })
-export class MultiSelectComponent implements ControlValueAccessor, AfterContentInit {
+export class MultiSelectComponent implements ControlValueAccessor {
   label = input.required<string>();
 
   isOpen = signal(false);
@@ -57,16 +56,11 @@ export class MultiSelectComponent implements ControlValueAccessor, AfterContentI
     read: ElementRef,
   });
   private readonly multiSelectState = inject(MultiSelectState);
-  private keyManager!: ActiveDescendantKeyManager<MultiSelectItemComponent>;
+  private keyManager = new ActiveDescendantKeyManager(this.options, inject(Injector)).withWrap();
 
   constructor() {
     this.updateOverlayWidth();
     this.subscribeToSelectionChange();
-  }
-
-  ngAfterContentInit() {
-    this.keyManager = new ActiveDescendantKeyManager(this.options())
-      .withWrap();
   }
 
   writeValue(obj: unknown[] | unknown | null | undefined) {

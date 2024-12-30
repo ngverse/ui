@@ -2,11 +2,10 @@ import { Component, model, signal } from '@angular/core';
 import { MultiSelectComponent } from '@ng-verse/multi-select/multi-select.component';
 import { MultiSelectItemComponent } from '@ng-verse/multi-select/multi-select-item/multi-select-item.component';
 import { FormsModule } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'doc-show-case-multi-select',
-  imports: [MultiSelectComponent, MultiSelectItemComponent, FormsModule, JsonPipe],
+  imports: [MultiSelectComponent, MultiSelectItemComponent, FormsModule],
   templateUrl: './show-case-multi-select.component.html',
   styleUrl: './show-case-multi-select.component.scss',
 })
