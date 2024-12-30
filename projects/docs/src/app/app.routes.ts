@@ -199,7 +199,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'doc/introduction',
     pathMatch: 'full',
   },
 ];

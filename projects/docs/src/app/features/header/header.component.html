@@ -1,5 +1,11 @@
-<header class="flex">
-  <div class="flex items-center">
-    <img src="logo.svg" width="50" alt="logo" />
-  </div>
+<header class="flex px-5 justify-between items-center">
+  <a [routerLink]="['/']" class="inline-flex gap-2 items-center">
+    <img src="logo.png" width="40" alt="logo" />
+    <doc-project-name
+      class="font-bold text-blue-600 text-xl"
+    ></doc-project-name>
+  </a>
+  <a href="https://github.com/lukonik/ng-verse" target="_blank">
+    <img alt="github icon" src="github.png" class="h-10" />
+  </a>
 </header>

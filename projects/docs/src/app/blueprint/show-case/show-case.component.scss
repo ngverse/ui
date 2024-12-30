@@ -1,3 +1,4 @@
 .active-tab {
-  @apply border-b-2 border-solid border-blue-500;
+  @apply border-b-2 border-solid;
+  border-color: var(--app-primary-color);
 }
