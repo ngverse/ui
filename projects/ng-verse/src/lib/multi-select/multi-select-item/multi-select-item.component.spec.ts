@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MultiSelectItemComponent } from './multi-select-item.component';
+import { MultiSelectState } from '@ng-verse/multi-select/multi-select.state';
 
 describe('MultiSelectItemComponent', () => {
   let component: MultiSelectItemComponent;
@@ -8,12 +9,14 @@ describe('MultiSelectItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MultiSelectItemComponent]
+      imports: [MultiSelectItemComponent],
+      providers: [MultiSelectState]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(MultiSelectItemComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('value', 'test');
     fixture.detectChanges();
   });
 
