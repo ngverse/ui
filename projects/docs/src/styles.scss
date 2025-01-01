@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@use '../../ng-verse/src/lib/globals';
 @import 'highlight.js/styles/github-dark.css';
 @import '@angular/cdk/overlay-prebuilt.css';
-@import '../../ng-verse/src/lib/globals';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
