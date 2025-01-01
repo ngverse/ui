@@ -1,13 +1,17 @@
-<div class="flex pt-20">
-  @if(prevRoute()){
-
-  <button class="sibling-navigation" [routerLink]="[prevRoute()]">
+<div class="flex pt-20 gap-6">
+  <button
+    class="sibling-navigation"
+    [class.invisible]="!prevRoute()"
+    [routerLink]="[prevRoute()]"
+  >
     <lucide-angular [img]="ArrowLeft"></lucide-angular> {{ prevRoute() }}
   </button>
-  } @if(nextRoute()){
-  <button class="sibling-navigation ml-auto" [routerLink]="[nextRoute()]">
+  <button
+    [class.invisible]="!nextRoute()"
+    class="sibling-navigation ml-auto justify-end"
+    [routerLink]="[nextRoute()]"
+  >
     {{ nextRoute() }}
     <lucide-angular [img]="ArrowRight"></lucide-angular>
   </button>
-  }
 </div>
