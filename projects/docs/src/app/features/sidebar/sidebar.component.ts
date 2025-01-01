@@ -31,6 +31,10 @@ export class SidebarComponent {
           url: '/doc/installation',
         },
         {
+          name: 'Usage',
+          url: '/doc/usage',
+        },
+        {
           name: 'Theming',
           url: '/doc/theming',
         },
