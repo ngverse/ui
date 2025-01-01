@@ -24,5 +24,4 @@ export interface ApiInputs {
 })
 export class ApiInputsComponent {
   apiInputs = input.required<ApiInputs[]>();
-  name = input('Input');
 }
