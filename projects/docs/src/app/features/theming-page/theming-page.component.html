@@ -1,52 +1,23 @@
-<!-- <h1>Theming</h1>
-<p>
-  NGVerse Components come with a predefined look and feel, ensuring visual
-  consistency across all components. However, the library is not themed
-  globally—there’s no theme.scss to import, no global CSS variables to manage,
-  and no reliance on external theming files. This approach is intentional and
-  designed with the following principles in mind:
-</p>
-<h2>Encapsulation Over Abstraction</h2>
-<p>
-  Each component is fully encapsulated, with all styles scoped directly to the
-  component itself. This design ensures that when you integrate a component into
-  your project, the behavior and styles are localized, making it easy to
-  identify and modify them. There’s no need to sift through global files or
-  decipher documentation to override a specific style.
-</p>
-<h2>Flexibility Over Prescriptive Theming</h2>
-<p>
-  NGVerse is designed to be a general-purpose component library, intended to
-  adapt to your specific design requirements rather than enforcing a universal
-  design system like Material Design. While the components share a cohesive
-  default styling for a polished look, they are meant to serve as a foundation
-  that you can easily customize to match your designer’s specifications.
-</p>
-<h2>Coherent and Polished Default Styling</h2>
-<p>
-  Even without a general theming system, all <doc-project-name></doc-project-name> components are thoughtfully
-  styled to ensure they are visually cohesive and blend seamlessly together.
-  This makes it easy to use the library out of the box, with a consistent design
-  across components.
-</p>
-<h2>Practicality in Customization</h2>
-<p>
-  The styling approach allows you to quickly get started without needing
-  detailed design files. For example, if you want to change the primary color of
-  a button or an active tab, you can directly edit the button.component.scss and
-  tab.component.scss files. While this may involve duplicating effort in some
-  cases, it eliminates the complexity of navigating theming systems or
-  overriding global variables.
-</p>
-<h2>Support for Custom Variables</h2>
-<p>
-  If you have a well-defined design system, you can easily introduce CSS
-  variables or SCSS variables within your project. These can then be referenced
-  in the individual component style files for a more streamlined approach to
-  theming.
-</p>
-<p>
-  This theming approach strikes a balance between simplicity and flexibility,
-  ensuring that developers can quickly adapt NGVerse components to their needs
-  while maintaining full control over the design.
-</p> -->
+<doc-blog-page label="Theming">
+  <p>
+    NgVerse components do not rely on a global theme file to style all
+    components. Instead, each component's styles are self-contained within its
+    own SCSS file. To update the style of a specific component, simply edit its
+    corresponding SCSS file directly.
+  </p>
+  <p>
+    However, there is a small global.scss file included, which contains
+    predefined variables, such as primary-color, that components can use. The
+    purpose of this file is to ensure consistent and visually appealing styles
+    across components, particularly if you do not have a custom design in place.
+    That said, you are free to ignore this file entirely or remove the use of
+    these global variables within individual components—it's entirely up to you.
+  </p>
+  <p>
+    For example, if you want to change the style of the Button component, avoid
+    overriding classes in the global styles.scss file. Instead, make your
+    changes directly in the button.scss file.
+  </p>
+  <span>globals.scss</span>
+  <doc-source-code language="css" [code]="globalsCode()"></doc-source-code>
+</doc-blog-page>
