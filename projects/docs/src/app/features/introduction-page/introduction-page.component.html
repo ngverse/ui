@@ -1,5 +1,50 @@
-<doc-blog-page label="Introduction"></doc-blog-page>
-<h1>Introduction</h1>
-<p>
-  <doc-project-name></doc-project-name> is a collection of components,pipes,directives, that you copy/paste and not install
-</p>
+<doc-blog-page label="Introduction">
+  <p>
+    NgVerse is a collection of feature-rich Angular components, directives,
+    pipes, and more. It has one key difference from other UI libraries: you
+    don’t install it as a dependency but instead copy/paste the components
+    directly into your project.
+  </p>
+  <h2>What Does Copy/Paste Mean?</h2>
+  <p>
+    Typically, when you need to use a UI library, you install it via a package
+    manager like npm. For example:
+  </p>
+  <pre> <code>npm install angular-some-ui-library</code> </pre>
+  <p>
+    After installation, you configure it and import the required components from
+    the library. NgVerse is different. You don’t install the library itself.
+    Instead, you get premade, complete Angular components that you copy/paste
+    into your project. However, this doesn’t mean you have to copy/paste
+    manually; we provide schematics that handle the setup for components
+    seamlessly.
+  </p>
+  <h2>Why?</h2>
+  <p>
+    I’ve been using Angular since its release and have extensively worked with
+    various UI libraries, including Angular Material. A common issue I’ve
+    encountered is that customization is often a difficult and not practical.
+    You either have to use the components as they are or not use them at all.
+    While some libraries offer more customization freedom, they still impose
+    restrictions, making it difficult to create generic components. For
+    instance, if your design requires all select components to have a clear
+    icon, you would either need to manually add this functionality to each
+    select component or wrap the library’s select component in your own custom
+    implementation—neither of which is ideal. What you actually need is a solid
+    starting point. When designing a website, you typically require components
+    like inputs, buttons, dropdowns, accordions, and tabs with various
+    customizations. All of these components should follow a consistent guideline
+    and be fully featured. For example, when you add a select component to your
+    project, it should include essential features like floating options and
+    keyboard navigation. This is exactly what NgVerse is designed to provide.
+    When you add a select component from NgVerse, you get a complete,
+    fully-featured component that adheres to general guidelines. Plus, the
+    source code is part of your project, allowing you to customize it however
+    you want. If you want to change the style or functionality of a select
+    component, you don’t need to read extensive documentation or examine complex
+    markup to update styles. Instead, you can directly edit the source code in
+    your project. In addition to that, all the components are beautifully styled
+    and coherent with one another. So, if you don’t have a design, you can start
+    using them right away.
+  </p>
+</doc-blog-page>
