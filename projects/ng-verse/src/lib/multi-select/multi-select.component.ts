@@ -93,10 +93,6 @@ export class MultiSelectComponent implements ControlValueAccessor {
     this.keyManager.setActiveItem(-1);
   }
 
-  private updateOverlayPosition() {
-    this.optionsContainer()?.overlayRef?.updatePosition();
-  }
-
   private scrollToActiveOption() {
     const activeItem = this.keyManager.activeItem;
     if (activeItem) {
