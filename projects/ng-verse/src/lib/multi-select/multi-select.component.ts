@@ -42,8 +42,6 @@ export class MultiSelectComponent implements ControlValueAccessor {
   label = input.required<string>();
 
   isOpen = signal(false);
-  overlayWidth = signal(0);
-
 
   selectedLabel = computed(() => {
     return this.options().filter((option) =>
@@ -52,16 +50,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
   private readonly options = contentChildren(MultiSelectItemComponent);
   private readonly optionsContainer = viewChild<CdkConnectedOverlay>('optionsContainer');
-  private readonly triggerElement = viewChild('triggerElement', {
-    read: ElementRef,
-  });
   private readonly multiSelectState = inject(MultiSelectState);
   private keyManager = new ActiveDescendantKeyManager(this.options, inject(Injector)).withWrap();
-
-  constructor() {
-    this.updateOverlayWidth();
-    this.subscribeToSelectionChange();
-  }
 
   writeValue(obj: unknown[] | unknown | null | undefined) {
     if (Array.isArray(obj)) {
@@ -103,24 +93,6 @@ export class MultiSelectComponent implements ControlValueAccessor {
     this.keyManager.setActiveItem(-1);
   }
 
-  private updateOverlayWidth(): void {
-    afterRender({
-      read: () => {
-        this.overlayWidth.set(this.triggerElement()?.nativeElement.clientWidth);
-      }
-    } );
-  }
-
-  private subscribeToSelectionChange() {
-    this.multiSelectState.changed
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => {
-        setTimeout(() => {
-          this.updateOverlayPosition();
-        }, 1);
-
-      });
-  }
   private updateOverlayPosition() {
     this.optionsContainer()?.overlayRef?.updatePosition();
   }

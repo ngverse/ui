@@ -101,9 +101,8 @@ describe('MultiSelectComponent', () => {
       fixture.detectChanges();
       openPanel();
       const selectedOptions = document.querySelectorAll('app-multi-select-item.selected');
-      const textChildrenIndex = 1; // 0 is the svg icon
       for(let i = 0; i < initialValue.length; i++) {
-        expect(selectedOptions[i].children[textChildrenIndex].textContent).toBe(initialValue[i]);
+        expect(selectedOptions[i].textContent).toBe(initialValue[i]);
       }
     }
 

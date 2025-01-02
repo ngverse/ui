@@ -1,14 +1,11 @@
 import {
-  afterRender,
   Component,
-  contentChild,
   ElementRef,
   inject,
   input,
   OnDestroy,
   OnInit,
-  output,
-  signal, viewChild
+  signal
 } from '@angular/core';
 import { MultiSelectCheckIconComponent } from "../multi-select-check.component";
 import { MultiSelectState } from '@ng-verse/multi-select/multi-select.state';
@@ -31,16 +28,7 @@ export class MultiSelectItemComponent implements OnInit, OnDestroy, Highlightabl
   selected = signal(false);
   focused = signal(false);
 
-  innerText = signal('');
-  private readonly itemContent= viewChild<ElementRef<HTMLDivElement>>('itemContent');
   private readonly el = inject(ElementRef);
-  constructor() {
-    afterRender({
-      read: () => {
-        this.innerText.set(this.itemContent()?.nativeElement.innerText ?? '');
-      }
-    } );
-  }
 
   private readonly multiSelectState = inject(MultiSelectState);
 
@@ -50,6 +38,10 @@ export class MultiSelectItemComponent implements OnInit, OnDestroy, Highlightabl
 
   ngOnDestroy() {
     this.multiSelectState.remove(this);
+  }
+
+  innerText() {
+    return this.el.nativeElement.innerText ?? '';
   }
 
   onSelect() {
