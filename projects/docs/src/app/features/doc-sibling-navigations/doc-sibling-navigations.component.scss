@@ -1,7 +1,7 @@
 .sibling-navigation {
-  @apply h-20 w-[300px] rounded-md border border-solid border-slate-200 flex items-center gap-2 justify-center px-10;
-
-  &:hover{
+  @apply h-20 w-[300px] rounded-md border border-solid border-slate-200 flex items-center gap-2  px-10 flex-1;
+  @apply text-slate-500;
+  &:hover {
     @apply bg-slate-100;
   }
 }

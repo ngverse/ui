@@ -1,9 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
-import { NavigationEnd, Router, RouterLink, Routes } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { ArrowLeft, ArrowRight, LucideAngularModule } from 'lucide-angular';
 import { filter } from 'rxjs';
-import { routes } from '../../app.routes';
-const DOCS_CHILDREN_ROUTES = routes[1].children as Routes;
+import {
+  getAllSidebarLinks,
+  SidebarLink
+} from '../sidebar/sidebar.component';
+
+const SIDEBAR_LINKS = getAllSidebarLinks();
 
 @Component({
   selector: 'doc-doc-sibling-navigations',
@@ -13,8 +17,8 @@ const DOCS_CHILDREN_ROUTES = routes[1].children as Routes;
 })
 export class DocSiblingNavigationsComponent {
   router = inject(Router);
-  prevRoute = signal<string | undefined>(undefined);
-  nextRoute = signal<string | undefined>(undefined);
+  prevRoute = signal<SidebarLink | undefined>(undefined);
+  nextRoute = signal<SidebarLink | undefined>(undefined);
   ArrowLeft = ArrowLeft;
   ArrowRight = ArrowRight;
 
@@ -22,19 +26,19 @@ export class DocSiblingNavigationsComponent {
     this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe(() => {
-        const currentPath = this.router.url.split('/')[2];
+        const currentPath = this.router.url;
 
-        const foundRouteIndex = DOCS_CHILDREN_ROUTES.findIndex(
-          (r) => r.path === currentPath
+        const foundRouteIndex = SIDEBAR_LINKS.findIndex(
+          (r) => r.url === currentPath
         );
         this.prevRoute.set(undefined);
         this.nextRoute.set(undefined);
         if (foundRouteIndex !== -1) {
           if (foundRouteIndex !== 0) {
-            this.prevRoute.set(DOCS_CHILDREN_ROUTES[foundRouteIndex - 1].path);
+            this.prevRoute.set(SIDEBAR_LINKS[foundRouteIndex - 1]);
           }
-          if (foundRouteIndex !== DOCS_CHILDREN_ROUTES.length - 1) {
-            this.nextRoute.set(DOCS_CHILDREN_ROUTES[foundRouteIndex + 1].path);
+          if (foundRouteIndex !== SIDEBAR_LINKS.length - 1) {
+            this.nextRoute.set(SIDEBAR_LINKS[foundRouteIndex + 1]);
           }
         }
       });
