@@ -8,7 +8,8 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.schematics.json",
-    "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json ../../dist/ng-verse/"
+    "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json src/lib/**/* ../../dist/ng-verse/",
+    "schema:watch": "tsc -w -p tsconfig.schematics.json"
   },
   "dependencies": {
     "tslib": "^2.3.0"
