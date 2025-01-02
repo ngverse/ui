@@ -5,6 +5,11 @@
       "description": "Generate a Component in the project.",
       "factory": "./component/index#component",
       "schema": "./component/schema.json"
+    },
+    "ng-add": {
+      "description": "Add ng-verse to the project.",
+      "factory": "./ng-add/index#ngAdd",
+      "schema": "./ng-add/schema.json"
     }
   }
 }
