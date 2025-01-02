@@ -1,37 +1,16 @@
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
+import { getProjectFromWorkspace } from '@angular/cdk/schematics';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { join } from 'path';
-import { virtualFs, workspaces } from '@angular-devkit/core';
 import { Schema } from './schema';
-
-function createHost(tree: Tree): workspaces.WorkspaceHost {
-  return {
-    async readFile(path: string): Promise<string> {
-      const data = tree.read(path);
-      if (!data) {
-        throw new SchematicsException('File not found.');
-      }
-      return virtualFs.fileBufferToString(data);
-    },
-    async writeFile(path: string, data: string): Promise<void> {
-      return tree.overwrite(path, data);
-    },
-    async isDirectory(path: string): Promise<boolean> {
-      return !tree.exists(path) && tree.getDir(path).subfiles.length > 0;
-    },
-    async isFile(path: string): Promise<boolean> {
-      return tree.exists(path);
-    },
-  };
-}
 
 // A function that will generate a Rule to copy the specified component folder
 export function component(options: Schema) {
-  return async (tree: Tree) => {
-    const host = createHost(tree);
-    const { workspace } = await workspaces.readWorkspace('/', host);
+  return async (host: Tree) => {
 
-    const project =
-      options.project != null ? workspace.projects.get(options.project) : null;
+    const workspace = await getWorkspace(host);
+    const project = getProjectFromWorkspace(workspace, options.project);
+
     if (!project) {
       throw new SchematicsException(`Invalid project name: ${options.project}`);
     }
@@ -53,14 +32,14 @@ export function component(options: Schema) {
     );
 
     // Copy component files from the library to the application
-    tree.getDir(componentsPath).visit((filePath) => {
-      const content = tree.read(filePath);
+    host.getDir(componentsPath).visit((filePath) => {
+      const content = host.read(filePath);
       if (content) {
         const targetPath = filePath.replace(componentsPath, applicationPath);
-        tree.create(targetPath, content);
+        host.create(targetPath, content);
       }
     });
 
-    return tree;
+    return host;
   };
 }

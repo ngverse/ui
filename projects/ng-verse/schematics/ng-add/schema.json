@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "SchematicsAdd",
+  "title": "add ng-verse",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "animations": {
+      "type": "string",
+      "default": "enabled",
+      "description": "Whether Angular browser animations should be included."
+    }
+  }
+}

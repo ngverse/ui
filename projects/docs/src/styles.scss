@@ -1,19 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@use '../../ng-verse/src/lib/globals';
 @import 'highlight.js/styles/github-dark.css';
 @import '@angular/cdk/overlay-prebuilt.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --app-border-color: #cbd5e1;
-  --app-border-radius: 8px;
-  --app-accent: #f1f5f9;
-  --app-accent-foreground: #0f172a;
-  --app-ring-color: #f1f5f9;
-  --app-primary-color: #0284c7;
-  --app-separator-color: #cbd5e1;
-}
 
 html,
 body {
@@ -31,3 +22,4 @@ body {
 .content-height {
   height: calc(100vh - 56px);
 }
+
