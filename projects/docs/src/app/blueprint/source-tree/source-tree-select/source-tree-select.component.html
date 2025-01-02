@@ -1,17 +1,17 @@
 <div class="relative">
   <button
     (click)="open()"
-    class="font-medium flex items-center gap-1 cursor-pointer h-10 rounded-md px-4"
+    class="flex items-center gap-1 cursor-pointer h-10 rounded-md px-4"
   >
     {{ selectedFile()?.name }}
-    <lucide-angular class="flex" size="20" [img]="ChevronDown"></lucide-angular>
+    <lucide-angular [class.opened]="isOpen()" class="flex" size="20" [img]="ChevronDown"></lucide-angular>
   </button>
   @if(isOpen()){
 
   <div
     (outsideClicked)="close()"
     [appOutsideClick]="isOpen()"
-    class="absolute top-12 shadow-lg z-50 bg-white border-slate-400 left-2 rounded-md border border-solid w-[400px] py-2"
+    class="absolute top-12 shadow-lg z-50 w-max max-h-[400px] overflow-y-auto bg-white border-slate-400 left-2 rounded-md border border-solid  py-2"
   >
     @for (folder of sourceTree(); track $index) { @if(!folder.hideName){
     <div class="px-3 flex items-center h-8 gap-1 select-none">
