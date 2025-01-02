@@ -5,9 +5,10 @@
   #triggerElement
   (focus)="open()"
   (click)="open()"
+  (blur)="_onTouched?.()"
   (input)="onInput($event)"
-  [ngModel]="filter()"
-  (ngModelChange)="filter.set($event)"
+  [ngModel]="inputValue()"
+  (ngModelChange)="inputValue.set($event)"
  />
 <ng-template
   cdkConnectedOverlay
@@ -18,13 +19,9 @@
     #optionsContainer
     tabindex="0"
     class="select-options"
-    [style.width.px]="overlayWidth()"
+    [style.width.px]="triggerElement.clientWidth"
     role="listbox"
   >
     <ng-content select="app-autocomplete-item"></ng-content>
   </div>
 </ng-template>
-
-<!--  (backdropClick)="backdropClick($event)"
-  [cdkConnectedOverlayHasBackdrop]="true"
-  [cdkConnectedOverlayBackdropClass]="'cdk-backdrop-transparent'"-->

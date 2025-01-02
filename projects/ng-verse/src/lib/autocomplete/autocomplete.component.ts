@@ -1,7 +1,7 @@
 import {
   afterRender,
   Component,
-  contentChildren,
+  contentChildren, effect,
   ElementRef, inject, InjectionToken, Injector,
   input,
   signal,
@@ -13,7 +13,6 @@ import { AutocompleteItemComponent } from '@ng-verse/autocomplete/autocomplete-i
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { Subject } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type OnChangeFunction = ((_: any) => void) | undefined;
@@ -44,27 +43,19 @@ export const SELECTION_EMITTER = new InjectionToken<Subject<AutocompleteItemComp
   ],
   host: {
     '(keydown)': 'onKeydown($event)',
-    '(document:click)': 'clickout($event)'
+    '(document:click)': 'onClickOutside($event)'
   }
 })
 export class AutocompleteComponent implements ControlValueAccessor {
   label = input.required<string>();
-  requireSelection = input(false, {transform: coerceBooleanProperty});
-  overlayWidth = signal(0);
+  displayWith = input<((value: unknown) => string) | null>(null);
 
   private readonly options = contentChildren(AutocompleteItemComponent);
-  private readonly triggerElement = viewChild('triggerElement', {
-    read: ElementRef,
-  });
-
   private readonly optionsContainer = viewChild<ElementRef<HTMLElement>>('optionsContainer')
-
   private readonly elementRef = inject(ElementRef);
 
   isOpen = signal(false);
-  filter = signal('');
-
-  private selectedFromList = false;
+  inputValue = signal('');
 
   private readonly selectionEmitter = inject(SELECTION_EMITTER, {self: true});
 
@@ -74,43 +65,31 @@ export class AutocompleteComponent implements ControlValueAccessor {
   _onTouched: OnTouchedFunction;
 
   constructor() {
-    this.updateOverlayWidth();
-
     this.selectionEmitter.pipe(takeUntilDestroyed()).subscribe((comp) => {
       this.select(comp);
     });
+
+    effect(() => {
+      if (this.options().length) {
+        this.keyManager.setFirstItemActive();
+      } else {
+        this.keyManager.setActiveItem(-1);
+      }
+    });
+
   }
 
   close() {
     this.isOpen.set(false);
-    this.keyManager?.setActiveItem(-1);
-
-    if (this.requireSelection() && !this.selectedFromList) {
-      this.filter.set('');
-    }
-
-    this.selectedFromList = false;
   }
 
   open() {
     this.isOpen.set(true);
-    if (this.requireSelection() && this.filter().length) {
-      for(const option of this.options()) {
-        if (option.value() === this.filter()) {
-          option.selected.set(true);
-          this.keyManager?.setActiveItem(option);
-          this.selectedFromList = true;
-          break;
-        }
-      }
-    } else {
-      this.keyManager?.setFirstItemActive();
-    }
   }
 
   select(comp: AutocompleteItemComponent) {
-    this.selectedFromList = true;
-    this.filter.set((comp.value() as string) ?? '');
+    const displayWith = this.displayWith();
+    this.inputValue.set(displayWith ? displayWith(comp.value()) : comp.innerText());
     this._onChange?.(comp.value());
     this._onTouched?.();
     this.close();
@@ -118,9 +97,9 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
   writeValue(obj: string | null | undefined) {
     if (obj !== null && obj !== undefined) {
-      this.filter.set(obj);
+      this.inputValue.set(obj);
     } else {
-      this.filter.set('')
+      this.inputValue.set('');
     }
   }
 
@@ -137,37 +116,26 @@ export class AutocompleteComponent implements ControlValueAccessor {
     if (!this.isOpen()) {
       this.open();
     }
-
-    this.selectedFromList = false;
-
     this._onChange?.(value);
   }
 
   onKeydown(event: KeyboardEvent) {
     if (event.key !== 'Enter') {
-      this.keyManager?.onKeydown(event);
+      this.keyManager.onKeydown(event);
       this.scrollToActiveOption();
-    } else if (this.keyManager?.activeItem) {
+    } else if (this.keyManager.activeItem) {
       event.stopPropagation();
       event.preventDefault();
       this.select(this.keyManager.activeItem as AutocompleteItemComponent);
     }
   }
 
-  clickout(event: Event) {
+  onClickOutside(event: Event) {
     if (event.target instanceof HTMLElement && this.isOpen()) {
       if (!this.elementRef.nativeElement.contains(event.target) && !this.optionsContainer()?.nativeElement.contains(event.target)) {
         this.close();
       }
     }
-  }
-
-  private updateOverlayWidth(): void {
-    afterRender({
-      read: () => {
-        this.overlayWidth.set(this.triggerElement()?.nativeElement.clientWidth);
-      }
-    } );
   }
 
   private scrollToActiveOption() {

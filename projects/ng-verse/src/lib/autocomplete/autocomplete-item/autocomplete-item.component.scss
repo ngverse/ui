@@ -10,11 +10,6 @@
   }
 }
 
-:host(.selected) {
-  background: var(--app-primary-color);
-  color: #fff;
-}
-
 :host(.focused) {
   background: var(--app-primary-color);
   color: #fff;

@@ -1,4 +1,4 @@
-import { Component, computed, model, signal } from '@angular/core';
+import { Component, computed, model } from '@angular/core';
 import { AutocompleteComponent } from '@ng-verse/autocomplete/autocomplete.component';
 import { AutocompleteItemComponent } from '@ng-verse/autocomplete/autocomplete-item/autocomplete-item.component';
 import { FormsModule } from '@angular/forms';
