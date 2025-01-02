@@ -7,7 +7,10 @@
     "name": {
       "description": "The name of the component.",
       "type": "string",
-      "positional": true
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
     },
     "path": {
       "type": "string",
