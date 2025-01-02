@@ -1,7 +1,11 @@
 .select-option {
-  @apply cursor-pointer h-8 flex items-center gap-1 my-2 hover:bg-gray-100;
+  @apply block cursor-pointer h-8 flex items-center gap-1 my-2 hover:bg-slate-100 w-full;
 
   &.selected {
     @apply bg-gray-100;
   }
+}
+
+.opened{
+  transform: rotate(180deg);
 }
