@@ -1,13 +1,20 @@
+import { basename, normalize } from '@angular-devkit/core';
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import { getProjectFromWorkspace } from '@angular/cdk/schematics';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { join } from 'path';
 import { Schema } from './schema';
 
-// A function that will generate a Rule to copy the specified component folder
+function getComponentName(inputPath: string): string {
+  // Normalize the input path to handle different OS separators
+  const normalizedPath = normalize(inputPath);
+
+  // Get the last part of the path
+  return basename(normalizedPath);
+}
+
 export function component(options: Schema) {
   return async (host: Tree) => {
-
     const workspace = await getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
 
@@ -17,18 +24,12 @@ export function component(options: Schema) {
     const projectType =
       project.extensions['projectType'] === 'application' ? 'app' : 'lib';
 
-    const rootPath = `${project.sourceRoot}/${projectType}/${
-      options.path ?? '/core/components'
-    }`;
+    const rootPath = normalize(`${project.sourceRoot}/${projectType}`);
 
-    const applicationPath = join(rootPath, options.name);
-
-    const componentsPath = join(
-      'node_modules',
-      'ng-verse',
-      'src',
-      'lib',
-      options.name
+    const applicationPath = normalize(join(rootPath, options.name));
+    const componentName = getComponentName(options.name);
+    const componentsPath = normalize(
+      join('node_modules', 'ng-verse', 'src', 'lib', componentName)
     );
 
     // Copy component files from the library to the application
