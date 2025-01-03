@@ -1,4 +1,11 @@
-import { Component, effect, input, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 import {
   COLLAPSE_ON_LEAVE,
   EXPAND_ON_ENTER_ANIMATION,
@@ -22,6 +29,7 @@ function genAccordionContentId() {
   templateUrl: './accordion-item.component.html',
   styleUrl: './accordion-item.component.scss',
   animations: [EXPAND_ON_ENTER_ANIMATION, COLLAPSE_ON_LEAVE],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccordionItemComponent {
   opened = output();

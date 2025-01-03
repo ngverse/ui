@@ -46,7 +46,7 @@ describe('AccordionItemComponent', () => {
   });
 
   it('should disable the header button when disabled() returns true', () => {
-    spyOn(component, 'disabled').and.returnValue(true);
+    fixture.componentRef.setInput('disabled', true);
     fixture.detectChanges();
     const headerButton = fixture.debugElement.query(
       By.css('.accordion-item-header')
