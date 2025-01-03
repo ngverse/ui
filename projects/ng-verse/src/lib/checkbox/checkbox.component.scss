@@ -4,31 +4,20 @@
   gap: 8px;
 }
 
-.checkbox-button {
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-
 .checked {
   .checkbox-icon {
-    color: #0284c7;
+    color: var(--app-primary-color);
   }
-}
-
-lucide-angular {
-  display: flex;
 }
 
 :host.ng-invalid.ng-touched {
   .checkbox {
-    color: #dc2626;
+    color: var(--app-danger-color);
   }
 }
 
 .disabled {
-  color: #9ca3af;
+  color: var(--app-disabled-color);
 }
 
 .native-checkbox-container {
@@ -46,17 +35,7 @@ lucide-angular {
   top: 0;
 
   &:focus + .checkbox-icon {
-    outline: 1px solid #0284c7; /* Blue outline */
-    outline-offset: 1px;
-    border-radius: 4px; /* Optional for rounded corners */
+    outline: 1px solid var(--app-ring-color);
+    border-radius: 4px;
   }
-}
-
-.checkbox-icon {
-  cursor: pointer;
-  pointer-events: none;
-}
-
-label {
-  cursor: pointer;
 }
