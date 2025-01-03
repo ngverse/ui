@@ -1,15 +1,21 @@
 import { Component, inject } from '@angular/core';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
-import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
-import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
-import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
-import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import {
   ApiInputs,
   ApiInputsComponent,
+  EMPTY_API_INPUT_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
+import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
+import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
+import {
+  SourceTreeBuilder,
+  SourceTreeFolder,
+} from '../../blueprint/source-tree/source-tree-builder';
+import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseAccordionComponent } from '../../examples/accordion/show-case-accordion/show-case-accordion.component';
+
+const ROOT = 'accordion';
 
 @Component({
   selector: 'doc-accordion-page',
@@ -28,25 +34,27 @@ import { ShowCaseAccordionComponent } from '../../examples/accordion/show-case-a
 })
 export class AccordionPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
-  sourceTree = this.sourceTreeBuilder.sourceTree('accordion', (root) => [
-    this.sourceTreeBuilder.folder(
-      root,
-      root,
-      () => [
-        ...this.sourceTreeBuilder.fullComponent('accordion', root),
-        ...this.sourceTreeBuilder.fullComponent('accordion-item', root),
-        this.sourceTreeBuilder.component('accordion-header', root),
-        this.sourceTreeBuilder.component('accordion-body', root),
-        this.sourceTreeBuilder.component('expand-icon', root),
-        this.sourceTreeBuilder.file('accordion-animations', root),
+
+  sourceTree: SourceTreeFolder[] = [
+    {
+      name: ROOT,
+      files: [
+        ...this.sourceTreeBuilder.fullComponent('accordion', ROOT),
+        ...this.sourceTreeBuilder.fullComponent('accordion-item', ROOT),
+        this.sourceTreeBuilder.component('accordion-header', ROOT),
+        this.sourceTreeBuilder.component('accordion-body', ROOT),
+        this.sourceTreeBuilder.component('expand-icon', ROOT),
+        this.sourceTreeBuilder.file('accordion-animations', ROOT),
       ],
-      true
-    ),
-  ]);
+      hideName: true,
+    },
+  ];
 
   inputs: ApiInputs[] = [
     {
-      name: 'accordion',
+      name: 'AccordionComponent',
+      selector: 'app-accordion',
+      type: 'component',
       inputs: [
         {
           name: 'multi',
@@ -57,8 +65,16 @@ export class AccordionPageComponent {
       ],
     },
     {
-      name: 'accordion-item',
+      name: 'AccordionItemComponent',
+      selector: 'app-accordion-item',
+      type: 'component',
       inputs: [
+        {
+          name: 'label',
+          type: 'string',
+          description: 'label of the accordion-item',
+          default: EMPTY_API_INPUT_DEFAULT_VALUE,
+        },
         {
           name: 'disabled',
           type: 'boolean',
@@ -72,6 +88,22 @@ export class AccordionPageComponent {
           default: 'false',
         },
       ],
+    },
+    {
+      name: 'AccordionBodyComponent',
+      selector: 'app-accordion-body',
+      type: 'component',
+      description:
+        'The component is used within an accordion-item to render its ng-content.',
+      inputs: [],
+    },
+    {
+      name: 'AccordionHeaderComponent',
+      selector: 'app-accordion-header',
+      type: 'component',
+      description:
+        'The component can replace the label inside an accordion item and uses ng-content to render its content.',
+      inputs: [],
     },
   ];
 }

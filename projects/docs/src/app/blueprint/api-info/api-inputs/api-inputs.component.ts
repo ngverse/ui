@@ -13,7 +13,10 @@ export const AUTO_GENERATED_API_DEFAULT_VALUE = 'Auto Generated';
 
 export interface ApiInputs {
   name: string;
-  inputs: ApiInputType[];
+  inputs?: ApiInputType[];
+  description?: string;
+  type?: 'component' | 'directive';
+  selector?: string;
 }
 
 @Component({

@@ -29,6 +29,7 @@ export class AccordionItemComponent {
   isOpen = model(false);
   disabled = input<boolean>();
   expanded = input();
+  label = input<string>();
 
   id = input(genId());
   accordionContentId = genAccordionContentId();

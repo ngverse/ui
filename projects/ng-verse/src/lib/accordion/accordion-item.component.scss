@@ -1,7 +1,7 @@
 :host {
   display: block;
   margin-bottom: 12px;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--app-separator-color);
   padding-bottom: 12px;
 }
 
@@ -31,6 +31,12 @@
 .expand-icon {
   transition: transform 150ms ease-in-out;
 }
-.icon-opened {
-  transform: rotate(180deg);
+
+.opened {
+  .expand-icon {
+    transform: rotate(180deg);
+  }
+  .accordion-item-header {
+    font-weight: 500;
+  }
 }
