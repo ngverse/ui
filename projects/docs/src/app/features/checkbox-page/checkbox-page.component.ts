@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-  ApiInputs,
+  ApiInfo,
   ApiInputsComponent,
   AUTO_GENERATED_API_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
@@ -46,7 +46,7 @@ export class CheckboxPageComponent {
     },
   ];
 
-  apiInputs: ApiInputs[] = [
+  apiInputs: ApiInfo[] = [
     {
       name: 'CheckboxComponent',
       selector: 'app-checkbox',

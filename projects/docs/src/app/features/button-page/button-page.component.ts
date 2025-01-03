@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-  ApiInputs,
+  ApiInfo,
   ApiInputsComponent,
   EMPTY_API_INPUT_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
@@ -40,7 +40,7 @@ export class ButtonPageComponent {
     },
   ];
 
-  apiInputs: ApiInputs[] = [
+  apiInputs: ApiInfo[] = [
     {
       name: 'ButtonComponent',
       type:"component",

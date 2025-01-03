@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-  ApiInputs,
+  ApiInfo,
   ApiInputsComponent,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
@@ -40,7 +40,7 @@ export class AlertPageComponent {
     },
   ];
 
-  inputs: ApiInputs[] = [
+  inputs: ApiInfo[] = [
     {
       name: 'AlertComponent',
       selector: 'app-alert',
