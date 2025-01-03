@@ -195,6 +195,13 @@ export const routes: Routes = [
           ).then((d) => d.MultiSelectPageComponent),
       },
       {
+        path: 'svg-icon',
+        loadComponent: () =>
+          import('./features/svg-icon-page/svg-icon-page.component').then(
+            (b) => b.SvgIconPageComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'button',
         pathMatch: 'full',

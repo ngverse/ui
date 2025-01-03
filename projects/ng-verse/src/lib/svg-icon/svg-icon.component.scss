@@ -1,0 +1,12 @@
+app-svg-icon {
+  display: inline-block;
+
+  .icon {
+    display: inherit;
+  }
+
+  .icon, svg {
+    width: inherit;
+    height: inherit;
+  }
+}
