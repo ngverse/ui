@@ -55,11 +55,19 @@ describe('AccordionItemComponent', () => {
   });
 
   it('should render content when open', () => {
-    component.toggle(); // Open
+    component.toggle();
     fixture.detectChanges();
     const bodyContent = fixture.debugElement.query(
       By.css('.accordion-item-body')
     );
     expect(bodyContent).toBeTruthy();
+  });
+  it('should display label when label is passed', () => {
+    fixture.componentRef.setInput('label', 'test');
+    fixture.detectChanges();
+    const headerButton = fixture.debugElement.query(
+      By.css('.accordion-item-header')
+    );
+    expect(headerButton.nativeElement.textContent.trim()).toBe('test');
   });
 });
