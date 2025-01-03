@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-  ApiInputs,
-  ApiInputsComponent,
-  EMPTY_API_INPUT_DEFAULT_VALUE,
+    ApiInfo,
+    ApiInputsComponent,
+    EMPTY_API_INPUT_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
@@ -44,7 +44,7 @@ export class TooltipPageComponent {
     ),
   ]);
 
-  apiInputs: ApiInputs[] = [
+  apiInputs: ApiInfo[] = [
     {
       name: 'toolip',
       inputs: [

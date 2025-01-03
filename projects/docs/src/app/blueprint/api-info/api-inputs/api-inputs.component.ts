@@ -11,7 +11,7 @@ export const EMPTY_API_INPUT_DEFAULT_VALUE = '--';
 
 export const AUTO_GENERATED_API_DEFAULT_VALUE = 'Auto Generated';
 
-export interface ApiInputs {
+export interface ApiInfo {
   name: string;
   inputs?: ApiInputType[];
   description?: string;
@@ -26,5 +26,5 @@ export interface ApiInputs {
   styleUrl: './api-inputs.component.scss',
 })
 export class ApiInputsComponent {
-  apiInputs = input.required<ApiInputs[]>();
+  apiInputs = input.required<ApiInfo[]>();
 }

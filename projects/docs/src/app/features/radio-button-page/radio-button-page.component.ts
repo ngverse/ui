@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-  ApiInputs,
-  ApiInputsComponent,
-  AUTO_GENERATED_API_DEFAULT_VALUE,
-  EMPTY_API_INPUT_DEFAULT_VALUE,
+    ApiInfo,
+    ApiInputsComponent,
+    AUTO_GENERATED_API_DEFAULT_VALUE,
+    EMPTY_API_INPUT_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -48,7 +48,7 @@ export class RadioButtonPageComponent {
     ]),
   ]);
 
-  apiInputs: ApiInputs[] = [
+  apiInputs: ApiInfo[] = [
     {
       name: 'radio-group',
       inputs: [
