@@ -2,20 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   contentChildren,
-  effect,
   inject,
   input,
-  signal,
+  signal
 } from '@angular/core';
-import {
-  AbstractControl,
-  ControlValueAccessor,
-  NG_VALIDATORS,
-  NG_VALUE_ACCESSOR,
-  ValidationErrors,
-  Validator,
-  Validators,
-} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioButtonComponent } from '../radio-button.component';
 import {
   CompareWith,
@@ -42,19 +33,14 @@ function getInputName() {
       useExisting: RadioGroupComponent,
     },
     RadioButtonState,
-    {
-      provide: NG_VALIDATORS,
-      useExisting: RadioGroupComponent,
-      multi: true,
-    },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RadioGroupComponent implements ControlValueAccessor, Validator {
+export class RadioGroupComponent implements ControlValueAccessor {
   radioButtons = contentChildren<RadioButtonComponent>(RadioButtonComponent);
   value = signal<unknown>(undefined);
 
-  compareWith = input<CompareWith>();
+  compareWith = input<CompareWith>((o1, o2) => o1 === o2);
 
   name = input(getInputName());
 
@@ -63,23 +49,8 @@ export class RadioGroupComponent implements ControlValueAccessor, Validator {
   private _state = inject(RadioButtonState);
 
   constructor() {
-    effect(() => {
-      this._state.setName(this.name());
-    });
-
-    effect(() => {
-      const compareWith = this.compareWith();
-      if (compareWith) {
-        this._state.compareWith = compareWith;
-      }
-    });
-  }
-  validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequired = control.hasValidator(Validators.required);
-    return (hasRequired && control.value === undefined) ||
-      control.value === null
-      ? { required: true }
-      : null;
+    this._state.name = this.name;
+    this._state.compareWith = this.compareWith;
   }
 
   writeValue(value: unknown): void {

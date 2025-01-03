@@ -1,4 +1,10 @@
-import { Component, computed, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+} from '@angular/core';
 import { RadioButtonIconComponent } from './radio-button-icon.component';
 import { RadioButtonState } from './radio-button.state';
 
@@ -13,6 +19,7 @@ function genInputId() {
   imports: [RadioButtonIconComponent],
   templateUrl: './radio-button.component.html',
   styleUrl: './radio-button.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioButtonComponent {
   disabled = input<boolean>();
@@ -30,7 +37,7 @@ export class RadioButtonComponent {
   name = this.radioButtonState.name;
 
   selected = computed(() => {
-    return this.radioButtonState.compareWith(
+    return this.radioButtonState.compareWith()(
       this.radioButtonState.getValue(),
       this.value()
     );
