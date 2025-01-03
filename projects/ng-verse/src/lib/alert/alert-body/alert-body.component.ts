@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-alert-body',
   imports: [],
   templateUrl: './alert-body.component.html',
-  styleUrl: './alert-body.component.scss'
+  styleUrl: './alert-body.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AlertBodyComponent {
-
-}
+export class AlertBodyComponent {}
