@@ -2,23 +2,23 @@ import { inject, Injectable } from '@angular/core';
 
 import { Observable, finalize, of, share, tap } from 'rxjs';
 
-import { SvgIconRegistryService } from './svg-icon-registry.service';
+import { IconRegistryService } from './icon-registry.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SvgLoaderService {
+export class IconLoaderService {
   private readonly iconsLoadingByUrl = new Map<string, Observable<string>>();
-  private readonly svgIconRegistryService = inject(SvgIconRegistryService);
+  private readonly iconRegistryService = inject(IconRegistryService);
   private readonly iconsByUrl = new Map<string, string>();
   private readonly http = inject(HttpClient);
 
   loadSvg(name: string): Observable<string | undefined> {
-    const svgIcon = this.svgIconRegistryService.getSvgIcon(name);
+    const svgIcon = this.iconRegistryService.getSvgIcon(name);
 
     if (!svgIcon) {
-      throw new Error(`svgIcon with name ${name} not found. Please use SvgIconRegistryService.addSvgIcon() to add it.`);
+      throw new Error(`Icon with name ${name} not found. Please use IconRegistryService.addSvgIcon() to add it.`);
     }
 
     if (this.iconsByUrl.has(name)) {

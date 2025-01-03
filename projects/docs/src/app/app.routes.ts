@@ -195,10 +195,10 @@ export const routes: Routes = [
           ).then((d) => d.MultiSelectPageComponent),
       },
       {
-        path: 'svg-icon',
+        path: 'icon',
         loadComponent: () =>
-          import('./features/svg-icon-page/svg-icon-page.component').then(
-            (b) => b.SvgIconPageComponent
+          import('./features/icon-page/icon-page.component').then(
+            (b) => b.IconPageComponent
           ),
       },
       {

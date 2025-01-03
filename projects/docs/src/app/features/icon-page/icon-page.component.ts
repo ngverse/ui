@@ -11,31 +11,31 @@ import {
   SourceTreeBuilder,
   SourceTreeFolder,
 } from '../../blueprint/source-tree/source-tree-builder';
+import { ShowCaseIconComponent } from '../../examples/icon/show-case-icon/show-case-icon.component';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import { ShowCaseSvgIconComponent } from '../../examples/svg-icon/show-case-svg-icon/show-case-svg-icon.component';
 
-const ROOT = 'svg-icon';
+const ROOT = 'icon';
 
 @Component({
-  selector: 'doc-svg-icon-page',
+  selector: 'doc-icon-page',
   imports: [
-    ShowCaseSvgIconComponent,
-    CommandInstallationComponent,
-    SourceTreeComponent,
-    ApiInputsComponent,
-    ApiInfoComponent,
     BlueprintPageComponent,
-    ShowCaseComponent
+    ShowCaseIconComponent,
+    ShowCaseComponent,
+    ApiInputsComponent,
+    SourceTreeComponent,
+    CommandInstallationComponent,
+    ApiInfoComponent
   ],
-  templateUrl: './svg-icon-page.component.html',
-  styleUrl: './svg-icon-page.component.scss',
+  templateUrl: './icon-page.component.html',
+  styleUrl: './icon-page.component.scss',
 })
-export class SvgIconPageComponent {
+export class IconPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
   sourceTree: SourceTreeFolder[] = [
     {
       name: ROOT,
-      files: [...this.sourceTreeBuilder.fullComponent('svg-icon', ROOT)],
+      files: [...this.sourceTreeBuilder.fullComponent('icon', ROOT)],
       hideName: true,
     },
   ];
