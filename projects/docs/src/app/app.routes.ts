@@ -195,6 +195,13 @@ export const routes: Routes = [
           ).then((d) => d.MultiSelectPageComponent),
       },
       {
+        path: 'icon',
+        loadComponent: () =>
+          import('./features/icon-page/icon-page.component').then(
+            (b) => b.IconPageComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'button',
         pathMatch: 'full',

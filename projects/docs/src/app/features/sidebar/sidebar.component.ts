@@ -108,6 +108,10 @@ export const SIDEBAR_ROUTES = [
         name: 'Multi Select',
         url: '/doc/multi-select',
       },
+      {
+        name: 'Icon',
+        url: '/doc/icon',
+      },
       // {
       //   name: 'Breadcrumb',
       //   url: '/doc/breadcrumb',
