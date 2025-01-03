@@ -22,6 +22,7 @@ export class AccordionComponent implements OnDestroy {
   constructor() {
     effect(() => {
       if (this.multi()) {
+        this.sub?.unsubscribe();
         return;
       }
       this.sub?.unsubscribe();

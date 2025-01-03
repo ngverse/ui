@@ -1,17 +1,11 @@
 import { Component } from '@angular/core';
 import { AccordionBodyComponent } from '@ng-verse/accordion/accordion-body.component';
-import { AccordionHeaderComponent } from '@ng-verse/accordion/accordion-header.component';
 import { AccordionItemComponent } from '@ng-verse/accordion/accordion-item.component';
 import { AccordionComponent } from '@ng-verse/accordion/accordion.component';
 
 @Component({
   selector: 'doc-show-case-accordion',
-  imports: [
-    AccordionComponent,
-    AccordionItemComponent,
-    AccordionHeaderComponent,
-    AccordionBodyComponent,
-  ],
+  imports: [AccordionComponent, AccordionItemComponent, AccordionBodyComponent],
   templateUrl: './show-case-accordion.component.html',
   styleUrl: './show-case-accordion.component.scss',
 })
