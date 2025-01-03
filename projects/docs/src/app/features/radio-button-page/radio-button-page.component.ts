@@ -2,17 +2,20 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-    ApiEntity,
-    ApiInputsComponent,
-    AUTO_GENERATED_API_DEFAULT_VALUE,
-    EMPTY_API_INPUT_DEFAULT_VALUE,
+  ApiEntity,
+  ApiInputsComponent,
+  AUTO_GENERATED_API_DEFAULT_VALUE,
+  EMPTY_API_INPUT_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
-import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
+import {
+  SourceTreeBuilder,
+  SourceTreeFolder,
+} from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseRadioButtonComponent } from '../../examples/radio-button/show-case-radio-button/show-case-radio-button.component';
-
+const ROOT = 'radio-button';
 @Component({
   selector: 'doc-radio-button-page',
   imports: [
@@ -29,24 +32,26 @@ import { ShowCaseRadioButtonComponent } from '../../examples/radio-button/show-c
 })
 export class RadioButtonPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
-  sourceTree = this.sourceTreeBuilder.sourceTree('radio-button', (root) => [
-    this.sourceTreeBuilder.folder(
-      root,
-      root,
-      () => [
-        ...this.sourceTreeBuilder.fullComponent('radio-button', root),
-        this.sourceTreeBuilder.component('radio-button-icon', root),
-        this.sourceTreeBuilder.file('radio-button.state', root),
+  sourceTree: SourceTreeFolder[] = [
+    {
+      name: 'radio-button',
+      files: [
+        ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
+        this.sourceTreeBuilder.component('radio-button-icon', ROOT),
+        this.sourceTreeBuilder.file('radio-button.state', ROOT),
       ],
-      true
-    ),
-    this.sourceTreeBuilder.folder('radio-group', root, () => [
-      ...this.sourceTreeBuilder.fullComponent(
-        'radio-group',
-        `${root}/radio-group`
-      ),
-    ]),
-  ]);
+      hideName: true,
+    },
+    {
+      name: 'radio-group',
+      files: [
+        ...this.sourceTreeBuilder.fullComponent(
+          'radio-group',
+          `${ROOT}/radio-group`
+        ),
+      ],
+    },
+  ];
 
   apiInputs: ApiEntity[] = [
     {
