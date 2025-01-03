@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-    ApiInfo,
+    ApiEntity,
     ApiInputsComponent,
     AUTO_GENERATED_API_DEFAULT_VALUE,
     EMPTY_API_INPUT_DEFAULT_VALUE,
@@ -48,7 +48,7 @@ export class RadioButtonPageComponent {
     ]),
   ]);
 
-  apiInputs: ApiInfo[] = [
+  apiInputs: ApiEntity[] = [
     {
       name: 'radio-group',
       inputs: [
