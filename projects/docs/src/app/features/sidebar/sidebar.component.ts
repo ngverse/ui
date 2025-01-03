@@ -53,6 +53,10 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/checkbox',
       },
       {
+        name: 'Card',
+        url: '/doc/card',
+      },
+      {
         name: 'Skeleton',
         url: '/doc/skeleton',
       },

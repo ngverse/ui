@@ -62,6 +62,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'card',
+        loadComponent: () =>
+          import('./features/card-page/card-page.component').then(
+            (b) => b.CardPageComponent
+          ),
+      },
+      {
         path: 'otp-input',
         loadComponent: () =>
           import('./features/otp-input-page/otp-input-page.component').then(
