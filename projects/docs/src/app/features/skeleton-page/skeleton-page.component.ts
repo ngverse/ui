@@ -1,9 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
   ApiInfo,
-  ApiInputsComponent,
-} from '../../blueprint/api-info/api-inputs/api-inputs.component';
+  ApiInfoComponent,
+} from '../../blueprint/api-info/api-info.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -23,7 +22,6 @@ const ROOT = 'skeleton';
     ShowCaseSkeletonComponent,
     SourceTreeComponent,
     ApiInfoComponent,
-    ApiInputsComponent,
   ],
   templateUrl: './skeleton-page.component.html',
   styleUrl: './skeleton-page.component.scss',
@@ -39,13 +37,15 @@ export class SkeletonPageComponent {
     },
   ];
 
-  apiInputs: ApiInfo[] = [
-    {
-      name: 'SkeletonComponent',
-      type: 'component',
-      selector: 'app-skeleton',
-      description: `The Skeleton component is an placeholder used to indicate loading content.
-      It can be styled with CSS to customize its size, shape.`,
-    },
-  ];
+  apiInfo: ApiInfo = {
+    entities: [
+      {
+        name: 'SkeletonComponent',
+        type: 'component',
+        selector: 'app-skeleton',
+      },
+    ],
+    description: `The Skeleton component is an placeholder used to indicate loading content.
+    It can be styled with CSS to customize its size, shape.`,
+  };
 }

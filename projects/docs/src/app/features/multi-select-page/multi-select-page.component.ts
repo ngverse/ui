@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-    ApiInfo,
+    ApiEntity,
     ApiInputsComponent,
     EMPTY_API_INPUT_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
@@ -38,7 +38,7 @@ export class MultiSelectPageComponent {
     ),
   ]);
 
-  apiInputs: ApiInfo[] = [
+  apiInputs: ApiEntity[] = [
     {
       name: 'button',
       inputs: [
