@@ -104,8 +104,7 @@ class RadioGroupTestComponent {
       price: 100,
     },
   ];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  formControl = new FormControl<any>(null, Validators.required);
+  formControl = new FormControl<unknown>(null, Validators.required);
 
   compare(o1: { price: number }, o2: { price: number }) {
     return o1?.price === o2.price;
