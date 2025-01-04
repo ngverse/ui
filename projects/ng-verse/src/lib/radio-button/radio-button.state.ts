@@ -17,7 +17,7 @@ export class RadioButtonState {
   registerOnChange: OnChangeFunction;
   validatorChangeFn: ValidatorChangeFunction;
   onTouched: OnTouchedFunction;
-  compareWith: CompareWith = (o1, o2) => o1 === o2;
+  compareWith = signal<CompareWith>((o1, o2) => o1 === o2);
 
   add(radioButton: RadioButtonComponent) {
     this._radioButtons.add(radioButton);
@@ -26,19 +26,18 @@ export class RadioButtonState {
     this._radioButtons.delete(radioButton);
   }
 
-  setValue(value: unknown) {
+  selected(value: unknown) {
     this._value.set(value);
     if (this.registerOnChange) {
       this.registerOnChange(this._value());
+    }
+    if (this.onTouched) {
+      this.onTouched();
     }
   }
 
   writeValue(value: unknown) {
     this._value.set(value);
-  }
-
-  setName(name: string) {
-    this.name.set(name);
   }
 
   getValue() {
