@@ -1,10 +1,15 @@
 <doc-blueprint-page
-  [subTitle]="
-    'Button component wraps the native HTML button element and adds additional functionality'
-  "
-  [label]="'Button'"
+  subTitle="Displays an indicator showing the progress of a task"
+  label="Progress Bar"
 >
-  <doc-show-case name="button">
+  <doc-show-case name="progress-bar">
     <doc-show-case-progress-bar></doc-show-case-progress-bar>
   </doc-show-case>
+  <doc-command-installation type="component" name="progress-bar">
+  </doc-command-installation>
+  <doc-source-tree
+    [sourceTree]="sourceTree"
+    name="progress-bar"
+  ></doc-source-tree>
+  <doc-api-info [apiInfo]="apiInfo"></doc-api-info>
 </doc-blueprint-page>
