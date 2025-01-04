@@ -62,6 +62,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'badge',
+        loadComponent: () =>
+          import('./features/badge-page/badge-page.component').then(
+            (b) => b.BadgePageComponent
+          ),
+      },
+      {
         path: 'otp-input',
         loadComponent: () =>
           import('./features/otp-input-page/otp-input-page.component').then(

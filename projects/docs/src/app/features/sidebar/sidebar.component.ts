@@ -49,6 +49,10 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/button',
       },
       {
+        name: 'Badge',
+        url: '/doc/badge',
+      },
+      {
         name: 'Checkbox',
         url: '/doc/checkbox',
       },
