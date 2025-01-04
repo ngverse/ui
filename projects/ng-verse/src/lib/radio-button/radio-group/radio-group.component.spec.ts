@@ -66,6 +66,14 @@ describe('RadioGroupComponent', () => {
     fixture.detectChanges();
     expect(component.formControl.value).toBe(component.values[1]);
   });
+  it('change on radio-button should mark the form control as touched', () => {
+    const radioButtons = fixture.nativeElement.querySelectorAll(
+      'input[type="radio"]'
+    ) as HTMLInputElement[];
+    radioButtons[1].dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(component.formControl.touched).toBeTrue();
+  });
 });
 
 @Component({
