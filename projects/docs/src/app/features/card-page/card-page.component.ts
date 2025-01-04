@@ -36,16 +36,4 @@ export class CardPageComponent {
       hideName: true,
     },
   ];
-
-  apiInfo: ApiInfo = {
-    entities: [
-      {
-        name: 'CardComponent',
-        type: 'component',
-        selector: 'app-card',
-      },
-    ],
-    description: `The Card component is an placeholder used to indicate loading content.
-    It can be styled with CSS to customize its size, shape.`,
-  };
 }
