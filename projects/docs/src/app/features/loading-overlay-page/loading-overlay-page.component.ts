@@ -43,6 +43,8 @@ export class LoadingOverlayPageComponent {
     entities: [
       {
         name: 'loading-overlay',
+        type: 'component',
+        selector: 'app-loading-overlay',
         inputs: [
           {
             name: 'loading',
