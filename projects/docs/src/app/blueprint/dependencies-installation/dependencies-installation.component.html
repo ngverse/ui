@@ -1,0 +1,8 @@
+<h4 class="m-0 text-xl font-normal">Dependencies</h4>
+<p>
+  <ng-content></ng-content>
+</p>
+@for (dep of deps(); track $index) {
+<doc-source-code [code]="getCode(dep)" language="bash"></doc-source-code>
+
+}
