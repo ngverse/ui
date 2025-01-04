@@ -34,7 +34,7 @@ export class ShowCaseRadioButtonComponent {
       price: 100,
     },
   ];
-  formControl = new FormControl({ ...this.values[0] }, Validators.required);
+  formControl = new FormControl(null, Validators.required);
 
   compare(o1: { price: number }, o2: { price: number }) {
     return o1?.price === o2.price;

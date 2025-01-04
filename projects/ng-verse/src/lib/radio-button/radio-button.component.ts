@@ -3,7 +3,7 @@ import {
   Component,
   computed,
   inject,
-  input,
+  input
 } from '@angular/core';
 import { RadioButtonIconComponent } from './radio-button-icon.component';
 import { RadioButtonState } from './radio-button.state';
@@ -24,9 +24,9 @@ function genInputId() {
 export class RadioButtonComponent {
   disabled = input<boolean>();
 
-  radioButtonDisabled = computed(
-    () => this.disabled() || this.radioButtonState.disabled()
-  );
+  radioButtonDisabled = computed(() => {
+    return this.disabled() || this.radioButtonState.disabled();
+  });
 
   radioButtonState = inject(RadioButtonState);
 
@@ -35,15 +35,13 @@ export class RadioButtonComponent {
   id = input(genInputId());
 
   name = this.radioButtonState.name;
+  compareWith = this.radioButtonState.compareWith;
 
   selected = computed(() => {
-    return this.radioButtonState.compareWith()(
-      this.radioButtonState.getValue(),
-      this.value()
-    );
+    return this.compareWith()(this.radioButtonState.getValue(), this.value());
   });
 
   toggle() {
-    this.radioButtonState.setValue(this.value());
+    this.radioButtonState.selected(this.value());
   }
 }

@@ -2,9 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   contentChildren,
+  effect,
   inject,
   input,
-  signal
+  signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioButtonComponent } from '../radio-button.component';
@@ -40,17 +41,24 @@ export class RadioGroupComponent implements ControlValueAccessor {
   radioButtons = contentChildren<RadioButtonComponent>(RadioButtonComponent);
   value = signal<unknown>(undefined);
 
-  compareWith = input<CompareWith>((o1, o2) => o1 === o2);
+  compareWith = input<CompareWith>();
 
   name = input(getInputName());
-
-  direction = input<'horizontal' | 'vertical'>('horizontal');
+  vertical = input<boolean>(false);
 
   private _state = inject(RadioButtonState);
 
   constructor() {
-    this._state.name = this.name;
-    this._state.compareWith = this.compareWith;
+    effect(() => {
+      this._state.name.set(this.name());
+    });
+
+    effect(() => {
+      const compareWith = this.compareWith();
+      if (compareWith) {
+        this._state.compareWith.set(compareWith);
+      }
+    });
   }
 
   writeValue(value: unknown): void {
