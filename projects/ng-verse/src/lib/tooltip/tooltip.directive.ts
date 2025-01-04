@@ -90,7 +90,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
     );
   }
 
-  protected getOverlayPosition(): ConnectedPosition {
+  getOverlayPosition(): ConnectedPosition {
     const offset = 6;
     const tooltipPosition = this.tooltipPosition();
     switch (tooltipPosition) {

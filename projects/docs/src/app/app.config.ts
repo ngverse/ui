@@ -1,15 +1,15 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
-import { routes } from './app.routes';
-import { provideHighlightOptions } from 'ngx-highlightjs';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideHighlightOptions } from 'ngx-highlightjs';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes, withInMemoryScrolling()),
     provideHttpClient(),
     provideAnimations(),
     provideHighlightOptions({

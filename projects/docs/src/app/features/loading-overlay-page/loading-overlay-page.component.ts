@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-  ApiInputs,
-  ApiInputsComponent,
+    ApiEntity,
+    ApiInputsComponent,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
@@ -36,7 +36,7 @@ export class LoadingOverlayPageComponent {
     ),
   ]);
 
-  apiInputs: ApiInputs[] = [
+  apiInputs: ApiEntity[] = [
     {
       name: 'loading-overlay',
       inputs: [

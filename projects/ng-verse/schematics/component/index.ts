@@ -1,66 +1,46 @@
+import { basename, normalize } from '@angular-devkit/core';
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
+import { getProjectFromWorkspace } from '@angular/cdk/schematics';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { join } from 'path';
-import { virtualFs, workspaces } from '@angular-devkit/core';
 import { Schema } from './schema';
 
-function createHost(tree: Tree): workspaces.WorkspaceHost {
-  return {
-    async readFile(path: string): Promise<string> {
-      const data = tree.read(path);
-      if (!data) {
-        throw new SchematicsException('File not found.');
-      }
-      return virtualFs.fileBufferToString(data);
-    },
-    async writeFile(path: string, data: string): Promise<void> {
-      return tree.overwrite(path, data);
-    },
-    async isDirectory(path: string): Promise<boolean> {
-      return !tree.exists(path) && tree.getDir(path).subfiles.length > 0;
-    },
-    async isFile(path: string): Promise<boolean> {
-      return tree.exists(path);
-    },
-  };
+function getComponentName(inputPath: string): string {
+  // Normalize the input path to handle different OS separators
+  const normalizedPath = normalize(inputPath);
+
+  // Get the last part of the path
+  return basename(normalizedPath);
 }
 
-// A function that will generate a Rule to copy the specified component folder
 export function component(options: Schema) {
-  return async (tree: Tree) => {
-    const host = createHost(tree);
-    const { workspace } = await workspaces.readWorkspace('/', host);
+  return async (host: Tree) => {
+    const workspace = await getWorkspace(host);
+    const project = getProjectFromWorkspace(workspace, options.project);
 
-    const project =
-      options.project != null ? workspace.projects.get(options.project) : null;
     if (!project) {
       throw new SchematicsException(`Invalid project name: ${options.project}`);
     }
     const projectType =
       project.extensions['projectType'] === 'application' ? 'app' : 'lib';
 
-    const rootPath = `${project.sourceRoot}/${projectType}/${
-      options.path ?? '/core/components'
-    }`;
+    const rootPath = normalize(`${project.sourceRoot}/${projectType}`);
 
-    const applicationPath = join(rootPath, options.name);
-
-    const componentsPath = join(
-      'node_modules',
-      'ng-verse',
-      'src',
-      'lib',
-      options.name
+    const applicationPath = normalize(join(rootPath, options.name));
+    const componentName = getComponentName(options.name);
+    const componentsPath = normalize(
+      join('node_modules', 'ng-verse', 'src', 'lib', componentName)
     );
 
     // Copy component files from the library to the application
-    tree.getDir(componentsPath).visit((filePath) => {
-      const content = tree.read(filePath);
+    host.getDir(componentsPath).visit((filePath) => {
+      const content = host.read(filePath);
       if (content) {
         const targetPath = filePath.replace(componentsPath, applicationPath);
-        tree.create(targetPath, content);
+        host.create(targetPath, content);
       }
     });
 
-    return tree;
+    return host;
   };
 }

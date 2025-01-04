@@ -3,3 +3,9 @@
 </h5>
 <ng-content select="doc-api-description"></ng-content>
 <ng-content select="doc-api-inputs"></ng-content>
+@if (apiInfo();as apiInfo) {
+
+<p>{{ apiInfo.description }}</p>
+
+<doc-api-inputs [apiInputs]="apiInfo.entities"></doc-api-inputs>
+}

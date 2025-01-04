@@ -1,17 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
-import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
-import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
-import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import {
-  ApiInputs,
+  ApiEntity,
   ApiInputsComponent,
   EMPTY_API_INPUT_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
+import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
+import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
+import {
+  SourceTreeBuilder,
+  SourceTreeFolder,
+} from '../../blueprint/source-tree/source-tree-builder';
+import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseButtonComponent } from '../../examples/button/show-case-button/show-case-button.component';
-
+const ROOT = 'button';
 @Component({
   selector: 'doc-button-page',
   imports: [
@@ -29,31 +32,30 @@ import { ShowCaseButtonComponent } from '../../examples/button/show-case-button/
 })
 export class ButtonPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
-  sourceTree = this.sourceTreeBuilder.sourceTree('button', (root) => [
-    this.sourceTreeBuilder.folder(
-      root,
-      root,
-      () => this.sourceTreeBuilder.fullComponent('button', root),
-      true
-    ),
-  ]);
-
-  apiInputs: ApiInputs[] = [
+  sourceTree: SourceTreeFolder[] = [
     {
-      name: 'button',
+      name: ROOT,
+      files: this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
+      hideName: true,
+    },
+  ];
+
+  apiInputs: ApiEntity[] = [
+    {
+      name: 'ButtonComponent',
+      type:"component",
+      selector:"app-button",
       inputs: [
         {
           name: 'color',
           type: 'primary | secondary | danger | success',
-          description:
-            "Defines the button's color type",
+          description: "Defines the button's color type",
           default: 'primary',
         },
         {
           name: 'size',
           type: 'sm | md | lg',
-          description:
-            'changes the size of the button',
+          description: 'changes the size of the button',
           default: 'md',
         },
         {

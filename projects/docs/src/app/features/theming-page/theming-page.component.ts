@@ -1,11 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { BlogPageComponent } from '../../blog/blog-page/blog-page.component';
+import { SourceCodeComponent } from '../../blueprint/source-code/source-code.component';
+import { FileService } from '../../services/file.service';
 
 @Component({
   selector: 'doc-theming-page',
-  imports: [],
   templateUrl: './theming-page.component.html',
-  styleUrl: './theming-page.component.scss'
+  styleUrl: './theming-page.component.scss',
+  imports: [BlogPageComponent, SourceCodeComponent],
 })
-export class ThemingPageComponent {
+export class ThemingPageComponent implements OnInit {
+  globalsCode = signal('')
+  fileService = inject(FileService);
 
+  ngOnInit(): void {
+    this.fileService.getFile('ng-verse/globals.scss').subscribe((data) => {
+      this.globalsCode.set(data);
+    });
+  }
 }

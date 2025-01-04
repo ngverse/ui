@@ -7,8 +7,10 @@
       [id]="id()"
       type="radio"
       [name]="name()"
+      [checked]="selected()"
     />
     <app-radio-button-icon
+      [class.checked]="selected()"
       class="radio-button-icon"
       [checked]="selected()"
     ></app-radio-button-icon>

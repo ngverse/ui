@@ -30,6 +30,10 @@ export const routes: Routes = [
           ).then((i) => i.InstallationPageComponent),
       },
       {
+        path:"usage",
+        loadComponent:()=>import("./features/usage-page/usage-page.component").then((u)=>u.UsagePageComponent)
+      },
+      {
         path: 'theming',
         loadComponent: () =>
           import('./features/theming-page/theming-page.component').then(
@@ -191,6 +195,13 @@ export const routes: Routes = [
           ).then((d) => d.MultiSelectPageComponent),
       },
       {
+        path: 'icon',
+        loadComponent: () =>
+          import('./features/icon-page/icon-page.component').then(
+            (b) => b.IconPageComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'button',
         pathMatch: 'full',
@@ -199,7 +210,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'doc/introduction',
     pathMatch: 'full',
   },
 ];

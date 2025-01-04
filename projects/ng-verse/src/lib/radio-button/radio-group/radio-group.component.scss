@@ -8,3 +8,7 @@
     align-items: flex-start;
   }
 }
+
+:host.ng-invalid.ng-touched {
+  color: var(--app-danger-color);
+}

@@ -1,10 +1,20 @@
 import { Component, inject } from '@angular/core';
+import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
+import {
+  ApiEntity,
+  ApiInputsComponent,
+} from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
-import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
-import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
+import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
+import {
+  SourceTreeBuilder,
+  SourceTreeFolder,
+} from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseAlertComponent } from '../../examples/alert/show-case-alert/show-case-alert.component';
+
+const ROOT = 'alert';
 
 @Component({
   selector: 'doc-alert-page',
@@ -14,18 +24,47 @@ import { ShowCaseAlertComponent } from '../../examples/alert/show-case-alert/sho
     ShowCaseAlertComponent,
     CommandInstallationComponent,
     SourceTreeComponent,
+    ApiInfoComponent,
+    ApiInputsComponent,
   ],
   templateUrl: './alert-page.component.html',
   styleUrl: './alert-page.component.scss',
 })
 export class AlertPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
-  sourceTree = this.sourceTreeBuilder.sourceTree('alert', (root) => [
-    this.sourceTreeBuilder.folder(
-      root,
-      root,
-      () => this.sourceTreeBuilder.fullComponent('alert', root),
-      true
-    ),
-  ]);
+  sourceTree: SourceTreeFolder[] = [
+    {
+      name: ROOT,
+      files: [...this.sourceTreeBuilder.fullComponent('alert', ROOT)],
+      hideName: true,
+    },
+  ];
+
+  inputs: ApiEntity[] = [
+    {
+      name: 'AlertComponent',
+      selector: 'app-alert',
+      type: 'component',
+      inputs: [
+        {
+          name: 'type',
+          type: 'default | success | danger | warning',
+          default: 'default',
+          description: 'defines the type of alert',
+        },
+      ],
+    },
+    {
+      name: 'AlertHeaderComponent',
+      selector: 'app-alert-header',
+      type: 'component',
+      description: 'Renders the header of an alert component.',
+    },
+    {
+      name: 'AlertBodyComponent',
+      selector: 'app-alert-body',
+      type: 'component',
+      description: 'Renders the body of an alert component.',
+    },
+  ];
 }
