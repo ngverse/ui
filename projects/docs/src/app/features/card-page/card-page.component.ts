@@ -13,6 +13,9 @@ import {
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseCardComponent } from '../../examples/card/show-case-card/show-case-card.component';
 const ROOT = 'card';
+
+function subFolders(name: string) {}
+
 @Component({
   selector: 'doc-card-page',
   imports: [
@@ -29,12 +32,24 @@ const ROOT = 'card';
 export class CardPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
 
+  subFolders(name: string): SourceTreeFolder {
+    return {
+      name: name,
+      files: [...this.sourceTreeBuilder.fullComponent(name, `${ROOT}/${name}`)],
+    };
+  }
+
   sourceTree: SourceTreeFolder[] = [
     {
-      name: 'card',
+      name: ROOT,
       files: [...this.sourceTreeBuilder.fullComponent(ROOT, ROOT)],
       hideName: true,
     },
+    this.subFolders('card-header'),
+    this.subFolders('card-title'),
+    this.subFolders('card-description'),
+    this.subFolders('card-content'),
+    this.subFolders('card-footer'),
   ];
 
   apiInfo: ApiInfo = {
@@ -43,9 +58,38 @@ export class CardPageComponent {
         name: 'CardComponent',
         type: 'component',
         selector: 'app-card',
+        description: 'The main component of card',
+      },
+      {
+        name: 'CardHeaderComponent',
+        type: 'component',
+        selector: 'app-card-header',
+        description: 'Renders the header of a card component.',
+      },
+      {
+        name: 'CardTitleComponent',
+        type: 'component',
+        selector: 'app-card-title',
+        description: 'Renders the title of a card component.',
+      },
+      {
+        name: 'CardDescriptionComponent',
+        type: 'component',
+        selector: 'app-card-description',
+        description: 'Renders the description of a card component.',
+      },
+      {
+        name: 'CardContentComponent',
+        type: 'component',
+        selector: 'app-card-content',
+        description: 'Renders the content of a card component.',
+      },
+      {
+        name: 'CardFooterComponent',
+        type: 'component',
+        selector: 'app-card-footer',
+        description: 'Renders the footer of a card component.',
       },
     ],
-    description: `The Card component is an placeholder used to indicate loading content.
-    It can be styled with CSS to customize its size, shape.`,
   };
 }

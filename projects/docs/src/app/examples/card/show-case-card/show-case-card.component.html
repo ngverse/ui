@@ -3,11 +3,11 @@
     <app-card-title>Card Title</app-card-title>
     <app-card-description>Card Description</app-card-description>
   </app-card-header>
-  <app-card-content class="flex flex-col gap-y-2">
+  <app-card-content class="card-content">
     <app-input [(ngModel)]="username" placeholder="Username" />
     <app-input [(ngModel)]="password" placeholder="Password" />
   </app-card-content>
-  <app-card-footer class="flex justify-between">
+  <app-card-footer class="card-footer">
     <app-button variant="outline" color="primary" size="sm">Back</app-button>
     <app-button color="primary" size="sm">Login</app-button>
   </app-card-footer>
