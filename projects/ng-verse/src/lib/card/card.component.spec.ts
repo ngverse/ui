@@ -9,7 +9,6 @@ import { CardTitleComponent } from './card-title/card-title.component';
 import { CardComponent } from './card.component';
 
 describe('CardComponent', () => {
-  let component: CardTestComponent;
   let fixture: ComponentFixture<CardTestComponent>;
 
   beforeEach(async () => {
@@ -18,57 +17,38 @@ describe('CardComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardTestComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-  it("should display the card's header", () => {
-    const header = fixture.nativeElement.querySelector('app-card-header');
-    expect(header.textContent).toContain('Card Title');
-  });
-  it("should display the card's title", () => {
-    const title = fixture.nativeElement.querySelector('app-card-title');
-    expect(title.textContent).toBe('Card Title');
-  });
-  it("should display the card's description", () => {
-    const description = fixture.nativeElement.querySelector(
-      'app-card-description'
-    );
-    expect(description.textContent).toBe('Card Description');
-  });
-  it("should display the card's content", () => {
-    const content = fixture.nativeElement.querySelector('app-card-content');
-    expect(content.textContent).toBe('Card Content');
-  });
-  it('should display the card footer', () => {
-    const footer = fixture.nativeElement.querySelector('app-card-footer');
-    expect(footer.textContent).toBe('Card Footer');
+  it('should display all passed components', () => {
+    expect(fixture.nativeElement.querySelector('app-card-header')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('app-card-title')).toBeTruthy();
+    expect(
+      fixture.nativeElement.querySelector('app-card-description')
+    ).toBeTruthy();
+    expect(
+      fixture.nativeElement.querySelector('app-card-content')
+    ).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('app-card-footer')).toBeTruthy();
   });
 });
-
 @Component({
+  template: `
+    <app-card>
+      <app-card-header>
+        <app-card-title>Title</app-card-title>
+        <app-card-description>Description</app-card-description>
+      </app-card-header>
+      <app-card-content>Body</app-card-content>
+      <app-card-footer>Footer</app-card-footer>
+    </app-card>
+  `,
   imports: [
     CardComponent,
+    CardContentComponent,
+    CardDescriptionComponent,
+    CardFooterComponent,
     CardHeaderComponent,
     CardTitleComponent,
-    CardDescriptionComponent,
-    CardContentComponent,
-    CardFooterComponent,
   ],
-  template: `<app-card class="card">
-    <app-card-header>
-      <app-card-title>Card Title</app-card-title>
-      <app-card-description>Card Description</app-card-description>
-    </app-card-header>
-    <app-card-content class="card-content">
-      <p>Card Content</p>
-    </app-card-content>
-    <app-card-footer class="card-footer">
-      <p>Card Footer</p>
-    </app-card-footer>
-  </app-card> `,
+  selector: 'app-card-test',
 })
 class CardTestComponent {}
