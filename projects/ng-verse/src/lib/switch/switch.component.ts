@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  input,
   model,
   signal,
 } from '@angular/core';
@@ -14,8 +15,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type OnChangeFunction = ((_: any) => void) | undefined;
+type OnChangeFunction = ((_: unknown) => void) | undefined;
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -54,6 +54,10 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
 
   disabled = model<boolean>(false);
 
+  required = input<boolean>(false);
+
+  reverse = input<boolean>(false);
+
   id = genId();
 
   writeValue(obj: boolean | undefined | null): void {
@@ -86,7 +90,10 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
   }
 
   validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequired = control.hasValidator(Validators.required);
-    return hasRequired && control.value !== true ? { required: true } : null;
+    const hasRequiredValidator =
+      this.required() || control.hasValidator(Validators.required);
+    return hasRequiredValidator && control.value !== true
+      ? { required: true }
+      : null;
   }
 }
