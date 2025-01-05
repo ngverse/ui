@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { OptionComponent } from '@ng-verse/select/option/option.component';
 import { SelectComponent } from '@ng-verse/select/select.component';
 
 @Component({
   selector: 'doc-show-case-select',
-  imports: [SelectComponent, OptionComponent, ReactiveFormsModule],
+  imports: [SelectComponent, ReactiveFormsModule],
   templateUrl: './show-case-select.component.html',
   styleUrl: './show-case-select.component.scss',
 })
 export class ShowCaseSelectComponent {
-  options = ['one', 'two', 'three'];
+  options = new Array(100).fill(1).map((i) => Math.random());
 
-  formControl = new FormControl(null, Validators.required);
+  formControl = new FormControl(this.options[1], Validators.required);
 }

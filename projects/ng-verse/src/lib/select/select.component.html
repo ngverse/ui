@@ -2,10 +2,10 @@
   class="select-button"
   cdkOverlayOrigin
   #trigger="cdkOverlayOrigin"
-  #triggerElement
-  (click)="toggle()"
+  #selectButton
+  (click)="open()"
 >
-  <span>{{ selectedOptionLabel() || label() }}</span>
+  <span>{{ selectedOptionLabel() || placeholder() }}</span>
   <app-select-icon
     class="select-button-icon"
     [class.opened]="isOpen()"
@@ -22,12 +22,17 @@
   (detach)="close()"
 >
   <ul
-    #optionsContainer
     class="select-options"
-    (keydown)="onKeydown($event)"
-    [style.width.px]="overlayWidth()"
-    tabindex="0"
+    [style.width.px]="selectButton.clientWidth"
+    cdkListbox
+    [cdkListboxCompareWith]="compareWith()"
+    [cdkListboxValue]="listboxValue()"
+    (cdkListboxValueChange)="listboxValueChange($event)"
   >
-    <ng-content select="app-option"></ng-content>
+    @for (option of options(); track $index) {
+    <li [cdkOption]="getOptionValue(option)">
+      {{ getOptionLabel(option) }}
+    </li>
+    }
   </ul>
 </ng-template>

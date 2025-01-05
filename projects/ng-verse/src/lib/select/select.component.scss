@@ -3,9 +3,14 @@
   align-items: center;
   gap: 10px;
   background: transparent;
-  border: 1px solid var(--app-border-color);
-  border-radius: var(--app-border-radius);
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
   padding: 4px 10px;
+  &:focus {
+    outline: 1px solid var(--app-ring-color);
+  }
   .select-button-icon {
     transition: transform 0.15s ease-in-out;
     display: flex;
@@ -26,4 +31,10 @@
   list-style: none;
   padding-left: 0;
   outline-color: var(--app-ring-color);
+  overflow: auto;
+}
+
+.selected,
+.cdk-option-active {
+  border: 1px solid black;
 }
