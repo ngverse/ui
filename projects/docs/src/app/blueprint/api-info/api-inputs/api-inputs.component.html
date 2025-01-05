@@ -1,5 +1,7 @@
 @for (apiInput of apiInputs(); track $index) {
-<h4 class="mb-4">{{ apiInput.name }} ({{ apiInput.type }}) ({{apiInput.selector}})</h4>
+<h4 class="mb-4">
+  {{ apiInput.name }} ({{ apiInput.type }}) ({{ apiInput.selector }})
+</h4>
 @if(apiInput.description){
 <p class="mb-4">{{ apiInput.description }}</p>
 } @if(apiInput.inputs?.length){
@@ -37,4 +39,14 @@
   </table>
 </div>
 
-} }
+} @if(apiInput.methods?.length){
+<h4 class="mb-4">Methods</h4>
+@for (method of apiInput.methods; track $index) {
+<h5 class="mb-4">{{ method.name }}</h5>
+@if(method.description){
+<p class="mb-4">{{ method.description }}</p>
+} @for(param of method.params;track $index){
+<p class="mb-4">
+  <strong>{{ param.name }}</strong> ({{ param.type }}) - {{ param.description }}
+</p>
+} } }}

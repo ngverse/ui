@@ -57,6 +57,10 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/checkbox',
       },
       {
+        name: 'Card',
+        url: '/doc/card',
+      },
+      {
         name: 'Skeleton',
         url: '/doc/skeleton',
       },
@@ -87,6 +91,10 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Loading Overlay',
         url: '/doc/loading-overlay',
+      },
+      {
+        name: 'Progress Bar',
+        url: '/doc/progress-bar',
       },
       {
         name: 'Dialog',
@@ -124,10 +132,7 @@ export const SIDEBAR_ROUTES = [
       //   name: 'OTP Input',
       //   url: '/doc/otp-input',
       // },
-      // {
-      //   name: 'Progress Bar',
-      //   url: '/doc/progress-bar',
-      // },
+
       // {
       //   name: 'Toast',
       //   url: '/doc/toast',
@@ -168,7 +173,7 @@ export const SIDEBAR_ROUTES = [
   },
 ];
 
-export function getAllSidebarLinks(){
+export function getAllSidebarLinks() {
   return SIDEBAR_ROUTES.flatMap((group) => group.children);
 }
 

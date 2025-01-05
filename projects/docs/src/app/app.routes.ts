@@ -30,8 +30,11 @@ export const routes: Routes = [
           ).then((i) => i.InstallationPageComponent),
       },
       {
-        path:"usage",
-        loadComponent:()=>import("./features/usage-page/usage-page.component").then((u)=>u.UsagePageComponent)
+        path: 'usage',
+        loadComponent: () =>
+          import('./features/usage-page/usage-page.component').then(
+            (u) => u.UsagePageComponent
+          ),
       },
       {
         path: 'theming',
@@ -66,6 +69,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/badge-page/badge-page.component').then(
             (b) => b.BadgePageComponent
+          ),
+      },
+      {
+        path: 'card',
+        loadComponent: () =>
+          import('./features/card-page/card-page.component').then(
+            (b) => b.CardPageComponent
           ),
       },
       {
