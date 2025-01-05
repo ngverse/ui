@@ -14,7 +14,6 @@ export class ShowCaseToastComponent {
   showToast() {
     this.toastService.open({
       message: 'Current time is: ' + new Date().toLocaleTimeString(),
-      position: 'right_bottom',
     });
   }
 }

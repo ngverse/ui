@@ -2,7 +2,6 @@ import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { inject, Injectable } from '@angular/core';
 import { ToastComponent } from './toast.component';
-import { Subject, take } from 'rxjs';
 
 export type TOAST_POSITION =
   | 'top_left'
@@ -61,7 +60,7 @@ export class ToastService {
       showCloseIcon: options.showCloseIcon ?? true,
       message: options.message,
       action: options.action || 'default',
-      position: options.position ?? 'right_bottom',
+      position: options.position ?? 'bottom_center',
     };
   }
 
@@ -80,20 +79,13 @@ export class ToastService {
     instance.action.set(genOptions.action);
     instance.showCloseIcon.set(genOptions.showCloseIcon);
     instance.tooltipPosition.set(genOptions.position);
-
     if (genOptions.autoClose) {
       this.timeoutId = setTimeout(() => {
         this.close();
       }, genOptions.closeDelay);
     }
-    instance.close.subscribe(() => {
-      this.close();
-      closed$.next();
-    });
 
-    const closed$ = new Subject<void>();
-
-    return closed$.pipe(take(1));
+    return instance.close;
   }
 
   private close() {
