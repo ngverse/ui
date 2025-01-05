@@ -2,6 +2,10 @@ a {
   text-decoration: none;
 }
 
+:host {
+  background: white;
+}
+
 .selected {
   @apply bg-slate-100 font-medium;
 }
