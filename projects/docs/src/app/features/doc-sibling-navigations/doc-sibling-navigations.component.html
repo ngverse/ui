@@ -1,10 +1,10 @@
-<div class="flex pt-20 gap-3 lg:gap-6">
+<div class="flex pt-20 gap-2.5 lg:gap-6">
   <button
     class="sibling-navigation"
     [class.invisible]="!prevRoute()"
     [routerLink]="[prevRoute()?.url]"
   >
-    <lucide-angular [img]="ArrowLeft"></lucide-angular>
+    <lucide-icon [img]="ArrowLeft" class="w-5 lg:w-[24px]"></lucide-icon>
     {{ prevRoute()?.name }}
   </button>
   <button
@@ -13,6 +13,6 @@
     [routerLink]="[nextRoute()?.url]"
   >
     {{ nextRoute()?.name }}
-    <lucide-angular [img]="ArrowRight"></lucide-angular>
+    <lucide-icon [img]="ArrowRight" class="w-5 lg:w-[24px]"></lucide-icon>
   </button>
 </div>
