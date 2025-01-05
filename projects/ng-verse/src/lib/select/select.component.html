@@ -30,7 +30,7 @@
     (cdkListboxValueChange)="listboxValueChange($event)"
   >
     @for (option of options(); track $index) {
-    <li [cdkOption]="getOptionValue(option)">
+    <li class="option" [cdkOption]="getOptionValue(option)">
       {{ getOptionLabel(option) }}
     </li>
     }

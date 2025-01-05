@@ -3,10 +3,11 @@
   align-items: center;
   gap: 10px;
   background: transparent;
-  border: 1px solid #94a3b8;
-  border-radius: 6px;
+  border: 1px solid var(--app-field-border-color);
+  border-radius: var(--app-field-border-radius);
   display: flex;
   justify-content: space-between;
+  width: 350px;
   padding: 4px 10px;
   &:focus {
     outline: 1px solid var(--app-ring-color);
@@ -34,7 +35,12 @@
   overflow: auto;
 }
 
-.selected,
+.option {
+  padding: 8px 6px;
+}
+
+.option:hover,
 .cdk-option-active {
-  border: 1px solid black;
+  background: var(--app-hover-color);
+  color: var(--app-hover-on-color);
 }

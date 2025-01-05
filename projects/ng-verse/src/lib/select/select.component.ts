@@ -76,6 +76,9 @@ export class SelectComponent implements ControlValueAccessor {
       const optionValue = this.getOptionValue(option);
       return compareWith(optionValue, this.value());
     });
+    if (selectedOption === undefined) {
+      return;
+    }
     return this.getOptionLabel(selectedOption);
   });
 
