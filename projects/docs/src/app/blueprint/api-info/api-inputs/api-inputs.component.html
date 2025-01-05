@@ -1,6 +1,18 @@
 @for (apiInput of apiInputs(); track $index) {
 <h4 class="mb-4">
-  {{ apiInput.name }} ({{ apiInput.type }}) ({{ apiInput.selector }})
+  {{ apiInput.name }}
+  <div class="flex lg:inline-flex text-sm items-center gap-1 mt-1 lg:mt-0">
+    <span
+      [ngClass]="apiInput.type"
+      class="rounded-xl px-2 shadow-sm text-white py-0.5"
+      >{{ apiInput.type }}</span
+    >
+    @if(apiInput.selector){
+    <span class="rounded-xl bg-amber-600 px-2 shadow-sm text-white py-0.5">{{
+      apiInput.selector
+    }}</span>
+    }
+  </div>
 </h4>
 @if(apiInput.description){
 <p class="mb-4">{{ apiInput.description }}</p>
@@ -49,4 +61,6 @@
 <p class="mb-4">
   <strong>{{ param.name }}</strong> ({{ param.type }}) - {{ param.description }}
 </p>
-} } }}
+} } }
+<div class="w-full border-t border-solid border-slate-200 h-[1px] mb-5"></div>
+}
