@@ -1,7 +1,3 @@
-.doc-container-page{
-  display: flex;
-  gap: 40px;
-}
-
-.content{
+.doc-container-page {
+  @apply lg:flex lg:gap-10;
 }
