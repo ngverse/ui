@@ -1,6 +1,7 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { inject, Injectable } from '@angular/core';
+import { Subject, take } from 'rxjs';
 import { ToastComponent } from './toast.component';
 
 export type TOAST_POSITION =
@@ -84,8 +85,14 @@ export class ToastService {
         this.close();
       }, genOptions.closeDelay);
     }
+    instance.close.subscribe(() => {
+      this.close();
+      closed$.next();
+    });
 
-    return instance.close;
+    const closed$ = new Subject<void>();
+
+    return closed$.pipe(take(1));
   }
 
   private close() {

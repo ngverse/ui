@@ -113,8 +113,19 @@ describe('ToastService', () => {
     fixture.detectChanges();
     fixture.detectChanges();
 
-    console.log(document.querySelectorAll('.toast').length);
     expect(document.querySelectorAll('.toast').length).toBe(1);
+  }));
+  it("should close toast if 'close' event is emitted", fakeAsync(() => {
+    service.open({
+      message: 'Hello, World!',
+    });
+    fixture.detectChanges();
+    fixture.detectChanges();
+    expect(toastDebugElement()).toBeTruthy();
+    toastCompInstance().close.emit();
+    fixture.detectChanges();
+    fixture.detectChanges();
+    expect(toastDebugElement()).toBeNull();
   }));
 });
 
