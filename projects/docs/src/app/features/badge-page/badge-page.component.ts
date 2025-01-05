@@ -3,6 +3,7 @@ import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
+import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -32,7 +33,7 @@ export class BadgePageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: 'badge',
-      files: [this.sourceTreeBuilder.directive(ROOT, ROOT), this.sourceTreeBuilder.component('badge-body', ROOT)],
+      files: [this.sourceTreeBuilder.directive(ROOT, ROOT)],
       hideName: true,
     },
   ];
@@ -42,15 +43,22 @@ export class BadgePageComponent {
       {
         name: 'BadgeComponent',
         type: 'directive',
-        selector: 'app-badge',
-      },
-      {
-        name: 'BadgeBodyComponent',
-        type: 'component',
-        selector: 'app-badge-body',
+        selector: '[appBadge]',
+        inputs: [
+          {
+            name: 'appBadge',
+            type: 'number | string | null | undefined',
+            description: 'text to display in badge',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
+          },
+          {
+            name: 'hideBadge',
+            type: 'boolean',
+            description: 'hides the badge',
+            default: 'false',
+          },
+        ],
       },
     ],
-    description: `The Badge component is an placeholder used to indicate loading content.
-    It can be styled with CSS to customize its size, shape.`,
   };
 }

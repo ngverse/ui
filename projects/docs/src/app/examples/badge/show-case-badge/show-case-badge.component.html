@@ -1,3 +1,8 @@
-<span [appBadge]="5">Test</span>
-
-
+<div class="show-case">
+  <div>
+    <span [appBadge]="count()" [hideBadge]="!count()">Notifications </span>
+  </div>
+  <app-button variant="outline" (click)="decreese()" size="sm"
+    >Decrease Notification</app-button
+  >
+</div>
