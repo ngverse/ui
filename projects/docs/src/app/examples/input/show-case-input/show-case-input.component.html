@@ -1,1 +1,9 @@
-<app-input [(ngModel)]="value" [minlength]="3"></app-input>
+<div class="show-case">
+  <input appInput placeholder="username" [(ngModel)]="username" />
+  <input
+    appInput
+    placeholder="password"
+    type="password"
+    [(ngModel)]="password"
+  />
+</div>
