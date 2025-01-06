@@ -41,6 +41,7 @@ export class SheetService {
     const ref = overlayRef.attach(overlayPortal);
     ref.setInput('component', component);
     ref.setInput('data', data);
+    ref.setInput('overlayRef', overlayRef);
 
     subs.add(ref.instance.close.subscribe(() => close()));
   }
