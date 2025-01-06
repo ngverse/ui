@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '@ng-verse/button/button.component';
 import { DialogService } from '@ng-verse/dialog/dialog.service';
+import { ErrorGroupComponent } from '@ng-verse/form-field/error-group/error-group.component';
 import { ErrorComponent } from '@ng-verse/form-field/error/error.component';
 import { FormFieldComponent } from '@ng-verse/form-field/form-field.component';
 import { LabelComponent } from '@ng-verse/form-field/label/label.component';
 import { InputComponent } from '@ng-verse/input/input.component';
-import { ErrorGroupComponent } from "../../../../../../ng-verse/src/lib/form-field/error-group/error-group.component";
+import { SelectComponent } from '@ng-verse/select/select.component';
 
 @Component({
   selector: 'doc-show-case-form-field',
@@ -17,8 +18,9 @@ import { ErrorGroupComponent } from "../../../../../../ng-verse/src/lib/form-fie
     ReactiveFormsModule,
     ButtonComponent,
     ErrorComponent,
-    ErrorGroupComponent
-],
+    ErrorGroupComponent,
+    SelectComponent,
+  ],
   templateUrl: './show-case-form-field.component.html',
   styleUrl: './show-case-form-field.component.scss',
 })
@@ -29,9 +31,23 @@ export class ShowCaseFormFieldComponent {
   group = this.formBuilder.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    email: ['', Validators.email],
+    email: ['', Validators.compose([Validators.required, Validators.email])],
     age: ['', Validators.required],
+    country: [undefined, Validators.required],
   });
+
+  countries = [
+    { code: 'KA', name: 'Georgia' },
+    { code: 'CA', name: 'Canada' },
+    { code: 'GB', name: 'United Kingdom' },
+    { code: 'DE', name: 'Germany' },
+    { code: 'FR', name: 'France' },
+    { code: 'JP', name: 'Japan' },
+    { code: 'AU', name: 'Australia' },
+    { code: 'IT', name: 'Italy' },
+    { code: 'ES', name: 'Spain' },
+    { code: 'CN', name: 'China' },
+  ];
 
   register() {
     this.dialog.alert({

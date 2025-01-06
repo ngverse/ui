@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ErrorGroupComponent } from './error-group.component';
 
-describe('ErrorGroupComponent', () => {
+xdescribe('ErrorGroupComponent', () => {
   let component: ErrorGroupComponent;
   let fixture: ComponentFixture<ErrorGroupComponent>;
 

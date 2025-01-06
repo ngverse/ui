@@ -1,17 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
-import {
-    ApiEntity,
-    ApiInputsComponent,
-    EMPTY_API_INPUT_DEFAULT_VALUE,
-} from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import { ApiInputsComponent } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
-import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
+import {
+  SourceTreeBuilder,
+  SourceTreeFolder,
+} from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseFormFieldComponent } from '../../examples/form-field/show-case-form-field/show-case-form-field.component';
-
+const ROOT = 'form-field';
 @Component({
   selector: 'doc-form-field-page',
   imports: [
@@ -28,51 +27,26 @@ import { ShowCaseFormFieldComponent } from '../../examples/form-field/show-case-
 })
 export class FormFieldPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
-  sourceTree = this.sourceTreeBuilder.sourceTree('form-field', (root) => [
-    this.sourceTreeBuilder.folder(
-      root,
-      root,
-      () => this.sourceTreeBuilder.fullComponent('form-field', root),
-      true
-    ),
-  ]);
-
-  apiInputs: ApiEntity[] = [
+  sourceTree: SourceTreeFolder[] = [
     {
-      name: 'button',
-      inputs: [
-        {
-          name: 'color',
-          type: 'primary | secondary | danger | success',
-          description: "Defines the button's color type",
-          default: 'primary',
-        },
-        {
-          name: 'size',
-          type: 'sm | md | lg',
-          description: 'changes the size of the button',
-          default: 'md',
-        },
-        {
-          name: 'disabled',
-          type: 'boolean',
-          description: 'disables the button',
-          default: 'false',
-        },
-        {
-          name: 'type',
-          type: 'submit | reset | button',
-          description: 'sets the native button type attribute',
-          default: EMPTY_API_INPUT_DEFAULT_VALUE,
-        },
-        {
-          name: 'loading',
-          type: 'boolean',
-          description:
-            'adds spinner on the button. The button will not emit any event while loading is true',
-          default: 'false',
-        },
-      ],
+      name: ROOT,
+      files: this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
+      hideName: true,
+    },
+    {
+      name: 'label',
+      files: this.sourceTreeBuilder.fullComponent('label', `${ROOT}/label`),
+    },
+    {
+      name: 'error',
+      files: this.sourceTreeBuilder.fullComponent('error', `${ROOT}/error`),
+    },
+    {
+      name: 'error-group',
+      files: this.sourceTreeBuilder.fullComponent(
+        'error-group',
+        `${ROOT}/error-group`
+      ),
     },
   ];
 }
