@@ -1,69 +1,43 @@
-<div class="container justify-center mx-auto pt-10 relative">
-  <div>
-    <h1 class="text-blue-600 text-6xl font-bold text-center mb-4">NgVerse</h1>
-    <h2 class="capitalize text-4xl text-center leading-normal">
-      <div>Complete Angular Components</div>
-      <div>
-        Just
-        <span>
-          Copy
-          <lucide-angular [img]="Clipboard" class="inline"></lucide-angular
-        ></span>
-        <span
-          >, Paste
-          <lucide-angular [img]="ClipboardPaste" class="inline"></lucide-angular
-        ></span>
-        <span>
-          , and Go
-          <lucide-angular [img]="Rocket" class="inline"></lucide-angular
-        ></span>
+<div class="home">
+  <div class="container justify-center mx-auto pt-10 relative h-screen">
+    <div>
+      <h1 class="text-4xl font-bold text-center mb-4 lg:text-7xl">
+        <div>Not Just Another</div>
+        <div>UI Library</div>
+      </h1>
+      <h2 class="capitalize text-xl font-medium text-center leading-normal">
+        <div>Complete Angular Components</div>
+        <div>
+          Just
+          <span>
+            Copy
+            <lucide-angular
+              [img]="Clipboard"
+              class="inline w-5"
+            ></lucide-angular
+          ></span>
+          <span
+            >, Paste
+            <lucide-angular
+              [img]="ClipboardPaste"
+              class="inline w-5"
+            ></lucide-angular
+          ></span>
+          <span>
+            , and Fly
+            <lucide-angular [img]="Rocket" class="inline w-5"></lucide-angular
+          ></span>
+        </div>
+      </h2>
+      <div class="flex justify-center mt-6">
+        <a [routerLink]="['/doc']" class="mx-auto">
+          <button
+            class="text-white bg-blue-600 font-bold px-10 text-xl rounded-md py-4"
+          >
+            Get Started
+          </button>
+        </a>
       </div>
-    </h2>
-    <div class="flex justify-center mt-6">
-      <a [routerLink]="['/doc']" class="mx-auto">
-        <button class="text-white bg-blue-600 font-bold px-10 rounded-md py-4">
-          Get Started
-        </button>
-      </a>
     </div>
   </div>
 </div>
-
-<div class="text-center mt-5"></div>
-
-<!--
-<div class="container mx-auto mb-10 flex">
-  <div class="text-5xl font-bold">The most complete Angular Framework</div>
-  <div class="flex-1">
-    <img src="images/test-photo.png" class="w-full h-auto" />
-  </div>
-</div>
-<div class="container mx-auto">
-  <div class="grid grid-cols-3 gap-20">
-    <div>
-      <button class="px-10 py-2 text-b  lack bg-amber-400">Sign In</button>
-      <div class="text-xl">Battery included</div>
-      <div>
-        First, use the Qwik CLI to generate a blank starter application, to
-        quickly familiarize yourself with it. The same command can be used to
-        create projects for either Qwik or Qwik city.
-      </div>
-    </div>
-    <div>
-      <div class="text-xl">Battery included</div>
-      <div>
-        First, use the Qwik CLI to generate a blank starter application, to
-        quickly familiarize yourself with it. The same command can be used to
-        create projects for either Qwik or Qwik city.
-      </div>
-    </div>
-    <div>
-      <div class="text-xl">Battery included</div>
-      <div>
-        First, use the Qwik CLI to generate a blank starter application, to
-        quickly familiarize yourself with it. The same command can be used to
-        create projects for either Qwik or Qwik city.
-      </div>
-    </div>
-  </div>
-</div> -->
