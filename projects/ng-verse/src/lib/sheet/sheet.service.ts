@@ -3,6 +3,7 @@ import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { SheetBodyComponent } from '@ng-verse/sheet/sheet-body/sheet-body.component';
 import { SheetRef } from './sheet-ref';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,15 @@ export class SheetService {
 
   open(component: ComponentType<unknown>, data?: Record<string, unknown>) {
     let overlayRef: OverlayRef | null = null;
+    const subs = new Subscription();
 
     function close() {
       if (overlayRef) {
         overlayRef.detach();
         overlayRef = null;
+        subs.unsubscribe();
       }
-    };
+    }
 
     const positionStrategy = this.overlay.position()
       .global()
@@ -26,7 +29,7 @@ export class SheetService {
       .bottom();
 
     overlayRef = this.overlay.create({ positionStrategy, hasBackdrop: true, scrollStrategy: this.overlay.scrollStrategies.block() });
-    overlayRef.backdropClick().subscribe(() => close());
+    subs.add(overlayRef.backdropClick().subscribe(() => close()));
 
     const customInjector = Injector.create({
       providers: [
@@ -39,8 +42,6 @@ export class SheetService {
     ref.setInput('component', component);
     ref.setInput('data', data);
 
-    ref.instance.close.subscribe(() => close());
-
-    //return ref.instance.componentRef?.instance;
+    subs.add(ref.instance.close.subscribe(() => close()));
   }
 }
