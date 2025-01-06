@@ -53,6 +53,8 @@ export class SelectComponent implements ControlValueAccessor {
   optionLabel = input<string>();
   optionValue = input<string>();
 
+  stretch = input<boolean>(false);
+
   options = input.required<unknown[]>();
 
   placeholder = input.required<string>();
@@ -84,7 +86,7 @@ export class SelectComponent implements ControlValueAccessor {
 
   listboxValue = computed<unknown[]>(() => {
     const value = this.value();
-    if (value === undefined || value === null) {
+    if (value === undefined || value === null || value === '') {
       return [];
     }
     return [value];
@@ -117,6 +119,9 @@ export class SelectComponent implements ControlValueAccessor {
   }
 
   close() {
+    if (this._onTouched) {
+      this._onTouched();
+    }
     this.isOpen.set(false);
   }
 
@@ -125,9 +130,6 @@ export class SelectComponent implements ControlValueAccessor {
   }
 
   panelOpened() {
-    if (this._onTouched) {
-      this._onTouched();
-    }
     this.listBox()?.focus();
   }
 

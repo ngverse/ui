@@ -7,8 +7,11 @@
   border-radius: var(--app-field-border-radius);
   display: flex;
   justify-content: space-between;
-  width: 350px;
   padding: 4px 10px;
+  height: 35px;
+  &.stretch {
+    width: 100%;
+  }
   &:focus {
     outline: 1px solid var(--app-ring-color);
   }
