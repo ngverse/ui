@@ -6,3 +6,7 @@
   padding: 6px;
   width: 100%;
 }
+
+:host.ng-invalid.ng-touched {
+  border-color: var(--app-danger-color);
+}

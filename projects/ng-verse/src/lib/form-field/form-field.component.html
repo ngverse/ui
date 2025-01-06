@@ -1,1 +1,8 @@
-<p>form-field works!</p>
+<div class="form-field">
+  <ng-content select="app-label"></ng-content>
+  <ng-content></ng-content>
+  <div class="form-field-errors">
+    <ng-content select="app-error-group"></ng-content>
+    <ng-content select="app-error"></ng-content>
+  </div>
+</div>

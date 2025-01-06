@@ -1,1 +1,22 @@
-<p>show-case-form-field works!</p>
+<form class="show-case" [formGroup]="group">
+  <app-form-field>
+    <app-label>First Name</app-label>
+    <input appInput formControlName="firstName" />
+    <app-error-group [control]="group.controls.firstName"></app-error-group>
+  </app-form-field>
+  <app-form-field>
+    <app-label>Last Name</app-label>
+    <input appInput formControlName="lastName" />
+  </app-form-field>
+  <app-form-field>
+    <app-label>Email</app-label>
+    <input appInput type="email" formControlName="email" />
+  </app-form-field>
+  <app-form-field>
+    <app-label>Age</app-label>
+    <input appInput type="number" formControlName="age" />
+  </app-form-field>
+  <app-button [disabled]="group.touched && group.invalid" (click)="register()"
+    >Register</app-button
+  >
+</form>

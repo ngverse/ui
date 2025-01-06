@@ -8,7 +8,8 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "skipTests": true
+          "skipTests": true,
+          "changeDetection": "OnPush"
         },
         "@schematics/angular:service": {
           "skipTests": true
@@ -30,9 +31,7 @@
             "outputPath": "dist/docs",
             "index": "projects/docs/src/index.html",
             "browser": "projects/docs/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/docs/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -51,9 +50,7 @@
                 "output": "examples"
               }
             ],
-            "styles": [
-              "projects/docs/src/styles.scss"
-            ],
+            "styles": ["projects/docs/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -98,10 +95,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/docs/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -110,9 +104,7 @@
                 "input": "projects/docs/public"
               }
             ],
-            "styles": [
-              "projects/docs/src/styles.scss"
-            ],
+            "styles": ["projects/docs/src/styles.scss"],
             "scripts": []
           }
         },
@@ -132,7 +124,8 @@
       "projectType": "library",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush"
         }
       },
       "root": "projects/ng-verse",
@@ -158,10 +151,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/ng-verse/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         },
         "lint": {
@@ -193,9 +183,7 @@
             "outputPath": "dist/playground",
             "index": "projects/playground/src/index.html",
             "browser": "projects/playground/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/playground/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -204,9 +192,7 @@
                 "input": "projects/playground/public"
               }
             ],
-            "styles": [
-              "projects/playground/src/styles.scss"
-            ],
+            "styles": ["projects/playground/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -251,10 +237,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/playground/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -263,9 +246,7 @@
                 "input": "projects/playground/public"
               }
             ],
-            "styles": [
-              "projects/playground/src/styles.scss"
-            ],
+            "styles": ["projects/playground/src/styles.scss"],
             "scripts": []
           }
         }
