@@ -1,4 +1,5 @@
 import {
+  ApplicationRef,
   ChangeDetectionStrategy,
   Component,
   ComponentRef, computed, effect, ElementRef, inject,
@@ -60,7 +61,8 @@ export class SheetBodyComponent implements OnInit, OnDestroy {
 
   private readonly el = inject(ElementRef);
   private readonly renderer2 = inject(Renderer2);
-  private readonly document = inject(DOCUMENT)
+  private readonly document = inject(DOCUMENT);
+  private readonly applicationRef = inject(ApplicationRef)
 
   constructor() {
     effect(() => {
@@ -69,14 +71,13 @@ export class SheetBodyComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.componentRef = this.createComponent(this.component());
     const data = this.data();
     if (data && typeof data === 'object') {
       this.setInputs(this.componentRef, data);
     }
 
-    const appRoot = this.document.body.children[0];
+    const appRoot = this.applicationRef.components[0].location.nativeElement;
 
     this.renderer2.setStyle(appRoot, 'display', 'block');
     this.renderer2.setStyle(appRoot, 'transform', 'scale(0.9864583333333333) translate3d(0, 14px, 0)');
