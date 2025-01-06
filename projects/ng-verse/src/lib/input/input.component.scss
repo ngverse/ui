@@ -1,10 +1,7 @@
 :host {
   display: inline-block;
-}
-
-.input {
-  border: 1px solid var(--app-border-color);
-  border-radius: 6px;
+  border: 1px solid var(--app-field-border-color);
+  border-radius: var(--app-field-border-radius);
   outline-color: var(--app-ring-color);
   padding: 6px;
   width: 100%;

@@ -63,6 +63,14 @@ export class SourceTreeBuilder {
     ];
   }
 
+  inlineComponent(name: string, rootPath: string): SourceTreeFile[] {
+    return [
+      this.component(name, rootPath, 'ts'),
+      this.component(name, rootPath, 'scss'),
+      this.component(name, rootPath, 'spec.ts'),
+    ];
+  }
+
   folder(
     name: string,
     root: string,

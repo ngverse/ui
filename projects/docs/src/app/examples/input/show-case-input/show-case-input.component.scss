@@ -1,3 +1,11 @@
-app-input {
-  width: 200px;
+.show-case {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  margin: 0 auto;
+  gap: 20px;
+
+  > * {
+    width: 100%;
+  }
 }
