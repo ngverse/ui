@@ -2,9 +2,10 @@
   class="select-button"
   cdkOverlayOrigin
   #trigger="cdkOverlayOrigin"
-  #triggerElement
-  (click)="toggle()"
+  #selectButton
+  (click)="open()"
 >
+  <span>{{ selectedOptionLabel() || placeholder() }}</span>
   <app-multi-select-icon
     class="select-button-icon"
     [class.opened]="isOpen()"
@@ -17,15 +18,24 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="trigger"
   [cdkConnectedOverlayOpen]="isOpen()"
+  (attach)="panelOpened()"
   (detach)="close()"
 >
   <ul
-    tabindex="0"
-    #optionsContainer
+    [cdkListboxMultiple]="true"
+    [formControl]="listboxFormControl"
     class="select-options"
-    [style.width.px]="overlayWidth()"
-    tabindex="0"
+    [style.width.px]="selectButton.clientWidth"
+    cdkListbox
+    [cdkListboxCompareWith]="compareWith()"
   >
-    <ng-content select="app-option"></ng-content>
+    @for (option of options(); track $index) {
+    <li class="option" [cdkOption]="getOptionValue(option)">
+      {{ getOptionLabel(option) }}
+      <app-multi-select-check-icon
+        class="check-icon"
+      ></app-multi-select-check-icon>
+    </li>
+    }
   </ul>
 </ng-template>

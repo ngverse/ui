@@ -1,36 +1,31 @@
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import {
+  CdkListbox,
+  CdkOption,
+  ListboxValueChangeEvent,
+} from '@angular/cdk/listbox';
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
   Component,
   computed,
-  contentChildren,
-  effect,
   ElementRef,
   input,
   signal,
   viewChild,
 } from '@angular/core';
 import {
-  AbstractControl,
   ControlValueAccessor,
-  NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
-  ValidationErrors,
-  Validator,
-  Validators,
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { OptionComponent } from './option/option.component';
 import { SelectIconComponent } from './select-icon.component';
 
 type OnTouchedFunction = (() => void) | undefined;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type OnChangeFunction = ((_: any) => void) | undefined;
+type OnChangeFunction = ((_: unknown) => void) | undefined;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type CompareWith = (o1: any, o2: any) => boolean;
+type CompareWith = (o1: unknown, o2: unknown) => boolean;
+
+type ComplexOption = Record<string, unknown>;
 
 @Component({
   selector: 'app-select',
@@ -39,6 +34,8 @@ type CompareWith = (o1: any, o2: any) => boolean;
     CdkOverlayOrigin,
     ReactiveFormsModule,
     SelectIconComponent,
+    CdkListbox,
+    CdkOption,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
@@ -48,120 +45,92 @@ type CompareWith = (o1: any, o2: any) => boolean;
       multi: true,
       useExisting: SelectComponent,
     },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: SelectComponent,
-      multi: true,
-    },
   ],
 })
-export class SelectComponent implements ControlValueAccessor, Validator {
+export class SelectComponent implements ControlValueAccessor {
   isOpen = signal(false);
 
-  label = input.required<string>();
+  optionLabel = input<string>();
+  optionValue = input<string>();
+
+  stretch = input<boolean>(false);
+
+  options = input.required<unknown[]>();
+
+  placeholder = input.required<string>();
 
   private _registerOnChange: OnChangeFunction;
   private _onTouched: OnTouchedFunction;
 
-  options = contentChildren(OptionComponent);
+  listBox = viewChild(CdkListbox);
 
-  keyManager!: ActiveDescendantKeyManager<OptionComponent>;
+  selectButton = viewChild('selectButton', {
+    read: ElementRef<HTMLElement>,
+  });
 
   value = signal<unknown>(undefined);
 
-  optionsContainer = viewChild<ElementRef<HTMLElement>>('optionsContainer');
-
   compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
 
-  selectedOption = computed(() => {
-    return this.options().find((opt) =>
-      this.compareWith()(opt.value(), this.value())
-    );
-  });
-
   selectedOptionLabel = computed(() => {
-    const selectedOption = this.selectedOption();
-    if (selectedOption) {
-      return selectedOption.el.nativeElement.textContent;
-    }
-    return;
-  });
-
-  sub: Subscription | undefined;
-
-  triggerElement = viewChild('triggerElement', {
-    read: ElementRef,
-  });
-
-  constructor() {
-    effect(() => {
-      const options = this.options();
-      this.keyManager?.destroy();
-      this.keyManager = new ActiveDescendantKeyManager(options).withWrap();
-
-      this.sub?.unsubscribe();
-      this.sub = new Subscription();
-
-      for (const option of options) {
-        this.sub.add(
-          option.clicked.subscribe(() => {
-            this.value.set(option.value());
-            this.emitChangeValue();
-            this.close();
-          })
-        );
-      }
+    const compareWith = this.compareWith();
+    const selectedOption = this.options().find((option) => {
+      const optionValue = this.getOptionValue(option);
+      return compareWith(optionValue, this.value());
     });
-  }
-
-  overlayWidth = computed(() => {
-    const triggerElement = this.triggerElement() as
-      | ElementRef<HTMLElement>
-      | undefined;
-    if (triggerElement) {
-      return triggerElement.nativeElement.clientWidth;
+    if (selectedOption === undefined) {
+      return;
     }
-    return 0;
+    return this.getOptionLabel(selectedOption);
   });
 
-  onKeydown($event: KeyboardEvent) {
-    if ($event.key === 'Enter') {
-      const value = this.keyManager.activeItem?.value;
-      if (value) {
-        this.value.set(value());
-        this.emitChangeValue();
-      }
-      this.close();
-    } else {
-      this.keyManager.onKeydown($event);
+  listboxValue = computed<unknown[]>(() => {
+    const value = this.value();
+    if (value === undefined || value === null || value === '') {
+      return [];
     }
+    return [value];
+  });
+
+  getOptionLabel(option: unknown) {
+    const optionLabel = this.optionLabel();
+    if (optionLabel) {
+      return (option as ComplexOption)[optionLabel];
+    }
+    return option;
   }
 
-  emitChangeValue() {
+  getOptionValue(option: unknown) {
+    const optionValue = this.optionValue();
+    if (optionValue) {
+      return (option as ComplexOption)[optionValue];
+    }
+    return option;
+  }
+
+  listboxValueChange($event: ListboxValueChangeEvent<unknown>) {
+    const value = $event.value[0];
+    this.value.set(value);
     if (this._registerOnChange) {
       this._registerOnChange(this.value());
     }
+    this.close();
+    this.selectButton()?.nativeElement.focus();
   }
 
-  panelOpened() {
+  close() {
     if (this._onTouched) {
       this._onTouched();
     }
-    const selectedOption = this.selectedOption();
-    this.optionsContainer()?.nativeElement.focus();
-    if (selectedOption) {
-      this.keyManager.setActiveItem(selectedOption);
-    } else {
-      this.keyManager.setFirstItemActive();
-    }
+    this.isOpen.set(false);
   }
 
-  validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequired = control.hasValidator(Validators.required);
-    return hasRequired &&
-      (control.value === null || control.value === undefined)
-      ? { required: true }
-      : null;
+  open() {
+    this.isOpen.set(true);
+  }
+
+  panelOpened() {
+    this.listBox()?.focus();
   }
 
   writeValue(obj: unknown): void {
@@ -173,17 +142,5 @@ export class SelectComponent implements ControlValueAccessor, Validator {
 
   registerOnTouched(fn: OnTouchedFunction): void {
     this._onTouched = fn;
-  }
-
-  toggle() {
-    this.isOpen.update((isOpen) => !isOpen);
-  }
-
-  close() {
-    this.isOpen.set(false);
-  }
-
-  open() {
-    this.isOpen.set(true);
   }
 }

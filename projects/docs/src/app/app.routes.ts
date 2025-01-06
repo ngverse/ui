@@ -30,8 +30,11 @@ export const routes: Routes = [
           ).then((i) => i.InstallationPageComponent),
       },
       {
-        path:"usage",
-        loadComponent:()=>import("./features/usage-page/usage-page.component").then((u)=>u.UsagePageComponent)
+        path: 'usage',
+        loadComponent: () =>
+          import('./features/usage-page/usage-page.component').then(
+            (u) => u.UsagePageComponent
+          ),
       },
       {
         path: 'theming',
@@ -59,6 +62,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/breadcrumb-page/breadcrumb-page.component').then(
             (b) => b.BreadcrumbPageComponent
+          ),
+      },
+      {
+        path: 'badge',
+        loadComponent: () =>
+          import('./features/badge-page/badge-page.component').then(
+            (b) => b.BadgePageComponent
           ),
       },
       {
@@ -217,14 +227,14 @@ export const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'button',
+        redirectTo: 'introduction',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: 'doc/introduction',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
 ];

@@ -1,5 +1,2 @@
-<app-select [formControl]="formControl" label="Users">
-  @for (item of options; track $index) {
-    <app-option [value]="item">{{ item }}</app-option>
-  }
+<app-select [formControl]="formControl" [options]="countries" optionLabel="name" optionValue="code" placeholder="Users">
 </app-select>

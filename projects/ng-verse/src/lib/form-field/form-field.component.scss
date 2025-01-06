@@ -1,0 +1,18 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-field-errors {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  bottom: -20px;
+  app-error {
+    position: absolute;
+  }
+}

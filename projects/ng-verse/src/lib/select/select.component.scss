@@ -3,9 +3,18 @@
   align-items: center;
   gap: 10px;
   background: transparent;
-  border: 1px solid var(--app-border-color);
-  border-radius: var(--app-border-radius);
+  border: 1px solid var(--app-field-border-color);
+  border-radius: var(--app-field-border-radius);
+  display: flex;
+  justify-content: space-between;
   padding: 4px 10px;
+  height: 35px;
+  &.stretch {
+    width: 100%;
+  }
+  &:focus {
+    outline: 1px solid var(--app-ring-color);
+  }
   .select-button-icon {
     transition: transform 0.15s ease-in-out;
     display: flex;
@@ -26,4 +35,15 @@
   list-style: none;
   padding-left: 0;
   outline-color: var(--app-ring-color);
+  overflow: auto;
+}
+
+.option {
+  padding: 8px 6px;
+}
+
+.option:hover,
+.cdk-option-active {
+  background: var(--app-hover-color);
+  color: var(--app-hover-on-color);
 }

@@ -1,1 +1,39 @@
-<p>show-case-form-field works!</p>
+<form class="show-case" [formGroup]="group">
+  <app-form-field>
+    <app-label>First Name</app-label>
+    <input appInput formControlName="firstName" />
+    <app-error-group [control]="group.controls.firstName"></app-error-group>
+  </app-form-field>
+  <app-form-field>
+    <app-label>Last Name</app-label>
+    <input appInput formControlName="lastName" />
+    <app-error-group [control]="group.controls.lastName"></app-error-group>
+  </app-form-field>
+  <app-form-field>
+    <app-label>Email</app-label>
+    <input appInput type="email" formControlName="email" />
+    <app-error-group [control]="group.controls.email"></app-error-group>
+  </app-form-field>
+  <app-form-field>
+    <app-label>Age</app-label>
+    <input appInput type="number" formControlName="age" />
+    @if(group.controls.age.touched && group.controls.age.invalid){
+    <app-error>Please fill age</app-error>
+    }
+  </app-form-field>
+  <app-form-field>
+    <app-label>Country</app-label>
+    <app-select
+      [stretch]="true"
+      formControlName="country"
+      [options]="countries"
+      [optionLabel]="'name'"
+      [optionValue]="'code'"
+      placeholder="Select a country"
+    ></app-select>
+    <app-error-group [control]="group.controls.country"></app-error-group>
+  </app-form-field>
+  <app-button [disabled]="group.touched && group.invalid" (click)="register()"
+    >Register</app-button
+  >
+</form>

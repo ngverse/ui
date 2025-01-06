@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 interface ApiInputType {
@@ -31,7 +32,7 @@ export interface ApiEntity {
 
 @Component({
   selector: 'doc-api-inputs',
-  imports: [],
+  imports: [NgClass],
   templateUrl: './api-inputs.component.html',
   styleUrl: './api-inputs.component.scss',
 })

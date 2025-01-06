@@ -9,5 +9,6 @@ import { InputComponent } from '@ng-verse/input/input.component';
   styleUrl: './show-case-input.component.scss',
 })
 export class ShowCaseInputComponent {
-  value = model(0);
+  username = model();
+  password = model();
 }

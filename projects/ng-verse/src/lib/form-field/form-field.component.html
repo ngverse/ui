@@ -1,1 +1,12 @@
-<p>form-field works!</p>
+<div class="form-field">
+  <!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
+  <label class="label">
+    <ng-content select="app-label"></ng-content>
+    <ng-content></ng-content>
+  </label>
+
+  <div class="form-field-errors">
+    <ng-content select="app-error-group"></ng-content>
+    <ng-content select="app-error"></ng-content>
+  </div>
+</div>
