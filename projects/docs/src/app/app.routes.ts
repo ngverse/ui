@@ -220,14 +220,14 @@ export const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'button',
+        redirectTo: 'introduction',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: 'doc/introduction',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
 ];
