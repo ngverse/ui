@@ -1,0 +1,12 @@
+:host {
+  display: inline-block;
+  border: 1px solid var(--app-field-border-color);
+  border-radius: var(--app-field-border-radius);
+  outline-color: var(--app-ring-color);
+  padding: 6px;
+  width: 100%;
+}
+
+:host.ng-invalid.ng-touched {
+  border-color: var(--app-danger-color);
+}

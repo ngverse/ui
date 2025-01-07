@@ -81,6 +81,10 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/tooltip',
       },
       {
+        name: 'Textarea',
+        url: '/doc/textarea',
+      },
+      {
         name: 'Select',
         url: '/doc/select',
       },
