@@ -102,7 +102,6 @@ export class PopoverComponent implements OnInit {
     const triggerEl = this.trigger().hostElement;
     const points = this.getOverlayPositionsByPosition();
     const scrollOption = this.getScrollOptionByScrollBehavior();
-    const triggerEvent = this.triggerEvent();
     this.animationState.set('enter');
 
     this.overlayRef = this.overlay.create({
@@ -126,7 +125,7 @@ export class PopoverComponent implements OnInit {
   }
 
   onPointerEvents() {
-    this.overlayRef?.outsidePointerEvents().subscribe((e) => {
+    this.overlayRef?.outsidePointerEvents().subscribe(() => {
       this.close();
     });
   }
