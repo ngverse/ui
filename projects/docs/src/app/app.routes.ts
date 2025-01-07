@@ -177,6 +177,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'textarea',
+        loadComponent: () =>
+          import('./features/textarea-page/textarea-page.component').then(
+            (d) => d.TextareaPageComponent
+          ),
+      },
+      {
         path: 'progress-spinner',
         loadComponent: () =>
           import(
