@@ -1,6 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
-import { ApiInputsComponent } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -16,8 +14,6 @@ const ROOT = 'form-field';
   imports: [
     BlueprintPageComponent,
     ShowCaseComponent,
-    ApiInputsComponent,
-    ApiInfoComponent,
     SourceTreeComponent,
     CommandInstallationComponent,
     ShowCaseFormFieldComponent,

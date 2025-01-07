@@ -1,0 +1,7 @@
+<app-button appPopoverTrigger #popoverTrigger="appPopoverTrigger"
+  >Popover</app-button
+>
+
+<app-popover (closed)="closed()" [trigger]="popoverTrigger">
+  <input class="border border-solid border-black" type="text" />
+</app-popover>
