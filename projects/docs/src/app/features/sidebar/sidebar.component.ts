@@ -93,6 +93,10 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/select',
       },
       {
+        name: 'Sheet',
+        url: '/doc/sheet',
+      },
+      {
         name: 'Progress Spinner',
         url: '/doc/progress-spinner',
       },

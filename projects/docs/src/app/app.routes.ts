@@ -170,6 +170,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'sheet',
+        loadComponent: () =>
+          import('./features/sheet-page/sheet-page.component').then(
+            (b) => b.SheetPageComponent
+          ),
+      },
+      {
         path: 'switch',
         loadComponent: () =>
           import('./features/switch-page/switch-page.component').then(
