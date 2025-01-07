@@ -12,7 +12,6 @@ import {
 } from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseDividerComponent } from '../../examples/divider/show-case-divider/show-case-divider.component';
-import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 
 const ROOT = 'divider';
 @Component({
