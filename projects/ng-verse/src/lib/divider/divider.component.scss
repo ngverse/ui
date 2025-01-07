@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  background-color: var(--app-separator-color);
+  height: 1px;
+  width: 100%;
+
+  &.app-vertical-divider {
+    height: 100%;
+    width: 1px;
+  }
+}

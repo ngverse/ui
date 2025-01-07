@@ -1,0 +1,21 @@
+.vertical {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 16px;
+
+  li {
+    display: flex;
+  }
+
+  .divider {
+    margin-left: 16px;
+  }
+}
+
+p {
+  margin: 12px 0;
+}
+
+.section-divider {
+  margin: 32px 0;
+}
