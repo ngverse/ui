@@ -219,6 +219,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'popover',
+        loadComponent: () =>
+          import('./features/popover-page/popover-page.component').then(
+            (p) => p.PopoverPageComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'introduction',
         pathMatch: 'full',

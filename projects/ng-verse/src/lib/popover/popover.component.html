@@ -1,0 +1,9 @@
+<ng-template>
+  <div
+    class="overlay-content"
+    [@overlayAnimation]="animationState()"
+    (@overlayAnimation.done)="onAnimationEvent($event)"
+  >
+    <ng-content></ng-content>
+  </div>
+</ng-template>

@@ -124,6 +124,10 @@ export const SIDEBAR_ROUTES = [
         name: 'Icon',
         url: '/doc/icon',
       },
+      {
+        name: 'Popover',
+        url: '/doc/popover',
+      },
       // {
       //   name: 'Breadcrumb',
       //   url: '/doc/breadcrumb',
