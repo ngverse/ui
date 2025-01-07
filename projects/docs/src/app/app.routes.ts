@@ -79,6 +79,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'divider',
+        loadComponent: () =>
+          import('./features/divider-page/divider-page.component').then(
+            (b) => b.DividerPageComponent
+          ),
+      },
+      {
         path: 'otp-input',
         loadComponent: () =>
           import('./features/otp-input-page/otp-input-page.component').then(
