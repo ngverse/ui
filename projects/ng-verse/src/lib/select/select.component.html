@@ -1,10 +1,9 @@
 <button
   [class.stretch]="stretch()"
   class="select-button"
-  cdkOverlayOrigin
-  #trigger="cdkOverlayOrigin"
+  appPopoverTrigger
+  #trigger="appPopoverTrigger"
   #selectButton
-  (click)="open()"
 >
   <span>{{ selectedOptionLabel() || placeholder() }}</span>
   <app-select-icon
@@ -12,15 +11,12 @@
     [class.opened]="isOpen()"
   ></app-select-icon>
 </button>
-<ng-template
-  (backdropClick)="close()"
-  [cdkConnectedOverlayHasBackdrop]="true"
-  [cdkConnectedOverlayBackdropClass]="'cdk-backdrop-transparent'"
-  cdkConnectedOverlay
-  [cdkConnectedOverlayOrigin]="trigger"
-  [cdkConnectedOverlayOpen]="isOpen()"
-  (attach)="panelOpened()"
-  (detach)="close()"
+<app-popover
+  scrollBehavior="block"
+  [isOpen]="isOpen()"
+  (closed)="panelClosed()"
+  [trigger]="trigger"
+  (opened)="panelOpened()"
 >
   <ul
     class="select-options"
@@ -36,4 +32,4 @@
     </li>
     }
   </ul>
-</ng-template>
+</app-popover>

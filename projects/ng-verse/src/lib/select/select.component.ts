@@ -3,7 +3,6 @@ import {
   CdkOption,
   ListboxValueChangeEvent,
 } from '@angular/cdk/listbox';
-import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
   Component,
   computed,
@@ -17,6 +16,8 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { PopoverTriggerDirective } from '@ng-verse/popover/popover-trigger.directive';
+import { PopoverComponent } from '../popover/popover.component';
 import { SelectIconComponent } from './select-icon.component';
 
 type OnTouchedFunction = (() => void) | undefined;
@@ -30,12 +31,12 @@ type ComplexOption = Record<string, unknown>;
 @Component({
   selector: 'app-select',
   imports: [
-    CdkConnectedOverlay,
-    CdkOverlayOrigin,
     ReactiveFormsModule,
     SelectIconComponent,
     CdkListbox,
     CdkOption,
+    PopoverTriggerDirective,
+    PopoverComponent,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
@@ -114,23 +115,20 @@ export class SelectComponent implements ControlValueAccessor {
     if (this._registerOnChange) {
       this._registerOnChange(this.value());
     }
-    this.close();
+    this.isOpen.set(false);
     this.selectButton()?.nativeElement.focus();
   }
 
-  close() {
+  panelClosed() {
     if (this._onTouched) {
       this._onTouched();
     }
     this.isOpen.set(false);
   }
 
-  open() {
-    this.isOpen.set(true);
-  }
-
   panelOpened() {
     this.listBox()?.focus();
+    this.isOpen.set(true);
   }
 
   writeValue(obj: unknown): void {

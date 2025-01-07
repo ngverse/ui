@@ -2,6 +2,15 @@
   >Popover</app-button
 >
 
-<app-popover (closed)="closed()" [trigger]="popoverTrigger">
+<input
+  class="border border-solid border-black"
+  type="text"
+  appPopoverTrigger
+  #inputTrigger="appPopoverTrigger"
+  triggerEvent="hover"
+/>
+
+<app-popover (closed)="closed()" [trigger]="inputTrigger">
+  <h1>HELLO</h1>
   <input class="border border-solid border-black" type="text" />
 </app-popover>

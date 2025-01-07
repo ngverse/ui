@@ -27,7 +27,7 @@ import {
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { fromEvent, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { PopoverTriggerDirective } from './popover-trigger.directive';
 
 type POPOVER_POSITION = 'top' | 'right' | 'bottom' | 'left';
@@ -38,8 +38,8 @@ export const overlayAnimation = trigger('overlayAnimation', [
   state('void', style({ opacity: 0, transform: 'scale(0.9)' })), // Initial state
   state('enter', style({ opacity: 1, transform: 'scale(1)' })), // Final state when open
   state('leave', style({ opacity: 0, transform: 'scale(0.9)' })), // Final state when closing
-  transition('void => enter', [animate('200ms ease-out')]), // Enter animation
-  transition('enter => leave', [animate('200ms ease-in')]), // Leave animation
+  transition('void => enter', [animate('150ms ease-out')]), // Enter animation
+  transition('enter => leave', [animate('150ms ease-in')]), // Leave animation
 ]);
 @Component({
   selector: 'app-popover',
@@ -62,6 +62,7 @@ export class PopoverComponent implements OnInit {
   triggerEvent = input<TRIGGER_EVENT>('click');
   content = viewChild.required(TemplateRef);
   vf = inject(ViewContainerRef);
+  hasBackdrop = input<boolean>(false);
 
   overlayRef: OverlayRef | undefined;
 
@@ -74,26 +75,30 @@ export class PopoverComponent implements OnInit {
 
   constructor() {
     effect(() => {
-      setTimeout(() => {
-        const isOpen = this.isOpen();
-        if (isOpen) {
-          this.show();
-        } else {
-          this.close();
-        }
-      });
+      const isOpen = this.isOpen();
+      if (isOpen) {
+        this.show();
+      } else {
+        this.close();
+      }
     });
   }
+
   ngOnInit(): void {
-    const triggerEl = this.trigger().hostElement;
-    if (triggerEl) {
-      fromEvent(triggerEl, 'click').subscribe(() => {
-        this.show();
-      });
-    }
+    const trigger = this.trigger();
+
+    trigger.openTriggered.subscribe(() => {
+      this.show();
+    });
+    trigger.closeTriggered.subscribe(() => {
+      this.close();
+    });
   }
 
   show() {
+    if (this.overlayRef) {
+      return;
+    }
     const triggerEl = this.trigger().hostElement;
     const points = this.getOverlayPositionsByPosition();
     const scrollOption = this.getScrollOptionByScrollBehavior();
@@ -105,6 +110,7 @@ export class PopoverComponent implements OnInit {
         .position()
         .flexibleConnectedTo(triggerEl)
         .withPositions(points),
+      hasBackdrop: this.hasBackdrop(),
       disposeOnNavigation: true,
       scrollStrategy: scrollOption,
     });
@@ -135,6 +141,7 @@ export class PopoverComponent implements OnInit {
   onAnimationEvent($event: AnimationEvent) {
     if ($event.toState === 'leave') {
       this.overlayRef?.dispose();
+      this.overlayRef = undefined;
       this.closed.emit();
     }
   }
