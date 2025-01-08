@@ -1,44 +1,40 @@
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
   Component,
-  computed,
   contentChildren,
   effect,
   ElementRef,
+  inject,
   input,
+  OnDestroy,
   signal,
   viewChild,
 } from '@angular/core';
 import {
-  AbstractControl,
   ControlValueAccessor,
-  NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
-  ValidationErrors,
-  Validator,
-  Validators,
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
+
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { PopoverTriggerDirective } from '@ng-verse/popover/popover-trigger.directive';
+import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { OptionComponent } from './option/option.component';
 import { SelectIconComponent } from './select-icon.component';
+import { SelectState } from './select.state';
 
 type OnTouchedFunction = (() => void) | undefined;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type OnChangeFunction = ((_: any) => void) | undefined;
+type OnChangeFunction = ((_: unknown) => void) | undefined;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type CompareWith = (o1: any, o2: any) => boolean;
+type CompareWith = (o1: unknown, o2: unknown) => boolean;
 
 @Component({
   selector: 'app-select',
   imports: [
-    CdkConnectedOverlay,
-    CdkOverlayOrigin,
     ReactiveFormsModule,
     SelectIconComponent,
+    PopoverTriggerDirective,
+    PopoverComponent,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
@@ -48,124 +44,47 @@ type CompareWith = (o1: any, o2: any) => boolean;
       multi: true,
       useExisting: SelectComponent,
     },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: SelectComponent,
-      multi: true,
-    },
+    SelectState,
   ],
 })
-export class SelectComponent implements ControlValueAccessor, Validator {
+export class SelectComponent implements ControlValueAccessor, OnDestroy {
   isOpen = signal(false);
 
-  label = input.required<string>();
+  stretch = input<boolean>(false);
+
+  placeholder = input.required<string>();
+
+  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
 
   private _registerOnChange: OnChangeFunction;
   private _onTouched: OnTouchedFunction;
 
-  options = contentChildren(OptionComponent);
+  selectState = inject(SelectState);
 
-  keyManager!: ActiveDescendantKeyManager<OptionComponent>;
+  options = contentChildren(OptionComponent, { descendants: true });
 
-  value = signal<unknown>(undefined);
+  keyManager: ActiveDescendantKeyManager<OptionComponent> | undefined;
 
-  optionsContainer = viewChild<ElementRef<HTMLElement>>('optionsContainer');
-
-  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
-
-  selectedOption = computed(() => {
-    return this.options().find((opt) =>
-      this.compareWith()(opt.value(), this.value())
-    );
+  listbox = viewChild.required('listbox', {
+    read: ElementRef<HTMLElement>,
   });
 
-  selectedOptionLabel = computed(() => {
-    const selectedOption = this.selectedOption();
-    if (selectedOption) {
-      return selectedOption.el.nativeElement.textContent;
-    }
-    return;
-  });
-
-  sub: Subscription | undefined;
-
-  triggerElement = viewChild('triggerElement', {
-    read: ElementRef,
-  });
-
-  constructor() {
-    effect(() => {
-      const options = this.options();
-      this.keyManager?.destroy();
-      this.keyManager = new ActiveDescendantKeyManager(options).withWrap();
-
-      this.sub?.unsubscribe();
-      this.sub = new Subscription();
-
-      for (const option of options) {
-        this.sub.add(
-          option.clicked.subscribe(() => {
-            this.value.set(option.value());
-            this.emitChangeValue();
-            this.close();
-          })
-        );
-      }
-    });
-  }
-
-  overlayWidth = computed(() => {
-    const triggerElement = this.triggerElement() as
-      | ElementRef<HTMLElement>
-      | undefined;
-    if (triggerElement) {
-      return triggerElement.nativeElement.clientWidth;
-    }
-    return 0;
+  selectButton = viewChild('selectButton', {
+    read: ElementRef<HTMLElement>,
   });
 
   onKeydown($event: KeyboardEvent) {
     if ($event.key === 'Enter') {
-      const value = this.keyManager.activeItem?.value;
-      if (value) {
-        this.value.set(value());
-        this.emitChangeValue();
+      const activeOptin = this.keyManager?.activeItem;
+      if (activeOptin) {
+        activeOptin.clicked.emit();
       }
-      this.close();
-    } else {
-      this.keyManager.onKeydown($event);
     }
+    this.keyManager?.onKeydown($event);
   }
 
-  emitChangeValue() {
-    if (this._registerOnChange) {
-      this._registerOnChange(this.value());
-    }
-  }
-
-  panelOpened() {
-    if (this._onTouched) {
-      this._onTouched();
-    }
-    const selectedOption = this.selectedOption();
-    this.optionsContainer()?.nativeElement.focus();
-    if (selectedOption) {
-      this.keyManager.setActiveItem(selectedOption);
-    } else {
-      this.keyManager.setFirstItemActive();
-    }
-  }
-
-  validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequired = control.hasValidator(Validators.required);
-    return hasRequired &&
-      (control.value === null || control.value === undefined)
-      ? { required: true }
-      : null;
-  }
-
-  writeValue(obj: unknown): void {
-    this.value.set(obj);
+  writeValue(value: unknown): void {
+    this.selectState.value.set(value);
   }
   registerOnChange(fn: OnChangeFunction): void {
     this._registerOnChange = fn;
@@ -175,15 +94,77 @@ export class SelectComponent implements ControlValueAccessor, Validator {
     this._onTouched = fn;
   }
 
-  toggle() {
-    this.isOpen.update((isOpen) => !isOpen);
+  constructor() {
+    effect(() => {
+      const options = this.options();
+      this.selectState.options.set(options);
+      if (!options) {
+        return;
+      }
+      this.createKeyManager(options);
+      this.listenOnOptionChange(options);
+    });
   }
 
-  close() {
+  createKeyManager(options: readonly OptionComponent[]) {
+    this.keyManager?.destroy();
+    this.keyManager = new ActiveDescendantKeyManager(options);
+    this.keyManager.change.subscribe(() => {
+      const activeOption = this.keyManager?.activeItem;
+      if (activeOption) {
+        this.scrollIntoOption(activeOption);
+      }
+    });
+  }
+
+  listenOnOptionChange(options: readonly OptionComponent[]) {
+    for (const option of options) {
+      option.clicked.subscribe(() => {
+        this.selectState.value.set(option.value());
+        if (this._registerOnChange) {
+          this._registerOnChange(this.selectState.value());
+        }
+        this.isOpen.set(false);
+      });
+    }
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    this.selectState.disabled.set(isDisabled);
+  }
+
+  scrollIntoOption(option: OptionComponent) {
+    option.host.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
+  }
+
+  panelOpened() {
+    this.listbox().nativeElement.focus();
+    const value = this.selectState.value();
+    if (value) {
+      const valueOption = this.selectState.findOptionByValue(value);
+      if (valueOption) {
+        this.keyManager?.setActiveItem(valueOption);
+        this.scrollIntoOption(valueOption);
+      }
+    } else {
+      this.keyManager?.setFirstItemActive();
+    }
+
+    this.isOpen.set(true);
+  }
+
+  panelClosed() {
+    if (this._onTouched) {
+      this._onTouched();
+    }
     this.isOpen.set(false);
   }
 
-  open() {
-    this.isOpen.set(true);
+  ngOnDestroy(): void {
+    this.keyManager?.destroy();
   }
 }

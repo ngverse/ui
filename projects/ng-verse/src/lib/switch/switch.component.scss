@@ -1,13 +1,8 @@
 .switch {
-  display: flex;
+  display: inline-flex;
   gap: 8px;
-}
-
-.disabled {
-  color: gray;
-
-  .toggle {
-    background: gray;
+  &.reverse {
+    flex-direction: row-reverse;
   }
 }
 
@@ -21,8 +16,12 @@
   transition: background-color 0.3s;
 }
 
+:host.ng-invalid.ng-touched .switch-button {
+  outline: 1px solid var(--app-danger-color);
+}
+
 .switch-button.checked {
-  background-color: #0284c7;
+  background-color: var(--app-primary-color);
 }
 
 .toggle {
@@ -38,4 +37,10 @@
 
 .switch-button.checked .toggle {
   left: 26px;
+}
+
+.disabled {
+  .toggle {
+    background-color: var(--app-disabled-color);
+  }
 }

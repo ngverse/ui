@@ -11,15 +11,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  @apply text-slate-950;
+  color: var(--app-text-color);
 }
 .content-area {
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
 }
-
-.content-height {
-  height: calc(100vh - 56px);
-}
-

@@ -1,47 +1,59 @@
 .progress-bar-container {
   border-radius: 8px;
+  position: relative;
+  overflow-x: hidden;
+  height: 12px;
   border: 1px solid #d1d5db;
 }
-
+/* determinate */
 .progress-bar {
-  transition: width 0.1s ease-in-out;
-  background: black;
-  border-radius: 8px;
-  height: 6px;
+  color: white;
+  font-size: 8px;
+  transition: width 0.1s ease-in;
+  height: 100%;
+  background: var(--app-primary-color);
+  position: absolute;
   text-align: center;
 }
 
-// .progress-bar {
-//   position: relative;
-//   width: 100%; /* Adjust width as needed */
-//   height: 8px; /* Adjust height as needed */
-//   background-color: #e0e0e0; /* Background color of the progress bar */
-//   border-radius: 4px; /* Rounded corners */
-//   overflow: hidden; /* Prevent overflow of the indeterminate animation */
-// }
+/* indeterminate */
 
-// /* Indeterminate animation */
-// .progress-bar-indeterminate {
-//   position: absolute;
-//   width: 30%; /* Width of the animated bar */
-//   height: 100%;
-//   background-color: #4caf50; /* Color of the progress bar */
-//   border-radius: 4px; /* Match the parent's border-radius */
-//   animation: indeterminate 1s infinite;
-// }
+.indeterminate-line {
+  position: absolute;
+  opacity: 0.4;
+  background: var(--app-primary-color);
+  width: 150%;
+  height: 100%;
+}
+.indeterminate-subline {
+  position: absolute;
+  background: var(--app-primary-color);
+  height: 100%;
+  &.inc {
+    animation: indeterminateIncrease 2s infinite;
+  }
+  &.dec {
+    animation: indeterminateDecrease 2s 0.5s infinite;
+  }
+}
 
-// /* Keyframes for the indeterminate animation */
-// @keyframes indeterminate {
-//   0% {
-//     left: -30%;
-//     width: 30%;
-//   }
-//   50% {
-//     left: 35%;
-//     width: 50%;
-//   }
-//   100% {
-//     left: 100%;
-//     width: 30%;
-//   }
-// }
+@keyframes indeterminateIncrease {
+  from {
+    left: -5%;
+    width: 5%;
+  }
+  to {
+    left: 130%;
+    width: 100%;
+  }
+}
+@keyframes indeterminateDecrease {
+  from {
+    left: -80%;
+    width: 80%;
+  }
+  to {
+    left: 110%;
+    width: 10%;
+  }
+}

@@ -15,15 +15,25 @@
   align-items: center;
 
   &.disabled {
-    color: gray;
+    color: var(--app-disabled-color);
   }
+}
+
+.radio-button-icon {
+  display: inline;
+  cursor: pointer;
+  pointer-events: none;
+  &.checked {
+    color: var(--app-primary-color);
+  }
+}
+
+.native-radio-button:focus + .radio-button-icon {
+  outline: 2px solid var(--app-ring-color);
+  outline-offset: 2px;
+  border-radius: 50%;
 }
 
 .radio-button-label {
   padding-left: 8px;
-}
-
-.radio-button-icon {
-  cursor: pointer;
-  pointer-events: none;
 }

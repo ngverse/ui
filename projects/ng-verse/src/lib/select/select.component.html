@@ -1,33 +1,27 @@
 <button
+  [class.stretch]="stretch()"
   class="select-button"
-  cdkOverlayOrigin
-  #trigger="cdkOverlayOrigin"
-  #triggerElement
-  (click)="toggle()"
+  #selectButton
+  appPopoverTrigger
+  #trigger="appPopoverTrigger"
+  (keydown)="onKeydown($event)"
+  [disabled]="selectState.disabled()"
 >
-  <span>{{ selectedOptionLabel() || label() }}</span>
+  <span>{{ selectState.selectedOptionLabel() || placeholder() }}</span>
   <app-select-icon
     class="select-button-icon"
     [class.opened]="isOpen()"
   ></app-select-icon>
 </button>
-<ng-template
-  (backdropClick)="close()"
-  [cdkConnectedOverlayHasBackdrop]="true"
-  [cdkConnectedOverlayBackdropClass]="'cdk-backdrop-transparent'"
-  cdkConnectedOverlay
-  [cdkConnectedOverlayOrigin]="trigger"
-  [cdkConnectedOverlayOpen]="isOpen()"
-  (attach)="panelOpened()"
-  (detach)="close()"
->
-  <ul
-    #optionsContainer
+<div role="listbox" #listbox tabindex="0" (keydown)="onKeydown($event)">
+  <app-popover
     class="select-options"
-    (keydown)="onKeydown($event)"
-    [style.width.px]="overlayWidth()"
-    tabindex="0"
+    [isOpen]="isOpen()"
+    [trigger]="trigger"
+    (opened)="panelOpened()"
+    (closed)="panelClosed()"
+    [offsetY]="40"
   >
     <ng-content select="app-option"></ng-content>
-  </ul>
-</ng-template>
+  </app-popover>
+</div>

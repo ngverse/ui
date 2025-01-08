@@ -1,4 +1,4 @@
-<div>
+<div [class.opened]="isOpen()">
   <button
     class="accordion-item-header"
     (click)="toggle()"
@@ -6,6 +6,7 @@
     [attr.aria-expanded]="isOpen()"
     [attr.aria-controls]="accordionContentId"
   >
+    {{ label() }}
     <ng-content select="app-accordion-header"></ng-content>
     <app-expand-icon
       [class.icon-opened]="isOpen()"

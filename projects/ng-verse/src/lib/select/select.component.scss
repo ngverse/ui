@@ -3,9 +3,18 @@
   align-items: center;
   gap: 10px;
   background: transparent;
-  border: 1px solid var(--app-border-color);
-  border-radius: var(--app-border-radius);
+  border: 1px solid var(--app-field-border-color);
+  border-radius: var(--app-field-border-radius);
+  display: flex;
+  justify-content: space-between;
   padding: 4px 10px;
+  height: 35px;
+  &.stretch {
+    width: 100%;
+  }
+  &:focus {
+    outline: 1px solid var(--app-ring-color);
+  }
   .select-button-icon {
     transition: transform 0.15s ease-in-out;
     display: flex;
@@ -14,16 +23,31 @@
       transform: rotate(180deg);
     }
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--app-disabled-color);
+  }
+}
+
+:host.ng-invalid.ng-touched {
+  .select-button {
+    border-color: var(--app-danger-color);
+  }
 }
 
 .select-options {
-  width: 100%;
-  background: white;
-  margin-top: 6px;
-  border: 1px solid var(--app-border-color);
-  border-radius: var(--app-border-radius);
-  max-height: 300px;
-  list-style: none;
-  padding-left: 0;
-  outline-color: var(--app-ring-color);
+  height: 150px;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.option {
+  padding: 8px 6px;
+}
+
+.option:hover,
+.cdk-option-active {
+  background: var(--app-hover-color);
+  color: var(--app-hover-on-color);
 }

@@ -1,16 +1,19 @@
 <doc-blueprint-page
-  [subTitle]="
-    'This is loading overlay'
-  "
-  [label]="'Loading Overlay'"
+  label="Loading Overlay"
+  subTitle="Blocks the element and displays a loading indicator."
 >
   <doc-show-case name="loading-overlay">
     <doc-show-case-loading-overlay></doc-show-case-loading-overlay>
   </doc-show-case>
+  <doc-dependencies-installation [deps]="[{ name: 'progress-spinner' }]">
+    Loading Overlay depends on Progress Spinner to display indicator, so make
+    sure to install it.
+  </doc-dependencies-installation>
   <doc-command-installation type="component" name="loading-overlay">
   </doc-command-installation>
-  <doc-source-tree [sourceTree]="sourceTree" name="loading-overlay"></doc-source-tree>
-  <doc-api-info>
-    <doc-api-inputs [apiInputs]="apiInputs"></doc-api-inputs>
-  </doc-api-info>
+  <doc-source-tree
+    [sourceTree]="sourceTree"
+    name="loading-overlay"
+  ></doc-source-tree>
+  <doc-api-info [apiInfo]="apiInfo"> </doc-api-info>
 </doc-blueprint-page>

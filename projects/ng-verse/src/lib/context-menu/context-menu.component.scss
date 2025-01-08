@@ -1,0 +1,10 @@
+.context-menu {
+  background: white;
+  border-radius: var(--app-border-radius);
+  border: 1px solid var(--app-border-color);
+  box-shadow: var(--app-popover-box-shadow);
+}
+
+:host {
+  display: block;
+}

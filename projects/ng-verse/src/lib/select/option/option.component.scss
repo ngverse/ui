@@ -1,13 +1,18 @@
 :host {
   display: block;
-}
-.active {
-  background: var(--app-accent);
-  color: var(--app-accent-foreground);
-}
+  padding: 6px;
+  cursor: pointer;
+  &.option-active {
+    background: var(--app-primary-color);
+    color: white;
+  }
 
-.option-button {
-  width: 100%;
-  text-align: left;
-  padding: 8px 6px;
+  &:hover {
+    background: var(--app-primary-color);
+    color: white;
+  }
+
+  &.option-disabled {
+    color: var(--app-disabled-color);
+  }
 }

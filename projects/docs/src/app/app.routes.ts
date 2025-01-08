@@ -30,8 +30,11 @@ export const routes: Routes = [
           ).then((i) => i.InstallationPageComponent),
       },
       {
-        path:"usage",
-        loadComponent:()=>import("./features/usage-page/usage-page.component").then((u)=>u.UsagePageComponent)
+        path: 'usage',
+        loadComponent: () =>
+          import('./features/usage-page/usage-page.component').then(
+            (u) => u.UsagePageComponent
+          ),
       },
       {
         path: 'theming',
@@ -66,6 +69,27 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/breadcrumb-page/breadcrumb-page.component').then(
             (b) => b.BreadcrumbPageComponent
+          ),
+      },
+      {
+        path: 'badge',
+        loadComponent: () =>
+          import('./features/badge-page/badge-page.component').then(
+            (b) => b.BadgePageComponent
+          ),
+      },
+      {
+        path: 'card',
+        loadComponent: () =>
+          import('./features/card-page/card-page.component').then(
+            (b) => b.CardPageComponent
+          ),
+      },
+      {
+        path: 'divider',
+        loadComponent: () =>
+          import('./features/divider-page/divider-page.component').then(
+            (b) => b.DividerPageComponent
           ),
       },
       {
@@ -167,6 +191,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'textarea',
+        loadComponent: () =>
+          import('./features/textarea-page/textarea-page.component').then(
+            (d) => d.TextareaPageComponent
+          ),
+      },
+      {
         path: 'progress-spinner',
         loadComponent: () =>
           import(
@@ -202,15 +233,36 @@ export const routes: Routes = [
           ).then((d) => d.MultiSelectPageComponent),
       },
       {
+        path: 'icon',
+        loadComponent: () =>
+          import('./features/icon-page/icon-page.component').then(
+            (b) => b.IconPageComponent
+          ),
+      },
+      {
+        path: 'popover',
+        loadComponent: () =>
+          import('./features/popover-page/popover-page.component').then(
+            (p) => p.PopoverPageComponent
+          ),
+      },
+      {
+        path: 'context-menu',
+        loadComponent: () =>
+          import(
+            './features/context-menu-page/context-menu-page.component'
+          ).then((p) => p.ContextMenuPageComponent),
+      },
+      {
         path: '',
-        redirectTo: 'button',
+        redirectTo: 'introduction',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: 'doc/introduction',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
 ];

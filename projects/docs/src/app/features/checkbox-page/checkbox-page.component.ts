@@ -1,17 +1,22 @@
 import { Component, inject } from '@angular/core';
-import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
-import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
-import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
-import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import { ShowCaseCheckboxComponent } from '../../examples/checkbox/show-case-checkbox/show-case-checkbox.component';
+import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-  ApiInputs,
+  ApiEntity,
   ApiInputsComponent,
   AUTO_GENERATED_API_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
-import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
+import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
+import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
+import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
+import {
+  SourceTreeBuilder,
+  SourceTreeFolder,
+} from '../../blueprint/source-tree/source-tree-builder';
+import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
+import { ShowCaseCheckboxComponent } from '../../examples/checkbox/show-case-checkbox/show-case-checkbox.component';
+
+const ROOT = 'checkbox';
 
 @Component({
   selector: 'doc-checkbox-page',
@@ -30,21 +35,22 @@ import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 })
 export class CheckboxPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
-  sourceTree = this.sourceTreeBuilder.sourceTree('checkbox', (root) => [
-    this.sourceTreeBuilder.folder(
-      'checkbox',
-      root,
-      (root) => [
-        ...this.sourceTreeBuilder.fullComponent('checkbox', root),
-        this.sourceTreeBuilder.file('checkbox-icon.component', root),
-      ],
-      true
-    ),
-  ]);
-
-  apiInputs: ApiInputs[] = [
+  sourceTree: SourceTreeFolder[] = [
     {
-      name: 'checkbox',
+      name: ROOT,
+      files: [
+        ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
+        this.sourceTreeBuilder.file('checkbox-icon.component', ROOT),
+      ],
+      hideName: true,
+    },
+  ];
+
+  apiInputs: ApiEntity[] = [
+    {
+      name: 'CheckboxComponent',
+      selector: 'app-checkbox',
+      type: 'component',
       inputs: [
         {
           name: 'disabled',

@@ -8,4 +8,8 @@
   position: absolute;
   color: white;
   cursor: pointer;
+  display: none;
+  @layer lg {
+    @apply block;
+  }
 }

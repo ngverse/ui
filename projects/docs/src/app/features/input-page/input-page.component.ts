@@ -1,16 +1,19 @@
 import { Component, inject } from '@angular/core';
-import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-  ApiInputs,
-  ApiInputsComponent,
-  EMPTY_API_INPUT_DEFAULT_VALUE,
-} from '../../blueprint/api-info/api-inputs/api-inputs.component';
+  ApiInfo,
+  ApiInfoComponent,
+} from '../../blueprint/api-info/api-info.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
-import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
+import {
+  SourceTreeBuilder,
+  SourceTreeFolder,
+} from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseInputComponent } from '../../examples/input/show-case-input/show-case-input.component';
+
+const ROOT = 'input';
 
 @Component({
   selector: 'doc-input-page',
@@ -21,58 +24,27 @@ import { ShowCaseInputComponent } from '../../examples/input/show-case-input/sho
     CommandInstallationComponent,
     SourceTreeComponent,
     ApiInfoComponent,
-    ApiInputsComponent,
   ],
   templateUrl: './input-page.component.html',
   styleUrl: './input-page.component.scss',
 })
 export class InputPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
-  sourceTree = this.sourceTreeBuilder.sourceTree('input', (root) => [
-    this.sourceTreeBuilder.folder(
-      root,
-      root,
-      () => this.sourceTreeBuilder.fullComponent('input', root),
-      true
-    ),
-  ]);
-
-  apiInputs: ApiInputs[] = [
+  sourceTree: SourceTreeFolder[] = [
     {
-      name: 'button',
-      inputs: [
-        {
-          name: 'color',
-          type: 'primary | secondary | danger | success',
-          description: "Defines the button's color type",
-          default: 'primary',
-        },
-        {
-          name: 'size',
-          type: 'sm | md | lg',
-          description: 'changes the size of the button',
-          default: 'md',
-        },
-        {
-          name: 'disabled',
-          type: 'boolean',
-          description: 'disables the button',
-          default: 'false',
-        },
-        {
-          name: 'type',
-          type: 'submit | reset | button',
-          description: 'sets the native button type attribute',
-          default: EMPTY_API_INPUT_DEFAULT_VALUE,
-        },
-        {
-          name: 'loading',
-          type: 'boolean',
-          description:
-            'adds spinner on the button. The button will not emit any event while loading is true',
-          default: 'false',
-        },
-      ],
+      name: ROOT,
+      files: [...this.sourceTreeBuilder.inlineComponent(ROOT, ROOT)],
+      hideName: true,
     },
   ];
+
+  apiInfo: ApiInfo = {
+    entities: [
+      {
+        name: 'InputComponent',
+        type: 'component',
+        selector: '[appInput]',
+      },
+    ],
+  };
 }

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   contentChildren,
   effect,
@@ -13,6 +14,7 @@ import { AccordionItemComponent } from './accordion-item.component';
   imports: [],
   templateUrl: './accordion.component.html',
   styleUrl: './accordion.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccordionComponent implements OnDestroy {
   accordionItems = contentChildren(AccordionItemComponent);
@@ -22,6 +24,7 @@ export class AccordionComponent implements OnDestroy {
   constructor() {
     effect(() => {
       if (this.multi()) {
+        this.sub?.unsubscribe();
         return;
       }
       this.sub?.unsubscribe();

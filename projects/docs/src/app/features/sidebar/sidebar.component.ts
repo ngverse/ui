@@ -53,8 +53,20 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/button',
       },
       {
+        name: 'Badge',
+        url: '/doc/badge',
+      },
+      {
         name: 'Checkbox',
         url: '/doc/checkbox',
+      },
+      {
+        name: 'Card',
+        url: '/doc/card',
+      },
+      {
+        name: 'Divider',
+        url: '/doc/divider',
       },
       {
         name: 'Skeleton',
@@ -77,6 +89,10 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/tooltip',
       },
       {
+        name: 'Textarea',
+        url: '/doc/textarea',
+      },
+      {
         name: 'Select',
         url: '/doc/select',
       },
@@ -87,6 +103,10 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Loading Overlay',
         url: '/doc/loading-overlay',
+      },
+      {
+        name: 'Progress Bar',
+        url: '/doc/progress-bar',
       },
       {
         name: 'Dialog',
@@ -112,6 +132,18 @@ export const SIDEBAR_ROUTES = [
         name: 'Multi Select',
         url: '/doc/multi-select',
       },
+      {
+        name: 'Icon',
+        url: '/doc/icon',
+      },
+      {
+        name: 'Popover',
+        url: '/doc/popover',
+      },
+      {
+        name: 'Context Menu',
+        url: '/doc/context-menu',
+      },
       // {
       //   name: 'Breadcrumb',
       //   url: '/doc/breadcrumb',
@@ -120,10 +152,7 @@ export const SIDEBAR_ROUTES = [
       //   name: 'OTP Input',
       //   url: '/doc/otp-input',
       // },
-      // {
-      //   name: 'Progress Bar',
-      //   url: '/doc/progress-bar',
-      // },
+
       // {
       //   name: 'Toast',
       //   url: '/doc/toast',
@@ -164,7 +193,7 @@ export const SIDEBAR_ROUTES = [
   },
 ];
 
-export function getAllSidebarLinks(){
+export function getAllSidebarLinks() {
   return SIDEBAR_ROUTES.flatMap((group) => group.children);
 }
 

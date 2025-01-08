@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, DebugElement, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { CheckboxIconComponent } from './checkbox-icon.component';
 import { CheckboxComponent } from './checkbox.component';
 
 describe('CheckboxComponent', () => {
@@ -13,6 +14,7 @@ describe('CheckboxComponent', () => {
   let checkboxComponent: CheckboxComponent;
   let checkboxRootElement: HTMLElement;
   let checkboxNativeElement: HTMLElement;
+  let checkboxElement: HTMLElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,6 +26,9 @@ describe('CheckboxComponent', () => {
     rootComponent = fixture.componentInstance;
     checkboxComponent = debugElement.query(By.directive(CheckboxComponent))
       .componentInstance as CheckboxComponent;
+    checkboxElement = debugElement.query(
+      By.directive(CheckboxComponent)
+    ).nativeElement;
     checkboxRootElement = htmlElement.querySelector('.checkbox') as HTMLElement;
     checkboxNativeElement = htmlElement.querySelector('input') as HTMLElement;
     fixture.detectChanges();
@@ -42,12 +47,49 @@ describe('CheckboxComponent', () => {
     fixture.detectChanges();
     expect(rootComponent.formControl.value).toBeTrue();
   });
+  it('icon should be checked when value is true', () => {
+    rootComponent.formControl.setValue(true);
+    fixture.detectChanges();
+    const checkboxIcon = fixture.debugElement.query(
+      By.directive(CheckboxIconComponent)
+    );
+    expect(checkboxIcon.componentInstance.checked).toBeTruthy();
+  });
+  it('checkbox should be invalid with formControl required', () => {
+    rootComponent.formControl.setValidators(Validators.required);
+    rootComponent.formControl.setValue(null);
+    fixture.detectChanges();
+    expect(checkboxElement).toHaveClass('ng-invalid');
+  });
+  it('checkbox should be invalid with required true', () => {
+    rootComponent.required.set(true);
+    fixture.detectChanges();
+    expect(checkboxElement).toHaveClass('ng-invalid');
+  });
+
+  it('id input should change the id of the input element', () => {
+    const id = 'test-id';
+    rootComponent.id.set(id);
+    fixture.detectChanges();
+    expect(checkboxNativeElement.id).toBe(id);
+  });
+  it("ng-content should be 'Test checkbox'", () => {
+    expect(checkboxElement.textContent?.trim()).toBe('Test checkbox');
+  });
 });
 
 @Component({
   imports: [CheckboxComponent, ReactiveFormsModule],
-  template: `<app-checkbox [formControl]="formControl"> </app-checkbox>`,
+  template: `<app-checkbox
+    [id]="id()"
+    [required]="required"
+    [formControl]="formControl"
+  >
+    Test checkbox
+  </app-checkbox>`,
 })
 class CheckboxTestComponent {
   formControl = new FormControl();
+  required = signal(false);
+  id = signal<string | undefined>(undefined);
 }

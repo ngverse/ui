@@ -1,11 +1,28 @@
 .button {
-  --primary-color: #0284c7;
-  --secondary-color: #d946ef;
-  --success-color: #16a34a;
-  --danger-color: #dc2626;
+  outline: none;
+  --outline-hover: #f1f5f9;
+  --outlline-active: #e2e8f0;
 
-  &.loading{
+  &.loading {
     pointer-events: none;
+  }
+
+  &.outline {
+    &:hover {
+      background: var(--outline-hover);
+    }
+    &:active {
+      background: var(--outlline-active);
+    }
+  }
+
+  &.fill {
+    &:hover {
+      opacity: 0.85;
+    }
+    &:active {
+      opacity: 0.7;
+    }
   }
 
   position: relative;
@@ -36,65 +53,72 @@
   }
 
   &.primary {
+    &:focus {
+      outline: 1px solid var(--app-primary-color);
+    }
     &.fill {
-      background-color: var(--primary-color);
+      background-color: var(--app-primary-color);
     }
     &.outline {
-      border-color: var(--primary-color);
-      color: var(--primary-color);
+      border-color: var(--app-primary-color);
+      color: var(--app-primary-color);
       .spinner {
-        border-color: var(--primary-color);
+        border-color: var(--app-primary-color);
       }
     }
   }
 
   &.secondary {
+    &:focus {
+      outline: 1px solid var(--app-secondary-color);
+    }
     &.fill {
-      background-color: var(--secondary-color);
+      background-color: var(--app-secondary-color);
     }
     &.outline {
-      border-color: var(--secondary-color);
-      color: var(--secondary-color);
+      border-color: var(--app-secondary-color);
+      color: var(--app-secondary-color);
       .spinner {
-        border-color: var(--secondary-color);
+        border-color: var(--app-secondary-color);
       }
     }
   }
 
   &.success {
+    &:focus {
+      outline: 1px solid var(--app-success-color);
+    }
     &.fill {
-      background-color: var(--success-color);
+      background-color: var(--app-success-color);
     }
     &.outline {
-      border-color: var(--success-color);
-      color: var(--success-color);
+      border-color: var(--app-success-color);
+      color: var(--app-success-color);
       .spinner {
-        border-color: var(--success-color);
+        border-color: var(--app-success-color);
       }
     }
   }
 
   &.danger {
+    &:focus {
+      outline: 1px solid var(--app-danger-color);
+    }
     &.fill {
-      background-color: var(--danger-color);
+      background-color: var(--app-danger-color);
     }
     &.outline {
-      border-color: var(--danger-color);
-      color: var(--danger-color);
+      border-color: var(--app-danger-color);
+      color: var(--app-danger-color);
       .spinner {
-        border-color: var(--danger-color);
+        border-color: var(--app-danger-color);
       }
     }
   }
 }
 
-.button:hover {
-  opacity: 0.85;
-}
-
 .button:disabled:not(.loading) {
-  background-color: #d6d6d6;
-  color: #a1a1a1;
+  background-color: var(--app-disabled-color);
   cursor: not-allowed;
 }
 

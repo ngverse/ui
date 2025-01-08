@@ -23,3 +23,15 @@
     }
   }
 }
+
+.component {
+  @apply bg-cyan-600;
+}
+
+.directive {
+  @apply bg-teal-600;
+}
+
+.service {
+  @apply bg-sky-600;
+}

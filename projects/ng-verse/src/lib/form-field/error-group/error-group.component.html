@@ -1,0 +1,3 @@
+@if(invalid() && touched()){ @for (error of errors(); track $index) {
+<app-error>{{ error }}</app-error>
+} }

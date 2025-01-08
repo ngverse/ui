@@ -2,9 +2,11 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
-.custom-tooltip-content{
+.custom-tooltip-content {
   display: flex;
   align-items: center;
+  gap: 10px;
 }

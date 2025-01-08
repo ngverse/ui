@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   model,
   signal,
@@ -24,10 +25,11 @@ function genId() {
 
 type VALUE_TYPE = boolean | undefined | null;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type OnChangeFunction = ((_: any) => void) | undefined;
+type OnChangeFunction = ((_: unknown) => void) | undefined;
 
 type OnTouchedFunction = (() => void) | undefined;
+
+type ValidatorChangeFunction = (() => void) | undefined;
 
 @Component({
   selector: 'app-checkbox',
@@ -53,10 +55,22 @@ export class CheckboxComponent implements ControlValueAccessor, Validator {
 
   private _registerOnChange: OnChangeFunction;
   private _onTouched: OnTouchedFunction;
+  private _validatorChangeFn: ValidatorChangeFunction;
 
   disabled = model<boolean>(false);
 
+  required = input<boolean>(false);
+
   id = input(genId());
+
+  constructor() {
+    effect(() => {
+      this.required();
+      if (this._validatorChangeFn) {
+        this._validatorChangeFn();
+      }
+    });
+  }
 
   writeValue(obj: boolean | undefined | null): void {
     this.value.set(obj);
@@ -65,12 +79,24 @@ export class CheckboxComponent implements ControlValueAccessor, Validator {
     this._registerOnChange = fn;
   }
 
+  registerOnValidatorChange(fn: () => void): void {
+    this._validatorChangeFn = fn;
+  }
+
   registerOnTouched(fn: OnTouchedFunction): void {
     this._onTouched = fn;
   }
 
   setDisabledState?(isDisabled: boolean): void {
     this.disabled.set(isDisabled);
+  }
+
+  validate(control: AbstractControl<boolean>): ValidationErrors | null {
+    const hasRequiredValidator =
+      this.required() || control.hasValidator(Validators.required);
+    return hasRequiredValidator && control.value !== true
+      ? { required: true }
+      : null;
   }
 
   toggle() {
@@ -85,10 +111,5 @@ export class CheckboxComponent implements ControlValueAccessor, Validator {
     if (this._registerOnChange) {
       this._registerOnChange(newValue);
     }
-  }
-
-  validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequired = control.hasValidator(Validators.required);
-    return hasRequired && control.value !== true ? { required: true } : null;
   }
 }

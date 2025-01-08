@@ -2,6 +2,17 @@ a {
   text-decoration: none;
 }
 
+:host {
+  background: white;
+}
+
 .selected {
   @apply bg-slate-100 font-medium;
+}
+
+.sidebar {
+  @screen lg {
+    height: calc(100vh - 56px);
+    @apply sticky top-[56px];
+  }
 }
