@@ -13,7 +13,7 @@ import {
   OnDestroy,
   output,
   Renderer2,
-  signal
+  signal,
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { PopoverTriggerDirective } from './popover-trigger.directive';
@@ -34,7 +34,7 @@ interface TRIGGER_COORDINATES {
 })
 export class PopoverComponent implements OnDestroy, AfterViewInit {
   popover = inject(ElementRef<HTMLElement>);
-  popoverEl = this.popover.nativeElement;
+  popoverEl = this.popover.nativeElement as HTMLElement;
   private overlay = inject(Overlay);
   private renderer2 = inject(Renderer2);
   private document = inject(DOCUMENT);
@@ -121,17 +121,14 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
     this.scrollSub = fromEvent(this.document, 'scroll', {
       capture: true,
       passive: true,
-    }).subscribe(() => {
-      const trigger = this.trigger();
-      if (trigger) {
-        const popover = this.popover.nativeElement;
-
-        const triggerHost = trigger.host;
-        const bounds = triggerHost.nativeElement.getBoundingClientRect();
-
-        this.renderer2.setStyle(popover, 'left', `${bounds.left}px`);
-        this.renderer2.setStyle(popover, 'top', `${bounds.top + 30}px`);
+    }).subscribe((event) => {
+      const target = event.target as HTMLElement;
+      if (target) {
+        if (target === this.popoverEl || this.popoverEl.contains(target)) {
+          return;
+        }
       }
+      this.updateCoordinates();
     });
   }
 

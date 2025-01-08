@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { OptionComponent } from '@ng-verse/select/option/option.component';
 import { SelectComponent } from '@ng-verse/select/select.component';
 const countries = [
   { code: 'US', name: 'United States' },
@@ -25,7 +26,7 @@ const countries = [
 ];
 @Component({
   selector: 'doc-show-case-select',
-  imports: [SelectComponent, ReactiveFormsModule],
+  imports: [SelectComponent, ReactiveFormsModule, OptionComponent],
   templateUrl: './show-case-select.component.html',
   styleUrl: './show-case-select.component.scss',
 })
