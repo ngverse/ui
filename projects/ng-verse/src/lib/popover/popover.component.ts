@@ -19,10 +19,10 @@ import { fromEvent, Subscription } from 'rxjs';
 import { PopoverTriggerDirective } from './popover-trigger.directive';
 import { POPOVER_ANIMATIONS } from './popover.animations';
 
-type TRIGGER_COORDINATES = {
+interface TRIGGER_COORDINATES {
   x: number;
   y: number;
-};
+}
 
 @Component({
   selector: 'app-popover',
@@ -90,6 +90,7 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     const triggerEl = this.trigger()?.el;
     if (triggerEl) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (triggerEl as any).popoverTargetElement = this.popoverEl;
     }
   }

@@ -20,6 +20,4 @@ export class PopoverTriggerDirective {
   get el() {
     return this.host.nativeElement;
   }
-
-  constructor() {}
 }

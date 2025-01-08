@@ -29,7 +29,7 @@ import { CONTEXT_MENU_ANIMATIONS } from './context-menu.animations';
   },
   animations: [CONTEXT_MENU_ANIMATIONS],
 })
-export class ContextMenuComponent<T> implements OnInit, AfterContentInit {
+export class ContextMenuComponent implements OnInit, AfterContentInit {
   animationState = signal<'show' | 'hide'>('show');
   trigger = input.required<ContextMenuTriggerDirective>();
 
