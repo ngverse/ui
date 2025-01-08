@@ -1,9 +1,9 @@
 <button
   [class.stretch]="stretch()"
   class="select-button"
+  #selectButton
   appPopoverTrigger
   #trigger="appPopoverTrigger"
-  #selectButton
 >
   <span>{{ selectedOptionLabel() || placeholder() }}</span>
   <app-select-icon
@@ -11,12 +11,13 @@
     [class.opened]="isOpen()"
   ></app-select-icon>
 </button>
+
 <app-popover
-  scrollBehavior="block"
   [isOpen]="isOpen()"
-  (closed)="panelClosed()"
   [trigger]="trigger"
   (opened)="panelOpened()"
+  (closed)="panelClosed()"
+  [offsetY]="40"
 >
   <ul
     class="select-options"

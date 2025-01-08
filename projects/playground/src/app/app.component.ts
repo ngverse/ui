@@ -1,8 +1,4 @@
-import {
-  Overlay,
-  STANDARD_DROPDOWN_BELOW_POSITIONS,
-} from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
+import { Overlay } from '@angular/cdk/overlay';
 import {
   Component,
   inject,
@@ -22,32 +18,27 @@ export class AppComponent {
   el = viewChild.required('el');
   temp = viewChild.required(TemplateRef);
   vf = inject(ViewContainerRef);
-  clicked(event: MouseEvent) {
-    event.preventDefault();
-    const x = event.clientX;
-    const y = event.clientY;
+  clicked(event: MouseEvent) {}
 
-    const overlayRef = this.overlay.create({
-      hasBackdrop: true,
-      backdropClass: 'cdk-backdrop-transparent',
-      positionStrategy: this.overlay
-        .position()
-        .flexibleConnectedTo({ x, y })
-        .withPositions(STANDARD_DROPDOWN_BELOW_POSITIONS),
+  showPopover() {
+    setTimeout(() => {
+      const target = document.querySelector('#target') as HTMLElement;
+      const popover = document.querySelector('#popover') as HTMLElement;
+
+      const position = target.getBoundingClientRect();
+
+      popover.style.top = `${position.top}px`;
+      popover.style.left = `${position.left}px`;
     });
+  }
 
-    overlayRef.backdropClick().subscribe(() => {
-      overlayRef.dispose();
-    });
-    overlayRef.keydownEvents().subscribe((e) => {
-      if (e.key === 'Escape') {
-        overlayRef.dispose();
-      }
-    });
-
-    const templatePortal = new TemplatePortal(this.temp(), this.vf);
-
-    overlayRef.attach(templatePortal);
-    overlayRef.updatePosition();
+  constructor() {
+    document.addEventListener(
+      'scroll',
+      function (e) {
+        console.log('SCROLLED');
+      },
+      { capture: true, passive: true }
+    );
   }
 }

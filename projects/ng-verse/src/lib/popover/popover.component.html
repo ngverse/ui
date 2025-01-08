@@ -1,9 +1,5 @@
-<ng-template>
-  <div
-    class="overlay-content"
-    [@overlayAnimation]="animationState()"
-    (@overlayAnimation.done)="onAnimationEvent($event)"
-  >
+<div id="mainpopover" #popover class="popover" style="margin: unset">
+  <div>
     <ng-content></ng-content>
   </div>
-</ng-template>
+</div>

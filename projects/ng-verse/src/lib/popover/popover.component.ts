@@ -1,207 +1,170 @@
+import { Overlay } from '@angular/cdk/overlay';
+import { DOCUMENT } from '@angular/common';
 import {
-  animate,
-  AnimationEvent,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import {
-  ConnectedPosition,
-  Overlay,
-  OverlayRef,
-  ScrollStrategy,
-  STANDARD_DROPDOWN_BELOW_POSITIONS,
-} from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
-import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   effect,
+  ElementRef,
+  HostBinding,
+  HostListener,
   inject,
   input,
+  OnDestroy,
   OnInit,
   output,
+  Renderer2,
   signal,
-  TemplateRef,
-  viewChild,
-  ViewContainerRef,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { fromEvent, Subscription } from 'rxjs';
 import { PopoverTriggerDirective } from './popover-trigger.directive';
+import { POPOVER_ANIMATIONS } from './popover.animations';
 
-type POPOVER_POSITION = 'top' | 'right' | 'bottom' | 'left';
-type SCROLL_BEHAVIOR = 'reposition' | 'block' | 'close' | 'none';
-type TRIGGER_EVENT = 'click' | 'none';
+type TRIGGER_COORDINATES = {
+  x: number;
+  y: number;
+};
 
-export const overlayAnimation = trigger('overlayAnimation', [
-  state('void', style({ opacity: 0, transform: 'scale(0.9)' })), // Initial state
-  state('enter', style({ opacity: 1, transform: 'scale(1)' })), // Final state when open
-  state('leave', style({ opacity: 0, transform: 'scale(0.9)' })), // Final state when closing
-  transition('void => enter', [animate('150ms ease-out')]), // Enter animation
-  transition('enter => leave', [animate('150ms ease-in')]), // Leave animation
-]);
 @Component({
   selector: 'app-popover',
   imports: [],
   templateUrl: './popover.component.html',
   styleUrl: './popover.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [overlayAnimation],
+  animations: [POPOVER_ANIMATIONS],
 })
-export class PopoverComponent implements OnInit {
-  animationState = signal<'enter' | 'leave'>('enter');
+export class PopoverComponent implements OnInit, OnDestroy, AfterViewInit {
+  popover = inject(ElementRef<HTMLElement>);
+  popoverEl = this.popover.nativeElement;
+  private overlay = inject(Overlay);
+  private renderer2 = inject(Renderer2);
+  private document = inject(DOCUMENT);
 
-  trigger = input.required<PopoverTriggerDirective>();
-  sub = new Subscription();
-  overlay = inject(Overlay);
-  position = input<POPOVER_POSITION>('bottom');
-  offsetX = input<number>(0);
+  @HostBinding('attr.popover')
+  bind = '';
+
+  trigger = input<PopoverTriggerDirective>();
+  isOpen = input(false);
   offsetY = input<number>(0);
-  scrollBehavior = input<SCROLL_BEHAVIOR>('reposition');
-  triggerEvent = input<TRIGGER_EVENT>('click');
-  content = viewChild.required(TemplateRef);
-  vf = inject(ViewContainerRef);
-  hasBackdrop = input<boolean>(false);
+  offsetX = input<number>(0);
+  blockScroll = input(true);
 
-  overlayRef: OverlayRef | undefined;
-
-  closeOnEscape = input<boolean>(true);
-  closeOnOutside = input<boolean>(true);
   opened = output();
   closed = output();
 
-  isOpen = input<boolean | undefined>();
+  scrollSub: Subscription | undefined;
+
+  coordinates = signal<TRIGGER_COORDINATES | undefined>(undefined);
+
+  get popoverIsOpen() {
+    return this.popoverEl.matches(':popover-open');
+  }
+
+  @HostListener('beforetoggle', ['$event'])
+  onBeforeToggle(event: ToggleEvent) {
+    const toggleEvent = event as ToggleEvent;
+    if (toggleEvent.newState === 'open') {
+      this.opened.emit();
+      this.updateCoordinates();
+      if (this.blockScroll()) {
+        this.overlay.scrollStrategies.block().enable();
+      }
+      this.listenToDocumentScroll();
+    } else {
+      this.closed.emit();
+      if (this.blockScroll()) {
+        this.overlay.scrollStrategies.block().disable();
+      }
+    }
+  }
 
   constructor() {
     effect(() => {
       const isOpen = this.isOpen();
       if (isOpen) {
-        this.show();
+        this.open();
       } else {
-        this.close();
+        this.hide();
       }
     });
   }
-
-  ngOnInit(): void {
-    const trigger = this.trigger();
-
-    trigger.openTriggered.subscribe(() => {
-      this.show();
-    });
-    trigger.closeTriggered.subscribe(() => {
-      this.close();
-    });
+  ngAfterViewInit(): void {
+    const triggerEl = this.trigger()?.el;
+    if (triggerEl) {
+      (triggerEl as any).popoverTargetElement = this.popoverEl;
+    }
+  }
+  ngOnDestroy(): void {
+    this.scrollSub?.unsubscribe();
   }
 
-  show() {
-    if (this.overlayRef) {
+  ngOnInit() {
+    // this.trigger()?.host.nativeElement.addEventListener('click', () => {
+    //   this.open();
+    // });
+  }
+
+  open(coordinates?: TRIGGER_COORDINATES) {
+    this.coordinates.set(coordinates);
+    if (this.popoverIsOpen) {
       return;
     }
-    const triggerEl = this.trigger().hostElement;
-    const points = this.getOverlayPositionsByPosition();
-    const scrollOption = this.getScrollOptionByScrollBehavior();
-    this.animationState.set('enter');
-
-    this.overlayRef = this.overlay.create({
-      positionStrategy: this.overlay
-        .position()
-        .flexibleConnectedTo(triggerEl)
-        .withPositions(points),
-      hasBackdrop: this.hasBackdrop(),
-      disposeOnNavigation: true,
-      scrollStrategy: scrollOption,
-    });
-    const contentPortal = new TemplatePortal(this.content(), this.vf);
-    this.overlayRef.attach(contentPortal);
-    if (this.closeOnEscape()) {
-      this.onKeydown();
-    }
-    if (this.closeOnOutside()) {
-      this.onPointerEvents();
-    }
-    this.opened.emit();
+    const popover = this.popover.nativeElement;
+    popover.showPopover();
+    this.listenToDocumentScroll();
   }
 
-  onPointerEvents() {
-    this.overlayRef?.outsidePointerEvents().subscribe(() => {
-      this.close();
-    });
+  hide() {
+    if (this.popoverIsOpen) {
+      const popover = this.popover.nativeElement;
+      popover.hidePopover();
+      this.scrollSub?.unsubscribe();
+    }
   }
 
-  onKeydown() {
-    this.overlayRef?.keydownEvents().subscribe((e) => {
-      if (e.key === 'Escape') {
-        this.close();
+  listenToDocumentScroll() {
+    this.scrollSub?.unsubscribe();
+    this.scrollSub = fromEvent(this.document, 'scroll', {
+      capture: true,
+      passive: true,
+    }).subscribe(() => {
+      const trigger = this.trigger();
+      if (trigger) {
+        const popover = this.popover.nativeElement;
+
+        const triggerHost = trigger.host;
+        const bounds = triggerHost.nativeElement.getBoundingClientRect();
+
+        this.renderer2.setStyle(popover, 'left', `${bounds.left}px`);
+        this.renderer2.setStyle(popover, 'top', `${bounds.top + 30}px`);
       }
     });
   }
-  onAnimationEvent($event: AnimationEvent) {
-    if ($event.toState === 'leave') {
-      this.overlayRef?.dispose();
-      this.overlayRef = undefined;
-      this.closed.emit();
+
+  getTriggerCoordinates(): TRIGGER_COORDINATES | undefined {
+    const trigger = this.trigger();
+    if (!trigger) {
+      return;
     }
+    const triggerEl = trigger.el;
+    const bounds = triggerEl.getBoundingClientRect();
+    return { x: bounds.left, y: bounds.top };
   }
 
-  close() {
-    this.animationState.set('leave');
-
-    // this.overlayRef?.dispose();
-    // this.closed.emit();
-  }
-
-  private getScrollOptionByScrollBehavior(): ScrollStrategy {
-    switch (this.scrollBehavior()) {
-      case 'reposition':
-        return this.overlay.scrollStrategies.reposition();
-      case 'block':
-        return this.overlay.scrollStrategies.block();
-      case 'close':
-        return this.overlay.scrollStrategies.close();
-      default:
-        return this.overlay.scrollStrategies.noop();
-    }
-  }
-
-  private getOverlayPositionsByPosition(): ConnectedPosition[] {
-    switch (this.position()) {
-      case 'top':
-        return [
-          {
-            originX: 'center',
-            originY: 'top',
-            overlayX: 'center',
-            overlayY: 'bottom',
-            offsetX: this.offsetX(),
-            offsetY: this.offsetY(),
-          },
-        ];
-      case 'right':
-        return [
-          {
-            originX: 'end',
-            originY: 'center',
-            overlayX: 'start',
-            overlayY: 'center',
-            offsetX: this.offsetX(),
-            offsetY: this.offsetY(),
-          },
-        ];
-      case 'bottom':
-        return STANDARD_DROPDOWN_BELOW_POSITIONS;
-      case 'left':
-        return [
-          {
-            originX: 'start',
-            originY: 'center',
-            overlayX: 'end',
-            overlayY: 'center',
-            offsetX: this.offsetX(),
-            offsetY: this.offsetY(),
-          },
-        ];
-    }
+  updateCoordinates() {
+    const coord = this.coordinates();
+    const coordinates =
+      coord ?? (this.getTriggerCoordinates() as TRIGGER_COORDINATES);
+    const popoverEl = this.popoverEl;
+    this.renderer2.setStyle(
+      popoverEl,
+      'left',
+      `${coordinates.x + this.offsetX()}px`
+    );
+    this.renderer2.setStyle(
+      popoverEl,
+      'top',
+      `${coordinates.y + this.offsetY()}px`
+    );
   }
 }

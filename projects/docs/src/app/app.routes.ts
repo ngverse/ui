@@ -240,6 +240,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'context-menu',
+        loadComponent: () =>
+          import(
+            './features/context-menu-page/context-menu-page.component'
+          ).then((p) => p.ContextMenuPageComponent),
+      },
+      {
         path: '',
         redirectTo: 'introduction',
         pathMatch: 'full',
