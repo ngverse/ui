@@ -1,26 +1,20 @@
 <input
   class="select-button"
-  cdkOverlayOrigin
-  #trigger="cdkOverlayOrigin"
-  #triggerElement
-  (focus)="open()"
-  (blur)="_onTouched?.()"
   (input)="onInput($event)"
   [ngModel]="inputValue()"
   (ngModelChange)="inputValue.set($event)"
- />
-<ng-template
-  cdkConnectedOverlay
-  [cdkConnectedOverlayOrigin]="trigger"
-  [cdkConnectedOverlayOpen]="isOpen()"
->
-  <div
-    #optionsContainer
-    tabindex="0"
-    class="select-options"
-    [style.width.px]="triggerElement.clientWidth"
-    role="listbox"
-  >
+  (blur)="close()"
+  (focus)="open()"
+  appPopoverTrigger #trigger="appPopoverTrigger"
+
+/>
+
+
+<app-popover [offsetY]="40" [trigger]="trigger" [isOpen]="isOpen()">
+  <div class="select-options" style="width: 150px" role="listbox">
     <ng-content select="app-autocomplete-item"></ng-content>
   </div>
-</ng-template>
+</app-popover>
+<!--
+appPopoverTrigger
+#trigger="appPopoverTrigger" -->

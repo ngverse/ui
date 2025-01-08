@@ -23,14 +23,10 @@
 .select-options {
   width: 100%;
   background: white;
-  margin-top: 6px;
-  border: 1px solid var(--app-border-color);
-  border-radius: var(--app-border-radius);
   max-height: 300px;
   overflow-y: auto;
   list-style: none;
   padding-left: 0;
-  outline-color: var(--app-ring-color);
 
   &:empty {
     border: none;

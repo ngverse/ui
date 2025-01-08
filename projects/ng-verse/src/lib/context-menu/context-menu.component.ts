@@ -28,6 +28,7 @@ import { CONTEXT_MENU_ANIMATIONS } from './context-menu.animations';
     tabIndex: '0',
   },
   animations: [CONTEXT_MENU_ANIMATIONS],
+  imports: [PopoverComponent],
 })
 export class ContextMenuComponent implements OnInit, AfterContentInit {
   animationState = signal<'show' | 'hide'>('show');
@@ -54,10 +55,7 @@ export class ContextMenuComponent implements OnInit, AfterContentInit {
       write: () => {
         const $event = this.event();
         if ($event) {
-          // this.popover().open({
-          //   x: $event.clientX,
-          //   y: $event.clientY,
-          // });
+
         }
       },
     });
@@ -68,6 +66,11 @@ export class ContextMenuComponent implements OnInit, AfterContentInit {
       $event.stopPropagation();
       $event.preventDefault();
       this.event.set($event);
+      this.popover().hide()
+      this.popover().open({
+            x: $event.clientX,
+            y: $event.clientY,
+          });
     });
   }
 

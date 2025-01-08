@@ -1,5 +1,5 @@
-import { Component, ElementRef, inject, input, signal } from '@angular/core';
 import { Highlightable } from '@angular/cdk/a11y';
+import { Component, ElementRef, inject, input, signal } from '@angular/core';
 import { SELECTION_EMITTER } from '@ng-verse/autocomplete/autocomplete.component';
 
 @Component({

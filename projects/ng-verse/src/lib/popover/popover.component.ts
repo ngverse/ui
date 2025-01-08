@@ -40,7 +40,7 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
   private document = inject(DOCUMENT);
 
   @HostBinding('attr.popover')
-  bind = '';
+  bind = 'manual';
 
   trigger = input<PopoverTriggerDirective>();
   isOpen = input(false);
@@ -93,6 +93,7 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (triggerEl as any).popoverTargetElement = this.popoverEl;
     }
+
   }
   ngOnDestroy(): void {
     this.scrollSub?.unsubscribe();
