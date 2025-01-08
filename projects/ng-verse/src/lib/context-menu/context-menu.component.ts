@@ -1,7 +1,6 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   AfterContentInit,
-  afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -12,7 +11,7 @@ import {
   OnInit,
   QueryList,
   signal,
-  viewChild,
+  viewChild
 } from '@angular/core';
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { ContextMenuItemComponent } from './context-menu-item/context-menu-item.component';
@@ -50,27 +49,16 @@ export class ContextMenuComponent implements OnInit, AfterContentInit {
 
   event = signal<MouseEvent | undefined>(undefined);
 
-  constructor() {
-    afterRenderEffect({
-      write: () => {
-        const $event = this.event();
-        if ($event) {
-
-        }
-      },
-    });
-  }
-
   ngOnInit(): void {
     this.trigger().openTriggered.subscribe(($event) => {
       $event.stopPropagation();
       $event.preventDefault();
       this.event.set($event);
-      this.popover().hide()
+      this.popover().hide();
       this.popover().open({
-            x: $event.clientX,
-            y: $event.clientY,
-          });
+        x: $event.clientX,
+        y: $event.clientY,
+      });
     });
   }
 
