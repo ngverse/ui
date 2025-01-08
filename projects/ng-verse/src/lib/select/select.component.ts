@@ -128,8 +128,10 @@ export class SelectComponent implements ControlValueAccessor {
   }
 
   panelOpened() {
-    console.log('CATCHED');
     this.listBox()?.focus();
+    // setTimeout(() => {
+    //   this.listBox()?.focus();
+    // }, 0);
     this.isOpen.set(true);
   }
 

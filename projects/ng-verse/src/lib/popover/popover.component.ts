@@ -11,10 +11,9 @@ import {
   inject,
   input,
   OnDestroy,
-  OnInit,
   output,
   Renderer2,
-  signal,
+  signal
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { PopoverTriggerDirective } from './popover-trigger.directive';
@@ -33,7 +32,7 @@ type TRIGGER_COORDINATES = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [POPOVER_ANIMATIONS],
 })
-export class PopoverComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PopoverComponent implements OnDestroy, AfterViewInit {
   popover = inject(ElementRef<HTMLElement>);
   popoverEl = this.popover.nativeElement;
   private overlay = inject(Overlay);
@@ -96,12 +95,6 @@ export class PopoverComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   ngOnDestroy(): void {
     this.scrollSub?.unsubscribe();
-  }
-
-  ngOnInit() {
-    // this.trigger()?.host.nativeElement.addEventListener('click', () => {
-    //   this.open();
-    // });
   }
 
   open(coordinates?: TRIGGER_COORDINATES) {

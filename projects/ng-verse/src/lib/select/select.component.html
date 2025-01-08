@@ -12,25 +12,25 @@
   ></app-select-icon>
 </button>
 
-<app-popover
-  [isOpen]="isOpen()"
-  [trigger]="trigger"
-  (opened)="panelOpened()"
-  (closed)="panelClosed()"
-  [offsetY]="40"
+<ul
+  cdkListbox
+  [cdkListboxCompareWith]="compareWith()"
+  [cdkListboxValue]="listboxValue()"
+  (cdkListboxValueChange)="listboxValueChange($event)"
 >
-  <ul
-    class="select-options"
-    [style.width.px]="selectButton.clientWidth"
-    cdkListbox
-    [cdkListboxCompareWith]="compareWith()"
-    [cdkListboxValue]="listboxValue()"
-    (cdkListboxValueChange)="listboxValueChange($event)"
+  <app-popover
+    [isOpen]="isOpen()"
+    [trigger]="trigger"
+    (opened)="panelOpened()"
+    (closed)="panelClosed()"
+    [offsetY]="40"
   >
-    @for (option of options(); track $index) {
-    <li class="option" [cdkOption]="getOptionValue(option)">
-      {{ getOptionLabel(option) }}
-    </li>
-    }
-  </ul>
-</app-popover>
+    <div class="select-options" [style.width.px]="selectButton.clientWidth">
+      @for (option of options(); track $index) {
+      <li class="option" [cdkOption]="getOptionValue(option)">
+        {{ getOptionLabel(option) }}
+      </li>
+      }
+    </div>
+  </app-popover>
+</ul>
