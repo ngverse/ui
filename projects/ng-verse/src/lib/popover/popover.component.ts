@@ -15,7 +15,7 @@ import {
   Renderer2,
   signal,
 } from '@angular/core';
-import { fromEvent, Subscription } from 'rxjs';
+import { filter, fromEvent, Subscription } from 'rxjs';
 import { PopoverTriggerDirective } from './popover-trigger.directive';
 import { POPOVER_ANIMATIONS } from './popover.animations';
 
@@ -51,7 +51,7 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
   opened = output();
   closed = output();
 
-  scrollSub: Subscription | undefined;
+  documenSub: Subscription | undefined;
 
   coordinates = signal<TRIGGER_COORDINATES | undefined>(undefined);
 
@@ -68,7 +68,7 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
       if (this.blockScroll()) {
         this.overlay.scrollStrategies.block().enable();
       }
-      this.listenToDocumentScroll();
+      this.listenToDocument();
     } else {
       this.closed.emit();
       if (this.blockScroll()) {
@@ -93,10 +93,9 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (triggerEl as any).popoverTargetElement = this.popoverEl;
     }
-
   }
   ngOnDestroy(): void {
-    this.scrollSub?.unsubscribe();
+    this.documenSub?.unsubscribe();
   }
 
   open(coordinates?: TRIGGER_COORDINATES) {
@@ -106,31 +105,52 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
     }
     const popover = this.popover.nativeElement;
     popover.showPopover();
-    this.listenToDocumentScroll();
+    this.listenToDocument();
   }
 
   hide() {
     if (this.popoverIsOpen) {
       const popover = this.popover.nativeElement;
       popover.hidePopover();
-      this.scrollSub?.unsubscribe();
+      this.documenSub?.unsubscribe();
     }
   }
 
-  listenToDocumentScroll() {
-    this.scrollSub?.unsubscribe();
-    this.scrollSub = fromEvent(this.document, 'scroll', {
+  private eventHappenedInsidePopover(event: Event) {
+    const target = event.target as Node;
+    if (target) {
+      if (target === this.popoverEl || this.popoverEl.contains(target)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  listenToDocument() {
+    this.documenSub?.unsubscribe();
+    this.documenSub = fromEvent(this.document, 'scroll', {
       capture: true,
       passive: true,
     }).subscribe((event) => {
-      const target = event.target as HTMLElement;
-      if (target) {
-        if (target === this.popoverEl || this.popoverEl.contains(target)) {
-          return;
-        }
+      if (this.eventHappenedInsidePopover(event)) {
+        return;
       }
       this.updateCoordinates();
     });
+
+   this.documenSub.add(fromEvent(this.document, 'click')
+      .pipe(filter((event) => !this.eventHappenedInsidePopover(event)))
+      .subscribe(() => {
+        this.hide();
+      }));
+
+   this.documenSub.add( fromEvent<KeyboardEvent>(this.document, 'keydown')
+      .pipe(
+        filter((event) => event.key === 'Escape'),
+      )
+      .subscribe(() => {
+        this.hide();
+      }));
   }
 
   getTriggerCoordinates(): TRIGGER_COORDINATES | undefined {
