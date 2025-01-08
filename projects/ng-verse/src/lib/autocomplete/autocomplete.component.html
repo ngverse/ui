@@ -1,0 +1,20 @@
+<input
+  class="select-button"
+  (input)="onInput($event)"
+  [ngModel]="inputValue()"
+  (ngModelChange)="inputValue.set($event)"
+  (blur)="close()"
+  (focus)="open()"
+  appPopoverTrigger #trigger="appPopoverTrigger"
+
+/>
+
+
+<app-popover [offsetY]="40" [trigger]="trigger" [isOpen]="isOpen()">
+  <div class="select-options" style="width: 150px" role="listbox">
+    <ng-content select="app-autocomplete-item"></ng-content>
+  </div>
+</app-popover>
+<!--
+appPopoverTrigger
+#trigger="appPopoverTrigger" -->

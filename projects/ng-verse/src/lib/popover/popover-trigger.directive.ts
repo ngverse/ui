@@ -3,7 +3,7 @@ import {
   ElementRef,
   HostBinding,
   inject,
-  Input,
+  Input
 } from '@angular/core';
 
 @Directive({
@@ -16,6 +16,7 @@ export class PopoverTriggerDirective {
   @HostBinding('attr.popovertargetaction')
   @Input()
   popovertarget = 'toggle';
+
 
   get el() {
     return this.host.nativeElement;

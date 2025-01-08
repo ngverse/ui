@@ -1,7 +1,6 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   AfterContentInit,
-  afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -12,7 +11,7 @@ import {
   OnInit,
   QueryList,
   signal,
-  viewChild,
+  viewChild
 } from '@angular/core';
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { ContextMenuItemComponent } from './context-menu-item/context-menu-item.component';
@@ -28,6 +27,7 @@ import { CONTEXT_MENU_ANIMATIONS } from './context-menu.animations';
     tabIndex: '0',
   },
   animations: [CONTEXT_MENU_ANIMATIONS],
+  imports: [PopoverComponent],
 })
 export class ContextMenuComponent implements OnInit, AfterContentInit {
   animationState = signal<'show' | 'hide'>('show');
@@ -49,25 +49,16 @@ export class ContextMenuComponent implements OnInit, AfterContentInit {
 
   event = signal<MouseEvent | undefined>(undefined);
 
-  constructor() {
-    afterRenderEffect({
-      write: () => {
-        const $event = this.event();
-        if ($event) {
-          // this.popover().open({
-          //   x: $event.clientX,
-          //   y: $event.clientY,
-          // });
-        }
-      },
-    });
-  }
-
   ngOnInit(): void {
     this.trigger().openTriggered.subscribe(($event) => {
       $event.stopPropagation();
       $event.preventDefault();
       this.event.set($event);
+      this.popover().hide();
+      this.popover().open({
+        x: $event.clientX,
+        y: $event.clientY,
+      });
     });
   }
 

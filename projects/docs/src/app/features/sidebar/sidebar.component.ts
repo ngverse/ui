@@ -45,6 +45,10 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/alert',
       },
       {
+        name: 'Autocomplete',
+        url: '/doc/autocomplete',
+      },
+      {
         name: 'Button',
         url: '/doc/button',
       },

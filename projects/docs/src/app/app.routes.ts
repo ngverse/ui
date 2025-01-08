@@ -51,6 +51,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'autocomplete',
+        loadComponent: () =>
+          import('./features/autocomplete-page/autocomplete-page.component').then(
+            (b) => b.AutocompletePageComponent
+          ),
+      },
+      {
         path: 'alert',
         loadComponent: () =>
           import('./features/alert-page/alert-page.component').then(
