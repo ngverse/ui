@@ -1,13 +1,11 @@
 import {
-  CdkListbox,
-  CdkOption,
-  ListboxValueChangeEvent,
-} from '@angular/cdk/listbox';
-import {
   Component,
-  computed,
+  contentChildren,
+  effect,
   ElementRef,
+  inject,
   input,
+  OnDestroy,
   signal,
   viewChild,
 } from '@angular/core';
@@ -17,9 +15,12 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { PopoverTriggerDirective } from '@ng-verse/popover/popover-trigger.directive';
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
+import { OptionComponent } from './option/option.component';
 import { SelectIconComponent } from './select-icon.component';
+import { SelectState } from './select.state';
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -27,15 +28,11 @@ type OnChangeFunction = ((_: unknown) => void) | undefined;
 
 type CompareWith = (o1: unknown, o2: unknown) => boolean;
 
-type ComplexOption = Record<string, unknown>;
-
 @Component({
   selector: 'app-select',
   imports: [
     ReactiveFormsModule,
     SelectIconComponent,
-    CdkListbox,
-    CdkOption,
     PopoverTriggerDirective,
     PopoverComponent,
   ],
@@ -47,77 +44,117 @@ type ComplexOption = Record<string, unknown>;
       multi: true,
       useExisting: SelectComponent,
     },
+    SelectState,
   ],
 })
-export class SelectComponent implements ControlValueAccessor {
+export class SelectComponent implements ControlValueAccessor, OnDestroy {
   isOpen = signal(false);
-
-  optionLabel = input<string>();
-  optionValue = input<string>();
 
   stretch = input<boolean>(false);
 
-  options = input.required<unknown[]>();
-
   placeholder = input.required<string>();
+
+  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
 
   private _registerOnChange: OnChangeFunction;
   private _onTouched: OnTouchedFunction;
 
-  listBox = viewChild(CdkListbox);
+  selectState = inject(SelectState);
+
+  options = contentChildren(OptionComponent, { descendants: true });
+
+  keyManager: ActiveDescendantKeyManager<OptionComponent> | undefined;
+
+  listbox = viewChild.required('listbox', {
+    read: ElementRef<HTMLElement>,
+  });
 
   selectButton = viewChild('selectButton', {
     read: ElementRef<HTMLElement>,
   });
 
-  value = signal<unknown>(undefined);
+  onKeydown($event: KeyboardEvent) {
+    if ($event.key === 'Enter') {
+      const activeOptin = this.keyManager?.activeItem;
+      if (activeOptin) {
+        activeOptin.clicked.emit();
+      }
+    }
+    this.keyManager?.onKeydown($event);
+  }
 
-  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
+  writeValue(value: unknown): void {
+    this.selectState.value.set(value);
+  }
+  registerOnChange(fn: OnChangeFunction): void {
+    this._registerOnChange = fn;
+  }
 
-  selectedOptionLabel = computed(() => {
-    const compareWith = this.compareWith();
-    const selectedOption = this.options().find((option) => {
-      const optionValue = this.getOptionValue(option);
-      return compareWith(optionValue, this.value());
+  registerOnTouched(fn: OnTouchedFunction): void {
+    this._onTouched = fn;
+  }
+
+  constructor() {
+    effect(() => {
+      const options = this.options();
+      this.selectState.options.set(options);
+      if (!options) {
+        return;
+      }
+      this.createKeyManager(options);
+      this.listenOnOptionChange(options);
     });
-    if (selectedOption === undefined) {
-      return;
-    }
-    return this.getOptionLabel(selectedOption);
-  });
-
-  listboxValue = computed<unknown[]>(() => {
-    const value = this.value();
-    if (value === undefined || value === null || value === '') {
-      return [];
-    }
-    return [value];
-  });
-
-  getOptionLabel(option: unknown) {
-    const optionLabel = this.optionLabel();
-    if (optionLabel) {
-      return (option as ComplexOption)[optionLabel];
-    }
-    return option;
   }
 
-  getOptionValue(option: unknown) {
-    const optionValue = this.optionValue();
-    if (optionValue) {
-      return (option as ComplexOption)[optionValue];
-    }
-    return option;
+  createKeyManager(options: readonly OptionComponent[]) {
+    this.keyManager?.destroy();
+    this.keyManager = new ActiveDescendantKeyManager(options);
+    this.keyManager.change.subscribe(() => {
+      const activeOption = this.keyManager?.activeItem;
+      if (activeOption) {
+        this.scrollIntoOption(activeOption);
+      }
+    });
   }
 
-  listboxValueChange($event: ListboxValueChangeEvent<unknown>) {
-    const value = $event.value[0];
-    this.value.set(value);
-    if (this._registerOnChange) {
-      this._registerOnChange(this.value());
+  listenOnOptionChange(options: readonly OptionComponent[]) {
+    for (const option of options) {
+      option.clicked.subscribe(() => {
+        this.selectState.value.set(option.value());
+        if (this._registerOnChange) {
+          this._registerOnChange(this.selectState.value());
+        }
+        this.isOpen.set(false);
+      });
     }
-    this.isOpen.set(false);
-    this.selectButton()?.nativeElement.focus();
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    this.selectState.disabled.set(isDisabled);
+  }
+
+  scrollIntoOption(option: OptionComponent) {
+    option.host.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
+  }
+
+  panelOpened() {
+    this.listbox().nativeElement.focus();
+    const value = this.selectState.value();
+    if (value) {
+      const valueOption = this.selectState.findOptionByValue(value);
+      if (valueOption) {
+        this.keyManager?.setActiveItem(valueOption);
+        this.scrollIntoOption(valueOption);
+      }
+    } else {
+      this.keyManager?.setFirstItemActive();
+    }
+
+    this.isOpen.set(true);
   }
 
   panelClosed() {
@@ -127,22 +164,7 @@ export class SelectComponent implements ControlValueAccessor {
     this.isOpen.set(false);
   }
 
-  panelOpened() {
-    this.listBox()?.focus();
-    // setTimeout(() => {
-    //   this.listBox()?.focus();
-    // }, 0);
-    this.isOpen.set(true);
-  }
-
-  writeValue(obj: unknown): void {
-    this.value.set(obj);
-  }
-  registerOnChange(fn: OnChangeFunction): void {
-    this._registerOnChange = fn;
-  }
-
-  registerOnTouched(fn: OnTouchedFunction): void {
-    this._onTouched = fn;
+  ngOnDestroy(): void {
+    this.keyManager?.destroy();
   }
 }

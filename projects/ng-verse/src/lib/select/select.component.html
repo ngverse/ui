@@ -4,33 +4,24 @@
   #selectButton
   appPopoverTrigger
   #trigger="appPopoverTrigger"
+  (keydown)="onKeydown($event)"
+  [disabled]="selectState.disabled()"
 >
-  <span>{{ selectedOptionLabel() || placeholder() }}</span>
+  <span>{{ selectState.selectedOptionLabel() || placeholder() }}</span>
   <app-select-icon
     class="select-button-icon"
     [class.opened]="isOpen()"
   ></app-select-icon>
 </button>
-
-<ul
-  cdkListbox
-  [cdkListboxCompareWith]="compareWith()"
-  [cdkListboxValue]="listboxValue()"
-  (cdkListboxValueChange)="listboxValueChange($event)"
->
+<div role="listbox" #listbox tabindex="0" (keydown)="onKeydown($event)">
   <app-popover
+    class="select-options"
     [isOpen]="isOpen()"
     [trigger]="trigger"
     (opened)="panelOpened()"
     (closed)="panelClosed()"
     [offsetY]="40"
   >
-    <div class="select-options" [style.width.px]="selectButton.clientWidth">
-      @for (option of options(); track $index) {
-      <li class="option" [cdkOption]="getOptionValue(option)">
-        {{ getOptionLabel(option) }}
-      </li>
-      }
-    </div>
+    <ng-content select="app-option"></ng-content>
   </app-popover>
-</ul>
+</div>

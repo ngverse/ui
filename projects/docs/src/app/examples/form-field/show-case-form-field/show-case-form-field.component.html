@@ -26,9 +26,6 @@
     <app-select
       [stretch]="true"
       formControlName="country"
-      [options]="countries"
-      [optionLabel]="'name'"
-      [optionValue]="'code'"
       placeholder="Select a country"
     ></app-select>
     <app-error-group [control]="group.controls.country"></app-error-group>

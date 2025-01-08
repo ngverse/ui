@@ -23,19 +23,23 @@
       transform: rotate(180deg);
     }
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--app-disabled-color);
+  }
+}
+
+:host.ng-invalid.ng-touched {
+  .select-button {
+    border-color: var(--app-danger-color);
+  }
 }
 
 .select-options {
-  width: 100%;
-  background: white;
-  margin-top: 6px;
-  border: 1px solid var(--app-border-color);
-  border-radius: var(--app-border-radius);
-  max-height: 300px;
-  list-style: none;
-  padding-left: 0;
-  outline-color: var(--app-ring-color);
-  overflow: auto;
+  height: 150px;
+  min-width: 250px;
+  max-width: 300px;
 }
 
 .option {
