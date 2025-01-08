@@ -16,8 +16,9 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+
 import { PopoverTriggerDirective } from '@ng-verse/popover/popover-trigger.directive';
-import { PopoverComponent } from '../popover/popover.component';
+import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { SelectIconComponent } from './select-icon.component';
 
 type OnTouchedFunction = (() => void) | undefined;
@@ -128,6 +129,9 @@ export class SelectComponent implements ControlValueAccessor {
 
   panelOpened() {
     this.listBox()?.focus();
+    // setTimeout(() => {
+    //   this.listBox()?.focus();
+    // }, 0);
     this.isOpen.set(true);
   }
 

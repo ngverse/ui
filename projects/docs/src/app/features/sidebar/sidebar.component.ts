@@ -136,6 +136,10 @@ export const SIDEBAR_ROUTES = [
         name: 'Popover',
         url: '/doc/popover',
       },
+      {
+        name: 'Context Menu',
+        url: '/doc/context-menu',
+      },
       // {
       //   name: 'Breadcrumb',
       //   url: '/doc/breadcrumb',

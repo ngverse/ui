@@ -1,4 +1,4 @@
-<app-button appPopoverTrigger #popoverTrigger="appPopoverTrigger"
+<!-- <app-button appPopoverTrigger #popoverTrigger="appPopoverTrigger"
   >Popover</app-button
 >
 
@@ -10,7 +10,17 @@
   triggerEvent="hover"
 />
 
+
 <app-popover (closed)="closed()" [trigger]="inputTrigger">
   <h1>HELLO</h1>
   <input class="border border-solid border-black" type="text" />
-</app-popover>
+</app-popover> -->
+
+<button
+  appPopoverTrigger
+  #popoverTrigger="appPopoverTrigger"
+>
+  Popover
+</button>
+
+<!-- <app-popover (closed)="closed()"> </app-popover> -->
