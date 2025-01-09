@@ -11,7 +11,7 @@ import {
   OnInit,
   QueryList,
   signal,
-  viewChild,
+  viewChild
 } from '@angular/core';
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { ContextMenuItemComponent } from './context-menu-item/context-menu-item.component';
