@@ -2,7 +2,7 @@
   display: block;
   padding: 6px;
   cursor: pointer;
-  &.option-active {
+  &.listbox-item-active {
     background: var(--app-primary-color);
     color: white;
   }

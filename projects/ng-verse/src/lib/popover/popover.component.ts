@@ -74,7 +74,9 @@ export class PopoverComponent implements OnDestroy {
   onBeforeToggle(event: ToggleEvent) {
     const toggleEvent = event as ToggleEvent;
     if (toggleEvent.newState === 'open') {
-      this.opened.emit();
+      setTimeout(() => {
+        this.opened.emit();
+      }, 30);
       this.updateCoordinates();
       if (this.blockScroll()) {
         this.overlay.scrollStrategies.block().enable();

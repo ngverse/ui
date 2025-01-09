@@ -5,7 +5,6 @@
   appPopoverOrigin
   #origin="appPopoverOrigin"
   (openPopover)="toggle()"
-  (keydown)="onKeydown($event)"
   [disabled]="selectState.disabled()"
 >
   <span>{{ selectState.selectedOptionLabel() || placeholder() }}</span>
@@ -14,15 +13,15 @@
     [class.opened]="isOpen()"
   ></app-select-icon>
 </button>
-<div role="listbox" #listbox tabindex="0" (keydown)="onKeydown($event)">
-  <app-popover
-    class="select-options"
-    [(isOpen)]="isOpen"
-    [origin]="origin"
-    (opened)="panelOpened()"
-    (closed)="panelClosed()"
-    [offsetY]="8"
-  >
+<app-popover
+  class="select-options"
+  [(isOpen)]="isOpen"
+  [origin]="origin"
+  (opened)="panelOpened()"
+  (closed)="panelClosed()"
+  [offsetY]="8"
+>
+  <div appListbox>
     <ng-content select="app-option"></ng-content>
-  </app-popover>
-</div>
+  </div>
+</app-popover>

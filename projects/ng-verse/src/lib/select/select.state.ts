@@ -20,6 +20,14 @@ export class SelectState {
     return undefined;
   });
 
+  selectedOptionIndex = computed(() => {
+    const selectedOption = this.selectedOption();
+    if (selectedOption) {
+      return this.options().indexOf(selectedOption);
+    }
+    return -1;
+  });
+
   selectedOptionLabel = computed(() => {
     const selectedOption = this.selectedOption();
     if (selectedOption) {
