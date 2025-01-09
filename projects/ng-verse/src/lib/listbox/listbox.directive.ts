@@ -73,7 +73,10 @@ export class ListboxDirective implements OnDestroy {
     this.keyManager?.destroy();
   }
 
-  focus() {
+  focus(activateFirst?: boolean) {
     this.host.nativeElement.focus();
+    if (activateFirst) {
+      this.keyManager?.setFirstItemActive();
+    }
   }
 }
