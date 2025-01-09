@@ -2,8 +2,10 @@ import { Highlightable } from '@angular/cdk/a11y';
 import {
   Directive,
   ElementRef,
+  HostBinding,
   HostListener,
   inject,
+  Input,
   OnDestroy,
   output,
   signal,
@@ -25,6 +27,10 @@ export class ListboxItemDirective implements Highlightable, OnDestroy {
 
   activated = output();
 
+  @HostBinding('class.option-disabled')
+  @Input()
+  disabled: boolean | undefined;
+
   @HostListener('click')
   onClick() {
     this.activated.emit();
@@ -45,7 +51,6 @@ export class ListboxItemDirective implements Highlightable, OnDestroy {
   setInactiveStyles(): void {
     this.isActive.set(false);
   }
-  disabled?: boolean | undefined;
   getLabel?(): string {
     return this.el.textContent as string;
   }

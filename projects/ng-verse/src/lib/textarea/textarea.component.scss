@@ -1,9 +1,8 @@
 :host {
-  display: inline-block;
-  border: 1px solid var(--app-field-border-color);
+  border: var(--app-field-border);
   border-radius: var(--app-field-border-radius);
   outline-color: var(--app-ring-color);
-  padding: 6px;
+  padding: var(--app-field-padding);
   width: 100%;
 }
 

@@ -1,22 +1,22 @@
 <form class="show-case" [formGroup]="group">
   <app-form-field>
     <app-label>First Name</app-label>
-    <input appInput formControlName="firstName" />
+    <input appInput class="w-full" formControlName="firstName" />
     <app-error-group [control]="group.controls.firstName"></app-error-group>
   </app-form-field>
   <app-form-field>
     <app-label>Last Name</app-label>
-    <input appInput formControlName="lastName" />
+    <input appInput class="w-full" formControlName="lastName" />
     <app-error-group [control]="group.controls.lastName"></app-error-group>
   </app-form-field>
   <app-form-field>
     <app-label>Email</app-label>
-    <input appInput type="email" formControlName="email" />
+    <input appInput class="w-full" type="email" formControlName="email" />
     <app-error-group [control]="group.controls.email"></app-error-group>
   </app-form-field>
   <app-form-field>
     <app-label>Age</app-label>
-    <input appInput type="number" formControlName="age" />
+    <input appInput class="w-full" type="number" formControlName="age" />
     @if(group.controls.age.touched && group.controls.age.invalid){
     <app-error>Please fill age</app-error>
     }
@@ -34,7 +34,11 @@
     </app-select>
     <app-error-group [control]="group.controls.country"></app-error-group>
   </app-form-field>
-  <button appButton [disabled]="group.touched && group.invalid" (click)="register()"
-    >Register</button
+  <button
+    appButton
+    [disabled]="group.touched && group.invalid"
+    (click)="register()"
   >
+    Register
+  </button>
 </form>
