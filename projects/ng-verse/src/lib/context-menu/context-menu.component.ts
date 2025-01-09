@@ -54,7 +54,7 @@ export class ContextMenuComponent implements OnInit, AfterContentInit {
       $event.stopPropagation();
       $event.preventDefault();
       this.event.set($event);
-      this.popover().hide();
+      // this.popover().hide();
       this.popover().open({
         x: $event.clientX,
         y: $event.clientY,

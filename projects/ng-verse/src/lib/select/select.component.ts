@@ -16,7 +16,7 @@ import {
 } from '@angular/forms';
 
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { PopoverTriggerDirective } from '@ng-verse/popover/popover-trigger.directive';
+import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { OptionComponent } from './option/option.component';
 import { SelectIconComponent } from './select-icon.component';
@@ -33,7 +33,7 @@ type CompareWith = (o1: unknown, o2: unknown) => boolean;
   imports: [
     ReactiveFormsModule,
     SelectIconComponent,
-    PopoverTriggerDirective,
+    PopoverOriginDirective,
     PopoverComponent,
   ],
   templateUrl: './select.component.html',
@@ -157,11 +157,14 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     this.isOpen.set(true);
   }
 
+  toggle() {
+    this.isOpen.update((isOpen) => !isOpen);
+  }
+
   panelClosed() {
     if (this._onTouched) {
       this._onTouched();
     }
-    this.isOpen.set(false);
   }
 
   ngOnDestroy(): void {

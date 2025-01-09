@@ -2,8 +2,9 @@
   [class.stretch]="stretch()"
   class="select-button"
   #selectButton
-  appPopoverTrigger
-  #trigger="appPopoverTrigger"
+  appPopoverOrigin
+  #origin="appPopoverOrigin"
+  (openPopover)="toggle()"
   (keydown)="onKeydown($event)"
   [disabled]="selectState.disabled()"
 >
@@ -16,8 +17,8 @@
 <div role="listbox" #listbox tabindex="0" (keydown)="onKeydown($event)">
   <app-popover
     class="select-options"
-    [isOpen]="isOpen()"
-    [trigger]="trigger"
+    [(isOpen)]="isOpen"
+    [origin]="origin"
     (opened)="panelOpened()"
     (closed)="panelClosed()"
     [offsetY]="40"

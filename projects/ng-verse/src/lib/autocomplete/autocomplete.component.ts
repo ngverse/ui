@@ -17,7 +17,7 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { AutocompleteItemComponent } from '@ng-verse/autocomplete/autocomplete-item/autocomplete-item.component';
-import { PopoverTriggerDirective } from '@ng-verse/popover/popover-trigger.directive';
+import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
 import { Subject } from 'rxjs';
 import { PopoverComponent } from '../popover/popover.component';
 
@@ -37,7 +37,7 @@ export const SELECTION_EMITTER = new InjectionToken<
     CdkConnectedOverlay,
     FormsModule,
     PopoverComponent,
-    PopoverTriggerDirective,
+    PopoverOriginDirective,
   ],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss',
