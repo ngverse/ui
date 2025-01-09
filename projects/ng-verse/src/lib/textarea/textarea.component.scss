@@ -1,11 +1,14 @@
 :host {
   border: var(--app-field-border);
   border-radius: var(--app-field-border-radius);
-  outline-color: var(--app-ring-color);
+  &:focus {
+    outline: var(--app-field-focus-outline);
+  }
   padding: var(--app-field-padding);
   width: 100%;
 }
 
 :host.ng-invalid.ng-touched {
   border-color: var(--app-danger-color);
+  outline: none;
 }
