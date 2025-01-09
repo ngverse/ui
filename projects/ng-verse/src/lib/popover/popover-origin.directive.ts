@@ -29,7 +29,9 @@ export class PopoverOriginDirective {
 
   ngZone = inject(NgZone);
 
-  hidePopover = output();
+  closePopover = output();
+
+  togglePopover = output();
 
   get el() {
     return this.host.nativeElement;
@@ -46,6 +48,7 @@ export class PopoverOriginDirective {
           this.eventSub.add(
             fromEvent(this.el, 'click').subscribe(() => {
               this.openPopover.emit();
+              this.togglePopover.emit();
             })
           );
           break;
@@ -53,7 +56,7 @@ export class PopoverOriginDirective {
           this.eventSub.add(
             this.focusMonitor.monitor(this.el).subscribe((origin) => {
               if (!origin) {
-                this.ngZone.run(() => this.hidePopover.emit());
+                this.ngZone.run(() => this.closePopover.emit());
               } else {
                 this.ngZone.run(() => {
                   this.openPopover.emit();

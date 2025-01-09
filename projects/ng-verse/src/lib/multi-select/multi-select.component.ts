@@ -15,6 +15,8 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
+import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { MultiSelectCheckIconComponent } from './multi-select-check.component';
 import { MultiSelectIconComponent } from './multi-select-icon.component';
 
@@ -37,6 +39,8 @@ type ComplexOption = Record<string, unknown>;
     CdkOption,
     ReactiveFormsModule,
     MultiSelectCheckIconComponent,
+    PopoverComponent,
+    PopoverOriginDirective,
   ],
   templateUrl: './multi-select.component.html',
   styleUrl: './multi-select.component.scss',
@@ -114,6 +118,10 @@ export class MultiSelectComponent implements ControlValueAccessor {
       return (option as ComplexOption)[optionValue];
     }
     return option;
+  }
+
+  toggle() {
+    this.isOpen.update((isOpen) => !isOpen);
   }
 
   constructor() {

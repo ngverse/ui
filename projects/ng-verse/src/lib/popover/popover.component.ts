@@ -30,6 +30,8 @@ interface TRIGGER_COORDINATES {
   y: number;
 }
 
+type POPOVER_POSITION_Y = 'bottom';
+
 @Component({
   selector: 'app-popover',
   imports: [],
@@ -53,6 +55,7 @@ export class PopoverComponent implements OnDestroy {
   offsetY = input<number>(0);
   offsetX = input<number>(0);
   blockScroll = input(true);
+  positionY = input<POPOVER_POSITION_Y>('bottom');
 
   opened = output();
   closed = output();
@@ -155,31 +158,37 @@ export class PopoverComponent implements OnDestroy {
     );
   }
 
-  getTriggerCoordinates(): TRIGGER_COORDINATES | undefined {
+  getTriggerBounds(): DOMRect | undefined {
     const trigger = this.origin();
     if (!trigger) {
       return;
     }
     const triggerEl = trigger.el;
     const bounds = triggerEl.getBoundingClientRect();
-    return { x: bounds.left, y: bounds.top };
+    return bounds;
   }
 
   updateCoordinates() {
-    const coord = this.coordinates();
-    const coordinates =
-      coord ?? (this.getTriggerCoordinates() as TRIGGER_COORDINATES);
+    const triggerBounrds = this.getTriggerBounds();
+
     const popoverEl = this.popoverEl;
-    this.renderer2.setStyle(
-      popoverEl,
-      'left',
-      `${coordinates.x + this.offsetX()}px`
-    );
-    this.renderer2.setStyle(
-      popoverEl,
-      'top',
-      `${coordinates.y + this.offsetY()}px`
-    );
+
+    const offsetX = this.offsetX();
+    let offsetY = this.offsetY();
+    let x = 0;
+    let y = 0;
+
+    if (triggerBounrds) {
+      x = triggerBounrds.x;
+      y = triggerBounrds.y;
+    }
+
+    if (this.positionY() === 'bottom' && triggerBounrds) {
+      offsetY += triggerBounrds.height;
+    }
+
+    this.renderer2.setStyle(popoverEl, 'left', `${x + offsetX}px`);
+    this.renderer2.setStyle(popoverEl, 'top', `${y + offsetY}px`);
   }
 
   ngOnDestroy(): void {
