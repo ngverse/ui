@@ -1,14 +1,6 @@
-<button
-  class="button"
-  [attr.disabled]="disabled() || loading()"
-  [class.loading]="loading()"
-  [ngClass]="[color(), variant(), size()]"
-  [attr.type]="type()"
->
-  @if(loading()){
-  <div class="button-loader">
-    <div class="spinner"></div>
-  </div>
-  }
-  <ng-content></ng-content>
-</button>
+@if(loading()){
+<div class="button-loader">
+  <div class="spinner"></div>
+</div>
+}
+<ng-content></ng-content>

@@ -72,7 +72,8 @@ describe('ButtonComponent', () => {
 
 @Component({
   imports: [ButtonComponent],
-  template: `<app-button
+  template: `<button
+    appButton
     [color]="color()"
     [variant]="variant()"
     [disabled]="disabled()"
@@ -81,7 +82,7 @@ describe('ButtonComponent', () => {
     [size]="size()"
   >
     Test Button
-  </app-button>`,
+  </button>`,
 })
 class ButtonTestComponent {
   disabled = signal<boolean>(false);

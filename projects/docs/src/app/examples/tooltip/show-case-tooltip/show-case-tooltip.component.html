@@ -1,22 +1,20 @@
 <div class="tooltips">
-  <app-button appTooltip="Top tooltip" tooltipPosition="top"
-    >Top Tooltip</app-button
-  >
-  <app-button appTooltip="Right tooltip" tooltipPosition="right"
-    >Right Tooltip</app-button
-  >
-  <app-button appTooltip="Bottom tooltip" tooltipPosition="bottom"
-    >Bottom Tooltip</app-button
-  >
-  <app-button appTooltip="Left tooltip" tooltipPosition="left"
-    >Left Tooltip</app-button
-  >
-  <app-button
+  <button appButton appTooltip="Top tooltip" tooltipPosition="top">Top Tooltip</button>
+  <button appButton appTooltip="Right tooltip" tooltipPosition="right">
+    Right Tooltip
+  </button>
+  <button appButton appTooltip="Bottom tooltip" tooltipPosition="bottom">
+    Bottom Tooltip
+  </button>
+  <button appButton appTooltip="Left tooltip" tooltipPosition="left">Left Tooltip</button>
+  <button
+    appButton
     appTooltip
     tooltipPosition="bottom"
     [tooltipContent]="customContent"
-    >Custom Content Tooltip</app-button
   >
+    Custom Content Tooltip
+  </button>
   <ng-template #customContent>
     <div class="custom-tooltip-content">
       <img
