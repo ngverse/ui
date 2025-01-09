@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MultiSelectItemComponent } from '@ng-verse/multi-select/multi-select-item/multi-select-item.component';
 import { MultiSelectComponent } from '@ng-verse/multi-select/multi-select.component';
 const countries = [
   { code: 'US', name: 'United States' },
@@ -25,7 +26,11 @@ const countries = [
 ];
 @Component({
   selector: 'doc-show-case-multi-select',
-  imports: [MultiSelectComponent, ReactiveFormsModule],
+  imports: [
+    MultiSelectComponent,
+    ReactiveFormsModule,
+    MultiSelectItemComponent,
+  ],
   templateUrl: './show-case-multi-select.component.html',
   styleUrl: './show-case-multi-select.component.scss',
 })

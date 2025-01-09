@@ -5,22 +5,17 @@
   #origin="appPopoverOrigin"
   (togglePopover)="toggle()"
 >
-  <span>{{ selectedOptionLabel() || placeholder() }}</span>
+  <span class="select-button-label">{{
+    state.selectedOptionsLabel() || placeholder()
+  }}</span>
   <app-multi-select-icon
     class="select-button-icon"
     [class.opened]="isOpen()"
   ></app-multi-select-icon>
 </button>
 <div role="listbox" #listbox tabindex="0">
-  <app-popover class="select-options" [(isOpen)]="isOpen" [origin]="origin">
-    @for (option of options(); track $index) {
-    <li class="option">
-      {{ getOptionLabel(option) }}
-      <app-multi-select-check-icon
-        class="check-icon"
-      ></app-multi-select-check-icon>
-    </li>
-    }
+  <app-popover class="select-options" [offsetY]="8" [(isOpen)]="isOpen" [origin]="origin">
+    <ng-content></ng-content>
   </app-popover>
 </div>
 

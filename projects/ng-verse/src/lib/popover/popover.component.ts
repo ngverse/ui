@@ -57,6 +57,8 @@ export class PopoverComponent implements OnDestroy {
   blockScroll = input(true);
   positionY = input<POPOVER_POSITION_Y>('bottom');
 
+  stretchToOrigin = input(true);
+
   opened = output();
   closed = output();
 
@@ -185,6 +187,10 @@ export class PopoverComponent implements OnDestroy {
 
     if (this.positionY() === 'bottom' && triggerBounrds) {
       offsetY += triggerBounrds.height;
+    }
+
+    if (this.stretchToOrigin() && triggerBounrds) {
+      this.renderer2.setStyle(popoverEl, 'width', `${triggerBounrds.width}px`);
     }
 
     this.renderer2.setStyle(popoverEl, 'left', `${x + offsetX}px`);
