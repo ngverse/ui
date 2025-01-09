@@ -144,6 +144,10 @@ export const SIDEBAR_ROUTES = [
         name: 'Context Menu',
         url: '/doc/context-menu',
       },
+      {
+        name: 'Listbox',
+        url: '/doc/listbox',
+      },
       // {
       //   name: 'Breadcrumb',
       //   url: '/doc/breadcrumb',

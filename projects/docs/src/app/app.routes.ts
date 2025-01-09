@@ -53,9 +53,9 @@ export const routes: Routes = [
       {
         path: 'autocomplete',
         loadComponent: () =>
-          import('./features/autocomplete-page/autocomplete-page.component').then(
-            (b) => b.AutocompletePageComponent
-          ),
+          import(
+            './features/autocomplete-page/autocomplete-page.component'
+          ).then((b) => b.AutocompletePageComponent),
       },
       {
         path: 'alert',
@@ -252,6 +252,13 @@ export const routes: Routes = [
           import(
             './features/context-menu-page/context-menu-page.component'
           ).then((p) => p.ContextMenuPageComponent),
+      },
+      {
+        path: 'listbox',
+        loadComponent: () =>
+          import('./features/listbox-page/listbox-page.component').then(
+            (p) => p.ListboxPageComponent
+          ),
       },
       {
         path: '',

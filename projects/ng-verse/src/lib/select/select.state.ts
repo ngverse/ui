@@ -12,12 +12,22 @@ export class SelectState {
 
   disabled = signal(false);
 
+  isOpen = signal(false);
+
   selectedOption = computed(() => {
     const value = this.value();
     if (value) {
       return this.findOptionByValue(value);
     }
     return undefined;
+  });
+
+  selectedOptionIndex = computed(() => {
+    const selectedOption = this.selectedOption();
+    if (selectedOption) {
+      return this.options().indexOf(selectedOption);
+    }
+    return -1;
   });
 
   selectedOptionLabel = computed(() => {
@@ -32,5 +42,18 @@ export class SelectState {
     return this.options().find((option) =>
       this.compareWith(option.value(), value)
     );
+  }
+
+  isSelected(value: unknown) {
+    return this.compareWith(this.value(), value);
+  }
+
+  setValue(value: unknown) {
+    this.value.set(value);
+    this.isOpen.set(false);
+  }
+
+  writeValue(value: unknown) {
+    this.value.set(value);
   }
 }

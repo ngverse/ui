@@ -5,8 +5,6 @@ import {
   ElementRef,
   inject,
   input,
-  OnDestroy,
-  signal,
   viewChild,
 } from '@angular/core';
 import {
@@ -15,7 +13,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
+import { ListboxState } from '@ng-verse/listbox/listbox.state';
 import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { OptionComponent } from './option/option.component';
@@ -35,6 +34,7 @@ type CompareWith = (o1: unknown, o2: unknown) => boolean;
     SelectIconComponent,
     PopoverOriginDirective,
     PopoverComponent,
+    ListboxDirective,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
@@ -45,11 +45,10 @@ type CompareWith = (o1: unknown, o2: unknown) => boolean;
       useExisting: SelectComponent,
     },
     SelectState,
+    ListboxState,
   ],
 })
-export class SelectComponent implements ControlValueAccessor, OnDestroy {
-  isOpen = signal(false);
-
+export class SelectComponent implements ControlValueAccessor {
   stretch = input<boolean>(false);
 
   placeholder = input.required<string>();
@@ -63,28 +62,14 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   options = contentChildren(OptionComponent, { descendants: true });
 
-  keyManager: ActiveDescendantKeyManager<OptionComponent> | undefined;
-
-  listbox = viewChild.required('listbox', {
-    read: ElementRef<HTMLElement>,
-  });
+  listbox = viewChild.required(ListboxDirective);
 
   selectButton = viewChild('selectButton', {
     read: ElementRef<HTMLElement>,
   });
 
-  onKeydown($event: KeyboardEvent) {
-    if ($event.key === 'Enter') {
-      const activeOptin = this.keyManager?.activeItem;
-      if (activeOptin) {
-        activeOptin.clicked.emit();
-      }
-    }
-    this.keyManager?.onKeydown($event);
-  }
-
   writeValue(value: unknown): void {
-    this.selectState.value.set(value);
+    this.selectState.writeValue(value);
   }
   registerOnChange(fn: OnChangeFunction): void {
     this._registerOnChange = fn;
@@ -98,76 +83,27 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     effect(() => {
       const options = this.options();
       this.selectState.options.set(options);
-      if (!options) {
-        return;
-      }
-      this.createKeyManager(options);
-      this.listenOnOptionChange(options);
     });
-  }
-
-  createKeyManager(options: readonly OptionComponent[]) {
-    this.keyManager?.destroy();
-    this.keyManager = new ActiveDescendantKeyManager(options);
-    this.keyManager.change.subscribe(() => {
-      const activeOption = this.keyManager?.activeItem;
-      if (activeOption) {
-        this.scrollIntoOption(activeOption);
-      }
-    });
-  }
-
-  listenOnOptionChange(options: readonly OptionComponent[]) {
-    for (const option of options) {
-      option.clicked.subscribe(() => {
-        this.selectState.value.set(option.value());
-        if (this._registerOnChange) {
-          this._registerOnChange(this.selectState.value());
-        }
-        this.isOpen.set(false);
-      });
-    }
   }
 
   setDisabledState?(isDisabled: boolean): void {
     this.selectState.disabled.set(isDisabled);
   }
 
-  scrollIntoOption(option: OptionComponent) {
-    option.host.nativeElement.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-      inline: 'nearest',
-    });
-  }
-
   panelOpened() {
-    this.listbox().nativeElement.focus();
-    const value = this.selectState.value();
-    if (value) {
-      const valueOption = this.selectState.findOptionByValue(value);
-      if (valueOption) {
-        this.keyManager?.setActiveItem(valueOption);
-        this.scrollIntoOption(valueOption);
-      }
-    } else {
-      this.keyManager?.setFirstItemActive();
-    }
-
-    this.isOpen.set(true);
+    this.listbox().focus();
+    const selectedOptionIndex = this.selectState.selectedOptionIndex();
+    this.listbox().activateItemOrFirstByIndex(selectedOptionIndex);
+    this.selectState.isOpen.set(true);
   }
 
   toggle() {
-    this.isOpen.update((isOpen) => !isOpen);
+    this.selectState.isOpen.update((isOpen) => !isOpen);
   }
 
   panelClosed() {
     if (this._onTouched) {
       this._onTouched();
     }
-  }
-
-  ngOnDestroy(): void {
-    this.keyManager?.destroy();
   }
 }
