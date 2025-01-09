@@ -1,13 +1,10 @@
-import { Highlightable } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
   inject,
   input,
-  Input,
-  signal,
+  signal
 } from '@angular/core';
 import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
 import { MultiSelectCheckIconComponent } from '../multi-select-check.component';
@@ -24,7 +21,7 @@ import { MultiSelectState } from '../multi-select.state';
     '[class.selected]': 'isSelected()',
   },
 })
-export class MultiSelectItemComponent implements Highlightable {
+export class MultiSelectItemComponent {
   private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
   isActive = signal(false);
   value = input.required<unknown>();
@@ -41,18 +38,5 @@ export class MultiSelectItemComponent implements Highlightable {
 
   get content() {
     return this.host.nativeElement.textContent;
-  }
-
-  setActiveStyles(): void {
-    this.isActive.set(true);
-  }
-  setInactiveStyles(): void {
-    this.isActive.set(false);
-  }
-  @HostBinding('class.option-disabled')
-  @Input()
-  disabled?: boolean | undefined;
-  getLabel?(): string {
-    return this.host.nativeElement.textContent as string;
   }
 }

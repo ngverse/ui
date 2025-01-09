@@ -2,11 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
   inject,
-  Input,
   input,
-  signal,
+  signal
 } from '@angular/core';
 import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
 import { SelectState } from '../select.state';
@@ -34,12 +32,5 @@ export class OptionComponent {
     this.listboxItem.activated.subscribe(() => {
       this.state.setValue(this.value());
     });
-  }
-
-  @HostBinding('class.option-disabled')
-  @Input()
-  disabled?: boolean | undefined;
-  getLabel?(): string {
-    return this.host.nativeElement.textContent as string;
   }
 }
