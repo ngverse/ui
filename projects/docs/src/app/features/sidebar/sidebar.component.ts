@@ -65,6 +65,10 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/divider',
       },
       {
+        name: 'Drawer',
+        url: '/doc/drawer',
+      },
+      {
         name: 'Skeleton',
         url: '/doc/skeleton',
       },
