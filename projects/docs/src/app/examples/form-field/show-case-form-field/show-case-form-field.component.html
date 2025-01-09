@@ -27,7 +27,11 @@
       [stretch]="true"
       formControlName="country"
       placeholder="Select a country"
-    ></app-select>
+    >
+      @for (country of countries; track $index) {
+      <app-option [value]="country.code">{{ country.name }}</app-option>
+      }
+    </app-select>
     <app-error-group [control]="group.controls.country"></app-error-group>
   </app-form-field>
   <app-button [disabled]="group.touched && group.invalid" (click)="register()"
