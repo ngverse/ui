@@ -1,15 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { PopoverTriggerDirective } from '@ng-verse/popover/popover-trigger.directive';
+import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
 
 @Component({
   selector: 'doc-show-case-popover',
-  imports: [PopoverTriggerDirective],
+  imports: [PopoverOriginDirective],
   templateUrl: './show-case-popover.component.html',
   styleUrl: './show-case-popover.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ShowCasePopoverComponent {
-  closed() {
-    console.log('IA M CLOSED');
-  }
-}
+export class ShowCasePopoverComponent {}

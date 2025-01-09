@@ -1,10 +1,11 @@
-import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
-import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
+  contentChildren,
+  effect,
   ElementRef,
+  inject,
   input,
   signal,
   viewChild,
@@ -15,8 +16,11 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MultiSelectCheckIconComponent } from './multi-select-check.component';
+import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
+import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { MultiSelectIconComponent } from './multi-select-icon.component';
+import { MultiSelectItemComponent } from './multi-select-item/multi-select-item.component';
+import { MultiSelectState } from './multi-select.state';
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -24,19 +28,14 @@ type OnChangeFunction = ((_: unknown) => void) | undefined;
 
 type CompareWith = (o1: unknown, o2: unknown) => boolean;
 
-type ComplexOption = Record<string, unknown>;
-
 @Component({
   selector: 'app-multi-select',
   imports: [
-    CdkConnectedOverlay,
-    CdkOverlayOrigin,
     ReactiveFormsModule,
     MultiSelectIconComponent,
-    CdkListbox,
-    CdkOption,
     ReactiveFormsModule,
-    MultiSelectCheckIconComponent,
+    PopoverComponent,
+    PopoverOriginDirective,
   ],
   templateUrl: './multi-select.component.html',
   styleUrl: './multi-select.component.scss',
@@ -46,6 +45,7 @@ type ComplexOption = Record<string, unknown>;
       multi: true,
       useExisting: MultiSelectComponent,
     },
+    MultiSelectState,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -54,17 +54,19 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
   listboxFormControl = new FormControl();
 
+  state = inject(MultiSelectState);
+
   optionLabel = input<string>();
   optionValue = input<string>();
-
-  options = input.required<unknown[]>();
 
   placeholder = input.required<string>();
 
   private _registerOnChange: OnChangeFunction;
   private _onTouched: OnTouchedFunction;
 
-  listBox = viewChild(CdkListbox);
+  options = contentChildren(MultiSelectItemComponent, { descendants: true });
+
+  keyManager: ActiveDescendantKeyManager<MultiSelectItemComponent> | undefined;
 
   selectButton = viewChild('selectButton', {
     read: ElementRef<HTMLElement>,
@@ -74,55 +76,46 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
   compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
 
-  selectedOptionLabel = signal<string>('');
-
-  listboxValue = computed<unknown[]>(() => {
-    const value = this.value();
-    if (value === undefined || value === null) {
-      return [];
-    }
-    return [value];
-  });
-
-  getOptionLabel(option: unknown) {
-    const optionLabel = this.optionLabel();
-    if (optionLabel) {
-      return (option as ComplexOption)[optionLabel] as string;
-    }
-    return option as string;
-  }
-
-  generateSelectedLabels() {
-    const values = this.listboxFormControl.value;
-    const compareWith = this.compareWith();
-    const options = this.options();
-    const labels: string[] = [];
-    for (const value of values) {
-      const foundOption = options.find((opt) =>
-        compareWith(this.getOptionValue(opt), value)
-      );
-      if (foundOption) {
-        labels.push(this.getOptionLabel(foundOption));
-      }
-    }
-    this.selectedOptionLabel.set(labels.join(', '));
-  }
-
-  getOptionValue(option: unknown) {
-    const optionValue = this.optionValue();
-    if (optionValue) {
-      return (option as ComplexOption)[optionValue];
-    }
-    return option;
+  toggle() {
+    this.isOpen.update((isOpen) => !isOpen);
   }
 
   constructor() {
-    this.listboxFormControl.valueChanges.subscribe(() => {
-      if (this._registerOnChange) {
-        this._registerOnChange(this.listboxFormControl.value);
+    effect(() => {
+      const options = this.options();
+      this.state.options.set(options);
+      if (!options) {
+        return;
       }
-      this.generateSelectedLabels();
+      this.createKeyManager(options);
+      this.listenOnOptionChange(options);
     });
+  }
+
+  listenOnOptionChange(options: readonly MultiSelectItemComponent[]) {
+    for (const option of options) {
+      option.clicked.subscribe(() => {
+        this.state.toggleValue(option.value());
+        if (this._registerOnChange) {
+          this._registerOnChange(this.state.values());
+        }
+      });
+    }
+  }
+
+  createKeyManager(options: readonly MultiSelectItemComponent[]) {
+    this.keyManager?.destroy();
+    this.keyManager = new ActiveDescendantKeyManager(options);
+    this.keyManager.change.subscribe(() => {
+      const activeOption = this.keyManager?.activeItem;
+      if (activeOption) {
+        this.scrollIntoOption(activeOption);
+      }
+    });
+  }
+
+  scrollIntoOption(option: MultiSelectItemComponent) {
+    option.scrollIntoView();
   }
 
   close() {
@@ -137,7 +130,6 @@ export class MultiSelectComponent implements ControlValueAccessor {
     if (this._onTouched) {
       this._onTouched();
     }
-    this.listBox()?.focus();
   }
 
   writeValue(obj: unknown): void {

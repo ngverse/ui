@@ -31,14 +31,4 @@ export class AppComponent {
       popover.style.left = `${position.left}px`;
     });
   }
-
-  constructor() {
-    document.addEventListener(
-      'scroll',
-      function (e) {
-        console.log('SCROLLED');
-      },
-      { capture: true, passive: true }
-    );
-  }
 }

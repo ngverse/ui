@@ -3,10 +3,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostListener,
   inject,
   Input,
-  signal
+  signal,
 } from '@angular/core';
 
 @Component({
@@ -28,17 +27,10 @@ export class ContextMenuItemComponent implements Highlightable {
   @Input()
   disabled?: boolean | undefined;
 
-  @HostListener("click")
-  onClick(){
-    console.log("CLICKED")
-  }
-
   setActiveStyles(): void {
-    console.log('ACTIVE');
     this.itemActive.set(true);
   }
   setInactiveStyles(): void {
-    console.log('NOT ACTIVE');
     this.itemActive.set(false);
   }
   getLabel?(): string {

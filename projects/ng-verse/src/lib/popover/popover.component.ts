@@ -1,7 +1,6 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   effect,
@@ -10,19 +9,28 @@ import {
   HostListener,
   inject,
   input,
+  model,
   OnDestroy,
   output,
   Renderer2,
   signal,
 } from '@angular/core';
-import { filter, fromEvent, Subscription } from 'rxjs';
-import { PopoverTriggerDirective } from './popover-trigger.directive';
+import {
+  asyncScheduler,
+  filter,
+  fromEvent,
+  observeOn,
+  Subscription,
+} from 'rxjs';
+import { PopoverOriginDirective } from './popover-origin.directive';
 import { POPOVER_ANIMATIONS } from './popover.animations';
 
 interface TRIGGER_COORDINATES {
   x: number;
   y: number;
 }
+
+type POPOVER_POSITION_Y = 'bottom';
 
 @Component({
   selector: 'app-popover',
@@ -32,7 +40,7 @@ interface TRIGGER_COORDINATES {
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [POPOVER_ANIMATIONS],
 })
-export class PopoverComponent implements OnDestroy, AfterViewInit {
+export class PopoverComponent implements OnDestroy {
   popover = inject(ElementRef<HTMLElement>);
   popoverEl = this.popover.nativeElement as HTMLElement;
   private overlay = inject(Overlay);
@@ -42,11 +50,14 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
   @HostBinding('attr.popover')
   bind = 'manual';
 
-  trigger = input<PopoverTriggerDirective>();
-  isOpen = input(false);
+  origin = input<PopoverOriginDirective>();
+  isOpen = model(false);
   offsetY = input<number>(0);
   offsetX = input<number>(0);
   blockScroll = input(true);
+  positionY = input<POPOVER_POSITION_Y>('bottom');
+
+  stretchToOrigin = input(true);
 
   opened = output();
   closed = output();
@@ -81,25 +92,18 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
     effect(() => {
       const isOpen = this.isOpen();
       if (isOpen) {
-        this.open();
+        this._open();
       } else {
-        this.hide();
+        this._hide();
       }
     });
-  }
-  ngAfterViewInit(): void {
-    const triggerEl = this.trigger()?.el;
-    if (triggerEl) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (triggerEl as any).popoverTargetElement = this.popoverEl;
-    }
-  }
-  ngOnDestroy(): void {
-    this.documenSub?.unsubscribe();
   }
 
   open(coordinates?: TRIGGER_COORDINATES) {
     this.coordinates.set(coordinates);
+  }
+
+  private _open() {
     if (this.popoverIsOpen) {
       return;
     }
@@ -108,7 +112,7 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
     this.listenToDocument();
   }
 
-  hide() {
+  private _hide() {
     if (this.popoverIsOpen) {
       const popover = this.popover.nativeElement;
       popover.hidePopover();
@@ -138,45 +142,62 @@ export class PopoverComponent implements OnDestroy, AfterViewInit {
       this.updateCoordinates();
     });
 
-   this.documenSub.add(fromEvent(this.document, 'click')
-      .pipe(filter((event) => !this.eventHappenedInsidePopover(event)))
-      .subscribe(() => {
-        this.hide();
-      }));
+    this.documenSub!.add(
+      fromEvent(this.document, 'click')
+        .pipe(observeOn(asyncScheduler))
+        .pipe(filter((event) => !this.eventHappenedInsidePopover(event)))
+        .subscribe(() => {
+          this.isOpen.set(false);
+        })
+    );
 
-   this.documenSub.add( fromEvent<KeyboardEvent>(this.document, 'keydown')
-      .pipe(
-        filter((event) => event.key === 'Escape'),
-      )
-      .subscribe(() => {
-        this.hide();
-      }));
+    this.documenSub.add(
+      fromEvent<KeyboardEvent>(this.document, 'keydown')
+        .pipe(filter((event) => event.key === 'Escape'))
+        .subscribe(() => {
+          this.isOpen.set(false);
+        })
+    );
   }
 
-  getTriggerCoordinates(): TRIGGER_COORDINATES | undefined {
-    const trigger = this.trigger();
+  getTriggerBounds(): DOMRect | undefined {
+    const trigger = this.origin();
     if (!trigger) {
       return;
     }
     const triggerEl = trigger.el;
     const bounds = triggerEl.getBoundingClientRect();
-    return { x: bounds.left, y: bounds.top };
+    return bounds;
   }
 
   updateCoordinates() {
-    const coord = this.coordinates();
-    const coordinates =
-      coord ?? (this.getTriggerCoordinates() as TRIGGER_COORDINATES);
+    const triggerBounrds = this.getTriggerBounds();
+
     const popoverEl = this.popoverEl;
-    this.renderer2.setStyle(
-      popoverEl,
-      'left',
-      `${coordinates.x + this.offsetX()}px`
-    );
-    this.renderer2.setStyle(
-      popoverEl,
-      'top',
-      `${coordinates.y + this.offsetY()}px`
-    );
+
+    const offsetX = this.offsetX();
+    let offsetY = this.offsetY();
+    let x = 0;
+    let y = 0;
+
+    if (triggerBounrds) {
+      x = triggerBounrds.x;
+      y = triggerBounrds.y;
+    }
+
+    if (this.positionY() === 'bottom' && triggerBounrds) {
+      offsetY += triggerBounrds.height;
+    }
+
+    if (this.stretchToOrigin() && triggerBounrds) {
+      this.renderer2.setStyle(popoverEl, 'width', `${triggerBounrds.width}px`);
+    }
+
+    this.renderer2.setStyle(popoverEl, 'left', `${x + offsetX}px`);
+    this.renderer2.setStyle(popoverEl, 'top', `${y + offsetY}px`);
+  }
+
+  ngOnDestroy(): void {
+    this.documenSub?.unsubscribe();
   }
 }

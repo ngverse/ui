@@ -1,17 +1,25 @@
 <button
   class="select-button"
-  cdkOverlayOrigin
-  #trigger="cdkOverlayOrigin"
   #selectButton
-  (click)="open()"
+  appPopoverOrigin
+  #origin="appPopoverOrigin"
+  (togglePopover)="toggle()"
 >
-  <span>{{ selectedOptionLabel() || placeholder() }}</span>
+  <span class="select-button-label">{{
+    state.selectedOptionsLabel() || placeholder()
+  }}</span>
   <app-multi-select-icon
     class="select-button-icon"
     [class.opened]="isOpen()"
   ></app-multi-select-icon>
 </button>
-<ng-template
+<div role="listbox" #listbox tabindex="0">
+  <app-popover class="select-options" [offsetY]="8" [(isOpen)]="isOpen" [origin]="origin">
+    <ng-content></ng-content>
+  </app-popover>
+</div>
+
+<!-- <ng-template
   (backdropClick)="close()"
   [cdkConnectedOverlayHasBackdrop]="true"
   [cdkConnectedOverlayBackdropClass]="'cdk-backdrop-transparent'"
@@ -38,4 +46,4 @@
     </li>
     }
   </ul>
-</ng-template>
+</ng-template> -->
