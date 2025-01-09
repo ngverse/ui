@@ -71,8 +71,6 @@ export class MultiSelectComponent implements ControlValueAccessor {
     read: ElementRef<HTMLElement>,
   });
 
-  value = signal<unknown>(undefined);
-
   compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
 
   toggle() {
@@ -83,22 +81,13 @@ export class MultiSelectComponent implements ControlValueAccessor {
     effect(() => {
       const options = this.options();
       this.state.options.set(options);
-      if (!options) {
-        return;
-      }
-      this.listenOnOptionChange(options);
     });
-  }
-
-  listenOnOptionChange(options: readonly MultiSelectItemComponent[]) {
-    for (const option of options) {
-      option.activated.subscribe(() => {
-        this.state.toggleValue(option.value());
-        if (this._registerOnChange) {
-          this._registerOnChange(this.state.values());
-        }
-      });
-    }
+    effect(() => {
+      const compareWith = this.compareWith();
+      if (compareWith) {
+        this.state.compareWith = compareWith;
+      }
+    });
   }
 
   close() {
@@ -116,8 +105,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
     this.listbox().focus();
   }
 
-  writeValue(obj: unknown): void {
-    this.value.set(obj);
+  writeValue(obj: unknown[]): void {
+    this.state.writeValues(obj);
   }
   registerOnChange(fn: OnChangeFunction): void {
     this._registerOnChange = fn;

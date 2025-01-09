@@ -31,9 +31,13 @@ export class MultiSelectItemComponent implements Highlightable {
   state = inject(MultiSelectState);
   listboxItem = inject(ListboxItemDirective);
 
-  activated = this.listboxItem.activated;
-
   isSelected = () => this.state.isSelected(this.value());
+
+  constructor() {
+    this.listboxItem.activated.subscribe(() => {
+      this.state.toggleValue(this.value());
+    });
+  }
 
   get content() {
     return this.host.nativeElement.textContent;

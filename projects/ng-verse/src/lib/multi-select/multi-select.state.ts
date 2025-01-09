@@ -71,4 +71,8 @@ export class MultiSelectState {
   isSelected(value: unknown) {
     return this.values()?.some((v) => this.compareWith(v, value));
   }
+
+  writeValues(values: unknown[]) {
+    this.values.set(values);
+  }
 }
