@@ -19,13 +19,13 @@ import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directi
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { OptionComponent } from './option/option.component';
 import { SelectIconComponent } from './select-icon.component';
-import { SelectState } from './select.state';
+import {
+  SelectCompareWith,
+  SelectOnChangeFunction,
+  SelectState,
+} from './select.state';
 
 type OnTouchedFunction = (() => void) | undefined;
-
-type OnChangeFunction = ((_: unknown) => void) | undefined;
-
-type CompareWith = (o1: unknown, o2: unknown) => boolean;
 
 @Component({
   selector: 'app-select',
@@ -53,9 +53,10 @@ export class SelectComponent implements ControlValueAccessor {
 
   placeholder = input.required<string>();
 
-  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
+  compareWith = input<SelectCompareWith>(
+    (o1: unknown, o2: unknown) => o1 === o2
+  );
 
-  private _registerOnChange: OnChangeFunction;
   private _onTouched: OnTouchedFunction;
 
   selectState = inject(SelectState);
@@ -71,8 +72,8 @@ export class SelectComponent implements ControlValueAccessor {
   writeValue(value: unknown): void {
     this.selectState.writeValue(value);
   }
-  registerOnChange(fn: OnChangeFunction): void {
-    this._registerOnChange = fn;
+  registerOnChange(fn: SelectOnChangeFunction): void {
+    this.selectState.registerOnChange = fn;
   }
 
   registerOnTouched(fn: OnTouchedFunction): void {
@@ -102,8 +103,6 @@ export class SelectComponent implements ControlValueAccessor {
   }
 
   panelClosed() {
-    if (this._onTouched) {
-      this._onTouched();
-    }
+    this._onTouched?.();
   }
 }

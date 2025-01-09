@@ -1,6 +1,7 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { OptionComponent } from './option/option.component';
-type CompareWith = (o1: unknown, o2: unknown) => boolean;
+export type SelectCompareWith = (o1: unknown, o2: unknown) => boolean;
+export type SelectOnChangeFunction = ((_: unknown) => void) | undefined;
 
 @Injectable()
 export class SelectState {
@@ -8,7 +9,8 @@ export class SelectState {
 
   options = signal<readonly OptionComponent[]>([]);
 
-  compareWith: CompareWith = (o1: unknown, o2: unknown) => o1 === o2;
+  compareWith: SelectCompareWith = (o1: unknown, o2: unknown) => o1 === o2;
+  registerOnChange: SelectOnChangeFunction;
 
   disabled = signal(false);
 
@@ -51,6 +53,7 @@ export class SelectState {
   setValue(value: unknown) {
     this.value.set(value);
     this.isOpen.set(false);
+    this.registerOnChange?.(value);
   }
 
   writeValue(value: unknown) {
