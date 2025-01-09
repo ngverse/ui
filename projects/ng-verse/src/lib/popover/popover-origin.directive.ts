@@ -1,9 +1,11 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
 import {
   Directive,
   effect,
   ElementRef,
   inject,
   input,
+  NgZone,
   output,
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
@@ -23,6 +25,12 @@ export class PopoverOriginDirective {
 
   openPopover = output();
 
+  focusMonitor = inject(FocusMonitor);
+
+  ngZone = inject(NgZone);
+
+  hidePopover = output();
+
   get el() {
     return this.host.nativeElement;
   }
@@ -41,6 +49,18 @@ export class PopoverOriginDirective {
             })
           );
           break;
+        case 'focus':
+          this.eventSub.add(
+            this.focusMonitor.monitor(this.el).subscribe((origin) => {
+              if (!origin) {
+                this.ngZone.run(() => this.hidePopover.emit());
+              } else {
+                this.ngZone.run(() => {
+                  this.openPopover.emit();
+                });
+              }
+            })
+          );
       }
     });
   }

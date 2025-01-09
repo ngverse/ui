@@ -3,13 +3,13 @@
   (input)="onInput($event)"
   [ngModel]="inputValue()"
   (ngModelChange)="inputValue.set($event)"
-  (blur)="close()"
-  (focus)="open()"
   appPopoverOrigin
   #trigger="appPopoverOrigin"
+  (openPopover)="open()"
+  (hidePopover)="close()"
 />
 
-<app-popover [offsetY]="40" [origin]="trigger" [isOpen]="isOpen()">
+<app-popover [offsetY]="40" [origin]="trigger" [(isOpen)]="isOpen">
   <div class="select-options" style="width: 150px" role="listbox">
     <ng-content select="app-autocomplete-item"></ng-content>
   </div>

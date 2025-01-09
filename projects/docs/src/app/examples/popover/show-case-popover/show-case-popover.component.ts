@@ -8,8 +8,4 @@ import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directi
   styleUrl: './show-case-popover.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ShowCasePopoverComponent {
-  closed() {
-    console.log('IA M CLOSED');
-  }
-}
+export class ShowCasePopoverComponent {}

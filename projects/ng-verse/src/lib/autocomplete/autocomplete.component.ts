@@ -1,10 +1,8 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
   Component,
   contentChildren,
   effect,
-  ElementRef,
   inject,
   InjectionToken,
   input,
@@ -32,13 +30,7 @@ export const SELECTION_EMITTER = new InjectionToken<
 
 @Component({
   selector: 'app-autocomplete',
-  imports: [
-    CdkOverlayOrigin,
-    CdkConnectedOverlay,
-    FormsModule,
-    PopoverComponent,
-    PopoverOriginDirective,
-  ],
+  imports: [FormsModule, PopoverComponent, PopoverOriginDirective],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss',
   providers: [
@@ -61,8 +53,6 @@ export class AutocompleteComponent implements ControlValueAccessor {
   displayWith = input<((value: unknown) => string) | null>(null);
 
   private readonly options = contentChildren(AutocompleteItemComponent);
-
-  private readonly elementRef = inject(ElementRef);
 
   isOpen = signal(false);
   inputValue = signal('');
@@ -87,14 +77,12 @@ export class AutocompleteComponent implements ControlValueAccessor {
   }
 
   close() {
-    console.log("CLOSE")
     this.isOpen.set(false);
   }
 
   open() {
-    console.log("OPEN!")
     this.isOpen.set(true);
-    this.keyManager.setFirstItemActive()
+    this.keyManager.setFirstItemActive();
   }
 
   select(comp: AutocompleteItemComponent) {
@@ -132,7 +120,6 @@ export class AutocompleteComponent implements ControlValueAccessor {
   }
 
   onKeydown(event: KeyboardEvent) {
-    console.log('KE');
     if (event.key !== 'Enter') {
       this.keyManager.onKeydown(event);
       this.scrollToActiveOption();
