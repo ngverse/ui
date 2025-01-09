@@ -1,6 +1,9 @@
 :host {
   display: block;
-  &.active {
-    background: aqua;
+  padding: 6px;
+  cursor: pointer;
+  &.listbox-item-active,
+  &:hover {
+    background: #f3f4f6;
   }
 }
