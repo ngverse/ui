@@ -6,7 +6,6 @@ import {
   effect,
   ElementRef,
   HostBinding,
-  HostListener,
   inject,
   input,
   model,
@@ -21,6 +20,8 @@ import {
   fromEvent,
   observeOn,
   Subscription,
+  take,
+  throttleTime,
 } from 'rxjs';
 import { PopoverOriginDirective } from './popover-origin.directive';
 import { POPOVER_ANIMATIONS } from './popover.animations';
@@ -43,7 +44,6 @@ type POPOVER_POSITION_Y = 'bottom';
 export class PopoverComponent implements OnDestroy {
   popover = inject(ElementRef<HTMLElement>);
   popoverEl = this.popover.nativeElement as HTMLElement;
-  private overlay = inject(Overlay);
   private renderer2 = inject(Renderer2);
   private document = inject(DOCUMENT);
 
@@ -57,6 +57,8 @@ export class PopoverComponent implements OnDestroy {
   blockScroll = input(true);
   positionY = input<POPOVER_POSITION_Y>('bottom');
 
+  scrollBlocker = inject(Overlay).scrollStrategies.block();
+
   stretchToOrigin = input(true);
 
   opened = output();
@@ -68,26 +70,6 @@ export class PopoverComponent implements OnDestroy {
 
   get popoverIsOpen() {
     return this.popoverEl.matches(':popover-open');
-  }
-
-  @HostListener('beforetoggle', ['$event'])
-  onBeforeToggle(event: ToggleEvent) {
-    const toggleEvent = event as ToggleEvent;
-    if (toggleEvent.newState === 'open') {
-      setTimeout(() => {
-        this.opened.emit();
-      }, 30);
-      this.updateCoordinates();
-      if (this.blockScroll()) {
-        this.overlay.scrollStrategies.block().enable();
-      }
-      this.listenToDocument();
-    } else {
-      this.closed.emit();
-      if (this.blockScroll()) {
-        this.overlay.scrollStrategies.block().disable();
-      }
-    }
   }
 
   constructor() {
@@ -111,6 +93,16 @@ export class PopoverComponent implements OnDestroy {
     }
     const popover = this.popover.nativeElement;
     popover.showPopover();
+    //wait till the animation ends
+    fromEvent(popover, 'transitionend')
+      .pipe(throttleTime(1), take(1))
+      .subscribe(() => {
+        this.opened.emit();
+      });
+    this.updateCoordinates();
+    if (this.blockScroll()) {
+      this.scrollBlocker.enable();
+    }
     this.listenToDocument();
   }
 
@@ -118,6 +110,10 @@ export class PopoverComponent implements OnDestroy {
     if (this.popoverIsOpen) {
       const popover = this.popover.nativeElement;
       popover.hidePopover();
+      this.closed.emit();
+      if (this.blockScroll()) {
+        this.scrollBlocker.disable();
+      }
       this.documenSub?.unsubscribe();
     }
   }

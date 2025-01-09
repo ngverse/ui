@@ -52,7 +52,6 @@ export class ListboxItemDirective implements Highlightable, OnDestroy {
 
   scrollIntoView() {
     this.host.nativeElement.scrollIntoView({
-      behavior: 'smooth',
       block: 'end',
       inline: 'nearest',
     });
