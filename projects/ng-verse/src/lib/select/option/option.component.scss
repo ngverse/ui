@@ -2,7 +2,8 @@
   display: block;
   padding: 6px;
   cursor: pointer;
-  &.listbox-item-active {
+  &.listbox-item-active,
+  &.selected {
     background: var(--app-primary-color);
     color: white;
   }

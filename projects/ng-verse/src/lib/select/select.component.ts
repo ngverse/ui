@@ -5,7 +5,6 @@ import {
   ElementRef,
   inject,
   input,
-  signal,
   viewChild,
 } from '@angular/core';
 import {
@@ -50,8 +49,6 @@ type CompareWith = (o1: unknown, o2: unknown) => boolean;
   ],
 })
 export class SelectComponent implements ControlValueAccessor {
-  isOpen = signal(false);
-
   stretch = input<boolean>(false);
 
   placeholder = input.required<string>();
@@ -72,7 +69,7 @@ export class SelectComponent implements ControlValueAccessor {
   });
 
   writeValue(value: unknown): void {
-    this.selectState.value.set(value);
+    this.selectState.writeValue(value);
   }
   registerOnChange(fn: OnChangeFunction): void {
     this._registerOnChange = fn;
@@ -86,24 +83,7 @@ export class SelectComponent implements ControlValueAccessor {
     effect(() => {
       const options = this.options();
       this.selectState.options.set(options);
-      if (!options) {
-        return;
-      }
-
-      this.listenOnOptionChange(options);
     });
-  }
-
-  listenOnOptionChange(options: readonly OptionComponent[]) {
-    for (const option of options) {
-      option.activated.subscribe(() => {
-        this.selectState.value.set(option.value());
-        if (this._registerOnChange) {
-          this._registerOnChange(this.selectState.value());
-        }
-        this.isOpen.set(false);
-      });
-    }
   }
 
   setDisabledState?(isDisabled: boolean): void {
@@ -114,12 +94,11 @@ export class SelectComponent implements ControlValueAccessor {
     this.listbox().focus();
     const selectedOptionIndex = this.selectState.selectedOptionIndex();
     this.listbox().activateItemOrFirstByIndex(selectedOptionIndex);
-
-    this.isOpen.set(true);
+    this.selectState.isOpen.set(true);
   }
 
   toggle() {
-    this.isOpen.update((isOpen) => !isOpen);
+    this.selectState.isOpen.update((isOpen) => !isOpen);
   }
 
   panelClosed() {

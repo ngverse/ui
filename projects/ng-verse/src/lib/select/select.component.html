@@ -10,12 +10,12 @@
   <span>{{ selectState.selectedOptionLabel() || placeholder() }}</span>
   <app-select-icon
     class="select-button-icon"
-    [class.opened]="isOpen()"
+    [class.opened]="selectState.isOpen()"
   ></app-select-icon>
 </button>
 <app-popover
   class="select-options"
-  [(isOpen)]="isOpen"
+  [(isOpen)]="selectState.isOpen"
   [origin]="origin"
   (opened)="panelOpened()"
   (closed)="panelClosed()"
