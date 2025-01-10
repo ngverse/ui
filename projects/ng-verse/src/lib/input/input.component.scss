@@ -6,6 +6,10 @@
   &:focus {
     outline: var(--app-field-focus-outline);
   }
+  &:disabled,
+  &[readonly] {
+    background: var(--app-field-disabled-bg-color);
+  }
 }
 
 :host.ng-invalid.ng-touched {
