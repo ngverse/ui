@@ -9,14 +9,17 @@ import {
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ComponentType } from '@angular/cdk/portal';
 import { OverlayRef } from '@angular/cdk/overlay';
+import { DrawerCloseIconComponent } from '@ng-verse/drawer/drawer-close-icon.component';
 
 @Component({
   selector: 'app-drawer',
-  imports: [],
+  imports: [
+    DrawerCloseIconComponent
+  ],
   templateUrl: './drawer.component.html',
   styleUrl: './drawer.component.scss',
   animations: [
-    trigger('slideUpDownAnimation', [
+    trigger('slideRightLeftAnimation', [
       transition(':enter', [
         style({ transform: 'translateX(100%)'}),
         animate('300ms ease-out', style({ transform: 'translateX(0)'})),
@@ -27,7 +30,7 @@ import { OverlayRef } from '@angular/cdk/overlay';
     ]),
   ],
   host: {
-    '[@slideUpDownAnimation]': ''
+    '[@slideRightLeftAnimation]': ''
   },
   changeDetection: ChangeDetectionStrategy.OnPush
 })

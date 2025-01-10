@@ -11,7 +11,6 @@ import {
   SourceTreeFolder,
 } from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import { ShowCaseSkeletonComponent } from '../../examples/skeleton/show-case-skeleton/show-case-skeleton.component';
 import { ShowCaseDrawerComponent } from '../../examples/drawer/show-case-drawer/show-case-drawer.component';
 const ROOT = 'drawer';
 @Component({
@@ -20,7 +19,6 @@ const ROOT = 'drawer';
     BlueprintPageComponent,
     ShowCaseComponent,
     CommandInstallationComponent,
-    ShowCaseSkeletonComponent,
     SourceTreeComponent,
     ApiInfoComponent,
     ShowCaseDrawerComponent,
