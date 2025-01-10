@@ -1,1 +1,21 @@
-<button appPopoverOrigin #popoverTrigger="appPopoverOrigin">Popover</button>
+<button
+  appButton
+  appPopoverOrigin
+  #popoverTrigger="appPopoverOrigin"
+  (togglePopover)="toggle()"
+>
+  Delete User
+</button>
+<app-popover
+  [(isOpen)]="isOpen"
+  class="popover"
+  [stretchToOrigin]="false"
+  [origin]="popoverTrigger"
+  [offsetY]="10"
+>
+  <p>Are you sure you want to do this?</p>
+  <div class="popover-actions">
+    <button size="sm" appButton color="danger" (click)="deleteUser()">Yes</button>
+    <button size="sm" appButton (click)="isOpen.set(false)" variant="outline">No</button>
+  </div>
+</app-popover>

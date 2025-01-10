@@ -10,7 +10,6 @@
   --app-accent: #f1f5f9;
   --app-accent-foreground: #0f172a;
   --app-ring-color: #94a3b8;
-  --app-separator-color: #cbd5e1;
   --app-disabled-color: #94a3b8;
   --app-primary-color: #2563eb;
 
@@ -21,4 +20,20 @@
 
   --app-popover-box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --app-separator-color: #cbd5e1;
+
+  --app-field-height: 36px;
+  --app-field-border-radius: 8px;
+  --app-field-border: 1px solid #d1d5db;
+  --app-field-padding: 6px 10px;
+  --app-field-focus-outline: 1px solid #9ca3af;
+  --app-field-disabled-bg-color: #f3f4f6;
+  --app-field-disabled-color:#9ca3af
+
+
+  --app-option-hover-bg-color: #e5e7eb;
+  --app-option-padding: 6px;
+  --app-option-cursor: pointer;
+  --app-option-disabled-color: #9ca3af;
 }

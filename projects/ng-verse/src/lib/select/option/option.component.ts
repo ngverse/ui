@@ -4,7 +4,7 @@ import {
   ElementRef,
   inject,
   input,
-  signal
+  signal,
 } from '@angular/core';
 import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
 import { SelectState } from '../select.state';
@@ -14,7 +14,12 @@ import { SelectState } from '../select.state';
   templateUrl: './option.component.html',
   styleUrl: './option.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  hostDirectives: [ListboxItemDirective],
+  hostDirectives: [
+    {
+      directive: ListboxItemDirective,
+      inputs: ['disabled'],
+    },
+  ],
   host: {
     '[class.selected]': 'isSelected()',
   },

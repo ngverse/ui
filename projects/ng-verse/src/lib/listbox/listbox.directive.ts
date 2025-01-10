@@ -50,7 +50,9 @@ export class ListboxDirective implements OnDestroy {
       }
       if (options?.length) {
         this.keyManager?.destroy();
-        this.keyManager = new ActiveDescendantKeyManager(options).withWrap();
+        this.keyManager = new ActiveDescendantKeyManager(options)
+          .withWrap()
+          .withTypeAhead();
         this.keyManager.change.subscribe(() => {
           const activeOption = this.keyManager?.activeItem;
           if (activeOption) {
