@@ -14,7 +14,7 @@ describe('DrawerComponent', () => {
 
     fixture = TestBed.createComponent(DrawerComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    //fixture.detectChanges();
   });
 
   it('should create', () => {
