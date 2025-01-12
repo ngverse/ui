@@ -1,10 +1,8 @@
 import { DIALOG_DATA, DialogConfig } from '@angular/cdk/dialog';
 import {
-  CdkPortalOutlet,
-  ComponentPortal,
   ComponentType,
 } from '@angular/cdk/portal';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, viewChild, ViewContainerRef } from '@angular/core';
 import { DialogCloseIconComponent } from '../dialog-close-icon.component';
 import { DialogCloseDirective } from '../dialog-close.directive';
 
@@ -17,13 +15,13 @@ export interface DialogOptions
 
 @Component({
   selector: 'app-dialog',
-  imports: [CdkPortalOutlet, DialogCloseIconComponent, DialogCloseDirective],
+  imports: [DialogCloseIconComponent, DialogCloseDirective],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',
 })
-export class DialogComponent {
+export class DialogComponent implements OnInit {
   dialogData = inject<DialogOptions>(DIALOG_DATA);
-  componentPortal: ComponentPortal<unknown>;
+  dialogContent = viewChild.required('dialogContent', { read: ViewContainerRef });
 
   get showClose() {
     return this.dialogData.showClose;
@@ -33,7 +31,12 @@ export class DialogComponent {
     return this.dialogData.title;
   }
 
-  constructor() {
-    this.componentPortal = new ComponentPortal(this.dialogData.component);
+  ngOnInit() {
+    this.createComponent(this.dialogData.component)
+  }
+
+  private createComponent(component: ComponentType<unknown>) {
+    this.dialogContent().clear();
+    return this.dialogContent().createComponent(component);
   }
 }
