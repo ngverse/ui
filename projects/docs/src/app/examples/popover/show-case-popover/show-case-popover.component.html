@@ -1,26 +1,21 @@
-<!-- <app-button appPopoverOrigin #popoverTrigger="appPopoverOrigin"
-  >Popover</app-button
->
-
-<input
-  class="border border-solid border-black"
-  type="text"
-  appPopoverOrigin
-  #inputTrigger="appPopoverOrigin"
-  triggerEvent="hover"
-/>
-
-
-<app-popover (closed)="closed()" [trigger]="inputTrigger">
-  <h1>HELLO</h1>
-  <input class="border border-solid border-black" type="text" />
-</app-popover> -->
-
 <button
+  appButton
   appPopoverOrigin
   #popoverTrigger="appPopoverOrigin"
+  (togglePopover)="toggle()"
 >
-  Popover
+  Delete User
 </button>
-
-<!-- <app-popover (closed)="closed()"> </app-popover> -->
+<app-popover
+  [(isOpen)]="isOpen"
+  class="popover"
+  [stretchToOrigin]="false"
+  [origin]="popoverTrigger"
+  [offsetY]="10"
+>
+  <p>Are you sure you want to do this?</p>
+  <div class="popover-actions">
+    <button size="sm" appButton color="danger" (click)="deleteUser()">Yes</button>
+    <button size="sm" appButton (click)="isOpen.set(false)" variant="outline">No</button>
+  </div>
+</app-popover>

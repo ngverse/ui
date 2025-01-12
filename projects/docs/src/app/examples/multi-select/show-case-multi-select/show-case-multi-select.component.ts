@@ -36,7 +36,7 @@ const countries = [
 })
 export class ShowCaseMultiSelectComponent {
   countries = countries;
-  formControl = new FormControl(null, Validators.required);
+  formControl = new FormControl(['US', 'CA'], Validators.required);
 
   constructor() {
     this.formControl.valueChanges.subscribe(() => {

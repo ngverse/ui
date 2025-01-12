@@ -5,9 +5,17 @@ import { ContextMenuComponent } from '@ng-verse/context-menu/context-menu.compon
 
 @Component({
   selector: 'doc-show-case-context-menu',
-  imports: [ContextMenuComponent, ContextMenuTriggerDirective, ContextMenuItemComponent],
+  imports: [
+    ContextMenuComponent,
+    ContextMenuTriggerDirective,
+    ContextMenuItemComponent,
+  ],
   templateUrl: './show-case-context-menu.component.html',
   styleUrl: './show-case-context-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ShowCaseContextMenuComponent {}
+export class ShowCaseContextMenuComponent {
+  selected() {
+    console.log('SELECTED');
+  }
+}

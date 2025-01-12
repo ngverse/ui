@@ -43,8 +43,8 @@ export class ButtonPageComponent {
   apiInputs: ApiEntity[] = [
     {
       name: 'ButtonComponent',
-      type:"component",
-      selector:"app-button",
+      type: 'component',
+      selector: '[appButton]',
       inputs: [
         {
           name: 'color',

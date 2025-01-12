@@ -1,4 +1,3 @@
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,10 +11,11 @@ import {
 } from '@angular/core';
 import {
   ControlValueAccessor,
-  FormControl,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
+import { ListboxState } from '@ng-verse/listbox/listbox.state';
 import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { MultiSelectIconComponent } from './multi-select-icon.component';
@@ -36,6 +36,7 @@ type CompareWith = (o1: unknown, o2: unknown) => boolean;
     ReactiveFormsModule,
     PopoverComponent,
     PopoverOriginDirective,
+    ListboxDirective,
   ],
   templateUrl: './multi-select.component.html',
   styleUrl: './multi-select.component.scss',
@@ -46,13 +47,12 @@ type CompareWith = (o1: unknown, o2: unknown) => boolean;
       useExisting: MultiSelectComponent,
     },
     MultiSelectState,
+    ListboxState,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MultiSelectComponent implements ControlValueAccessor {
   isOpen = signal(false);
-
-  listboxFormControl = new FormControl();
 
   state = inject(MultiSelectState);
 
@@ -63,16 +63,13 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
   private _registerOnChange: OnChangeFunction;
   private _onTouched: OnTouchedFunction;
+  listbox = viewChild.required(ListboxDirective);
 
   options = contentChildren(MultiSelectItemComponent, { descendants: true });
-
-  keyManager: ActiveDescendantKeyManager<MultiSelectItemComponent> | undefined;
 
   selectButton = viewChild('selectButton', {
     read: ElementRef<HTMLElement>,
   });
-
-  value = signal<unknown>(undefined);
 
   compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
 
@@ -84,38 +81,13 @@ export class MultiSelectComponent implements ControlValueAccessor {
     effect(() => {
       const options = this.options();
       this.state.options.set(options);
-      if (!options) {
-        return;
-      }
-      this.createKeyManager(options);
-      this.listenOnOptionChange(options);
     });
-  }
-
-  listenOnOptionChange(options: readonly MultiSelectItemComponent[]) {
-    for (const option of options) {
-      option.clicked.subscribe(() => {
-        this.state.toggleValue(option.value());
-        if (this._registerOnChange) {
-          this._registerOnChange(this.state.values());
-        }
-      });
-    }
-  }
-
-  createKeyManager(options: readonly MultiSelectItemComponent[]) {
-    this.keyManager?.destroy();
-    this.keyManager = new ActiveDescendantKeyManager(options);
-    this.keyManager.change.subscribe(() => {
-      const activeOption = this.keyManager?.activeItem;
-      if (activeOption) {
-        this.scrollIntoOption(activeOption);
+    effect(() => {
+      const compareWith = this.compareWith();
+      if (compareWith) {
+        this.state.compareWith = compareWith;
       }
     });
-  }
-
-  scrollIntoOption(option: MultiSelectItemComponent) {
-    option.scrollIntoView();
   }
 
   close() {
@@ -130,11 +102,11 @@ export class MultiSelectComponent implements ControlValueAccessor {
     if (this._onTouched) {
       this._onTouched();
     }
+    this.listbox().focus();
   }
 
-  writeValue(obj: unknown): void {
-    this.listboxFormControl.setValue(obj, { emitEvent: false });
-    this.value.set(obj);
+  writeValue(obj: unknown[]): void {
+    this.state.writeValues(obj);
   }
   registerOnChange(fn: OnChangeFunction): void {
     this._registerOnChange = fn;

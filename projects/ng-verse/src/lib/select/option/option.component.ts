@@ -1,48 +1,41 @@
-import { Highlightable } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
-  HostListener,
   inject,
-  Input,
   input,
-  output,
   signal,
 } from '@angular/core';
+import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
+import { SelectState } from '../select.state';
 
 @Component({
   selector: 'app-option',
-  imports: [],
   templateUrl: './option.component.html',
   styleUrl: './option.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  hostDirectives: [
+    {
+      directive: ListboxItemDirective,
+      inputs: ['disabled'],
+    },
+  ],
   host: {
-    '[class.option-active]': 'isActive()',
+    '[class.selected]': 'isSelected()',
   },
 })
-export class OptionComponent implements Highlightable {
+export class OptionComponent {
   host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
   isActive = signal(false);
-  clicked = output();
   value = input.required<unknown>();
+  listboxItem = inject(ListboxItemDirective);
+  state = inject(SelectState);
 
-  @HostListener('click')
-  onClick() {
-    this.clicked.emit();
-  }
+  isSelected = () => this.state.isSelected(this.value());
 
-  setActiveStyles(): void {
-    this.isActive.set(true);
-  }
-  setInactiveStyles(): void {
-    this.isActive.set(false);
-  }
-  @HostBinding('class.option-disabled')
-  @Input()
-  disabled?: boolean | undefined;
-  getLabel?(): string {
-    return this.host.nativeElement.textContent as string;
+  constructor() {
+    this.listboxItem.activated.subscribe(() => {
+      this.state.setValue(this.value());
+    });
   }
 }

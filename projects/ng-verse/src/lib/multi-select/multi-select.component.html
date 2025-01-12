@@ -13,11 +13,17 @@
     [class.opened]="isOpen()"
   ></app-multi-select-icon>
 </button>
-<div role="listbox" #listbox tabindex="0">
-  <app-popover class="select-options" [offsetY]="8" [(isOpen)]="isOpen" [origin]="origin">
+<app-popover
+  class="select-options"
+  [offsetY]="8"
+  [(isOpen)]="isOpen"
+  [origin]="origin"
+  (opened)="panelOpened()"
+>
+  <div appListbox>
     <ng-content></ng-content>
-  </app-popover>
-</div>
+  </div>
+</app-popover>
 
 <!-- <ng-template
   (backdropClick)="close()"

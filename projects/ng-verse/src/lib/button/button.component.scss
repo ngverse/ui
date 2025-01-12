@@ -1,4 +1,4 @@
-.button {
+:host {
   outline: none;
   --outline-hover: #f1f5f9;
   --outlline-active: #e2e8f0;
@@ -117,7 +117,7 @@
   }
 }
 
-.button:disabled:not(.loading) {
+:host:disabled:not(.loading) {
   background-color: var(--app-disabled-color);
   cursor: not-allowed;
 }

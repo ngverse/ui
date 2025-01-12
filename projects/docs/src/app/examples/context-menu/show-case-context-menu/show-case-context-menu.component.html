@@ -9,7 +9,7 @@
   including versions of Lorem Ipsum.
 </p>
 <app-context-menu [trigger]="trigger">
-  <app-context-menu-item>Item 1</app-context-menu-item>
+  <app-context-menu-item (activated)="selected()">Item 1</app-context-menu-item>
   <app-context-menu-item>Item 2</app-context-menu-item>
   <app-context-menu-item>Item 3</app-context-menu-item>
   <app-context-menu-item>Item 4</app-context-menu-item>

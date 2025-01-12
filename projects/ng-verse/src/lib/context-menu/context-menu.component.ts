@@ -1,22 +1,19 @@
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
-  ElementRef,
-  HostListener,
+  effect,
   inject,
   input,
+  OnDestroy,
   OnInit,
-  QueryList,
   signal,
   viewChild
 } from '@angular/core';
+import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
+import { ListboxState } from '@ng-verse/listbox/listbox.state';
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
-import { ContextMenuItemComponent } from './context-menu-item/context-menu-item.component';
+import { Subscription } from 'rxjs';
 import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
-import { CONTEXT_MENU_ANIMATIONS } from './context-menu.animations';
 
 @Component({
   selector: 'app-context-menu',
@@ -26,48 +23,62 @@ import { CONTEXT_MENU_ANIMATIONS } from './context-menu.animations';
   host: {
     tabIndex: '0',
   },
-  animations: [CONTEXT_MENU_ANIMATIONS],
-  imports: [PopoverComponent],
+  imports: [PopoverComponent, ListboxDirective],
+  providers: [ListboxState],
 })
-export class ContextMenuComponent implements OnInit, AfterContentInit {
-  animationState = signal<'show' | 'hide'>('show');
+export class ContextMenuComponent implements OnInit, OnDestroy {
   trigger = input.required<ContextMenuTriggerDirective>();
-
-  @ContentChildren(ContextMenuItemComponent, { descendants: true })
-  items!: QueryList<ContextMenuItemComponent>;
-
-  keyManager!: ActiveDescendantKeyManager<ContextMenuItemComponent>;
 
   popover = viewChild.required(PopoverComponent);
 
-  host = inject(ElementRef<HTMLElement>);
+  isOpen = signal(false);
+  clientX = signal<number>(0);
+  clientY = signal<number>(0);
+  listbox = viewChild.required(ListboxDirective);
+  listsboxState = inject(ListboxState);
+  itemsSub = new Subscription();
 
-  @HostListener('keydown', ['$event'])
-  onKeydown($event: KeyboardEvent) {
-    this.keyManager.onKeydown($event);
+  constructor() {
+    effect(() => {
+      const isOpen = this.isOpen();
+      this.clientX();
+      this.clientY();
+      if (isOpen) {
+        this.popover().updateCoordinates();
+      }
+    });
+
+    effect(() => {
+      const items = this.listsboxState.items();
+      this.itemsSub.unsubscribe();
+      this.itemsSub = new Subscription();
+      for (const item of items) {
+        this.itemsSub.add(
+          item.activated.subscribe(() => {
+            this.isOpen.set(false);
+          })
+        );
+      }
+    });
   }
-
-  event = signal<MouseEvent | undefined>(undefined);
+  ngOnDestroy(): void {
+    this.itemsSub.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.trigger().openTriggered.subscribe(($event) => {
       $event.stopPropagation();
       $event.preventDefault();
-      this.event.set($event);
-      // this.popover().hide();
-      this.popover().open({
-        x: $event.clientX,
-        y: $event.clientY,
-      });
+      this.clientX.set($event.clientX);
+      this.clientY.set($event.clientY);
+      const isOpen = this.isOpen();
+      if (!isOpen) {
+        this.isOpen.set(true);
+      }
     });
   }
 
   opened() {
-    this.host.nativeElement.focus();
-    this.keyManager.setFirstItemActive();
-  }
-
-  ngAfterContentInit(): void {
-    this.keyManager = new ActiveDescendantKeyManager(this.items).withWrap();
+    this.listbox().focus(true);
   }
 }

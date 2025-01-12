@@ -1,18 +1,19 @@
 :host {
   display: block;
-  padding: 6px;
-  cursor: pointer;
-  &.option-active {
-    background: var(--app-primary-color);
-    color: white;
+  padding: var(--app-option-padding);
+  cursor: var(--app-option-cursor);
+
+  &:hover:not(.selected, .listbox-item-active, .option-disabled) {
+    background: var(--app-option-hover-bg-color);
   }
 
-  &:hover {
+  &.listbox-item-active,
+  &.selected {
     background: var(--app-primary-color);
     color: white;
   }
 
   &.option-disabled {
-    color: var(--app-disabled-color);
+    color: var(--app-option-disabled-color);
   }
 }

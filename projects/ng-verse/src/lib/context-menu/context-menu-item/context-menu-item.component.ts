@@ -1,12 +1,10 @@
-import { Highlightable } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   inject,
-  Input,
-  signal,
 } from '@angular/core';
+import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
 
 @Component({
   selector: 'app-context-menu-item',
@@ -16,24 +14,14 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'menuitem',
-    '[class.active]': 'itemActive()',
   },
+  hostDirectives: [
+    {
+      directive: ListboxItemDirective,
+      outputs: ['activated'],
+    },
+  ],
 })
-export class ContextMenuItemComponent implements Highlightable {
+export class ContextMenuItemComponent {
   host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
-
-  itemActive = signal(false);
-
-  @Input()
-  disabled?: boolean | undefined;
-
-  setActiveStyles(): void {
-    this.itemActive.set(true);
-  }
-  setInactiveStyles(): void {
-    this.itemActive.set(false);
-  }
-  getLabel?(): string {
-    return this.host.nativeElement.textContent as string;
-  }
 }

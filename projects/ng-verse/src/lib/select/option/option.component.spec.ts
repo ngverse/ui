@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { SelectState } from '../select.state';
 import { OptionComponent } from './option.component';
 
 describe('OptionComponent', () => {
@@ -8,11 +9,12 @@ describe('OptionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OptionComponent]
-    })
-    .compileComponents();
+      imports: [OptionComponent],
+      providers: [SelectState],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(OptionComponent);
+    fixture.componentRef.setInput('value', 'test');
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
