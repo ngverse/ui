@@ -2,7 +2,7 @@
   display: inline-block;
 }
 
-.select-button {
+.input-field {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,6 +12,11 @@
   border-radius: var(--app-border-radius);
   padding: 4px 10px;
   width: 200px;
+
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--app-disabled-color);
+  }
 }
 
 .select-label {

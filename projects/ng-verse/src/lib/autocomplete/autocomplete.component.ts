@@ -6,7 +6,7 @@ import {
   inject,
   InjectionToken,
   input,
-  signal,
+  signal, viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -16,13 +16,14 @@ import {
 } from '@angular/forms';
 import { AutocompleteItemComponent } from '@ng-verse/autocomplete/autocomplete-item/autocomplete-item.component';
 import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
-import { Subject } from 'rxjs';
 import { PopoverComponent } from '../popover/popover.component';
+import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
+import { Subject } from 'rxjs';
+import { ListboxState } from '@ng-verse/listbox/listbox.state';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type OnChangeFunction = ((_: any) => void) | undefined;
-
-export type OnTouchedFunction = (() => void) | undefined;
+type OnChangeFunction = ((_: any) => void) | undefined;
+type OnTouchedFunction = (() => void) | undefined;
 
 export const SELECTION_EMITTER = new InjectionToken<
   Subject<AutocompleteItemComponent>
@@ -30,7 +31,7 @@ export const SELECTION_EMITTER = new InjectionToken<
 
 @Component({
   selector: 'app-autocomplete',
-  imports: [FormsModule, PopoverComponent, PopoverOriginDirective],
+  imports: [FormsModule, PopoverComponent, PopoverOriginDirective, ListboxDirective],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss',
   providers: [
@@ -43,6 +44,7 @@ export const SELECTION_EMITTER = new InjectionToken<
       provide: SELECTION_EMITTER,
       useValue: new Subject(),
     },
+    ListboxState
   ],
   host: {
     '(keydown)': 'onKeydown($event)',
@@ -51,15 +53,16 @@ export const SELECTION_EMITTER = new InjectionToken<
 export class AutocompleteComponent implements ControlValueAccessor {
   label = input.required<string>();
   displayWith = input<((value: unknown) => string) | null>(null);
-
-  private readonly options = contentChildren(AutocompleteItemComponent);
-
+  value = signal<unknown>(undefined);
   isOpen = signal(false);
   inputValue = signal('');
 
-  private readonly selectionEmitter = inject(SELECTION_EMITTER, { self: true });
+  private readonly options = contentChildren(AutocompleteItemComponent);
 
-  keyManager!: ActiveDescendantKeyManager<AutocompleteItemComponent>;
+  disabled = signal(false);
+
+  private readonly listbox = viewChild.required(ListboxDirective);
+  private readonly selectionEmitter = inject(SELECTION_EMITTER, { self: true });
 
   _onChange: OnChangeFunction;
   _onTouched: OnTouchedFunction;
@@ -67,12 +70,6 @@ export class AutocompleteComponent implements ControlValueAccessor {
   constructor() {
     this.selectionEmitter.pipe(takeUntilDestroyed()).subscribe((comp) => {
       this.select(comp);
-    });
-
-    effect(() => {
-      const options = this.options();
-      this.keyManager?.destroy();
-      this.keyManager = new ActiveDescendantKeyManager(options).withWrap();
     });
   }
 
@@ -82,13 +79,12 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
   open() {
     this.isOpen.set(true);
-    this.keyManager.setFirstItemActive();
   }
 
   select(comp: AutocompleteItemComponent) {
     const displayWith = this.displayWith();
     this.inputValue.set(
-      displayWith ? displayWith(comp.value()) : comp.innerText()
+      displayWith ? displayWith(comp.value()) : comp.host.nativeElement.textContent ?? ''
     );
     this._onChange?.(comp.value());
     this._onTouched?.();
@@ -111,6 +107,14 @@ export class AutocompleteComponent implements ControlValueAccessor {
     this._onTouched = fn;
   }
 
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled.set(isDisabled);
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    this.listbox().onKeydown(event);
+  }
+
   onInput($event: Event) {
     const value = ($event.target as HTMLInputElement)?.value.trim() ?? '';
     if (!this.isOpen()) {
@@ -119,21 +123,8 @@ export class AutocompleteComponent implements ControlValueAccessor {
     this._onChange?.(value);
   }
 
-  onKeydown(event: KeyboardEvent) {
-    if (event.key !== 'Enter') {
-      this.keyManager.onKeydown(event);
-      this.scrollToActiveOption();
-    } else if (this.keyManager.activeItem) {
-      // event.stopPropagation();
-      // event.preventDefault();
-      this.select(this.keyManager.activeItem as AutocompleteItemComponent);
-    }
+  panelOpened() {
+    this.listbox().activateItemOrFirstByIndex(-1);
   }
 
-  private scrollToActiveOption() {
-    const activeItem = this.keyManager?.activeItem;
-    if (activeItem) {
-      activeItem.scrollIntoView();
-    }
-  }
 }

@@ -1,41 +1,31 @@
-import { Highlightable } from '@angular/cdk/a11y';
-import { Component, ElementRef, inject, input, signal } from '@angular/core';
+import {
+  Component, ElementRef,
+  inject,
+  input,
+} from '@angular/core';
+import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
 import { SELECTION_EMITTER } from '@ng-verse/autocomplete/autocomplete.component';
 
 @Component({
   selector: 'app-autocomplete-item',
   templateUrl: './autocomplete-item.component.html',
   styleUrl: './autocomplete-item.component.scss',
-  host: {
-    '(click)': 'onSelect()',
-    '[class.focused]': 'focused()',
-    '[attr.role]': '"listitem"'
-  }
+  hostDirectives: [
+    {
+      directive: ListboxItemDirective,
+      inputs: ['disabled'],
+    },
+  ]
 })
-export class AutocompleteItemComponent implements Highlightable {
+export class AutocompleteItemComponent {
   value = input.required<unknown>();
-  focused = signal(false);
+  host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
+  private readonly selectionEmitter = inject(SELECTION_EMITTER, {skipSelf: true});
+  listboxItem = inject(ListboxItemDirective);
 
-  private readonly el = inject(ElementRef);
-  private readonly autocompleteComponent = inject(SELECTION_EMITTER, {skipSelf: true});
-
-  onSelect() {
-    this.autocompleteComponent.next(this);
-  }
-
-  setActiveStyles(): void {
-    this.focused.set(true);
-  }
-
-  innerText() {
-    return this.el.nativeElement.innerText ?? '';
-  }
-
-  setInactiveStyles(): void {
-    this.focused.set(false);
-  }
-
-  scrollIntoView() {
-    this.el?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  constructor() {
+    this.listboxItem.activated.subscribe(() => {
+      this.selectionEmitter.next(this);
+    });
   }
 }
