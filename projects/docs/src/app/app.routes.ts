@@ -219,13 +219,6 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'multi-select',
-        loadComponent: () =>
-          import(
-            './features/multi-select-page/multi-select-page.component'
-          ).then((d) => d.MultiSelectPageComponent),
-      },
-      {
         path: 'icon',
         loadComponent: () =>
           import('./features/icon-page/icon-page.component').then(

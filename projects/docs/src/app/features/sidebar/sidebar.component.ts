@@ -129,10 +129,6 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/otp-input',
       },
       {
-        name: 'Multi Select',
-        url: '/doc/multi-select',
-      },
-      {
         name: 'Icon',
         url: '/doc/icon',
       },
@@ -148,42 +144,6 @@ export const SIDEBAR_ROUTES = [
         name: 'Listbox',
         url: '/doc/listbox',
       },
-      // {
-      //   name: 'Breadcrumb',
-      //   url: '/doc/breadcrumb',
-      // },
-      // {
-      //   name: 'OTP Input',
-      //   url: '/doc/otp-input',
-      // },
-
-      // {
-      //   name: 'Toast',
-      //   url: '/doc/toast',
-      // },
-
-      // {
-      //   name: 'Checkbox',
-      //   url: '/doc/checkbox',
-      // },
-
-      // {
-      //   name: 'Pagination',
-      //   url: '/doc/pagination',
-      // },
-
-      // {
-      //   name: 'Dialog',
-      //   url: '/doc/dialog',
-      // },
-      // {
-      //   name: 'Switch',
-      //   url: '/doc/switch',
-      // },
-      // {
-      //   name: 'Tab',
-      //   url: '/doc/tab',
-      // },
     ],
   },
   {
