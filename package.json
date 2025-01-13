@@ -2,6 +2,10 @@
   "name": "ng-verse",
   "version": "0.0.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukonik/ng-verse"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve --project=docs",
