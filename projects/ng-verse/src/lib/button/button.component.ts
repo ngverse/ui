@@ -1,8 +1,14 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-type COLOR_TYPES = 'primary' | 'secondary' | 'danger' | 'success';
+type COLOR_TYPES =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'danger'
+  | 'success'
+  | 'default';
 
-type VARIANT_TYPES = 'fill' | 'outline';
+type VARIANT_TYPES = 'fill' | 'outline' | 'link';
 
 type SIZE_TYPES = 'sm' | 'md' | 'lg';
 
