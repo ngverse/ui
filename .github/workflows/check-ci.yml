@@ -30,7 +30,7 @@ jobs:
       - name: Lint commit messages
         uses: wagoid/commitlint-github-action@v5
         with:
-          configFile: commitlint.config.js
+          configFile: commitlint.config.mjs
 
       - name: Run Prettier
         run: npm run format:check
