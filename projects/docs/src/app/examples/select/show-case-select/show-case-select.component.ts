@@ -32,5 +32,11 @@ const countries = [
 })
 export class ShowCaseSelectComponent {
   countries = countries;
-  formControl = new FormControl('NG', Validators.required);
+  formControl = new FormControl(['NG'], Validators.required);
+
+  constructor() {
+    this.formControl.valueChanges.subscribe(() => {
+      console.log(this.formControl.value);
+    });
+  }
 }

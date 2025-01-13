@@ -7,12 +7,14 @@ import {
   signal,
 } from '@angular/core';
 import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
-import { SelectState } from '../select.state';
+import { SelectCheckIconComponent } from '../select-check-icon.component';
+import { OptionProxy, SelectState } from '../select.state';
 
 @Component({
   selector: 'app-option',
   templateUrl: './option.component.html',
   styleUrl: './option.component.scss',
+  imports: [SelectCheckIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [
     {
@@ -24,18 +26,22 @@ import { SelectState } from '../select.state';
     '[class.selected]': 'isSelected()',
   },
 })
-export class OptionComponent {
-  host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
+export class OptionComponent implements OptionProxy {
+  private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
   isActive = signal(false);
   value = input.required<unknown>();
-  listboxItem = inject(ListboxItemDirective);
   state = inject(SelectState);
+  listboxItem = inject(ListboxItemDirective);
 
   isSelected = () => this.state.isSelected(this.value());
 
   constructor() {
     this.listboxItem.activated.subscribe(() => {
-      this.state.setValue(this.value());
+      this.state.toggleValue(this.value());
     });
+  }
+
+  get content() {
+    return this.host.nativeElement.textContent;
   }
 }

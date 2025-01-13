@@ -13,6 +13,13 @@
   background: transparent;
   display: flex;
   justify-content: space-between;
+
+  .select-button-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   &.stretch {
     width: 100%;
   }

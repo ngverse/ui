@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-multi-select-check-icon',
+  selector: 'app-select-check-icon',
   template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MultiSelectCheckIconComponent {}
+export class SelectCheckIconComponent {}

@@ -9,9 +9,14 @@ import {
   viewChild,
 } from '@angular/core';
 import {
+  AbstractControl,
   ControlValueAccessor,
+  NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
+  ValidationErrors,
+  Validator,
+  Validators,
 } from '@angular/forms';
 
 import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
@@ -20,13 +25,10 @@ import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directi
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { OptionComponent } from './option/option.component';
 import { SelectIconComponent } from './select-icon.component';
-import {
-  SelectCompareWith,
-  SelectOnChangeFunction,
-  SelectState,
-} from './select.state';
+import { CompareWith, OnChangeFunction, SelectState } from './select.state';
 
 type OnTouchedFunction = (() => void) | undefined;
+type ValidatorChangeFunction = (() => void) | undefined;
 
 @Component({
   selector: 'app-select',
@@ -47,21 +49,30 @@ type OnTouchedFunction = (() => void) | undefined;
     },
     SelectState,
     ListboxState,
+    {
+      provide: NG_VALIDATORS,
+      useExisting: SelectComponent,
+      multi: true,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectComponent implements ControlValueAccessor {
+export class SelectComponent implements ControlValueAccessor, Validator {
   stretch = input<boolean>(false);
 
   placeholder = input.required<string>();
 
-  compareWith = input<SelectCompareWith>(
-    (o1: unknown, o2: unknown) => o1 === o2
-  );
+  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
 
   private _onTouched: OnTouchedFunction;
 
-  selectState = inject(SelectState);
+  state = inject(SelectState);
+
+  multiple = input(false);
+
+  required = input(false);
+
+  private _validatorChangeFn: ValidatorChangeFunction;
 
   options = contentChildren(OptionComponent, { descendants: true });
 
@@ -72,10 +83,10 @@ export class SelectComponent implements ControlValueAccessor {
   });
 
   writeValue(value: unknown): void {
-    this.selectState.writeValue(value);
+    this.state.writeValue(value);
   }
-  registerOnChange(fn: SelectOnChangeFunction): void {
-    this.selectState.registerOnChange = fn;
+  registerOnChange(fn: OnChangeFunction): void {
+    this.state.registerOnChange = fn;
   }
 
   registerOnTouched(fn: OnTouchedFunction): void {
@@ -83,25 +94,43 @@ export class SelectComponent implements ControlValueAccessor {
   }
 
   constructor() {
+    this.state.multiple = this.multiple;
+    this.state.options = this.options;
     effect(() => {
-      const options = this.options();
-      this.selectState.options.set(options);
+      this.required();
+      this._validatorChangeFn?.();
     });
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    this.selectState.disabled.set(isDisabled);
+    this.state.disabled.set(isDisabled);
   }
 
   panelOpened() {
     this.listbox().focus();
-    const selectedOptionIndex = this.selectState.selectedOptionIndex();
+
+    const selectedOptionIndex = this.state.firstSelectedOptionIndex();
     this.listbox().activateItemOrFirstByIndex(selectedOptionIndex);
-    this.selectState.isOpen.set(true);
+    this.state.isOpen.set(true);
+  }
+
+  validate(control: AbstractControl<boolean>): ValidationErrors | null {
+    const hasRequired = control.hasValidator(Validators.required);
+    if (!hasRequired) {
+      return null;
+    }
+    const values = this.state.values();
+    const anyNotEmpty = values?.some(
+      (v) => v !== null && v !== undefined && v !== ''
+    );
+    if (anyNotEmpty) {
+      return null;
+    }
+    return { required: true };
   }
 
   toggle() {
-    this.selectState.isOpen.update((isOpen) => !isOpen);
+    this.state.isOpen.update((isOpen) => !isOpen);
   }
 
   panelClosed() {

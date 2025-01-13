@@ -1,10 +1,24 @@
+<p>Single select</p>
 <app-select
   [formControl]="formControl"
   placeholder="Countries"
   class="w-[250px] block"
   [stretch]="true"
+  [multiple]="true"
 >
   @for (option of countries; track $index) {
     <app-option [value]="option.code">{{ option.name }}</app-option>
   }
 </app-select>
+<p>Multiple select</p>
+<!-- <app-select
+  [formControl]="formControl"
+  placeholder="Countries"
+  class="w-[250px] block"
+  [stretch]="true"
+  [multiple]="true"
+>
+  @for (option of countries; track $index) {
+    <app-option [value]="option.code">{{ option.name }}</app-option>
+  }
+</app-select> -->
