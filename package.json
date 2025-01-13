@@ -11,7 +11,8 @@
     "lint": "ng lint",
     "prepare": "husky",
     "format:check": "prettier --check .",
-    "format:write": "prettier --write ."
+    "format:write": "prettier --write .",
+    "semantic-release": "semantic-release"
   },
   "lint-staged": {
     "**/*.{js,ts,jsx,tsx,json,css,scss,md}": "prettier --write"
