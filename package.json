@@ -42,6 +42,8 @@
     "@angular-devkit/schematics": "^19.0.3",
     "@angular/cli": "^19.0.2",
     "@angular/compiler-cli": "^19.0.0",
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-angular": "^19.7.0",
     "@tailwindcss/typography": "^0.5.15",
     "@types/jasmine": "~5.1.0",
     "angular-eslint": "19.0.2",
