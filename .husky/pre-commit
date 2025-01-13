@@ -1,0 +1,2 @@
+npm run lint
+npx ng test --no-watch --no-progress --browsers=ChromeHeadless --project=ng-verse
