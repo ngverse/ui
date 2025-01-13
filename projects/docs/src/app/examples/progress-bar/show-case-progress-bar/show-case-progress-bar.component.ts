@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Platform } from '@angular/cdk/platform';
+import { Component, inject, signal } from '@angular/core';
 import { ProgressBarComponent } from '@ng-verse/progress-bar/progress-bar.component';
 
 @Component({
@@ -9,10 +10,13 @@ import { ProgressBarComponent } from '@ng-verse/progress-bar/progress-bar.compon
 })
 export class ShowCaseProgressBarComponent {
   value = signal<number>(0);
+  platform = inject(Platform);
 
   constructor() {
-    setInterval(() => {
-      this.value.update((val) => val + 1);
-    }, 100);
+    if (this.platform.isBrowser) {
+      setInterval(() => {
+        this.value.update((val) => val + 1);
+      }, 100);
+    }
   }
 }
