@@ -2,6 +2,10 @@
   "name": "ng-verse",
   "version": "0.0.8",
   "schematics": "./schematics/collection.json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukonik/ng-verse"
+  },
   "peerDependencies": {
     "@angular/common": "^19.0.0",
     "@angular/core": "^19.0.0"
