@@ -1,12 +1,10 @@
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   Component,
   contentChildren,
-  effect,
   inject,
   InjectionToken,
   input,
-  signal, viewChild,
+  signal, viewChild
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -15,11 +13,11 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { AutocompleteItemComponent } from '@ng-verse/autocomplete/autocomplete-item/autocomplete-item.component';
-import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
-import { PopoverComponent } from '../popover/popover.component';
 import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
-import { Subject } from 'rxjs';
 import { ListboxState } from '@ng-verse/listbox/listbox.state';
+import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
+import { Subject } from 'rxjs';
+import { PopoverComponent } from '../popover/popover.component';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type OnChangeFunction = ((_: any) => void) | undefined;
