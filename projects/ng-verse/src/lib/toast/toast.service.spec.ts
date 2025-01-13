@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, DebugElement } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -132,5 +132,6 @@ describe('ToastService', () => {
 @Component({
   imports: [],
   template: `<p>Test</p>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class ToastTestComponent {}

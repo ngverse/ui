@@ -1,10 +1,11 @@
 import {
+  ChangeDetectionStrategy,
   Component, ElementRef,
   inject,
   input,
 } from '@angular/core';
-import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
 import { SELECTION_EMITTER } from '@ng-verse/autocomplete/autocomplete.component';
+import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
 
 @Component({
   selector: 'app-autocomplete-item',
@@ -15,7 +16,8 @@ import { SELECTION_EMITTER } from '@ng-verse/autocomplete/autocomplete.component
       directive: ListboxItemDirective,
       inputs: ['disabled'],
     },
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteItemComponent {
   value = input.required<unknown>();

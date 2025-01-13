@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-radio-button-icon',
@@ -36,6 +36,7 @@ import { Component, input } from '@angular/core';
     </svg>
     }
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioButtonIconComponent {
   checked = input.required<boolean>();

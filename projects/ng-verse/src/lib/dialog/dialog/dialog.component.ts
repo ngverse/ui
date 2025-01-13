@@ -4,7 +4,7 @@ import {
   ComponentPortal,
   ComponentType,
 } from '@angular/cdk/portal';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { DialogCloseIconComponent } from '../dialog-close-icon.component';
 import { DialogCloseDirective } from '../dialog-close.directive';
 
@@ -20,6 +20,7 @@ export interface DialogOptions
   imports: [CdkPortalOutlet, DialogCloseIconComponent, DialogCloseDirective],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent {
   dialogData = inject<DialogOptions>(DIALOG_DATA);

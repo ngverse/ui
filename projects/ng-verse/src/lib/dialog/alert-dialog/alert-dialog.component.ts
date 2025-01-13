@@ -1,6 +1,6 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { DIALOG_DATA, DialogConfig, DialogRef } from '@angular/cdk/dialog';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { DIALOG_ENTER_ANIMATION } from '../dialog-animations';
 import { DialogCloseDirective } from '../dialog-close.directive';
 
@@ -17,6 +17,7 @@ export interface AlertDialogOption
   templateUrl: './alert-dialog.component.html',
   styleUrl: './alert-dialog.component.scss',
   animations: [DIALOG_ENTER_ANIMATION],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertDialogComponent {
   dialogData = inject<AlertDialogOption>(DIALOG_DATA);

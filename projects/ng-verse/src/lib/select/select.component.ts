@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   contentChildren,
   effect,
@@ -47,6 +48,7 @@ type OnTouchedFunction = (() => void) | undefined;
     SelectState,
     ListboxState,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectComponent implements ControlValueAccessor {
   stretch = input<boolean>(false);

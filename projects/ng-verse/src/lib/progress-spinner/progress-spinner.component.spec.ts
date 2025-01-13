@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ProgressSpinnerComponent } from './progress-spinner.component';
 
 describe('ProgressSpinnerComponent', () => {
@@ -37,6 +37,7 @@ describe('ProgressSpinnerComponent', () => {
   imports: [ProgressSpinnerComponent],
   template: `<app-progress-spinner [radius]="radius()">
   </app-progress-spinner>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class ProgressSpinnerTestComponent {
   radius = signal<number | undefined>(undefined);

@@ -1,6 +1,7 @@
 import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
 import { CdkAutofill } from '@angular/cdk/text-field';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
@@ -15,6 +16,7 @@ import {
   imports: [CdkListbox, CdkOption, CdkAutofill],
   templateUrl: './otp-input.component.html',
   styleUrl: './otp-input.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OtpInputComponent {
   codeLength = input(4);

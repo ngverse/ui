@@ -1,5 +1,6 @@
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   contentChild,
@@ -17,6 +18,7 @@ import { TabHeaderDirective } from './tab-header.directive';
   imports: [],
   templateUrl: './tab.component.html',
   styleUrl: './tab.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabComponent {
   label = input<string>();

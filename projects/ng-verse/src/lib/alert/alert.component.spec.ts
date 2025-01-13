@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { AlertBodyComponent } from './alert-body/alert-body.component';
 import { AlertHeaderComponent } from './alert-header/alert-header.component';
 import { ALERT_TYPES, AlertComponent } from './alert.component';
@@ -53,6 +53,7 @@ describe('AlertComponent', () => {
     <app-alert-header>I am header </app-alert-header>
     <app-alert-body> I am body </app-alert-body>
   </app-alert>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class AlertTestComponent {
   type = signal<ALERT_TYPES>('default');

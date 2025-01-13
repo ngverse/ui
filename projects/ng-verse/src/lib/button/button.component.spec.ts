@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ButtonComponent } from './button.component';
 
@@ -83,6 +83,7 @@ describe('ButtonComponent', () => {
   >
     Test Button
   </button>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class ButtonTestComponent {
   disabled = signal<boolean>(false);

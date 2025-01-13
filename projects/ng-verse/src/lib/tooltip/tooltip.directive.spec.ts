@@ -6,6 +6,7 @@ import {
 } from '@angular/core/testing';
 
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   signal,
@@ -135,6 +136,7 @@ describe('TooltipContainerComponent', () => {
       <div>Custom content</div>
     </ng-template>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class TooltipTestComponent {
   tooltipEvent = signal<TOOLTIP_EVENT>('both');

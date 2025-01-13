@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -27,6 +27,7 @@ import { AccordionComponent } from './accordion.component';
       </app-accordion-item>
     </app-accordion>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class HostComponent {
   multi = signal(false);

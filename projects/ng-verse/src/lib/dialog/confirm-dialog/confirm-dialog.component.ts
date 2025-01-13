@@ -1,5 +1,5 @@
 import { DIALOG_DATA, DialogConfig, DialogRef } from '@angular/cdk/dialog';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 export interface ConfirmDialogOptions
   extends Pick<DialogConfig, 'disableClose' | 'hasBackdrop'> {
@@ -14,6 +14,7 @@ export interface ConfirmDialogOptions
   imports: [],
   templateUrl: './confirm-dialog.component.html',
   styleUrl: './confirm-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmDialogComponent {
   dialogData = inject<ConfirmDialogOptions>(DIALOG_DATA);

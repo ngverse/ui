@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   contentChildren,
   inject,
@@ -47,6 +48,7 @@ export const SELECTION_EMITTER = new InjectionToken<
   host: {
     '(keydown)': 'onKeydown($event)',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteComponent implements ControlValueAccessor {
   label = input.required<string>();

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-multi-select-check-icon',
@@ -18,5 +18,6 @@ import { Component } from '@angular/core';
       <path d="M20 6 9 17l-5-5" />
     </svg>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MultiSelectCheckIconComponent {}

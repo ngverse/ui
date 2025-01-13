@@ -1,5 +1,5 @@
 import { DOWN_ARROW, ENTER, UP_ARROW } from '@angular/cdk/keycodes';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SelectComponent } from './select.component';
@@ -158,6 +158,7 @@ xdescribe('SelectComponent', () => {
     </app-select>
   `,
   imports: [ReactiveFormsModule, SelectComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class SelectTestComponent {
   options = ['one', 'two', 'three', 'four', 'five'];
@@ -182,6 +183,7 @@ class SelectTestComponent {
     </app-select>
   `,
   imports: [ReactiveFormsModule, SelectComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class SelectTestComplexComponent {
   options = [

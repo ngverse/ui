@@ -1,6 +1,7 @@
 import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
 import { NgClass } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
@@ -14,6 +15,7 @@ import {
   imports: [CdkPortalOutlet, NgClass],
   templateUrl: './tooltip-container.component.html',
   styleUrl: './tooltip-container.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipContainerComponent {
   message = signal<string>('');

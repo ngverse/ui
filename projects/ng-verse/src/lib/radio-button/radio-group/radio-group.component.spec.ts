@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RadioButtonComponent } from '../radio-button.component';
 import { RadioGroupComponent } from './radio-group.component';
@@ -87,6 +87,7 @@ describe('RadioGroupComponent', () => {
     <app-radio-button [value]="item"> {{ item.firstName }}</app-radio-button>
     }
   </app-radio-group> `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class RadioGroupTestComponent {
   vertical = signal(false);

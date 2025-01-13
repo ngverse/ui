@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { LoadingOverlayComponent } from './loading-overlay.component';
 
 describe('LoadingOverlayComponent', () => {
@@ -94,6 +94,7 @@ describe('LoadingOverlayComponent', () => {
       [loading]="showLoading()"
     ></app-loading-overlay>
   </div> `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class LoadingOverlayTestComponent {
   showLoading = signal(false);
