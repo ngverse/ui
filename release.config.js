@@ -23,7 +23,7 @@ module.exports = {
       '@semantic-release/exec',
       {
         prepareCmd:
-          'npm run build --project=ng-verse && cd projects/ng-verse && npm pack',
+          'ng build --project=ng-verse && cd projects/ng-verse && npm run build && npm pack',
       },
     ],
   ],
