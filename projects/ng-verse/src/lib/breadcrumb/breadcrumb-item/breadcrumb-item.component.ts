@@ -7,6 +7,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './breadcrumb-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BreadcrumbItemComponent {
-
-}
+export class BreadcrumbItemComponent {}

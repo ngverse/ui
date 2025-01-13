@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, ComponentRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ComponentRef,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RadioButtonComponent } from './radio-button.component';
 import { RadioButtonState } from './radio-button.state';

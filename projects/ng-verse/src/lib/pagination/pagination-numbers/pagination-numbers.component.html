@@ -1,11 +1,11 @@
 <div class="pagination-numbers">
   @for (page of pages(); track $index) {
-  <button
-    class="page"
-    (click)="pageChange.emit(page)"
-    [class.selected]="currentPage() === page"
-  >
-    {{ page }}
-  </button>
+    <button
+      class="page"
+      (click)="pageChange.emit(page)"
+      [class.selected]="currentPage() === page"
+    >
+      {{ page }}
+    </button>
   }
 </div>

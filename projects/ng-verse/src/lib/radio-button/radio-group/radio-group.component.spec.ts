@@ -84,7 +84,7 @@ describe('RadioGroupComponent', () => {
     [vertical]="vertical()"
   >
     @for (item of values; track $index) {
-    <app-radio-button [value]="item"> {{ item.firstName }}</app-radio-button>
+      <app-radio-button [value]="item"> {{ item.firstName }}</app-radio-button>
     }
   </app-radio-group> `,
   changeDetection: ChangeDetectionStrategy.OnPush,

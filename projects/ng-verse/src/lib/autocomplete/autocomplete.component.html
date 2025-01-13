@@ -10,7 +10,13 @@
   [disabled]="disabled()"
 />
 
-<app-popover class="select-options" [offsetY]="8" [origin]="trigger" [(isOpen)]="isOpen" (opened)="panelOpened()">
+<app-popover
+  class="select-options"
+  [offsetY]="8"
+  [origin]="trigger"
+  [(isOpen)]="isOpen"
+  (opened)="panelOpened()"
+>
   <div appListbox [autoActiveFirstOption]="true">
     <ng-content select="app-autocomplete-item"></ng-content>
   </div>

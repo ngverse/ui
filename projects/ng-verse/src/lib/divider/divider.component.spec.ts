@@ -8,9 +8,8 @@ describe('DividerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DividerComponent]
-    })
-    .compileComponents();
+      imports: [DividerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DividerComponent);
     component = fixture.componentInstance;

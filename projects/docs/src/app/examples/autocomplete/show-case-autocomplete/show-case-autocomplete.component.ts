@@ -15,6 +15,8 @@ export class ShowCaseAutocompleteComponent {
   currentFilter = model('');
 
   filteredItems = computed(() => {
-    return this.items.filter(item => item.toLowerCase().includes(this.currentFilter().toLowerCase()));
+    return this.items.filter((item) =>
+      item.toLowerCase().includes(this.currentFilter().toLowerCase())
+    );
   });
 }

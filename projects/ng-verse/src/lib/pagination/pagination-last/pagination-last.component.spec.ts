@@ -8,9 +8,8 @@ describe('PaginationLastComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PaginationLastComponent]
-    })
-    .compileComponents();
+      imports: [PaginationLastComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PaginationLastComponent);
     component = fixture.componentInstance;

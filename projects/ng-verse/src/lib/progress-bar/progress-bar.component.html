@@ -1,12 +1,13 @@
 <div class="progress-bar-container">
-  @if(indeterminate()){
-  <div class="indeterminate-line"></div>
-  <div class="indeterminate-subline inc"></div>
-  <div class="indeterminate-subline dec"></div>
+  @if (indeterminate()) {
+    <div class="indeterminate-line"></div>
+    <div class="indeterminate-subline inc"></div>
+    <div class="indeterminate-subline dec"></div>
   } @else {
-  <div class="progress-bar" role="progressbar" [style.width.%]="value()">
-    @if(showPercentage()){
-    {{ value() }}% }
-  </div>
+    <div class="progress-bar" role="progressbar" [style.width.%]="value()">
+      @if (showPercentage()) {
+        {{ value() }}%
+      }
+    </div>
   }
 </div>

@@ -1,9 +1,5 @@
 import { Component, effect, input, output, signal } from '@angular/core';
-import {
-  ChevronDown,
-  Folder,
-  LucideAngularModule
-} from 'lucide-angular';
+import { ChevronDown, Folder, LucideAngularModule } from 'lucide-angular';
 import { OutsideClickDirective } from '../../../../../../ng-verse/src/lib/outside-click/outside-click.directive';
 import { SourceTreeFile, SourceTreeFolder } from '../source-tree-builder';
 

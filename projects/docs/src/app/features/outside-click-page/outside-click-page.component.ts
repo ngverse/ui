@@ -6,11 +6,7 @@ import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.com
 
 @Component({
   selector: 'doc-outside-click-page',
-  imports: [
-    BlueprintPageComponent,
-    ApiInfoComponent,
-    SourceTreeComponent,
-  ],
+  imports: [BlueprintPageComponent, ApiInfoComponent, SourceTreeComponent],
   templateUrl: './outside-click-page.component.html',
   styleUrl: './outside-click-page.component.scss',
 })

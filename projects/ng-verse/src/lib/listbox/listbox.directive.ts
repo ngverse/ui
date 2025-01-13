@@ -5,10 +5,12 @@ import {
   effect,
   ElementRef,
   HostListener,
-  inject, input,
+  inject,
+  input,
   OnDestroy,
   output,
-  Renderer2, untracked,
+  Renderer2,
+  untracked,
 } from '@angular/core';
 import { ListboxItemDirective } from './listbox-item.directive';
 import { ListboxState } from './listbox.state';

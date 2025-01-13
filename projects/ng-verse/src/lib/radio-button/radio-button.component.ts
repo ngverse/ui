@@ -3,7 +3,7 @@ import {
   Component,
   computed,
   inject,
-  input
+  input,
 } from '@angular/core';
 import { RadioButtonIconComponent } from './radio-button-icon.component';
 import { RadioButtonState } from './radio-button.state';

@@ -10,7 +10,7 @@ import { FileService } from '../../services/file.service';
   imports: [BlogPageComponent, SourceCodeComponent],
 })
 export class ThemingPageComponent implements OnInit {
-  globalsCode = signal('')
+  globalsCode = signal('');
   fileService = inject(FileService);
 
   ngOnInit(): void {

@@ -20,7 +20,7 @@ import { InputComponent } from '@ng-verse/input/input.component';
     CardFooterComponent,
     ButtonComponent,
     FormsModule,
-    InputComponent
+    InputComponent,
   ],
   templateUrl: './show-case-card.component.html',
   styleUrl: './show-case-card.component.scss',

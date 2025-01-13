@@ -14,7 +14,6 @@ import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.com
 import { ShowCaseCardComponent } from '../../examples/card/show-case-card/show-case-card.component';
 const ROOT = 'card';
 
-
 @Component({
   selector: 'doc-card-page',
   imports: [

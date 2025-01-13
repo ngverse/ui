@@ -8,7 +8,7 @@ export type ALERT_TYPES = 'default' | 'success' | 'danger' | 'warning';
   imports: [NgClass],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss',
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertComponent {
   type = input<ALERT_TYPES>('default');

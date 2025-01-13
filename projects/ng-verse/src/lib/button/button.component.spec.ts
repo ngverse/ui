@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangeDetectionStrategy, Component, DebugElement, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DebugElement,
+  signal,
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ButtonComponent } from './button.component';
 

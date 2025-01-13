@@ -5,8 +5,8 @@
   placeholder="Countries"
 >
   @for (option of countries; track $index) {
-  <app-multi-select-item [value]="option.code">{{
-    option.name
-  }}</app-multi-select-item>
+    <app-multi-select-item [value]="option.code">{{
+      option.name
+    }}</app-multi-select-item>
   }
 </app-multi-select>

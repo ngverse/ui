@@ -153,7 +153,7 @@ xdescribe('SelectComponent', () => {
       label="Numbers"
     >
       @for (item of options; track $index) {
-      <app-option [value]="item">{{ item }}</app-option>
+        <app-option [value]="item">{{ item }}</app-option>
       }
     </app-select>
   `,
@@ -178,7 +178,7 @@ class SelectTestComponent {
       label="Users"
     >
       @for (item of options; track $index) {
-      <app-option [value]="item">{{ item.name }}</app-option>
+        <app-option [value]="item">{{ item.name }}</app-option>
       }
     </app-select>
   `,

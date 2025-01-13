@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  output,
+} from '@angular/core';
 import { PaginationFirstComponent } from './pagination-first/pagination-first.component';
 import { PaginationLastComponent } from './pagination-last/pagination-last.component';
 import { PaginationNextComponent } from './pagination-next/pagination-next.component';

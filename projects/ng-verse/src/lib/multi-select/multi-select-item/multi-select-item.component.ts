@@ -4,7 +4,7 @@ import {
   ElementRef,
   inject,
   input,
-  signal
+  signal,
 } from '@angular/core';
 import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
 import { MultiSelectCheckIconComponent } from '../multi-select-check.component';

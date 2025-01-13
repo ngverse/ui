@@ -1,8 +1,13 @@
-<div class="toast" role="alert" [ngClass]="action()" [@slide]="animationState()">
+<div
+  class="toast"
+  role="alert"
+  [ngClass]="action()"
+  [@slide]="animationState()"
+>
   <div>{{ message() }}</div>
-  @if(showCloseIcon()){
-  <button (click)="close.emit()" class="toast-close-button">
-    <app-toast-close-icon class="toast-close-icon"></app-toast-close-icon>
-  </button>
+  @if (showCloseIcon()) {
+    <button (click)="close.emit()" class="toast-close-button">
+      <app-toast-close-icon class="toast-close-icon"></app-toast-close-icon>
+    </button>
   }
 </div>

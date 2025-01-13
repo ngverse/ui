@@ -8,9 +8,8 @@ xdescribe('PaginationNumbersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PaginationNumbersComponent]
-    })
-    .compileComponents();
+      imports: [PaginationNumbersComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PaginationNumbersComponent);
     component = fixture.componentInstance;

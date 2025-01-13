@@ -9,7 +9,7 @@ import {
   Component,
   computed,
   contentChildren,
-  model
+  model,
 } from '@angular/core';
 import { TabComponent } from '../tab.component';
 

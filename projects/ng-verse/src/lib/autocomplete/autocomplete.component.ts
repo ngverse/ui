@@ -5,7 +5,8 @@ import {
   inject,
   InjectionToken,
   input,
-  signal, viewChild
+  signal,
+  viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -30,7 +31,12 @@ export const SELECTION_EMITTER = new InjectionToken<
 
 @Component({
   selector: 'app-autocomplete',
-  imports: [FormsModule, PopoverComponent, PopoverOriginDirective, ListboxDirective],
+  imports: [
+    FormsModule,
+    PopoverComponent,
+    PopoverOriginDirective,
+    ListboxDirective,
+  ],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss',
   providers: [
@@ -43,7 +49,7 @@ export const SELECTION_EMITTER = new InjectionToken<
       provide: SELECTION_EMITTER,
       useValue: new Subject(),
     },
-    ListboxState
+    ListboxState,
   ],
   host: {
     '(keydown)': 'onKeydown($event)',
@@ -84,7 +90,9 @@ export class AutocompleteComponent implements ControlValueAccessor {
   select(comp: AutocompleteItemComponent) {
     const displayWith = this.displayWith();
     this.inputValue.set(
-      displayWith ? displayWith(comp.value()) : comp.host.nativeElement.textContent ?? ''
+      displayWith
+        ? displayWith(comp.value())
+        : (comp.host.nativeElement.textContent ?? '')
     );
     this._onChange?.(comp.value());
     this._onTouched?.();
@@ -126,5 +134,4 @@ export class AutocompleteComponent implements ControlValueAccessor {
   panelOpened() {
     this.listbox().activateItemOrFirstByIndex(-1);
   }
-
 }

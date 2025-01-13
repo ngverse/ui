@@ -25,7 +25,7 @@ const ROOT = 'icon';
     ApiInputsComponent,
     SourceTreeComponent,
     CommandInstallationComponent,
-    ApiInfoComponent
+    ApiInfoComponent,
   ],
   templateUrl: './icon-page.component.html',
   styleUrl: './icon-page.component.scss',
