@@ -32,6 +32,7 @@
             "index": "projects/docs/src/index.html",
             "browser": "projects/docs/src/main.ts",
             "polyfills": ["zone.js"],
+            "allowedCommonJsDependencies": ["file-saver", "jszip"],
             "tsConfig": "projects/docs/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -51,14 +52,19 @@
               }
             ],
             "styles": ["projects/docs/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "server": "projects/docs/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/docs/src/server.ts"
+            }
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "1000kB",
                   "maximumError": "1MB"
                 },
                 {

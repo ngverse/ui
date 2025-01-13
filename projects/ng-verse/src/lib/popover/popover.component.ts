@@ -68,10 +68,6 @@ export class PopoverComponent implements OnDestroy {
 
   coordinates = signal<TRIGGER_COORDINATES | undefined>(undefined);
 
-  get popoverIsOpen() {
-    return this.popoverEl.matches(':popover-open');
-  }
-
   constructor() {
     effect(() => {
       const isOpen = this.isOpen();
@@ -88,7 +84,7 @@ export class PopoverComponent implements OnDestroy {
   }
 
   private _open() {
-    if (this.popoverIsOpen) {
+    if (this.isOpen()) {
       return;
     }
     const popover = this.popover.nativeElement;
@@ -107,7 +103,7 @@ export class PopoverComponent implements OnDestroy {
   }
 
   private _hide() {
-    if (this.popoverIsOpen) {
+    if (this.isOpen()) {
       const popover = this.popover.nativeElement;
       popover.hidePopover();
       this.closed.emit();
