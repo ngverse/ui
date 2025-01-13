@@ -5,17 +5,19 @@
   appPopoverOrigin
   #origin="appPopoverOrigin"
   (openPopover)="toggle()"
-  [disabled]="selectState.disabled()"
+  [disabled]="state.disabled()"
 >
-  <span>{{ selectState.selectedOptionLabel() || placeholder() }}</span>
+  <span class="select-button-label">{{
+    state.selectedOptionsLabel() || placeholder()
+  }}</span>
   <app-select-icon
     class="select-button-icon"
-    [class.opened]="selectState.isOpen()"
+    [class.opened]="state.isOpen()"
   ></app-select-icon>
 </button>
 <app-popover
   class="select-options"
-  [(isOpen)]="selectState.isOpen"
+  [(isOpen)]="state.isOpen"
   [origin]="origin"
   (opened)="panelOpened()"
   (closed)="panelClosed()"

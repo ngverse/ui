@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   contentChildren,
-  effect,
   ElementRef,
   inject,
   input,
@@ -20,11 +19,7 @@ import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directi
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { OptionComponent } from './option/option.component';
 import { SelectIconComponent } from './select-icon.component';
-import {
-  SelectCompareWith,
-  SelectOnChangeFunction,
-  SelectState,
-} from './select.state';
+import { CompareWith, OnChangeFunction, SelectState } from './select.state';
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -55,13 +50,13 @@ export class SelectComponent implements ControlValueAccessor {
 
   placeholder = input.required<string>();
 
-  compareWith = input<SelectCompareWith>(
-    (o1: unknown, o2: unknown) => o1 === o2
-  );
+  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
 
   private _onTouched: OnTouchedFunction;
 
-  selectState = inject(SelectState);
+  state = inject(SelectState);
+
+  multiple = input(false);
 
   options = contentChildren(OptionComponent, { descendants: true });
 
@@ -72,10 +67,10 @@ export class SelectComponent implements ControlValueAccessor {
   });
 
   writeValue(value: unknown): void {
-    this.selectState.writeValue(value);
+    this.state.writeValue(value);
   }
-  registerOnChange(fn: SelectOnChangeFunction): void {
-    this.selectState.registerOnChange = fn;
+  registerOnChange(fn: OnChangeFunction): void {
+    this.state.registerOnChange = fn;
   }
 
   registerOnTouched(fn: OnTouchedFunction): void {
@@ -83,25 +78,24 @@ export class SelectComponent implements ControlValueAccessor {
   }
 
   constructor() {
-    effect(() => {
-      const options = this.options();
-      this.selectState.options.set(options);
-    });
+    this.state.multiple = this.multiple;
+    this.state.options = this.options;
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    this.selectState.disabled.set(isDisabled);
+    this.state.disabled.set(isDisabled);
   }
 
   panelOpened() {
     this.listbox().focus();
-    const selectedOptionIndex = this.selectState.selectedOptionIndex();
+
+    const selectedOptionIndex = this.state.firstSelectedOptionIndex();
     this.listbox().activateItemOrFirstByIndex(selectedOptionIndex);
-    this.selectState.isOpen.set(true);
+    this.state.isOpen.set(true);
   }
 
   toggle() {
-    this.selectState.isOpen.update((isOpen) => !isOpen);
+    this.state.isOpen.update((isOpen) => !isOpen);
   }
 
   panelClosed() {
