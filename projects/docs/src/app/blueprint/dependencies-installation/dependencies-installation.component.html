@@ -3,6 +3,5 @@
   <ng-content></ng-content>
 </p>
 @for (dep of deps(); track $index) {
-<doc-source-code [code]="getCode(dep)" language="bash"></doc-source-code>
-
+  <doc-source-code [code]="getCode(dep)" language="bash"></doc-source-code>
 }

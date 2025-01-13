@@ -18,7 +18,9 @@ export class IconLoaderService {
     const svgIcon = this.iconRegistryService.getSvgIcon(name);
 
     if (!svgIcon) {
-      throw new Error(`Icon with name ${name} not found. Please use IconRegistryService.addSvgIcon() to add it.`);
+      throw new Error(
+        `Icon with name ${name} not found. Please use IconRegistryService.addSvgIcon() to add it.`
+      );
     }
 
     if (this.iconsByUrl.has(name)) {
@@ -44,7 +46,7 @@ export class IconLoaderService {
 
   private getSvg(url: string): Observable<string> {
     return this.http.get(url, {
-      responseType: 'text'
+      responseType: 'text',
     });
   }
 }

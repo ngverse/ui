@@ -1,66 +1,74 @@
 @for (apiInput of apiInputs(); track $index) {
-<h4 class="mb-4">
-  {{ apiInput.name }}
-  <div class="flex lg:inline-flex text-sm items-center gap-1 mt-1 lg:mt-0">
-    <span
-      [ngClass]="apiInput.type"
-      class="rounded-xl px-2 shadow-sm text-white py-0.5"
-      >{{ apiInput.type }}</span
-    >
-    @if(apiInput.selector){
-    <span class="rounded-xl bg-amber-600 px-2 shadow-sm text-white py-0.5">{{
-      apiInput.selector
-    }}</span>
-    }
-  </div>
-</h4>
-@if(apiInput.description){
-<p class="mb-4">{{ apiInput.description }}</p>
-} @if(apiInput.inputs?.length){
-<div class="relative overflow-x-auto border border-slate-200 rounded-md mb-10">
-  <table
-    class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
-  >
-    <thead
-      class="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-400"
-    >
-      <tr>
-        <th scope="col" class="px-6 py-3">Name</th>
-        <th scope="col" class="px-6 py-3">Type</th>
-        <th scope="col" class="px-6 py-3">Default</th>
-
-        <th scope="col" class="px-6 py-3">Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for(apiInput of apiInput.inputs;track $index){
-      <tr class="bg-white border-b">
-        <th
-          scope="row"
-          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+  <h4 class="mb-4">
+    {{ apiInput.name }}
+    <div class="flex lg:inline-flex text-sm items-center gap-1 mt-1 lg:mt-0">
+      <span
+        [ngClass]="apiInput.type"
+        class="rounded-xl px-2 shadow-sm text-white py-0.5"
+        >{{ apiInput.type }}</span
+      >
+      @if (apiInput.selector) {
+        <span
+          class="rounded-xl bg-amber-600 px-2 shadow-sm text-white py-0.5"
+          >{{ apiInput.selector }}</span
         >
-          {{ apiInput.name }}
-        </th>
-        <td class="px-6 py-4">{{ apiInput.type }}</td>
-        <td class="px-6 py-4">{{ apiInput.default }}</td>
-
-        <td class="px-6 py-4 lowercase">{{ apiInput.description }}</td>
-      </tr>
       }
-    </tbody>
-  </table>
-</div>
+    </div>
+  </h4>
+  @if (apiInput.description) {
+    <p class="mb-4">{{ apiInput.description }}</p>
+  }
+  @if (apiInput.inputs?.length) {
+    <div
+      class="relative overflow-x-auto border border-slate-200 rounded-md mb-10"
+    >
+      <table
+        class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
+      >
+        <thead
+          class="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">Type</th>
+            <th scope="col" class="px-6 py-3">Default</th>
 
-} @if(apiInput.methods?.length){
-<h4 class="mb-4">Methods</h4>
-@for (method of apiInput.methods; track $index) {
-<h5 class="mb-4">{{ method.name }}</h5>
-@if(method.description){
-<p class="mb-4">{{ method.description }}</p>
-} @for(param of method.params;track $index){
-<p class="mb-4">
-  <strong>{{ param.name }}</strong> ({{ param.type }}) - {{ param.description }}
-</p>
-} } }
-<div class="w-full border-t border-solid border-slate-200 h-[1px] mb-5"></div>
+            <th scope="col" class="px-6 py-3">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (apiInput of apiInput.inputs; track $index) {
+            <tr class="bg-white border-b">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {{ apiInput.name }}
+              </th>
+              <td class="px-6 py-4">{{ apiInput.type }}</td>
+              <td class="px-6 py-4">{{ apiInput.default }}</td>
+
+              <td class="px-6 py-4 lowercase">{{ apiInput.description }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (apiInput.methods?.length) {
+    <h4 class="mb-4">Methods</h4>
+    @for (method of apiInput.methods; track $index) {
+      <h5 class="mb-4">{{ method.name }}</h5>
+      @if (method.description) {
+        <p class="mb-4">{{ method.description }}</p>
+      }
+      @for (param of method.params; track $index) {
+        <p class="mb-4">
+          <strong>{{ param.name }}</strong> ({{ param.type }}) -
+          {{ param.description }}
+        </p>
+      }
+    }
+  }
+  <div class="w-full border-t border-solid border-slate-200 h-[1px] mb-5"></div>
 }

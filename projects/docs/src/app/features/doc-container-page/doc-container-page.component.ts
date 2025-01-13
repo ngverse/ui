@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { DocSiblingNavigationsComponent } from '../doc-sibling-navigations/doc-sibling-navigations.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
-
 @Component({
   selector: 'doc-doc-container-page',
   imports: [SidebarComponent, RouterOutlet, DocSiblingNavigationsComponent],

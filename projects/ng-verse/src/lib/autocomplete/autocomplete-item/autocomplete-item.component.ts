@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
-  Component, ElementRef,
+  Component,
+  ElementRef,
   inject,
   input,
 } from '@angular/core';
@@ -22,7 +23,9 @@ import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
 export class AutocompleteItemComponent {
   value = input.required<unknown>();
   host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
-  private readonly selectionEmitter = inject(SELECTION_EMITTER, {skipSelf: true});
+  private readonly selectionEmitter = inject(SELECTION_EMITTER, {
+    skipSelf: true,
+  });
   listboxItem = inject(ListboxItemDirective);
 
   constructor() {

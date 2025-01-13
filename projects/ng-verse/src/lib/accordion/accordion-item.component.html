@@ -13,16 +13,16 @@
       class="expand-icon"
     ></app-expand-icon>
   </button>
-  @if(isOpen()){
-  <div
-    role="region"
-    [attr.aria-labelledby]="id()"
-    [id]="accordionContentId"
-    @expandOnEnter
-    @collapseOnLeave
-    class="accordion-item-body"
-  >
-    <ng-content select="app-accordion-body"></ng-content>
-  </div>
+  @if (isOpen()) {
+    <div
+      role="region"
+      [attr.aria-labelledby]="id()"
+      [id]="accordionContentId"
+      @expandOnEnter
+      @collapseOnLeave
+      class="accordion-item-body"
+    >
+      <ng-content select="app-accordion-body"></ng-content>
+    </div>
   }
 </div>

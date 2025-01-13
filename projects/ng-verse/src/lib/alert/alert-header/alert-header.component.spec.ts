@@ -8,9 +8,8 @@ describe('AlertHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AlertHeaderComponent]
-    })
-    .compileComponents();
+      imports: [AlertHeaderComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AlertHeaderComponent);
     component = fixture.componentInstance;

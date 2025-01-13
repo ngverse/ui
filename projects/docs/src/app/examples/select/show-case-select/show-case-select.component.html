@@ -5,7 +5,6 @@
   [stretch]="true"
 >
   @for (option of countries; track $index) {
-  <app-option [value]="option.code">{{ option.name }}</app-option>
-
+    <app-option [value]="option.code">{{ option.name }}</app-option>
   }
 </app-select>

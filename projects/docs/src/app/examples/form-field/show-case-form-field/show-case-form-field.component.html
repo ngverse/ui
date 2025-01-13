@@ -17,8 +17,8 @@
   <app-form-field>
     <app-label>Age</app-label>
     <input appInput class="w-full" type="number" formControlName="age" />
-    @if(group.controls.age.touched && group.controls.age.invalid){
-    <app-error>Please fill age</app-error>
+    @if (group.controls.age.touched && group.controls.age.invalid) {
+      <app-error>Please fill age</app-error>
     }
   </app-form-field>
   <app-form-field>
@@ -29,7 +29,7 @@
       placeholder="Select a country"
     >
       @for (country of countries; track $index) {
-      <app-option [value]="country.code">{{ country.name }}</app-option>
+        <app-option [value]="country.code">{{ country.name }}</app-option>
       }
     </app-select>
     <app-error-group [control]="group.controls.country"></app-error-group>

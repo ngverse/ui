@@ -6,7 +6,7 @@ import {
   inject,
   input,
   OnDestroy,
-  output
+  output,
 } from '@angular/core';
 import { filter, fromEvent, Subscription, take } from 'rxjs';
 

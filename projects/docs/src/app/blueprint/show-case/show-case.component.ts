@@ -15,7 +15,6 @@ export class ShowCaseComponent {
   code = signal<string>('');
   name = input.required<string>();
 
-
   selectTab(tab: string) {
     this.selectedTab.set(tab);
     if (tab !== 'preview') {

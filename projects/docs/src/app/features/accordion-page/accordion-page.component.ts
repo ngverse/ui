@@ -3,9 +3,7 @@ import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
-import {
-  EMPTY_API_INPUT_DEFAULT_VALUE
-} from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';

@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Clipboard, ClipboardPaste, LucideAngularModule, Rocket } from 'lucide-angular';
+import {
+  Clipboard,
+  ClipboardPaste,
+  LucideAngularModule,
+  Rocket,
+} from 'lucide-angular';
 
 @Component({
   selector: 'doc-home-page',
@@ -11,5 +16,5 @@ import { Clipboard, ClipboardPaste, LucideAngularModule, Rocket } from 'lucide-a
 export class HomePageComponent {
   Clipboard = Clipboard;
   ClipboardPaste = ClipboardPaste;
-  Rocket =  Rocket
+  Rocket = Rocket;
 }

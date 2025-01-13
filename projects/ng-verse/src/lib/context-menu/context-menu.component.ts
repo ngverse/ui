@@ -7,7 +7,7 @@ import {
   OnDestroy,
   OnInit,
   signal,
-  viewChild
+  viewChild,
 } from '@angular/core';
 import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
 import { ListboxState } from '@ng-verse/listbox/listbox.state';

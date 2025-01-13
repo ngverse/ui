@@ -1,6 +1,7 @@
 {
   "name": "ng-verse",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve --project=docs",
@@ -8,9 +9,13 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test --project=ng-verse",
     "lint": "ng lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write ."
   },
-  "private": true,
+  "lint-staged": {
+    "**/*.{js,ts,jsx,tsx,json,css,scss,md}": "prettier --write"
+  },
   "dependencies": {
     "@angular/animations": "^19.0.0",
     "@angular/cdk": "^19.0.1",
@@ -50,8 +55,10 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "lint-staged": "^15.3.0",
     "ng-packagr": "^19.0.0",
     "postcss": "^8.4.49",
+    "prettier": "3.4.2",
     "tailwindcss": "^3.4.16",
     "typescript": "~5.6.2",
     "typescript-eslint": "8.18.0"

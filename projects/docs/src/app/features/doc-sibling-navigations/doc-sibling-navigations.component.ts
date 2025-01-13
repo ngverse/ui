@@ -2,10 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { ArrowLeft, ArrowRight, LucideAngularModule } from 'lucide-angular';
 import { filter } from 'rxjs';
-import {
-  getAllSidebarLinks,
-  SidebarLink
-} from '../sidebar/sidebar.component';
+import { getAllSidebarLinks, SidebarLink } from '../sidebar/sidebar.component';
 
 const SIDEBAR_LINKS = getAllSidebarLinks();
 

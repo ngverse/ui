@@ -5,9 +5,7 @@ import { CommandInstallationComponent } from '../../blueprint/command-installati
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import {
-  ShowCaseAutocompleteComponent
-} from '../../examples/autocomplete/show-case-autocomplete/show-case-autocomplete.component';
+import { ShowCaseAutocompleteComponent } from '../../examples/autocomplete/show-case-autocomplete/show-case-autocomplete.component';
 
 @Component({
   selector: 'doc-autocomplete-page',
@@ -33,6 +31,4 @@ export class AutocompletePageComponent {
       true
     ),
   ]);
-
-
 }

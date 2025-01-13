@@ -1,5 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { ApiInfo, ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
+import {
+  ApiInfo,
+  ApiInfoComponent,
+} from '../../blueprint/api-info/api-info.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -19,8 +22,8 @@ const ROOT = 'progress-bar';
     ShowCaseProgressBarComponent,
     CommandInstallationComponent,
     SourceTreeComponent,
-    ApiInfoComponent
-],
+    ApiInfoComponent,
+  ],
   templateUrl: './progress-bar-page.component.html',
   styleUrl: './progress-bar-page.component.scss',
 })

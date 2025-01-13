@@ -5,8 +5,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   imports: [],
   templateUrl: './breadcrumb.component.html',
   styleUrl: './breadcrumb.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BreadcrumbComponent {
-
-}
+export class BreadcrumbComponent {}

@@ -44,6 +44,6 @@ export class TextareaPageComponent {
         type: 'component',
         selector: '[appTextarea]',
       },
-    ]
+    ],
   };
 }

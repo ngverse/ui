@@ -4,33 +4,48 @@
     class="flex items-center gap-1 cursor-pointer h-10 rounded-md px-4"
   >
     {{ selectedFile()?.name }}
-    <lucide-angular [class.opened]="isOpen()" class="flex" size="20" [img]="ChevronDown"></lucide-angular>
+    <lucide-angular
+      [class.opened]="isOpen()"
+      class="flex"
+      size="20"
+      [img]="ChevronDown"
+    ></lucide-angular>
   </button>
-  @if(isOpen()){
-
-  <div
-    (outsideClicked)="close()"
-    [appOutsideClick]="isOpen()"
-    class="absolute top-12 shadow-lg z-50 w-max max-h-[400px] overflow-y-auto bg-white border-slate-400 left-2 rounded-md border border-solid  py-2"
-  >
-    @for (folder of sourceTree(); track $index) { @if(!folder.hideName){
-    <div class="px-3 flex items-center h-8 gap-1 select-none">
-      <lucide-angular class="flex" size="20" [img]="Folder"></lucide-angular>
-      {{ folder.name }}
-    </div>
-    } @for (file of folder.files; track $index) {
-    <button
-      (click)="fileSelect(file)"
-      class="select-option"
-      [class.selected]="file.name === selectedFile()?.name"
-      [class.px-5]="!folder.hideName"
-      [class.px-3]="folder.hideName"
+  @if (isOpen()) {
+    <div
+      (outsideClicked)="close()"
+      [appOutsideClick]="isOpen()"
+      class="absolute top-12 shadow-lg z-50 w-max max-h-[400px] overflow-y-auto bg-white border-slate-400 left-2 rounded-md border border-solid py-2"
     >
-      <img width="14" [alt]="file.language" height="14" [src]="'images/' + file.language + '.svg'" />
-      {{ file.name }}
-    </button>
-
-    } }
-  </div>
+      @for (folder of sourceTree(); track $index) {
+        @if (!folder.hideName) {
+          <div class="px-3 flex items-center h-8 gap-1 select-none">
+            <lucide-angular
+              class="flex"
+              size="20"
+              [img]="Folder"
+            ></lucide-angular>
+            {{ folder.name }}
+          </div>
+        }
+        @for (file of folder.files; track $index) {
+          <button
+            (click)="fileSelect(file)"
+            class="select-option"
+            [class.selected]="file.name === selectedFile()?.name"
+            [class.px-5]="!folder.hideName"
+            [class.px-3]="folder.hideName"
+          >
+            <img
+              width="14"
+              [alt]="file.language"
+              height="14"
+              [src]="'images/' + file.language + '.svg'"
+            />
+            {{ file.name }}
+          </button>
+        }
+      }
+    </div>
   }
 </div>

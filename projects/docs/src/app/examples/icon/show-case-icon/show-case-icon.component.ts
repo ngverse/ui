@@ -13,6 +13,9 @@ export class ShowCaseIconComponent implements OnInit {
 
   ngOnInit() {
     this.iconRegistryService.addSvgIcon('home', '/icon-samples/home.svg');
-    this.iconRegistryService.addSvgIcon('checkmark', '/icon-samples/checkmark.svg');
+    this.iconRegistryService.addSvgIcon(
+      'checkmark',
+      '/icon-samples/checkmark.svg'
+    );
   }
 }

@@ -1,16 +1,15 @@
-@if(showCopy()){
-<doc-icon-button
-  [cdkCopyToClipboard]="code()"
-  (click)="copy()"
-  class="copy-button"
->
-  @if(copied()){
-  <doc-check-icon></doc-check-icon>
-  } @else{
-  <doc-copy-icon></doc-copy-icon>
-
-  }
-</doc-icon-button>
+@if (showCopy()) {
+  <doc-icon-button
+    [cdkCopyToClipboard]="code()"
+    (click)="copy()"
+    class="copy-button"
+  >
+    @if (copied()) {
+      <doc-check-icon></doc-check-icon>
+    } @else {
+      <doc-copy-icon></doc-copy-icon>
+    }
+  </doc-icon-button>
 }
 
 <pre class="m-0 max-h-[600px] text-xs overflow-auto not-prose">

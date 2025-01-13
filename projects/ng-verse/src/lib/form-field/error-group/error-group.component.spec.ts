@@ -8,9 +8,8 @@ xdescribe('ErrorGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ErrorGroupComponent]
-    })
-    .compileComponents();
+      imports: [ErrorGroupComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ErrorGroupComponent);
     component = fixture.componentInstance;

@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 
 export interface IconOptions {
-  cache?: boolean
+  cache?: boolean;
 }
 
-const ICON_DEFAULT_OPTIONS: IconOptions = {cache: true};
+const ICON_DEFAULT_OPTIONS: IconOptions = { cache: true };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IconRegistryService {
-  private readonly icons = new Map<string, { options: IconOptions, url: string }>();
+  private readonly icons = new Map<
+    string,
+    { options: IconOptions; url: string }
+  >();
 
   addSvgIcon(iconName: string, url: string, options?: IconOptions) {
-    this.icons.set(iconName, {options: {...ICON_DEFAULT_OPTIONS, ...options}, url});
+    this.icons.set(iconName, {
+      options: { ...ICON_DEFAULT_OPTIONS, ...options },
+      url,
+    });
   }
 
   getSvgIcon(iconName: string) {

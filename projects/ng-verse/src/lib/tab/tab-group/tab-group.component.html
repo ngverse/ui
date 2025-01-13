@@ -6,21 +6,21 @@
   (cdkListboxValueChange)="listboxValueChange($event)"
 >
   @for (tab of tabs(); track $index) {
-  <div
-    class="tab-header"
-    [cdkOptionDisabled]="tab.disabled()"
-    [cdkOption]="$index"
-  >
-    @if(tab.headerTemplatePortal(); as headerTemplatePortal){
-    <ng-template [cdkPortalOutlet]="headerTemplatePortal"></ng-template>
-    } @else{
-    {{ tab.label() }}
-    }
-  </div>
+    <div
+      class="tab-header"
+      [cdkOptionDisabled]="tab.disabled()"
+      [cdkOption]="$index"
+    >
+      @if (tab.headerTemplatePortal(); as headerTemplatePortal) {
+        <ng-template [cdkPortalOutlet]="headerTemplatePortal"></ng-template>
+      } @else {
+        {{ tab.label() }}
+      }
+    </div>
   }
 </div>
 <div class="tab-body">
-  @if(selectedTab(); as selectedTab){
-  <ng-template [cdkPortalOutlet]="selectedTab.templatePortal()"></ng-template>
+  @if (selectedTab(); as selectedTab) {
+    <ng-template [cdkPortalOutlet]="selectedTab.templatePortal()"></ng-template>
   }
 </div>
