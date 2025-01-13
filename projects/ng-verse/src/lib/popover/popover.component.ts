@@ -1,4 +1,5 @@
 import { Overlay } from '@angular/cdk/overlay';
+import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -46,6 +47,7 @@ export class PopoverComponent implements OnDestroy {
   popoverEl = this.popover.nativeElement as HTMLElement;
   private renderer2 = inject(Renderer2);
   private document = inject(DOCUMENT);
+  platform = inject(Platform);
 
   @HostBinding('attr.popover')
   bind = 'manual';
@@ -68,8 +70,15 @@ export class PopoverComponent implements OnDestroy {
 
   coordinates = signal<TRIGGER_COORDINATES | undefined>(undefined);
 
+  get popoverIsOpen() {
+    return this.popoverEl.matches(':popover-open');
+  }
+
   constructor() {
     effect(() => {
+      if (!this.platform.isBrowser) {
+        return;
+      }
       const isOpen = this.isOpen();
       if (isOpen) {
         this._open();
@@ -84,7 +93,7 @@ export class PopoverComponent implements OnDestroy {
   }
 
   private _open() {
-    if (this.isOpen()) {
+    if (this.popoverIsOpen) {
       return;
     }
     const popover = this.popover.nativeElement;
@@ -103,7 +112,7 @@ export class PopoverComponent implements OnDestroy {
   }
 
   private _hide() {
-    if (this.isOpen()) {
+    if (this.popoverIsOpen) {
       const popover = this.popover.nativeElement;
       popover.hidePopover();
       this.closed.emit();
