@@ -7,7 +7,8 @@
     pointer-events: none;
   }
 
-  &.outline {
+  &.outline,
+  &.link {
     &:hover {
       background: var(--outline-hover);
     }
@@ -66,6 +67,10 @@
         border-color: var(--app-primary-color);
       }
     }
+    &.link {
+      border: 0;
+      color: var(--app-primary-color);
+    }
   }
 
   &.secondary {
@@ -81,6 +86,10 @@
       .spinner {
         border-color: var(--app-secondary-color);
       }
+    }
+    &.link {
+      border: 0;
+      color: var(--app-secondary-color);
     }
   }
 
@@ -98,6 +107,10 @@
         border-color: var(--app-success-color);
       }
     }
+    &.link {
+      border: 0;
+      color: var(--app-success-color);
+    }
   }
 
   &.danger {
@@ -113,6 +126,31 @@
       .spinner {
         border-color: var(--app-danger-color);
       }
+    }
+    &.link {
+      border: 0;
+      color: var(--app-danger-color);
+    }
+  }
+
+  &.default {
+    --button-default-color: #4b5563;
+    &:focus {
+      outline: 1px solid var(--button-default-color);
+    }
+    &.fill {
+      background-color: var(--button-default-color);
+    }
+    &.outline {
+      border-color: var(--button-default-color);
+      color: var(--button-default-color);
+      .spinner {
+        border-color: var(--button-default-color);
+      }
+    }
+    &.link {
+      border: 0;
+      color: var(--button-default-color);
     }
   }
 }
