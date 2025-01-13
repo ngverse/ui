@@ -1,16 +1,20 @@
 :host {
-  display: flex;
-  align-items: center;
-  column-gap: 8px;
-  cursor: pointer;
-  padding: 5px 4px;
+  display: block;
+  padding: var(--app-option-padding);
+  cursor: var(--app-option-cursor);
 
-  &:hover {
-    background: #ededed;
+  &:hover:not(.listbox-item-active, .option-disabled) {
+    background: var(--app-option-hover-bg-color);
+  }
+
+  &.listbox-item-active {
+    background: var(--app-primary-color);
+    color: white;
+  }
+
+  &.option-disabled {
+    color: var(--app-option-disabled-color);
   }
 }
 
-:host(.focused) {
-  background: var(--app-primary-color);
-  color: #fff;
-}
+

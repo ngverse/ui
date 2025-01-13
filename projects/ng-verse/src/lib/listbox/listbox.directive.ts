@@ -5,10 +5,10 @@ import {
   effect,
   ElementRef,
   HostListener,
-  inject,
+  inject, input,
   OnDestroy,
   output,
-  Renderer2,
+  Renderer2, untracked,
 } from '@angular/core';
 import { ListboxItemDirective } from './listbox-item.directive';
 import { ListboxState } from './listbox.state';
@@ -20,6 +20,7 @@ import { ListboxState } from './listbox.state';
   },
 })
 export class ListboxDirective implements OnDestroy {
+  autoActiveFirstOption = input(false);
   private host = inject<ElementRef<HTMLElement>>(ElementRef);
   items = contentChildren(ListboxItemDirective, { descendants: true });
   keyManager: ActiveDescendantKeyManager<ListboxItemDirective> | undefined;
@@ -48,11 +49,19 @@ export class ListboxDirective implements OnDestroy {
       if (stateItems) {
         options = stateItems;
       }
+
       if (options?.length) {
         this.keyManager?.destroy();
         this.keyManager = new ActiveDescendantKeyManager(options)
           .withWrap()
           .withTypeAhead();
+
+        untracked(() => {
+          if (this.autoActiveFirstOption()) {
+            this.keyManager?.setFirstItemActive();
+          }
+        });
+
         this.keyManager.change.subscribe(() => {
           const activeOption = this.keyManager?.activeItem;
           if (activeOption) {

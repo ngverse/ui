@@ -1,19 +1,17 @@
 <input
-  class="select-button"
+  class="input-field"
   (input)="onInput($event)"
   [ngModel]="inputValue()"
   (ngModelChange)="inputValue.set($event)"
   appPopoverOrigin
   #trigger="appPopoverOrigin"
   (openPopover)="open()"
-  (hidePopover)="close()"
+  (closePopover)="close()"
+  [disabled]="disabled()"
 />
 
-<app-popover [offsetY]="40" [origin]="trigger" [(isOpen)]="isOpen">
-  <div class="select-options" style="width: 150px" role="listbox">
+<app-popover class="select-options" [offsetY]="8" [origin]="trigger" [(isOpen)]="isOpen" (opened)="panelOpened()">
+  <div appListbox [autoActiveFirstOption]="true">
     <ng-content select="app-autocomplete-item"></ng-content>
   </div>
 </app-popover>
-<!--
-appPopoverOrigin
-#trigger="appPopoverOrigin" -->
