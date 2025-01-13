@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SwitchComponent } from './switch.component';
@@ -83,6 +83,7 @@ describe('SwitchComponent', () => {
   >
     Test switch
   </app-switch>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class SwitchTestComponent {
   reverse = signal(false);

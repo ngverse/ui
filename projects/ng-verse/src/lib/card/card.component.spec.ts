@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CardContentComponent } from './card-content/card-content.component';
 import { CardDescriptionComponent } from './card-description/card-description.component';
 import { CardFooterComponent } from './card-footer/card-footer.component';
@@ -50,5 +50,6 @@ describe('CardComponent', () => {
     CardTitleComponent,
   ],
   selector: 'app-card-test',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class CardTestComponent {}

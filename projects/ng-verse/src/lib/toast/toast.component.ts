@@ -1,5 +1,11 @@
 import { NgClass } from '@angular/common';
-import { Component, computed, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  output,
+  signal,
+} from '@angular/core';
 import { TOAST_ANIMATIONS } from './toast-animations';
 import { ToastCloseIconComponent } from './toast-close.component';
 import { TOAST_POSITION } from './toast.service';
@@ -10,6 +16,7 @@ import { TOAST_POSITION } from './toast.service';
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
   animations: [TOAST_ANIMATIONS],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastComponent {
   message = signal<string>('');

@@ -1,9 +1,9 @@
-import { Component, inject, input } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { IconLoaderService } from './icon-loader.service';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { DomSanitizer } from '@angular/platform-browser';
 import { map, switchMap } from 'rxjs';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { IconLoaderService } from './icon-loader.service';
 
 @Component({
   selector: 'app-icon',
@@ -11,7 +11,8 @@ import { toObservable } from '@angular/core/rxjs-interop';
     AsyncPipe
   ],
   templateUrl: './icon.component.html',
-  styleUrl: './icon.component.scss'
+  styleUrl: './icon.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconComponent {
   name = input.required<string>();

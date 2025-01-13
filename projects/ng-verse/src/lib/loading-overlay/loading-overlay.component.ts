@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
@@ -15,6 +16,7 @@ type BackgroundTypes = 'none' | 'semi' | 'full';
   imports: [ProgressSpinnerComponent],
   templateUrl: './loading-overlay.component.html',
   styleUrl: './loading-overlay.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingOverlayComponent implements OnInit {
   useParent = input(true);

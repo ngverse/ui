@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-checkbox-icon',
@@ -36,6 +36,7 @@ import { Component, input } from '@angular/core';
     </svg>
     }
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxIconComponent {
   checked = input.required<boolean | undefined | null>();

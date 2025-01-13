@@ -1,9 +1,9 @@
-import { Component, computed, input, output } from '@angular/core';
-import { PaginationPrevComponent } from './pagination-prev/pagination-prev.component';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { PaginationFirstComponent } from './pagination-first/pagination-first.component';
+import { PaginationLastComponent } from './pagination-last/pagination-last.component';
 import { PaginationNextComponent } from './pagination-next/pagination-next.component';
 import { PaginationNumbersComponent } from './pagination-numbers/pagination-numbers.component';
-import { PaginationLastComponent } from './pagination-last/pagination-last.component';
-import { PaginationFirstComponent } from './pagination-first/pagination-first.component';
+import { PaginationPrevComponent } from './pagination-prev/pagination-prev.component';
 
 @Component({
   selector: 'app-pagination',
@@ -16,6 +16,7 @@ import { PaginationFirstComponent } from './pagination-first/pagination-first.co
   ],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent {
   pageSize = input.required<number>();

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 const minMaxTransform = (value: number) => {
   if (value < 0) {
@@ -15,6 +15,7 @@ const minMaxTransform = (value: number) => {
   imports: [],
   templateUrl: './progress-bar.component.html',
   styleUrl: './progress-bar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgressBarComponent {
   value = input(0, { transform: minMaxTransform });

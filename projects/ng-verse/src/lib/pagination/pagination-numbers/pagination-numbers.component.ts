@@ -1,10 +1,11 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-pagination-numbers',
   imports: [],
   templateUrl: './pagination-numbers.component.html',
   styleUrl: './pagination-numbers.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationNumbersComponent {
   pageChange = output<number>();

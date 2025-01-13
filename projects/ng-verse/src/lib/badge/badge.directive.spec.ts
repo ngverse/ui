@@ -1,4 +1,4 @@
-import { Component, DebugElement, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BadgeDirective } from './badge.directive';
@@ -45,6 +45,7 @@ describe('BadgeDirective', () => {
   template: `
     <span [hideBadge]="hideBadge()" [appBadge]="count()"> Notifications </span>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class BadgeTestComponent {
   count = signal(5);

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogService } from '../dialog.service';
@@ -107,5 +107,6 @@ describe('ConfirmDialogComponent', () => {
 
 @Component({
   template: `<div></div>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class ConfirmDialogTestComponent {}

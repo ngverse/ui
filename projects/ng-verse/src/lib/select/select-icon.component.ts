@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-select-icon',
@@ -16,5 +16,6 @@ import { Component } from '@angular/core';
   >
     <path d="m6 9 6 6 6-6" />
   </svg>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectIconComponent {}

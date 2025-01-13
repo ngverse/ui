@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   TemplateRef,
   viewChild,
@@ -52,6 +53,7 @@ describe('TooltipContainerComponent', () => {
     <ng-template #temp>I am tooltip</ng-template>
     <app-tooltip-container></app-tooltip-container>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class TooltipContainerTestComponent implements AfterViewInit {
   temp = viewChild<TemplateRef<unknown>>('temp');

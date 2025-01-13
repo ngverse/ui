@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { CheckboxIconComponent } from './checkbox-icon.component';
@@ -87,6 +87,7 @@ describe('CheckboxComponent', () => {
   >
     Test checkbox
   </app-checkbox>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class CheckboxTestComponent {
   formControl = new FormControl();
