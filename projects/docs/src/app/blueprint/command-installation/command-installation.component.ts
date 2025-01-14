@@ -11,6 +11,6 @@ export class CommandInstallationComponent {
   type = input('component');
   name = input.required<string>();
   installation = computed(
-    () => `ng generate ng-verse:${this.type()} ${this.name()}`
+    () => `ng generate ngverse:${this.type()} ${this.name()}`
   );
 }

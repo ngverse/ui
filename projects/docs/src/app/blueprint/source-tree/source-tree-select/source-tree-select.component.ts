@@ -11,18 +11,11 @@ import { FormsModule } from '@angular/forms';
 import { OptionComponent } from '@ng-verse/select/option/option.component';
 import { SelectComponent } from '@ng-verse/select/select.component';
 import { ChevronDown, Folder, LucideAngularModule } from 'lucide-angular';
-import { OptionGroupComponent } from '../../../../../../ng-verse/src/lib/select/option-group/option-group.component';
 import { SourceTreeFile, SourceTreeFolder } from '../source-tree-builder';
 
 @Component({
   selector: 'doc-source-tree-select',
-  imports: [
-    LucideAngularModule,
-    SelectComponent,
-    OptionComponent,
-    OptionGroupComponent,
-    FormsModule,
-  ],
+  imports: [LucideAngularModule, SelectComponent, OptionComponent, FormsModule],
   templateUrl: './source-tree-select.component.html',
   styleUrl: './source-tree-select.component.scss',
 })

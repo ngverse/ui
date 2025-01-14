@@ -26,6 +26,8 @@ export class SourceCodeComponent {
 
   outline = input(true);
 
+  surface = input(false);
+
   showCopy = computed(() => this.code() !== EMPTY_FILE_TOKEN);
 
   copy() {

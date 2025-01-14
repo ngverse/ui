@@ -4,16 +4,14 @@
 }
 .copy-button {
   right: 10px;
-  top: 24px;
+  top: 10px;
   position: absolute;
-  color: white;
   cursor: pointer;
-  display: none;
   @layer lg {
     @apply block;
   }
 }
 
 .source-code {
-  background: var(--background) !important;
+  background: transparent !important;
 }
