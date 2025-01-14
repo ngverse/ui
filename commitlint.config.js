@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   extends: ['@commitlint/config-angular'],
   rules: {
     'scope-enum': [
