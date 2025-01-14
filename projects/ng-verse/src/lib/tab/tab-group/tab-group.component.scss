@@ -11,24 +11,36 @@
   cursor: pointer;
   position: relative;
 
-  &.active {
-    font-weight: 500;
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: var(--primary);
-      height: 2px;
-    }
-  }
+  // &.active {
+  //   font-weight: 500;
+  //   &::after {
+  //     content: '';
+  //     position: absolute;
+  //     bottom: 0;
+  //     left: 0;
+  //     right: 0;
+  //     background-color: var(--primary);
+  //     height: 2px;
+  //   }
+  // }
 
-  &.active {
-    outline-color: var(--ring);
-  }
+  // &.active {
+  //   outline-color: var(--ring);
+  // }
 }
 
 .tab-body {
   padding: 20px;
+}
+
+.tab-ink {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  transition:
+    left 0.3s ease,
+    width 0.3s ease; /* Transition both left and width */
+
+  background-color: var(--primary);
 }
