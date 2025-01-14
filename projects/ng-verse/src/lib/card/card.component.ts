@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   styleUrl: './card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.surfate]': 'surface()',
+    '[class.surface]': 'surface()',
     '[class.outline]': 'outline()',
   },
 })

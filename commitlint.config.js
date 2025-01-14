@@ -4,7 +4,15 @@ export default {
     'scope-enum': [
       2,
       'always',
-      ['button', 'popover', 'select', 'theme', 'tab'],
+      [
+        'button',
+        'popover',
+        'select',
+        'theme',
+        'tab',
+        'progress-bar',
+        'progress-spinner',
+      ],
     ],
   },
 };

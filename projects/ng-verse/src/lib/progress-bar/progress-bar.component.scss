@@ -11,7 +11,7 @@
   font-size: 8px;
   transition: width 0.1s ease-in;
   height: 100%;
-  background: var(--app-primary-color);
+  background: var(--primary);
   position: absolute;
   text-align: center;
 }
@@ -21,13 +21,13 @@
 .indeterminate-line {
   position: absolute;
   opacity: 0.4;
-  background: var(--app-primary-color);
+  background: var(--primary);
   width: 150%;
   height: 100%;
 }
 .indeterminate-subline {
   position: absolute;
-  background: var(--app-primary-color);
+  background: var(--primary);
   height: 100%;
   &.inc {
     animation: indeterminateIncrease 2s infinite;

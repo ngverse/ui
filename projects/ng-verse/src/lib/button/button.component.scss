@@ -135,7 +135,8 @@
 }
 
 :host:disabled:not(.loading) {
-  background-color: var(--app-disabled-color);
+  background-color: var(--disabled);
+  color: var(--disabled-foreground);
   cursor: not-allowed;
 }
 
