@@ -4,11 +4,15 @@
   height: var(--app-field-height);
   padding: var(--app-field-padding);
   &:focus {
-    outline: var(--app-field-focus-outline);
+    outline: var(--ring);
   }
   &:disabled,
   &[readonly] {
-    background: var(--app-field-disabled-bg-color);
+    background: var(--disabled);
+    color: var(--disabled-foreground);
+    &::placeholder {
+      color: var(--disabled-foreground);
+    }
   }
 }
 

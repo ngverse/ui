@@ -6,13 +6,14 @@
   cursor: var(--app-option-cursor);
 
   &:hover:not(.selected, .listbox-item-active, .option-disabled) {
-    background: var(--app-option-hover-bg-color);
+    background: var(--accent-background);
+    color: var(--accent-foreground);
   }
 
   &.listbox-item-active,
   &.selected {
-    background: var(--app-primary-color);
-    color: white;
+    background: var(--accent-background);
+    color: var(--accent-foreground);
   }
 
   &.option-disabled {

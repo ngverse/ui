@@ -6,18 +6,18 @@
 
 .checked {
   .checkbox-icon {
-    color: var(--app-primary-color);
+    color: var(--primary);
   }
 }
 
 :host.ng-invalid.ng-touched {
   .checkbox {
-    color: var(--app-danger-color);
+    color: var(--danger);
   }
 }
 
 .disabled {
-  color: var(--app-disabled-color);
+  color: var(--disabled);
 }
 
 .native-checkbox-container {
@@ -34,8 +34,8 @@
   bottom: 0;
   top: 0;
 
-  &:focus + .checkbox-icon {
-    outline: 1px solid var(--app-ring-color);
+  &:focus-visible + .checkbox-icon {
+    outline: 1px solid var(--ring);
     border-radius: 4px;
   }
 }

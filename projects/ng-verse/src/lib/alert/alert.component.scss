@@ -5,22 +5,22 @@
   border-width: 1px;
   &.success {
     color: white;
-    background: var(--app-success-color);
-    border-color: var(--app-success-color);
+    background: var(--success);
+    border-color: var(--success-foreground);
   }
 
   &.danger {
     color: white;
-    background: var(--app-danger-color);
-    border-color: var(--app-danger-color);
+    background: var(--danger);
+    border-color: var(--danger-foreground);
   }
   &.default {
-    border-color: var(--app-border-color);
+    border: var(--border);
   }
 
   &.warning {
     color: white;
-    background: var(--app-warning-color);
-    border-color: var(--app-warning-color);
+    background: var(--warning);
+    border-color: var(--warning-foreground);
   }
 }

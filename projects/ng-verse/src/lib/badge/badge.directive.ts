@@ -9,6 +9,21 @@ import {
   Renderer2,
 } from '@angular/core';
 
+const STYLES = `display: inline;
+border-radius: 100%;
+min-width: 16px;
+min-height: 16px;
+font-size: 12px;
+font-weight: 500;
+position: absolute;
+bottom: 100%;
+left: 100%;
+text-align: center;
+background-color: var(--danger);
+color: #fff;
+margin: -12px 0;
+padding: 0 4px;`;
+
 @Directive({
   selector: '[appBadge]',
   host: {
@@ -63,22 +78,8 @@ export class BadgeDirective implements OnInit, OnDestroy {
   }
 
   create() {
-    const styles = `display: inline;
-      border-radius: 100%;
-      min-width: 16px;
-      min-height: 16px;
-      font-size: 12px;
-      font-weight: 500;
-      position: absolute;
-      bottom: 100%;
-      left: 100%;
-      text-align: center;
-      background-color: var(--app-danger-color);
-      color: #fff;
-      margin: -12px 0;
-      padding: 0 4px;`;
     const element = this.renderer.createElement('span');
-    this.renderer.setAttribute(element, 'style', styles);
+    this.renderer.setAttribute(element, 'style', STYLES);
     this.renderer.appendChild(this.el.nativeElement, element);
     this.renderer.setProperty(element, 'textContent', this.value()?.toString());
     this.badgeElement = element;

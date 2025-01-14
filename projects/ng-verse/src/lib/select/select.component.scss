@@ -1,3 +1,7 @@
+:host {
+  display: inline-block;
+}
+
 .select-button {
   border: var(--app-field-border);
   border-radius: var(--app-field-border-radius);

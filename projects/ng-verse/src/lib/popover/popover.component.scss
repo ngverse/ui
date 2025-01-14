@@ -5,8 +5,8 @@
     0 4px 6px -1px rgb(0 0 0 / 0.1),
     0 2px 4px -2px rgb(0 0 0 / 0.1);
   background-color: white;
-  border-radius: var(--app-border-radius);
-  border: 1px solid var(--app-border-color);
+  border-radius: var(--border-radius);
+  border: var(--border);
 }
 :host:popover-open {
   opacity: 1;

@@ -39,16 +39,4 @@ export class TabComponent {
     }
     return undefined;
   });
-
-  templatePortal = computed(() => {
-    const bodyTemplateRef = this.bodyTemplate()?.templateRef;
-    if (bodyTemplateRef) {
-      this.portal = new TemplatePortal(bodyTemplateRef, this.vf);
-      return this.portal;
-    }
-    return new TemplatePortal(
-      this.templateRef() as TemplateRef<unknown>,
-      this.vf
-    );
-  });
 }
