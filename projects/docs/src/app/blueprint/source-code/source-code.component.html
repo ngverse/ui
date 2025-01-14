@@ -11,7 +11,8 @@
     }
   </doc-icon-button>
 }
-
-<pre class="m-0 max-h-[600px] text-xs overflow-auto not-prose">
-  <code class="rounded-md !bg-slate-900" [highlight]="code()" [language]="language()">
+<app-card [outline]="outline()">
+  <pre class="m-0 max-h-[600px] text-xs overflow-auto not-prose">
+  <code class="rounded-md source-code" [highlight]="code()" [language]="language()">
   </code></pre>
+</app-card>

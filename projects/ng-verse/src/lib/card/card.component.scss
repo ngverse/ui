@@ -2,7 +2,12 @@
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-  border-radius: var(--border-radius);
-  border: var(--border);
-  padding: 20px 24px;
+  &.outline {
+    border-radius: var(--border-radius);
+    border: var(--border);
+  }
+  &.surface {
+    background: var(--surface);
+  }
+  outline: 0;
 }
