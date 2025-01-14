@@ -1,26 +1,24 @@
-<div
-  class="tab-group-header"
-  cdkListbox
-  cdkListboxOrientation="horizontal"
-  [cdkListboxValue]="listboxValue()"
-  (cdkListboxValueChange)="listboxValueChange($event)"
->
+<div class="tab-group-header">
   @for (tab of tabs(); track $index) {
-    <div
+    <button
       class="tab-header"
-      [cdkOptionDisabled]="tab.disabled()"
-      [cdkOption]="$index"
+      (click)="selectTab($index)"
+      [class.active]="selectedIndex() === $index"
     >
       @if (tab.headerTemplatePortal(); as headerTemplatePortal) {
         <ng-template [cdkPortalOutlet]="headerTemplatePortal"></ng-template>
       } @else {
         {{ tab.label() }}
       }
-    </div>
+    </button>
   }
 </div>
+<!--we need explicitely set ng-content, in order ssr work properly see (https://github.com/angular/angular/issues/50543)-->
+<ng-content></ng-content>
 <div class="tab-body">
   @if (selectedTab(); as selectedTab) {
-    <ng-template [cdkPortalOutlet]="selectedTab.templatePortal()"></ng-template>
+    @if (selectedTab.templateRef(); as templateRef) {
+      <ng-container [ngTemplateOutlet]="templateRef"></ng-container>
+    }
   }
 </div>

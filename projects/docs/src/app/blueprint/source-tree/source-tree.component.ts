@@ -1,4 +1,5 @@
 import { Component, inject, input, signal } from '@angular/core';
+import { ButtonComponent } from '@ng-verse/button/button.component';
 import { FileService } from '../../services/file.service';
 import { SourceCodeComponent } from '../source-code/source-code.component';
 import {
@@ -10,7 +11,7 @@ import { SourceTreeSelectComponent } from './source-tree-select/source-tree-sele
 
 @Component({
   selector: 'doc-source-tree',
-  imports: [SourceCodeComponent, SourceTreeSelectComponent],
+  imports: [SourceCodeComponent, SourceTreeSelectComponent, ButtonComponent],
   templateUrl: './source-tree.component.html',
   styleUrl: './source-tree.component.scss',
 })

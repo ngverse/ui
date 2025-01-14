@@ -1,26 +1,17 @@
 <h5 class="text-lg my-0 mb-3 font-medium">Showcase</h5>
 <div class="rounded-md border border-solid border-slate-200">
-  <div class="flex border-0 border-b border-solid border-slate-300">
+  <app-tab-group [selectedIndex]="0" (tabChanged)="tabChanged($event)">
+    <app-tab label="PREVIEW">
+      <ng-content></ng-content>
+    </app-tab>
     @for (item of tabs; track $index) {
-      <button
-        (click)="selectTab(item)"
-        [class.active-tab]="item === selectedTab()"
-        class="text-center uppercase border-0 px-4 cursor-pointer py-3"
-      >
-        {{ item }}
-      </button>
+      <app-tab [label]="item | uppercase">
+        <doc-source-code
+          class="-mt-5"
+          [code]="code()"
+          [language]="language()"
+        ></doc-source-code>
+      </app-tab>
     }
-  </div>
-  <div class="lg:mx-6 lg:mb-6 mb-3 mx-3">
-    @if (selectedTab() === 'preview') {
-      <div class="p-4 lg:p-10">
-        <ng-content></ng-content>
-      </div>
-    } @else {
-      <doc-source-code
-        [code]="code()"
-        [language]="selectedTab()"
-      ></doc-source-code>
-    }
-  </div>
+  </app-tab-group>
 </div>

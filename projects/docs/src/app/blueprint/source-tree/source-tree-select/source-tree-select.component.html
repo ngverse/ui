@@ -1,3 +1,29 @@
+<app-select
+  placeholder="Select a file"
+  class="tree-select"
+  [stretch]="true"
+  [(ngModel)]="selectedFile"
+  (ngModelChange)="fileSelect()"
+>
+  @for (folder of sourceTree(); track $index) {
+    <app-option-group [label]="folder.name">
+      @for (file of folder.files; track $index) {
+        <app-option [value]="file">
+          <div class="flex items-center gap-1">
+            <img
+              width="14"
+              [alt]="file.language"
+              height="14"
+              [src]="'images/' + file.language + '.svg'"
+            />
+            {{ file.name }}
+          </div>
+        </app-option>
+      }
+    </app-option-group>
+  }
+</app-select>
+<!--
 <div class="relative">
   <button
     (click)="open()"
@@ -48,4 +74,4 @@
       }
     </div>
   }
-</div>
+</div> -->
