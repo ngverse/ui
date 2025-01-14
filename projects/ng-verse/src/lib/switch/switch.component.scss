@@ -10,18 +10,18 @@
   width: 50px;
   height: 25px;
   border-radius: 15px;
-  background-color: #cbd5e1;
+  background-color: var(--secondary);
   position: relative;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 :host.ng-invalid.ng-touched .switch-button {
-  outline: 1px solid var(--app-danger-color);
+  outline: 1px solid var(--danger);
 }
 
 .switch-button.checked {
-  background-color: var(--app-primary-color);
+  background-color: var(--primary);
 }
 
 .toggle {
@@ -41,6 +41,10 @@
 
 .disabled {
   .toggle {
-    background-color: var(--app-disabled-color);
+    background-color: var(--disabled);
+    color: var(--disabled-foreground);
+  }
+  label {
+    color: var(--disabled);
   }
 }

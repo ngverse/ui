@@ -1,5 +1,8 @@
 <div class="flex pt-20 gap-2.5 lg:gap-6">
   <button
+    appButton
+    color="secondary"
+    variant="outline"
     class="sibling-navigation"
     [class.invisible]="!prevRoute()"
     [routerLink]="[prevRoute()?.url]"
@@ -8,6 +11,9 @@
     {{ prevRoute()?.name }}
   </button>
   <button
+    appButton
+    color="secondary"
+    variant="outline"
     [class.invisible]="!nextRoute()"
     class="sibling-navigation ml-auto lg:justify-end"
     [routerLink]="[nextRoute()?.url]"
