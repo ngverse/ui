@@ -1,6 +1,10 @@
 export default {
   extends: ['@commitlint/config-angular'],
   rules: {
-    'scope-enum': [2, 'always', ['button', 'popover', 'select', 'theme']],
+    'scope-enum': [
+      2,
+      'always',
+      ['button', 'popover', 'select', 'theme', 'tab'],
+    ],
   },
 };

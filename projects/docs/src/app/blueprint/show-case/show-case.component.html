@@ -7,6 +7,7 @@
     @for (item of tabs; track $index) {
       <app-tab [label]="item | uppercase">
         <doc-source-code
+          [outline]="false"
           class="-mt-5"
           [code]="code()"
           [language]="language()"
