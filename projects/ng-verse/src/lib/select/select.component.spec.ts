@@ -3,205 +3,288 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SelectComponent } from './select.component';
-xdescribe('SelectComponent', () => {
-  let component: SelectTestComponent;
-  let fixture: ComponentFixture<SelectTestComponent>;
-  let htmlElement: HTMLElement;
-  let selectButtonElement: HTMLElement;
+import { OptionComponent } from '@ng-verse/select/option/option.component';
+import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
+import { By } from '@angular/platform-browser';
+
+const OPTIONS = [
+  { code: 'US', name: 'United States' },
+  { code: 'CA', name: 'Canada' },
+  { code: 'GB', name: 'United Kingdom' },
+  { code: 'DE', name: 'Germany' },
+  { code: 'FR', name: 'France' },
+];
+
+@Component({
+  selector: 'app-test-select',
+  template: `
+    <app-select placeholder="Select a country" [formControl]="formControl">
+      @for (option of options; track $index) {
+        <app-option [value]="option.code">{{ option.name }}</app-option>
+      }
+    </app-select>
+  `,
+  imports: [ReactiveFormsModule, OptionComponent, SelectComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+class TestComponent {
+  options = OPTIONS;
+
+  formControl = new FormControl<string | null>(null);
+}
+
+@Component({
+  selector: 'app-test-multi-select',
+  template: `
+    <app-select
+      placeholder="Select countries"
+      [multiple]="true"
+      [formControl]="formControl"
+    >
+      @for (option of options; track $index) {
+        <app-option [value]="option.code">{{ option.name }}</app-option>
+      }
+    </app-select>
+  `,
+  imports: [ReactiveFormsModule, OptionComponent, SelectComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+class TestMultiselectComponent {
+  options = OPTIONS;
+  formControl = new FormControl<string[]>([]);
+}
+
+function openSelect(fixture: ComponentFixture<unknown>) {
+  const selectButton = fixture.nativeElement.querySelector('.select-button');
+  selectButton.click();
+  fixture.detectChanges();
+  fixture.nativeElement.querySelector('.select-options').dispatchEvent(
+    new Event('transitionend', {
+      bubbles: true,
+      cancelable: false,
+    })
+  );
+  fixture.detectChanges();
+}
+
+function closeSelect(fixture: ComponentFixture<unknown>) {
+  const selectButton = fixture.nativeElement.querySelector('.select-button');
+  selectButton.click();
+  fixture.detectChanges();
+}
+
+function queryOptions(fixture: ComponentFixture<unknown>) {
+  return fixture.nativeElement.querySelectorAll('app-option');
+}
+
+function isSelectOpened(fixture: ComponentFixture<unknown>) {
+  return fixture.nativeElement
+    .querySelector('.select-options')
+    .matches(':popover-open');
+}
+
+function keyDownOnSelect(
+  fixture: ComponentFixture<unknown>,
+  keyCode: number,
+  key?: string
+) {
+  const arrowDownEvent = new KeyboardEvent('keydown', {
+    key: key,
+    keyCode: keyCode,
+  });
+  fixture.debugElement
+    .query(By.directive(ListboxDirective))
+    .nativeElement.dispatchEvent(arrowDownEvent);
+  fixture.detectChanges();
+}
+
+function optionIsActive(fixture: ComponentFixture<unknown>, index: number) {
+  const foundOption = queryOptions(fixture)[index];
+  expect(foundOption).toHaveClass('listbox-item-active');
+}
+
+describe('SelectComponent', () => {
+  let component: TestComponent;
+  let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SelectTestComponent, SelectTestComplexComponent],
+      imports: [TestComponent, TestMultiselectComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SelectTestComponent);
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
-    htmlElement = fixture.nativeElement as HTMLElement;
-    selectButtonElement = htmlElement.querySelector(
-      '.select-button'
-    ) as HTMLElement;
     fixture.detectChanges();
   });
-
-  function selectOptionElement() {
-    return document.querySelector('.select-options') as HTMLElement;
-  }
-
-  function optionIsActive(index: number) {
-    const foundOption = document.querySelectorAll('app-option')[index]
-      ?.firstChild as HTMLElement;
-    expect(foundOption).toHaveClass('active');
-  }
-
-  function keyDownOnPanel(keyCode: number, key?: string) {
-    const arrowDownEvent = new KeyboardEvent('keydown', {
-      key: key,
-      keyCode: keyCode,
-    });
-    selectOptionElement().dispatchEvent(arrowDownEvent);
-    fixture.detectChanges();
-  }
-
-  function openPanel() {
-    selectButtonElement.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
-  }
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display label when no value is set', () => {
-    component.formControl.reset();
-    fixture.detectChanges();
-    expect(selectButtonElement.textContent).toBe('Numbers');
+  it('should show options when select button is clicked', () => {
+    openSelect(fixture);
+    expect(isSelectOpened(fixture)).toBe(true);
+    expect(queryOptions(fixture).length).toBe(OPTIONS.length);
   });
 
-  it('displayed label should be two', () => {
-    expect(selectButtonElement.textContent).toBe('two');
-  });
-  it('changed formControlValue to three should be applied', () => {
-    component.formControl.setValue('three');
-    fixture.detectChanges();
-    expect(selectButtonElement.textContent).toBe('three');
-  });
-  it('click on select button should open the panel', () => {
-    selectButtonElement.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
-    expect(selectOptionElement()).toBeTruthy();
-  });
-  it('when no option is selected the first option should be active', () => {
-    component.formControl.reset();
-    fixture.detectChanges();
-    openPanel();
-    optionIsActive(0);
-  });
-  it('when value is set it should activate the selected option', () => {
-    openPanel();
-    optionIsActive(1);
-  });
-  it('should activate next option on arrow down', () => {
-    openPanel();
-    keyDownOnPanel(DOWN_ARROW);
-    optionIsActive(2);
-  });
-  it('should activate prev option on arrow up', () => {
-    openPanel();
-    keyDownOnPanel(UP_ARROW);
-    optionIsActive(0);
-  });
-  it('should select the option keydown enter', () => {
-    openPanel();
-    keyDownOnPanel(DOWN_ARROW);
-    keyDownOnPanel(DOWN_ARROW);
-    keyDownOnPanel(ENTER, 'Enter');
-    expect(selectButtonElement.textContent).toBe('four');
-  });
-  it('should close the panel on enter', () => {
-    openPanel();
-    keyDownOnPanel(DOWN_ARROW);
-    keyDownOnPanel(DOWN_ARROW);
-    keyDownOnPanel(ENTER, 'Enter');
-    expect(selectOptionElement()).toBeFalsy();
-  });
-  it('should change formControlValue on select option enter', () => {
-    openPanel();
-    keyDownOnPanel(DOWN_ARROW);
-    keyDownOnPanel(ENTER, 'Enter');
-    expect(component.formControl.value).toBe('three');
-  });
-  it('should change formControl value on select option click', () => {
-    openPanel();
-    const firstOptionButton = document.querySelector('app-option')
-      ?.firstChild as HTMLElement;
-    firstOptionButton.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
-    expect(component.formControl.value).toBe('one');
+  describe('Placeholder', () => {
+    it('should display placeholder text when no value is selected', () => {
+      const selectButtonLabel = fixture.nativeElement.querySelector(
+        '.select-button-label'
+      );
+      expect(selectButtonLabel.textContent).toBe('Select a country');
+    });
+
+    it('should display selected value label', () => {
+      component.formControl.setValue('US');
+      fixture.detectChanges();
+      const selectButtonLabel = fixture.nativeElement.querySelector(
+        '.select-button-label'
+      );
+      expect(selectButtonLabel.textContent.trim()).toBe('United States');
+    });
+
+    it('should display select-button-icon', () => {
+      const selectButtonIcon = fixture.nativeElement.querySelector(
+        '.select-button-icon'
+      );
+      expect(selectButtonIcon).toBeTruthy();
+    });
   });
 
-  it('required validation', () => {
-    component.formControl.addValidators(Validators.required);
-    fixture.detectChanges();
-    component.formControl.setValue(null);
-    fixture.detectChanges();
-    const selectElement = htmlElement.querySelector(
-      'app-select'
-    ) as HTMLElement;
-    expect(selectElement).toHaveClass('ng-invalid');
-    component.formControl.setValue('two');
-    fixture.detectChanges();
-    expect(selectElement).toHaveClass('ng-valid');
+  describe('Open/Close', () => {
+    it('should close select after selecting an option', () => {
+      openSelect(fixture);
+      queryOptions(fixture)[0].click();
+      fixture.detectChanges();
+      expect(isSelectOpened(fixture)).toBe(false);
+    });
+
+    it('should close select when clicking on select button', () => {
+      openSelect(fixture);
+      expect(queryOptions(fixture).length).not.toBe(0);
+      closeSelect(fixture);
+      expect(isSelectOpened(fixture)).toBe(false);
+    });
   });
 
-  it('compareWith should check against correct values', () => {
-    const fixture = TestBed.createComponent(SelectTestComplexComponent);
-    const fixtureElement = fixture.nativeElement as HTMLElement;
-    const selectOption = fixtureElement.querySelector(
-      '.select-button'
-    ) as HTMLElement;
-    fixture.detectChanges();
-    expect(selectOption.textContent).toBe('John');
+  describe('Keyboard navigation', () => {
+    it('first option should be activated on open', () => {
+      openSelect(fixture);
+      optionIsActive(fixture, 0);
+    });
+
+    it('should activate prev option on arrow up', () => {
+      openSelect(fixture);
+      keyDownOnSelect(fixture, DOWN_ARROW);
+      keyDownOnSelect(fixture, DOWN_ARROW);
+      optionIsActive(fixture, 2);
+      keyDownOnSelect(fixture, UP_ARROW);
+      optionIsActive(fixture, 1);
+    });
+
+    it('should select the option on enter', () => {
+      openSelect(fixture);
+      keyDownOnSelect(fixture, DOWN_ARROW);
+      keyDownOnSelect(fixture, DOWN_ARROW);
+      keyDownOnSelect(fixture, ENTER, 'Enter');
+      const selectButtonLabel = fixture.nativeElement.querySelector(
+        '.select-button-label'
+      );
+      expect(selectButtonLabel.textContent).toBe(OPTIONS[2].name);
+    });
+  });
+
+  describe('Form Control', () => {
+    it('should change formControlValue on select option enter', () => {
+      openSelect(fixture);
+      const selectIndex = 1;
+      queryOptions(fixture)[selectIndex].click();
+      expect(component.formControl.value).toEqual(OPTIONS[selectIndex].code);
+    });
+
+    it('should make control touched when select is closed', () => {
+      openSelect(fixture);
+      closeSelect(fixture);
+      expect(component.formControl.touched).toBe(true);
+      expect(fixture.nativeElement.querySelector('app-select')).toHaveClass(
+        'ng-touched'
+      );
+    });
+
+    it('should make control dirty when an option is selected', () => {
+      openSelect(fixture);
+      queryOptions(fixture)[1].click();
+      fixture.detectChanges();
+      expect(component.formControl.dirty).toBe(true);
+      expect(component.formControl.pristine).toBe(false);
+      const selectElement = fixture.nativeElement.querySelector('app-select');
+      expect(selectElement).toHaveClass('ng-dirty');
+    });
+
+    it('required validation', () => {
+      component.formControl.addValidators(Validators.required);
+      fixture.detectChanges();
+      component.formControl.setValue(null);
+      fixture.detectChanges();
+      const selectElement = fixture.nativeElement.querySelector('app-select');
+      expect(selectElement).toHaveClass('ng-invalid');
+      component.formControl.setValue('US');
+      fixture.detectChanges();
+      expect(selectElement).toHaveClass('ng-valid');
+    });
+  });
+
+  describe('Selection', () => {
+    it('should show checkmark if item is selected', () => {
+      openSelect(fixture);
+      const selectedOption = queryOptions(fixture)[1];
+      selectedOption.click();
+      fixture.detectChanges();
+      const checkmark = selectedOption.querySelector('app-select-check-icon');
+      expect(checkmark).toBeTruthy();
+    });
+
+    it('should not show checkmark if item is not selected', () => {
+      openSelect(fixture);
+      const selectedOption = queryOptions(fixture)[1];
+      selectedOption.click();
+      fixture.detectChanges();
+      const checkmark = selectedOption.querySelector('app-select-check-icon');
+      expect(checkmark).toBeTruthy();
+    });
+  });
+
+  describe('Multiselect', () => {
+    let component: TestMultiselectComponent;
+    let fixture: ComponentFixture<TestMultiselectComponent>;
+
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(TestMultiselectComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    describe('Placeholder', () => {
+      it('should display selected values separated by comma when a value is selected', () => {
+        component.formControl.setValue(['US', 'CA']);
+        fixture.detectChanges();
+        const selectButtonLabel = fixture.nativeElement.querySelector(
+          '.select-button-label'
+        );
+        expect(selectButtonLabel.textContent.trim()).toBe(
+          'United States, Canada'
+        );
+      });
+    });
+
+    describe('Open/Close', () => {
+      it('should not close select when selecting an option', () => {
+        openSelect(fixture);
+        queryOptions(fixture)[0].click();
+        fixture.detectChanges();
+        expect(isSelectOpened(fixture)).toBe(true);
+      });
+    });
   });
 });
-
-@Component({
-  selector: 'app-select-test',
-  template: `
-    <app-select
-      [compareWith]="compareWith"
-      [formControl]="formControl"
-      label="Numbers"
-    >
-      @for (item of options; track $index) {
-        <app-option [value]="item">{{ item }}</app-option>
-      }
-    </app-select>
-  `,
-  imports: [ReactiveFormsModule, SelectComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-class SelectTestComponent {
-  options = ['one', 'two', 'three', 'four', 'five'];
-
-  formControl = new FormControl('two');
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  compareWith = (o1: any, o2: any) => o1 === o2;
-}
-
-@Component({
-  selector: 'app-select-test-complex',
-  template: `
-    <app-select
-      [compareWith]="compareWith"
-      [formControl]="formControl"
-      label="Users"
-    >
-      @for (item of options; track $index) {
-        <app-option [value]="item">{{ item.name }}</app-option>
-      }
-    </app-select>
-  `,
-  imports: [ReactiveFormsModule, SelectComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-class SelectTestComplexComponent {
-  options = [
-    {
-      name: 'John',
-      age: 28,
-    },
-    {
-      name: 'Mike',
-      age: 15,
-    },
-    {
-      name: 'Alice',
-      age: 35,
-    },
-  ];
-
-  formControl = new FormControl({ ...this.options[0] });
-
-  compareWith = (o1: { age: number }, o2: { age: number }) => o1.age === o2.age;
-}
