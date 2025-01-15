@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   extends: ['@commitlint/config-angular'],
   rules: {
     'scope-enum': [
@@ -13,6 +13,7 @@ export default {
         'progress-bar',
         'progress-spinner',
         'schematics',
+        'icon',
       ],
     ],
   },
