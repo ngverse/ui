@@ -28,6 +28,7 @@ export interface ApiEntity {
   description?: string;
   type?: 'component' | 'directive' | 'service';
   selector?: string;
+  formBindable?: boolean;
 }
 
 @Component({

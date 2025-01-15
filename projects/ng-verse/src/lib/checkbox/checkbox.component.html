@@ -1,18 +1,19 @@
-<div class="checkbox" [class.checked]="value()" [class.disabled]="disabled()">
-  <div class="native-checkbox-container">
-    <input
-      [disabled]="disabled()"
-      (change)="toggle()"
-      class="native-checkbox"
-      [id]="id()"
+<div class="native-checkbox-container">
+  <input
+    [disabled]="disabled()"
+    (change)="toggle()"
+    class="native-checkbox"
+    [id]="id()"
+    [checked]="value()"
+    type="checkbox"
+  />
+  <div class="checkbox-icon">
+    <app-checkbox-icon
+      [@toggle]="value()"
       [checked]="value()"
-      type="checkbox"
-    />
-    <div class="checkbox-icon">
-      <app-checkbox-icon [checked]="value()"></app-checkbox-icon>
-    </div>
+    ></app-checkbox-icon>
   </div>
-  <label [htmlFor]="id()">
-    <ng-content></ng-content>
-  </label>
 </div>
+<label [htmlFor]="id()">
+  <ng-content></ng-content>
+</label>

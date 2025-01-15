@@ -41,6 +41,7 @@ export class CheckboxPageComponent {
       files: [
         ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
         this.sourceTreeBuilder.file('checkbox-icon.component', ROOT),
+        this.sourceTreeBuilder.file('checkbox-animations', ROOT),
       ],
       hideName: true,
     },
@@ -51,6 +52,7 @@ export class CheckboxPageComponent {
       name: 'CheckboxComponent',
       selector: 'app-checkbox',
       type: 'component',
+      formBindable: true,
       inputs: [
         {
           name: 'disabled',
@@ -63,6 +65,12 @@ export class CheckboxPageComponent {
           type: 'boolean',
           description: 'Adds required validation to the checkbox',
           default: 'false',
+        },
+        {
+          name: 'labelAlign',
+          type: 'start | end',
+          description: 'Aligns the label of the checkbox',
+          default: 'end',
         },
         {
           name: 'id',

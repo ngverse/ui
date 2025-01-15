@@ -1,23 +1,23 @@
-.checkbox {
+:host {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  &.ng-invalid.ng-touched {
+    color: var(--danger);
+  }
+  &.disabled {
+    color: var(--disabled);
+  }
+
+  &.start {
+    flex-direction: row-reverse;
+  }
 }
 
 .checked {
   .checkbox-icon {
     color: var(--primary);
   }
-}
-
-:host.ng-invalid.ng-touched {
-  .checkbox {
-    color: var(--danger);
-  }
-}
-
-.disabled {
-  color: var(--disabled);
 }
 
 .native-checkbox-container {

@@ -13,6 +13,11 @@
           >{{ apiInput.selector }}</span
         >
       }
+      @if (apiInput.formBindable) {
+        <span class="rounded-xl bg-teal-600 px-2 shadow-sm text-white py-0.5"
+          >Form Bindable</span
+        >
+      }
     </div>
   </h4>
   @if (apiInput.description) {
