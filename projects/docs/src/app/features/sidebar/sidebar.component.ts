@@ -9,6 +9,7 @@ interface Group {
 export interface SidebarLink {
   name: string;
   url: string;
+  done?: boolean;
 }
 
 export const SIDEBAR_ROUTES = [
@@ -55,6 +56,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Badge',
         url: '/doc/badge',
+        done: true,
       },
       {
         name: 'Checkbox',
@@ -155,7 +157,7 @@ export const SIDEBAR_ROUTES = [
       },
     ],
   },
-];
+] as Group[];
 
 export function getAllSidebarLinks() {
   return SIDEBAR_ROUTES.flatMap((group) => group.children);

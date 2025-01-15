@@ -14,6 +14,7 @@ module.exports = {
         'progress-spinner',
         'schematics',
         'icon',
+        'badge',
       ],
     ],
   },

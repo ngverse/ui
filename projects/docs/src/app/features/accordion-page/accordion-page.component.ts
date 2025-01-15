@@ -54,6 +54,7 @@ export class AccordionPageComponent {
         name: 'AccordionComponent',
         selector: 'app-accordion',
         type: 'component',
+        description: 'The main component, that includes accordion-items',
         inputs: [
           {
             name: 'multi',
@@ -67,6 +68,8 @@ export class AccordionPageComponent {
         name: 'AccordionItemComponent',
         selector: 'app-accordion-item',
         type: 'component',
+        description:
+          'The component is used within an accordion to render an item.',
         inputs: [
           {
             name: 'label',

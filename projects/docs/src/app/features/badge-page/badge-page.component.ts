@@ -33,7 +33,7 @@ export class BadgePageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: 'badge',
-      files: [this.sourceTreeBuilder.directive(ROOT, ROOT)],
+      files: [...this.sourceTreeBuilder.fullComponent(ROOT, ROOT)],
       hideName: true,
     },
   ];
@@ -42,20 +42,27 @@ export class BadgePageComponent {
     entities: [
       {
         name: 'BadgeComponent',
-        type: 'directive',
-        selector: '[appBadge]',
+        type: 'component',
+        selector: 'app-badge',
         inputs: [
           {
-            name: 'appBadge',
+            name: 'value',
             type: 'number | string | null | undefined',
             description: 'text to display in badge',
             default: EMPTY_API_INPUT_DEFAULT_VALUE,
           },
           {
-            name: 'hideBadge',
+            name: 'hide',
             type: 'boolean',
-            description: 'hides the badge',
+            description: 'hides the badge content',
             default: 'false',
+          },
+          {
+            name: 'useParent',
+            type: 'boolean',
+            description:
+              "sets position relative to the parent element. If false, you must manually set the parent's position to relative or absolute for the badge to fit correctly.",
+            default: 'true',
           },
         ],
       },

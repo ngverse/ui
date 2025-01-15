@@ -20,6 +20,7 @@ export class AccordionComponent implements OnDestroy {
   accordionItems = contentChildren(AccordionItemComponent);
   multi = input(false);
   sub: Subscription | undefined;
+  expandedIndex = input<number>();
 
   constructor() {
     effect(() => {
