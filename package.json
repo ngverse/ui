@@ -17,7 +17,8 @@
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "semantic-release": "semantic-release",
-    "serve:ssr:docs": "node dist/docs/server/server.mjs"
+    "serve:ssr:docs": "node dist/docs/server/server.mjs",
+    "schema:test-watch": "nodemon --watch dist/ng-verse --ext js --exec 'jasmine dist/ng-verse/**/*_spec.js'"
   },
   "lint-staged": {
     "**/*.{js,ts,jsx,tsx,json,css,scss,md}": "prettier --write"
@@ -66,6 +67,7 @@
     "copyfiles": "^2.4.1",
     "eslint": "^9.16.0",
     "husky": "^9.1.7",
+    "jasmine": "^5.5.0",
     "jasmine-core": "~5.4.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -74,6 +76,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "lint-staged": "^15.3.0",
     "ng-packagr": "^19.0.0",
+    "nodemon": "^3.1.9",
     "postcss": "^8.4.49",
     "prettier": "3.4.2",
     "semantic-release": "^24.2.1",

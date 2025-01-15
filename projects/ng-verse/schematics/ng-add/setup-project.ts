@@ -1,25 +1,24 @@
+import { normalize } from '@angular-devkit/core';
 import {
   callRule,
   chain,
   noop,
   Rule,
   SchematicContext,
+  SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
-import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-import {
-  getProjectFromWorkspace,
-  getProjectStyleFile,
-} from '@angular/cdk/schematics';
+import { getProjectFromWorkspace } from '@angular/cdk/schematics';
 import { addRootProvider } from '@schematics/angular/utility';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { join } from 'path';
+import { Schema } from './schema';
 
+import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import {
   addPackageJsonDependency,
   NodeDependencyType,
 } from '@schematics/angular/utility/dependencies';
-import { getWorkspace } from '@schematics/angular/utility/workspace';
-import { Schema } from './schema';
 
 function installDependenceis(): Rule {
   return (tree: Tree, context: SchematicContext) => {
@@ -29,7 +28,7 @@ function installDependenceis(): Rule {
     if (!packageJson.dependencies['ng-verse']) {
       addPackageJsonDependency(tree, {
         type: NodeDependencyType.Default,
-        name: 'ng-verse',
+        name: 'ngverse',
         version: 'latest',
       });
       context.addTask(new NodePackageInstallTask());
@@ -39,51 +38,45 @@ function installDependenceis(): Rule {
 }
 
 function addStyles(options: Schema) {
-  return async (host: Tree, context: SchematicContext) => {
+  return async (host: Tree) => {
     const workspace = await getWorkspace(host);
+
     const project = getProjectFromWorkspace(workspace, options.project);
-    const styleFilePath = getProjectStyleFile(project);
-    const logger = context.logger;
 
-    if (!styleFilePath) {
-      logger.error(`Could not find the default style file for this project.`);
-      logger.info(`Consider manually adding the Roboto font to your CSS.`);
-      logger.info(
-        `More information at https://fonts.google.com/specimen/Roboto`
+    if (!project) {
+      throw new SchematicsException(`Invalid project name: ${options.project}`);
+    }
+    const projectType =
+      project.extensions['projectType'] === 'application' ? 'app' : 'lib';
+
+    const rootPath = normalize(`${project.sourceRoot}/${projectType}`);
+
+    const styleSCSSPath = normalize(join(rootPath, 'styles.scss'));
+
+    if (!host.exists(styleSCSSPath)) {
+      throw new SchematicsException(
+        `Could not find ${styleSCSSPath} to add ngverse.scss`
       );
-      return;
     }
 
-    const buffer = host.read(styleFilePath);
-
-    if (!buffer) {
-      logger.error(
-        `Could not read the default style file within the project ` +
-          `(${styleFilePath})`
-      );
-      logger.info(`Please consider manually setting up the Roboto font.`);
-      return;
-    }
-
-    const htmlContent = buffer.toString();
-    const globalStylesPath = join(
-      'node_modules',
-      'ng-verse',
-      'src',
-      'lib',
-      'globals.scss'
+    const ngVerseStylePath = normalize(
+      join('node_modules', 'ngverse', 'src', 'lib', 'ngverse.scss')
     );
-    const globalStylesContent = host.read(globalStylesPath);
 
-    const insertion = `\n ${globalStylesContent?.toString() || ''}\n`;
-
-    if (htmlContent.includes(insertion)) {
-      return;
+    if (!host.exists(ngVerseStylePath)) {
+      throw new SchematicsException(
+        `Could not find ${ngVerseStylePath} to add ngverse.scss`
+      );
     }
 
-    const recorder = host.beginUpdate(styleFilePath);
+    const newNgVerseStylePath = normalize(join(rootPath, 'ngverse.scss'));
 
-    recorder.insertLeft(htmlContent.length, insertion);
+    host.create(newNgVerseStylePath, host.read(ngVerseStylePath) as Buffer);
+
+    const insertion = `@use './ngverse.scss';\n`;
+
+    const recorder = host.beginUpdate(styleSCSSPath);
+    recorder.insertLeft(0, insertion);
     host.commitUpdate(recorder);
   };
 }
@@ -100,8 +93,6 @@ function addAnimations(options: Schema) {
             )}(${options.animations === 'disabled' ? `'noop'` : ''})`;
           });
 
-    // The `addRootProvider` rule can throw in some custom scenarios (see #28640).
-    // Add some error handling around it so the setup isn't interrupted.
     return callRule(animationsRule as Rule, host, context);
   };
 }

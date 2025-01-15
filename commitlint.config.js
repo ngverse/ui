@@ -12,6 +12,7 @@ module.exports = {
         'tab',
         'progress-bar',
         'progress-spinner',
+        'schematics',
         'icon',
       ],
     ],

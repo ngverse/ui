@@ -1,16 +1,21 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "SchematicsComponent",
-  "title": "Generate Component Schema",
+  "$id": "SchematicsElement",
+  "title": "Generate Element Schema",
   "type": "object",
   "properties": {
     "name": {
-      "description": "The name of the component.",
+      "description": "The name of the element.",
       "type": "string",
       "$default": {
         "$source": "argv",
         "index": 0
       }
+    },
+    "force": {
+      "type": "boolean",
+      "default": false,
+      "description": "Force overwrite existing files."
     },
     "project": {
       "type": "string",
