@@ -6,9 +6,9 @@ import {
 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { BadgeDirective } from './badge.directive';
+import { BadgeComponent } from './badge.component';
 
-describe('BadgeDirective', () => {
+describe('BadgeComponent', () => {
   let fixture: ComponentFixture<BadgeTestComponent>;
   let debugElement: DebugElement;
   beforeEach(() => {
@@ -25,30 +25,32 @@ describe('BadgeDirective', () => {
     expect(component).toBeTruthy();
   });
   it('should display count', () => {
-    const badgeElement = debugElement.query(By.directive(BadgeDirective))
+    const badgeElement = debugElement.query(By.directive(BadgeComponent))
       .children[0];
-    expect(badgeElement.nativeElement.textContent).toBe('5');
+    expect(badgeElement.nativeElement.textContent.trim()).toBe('5');
   });
   it('should update count', () => {
-    const badgeElement = debugElement.query(By.directive(BadgeDirective))
+    const badgeElement = debugElement.query(By.directive(BadgeComponent))
       .children[0];
     fixture.componentInstance.count.update((c) => c + 1);
     fixture.detectChanges();
-    expect(badgeElement.nativeElement.textContent).toBe('6');
+    expect(badgeElement.nativeElement.textContent.trim()).toBe('6');
   });
   it('should hide badge', () => {
-    const badgeElement = debugElement.query(By.directive(BadgeDirective))
+    const badgeElement = debugElement.query(By.directive(BadgeComponent))
       .children[0];
     fixture.componentInstance.hideBadge.set(true);
     fixture.detectChanges();
-    expect(badgeElement.nativeElement.style.display).toBe('none');
+    expect(badgeElement.nativeElement.style.display).toBe('');
   });
 });
 
 @Component({
-  imports: [BadgeDirective],
+  imports: [BadgeComponent],
   template: `
-    <span [hideBadge]="hideBadge()" [appBadge]="count()"> Notifications </span>
+    <span
+      >Notifications <app-badge [value]="count()" [hide]="!count()"></app-badge>
+    </span>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

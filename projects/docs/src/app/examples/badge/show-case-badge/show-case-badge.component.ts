@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BadgeDirective } from '@ng-verse/badge/badge.directive';
+import { BadgeComponent } from '@ng-verse/badge/badge.component';
 import { ButtonComponent } from '@ng-verse/button/button.component';
 
 @Component({
   selector: 'doc-show-case-badge',
-  imports: [BadgeDirective, FormsModule, ButtonComponent],
+  imports: [FormsModule, ButtonComponent, BadgeComponent],
   templateUrl: './show-case-badge.component.html',
   styleUrl: './show-case-badge.component.scss',
 })

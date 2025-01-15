@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 type COLOR_TYPES =
-  | 'default'
   | 'primary'
   | 'secondary'
   | 'danger'
   | 'success'
-  | 'default';
+  | 'default'
+  | 'none';
 
-type VARIANT_TYPES = 'fill' | 'outline' | 'link';
+type VARIANT_TYPES = 'fill' | 'outline' | 'link' | 'none';
 
-type SIZE_TYPES = 'sm' | 'md' | 'lg';
+type SIZE_TYPES = 'sm' | 'md' | 'lg' | 'none';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector

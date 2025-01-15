@@ -16,3 +16,7 @@ a {
     @apply sticky top-[56px];
   }
 }
+
+.in-progress {
+  @apply text-gray-400 pointer-events-none;
+}

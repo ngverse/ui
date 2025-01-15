@@ -8,9 +8,6 @@ import { SourceCodeComponent } from '../source-code/source-code.component';
   styleUrl: './command-installation.component.scss',
 })
 export class CommandInstallationComponent {
-  type = input('component');
   name = input.required<string>();
-  installation = computed(
-    () => `ng generate ngverse:${this.type()} ${this.name()}`
-  );
+  installation = computed(() => `ng generate ngverse:element ${this.name()}`);
 }
