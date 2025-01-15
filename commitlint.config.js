@@ -15,6 +15,7 @@ module.exports = {
         'schematics',
         'icon',
         'badge',
+        'checkbox',
       ],
     ],
   },

@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { CheckboxIconComponent } from './checkbox-icon.component';
 import { CheckboxComponent } from './checkbox.component';
 
@@ -17,13 +18,13 @@ describe('CheckboxComponent', () => {
   let htmlElement: HTMLElement;
   let rootComponent: CheckboxTestComponent;
   let checkboxComponent: CheckboxComponent;
-  let checkboxRootElement: HTMLElement;
   let checkboxNativeElement: HTMLElement;
   let checkboxElement: HTMLElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [CheckboxComponent],
+      providers: [provideAnimations()],
     });
     fixture = TestBed.createComponent(CheckboxTestComponent);
     debugElement = fixture.debugElement;
@@ -34,7 +35,6 @@ describe('CheckboxComponent', () => {
     checkboxElement = debugElement.query(
       By.directive(CheckboxComponent)
     ).nativeElement;
-    checkboxRootElement = htmlElement.querySelector('.checkbox') as HTMLElement;
     checkboxNativeElement = htmlElement.querySelector('input') as HTMLElement;
     fixture.detectChanges();
   });
@@ -45,7 +45,7 @@ describe('CheckboxComponent', () => {
   it('should disable checkbox with disable true', () => {
     checkboxComponent.disabled.set(true);
     fixture.detectChanges();
-    expect(checkboxRootElement.classList).toContain('disabled');
+    expect(checkboxElement.classList).toContain('disabled');
   });
   it('should be true on change', () => {
     checkboxNativeElement.dispatchEvent(new Event('change'));

@@ -20,8 +20,8 @@ export class BadgeComponent {
   value = input.required<string | number | undefined | null>();
   hide = input<boolean>(false);
   useParent = signal(true);
-  renderer = inject(Renderer2);
-  host = inject(ElementRef<HTMLElement>);
+  private renderer = inject(Renderer2);
+  private host = inject(ElementRef<HTMLElement>);
 
   constructor() {
     effect(() => {

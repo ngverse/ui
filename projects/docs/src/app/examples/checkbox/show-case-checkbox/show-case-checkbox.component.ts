@@ -1,4 +1,4 @@
-import { Component, model } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -14,7 +14,5 @@ import { CheckboxComponent } from '@ng-verse/checkbox/checkbox.component';
   styleUrl: './show-case-checkbox.component.scss',
 })
 export class ShowCaseCheckboxComponent {
-  value = model();
-
-  formControl = new FormControl(false, Validators.requiredTrue);
+  formControl = new FormControl(false, Validators.required);
 }
