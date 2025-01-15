@@ -46,7 +46,7 @@ function createButtonComponent(appTree: UnitTestTree) {
   );
 }
 
-describe('single application', () => {
+describe('element', () => {
   const testRunner = new SchematicTestRunner('ngverse', collectionPath);
   const workspaceOptions: WorkspaceOptions = {
     name: 'workspace',
