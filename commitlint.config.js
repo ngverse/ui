@@ -12,6 +12,7 @@ export default {
         'tab',
         'progress-bar',
         'progress-spinner',
+        'schematics',
       ],
     ],
   },

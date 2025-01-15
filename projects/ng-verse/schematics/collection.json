@@ -1,10 +1,10 @@
 {
   "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "component": {
-      "description": "Generate a Component in the project.",
-      "factory": "./component/index#component",
-      "schema": "./component/schema.json"
+    "element": {
+      "description": "Generate a element in the project.",
+      "factory": "./element/index#element",
+      "schema": "./element/schema.json"
     },
     "ng-add": {
       "description": "Add ng-verse to the project.",
