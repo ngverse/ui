@@ -66,6 +66,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Card',
         url: '/doc/card',
+        done: true,
       },
       {
         name: 'Divider',

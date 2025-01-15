@@ -9,9 +9,13 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   host: {
     '[class.surface]': 'surface()',
     '[class.outline]': 'outline()',
+    '[class.shadow]': 'shadow()',
+    '[class.gap]': 'gap()',
   },
 })
 export class CardComponent {
   surface = input(false);
   outline = input(true);
+  shadow = input(false);
+  gap = input(true);
 }

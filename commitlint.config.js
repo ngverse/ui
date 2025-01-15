@@ -16,6 +16,7 @@ module.exports = {
         'icon',
         'badge',
         'checkbox',
+        'card',
       ],
     ],
   },

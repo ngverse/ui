@@ -63,6 +63,13 @@ export class SourceTreeBuilder {
     ];
   }
 
+  fullInlineComponent(name: string, rootPath: string): SourceTreeFile[] {
+    return [
+      this.component(name, rootPath, 'ts'),
+      this.component(name, rootPath, 'spec.ts'),
+    ];
+  }
+
   inlineComponent(name: string, rootPath: string): SourceTreeFile[] {
     return [
       this.component(name, rootPath, 'ts'),
