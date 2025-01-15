@@ -32,7 +32,7 @@ export class SkeletonPageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: 'skeleton',
-      files: [...this.sourceTreeBuilder.fullComponent(ROOT, ROOT)],
+      files: [...this.sourceTreeBuilder.inlineComponent(ROOT, ROOT)],
       hideName: true,
     },
   ];
@@ -43,9 +43,9 @@ export class SkeletonPageComponent {
         name: 'SkeletonComponent',
         type: 'component',
         selector: 'app-skeleton',
+        description: `The Skeleton component is an placeholder used to indicate loading content.
+        It can be styled with CSS to customize its size, shape.`,
       },
     ],
-    description: `The Skeleton component is an placeholder used to indicate loading content.
-    It can be styled with CSS to customize its size, shape.`,
   };
 }

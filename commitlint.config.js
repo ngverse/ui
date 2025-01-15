@@ -17,6 +17,7 @@ module.exports = {
         'badge',
         'checkbox',
         'card',
+        'skeleton',
       ],
     ],
   },

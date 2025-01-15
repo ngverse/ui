@@ -75,6 +75,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Skeleton',
         url: '/doc/skeleton',
+        done: true,
       },
       {
         name: 'Radio Button',
