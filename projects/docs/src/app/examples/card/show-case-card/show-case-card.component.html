@@ -1,14 +1,41 @@
-<app-card class="card">
-  <app-card-header>
-    <app-card-title>Card Title</app-card-title>
-    <app-card-description>Card Description</app-card-description>
-  </app-card-header>
-  <app-card-content class="card-content">
-    <input appInput [(ngModel)]="username" placeholder="Username" />
-    <input appInput [(ngModel)]="password" placeholder="Password" />
-  </app-card-content>
-  <app-card-footer class="card-footer">
-    <button appButton variant="outline" color="primary" size="sm">Back</button>
-    <button appButton color="primary" size="sm">Login</button>
-  </app-card-footer>
-</app-card>
+<div class="show-case">
+  <app-card class="card">
+    <app-card-title>With Outline</app-card-title>
+    <app-card-content class="card-content">
+      <input appInput [(ngModel)]="username" placeholder="Username" />
+      <input appInput [(ngModel)]="password" placeholder="Password" />
+    </app-card-content>
+    <app-card-footer class="card-footer">
+      <button appButton variant="outline" color="primary" size="sm">
+        Back
+      </button>
+      <button appButton color="primary" size="sm">Login</button>
+    </app-card-footer>
+  </app-card>
+  <app-card class="card" [surface]="true">
+    <app-card-title>With Surface</app-card-title>
+    <app-card-content class="card-content">
+      <input appInput [(ngModel)]="username" placeholder="Username" />
+      <input appInput [(ngModel)]="password" placeholder="Password" />
+    </app-card-content>
+    <app-card-footer class="card-footer">
+      <button appButton variant="outline" color="primary" size="sm">
+        Back
+      </button>
+      <button appButton color="primary" size="sm">Login</button>
+    </app-card-footer>
+  </app-card>
+  <app-card class="card" [shadow]="true">
+    <app-card-title>With Shadow</app-card-title>
+    <app-card-content class="card-content">
+      <input appInput [(ngModel)]="username" placeholder="Username" />
+      <input appInput [(ngModel)]="password" placeholder="Password" />
+    </app-card-content>
+    <app-card-footer class="card-footer">
+      <button appButton variant="outline" color="primary" size="sm">
+        Back
+      </button>
+      <button appButton color="primary" size="sm">Login</button>
+    </app-card-footer>
+  </app-card>
+</div>

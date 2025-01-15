@@ -30,24 +30,17 @@ const ROOT = 'card';
 export class CardPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
 
-  subFolders(name: string): SourceTreeFolder {
-    return {
-      name: name,
-      files: [...this.sourceTreeBuilder.fullComponent(name, `${ROOT}/${name}`)],
-    };
-  }
-
   sourceTree: SourceTreeFolder[] = [
     {
       name: ROOT,
-      files: [...this.sourceTreeBuilder.fullComponent(ROOT, ROOT)],
+      files: [
+        ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
+        ...this.sourceTreeBuilder.fullInlineComponent('card-title', ROOT),
+        ...this.sourceTreeBuilder.fullInlineComponent('card-content', ROOT),
+        ...this.sourceTreeBuilder.fullInlineComponent('card-footer', ROOT),
+      ],
       hideName: true,
     },
-    this.subFolders('card-header'),
-    this.subFolders('card-title'),
-    this.subFolders('card-description'),
-    this.subFolders('card-content'),
-    this.subFolders('card-footer'),
   ];
 
   apiInfo: ApiInfo = {
@@ -56,25 +49,39 @@ export class CardPageComponent {
         name: 'CardComponent',
         type: 'component',
         selector: 'app-card',
-        description: 'The main component of card',
-      },
-      {
-        name: 'CardHeaderComponent',
-        type: 'component',
-        selector: 'app-card-header',
-        description: 'Renders the header of a card component.',
+        description: `The main component. It renders either a title, content, and footer or defaults to rendering the provided content.`,
+        inputs: [
+          {
+            name: 'outline',
+            type: 'boolean',
+            description: 'adds border',
+            default: 'true',
+          },
+          {
+            name: 'surface',
+            type: 'boolean',
+            description: 'adds background color',
+            default: 'false',
+          },
+          {
+            name: 'shadow',
+            type: 'boolean',
+            description: 'adds shadow',
+            default: 'false',
+          },
+          {
+            name: 'gap',
+            type: 'boolean',
+            description: 'adds padding',
+            default: 'true',
+          },
+        ],
       },
       {
         name: 'CardTitleComponent',
         type: 'component',
         selector: 'app-card-title',
         description: 'Renders the title of a card component.',
-      },
-      {
-        name: 'CardDescriptionComponent',
-        type: 'component',
-        selector: 'app-card-description',
-        description: 'Renders the description of a card component.',
       },
       {
         name: 'CardContentComponent',

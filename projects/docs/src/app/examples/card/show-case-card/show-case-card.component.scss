@@ -1,6 +1,13 @@
+.show-case {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
 .card {
   max-width: 300px;
-  margin: 0 auto;
 }
 
 .card-footer {
