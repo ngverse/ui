@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   styleUrl: './divider.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.vertical-divider]': 'vertical()',
+    '[class.vertical]': 'vertical()',
   },
 })
 export class DividerComponent {

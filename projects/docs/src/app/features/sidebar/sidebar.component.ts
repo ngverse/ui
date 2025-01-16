@@ -71,6 +71,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Divider',
         url: '/doc/divider',
+        done: true,
       },
       {
         name: 'Skeleton',

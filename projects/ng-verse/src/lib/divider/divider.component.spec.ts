@@ -19,4 +19,9 @@ describe('DividerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should add vertical class', () => {
+    fixture.componentRef.setInput('vertical', true);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.classList).toContain('vertical');
+  });
 });

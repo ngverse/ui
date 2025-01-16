@@ -1,10 +1,10 @@
 :host {
   display: block;
-  background-color: var(--separator);
+  background-color: var(--divider);
   height: 1px;
   width: 100%;
 
-  &.vertical-divider {
+  &.vertical {
     height: 100%;
     width: 1px;
   }
