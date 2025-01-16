@@ -35,7 +35,7 @@ export const SIDEBAR_ROUTES = [
     ],
   },
   {
-    name: 'Components',
+    name: 'Elements',
     children: [
       {
         name: 'Accordion',
@@ -101,6 +101,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Tooltip',
         url: '/doc/tooltip',
+        done: true,
       },
       {
         name: 'Textarea',

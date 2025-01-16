@@ -25,6 +25,7 @@ module.exports = {
         'input',
         'textarea',
         'radio-button',
+        'tooltip',
       ],
     ],
   },
