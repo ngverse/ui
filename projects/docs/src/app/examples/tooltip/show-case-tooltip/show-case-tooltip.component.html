@@ -5,16 +5,17 @@
   <button appButton appTooltip="Right tooltip" tooltipPosition="right">
     Right Tooltip
   </button>
-  <button appButton appTooltip="Bottom tooltip" tooltipPosition="bottom">
-    Bottom Tooltip
-  </button>
-  <button appButton appTooltip="Left tooltip" tooltipPosition="left">
-    Left Tooltip
-  </button>
+  <input
+    appInput
+    appTooltip="Bottom Tooltip"
+    tooltipPosition="bottom"
+    placeholder="Focus to show"
+    tooltipEvent="focus"
+  />
   <button
     appButton
     appTooltip
-    tooltipPosition="bottom"
+    tooltipPosition="left"
     [tooltipContent]="customContent"
   >
     Custom Content Tooltip

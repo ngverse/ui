@@ -49,7 +49,7 @@ export class TooltipPageComponent {
   apiInfo: ApiInfo = {
     entities: [
       {
-        name: 'TooltipComponent',
+        name: 'TooltipDirective',
         type: 'directive',
         selector: '[appTooltip]',
         inputs: [
