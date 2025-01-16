@@ -4,6 +4,7 @@ import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
+import { AUTO_GENERATED_API_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -43,6 +44,7 @@ export class SwitchPageComponent {
         name: 'SwitchComponent',
         selector: 'app-switch',
         type: 'component',
+        formBindable: true,
         inputs: [
           {
             name: 'disabled',
@@ -57,10 +59,16 @@ export class SwitchPageComponent {
             default: 'false',
           },
           {
-            name: 'reverse',
-            type: 'boolean',
-            description: 'Reverses the label alignment',
-            default: 'false',
+            name: 'labelAlign',
+            type: 'start | end',
+            description: 'Aligns the label of the checkbox',
+            default: 'end',
+          },
+          {
+            name: 'id',
+            type: 'string',
+            description: 'Sets id attribute to the switch button element',
+            default: AUTO_GENERATED_API_DEFAULT_VALUE,
           },
         ],
       },

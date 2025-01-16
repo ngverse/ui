@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   model,
   signal,
@@ -21,11 +22,15 @@ type OnTouchedFunction = (() => void) | undefined;
 
 type VALUE_TYPE = boolean | undefined | null;
 
+type ValidatorChangeFunction = (() => void) | undefined;
+
 let switchId = 0;
 
 function genId() {
   return `switch-${switchId++}`;
 }
+
+type LABEL_ALIGN = 'start' | 'end';
 
 @Component({
   selector: 'app-switch',
@@ -45,48 +50,57 @@ function genId() {
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.disabled]': 'disabled()',
+    '[class.checked]': 'value()',
+    '[class.start]': 'labelAlign() === "start"',
+  },
 })
 export class SwitchComponent implements ControlValueAccessor, Validator {
+  labelAlign = input<LABEL_ALIGN>('end');
+  disabled = model<boolean>(false);
+  required = input<boolean>(false);
+  id = input(genId());
   value = signal<VALUE_TYPE>(undefined);
 
-  private _registerOnChange: OnChangeFunction;
-  private _onTouched: OnTouchedFunction;
+  private _registerOnChangefn: OnChangeFunction;
+  private _onTouchedfn: OnTouchedFunction;
+  private _validatorChangefn: ValidatorChangeFunction;
 
-  disabled = model<boolean>(false);
-
-  required = input<boolean>(false);
-
-  reverse = input<boolean>(false);
-
-  id = genId();
-
-  writeValue(obj: boolean | undefined | null): void {
-    this.value.set(obj);
-  }
-  registerOnChange(fn: OnChangeFunction): void {
-    this._registerOnChange = fn;
-  }
-
-  registerOnTouched(fn: OnTouchedFunction): void {
-    this._onTouched = fn;
-  }
-
-  setDisabledState?(isDisabled: boolean): void {
-    this.disabled.set(isDisabled);
+  constructor() {
+    effect(() => {
+      this.required();
+      this._validatorChangefn?.();
+    });
   }
 
   toggle() {
     if (this.disabled()) {
       return;
     }
-    if (this._onTouched) {
-      this._onTouched();
-    }
+    this._onTouchedfn?.();
     const newValue = !this.value();
     this.value.set(newValue);
-    if (this._registerOnChange) {
-      this._registerOnChange(newValue);
-    }
+    this._registerOnChangefn?.(newValue);
+  }
+
+  writeValue(obj: boolean | undefined | null): void {
+    this.value.set(obj);
+  }
+  registerOnChange(fn: OnChangeFunction): void {
+    this._registerOnChangefn = fn;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this._validatorChangefn = fn;
+  }
+
+  registerOnTouched(fn: OnTouchedFunction): void {
+    this._onTouchedfn = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled.set(isDisabled);
   }
 
   validate(control: AbstractControl<boolean>): ValidationErrors | null {

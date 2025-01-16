@@ -16,7 +16,6 @@ describe('SwitchComponent', () => {
   let htmlElement: HTMLElement;
   let rootComponent: SwitchTestComponent;
   let switchComponent: SwitchComponent;
-  let switchRootElement: HTMLElement;
   let switchNativeElement: HTMLElement;
   let switchElement: HTMLElement;
 
@@ -33,7 +32,6 @@ describe('SwitchComponent', () => {
     switchElement = debugElement.query(
       By.directive(SwitchComponent)
     ).nativeElement;
-    switchRootElement = htmlElement.querySelector('.switch') as HTMLElement;
     switchNativeElement = htmlElement.querySelector('button') as HTMLElement;
     fixture.detectChanges();
   });
@@ -44,7 +42,7 @@ describe('SwitchComponent', () => {
   it('should disable switch with disable true', () => {
     switchComponent.disabled.set(true);
     fixture.detectChanges();
-    expect(switchRootElement.classList).toContain('disabled');
+    expect(switchElement.classList).toContain('disabled');
   });
   it('should be true on change', () => {
     switchNativeElement.dispatchEvent(new Event('click'));
@@ -73,16 +71,16 @@ describe('SwitchComponent', () => {
   });
 
   it('reverse should change label and toggle alignment', () => {
-    rootComponent.reverse.set(true);
+    rootComponent.labelAlign.set('start');
     fixture.detectChanges();
-    expect(switchRootElement.classList).toContain('reverse');
+    expect(switchElement.classList).toContain('start');
   });
 });
 
 @Component({
   imports: [SwitchComponent, ReactiveFormsModule],
   template: `<app-switch
-    [reverse]="reverse()"
+    [labelAlign]="labelAlign()"
     [required]="required"
     [formControl]="formControl"
   >
@@ -91,7 +89,7 @@ describe('SwitchComponent', () => {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class SwitchTestComponent {
-  reverse = signal(false);
+  labelAlign = signal<'start' | 'end'>('end');
   formControl = new FormControl();
   required = signal(false);
 }

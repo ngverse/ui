@@ -90,6 +90,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Switch',
         url: '/doc/switch',
+        done: true,
       },
       {
         name: 'Toast',

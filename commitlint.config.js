@@ -21,6 +21,7 @@ module.exports = {
         'divider',
         'loader',
         'progress-bar',
+        'switch',
       ],
     ],
   },
