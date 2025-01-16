@@ -43,7 +43,10 @@ export class InputPageComponent {
       {
         name: 'InputComponent',
         type: 'component',
-        selector: '[appInput]',
+        selector: 'input[appInput]',
+        formBindable: true,
+        description:
+          'appInput is used with native input element, so all native input attributes can be used',
       },
     ],
   };

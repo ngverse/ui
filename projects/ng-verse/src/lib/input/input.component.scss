@@ -1,10 +1,10 @@
 :host {
-  border: var(--app-field-border);
-  border-radius: var(--app-field-border-radius);
-  height: var(--app-field-height);
-  padding: var(--app-field-padding);
-  &:focus {
-    outline: var(--ring);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  height: var(--field-height);
+  padding: var(--field-padding);
+  &:focus-visible {
+    outline: 1px solid var(--ring);
   }
   &:disabled,
   &[readonly] {
@@ -17,6 +17,6 @@
 }
 
 :host.ng-invalid.ng-touched {
-  border-color: var(--app-danger-color);
-  outline: none;
+  border-color: var(--danger);
+  outline-color: transparent;
 }

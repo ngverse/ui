@@ -22,6 +22,7 @@ module.exports = {
         'loader',
         'progress-bar',
         'switch',
+        'input',
       ],
     ],
   },

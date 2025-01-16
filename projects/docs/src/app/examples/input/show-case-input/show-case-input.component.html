@@ -1,14 +1,23 @@
-<div class="show-case">
+<form class="show-case">
   <input
     appInput
-    [readonly]="true"
+    [required]="true"
     placeholder="username"
     [(ngModel)]="username"
+    name="username"
   />
   <input
     appInput
     placeholder="password"
     type="password"
+    [required]="true"
     [(ngModel)]="password"
+    name="password"
   />
-</div>
+  <div class="age-container">
+    <app-checkbox labelAlign="start" name="age" [(ngModel)]="age"
+      >Age</app-checkbox
+    >
+    <input appInput placeholder="Age" type="number" [disabled]="!age()" />
+  </div>
+</form>

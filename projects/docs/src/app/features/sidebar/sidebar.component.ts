@@ -124,6 +124,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Input',
         url: '/doc/input',
+        done: true,
       },
       {
         name: 'Form Field',

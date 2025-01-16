@@ -23,8 +23,8 @@
   --success: #16a34a;
   --success-foreground: white;
 
-  --disabled: #9ca3af;
-  --disabled-foreground: #e5e7eb;
+  --disabled: #f3f4f6;
+  --disabled-foreground: #9ca3af;
 
   --surface: #f9fafb;
 
@@ -41,10 +41,11 @@
   --mute-start: #e0e0e0;
   --mute-end: #f0f0f0;
 
-  --app-field-height: 36px;
+  --field-height: 36px;
+  --field-padding: 6px 10px;
+
   --app-field-border-radius: 8px;
   --app-field-border: 1px solid #d1d5db;
-  --app-field-padding: 6px 10px;
   --app-field-focus-outline: 1px solid #9ca3af;
   --app-field-disabled-bg-color: #f3f4f6;
   --app-field-disabled-color: #9ca3af;
