@@ -24,6 +24,7 @@ module.exports = {
         'switch',
         'input',
         'textarea',
+        'radio-button',
       ],
     ],
   },

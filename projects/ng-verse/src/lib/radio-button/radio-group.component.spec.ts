@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RadioButtonComponent } from '../radio-button.component';
+import { RadioButtonComponent } from './radio-button.component';
 import { RadioGroupComponent } from './radio-group.component';
 
 describe('RadioGroupComponent', () => {

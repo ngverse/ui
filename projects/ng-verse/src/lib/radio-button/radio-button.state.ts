@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, InputSignal, signal } from '@angular/core';
 import { RadioButtonComponent } from './radio-button.component';
 
 export type OnTouchedFunction = (() => void) | undefined;
@@ -12,12 +12,12 @@ export type CompareWith = (o1: any, o2: any) => boolean;
 export class RadioButtonState {
   private _radioButtons = new Set<RadioButtonComponent>();
   private _value = signal<unknown>(undefined);
-  name = signal<string>('');
+  name!: InputSignal<string>;
   disabled = signal(false);
-  registerOnChange: OnChangeFunction;
-  validatorChangeFn: ValidatorChangeFunction;
-  onTouched: OnTouchedFunction;
-  compareWith = signal<CompareWith>((o1, o2) => o1 === o2);
+  registerOnChangefn: OnChangeFunction;
+  validatorChangefn: ValidatorChangeFunction;
+  onTouchedfn: OnTouchedFunction;
+  compareWith!: InputSignal<CompareWith>;
 
   add(radioButton: RadioButtonComponent) {
     this._radioButtons.add(radioButton);
@@ -28,12 +28,8 @@ export class RadioButtonState {
 
   selected(value: unknown) {
     this._value.set(value);
-    if (this.registerOnChange) {
-      this.registerOnChange(this._value());
-    }
-    if (this.onTouched) {
-      this.onTouched();
-    }
+    this.registerOnChangefn?.(this._value());
+    this.onTouchedfn?.();
   }
 
   writeValue(value: unknown) {

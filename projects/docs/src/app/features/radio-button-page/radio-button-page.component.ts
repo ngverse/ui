@@ -39,17 +39,9 @@ export class RadioButtonPageComponent {
         ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
         this.sourceTreeBuilder.component('radio-button-icon', ROOT),
         this.sourceTreeBuilder.file('radio-button.state', ROOT),
+        ...this.sourceTreeBuilder.fullComponent('radio-group', ROOT),
       ],
       hideName: true,
-    },
-    {
-      name: 'radio-group',
-      files: [
-        ...this.sourceTreeBuilder.fullComponent(
-          'radio-group',
-          `${ROOT}/radio-group`
-        ),
-      ],
     },
   ];
 
@@ -59,6 +51,7 @@ export class RadioButtonPageComponent {
         name: 'radio-group',
         selector: 'app-radio-group',
         type: 'component',
+        formBindable: true,
         inputs: [
           {
             name: 'vertical',

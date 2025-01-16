@@ -8,32 +8,27 @@
   right: 0;
   bottom: 0;
   top: 0;
+  z-index: 1;
 }
 
 .radio-button {
   display: flex;
   align-items: center;
-
+  gap: 8px;
   &.disabled {
-    color: var(--disabled);
+    color: var(--disabled-foreground);
   }
 }
 
 .radio-button-icon {
-  display: inline;
   cursor: pointer;
-  pointer-events: none;
+  display: block;
   &.checked {
     color: var(--primary);
   }
 }
 
-.native-radio-button:focus + .radio-button-icon {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
+.native-radio-button:focus-visible + .radio-button-icon {
+  outline: 1px solid var(--ring);
   border-radius: 50%;
-}
-
-.radio-button-label {
-  padding-left: 8px;
 }
