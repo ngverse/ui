@@ -1,7 +1,4 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
   &.outline {
     border-radius: var(--border-radius);
     border: var(--border);
