@@ -20,6 +20,7 @@ module.exports = {
         'skeleton',
         'divider',
         'loader',
+        'progress-bar',
       ],
     ],
   },

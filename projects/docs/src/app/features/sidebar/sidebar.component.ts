@@ -110,6 +110,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Progress Bar',
         url: '/doc/progress-bar',
+        done: true,
       },
       {
         name: 'Dialog',
