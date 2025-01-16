@@ -23,16 +23,15 @@ function genInputId() {
 })
 export class RadioButtonComponent {
   disabled = input<boolean>();
+  value = input.required<unknown>();
+
+  id = input(genInputId());
 
   radioButtonDisabled = computed(() => {
     return this.disabled() || this.radioButtonState.disabled();
   });
 
-  radioButtonState = inject(RadioButtonState);
-
-  value = input.required<unknown>();
-
-  id = input(genInputId());
+  private radioButtonState = inject(RadioButtonState);
 
   name = this.radioButtonState.name;
   compareWith = this.radioButtonState.compareWith;

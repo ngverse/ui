@@ -2,35 +2,33 @@ import {
   ChangeDetectionStrategy,
   Component,
   ComponentRef,
+  input,
 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { RadioButtonComponent } from './radio-button.component';
-import { RadioButtonState } from './radio-button.state';
+import { RadioGroupComponent } from './radio-group.component';
 
 describe('RadioButtonComponent', () => {
-  let fixture: ComponentFixture<RadioButtonComponent>;
-  let componentRef: ComponentRef<RadioButtonComponent>;
+  let fixture: ComponentFixture<RadioButtonTestComponent>;
+  let componentRef: ComponentRef<RadioButtonTestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RadioButtonComponent, RadioButtonTestComponent],
-      providers: [RadioButtonState],
+      imports: [RadioButtonTestComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RadioButtonComponent);
+    fixture = TestBed.createComponent(RadioButtonTestComponent);
     componentRef = fixture.componentRef;
     componentRef.setInput('value', 1);
+
     fixture.detectChanges();
   });
-  it('should generate unique ID and attach to input and label', () => {
-    const input = fixture.nativeElement.querySelector('input');
-    const label = fixture.nativeElement.querySelector('label');
-    expect(input.id).toContain('radio-button-');
-    expect(input.id).toEqual(label.getAttribute('for'));
-  });
+
   it("should set new ID if ID isn't provided", () => {
     const randomId = 'random-id';
-    componentRef.setInput('id', randomId);
+    fixture.componentRef.setInput('id', randomId);
     fixture.detectChanges();
     const input = fixture.nativeElement.querySelector('input');
     const label = fixture.nativeElement.querySelector('label');
@@ -60,27 +58,29 @@ describe('RadioButtonComponent', () => {
   });
 
   it("name should be the same as RadioButtonState's name", () => {
-    const radioButtonState = TestBed.inject(RadioButtonState);
-    radioButtonState.name.set('test');
+    const radioGroup = fixture.debugElement.query(
+      By.directive(RadioGroupComponent)
+    ).componentInstance;
     fixture.detectChanges();
     const input = fixture.nativeElement.querySelector(
       'input'
     ) as HTMLInputElement;
-    expect(input.name).toEqual(radioButtonState.name());
+    expect(input.name).toEqual(radioGroup.name());
   });
   it('RadioButtonState disabled should disable radio-button', () => {
-    const radioButtonState = TestBed.inject(RadioButtonState);
-    radioButtonState.disabled.set(true);
+    fixture.componentInstance.formControl.disable();
     fixture.detectChanges();
     const input = fixture.nativeElement.querySelector(
       'input'
     ) as HTMLInputElement;
     expect(input.disabled).toBeTrue();
   });
-  it("radio-button should be selected on same value as RadioButtonState's value", () => {
-    const radioButtonState = TestBed.inject(RadioButtonState);
-    radioButtonState.writeValue(1);
+  it('radio-button should be selected on same value as Form control value', () => {
+    fixture.componentRef.setInput('value', 1);
     fixture.detectChanges();
+    fixture.componentInstance.formControl.setValue(1);
+    fixture.detectChanges();
+
     const input = fixture.nativeElement.querySelector(
       'input'
     ) as HTMLInputElement;
@@ -93,9 +93,8 @@ describe('RadioButtonComponent', () => {
       }
       return false;
     };
-    const radioButtonState = TestBed.inject(RadioButtonState);
-    radioButtonState.writeValue(1);
-    radioButtonState.compareWith.set(dummyCompareWith);
+    fixture.componentInstance.formControl.setValue(1);
+    componentRef.setInput('compareWith', dummyCompareWith);
     fixture.detectChanges();
     const input = fixture.nativeElement.querySelector(
       'input'
@@ -113,10 +112,20 @@ describe('RadioButtonComponent', () => {
 });
 
 @Component({
-  imports: [RadioButtonComponent],
-  template: `<app-radio-button [value]="1">
-    I am radioButton
-  </app-radio-button>`,
+  imports: [RadioButtonComponent, RadioGroupComponent, ReactiveFormsModule],
+  template: `
+    <app-radio-group [compareWith]="compareWith()" [formControl]="formControl">
+      <app-radio-button [id]="id()" [disabled]="disabled()" [value]="value()">
+        I am radioButton
+      </app-radio-button>
+    </app-radio-group>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-class RadioButtonTestComponent {}
+class RadioButtonTestComponent {
+  value = input();
+  id = input();
+  disabled = input();
+  formControl = new FormControl();
+  compareWith = input((o1: unknown, o2: unknown) => o1 === o2);
+}

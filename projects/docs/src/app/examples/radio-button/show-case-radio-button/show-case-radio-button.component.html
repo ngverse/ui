@@ -1,8 +1,4 @@
-<app-radio-group
-  [formControl]="formControl"
-  [vertical]="true"
-  [compareWith]="compare"
->
+<app-radio-group [(ngModel)]="val" [vertical]="true" [compareWith]="compare">
   @for (item of values; track $index) {
     <app-radio-button [value]="item"> {{ item.firstName }}</app-radio-button>
   }
