@@ -44,6 +44,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Alert',
         url: '/doc/alert',
+        done: true,
       },
       {
         name: 'Autocomplete',

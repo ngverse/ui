@@ -1,15 +1,17 @@
-import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-export type ALERT_TYPES = 'default' | 'success' | 'danger' | 'warning';
+export type ALERT_TYPES = 'success' | 'danger' | 'warning' | 'none';
 
 @Component({
   selector: 'app-alert',
-  imports: [NgClass],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'alert',
+    '[class]': 'type()',
+  },
 })
 export class AlertComponent {
-  type = input<ALERT_TYPES>('default');
+  type = input<ALERT_TYPES>('none');
 }

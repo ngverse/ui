@@ -48,7 +48,7 @@ export class AlertPageComponent {
       inputs: [
         {
           name: 'type',
-          type: 'default | success | danger | warning',
+          type: 'success | danger | warning | none',
           default: 'default',
           description: 'defines the type of alert',
         },
