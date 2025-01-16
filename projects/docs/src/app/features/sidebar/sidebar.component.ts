@@ -104,6 +104,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Textarea',
         url: '/doc/textarea',
+        done: true,
       },
       {
         name: 'Select',

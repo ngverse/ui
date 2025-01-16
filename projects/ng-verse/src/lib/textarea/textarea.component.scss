@@ -1,14 +1,21 @@
 :host {
-  border: var(--app-field-border);
-  border-radius: var(--app-field-border-radius);
-  &:focus {
-    outline: var(--app-field-focus-outline);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--field-padding);
+  &:focus-visible {
+    outline: 1px solid var(--ring);
   }
-  padding: var(--app-field-padding);
-  width: 100%;
+  &:disabled,
+  &[readonly] {
+    background: var(--disabled);
+    color: var(--disabled-foreground);
+    &::placeholder {
+      color: var(--disabled-foreground);
+    }
+  }
 }
 
 :host.ng-invalid.ng-touched {
-  border-color: var(--app-danger-color);
-  outline: none;
+  border-color: var(--danger);
+  outline-color: transparent;
 }
