@@ -7,9 +7,6 @@ import {
   signal,
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { CardContentComponent } from './card-content.component';
-import { CardFooterComponent } from './card-footer.component';
-import { CardTitleComponent } from './card-title.component';
 import { CardComponent } from './card.component';
 
 describe('CardComponent', () => {
@@ -23,13 +20,6 @@ describe('CardComponent', () => {
 
     fixture = TestBed.createComponent(CardTestComponent);
     cardFixture = fixture.debugElement.query(By.directive(CardComponent));
-  });
-  it('should display all passed components', () => {
-    expect(fixture.nativeElement.querySelector('app-card-title')).toBeTruthy();
-    expect(
-      fixture.nativeElement.querySelector('app-card-content')
-    ).toBeTruthy();
-    expect(fixture.nativeElement.querySelector('app-card-footer')).toBeTruthy();
   });
 
   it('should add outline class', () => {
@@ -61,17 +51,9 @@ describe('CardComponent', () => {
       [shadow]="shadow()"
       [gap]="gap()"
     >
-      <app-card-title>Title</app-card-title>
-      <app-card-content>Body</app-card-content>
-      <app-card-footer>Footer</app-card-footer>
     </app-card>
   `,
-  imports: [
-    CardComponent,
-    CardContentComponent,
-    CardFooterComponent,
-    CardTitleComponent,
-  ],
+  imports: [CardComponent],
   selector: 'app-card-test',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

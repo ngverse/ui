@@ -11,7 +11,12 @@
     }
   </doc-icon-button>
 }
-<app-card [gap]="false" [surface]="surface()" [outline]="outline()">
+<app-card
+  [gap]="false"
+  class="block"
+  [surface]="surface()"
+  [outline]="outline()"
+>
   <pre
     class="m-0 max-h-[600px] text-xs overflow-auto not-prose"
   ><code class="rounded-md source-code" [highlight]="code()" [language]="language()">

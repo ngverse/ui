@@ -10,10 +10,15 @@
   max-width: 300px;
 }
 
+.card-header {
+  margin-bottom: 12px;
+}
+
 .card-footer {
   display: flex;
   justify-content: end;
   gap: 10px;
+  margin-top: 12px;
 }
 
 .card-content {

@@ -33,12 +33,7 @@ export class CardPageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: ROOT,
-      files: [
-        ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
-        ...this.sourceTreeBuilder.fullInlineComponent('card-title', ROOT),
-        ...this.sourceTreeBuilder.fullInlineComponent('card-content', ROOT),
-        ...this.sourceTreeBuilder.fullInlineComponent('card-footer', ROOT),
-      ],
+      files: [...this.sourceTreeBuilder.fullComponent(ROOT, ROOT)],
       hideName: true,
     },
   ];
@@ -49,7 +44,7 @@ export class CardPageComponent {
         name: 'CardComponent',
         type: 'component',
         selector: 'app-card',
-        description: `The main component. It renders either a title, content, and footer or defaults to rendering the provided content.`,
+        description: `The card has no default CSS display value, eliminating conflicts with CSS priorities during customization.`,
         inputs: [
           {
             name: 'outline',
@@ -76,24 +71,6 @@ export class CardPageComponent {
             default: 'true',
           },
         ],
-      },
-      {
-        name: 'CardTitleComponent',
-        type: 'component',
-        selector: 'app-card-title',
-        description: 'Renders the title of a card component.',
-      },
-      {
-        name: 'CardContentComponent',
-        type: 'component',
-        selector: 'app-card-content',
-        description: 'Renders the content of a card component.',
-      },
-      {
-        name: 'CardFooterComponent',
-        type: 'component',
-        selector: 'app-card-footer',
-        description: 'Renders the footer of a card component.',
       },
     ],
   };
