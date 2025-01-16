@@ -20,9 +20,7 @@ describe('AlertComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     nativeElement = fixture.nativeElement as HTMLElement;
-    alertRootElement = fixture.nativeElement.querySelector(
-      '.alert'
-    ) as HTMLElement;
+    alertRootElement = fixture.nativeElement.querySelector('app-alert');
   });
 
   it('should create', () => {
@@ -56,5 +54,5 @@ describe('AlertComponent', () => {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class AlertTestComponent {
-  type = signal<ALERT_TYPES>('default');
+  type = signal<ALERT_TYPES>('none');
 }

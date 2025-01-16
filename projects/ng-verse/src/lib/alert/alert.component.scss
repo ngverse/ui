@@ -1,8 +1,9 @@
-.alert {
+:host {
   padding: 16px;
   border-radius: 6px;
   border-radius: 8px;
   border-width: 1px;
+
   &.success {
     color: white;
     background: var(--success);
