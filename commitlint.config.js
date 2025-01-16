@@ -19,6 +19,7 @@ module.exports = {
         'card',
         'skeleton',
         'divider',
+        'loader',
       ],
     ],
   },

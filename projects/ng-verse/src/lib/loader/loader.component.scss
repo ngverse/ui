@@ -1,5 +1,20 @@
 :host {
-  display: inline-block;
+  display: none;
+
+  &.overlay {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba($color: #fff, $alpha: var(--loader-overlay-opacity));
+    z-index: 99999;
+  }
+  &.loading {
+    display: flex;
+  }
 }
 
 .loader {
