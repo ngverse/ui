@@ -23,6 +23,7 @@ module.exports = {
         'progress-bar',
         'switch',
         'input',
+        'textarea',
       ],
     ],
   },

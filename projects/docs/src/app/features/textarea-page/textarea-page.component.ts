@@ -42,7 +42,17 @@ export class TextareaPageComponent {
       {
         name: 'TextareaComponent',
         type: 'component',
-        selector: '[appTextarea]',
+        selector: 'textarea[appTextarea]',
+        description:
+          'appTextarea is used with native textarea element, so all native input attributes can be used',
+        inputs: [
+          {
+            name: 'resize',
+            type: 'none | both | horizontal | vertical | block | inline',
+            description: 'resize type',
+            default: 'none',
+          },
+        ],
       },
     ],
   };

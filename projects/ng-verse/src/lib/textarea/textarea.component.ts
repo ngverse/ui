@@ -10,7 +10,7 @@ type RESIZE_TYPES =
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '[appTextarea]',
+  selector: 'textarea[appTextarea]',
   imports: [],
   template: ``,
   host: {
