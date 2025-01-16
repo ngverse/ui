@@ -6,7 +6,7 @@
     color: var(--danger);
   }
   &.disabled {
-    color: var(--disabled);
+    color: var(--disabled-foreground);
   }
 
   &.start {
@@ -33,7 +33,7 @@
   right: 0;
   bottom: 0;
   top: 0;
-
+  z-index: 1;
   &:focus-visible + .checkbox-icon {
     outline: 1px solid var(--ring);
     border-radius: 4px;
