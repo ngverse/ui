@@ -19,6 +19,9 @@ const minMaxTransform = (value: number) => {
 })
 export class ProgressBarComponent {
   value = input(0, { transform: minMaxTransform });
-  showPercentage = input<boolean>(false);
   indeterminate = input<boolean>(false);
+
+  transformValue() {
+    return `scaleX(${this.value()}%)`;
+  }
 }

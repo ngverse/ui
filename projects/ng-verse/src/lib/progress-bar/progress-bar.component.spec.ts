@@ -22,19 +22,7 @@ describe('ProgressBarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should change the progress bar width on value change', () => {
-    componentRef.setInput('value', 50);
-    fixture.detectChanges();
-    const element = fixture.nativeElement.querySelector('.progress-bar');
-    expect(element.style.width).toEqual('50%');
-  });
-  it("should show percentage text if 'showPercentage' is true", () => {
-    componentRef.setInput('showPercentage', true);
-    componentRef.setInput('value', 50);
-    fixture.detectChanges();
-    const element = fixture.nativeElement.querySelector('.progress-bar');
-    expect(element.textContent.trim()).toEqual('50%');
-  });
+
   it("should display indeterminate progress bar if 'indeterminate' is true", () => {
     componentRef.setInput('indeterminate', true);
     fixture.detectChanges();

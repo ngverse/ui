@@ -51,19 +51,6 @@ export class ProgressBarPageComponent {
             default: 'false',
             description: 'show an indeterminate progress bar',
           },
-          {
-            name: 'value',
-            type: 'number (0-100)',
-            default: '0',
-            description: 'the value of the progress bar',
-          },
-          {
-            name: 'showPercentage',
-            type: 'boolean',
-            default: 'false',
-            description:
-              'show the percentage of the progress bar for determinate progress bar ',
-          },
         ],
       },
     ],
