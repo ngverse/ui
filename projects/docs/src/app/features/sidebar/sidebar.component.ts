@@ -52,6 +52,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Button',
         url: '/doc/button',
+        done: true,
       },
       {
         name: 'Badge',

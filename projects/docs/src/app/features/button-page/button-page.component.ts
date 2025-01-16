@@ -3,7 +3,6 @@ import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
   ApiEntity,
   ApiInputsComponent,
-  EMPTY_API_INPUT_DEFAULT_VALUE,
 } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
@@ -35,7 +34,10 @@ export class ButtonPageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: ROOT,
-      files: this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
+      files: [
+        ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
+        ...this.sourceTreeBuilder.fullInlineComponent('button-loader', ROOT),
+      ],
       hideName: true,
     },
   ];
@@ -44,11 +46,13 @@ export class ButtonPageComponent {
     {
       name: 'ButtonComponent',
       type: 'component',
-      selector: '[appButton]',
+      selector: 'button[appButton]',
+      description:
+        'appButton is used with native button element, so all native input attributes can be used',
       inputs: [
         {
           name: 'color',
-          type: 'primary | secondary | danger | success',
+          type: 'primary | secondary | danger | success | none',
           description: "Defines the button's color type",
           default: 'primary',
         },
@@ -59,16 +63,16 @@ export class ButtonPageComponent {
           default: 'md',
         },
         {
+          name: 'variant',
+          type: 'fill | stroked | link | none',
+          description: 'changes the variant of the button',
+          default: 'fill',
+        },
+        {
           name: 'disabled',
           type: 'boolean',
           description: 'disables the button',
           default: 'false',
-        },
-        {
-          name: 'type',
-          type: 'submit | reset | button',
-          description: 'sets the native button type attribute',
-          default: EMPTY_API_INPUT_DEFAULT_VALUE,
         },
         {
           name: 'loading',
