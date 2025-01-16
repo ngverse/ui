@@ -1,0 +1,36 @@
+:host {
+  display: none;
+
+  &.overlay {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba($color: #fff, $alpha: var(--loader-overlay-opacity));
+    z-index: 99999;
+  }
+  &.loading {
+    display: flex;
+  }
+}
+
+.loader {
+  border: 5px solid var(--primary);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

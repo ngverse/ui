@@ -78,6 +78,10 @@ export const SIDEBAR_ROUTES = [
         done: true,
       },
       {
+        name: 'Loader',
+        url: '/doc/loader',
+      },
+      {
         name: 'Radio Button',
         url: '/doc/radio-button',
       },

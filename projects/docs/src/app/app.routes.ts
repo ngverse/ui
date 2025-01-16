@@ -247,6 +247,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'loader',
+        loadComponent: () =>
+          import('./features/loader-page/loader-page.component').then(
+            (p) => p.LoaderPageComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'introduction',
         pathMatch: 'full',

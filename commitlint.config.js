@@ -18,6 +18,7 @@ module.exports = {
         'checkbox',
         'card',
         'skeleton',
+        'loader',
       ],
     ],
   },
