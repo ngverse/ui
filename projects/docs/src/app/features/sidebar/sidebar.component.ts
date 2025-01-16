@@ -78,6 +78,11 @@ export const SIDEBAR_ROUTES = [
         done: true,
       },
       {
+        name: 'Loader',
+        url: '/doc/loader',
+        done: true,
+      },
+      {
         name: 'Radio Button',
         url: '/doc/radio-button',
       },
@@ -100,14 +105,6 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Select',
         url: '/doc/select',
-      },
-      {
-        name: 'Progress Spinner',
-        url: '/doc/progress-spinner',
-      },
-      {
-        name: 'Loading Overlay',
-        url: '/doc/loading-overlay',
       },
       {
         name: 'Progress Bar',

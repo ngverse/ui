@@ -191,20 +191,6 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'progress-spinner',
-        loadComponent: () =>
-          import(
-            './features/progress-spinner-page/progress-spinner-page.component'
-          ).then((d) => d.ProgressSpinnerPageComponent),
-      },
-      {
-        path: 'loading-overlay',
-        loadComponent: () =>
-          import(
-            './features/loading-overlay-page/loading-overlay-page.component'
-          ).then((d) => d.LoadingOverlayPageComponent),
-      },
-      {
         path: 'input',
         loadComponent: () =>
           import('./features/input-page/input-page.component').then(
@@ -244,6 +230,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/listbox-page/listbox-page.component').then(
             (p) => p.ListboxPageComponent
+          ),
+      },
+      {
+        path: 'loader',
+        loadComponent: () =>
+          import('./features/loader-page/loader-page.component').then(
+            (p) => p.LoaderPageComponent
           ),
       },
       {
