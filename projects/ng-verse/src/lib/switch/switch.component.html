@@ -1,16 +1,14 @@
-<div class="switch" [class.reverse]="reverse()" [class.disabled]="disabled()">
-  <button
-    [disabled]="disabled()"
-    [id]="id"
-    role="switch"
-    class="switch-button"
-    [class.checked]="value()"
-    [attr.aria-checked]="value()"
-    (click)="toggle()"
-  >
-    <div class="toggle"></div>
-  </button>
-  <label [htmlFor]="id">
-    <ng-content></ng-content>
-  </label>
-</div>
+<button
+  [disabled]="disabled()"
+  [id]="id()"
+  role="switch"
+  class="switch-button"
+  [class.checked]="value()"
+  [attr.aria-checked]="value()"
+  (click)="toggle()"
+>
+  <div class="toggle"></div>
+</button>
+<label [htmlFor]="id()">
+  <ng-content></ng-content>
+</label>
