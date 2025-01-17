@@ -59,7 +59,7 @@ describe('ConfirmDialogComponent', () => {
   it('button labels should be Yes/No by default', () => {
     openConfirm();
     fixture.detectChanges();
-    const buttons = document.querySelectorAll('.confirm-action');
+    const buttons = document.querySelectorAll('.confirm-actions button');
 
     expect(buttons[0].textContent?.trim()).toBe('Yes');
     expect(buttons[1].textContent?.trim()).toBe('No');
@@ -71,7 +71,7 @@ describe('ConfirmDialogComponent', () => {
       noLabel: 'Cancel',
     });
     fixture.detectChanges();
-    const buttons = document.querySelectorAll('.confirm-action');
+    const buttons = document.querySelectorAll('.confirm-actions button');
 
     expect(buttons[0].textContent?.trim()).toBe('Save');
     expect(buttons[1].textContent?.trim()).toBe('Cancel');
@@ -80,7 +80,9 @@ describe('ConfirmDialogComponent', () => {
   it('yes button click should return true on close', () => {
     const dialogRef = openConfirm();
     fixture.detectChanges();
-    const yesButton = document.querySelector('.confirm-action') as HTMLElement;
+    const yesButton = document.querySelector(
+      '.confirm-actions  button'
+    ) as HTMLElement;
 
     dialogRef.closed.subscribe((value) => {
       expect(value).toBeTrue();
@@ -93,7 +95,7 @@ describe('ConfirmDialogComponent', () => {
     const dialogRef = openConfirm();
     fixture.detectChanges();
     const yesButton = document.querySelectorAll(
-      '.confirm-action'
+      '.confirm-actions  button'
     )[1] as HTMLElement;
 
     dialogRef.closed.subscribe((value) => {

@@ -4,7 +4,7 @@
   border: var(--border);
   box-shadow: var(--shadow);
   min-width: 300px;
-  padding: 10px;
+  padding: 16px;
 }
 
 .alert-title {
@@ -12,9 +12,9 @@
   font-weight: 500;
 }
 
-.alert-action {
-  margin-left: auto;
+.alert-actions {
   display: flex;
+  margin-top: 10px;
   justify-content: end;
   align-items: center;
 }

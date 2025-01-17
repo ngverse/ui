@@ -1,4 +1,3 @@
-import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ButtonComponent } from '@ng-verse/button/button.component';
@@ -13,7 +12,7 @@ export interface AlertDialogOption {
 
 @Component({
   selector: 'app-alert-dialog',
-  imports: [CdkTrapFocus, DialogCloseDirective, ButtonComponent],
+  imports: [DialogCloseDirective, ButtonComponent],
   templateUrl: './alert-dialog.component.html',
   styleUrl: './alert-dialog.component.scss',
   animations: [DIALOG_ENTER_ANIMATION],

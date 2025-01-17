@@ -57,7 +57,7 @@ describe('AlertDialogComponent', () => {
   it('button labels should be OK by default', () => {
     openAlert();
     fixture.detectChanges();
-    const buttons = document.querySelectorAll('.alert-action');
+    const buttons = document.querySelectorAll('.alert-actions');
 
     expect(buttons[0].textContent?.trim()).toBe('OK');
   });
@@ -67,7 +67,7 @@ describe('AlertDialogComponent', () => {
       buttonLabel: 'Save',
     });
     fixture.detectChanges();
-    const buttons = document.querySelectorAll('.alert-action');
+    const buttons = document.querySelectorAll('.alert-actions');
 
     expect(buttons[0].textContent?.trim()).toBe('Save');
   });
@@ -75,7 +75,9 @@ describe('AlertDialogComponent', () => {
   it('button click should close the alert', () => {
     openAlert();
     fixture.detectChanges();
-    const yesButton = document.querySelector('.alert-action') as HTMLElement;
+    const yesButton = document.querySelector(
+      '.alert-actions button'
+    ) as HTMLElement;
     yesButton.dispatchEvent(new Event('click'));
     fixture.detectChanges();
     expect(document.querySelector('.alert')).toBeFalsy();

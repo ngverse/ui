@@ -47,10 +47,6 @@ export class DialogService {
   }
 
   confirm(options: ConfirmDialogOptions) {
-    const disableClose =
-      options.disableClose === undefined ? false : options.disableClose;
-    const hasBackdrop =
-      options.hasBackdrop === undefined ? true : options.hasBackdrop;
     const yesLabel = options.yesLabel ?? 'Yes';
     const noLabel = options.noLabel ?? 'No';
     const title = options.title;
@@ -63,8 +59,8 @@ export class DialogService {
         title,
         description,
       },
-      disableClose: disableClose,
-      hasBackdrop: hasBackdrop,
+      disableClose: false,
+      hasBackdrop: true,
     });
     return { close: dialogRef.close, closed: dialogRef.closed };
   }

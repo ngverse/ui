@@ -1,8 +1,8 @@
-import { DIALOG_DATA, DialogConfig, DialogRef } from '@angular/cdk/dialog';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ButtonComponent } from '@ng-verse/button/button.component';
 
-export interface ConfirmDialogOptions
-  extends Pick<DialogConfig, 'disableClose' | 'hasBackdrop'> {
+export interface ConfirmDialogOptions {
   title: string;
   description: string;
   yesLabel?: string;
@@ -11,7 +11,7 @@ export interface ConfirmDialogOptions
 
 @Component({
   selector: 'app-confirm-dialog',
-  imports: [],
+  imports: [ButtonComponent],
   templateUrl: './confirm-dialog.component.html',
   styleUrl: './confirm-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

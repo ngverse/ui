@@ -14,7 +14,7 @@ export class ShowCaseDialogComponent {
 
   constructor() {
     afterNextRender(() => {
-      this.showAlert();
+      this.showConfirm();
     });
   }
 
@@ -26,8 +26,8 @@ export class ShowCaseDialogComponent {
 
   showConfirm() {
     this.dialogService.confirm({
-      title: 'Immediate action',
-      description: 'Please review the document',
+      title: 'Are you sure?',
+      description: 'It will delete user data',
     });
   }
 
