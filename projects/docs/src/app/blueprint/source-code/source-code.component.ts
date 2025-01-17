@@ -3,18 +3,11 @@ import { Component, computed, input, signal } from '@angular/core';
 import { IconComponent } from '@ng-verse/icon/icon.component';
 import { Highlight } from 'ngx-highlightjs';
 import { CardComponent } from '../../../../../ng-verse/src/lib/card/card.component';
-import { CheckIconComponent } from '../../icons/check-icon.component';
 import { EMPTY_FILE_TOKEN } from '../../services/file.service';
 
 @Component({
   selector: 'doc-source-code',
-  imports: [
-    Highlight,
-    ClipboardModule,
-    IconComponent,
-    CheckIconComponent,
-    CardComponent,
-  ],
+  imports: [Highlight, ClipboardModule, IconComponent, CardComponent],
   templateUrl: './source-code.component.html',
   styleUrl: './source-code.component.scss',
 })

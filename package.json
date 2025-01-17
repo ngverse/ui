@@ -21,7 +21,7 @@
     "schema:test-watch": "nodemon --watch dist/ng-verse --ext js --exec 'jasmine dist/ng-verse/**/*_spec.js'"
   },
   "lint-staged": {
-    "**/*.{js,ts,jsx,tsx,json,css,scss,md}": "prettier --write"
+    "**/*.{html,ts,json,css,scss,md}": "prettier --write"
   },
   "dependencies": {
     "@angular/animations": "^19.0.6",
