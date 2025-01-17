@@ -142,6 +142,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Icon',
         url: '/doc/icon',
+        done: true,
       },
       {
         name: 'Popover',

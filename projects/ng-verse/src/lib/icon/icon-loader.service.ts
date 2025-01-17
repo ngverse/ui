@@ -1,52 +1,82 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 
-import { Observable, finalize, of, share, tap } from 'rxjs';
+import { finalize, map, Observable, of } from 'rxjs';
 
-import { IconRegistryService } from './icon-registry.service';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { IconRegistryService } from './icon-registry.service';
+
+function createDomParser() {
+  const platformId = inject(PLATFORM_ID);
+  if (isPlatformBrowser(platformId)) {
+    return new DOMParser();
+  }
+  return null;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class IconLoaderService {
-  private readonly iconsLoadingByUrl = new Map<string, Observable<string>>();
-  private readonly iconRegistryService = inject(IconRegistryService);
+  private readonly iconsLoadingByUrl = new Map<
+    string,
+    Observable<HTMLElement>
+  >();
+  private readonly _iconRegistryService = inject(IconRegistryService);
   private readonly iconsByUrl = new Map<string, string>();
   private readonly http = inject(HttpClient);
+  private readonly _domParser = createDomParser();
+  private readonly _iconLoader = new Map<
+    string,
+    Observable<HTMLElement | null>
+  >();
+  private readonly _iconCache = new Map<string, HTMLElement>();
 
-  loadSvg(name: string): Observable<string | undefined> {
-    const svgIcon = this.iconRegistryService.getSvgIcon(name);
+  load(name: string) {
+    const url = this._iconRegistryService.getUrl(name);
 
-    if (!svgIcon) {
+    if (!url) {
       throw new Error(
         `Icon with name ${name} not found. Please use IconRegistryService.addSvgIcon() to add it.`
       );
     }
+    const cachedIcon = this._iconCache.get(url);
 
-    if (this.iconsByUrl.has(name)) {
-      return of(this.iconsByUrl.get(name));
-    } else if (this.iconsLoadingByUrl.has(name)) {
-      return this.iconsLoadingByUrl.get(name) as Observable<string>;
+    if (cachedIcon) {
+      return of(cachedIcon.cloneNode(true) as HTMLElement);
+    }
+    const iconIsLoading = this._iconLoader.get(url);
+    if (iconIsLoading) {
+      return iconIsLoading;
     }
 
-    const o = this.getSvg(svgIcon.url).pipe(
-      tap((svg) => {
-        if (svgIcon.options.cache) {
-          this.iconsByUrl.set(name, svg);
-        }
-      }),
-      finalize(() => this.iconsLoadingByUrl.delete(name)),
-      share()
-    );
-
-    this.iconsLoadingByUrl.set(name, o);
-
-    return o;
+    return this.fetch(url);
   }
 
-  private getSvg(url: string): Observable<string> {
-    return this.http.get(url, {
-      responseType: 'text',
-    });
+  private fetch(url: string) {
+    const http$ = this.http
+      .get(url, {
+        responseType: 'text',
+      })
+      .pipe(map((svg) => this.stringToSvg(svg)))
+      .pipe(finalize(() => this._iconLoader.delete(url)));
+    this._iconLoader.set(url, http$);
+    return http$;
+  }
+
+  private stringToSvg(svgString: string) {
+    if (!this._domParser) {
+      return null;
+    }
+    const svg = this._domParser.parseFromString(
+      svgString,
+      'image/svg+xml'
+    ).documentElement;
+
+    if (svg.nodeName !== 'svg') {
+      return null;
+    }
+
+    return svg;
   }
 }

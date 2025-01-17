@@ -17,6 +17,8 @@ interface ApiMethodType {
 
 export const VOID_API_RETURN_TYPE = 'void';
 
+export const VOID_API_NO_PARAMS = '--';
+
 export const EMPTY_API_INPUT_DEFAULT_VALUE = '--';
 
 export const AUTO_GENERATED_API_DEFAULT_VALUE = 'Auto Generated';

@@ -1,0 +1,34 @@
+.show-case {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+.bird {
+}
+
+.cat {
+}
+
+.heart {
+}
+.paw {
+}
+
+.squirrel {
+}
+
+.volleyball {
+}

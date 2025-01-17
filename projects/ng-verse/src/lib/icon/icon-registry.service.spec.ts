@@ -1,5 +1,5 @@
-import { IconOptions, IconRegistryService } from './icon-registry.service';
 import { TestBed } from '@angular/core/testing';
+import { IconRegistryService } from './icon-registry.service';
 
 describe('IconRegistryService', () => {
   let service: IconRegistryService;
@@ -13,48 +13,19 @@ describe('IconRegistryService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('addSvgIcon', () => {
-    it('should add an icon with default options', () => {
-      const iconName = 'testIcon';
-      const url = 'assets/icons/test-icon.svg';
+  it('should return the correct icon when it exists', () => {
+    const iconName = 'existingIcon';
+    const url = 'assets/icons/existing-icon.svg';
 
-      service.addSvgIcon(iconName, url);
-      const icon = service.getSvgIcon(iconName);
+    service.addIcon(iconName, url);
+    const icon = service.getUrl(iconName);
 
-      expect(icon).toBeTruthy();
-      expect(icon?.url).toBe(url);
-      expect(icon?.options).toEqual({ cache: true });
-    });
-
-    it('should add an icon with overridden options', () => {
-      const iconName = 'testIconWithOptions';
-      const url = 'assets/icons/test-icon-with-options.svg';
-      const options: IconOptions = { cache: false };
-
-      service.addSvgIcon(iconName, url, options);
-      const icon = service.getSvgIcon(iconName);
-
-      expect(icon).toBeTruthy();
-      expect(icon?.url).toBe(url);
-      expect(icon?.options).toEqual({ cache: false });
-    });
+    expect(icon).toBeTruthy();
+    expect(icon).toBe(url);
   });
 
-  describe('getSvgIcon', () => {
-    it('should return the correct icon when it exists', () => {
-      const iconName = 'existingIcon';
-      const url = 'assets/icons/existing-icon.svg';
-
-      service.addSvgIcon(iconName, url);
-      const icon = service.getSvgIcon(iconName);
-
-      expect(icon).toBeTruthy();
-      expect(icon?.url).toBe(url);
-    });
-
-    it('should return undefined for a non-existing icon', () => {
-      const icon = service.getSvgIcon('nonExistingIcon');
-      expect(icon).toBeUndefined();
-    });
+  it('should return undefined for a non-existing icon', () => {
+    const icon = service.getUrl('nonExistingIcon');
+    expect(icon).toBeUndefined();
   });
 });

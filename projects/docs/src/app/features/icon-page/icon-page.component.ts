@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
+import { ApiDescriptionComponent } from '../../blueprint/api-info/api-description/api-description.component';
 import {
-  ApiEntity,
-  ApiInputsComponent,
-} from '../../blueprint/api-info/api-inputs/api-inputs.component';
+  ApiInfo,
+  ApiInfoComponent,
+} from '../../blueprint/api-info/api-info.component';
+import { VOID_API_RETURN_TYPE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -22,10 +23,10 @@ const ROOT = 'icon';
     BlueprintPageComponent,
     ShowCaseIconComponent,
     ShowCaseComponent,
-    ApiInputsComponent,
     SourceTreeComponent,
     CommandInstallationComponent,
     ApiInfoComponent,
+    ApiDescriptionComponent,
   ],
   templateUrl: './icon-page.component.html',
   styleUrl: './icon-page.component.scss',
@@ -35,36 +36,76 @@ export class IconPageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: ROOT,
-      files: [...this.sourceTreeBuilder.fullComponent('icon', ROOT)],
+      files: [
+        ...this.sourceTreeBuilder.fullInlineComponent('icon', ROOT),
+        ...this.sourceTreeBuilder.service('icon-registry', ROOT),
+        ...this.sourceTreeBuilder.service('icon-loader', ROOT),
+      ],
       hideName: true,
     },
   ];
+  apiInfo: ApiInfo = {
+    entities: [
+      {
+        name: 'IconComponent',
+        selector: 'app-icon',
+        type: 'component',
+        inputs: [
+          {
+            name: 'name',
+            type: 'string',
+            description: 'The name of the icon to display.',
+          },
+          {
+            name: 'width',
+            type: 'number | string',
+            description:
+              'The width of the icon. it can be either px value like 16px or percentage like 50%.',
+          },
+          {
+            name: 'height',
+            type: 'number | string',
+            description:
+              'The height of the icon. it can be either px value like 16px or percentage like 50%.',
+          },
+          {
+            name: 'stretch',
+            type: 'boolean',
+            description: 'Whether to stretch the icon to fit the container.',
+          },
+        ],
+      },
+      {
+        name: 'IconRegistryService',
+        type: 'service',
+        methods: [
+          {
+            name: 'addIcon',
+            description: 'Add an icon to the registry',
+            returnType: VOID_API_RETURN_TYPE,
+            params: [
+              {
+                name: 'name',
+                type: 'string',
 
-  inputs: ApiEntity[] = [
-    {
-      name: 'AlertComponent',
-      selector: 'app-alert',
-      type: 'component',
-      inputs: [
-        {
-          name: 'type',
-          type: 'default | success | danger | warning',
-          default: 'default',
-          description: 'defines the type of alert',
-        },
-      ],
-    },
-    {
-      name: 'AlertHeaderComponent',
-      selector: 'app-alert-header',
-      type: 'component',
-      description: 'Renders the header of an alert component.',
-    },
-    {
-      name: 'AlertBodyComponent',
-      selector: 'app-alert-body',
-      type: 'component',
-      description: 'Renders the body of an alert component.',
-    },
-  ];
+                description: 'The name of the icon to add.',
+              },
+            ],
+          },
+          {
+            name: 'getUrl',
+            description: 'Get the url of an icon',
+            returnType: VOID_API_RETURN_TYPE,
+            params: [
+              {
+                name: 'name',
+                type: 'string',
+                description: 'The icon name',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  };
 }

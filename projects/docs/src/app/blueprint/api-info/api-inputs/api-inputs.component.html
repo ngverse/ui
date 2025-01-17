@@ -24,6 +24,8 @@
     <p class="mb-4 text-gray-700 text-sm">{{ apiInput.description }}</p>
   }
   @if (apiInput.inputs?.length) {
+    <p class="mb-2 text-sm">Inputs</p>
+
     <div
       class="relative overflow-x-auto border border-slate-200 rounded-md mb-10"
     >
@@ -61,19 +63,46 @@
     </div>
   }
   @if (apiInput.methods?.length) {
-    <h4 class="mb-4">Methods</h4>
-    @for (method of apiInput.methods; track $index) {
-      <h5 class="mb-4">{{ method.name }}</h5>
-      @if (method.description) {
-        <p class="mb-4">{{ method.description }}</p>
-      }
-      @for (param of method.params; track $index) {
-        <p class="mb-4">
-          <strong>{{ param.name }}</strong> ({{ param.type }}) -
-          {{ param.description }}
-        </p>
-      }
-    }
+    <p class="mb-2 text-sm">Methods</p>
+    <div
+      class="relative overflow-x-auto border border-slate-200 rounded-md mb-10"
+    >
+      <table
+        class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
+      >
+        <thead
+          class="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">Return</th>
+            <th scope="col" class="px-6 py-3">Params</th>
+
+            <th scope="col" class="px-6 py-3">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (method of apiInput.methods; track $index) {
+            <tr class="bg-white border-b">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {{ method.name }}
+              </th>
+              <td class="px-6 py-4">{{ method.returnType }}</td>
+              <td class="px-6 py-4">
+                @for (param of method.params; track $index) {
+                  <span>{{ param.name }} : {{ param.type }}</span>
+                }
+              </td>
+
+              <td class="px-6 py-4 lowercase">{{ method.description }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
   }
   <div class="w-full border-t border-solid border-slate-200 h-[1px] mb-5"></div>
 }
