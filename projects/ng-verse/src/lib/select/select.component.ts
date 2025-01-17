@@ -23,7 +23,7 @@ import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
 import { ListboxState } from '@ng-verse/listbox/listbox.state';
 import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
 import { PopoverComponent } from '@ng-verse/popover/popover.component';
-import { OptionComponent } from './option/option.component';
+import { OptionComponent } from './option.component';
 import { SelectIconComponent } from './select-icon.component';
 import { CompareWith, OnChangeFunction, SelectState } from './select.state';
 
@@ -59,18 +59,14 @@ type ValidatorChangeFunction = (() => void) | undefined;
 })
 export class SelectComponent implements ControlValueAccessor, Validator {
   stretch = input<boolean>(false);
-
+  multiple = input(false);
+  required = input(false);
   placeholder = input.required<string>();
-
   compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
 
   private _onTouched: OnTouchedFunction;
 
   state = inject(SelectState);
-
-  multiple = input(false);
-
-  required = input(false);
 
   private _validatorChangeFn: ValidatorChangeFunction;
 

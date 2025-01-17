@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { OptionComponent } from '@ng-verse/select/option/option.component';
+import { OptionComponent } from '@ng-verse/select/option.component';
 import { SelectComponent } from '@ng-verse/select/select.component';
 const countries = [
+  { code: 'KA', name: 'Georgia' },
   { code: 'US', name: 'United States' },
   { code: 'CA', name: 'Canada' },
   { code: 'GB', name: 'United Kingdom' },
@@ -32,11 +33,7 @@ const countries = [
 })
 export class ShowCaseSelectComponent {
   countries = countries;
-  formControl = new FormControl(['NG'], Validators.required);
+  formControlSingle = new FormControl(null, Validators.required);
 
-  constructor() {
-    this.formControl.valueChanges.subscribe(() => {
-      console.log(this.formControl.value);
-    });
-  }
+  formControlMulti = new FormControl(null, Validators.required);
 }

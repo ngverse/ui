@@ -7,7 +7,7 @@ import { ErrorComponent } from '@ng-verse/form-field/error/error.component';
 import { FormFieldComponent } from '@ng-verse/form-field/form-field.component';
 import { LabelComponent } from '@ng-verse/form-field/label/label.component';
 import { InputComponent } from '@ng-verse/input/input.component';
-import { OptionComponent } from '@ng-verse/select/option/option.component';
+import { OptionComponent } from '@ng-verse/select/option.component';
 import { SelectComponent } from '@ng-verse/select/select.component';
 
 @Component({

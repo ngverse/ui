@@ -1,5 +1,18 @@
-<doc-blueprint-page label="Select">
+<doc-blueprint-page
+  label="Select"
+  subTitle="Displays a list of options for the user to select from, supporting both single and multiple selections."
+>
   <doc-show-case name="select">
     <doc-show-case-select name="select"></doc-show-case-select>
   </doc-show-case>
+  <doc-prerequisites [preps]="prerequisites">
+    Select element uses
+    <a class="underline" [routerLink]="['../popover']">Popover</a> and
+    <a class="underline" [routerLink]="['../listbox']">Listbox</a>. Please
+    ensure they are added to your project if they aren't already.
+  </doc-prerequisites>
+  <doc-command-installation type="component" name="select">
+  </doc-command-installation>
+  <doc-source-tree [sourceTree]="sourceTree" name="select"></doc-source-tree>
+  <doc-api-info [apiInfo]="apiInfo"> </doc-api-info>
 </doc-blueprint-page>

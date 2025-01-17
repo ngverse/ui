@@ -3,13 +3,12 @@
 }
 
 .select-button {
-  border: var(--app-field-border);
-  border-radius: var(--app-field-border-radius);
-  outline-color: var(--app-ring-color);
-  height: var(--app-field-height);
-  padding: var(--app-field-padding);
-  &:focus {
-    outline: var(--app-field-focus-outline);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  height: var(--field-height);
+  padding: var(--field-padding);
+  &:focus-visible {
+    outline: 1px solid var(--ring);
   }
   display: flex;
   align-items: center;
@@ -39,27 +38,18 @@
 
   &:disabled {
     cursor: not-allowed;
-    background: var(--app-disabled-color);
+    background: var(--disabled);
+    color: var(--disabled-foreground);
   }
 }
 
 :host.ng-invalid.ng-touched {
   .select-button {
-    border-color: var(--app-danger-color);
+    border-color: var(--danger);
   }
 }
 
 .select-options {
   max-height: 200px;
   min-width: 200px;
-}
-
-.option {
-  padding: 8px 6px;
-}
-
-.option:hover,
-.cdk-option-active {
-  background: var(--app-hover-color);
-  color: var(--app-hover-on-color);
 }
