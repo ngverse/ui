@@ -1,7 +1,7 @@
-import { afterNextRender, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '@ng-verse/button/button.component';
 import { DialogService } from '@ng-verse/dialog/dialog.service';
-import { ShowCaseTooltipComponent } from '../../tooltip/show-case-tooltip/show-case-tooltip.component';
+import { DialogTestComponent } from '../dialog-test/dialog-test.component';
 
 @Component({
   selector: 'doc-show-case-dialog',
@@ -12,22 +12,16 @@ import { ShowCaseTooltipComponent } from '../../tooltip/show-case-tooltip/show-c
 export class ShowCaseDialogComponent {
   dialogService = inject(DialogService);
 
-  constructor() {
-    afterNextRender(() => {
-      this.showDialog();
-    });
-  }
-
   showDialog() {
-    this.dialogService.open(ShowCaseTooltipComponent, {
-      title: 'Test dialog',
+    this.dialogService.dialog(DialogTestComponent, {
+      title: 'Fill the user data',
     });
   }
 
   showConfirm() {
     this.dialogService.confirm({
-      title: 'Immediate action',
-      description: 'Please review the document',
+      title: 'Are you sure?',
+      description: 'It will delete user data',
     });
   }
 

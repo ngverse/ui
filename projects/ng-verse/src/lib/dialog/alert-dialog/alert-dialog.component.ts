@@ -1,11 +1,10 @@
-import { CdkTrapFocus } from '@angular/cdk/a11y';
-import { DIALOG_DATA, DialogConfig, DialogRef } from '@angular/cdk/dialog';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ButtonComponent } from '@ng-verse/button/button.component';
 import { DIALOG_ENTER_ANIMATION } from '../dialog-animations';
 import { DialogCloseDirective } from '../dialog-close.directive';
 
-export interface AlertDialogOption
-  extends Pick<DialogConfig, 'disableClose' | 'hasBackdrop'> {
+export interface AlertDialogOption {
   title: string;
   description: string;
   buttonLabel?: string;
@@ -13,7 +12,7 @@ export interface AlertDialogOption
 
 @Component({
   selector: 'app-alert-dialog',
-  imports: [CdkTrapFocus, DialogCloseDirective],
+  imports: [DialogCloseDirective, ButtonComponent],
   templateUrl: './alert-dialog.component.html',
   styleUrl: './alert-dialog.component.scss',
   animations: [DIALOG_ENTER_ANIMATION],

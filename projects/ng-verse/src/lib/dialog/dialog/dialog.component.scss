@@ -1,19 +1,14 @@
 .dialog {
-  border-radius: 12px;
-  background: white;
-  padding: 12px 16px;
-  box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  background: var(--background);
+  border-radius: var(--border-radius);
+  border: var(--border);
+  box-shadow: var(--shadow);
 }
 
 .dialog-header {
+  padding: 10px;
   display: flex;
   button {
     margin-left: auto;
-  }
-
-  h5 {
-    font-weight: 500;
   }
 }

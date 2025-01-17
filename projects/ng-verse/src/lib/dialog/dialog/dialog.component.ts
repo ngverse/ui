@@ -5,6 +5,7 @@ import {
   ComponentType,
 } from '@angular/cdk/portal';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { DIALOG_ENTER_ANIMATION } from '../dialog-animations';
 import { DialogCloseIconComponent } from '../dialog-close-icon.component';
 import { DialogCloseDirective } from '../dialog-close.directive';
 
@@ -21,6 +22,7 @@ export interface DialogOptions
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [DIALOG_ENTER_ANIMATION],
 })
 export class DialogComponent {
   dialogData = inject<DialogOptions>(DIALOG_DATA);

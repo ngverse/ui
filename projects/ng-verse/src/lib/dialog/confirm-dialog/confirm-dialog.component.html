@@ -1,16 +1,23 @@
-<div class="confirm" cdkTrapFocus>
+<div @dialogEnter class="confirm">
   <h2 class="confirm-title">{{ title }}</h2>
   <p class="confirm-description">{{ description }}</p>
   <div class="confirm-actions">
     <button
       type="button"
+      appButton
+      variant="link"
+      color="primary"
       (click)="yes()"
-      cdkFocusInitial
-      class="confirm-action"
     >
       {{ yesLabel }}
     </button>
-    <button type="button" class="confirm-action" (click)="no()">
+    <button
+      type="button"
+      appButton
+      color="secondary"
+      variant="link"
+      (click)="no()"
+    >
       {{ noLabel }}
     </button>
   </div>
