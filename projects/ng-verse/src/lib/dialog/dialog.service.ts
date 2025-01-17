@@ -21,23 +21,18 @@ interface DialogReturn<T> {
   providedIn: 'root',
 })
 export class DialogService {
-  private dialog = inject(Dialog);
-  open(
+  private _dialogService = inject(Dialog);
+  dialog<T>(
     component: ComponentType<unknown>,
     options?: Omit<DialogOptions, 'component'>
-  ) {
-    const disableClose =
-      options?.disableClose === undefined ? false : options.disableClose;
-    const hasBackdrop =
-      options?.hasBackdrop === undefined ? true : options.hasBackdrop;
+  ): DialogReturn<T> {
     const title = options?.title;
     const showClose =
       options?.showClose === undefined ? true : options?.showClose;
 
-    const dialogRef = this.dialog.open<string>(DialogComponent, {
+    const dialogRef = this._dialogService.open<T>(DialogComponent, {
+      ...options,
       data: {
-        disableClose,
-        hasBackdrop,
         title,
         component,
         showClose,
@@ -46,27 +41,30 @@ export class DialogService {
     return { close: dialogRef.close, closed: dialogRef.closed };
   }
 
-  confirm(options: ConfirmDialogOptions) {
+  confirm(options: ConfirmDialogOptions): DialogReturn<boolean> {
     const yesLabel = options.yesLabel ?? 'Yes';
     const noLabel = options.noLabel ?? 'No';
     const title = options.title;
     const description = options.description;
 
-    const dialogRef = this.dialog.open<boolean>(ConfirmDialogComponent, {
-      data: {
-        yesLabel,
-        noLabel,
-        title,
-        description,
-      },
-      disableClose: false,
-      hasBackdrop: true,
-    });
+    const dialogRef = this._dialogService.open<boolean>(
+      ConfirmDialogComponent,
+      {
+        data: {
+          yesLabel,
+          noLabel,
+          title,
+          description,
+        },
+        disableClose: false,
+        hasBackdrop: true,
+      }
+    );
     return { close: dialogRef.close, closed: dialogRef.closed };
   }
 
   alert<T>(options: AlertDialogOption): DialogReturn<T> {
-    const dialogRef = this.dialog.open<T>(AlertDialogComponent, {
+    const dialogRef = this._dialogService.open<T>(AlertDialogComponent, {
       disableClose: false,
       hasBackdrop: true,
       backdropClass: 'cdk-backdrop-transparent',

@@ -1,7 +1,7 @@
-<div class="dialog">
+<div @dialogEnter class="dialog">
   <div class="dialog-header">
     @if (title) {
-      <h5>{{ title }}</h5>
+      <p>{{ title }}</p>
     }
     @if (showClose) {
       <button appDialogClose>
