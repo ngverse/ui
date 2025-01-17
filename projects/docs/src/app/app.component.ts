@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { IconRegistryService } from '@ng-verse/icon/icon-registry.service';
 import { HeaderComponent } from './features/header/header.component';
 
 @Component({
@@ -9,5 +10,10 @@ import { HeaderComponent } from './features/header/header.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'docs';
+  iconRegistry = inject(IconRegistryService);
+
+  constructor() {
+    this.iconRegistry.addIcon('copy', 'images/copy.svg');
+    this.iconRegistry.addIcon('check', 'images/check.svg');
+  }
 }

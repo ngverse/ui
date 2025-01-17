@@ -1,9 +1,9 @@
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { Component, computed, input, signal } from '@angular/core';
+import { IconComponent } from '@ng-verse/icon/icon.component';
 import { Highlight } from 'ngx-highlightjs';
 import { CardComponent } from '../../../../../ng-verse/src/lib/card/card.component';
 import { CheckIconComponent } from '../../icons/check-icon.component';
-import { CopyIconComponent } from '../../icons/copy-icon.component';
 import { EMPTY_FILE_TOKEN } from '../../services/file.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { EMPTY_FILE_TOKEN } from '../../services/file.service';
   imports: [
     Highlight,
     ClipboardModule,
-    CopyIconComponent,
+    IconComponent,
     CheckIconComponent,
     CardComponent,
   ],

@@ -1,8 +1,23 @@
-<ul class="icons">
-  <li>
-    <app-icon name="home" style="width: 50px; height: 50px; color: blue" />
-  </li>
-  <li>
-    <app-icon name="checkmark" style="width: 25px; height: 25px; color: red" />
-  </li>
-</ul>
+<div class="show-case">
+  <div class="header">
+    <input
+      type="range"
+      id="volume"
+      name="volume"
+      min="10"
+      max="100"
+      [(ngModel)]="size"
+    />
+    <input type="color" [(ngModel)]="color" />
+  </div>
+  <div class="body">
+    @for (icon of icons; track $index) {
+      <app-icon
+        [name]="icon"
+        [style.color]="color()"
+        [width]="size()"
+        [height]="size()"
+      ></app-icon>
+    }
+  </div>
+</div>
