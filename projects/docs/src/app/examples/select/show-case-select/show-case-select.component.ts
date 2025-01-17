@@ -3,7 +3,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OptionComponent } from '@ng-verse/select/option.component';
 import { SelectComponent } from '@ng-verse/select/select.component';
 const countries = [
-  { code: 'KA', name: 'Goergia' },
+  { code: 'KA', name: 'Georgia' },
   { code: 'US', name: 'United States' },
   { code: 'CA', name: 'Canada' },
   { code: 'GB', name: 'United Kingdom' },
