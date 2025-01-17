@@ -64,7 +64,7 @@ export class SelectState {
   toggleValue(value: unknown) {
     let values = this.values();
 
-    if (values === undefined) {
+    if (values === undefined || values === null) {
       values = [];
     }
 
@@ -81,6 +81,7 @@ export class SelectState {
     if (isUniqueValue) {
       values.push(value);
       this.values.set([...values]);
+      this.emitOnChange();
     } else {
       const valueIndex = values?.findIndex((v) => this.compareWith(v, value));
       if (valueIndex !== undefined) {

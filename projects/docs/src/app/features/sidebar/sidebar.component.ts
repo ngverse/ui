@@ -112,6 +112,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Select',
         url: '/doc/select',
+        done: true,
       },
       {
         name: 'Progress Bar',

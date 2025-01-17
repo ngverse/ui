@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectState } from '../select.state';
 import { OptionComponent } from './option.component';
+import { SelectState } from './select.state';
 
 describe('OptionComponent', () => {
   let component: OptionComponent;

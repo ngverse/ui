@@ -1,9 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import {
+  ApiInfo,
+  ApiInfoComponent,
+} from '../../blueprint/api-info/api-info.component';
+import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
+import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
+import {
+  Prerequisite,
+  PrerequisitesComponent,
+} from '../../blueprint/prerequisites/prerequisites.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
+import {
+  SourceTreeBuilder,
+  SourceTreeFolder,
+} from '../../blueprint/source-tree/source-tree-builder';
+import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseSelectComponent } from '../../examples/select/show-case-select/show-case-select.component';
-
+const ROOT = 'select';
 @Component({
   selector: 'doc-select-page',
   imports: [
@@ -11,8 +27,93 @@ import { ShowCaseSelectComponent } from '../../examples/select/show-case-select/
     ShowCaseComponent,
     ReactiveFormsModule,
     ShowCaseSelectComponent,
+    CommandInstallationComponent,
+    SourceTreeComponent,
+    ApiInfoComponent,
+    PrerequisitesComponent,
+    RouterLink,
   ],
   templateUrl: './select-page.component.html',
   styleUrl: './select-page.component.scss',
 })
-export class SelectPageComponent {}
+export class SelectPageComponent {
+  sourceTreeBuilder = inject(SourceTreeBuilder);
+  sourceTree: SourceTreeFolder[] = [
+    {
+      name: ROOT,
+      files: [
+        ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
+        ...this.sourceTreeBuilder.fullComponent('option', ROOT),
+        this.sourceTreeBuilder.file('select-check-icon.component', ROOT),
+        this.sourceTreeBuilder.file('select-icon.component', ROOT),
+      ],
+      hideName: true,
+    },
+  ];
+
+  prerequisites: Prerequisite[] = [
+    {
+      name: 'popover',
+    },
+    {
+      name: 'listbox',
+    },
+  ];
+
+  apiInfo: ApiInfo = {
+    entities: [
+      {
+        name: 'SelectComponent',
+        type: 'component',
+        selector: 'app-select',
+        formBindable: true,
+        inputs: [
+          {
+            name: 'stretch',
+            type: 'boolean',
+            default: 'false',
+            description: 'determines whether the select should be stretched',
+          },
+          {
+            name: 'multiple',
+            type: 'boolean',
+            default: 'false',
+            description:
+              'determines whether the select allows multiple selection',
+          },
+          {
+            name: 'required',
+            type: 'boolean',
+            default: 'false',
+            description: 'determines whether the select is required',
+          },
+          {
+            name: 'placeholder',
+            type: 'string',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
+            description: 'determines the placeholder text',
+          },
+          {
+            name: 'compareWith',
+            type: '(o1: unknown, o2: unknown) => o1 === o2',
+            default: 'o1 === o2',
+            description: 'determines the compare function',
+          },
+        ],
+      },
+      {
+        name: 'OptionComponent',
+        type: 'component',
+        selector: 'app-option',
+        inputs: [
+          {
+            name: 'value',
+            type: 'any',
+            description: 'The value of the option',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
+          },
+        ],
+      },
+    ],
+  };
+}

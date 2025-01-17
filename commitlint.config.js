@@ -28,6 +28,7 @@ module.exports = {
         'tooltip',
         'alert',
         'dialog',
+        'select',
       ],
     ],
   },

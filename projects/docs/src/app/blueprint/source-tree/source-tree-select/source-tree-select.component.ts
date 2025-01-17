@@ -8,7 +8,7 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { OptionComponent } from '@ng-verse/select/option/option.component';
+import { OptionComponent } from '@ng-verse/select/option.component';
 import { SelectComponent } from '@ng-verse/select/select.component';
 import { ChevronDown, Folder, LucideAngularModule } from 'lucide-angular';
 import { SourceTreeFile, SourceTreeFolder } from '../source-tree-builder';
