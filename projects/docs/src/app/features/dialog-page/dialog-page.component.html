@@ -1,5 +1,14 @@
-<doc-blueprint-page label="Dialog">
+<doc-blueprint-page
+  [label]="'Dialog'"
+  [subTitle]="
+    'Dialog have three different types, confirm, alert and custom dialog'
+  "
+>
   <doc-show-case name="dialog">
     <doc-show-case-dialog></doc-show-case-dialog>
   </doc-show-case>
+  <doc-command-installation type="component" name="dialog">
+  </doc-command-installation>
+  <doc-source-tree [sourceTree]="sourceTree" name="dialog"></doc-source-tree>
+  <doc-api-info [apiInfo]="apiInfo"> </doc-api-info>
 </doc-blueprint-page>
