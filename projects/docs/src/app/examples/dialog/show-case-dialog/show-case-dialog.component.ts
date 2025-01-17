@@ -14,7 +14,7 @@ export class ShowCaseDialogComponent {
 
   constructor() {
     afterNextRender(() => {
-      this.showDialog();
+      this.showAlert();
     });
   }
 

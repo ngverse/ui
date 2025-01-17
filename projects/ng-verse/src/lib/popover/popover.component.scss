@@ -1,9 +1,7 @@
 :host {
   margin: unset;
   padding: unset;
-  box-shadow:
-    0 4px 6px -1px var(--shadow),
-    0 2px 4px -2px var(--shadow);
+  box-shadow: var(--shadow);
   background-color: var(--surface);
   border-radius: var(--border-radius);
   border: var(--border);

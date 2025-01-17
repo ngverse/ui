@@ -27,6 +27,7 @@ module.exports = {
         'radio-button',
         'tooltip',
         'alert',
+        'dialog',
       ],
     ],
   },

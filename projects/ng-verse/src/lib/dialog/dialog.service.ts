@@ -1,6 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { ComponentType } from '@angular/cdk/portal';
 import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import {
   AlertDialogComponent,
   AlertDialogOption,
@@ -10,6 +11,11 @@ import {
   ConfirmDialogOptions,
 } from './confirm-dialog/confirm-dialog.component';
 import { DialogComponent, DialogOptions } from './dialog/dialog.component';
+
+interface DialogReturn<T> {
+  close: () => void;
+  closed: Observable<T | undefined>;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +43,7 @@ export class DialogService {
         showClose,
       },
     });
-    return dialogRef.closed;
+    return { close: dialogRef.close, closed: dialogRef.closed };
   }
 
   confirm(options: ConfirmDialogOptions) {
@@ -63,23 +69,15 @@ export class DialogService {
     return { close: dialogRef.close, closed: dialogRef.closed };
   }
 
-  alert(options: AlertDialogOption) {
-    const disableClose =
-      options.disableClose === undefined ? false : options.disableClose;
-    const hasBackdrop =
-      options.hasBackdrop === undefined ? true : options.hasBackdrop;
-    const buttonLabel = options.buttonLabel ?? 'OK';
-    const title = options.title;
-    const description = options.description;
-
-    const dialogRef = this.dialog.open<void>(AlertDialogComponent, {
-      disableClose: disableClose,
-      hasBackdrop: hasBackdrop,
-
+  alert<T>(options: AlertDialogOption): DialogReturn<T> {
+    const dialogRef = this.dialog.open<T>(AlertDialogComponent, {
+      disableClose: false,
+      hasBackdrop: true,
+      backdropClass: 'cdk-backdrop-transparent',
       data: {
-        buttonLabel,
-        title,
-        description,
+        buttonLabel: options.buttonLabel ?? 'OK',
+        title: options.title,
+        description: options.description,
       },
     });
     return { close: dialogRef.close, closed: dialogRef.closed };
