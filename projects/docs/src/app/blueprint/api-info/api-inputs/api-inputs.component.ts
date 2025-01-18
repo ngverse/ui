@@ -1,5 +1,8 @@
 import { NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
+import { AccordionBodyComponent } from '@ng-verse/accordion/accordion-body.component';
+import { AccordionItemComponent } from '@ng-verse/accordion/accordion-item.component';
+import { AccordionComponent } from '@ng-verse/accordion/accordion.component';
 
 interface ApiInputType {
   name: string;
@@ -8,11 +11,23 @@ interface ApiInputType {
   default?: string;
 }
 
+interface ApiMethodParam {
+  name: string;
+  type: string;
+  description?: string;
+  fields?: {
+    name: string;
+    type: string;
+    description: string;
+    default: string;
+  }[];
+}
+
 interface ApiMethodType {
   name: string;
   returnType: string;
-  description: string;
-  params: ApiInputType[];
+  description?: string;
+  params: ApiMethodParam[];
 }
 
 export const VOID_API_RETURN_TYPE = 'void';
@@ -35,7 +50,12 @@ export interface ApiEntity {
 
 @Component({
   selector: 'doc-api-inputs',
-  imports: [NgClass],
+  imports: [
+    NgClass,
+    AccordionComponent,
+    AccordionItemComponent,
+    AccordionBodyComponent,
+  ],
   templateUrl: './api-inputs.component.html',
   styleUrl: './api-inputs.component.scss',
 })

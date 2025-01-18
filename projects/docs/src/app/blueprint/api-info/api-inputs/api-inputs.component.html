@@ -64,45 +64,35 @@
   }
   @if (apiInput.methods?.length) {
     <p class="mb-2 text-sm">Methods</p>
-    <div
-      class="relative overflow-x-auto border border-slate-200 rounded-md mb-10"
-    >
-      <table
-        class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
-      >
-        <thead
-          class="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-400"
-        >
-          <tr>
-            <th scope="col" class="px-6 py-3">Name</th>
-            <th scope="col" class="px-6 py-3">Return</th>
-            <th scope="col" class="px-6 py-3">Params</th>
-
-            <th scope="col" class="px-6 py-3">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (method of apiInput.methods; track $index) {
-            <tr class="bg-white border-b">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                {{ method.name }}
-              </th>
-              <td class="px-6 py-4">{{ method.returnType }}</td>
-              <td class="px-6 py-4">
-                @for (param of method.params; track $index) {
-                  <span>{{ param.name }} : {{ param.type }}</span>
+    <app-accordion>
+      @for (method of apiInput.methods; track $index) {
+        <app-accordion-item [label]="method.name">
+          <app-accordion-body>
+            <p>{{ method.description }}</p>
+            <p>Returns: {{ method.returnType }}</p>
+            <p>Params:</p>
+            @for (param of method.params; track $index) {
+              <p>Name:{{ param.name }}</p>
+              <p>Type: {{ param.type }}</p>
+              @if (param.fields?.length) {
+                @for (field of param.fields; track $index) {
+                  <div class="pl-4">
+                    <p>Fields</p>
+                    <p>Type: {{ field.type }}</p>
+                    <p>
+                      {{ field.name }} : {{ field.type }}
+                      {{ field.description }}
+                    </p>
+                  </div>
                 }
-              </td>
-
-              <td class="px-6 py-4 lowercase">{{ method.description }}</td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
+              } @else {
+                <span>{{ param.name }} : {{ param.type }}</span>
+              }
+            }
+            <div></div>
+          </app-accordion-body>
+        </app-accordion-item>
+      }
+    </app-accordion>
   }
-  <div class="w-full border-t border-solid border-slate-200 h-[1px] mb-5"></div>
 }
