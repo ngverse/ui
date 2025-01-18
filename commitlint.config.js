@@ -29,6 +29,7 @@ module.exports = {
         'alert',
         'dialog',
         'select',
+        'accordion',
       ],
     ],
   },

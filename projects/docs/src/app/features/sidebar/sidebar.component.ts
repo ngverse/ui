@@ -40,6 +40,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Accordion',
         url: '/doc/accordion',
+        done: true,
       },
       {
         name: 'Alert',
