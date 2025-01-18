@@ -30,6 +30,7 @@ module.exports = {
         'dialog',
         'select',
         'accordion',
+        'toast',
       ],
     ],
   },

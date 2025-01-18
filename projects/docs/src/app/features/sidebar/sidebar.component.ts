@@ -99,6 +99,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Toast',
         url: '/doc/toast',
+        done: true,
       },
       {
         name: 'Tooltip',

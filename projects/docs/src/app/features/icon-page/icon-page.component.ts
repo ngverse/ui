@@ -87,7 +87,6 @@ export class IconPageComponent {
               {
                 name: 'name',
                 type: 'string',
-
                 description: 'The name of the icon to add.',
               },
             ],

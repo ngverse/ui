@@ -3,7 +3,10 @@ import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
-import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import {
+  EMPTY_API_INPUT_DEFAULT_VALUE,
+  VOID_API_RETURN_TYPE,
+} from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -50,53 +53,64 @@ export class ToastPageComponent {
         name: 'ToastService',
         type: 'service',
         description: 'Service for toast',
-        inputs: [
+        methods: [
           {
-            name: 'message',
-            type: 'string',
-            description: 'text to display',
-            default: EMPTY_API_INPUT_DEFAULT_VALUE,
-          },
-
-          {
-            name: 'position',
-            type: `top_left
-    | top_center
-    | top_right
-    | right_center
-    | right_bottom
-    | bottom_center
-    | bottom_left
-    | left_center`,
-            description: 'Defines where to put the toast',
-            default: 'right_bottom',
-          },
-          {
-            name: 'showCloseIcon',
-            type: 'boolean',
-            description: 'Shows close icon',
-            default: 'true',
-          },
-          {
-            name: 'autoClose',
-            type: 'boolean',
-            description:
-              'Automatically closes the toast when the closeDelay expires.',
-            default: 'true',
-          },
-          {
-            name: 'closeDelay',
-            type: 'number',
-            description:
-              'The duration (in milliseconds) to wait before automatically closing the toast.',
-            default: '3000ms',
-          },
-          {
-            name: 'action',
-            type: 'string',
-            description:
-              'Adds the action value as a class to the toast element, allowing you to apply styles based on the action type, such as "success" or "error".',
-            default: 'action',
+            name: 'open',
+            returnType: VOID_API_RETURN_TYPE,
+            params: [
+              {
+                name: 'options',
+                type: 'object',
+                fields: [
+                  {
+                    name: 'message',
+                    type: 'string',
+                    description: 'text to display',
+                    default: EMPTY_API_INPUT_DEFAULT_VALUE,
+                  },
+                  {
+                    name: 'position',
+                    type: `top_left
+                    | top_center
+                    | top_right
+                    | right_center
+                    | right_bottom
+                    | bottom_center
+                    | bottom_left
+                    | left_center`,
+                    description: 'Defines where to put the toast',
+                    default: 'right_bottom',
+                  },
+                  {
+                    name: 'showCloseIcon',
+                    type: 'boolean',
+                    description: 'Shows close icon',
+                    default: 'true',
+                  },
+                  {
+                    name: 'autoClose',
+                    type: 'boolean',
+                    description:
+                      'Automatically closes the toast when the closeDelay expires.',
+                    default: 'true',
+                  },
+                  {
+                    name: 'closeDelay',
+                    type: 'number',
+                    description:
+                      'The duration (in milliseconds) to wait before automatically closing the toast.',
+                    default: '3000ms',
+                  },
+                  {
+                    name: 'action',
+                    type: 'string',
+                    description:
+                      'Adds the action value as a class to the toast element, allowing you to apply styles based on the action type, such as "success" or "error".',
+                    default: 'action',
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
