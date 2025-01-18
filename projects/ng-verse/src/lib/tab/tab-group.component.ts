@@ -1,6 +1,4 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { ListboxValueChangeEvent } from '@angular/cdk/listbox';
-import { CdkPortalOutlet } from '@angular/cdk/portal';
 import { NgTemplateOutlet } from '@angular/common';
 import {
   afterNextRender,
@@ -16,11 +14,13 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
-import { TabComponent } from '../tab.component';
+import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
+import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
+import { TabComponent } from './tab.component';
 
 @Component({
   selector: 'app-tab-group',
-  imports: [CdkPortalOutlet, NgTemplateOutlet],
+  imports: [NgTemplateOutlet, ListboxDirective, ListboxItemDirective],
   templateUrl: './tab-group.component.html',
   styleUrl: './tab-group.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -41,8 +41,6 @@ export class TabGroupComponent implements OnDestroy {
     viewChild.required<ElementRef<HTMLElement>>('tabGroupHeader');
 
   tabChanged = output<number>();
-
-  listboxValue = computed(() => [this.selectedIndex()]);
 
   selectedTab = computed(() =>
     this.tabs().find((_, index) => index === this.selectedIndex())
@@ -71,11 +69,6 @@ export class TabGroupComponent implements OnDestroy {
       this.tabInkLeft.set(rects.left - tabGroupRects.left);
       this.tabInkWidth.set(rects.width);
     }
-  }
-
-  listboxValueChange($event: ListboxValueChangeEvent<number>) {
-    const selectedIndex = $event.value[0];
-    this.selectedIndex.set(selectedIndex);
   }
 
   selectTab($event: number) {

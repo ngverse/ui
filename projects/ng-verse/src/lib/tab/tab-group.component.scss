@@ -10,23 +10,6 @@
   justify-content: center;
   cursor: pointer;
   position: relative;
-
-  // &.active {
-  //   font-weight: 500;
-  //   &::after {
-  //     content: '';
-  //     position: absolute;
-  //     bottom: 0;
-  //     left: 0;
-  //     right: 0;
-  //     background-color: var(--primary);
-  //     height: 2px;
-  //   }
-  // }
-
-  // &.active {
-  //   outline-color: var(--ring);
-  // }
 }
 
 .tab-body {
@@ -40,7 +23,15 @@
   height: 2px;
   transition:
     left 0.3s ease,
-    width 0.3s ease; /* Transition both left and width */
+    width 0.3s ease;
 
   background-color: var(--primary);
+}
+
+.listbox-item-active {
+  outline: 1px solid var(--ring);
+}
+
+.listbox {
+  outline: none;
 }

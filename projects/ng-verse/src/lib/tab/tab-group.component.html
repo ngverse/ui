@@ -1,0 +1,40 @@
+<div class="tab-group-header" #tabGroupHeader appListbox [horizontal]="true">
+  @for (tab of tabs(); track $index) {
+    <div
+      appListboxItem
+      #tabHeader
+      class="tab-header"
+      (activated)="selectTab($index)"
+      [class.active]="selectedIndex() === $index"
+    >
+      @if (tab.headerTemplate(); as headerTemplate) {
+        <ng-container
+          [ngTemplateOutlet]="headerTemplate.templateRef"
+        ></ng-container>
+      } @else {
+        {{ tab.label() }}
+      }
+    </div>
+  }
+  <div
+    #tabInk
+    class="tab-ink"
+    [style.width.px]="tabInkWidth()"
+    [style.left.px]="tabInkLeft()"
+  ></div>
+</div>
+<!--we need explicitely set ng-content, in order ssr work properly see (https://github.com/angular/angular/issues/50543)-->
+<ng-content></ng-content>
+<div class="tab-body" [@tabChange]="selectedIndex()">
+  @if (selectedTab(); as selectedTab) {
+    @if (selectedTab.bodyTemplate(); as bodyTemplate) {
+      <ng-container
+        [ngTemplateOutlet]="bodyTemplate.templateRef"
+      ></ng-container>
+    } @else {
+      @if (selectedTab.templateRef(); as templateRef) {
+        <ng-container [ngTemplateOutlet]="templateRef"></ng-container>
+      }
+    }
+  }
+</div>
