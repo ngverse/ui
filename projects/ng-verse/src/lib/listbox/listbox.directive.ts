@@ -1,4 +1,4 @@
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { ActiveDescendantKeyManager, FocusMonitor } from '@angular/cdk/a11y';
 import {
   contentChildren,
   Directive,
@@ -19,6 +19,7 @@ import { ListboxState } from './listbox.state';
   selector: '[appListbox]',
   host: {
     tabindex: '0',
+    class: 'listbox',
   },
 })
 export class ListboxDirective implements OnDestroy {
@@ -27,8 +28,11 @@ export class ListboxDirective implements OnDestroy {
   items = contentChildren(ListboxItemDirective, { descendants: true });
   keyManager: ActiveDescendantKeyManager<ListboxItemDirective> | undefined;
   renderer = inject(Renderer2);
+  focusMonitor = inject(FocusMonitor);
 
   state = inject(ListboxState, { optional: true });
+
+  horizontal = input(false);
 
   selected = output();
 
@@ -47,6 +51,7 @@ export class ListboxDirective implements OnDestroy {
     effect(() => {
       const contentItems = this.items();
       const stateItems = this.state?.items();
+      const horizontal = this.horizontal();
       let options = contentItems;
       if (stateItems) {
         options = stateItems;
@@ -57,6 +62,9 @@ export class ListboxDirective implements OnDestroy {
         this.keyManager = new ActiveDescendantKeyManager(options)
           .withWrap()
           .withTypeAhead();
+        if (horizontal) {
+          this.keyManager = this.keyManager.withHorizontalOrientation('ltr');
+        }
 
         untracked(() => {
           if (this.autoActiveFirstOption()) {
@@ -70,6 +78,14 @@ export class ListboxDirective implements OnDestroy {
             activeOption.scrollIntoView();
           }
         });
+      }
+    });
+
+    this.focusMonitor.monitor(this.host.nativeElement).subscribe((origin) => {
+      if (origin && origin !== 'mouse') {
+        this.keyManager?.setFirstItemActive();
+      } else {
+        this.keyManager?.setActiveItem(-1);
       }
     });
   }

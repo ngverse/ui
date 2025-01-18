@@ -1,15 +1,10 @@
-<doc-blueprint-page label="Tab">
+<doc-blueprint-page
+  label="Tab"
+  subTitle="Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time."
+>
   <doc-show-case name="tab">
-    <app-tab-group [selectedIndex]="1">
-      <app-tab label="Tab header 1">
-        <h1>Tab Content 1</h1>
-      </app-tab>
-      <app-tab label="Tab header 2">
-        <h1>Tab Content 2</h1>
-        <ng-template appTabBody>
-          <h1>I AM BUDYY</h1>
-        </ng-template>
-      </app-tab>
-    </app-tab-group>
+    <doc-show-case-tab></doc-show-case-tab>
   </doc-show-case>
+  <doc-source-tree [sourceTree]="sourceTree" name="tab"></doc-source-tree>
+  <doc-api-info [apiInfo]="apiInfo"></doc-api-info>
 </doc-blueprint-page>

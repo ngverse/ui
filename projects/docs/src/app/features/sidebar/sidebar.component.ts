@@ -127,6 +127,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Tab',
         url: '/doc/tab',
+        done: true,
       },
       {
         name: 'Input',

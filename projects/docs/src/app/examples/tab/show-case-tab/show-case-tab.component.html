@@ -1,0 +1,17 @@
+<app-tab-group>
+  <app-tab label="Default"> This is default tab enjoy! </app-tab>
+  <app-tab>
+    <ng-template appTabHeader>
+      <div class="custom-label">
+        <span>Custom Label</span>
+        <app-icon name="check" width="16" height="16"></app-icon>
+      </div>
+    </ng-template>
+    This is Custom Label Tab enjoy!
+  </app-tab>
+  <app-tab label="Lazy Load Body">
+    <ng-template appTabBody>
+      <doc-lazy-tab></doc-lazy-tab>
+    </ng-template>
+  </app-tab>
+</app-tab-group>
