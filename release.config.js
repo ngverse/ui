@@ -5,17 +5,12 @@ module.exports = {
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
     [
-      '@semantic-release/changelog',
-      {
-        changelogFile: 'CHANGELOG.md',
-      },
-    ],
-    [
       '@semantic-release/npm',
       {
         pkgRoot: 'projects/ng-verse', // Path to the project's package.json
       },
     ],
+    '@semantic-release/git',
     [
       '@semantic-release/github',
       {
