@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Build library
+        run: ng build --project=ng-verse && cd projects/ng-verse && npm run build
+
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PATH }}
