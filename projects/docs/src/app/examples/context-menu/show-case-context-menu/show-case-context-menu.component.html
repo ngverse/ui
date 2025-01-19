@@ -1,4 +1,9 @@
-<p appContextMenuTrigger #trigger="appContextMenuTrigger">
+<p
+  appContextMenuTrigger
+  #content
+  #trigger="appContextMenuTrigger"
+  [style.color]="color()"
+>
   Lorem Ipsum is simply dummy text of the printing and typesetting industry.
   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
   when an unknown printer took a galley of type and scrambled it to make a type
@@ -9,8 +14,17 @@
   including versions of Lorem Ipsum.
 </p>
 <app-context-menu [trigger]="trigger">
-  <app-context-menu-item (activated)="selected()">Item 1</app-context-menu-item>
-  <app-context-menu-item>Item 2</app-context-menu-item>
-  <app-context-menu-item>Item 3</app-context-menu-item>
-  <app-context-menu-item>Item 4</app-context-menu-item>
+  <app-context-menu-item
+    [cdkCopyToClipboard]="content.textContent || ''"
+    (cdkCopyToClipboardCopied)="copied()"
+    >Copy</app-context-menu-item
+  >
+  <app-context-menu-item (click)="markRead()"
+    >Mark as Red</app-context-menu-item
+  >
+  <app-context-menu-item>
+    <a [href]="'https://google.com/?q=' + content.textContent" target="_blank"
+      >Search In google</a
+    >
+  </app-context-menu-item>
 </app-context-menu>

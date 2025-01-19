@@ -3,6 +3,9 @@
 }
 
 .context-menu {
-  width: 250px;
-  outline-color: var(--app-ring-color);
+  max-height: 200px;
+  min-width: 200px;
+  &:focus {
+    outline: none;
+  }
 }

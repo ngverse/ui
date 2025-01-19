@@ -1,7 +1,21 @@
-<doc-blueprint-page [label]="'Context Menu'">
+<doc-blueprint-page
+  [label]="'Context Menu'"
+  subTitle="A context menus is a type of pop-up menu that doesn't have a traditional trigger element, instead it is triggered when a user right-clicks within some container element"
+>
   <doc-show-case name="context-menu">
     <doc-show-case-context-menu></doc-show-case-context-menu>
   </doc-show-case>
+  <doc-prerequisites [preps]="prerequisites">
+    Select element uses
+    <a class="underline" [routerLink]="['../popover']">Popover</a> and
+    <a class="underline" [routerLink]="['../listbox']">Listbox</a>. Please
+    ensure they are added to your project if they aren't already.
+  </doc-prerequisites>
   <doc-command-installation type="component" name="context-menu">
   </doc-command-installation>
+  <doc-source-tree
+    name="context-menu"
+    [sourceTree]="sourceTree"
+  ></doc-source-tree>
+  <doc-api-info [apiInfo]="apiInfo"></doc-api-info>
 </doc-blueprint-page>

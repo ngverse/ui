@@ -1,9 +1,11 @@
 :host {
   display: block;
-  padding: 6px;
-  cursor: pointer;
-  &.listbox-item-active,
-  &:hover {
-    background: #f3f4f6;
+  padding: var(--app-option-padding);
+  cursor: var(--app-option-cursor);
+
+  &:hover,
+  &.listbox-item-active {
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
 }
