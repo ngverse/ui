@@ -6,7 +6,7 @@ import { DrawerRef } from '@ng-verse/drawer/drawer-ref';
 import { DrawerComponent } from '@ng-verse/drawer/drawer/drawer.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DrawerService {
   private readonly overlay = inject(Overlay);
@@ -23,21 +23,30 @@ export class DrawerService {
       }
     }
 
-    const positionStrategy = this.overlay.position()
+    const positionStrategy = this.overlay
+      .position()
       .global()
       .centerHorizontally()
       .right();
 
-    overlayRef = this.overlay.create({ positionStrategy, hasBackdrop: true, scrollStrategy: this.overlay.scrollStrategies.block() });
+    overlayRef = this.overlay.create({
+      positionStrategy,
+      hasBackdrop: true,
+      scrollStrategy: this.overlay.scrollStrategies.block(),
+    });
     subs.add(overlayRef.backdropClick().subscribe(() => close()));
 
     const customInjector = Injector.create({
       providers: [
         { provide: DrawerRef, useFactory: () => new DrawerRef(overlayRef) },
-      ]
+      ],
     });
 
-    const overlayPortal = new ComponentPortal(DrawerComponent, null, customInjector);
+    const overlayPortal = new ComponentPortal(
+      DrawerComponent,
+      null,
+      customInjector
+    );
     const ref = overlayRef.attach(overlayPortal);
     ref.setInput('component', component);
     ref.setInput('data', data);

@@ -1,28 +1,28 @@
+import { animate, style, transition, trigger } from '@angular/animations';
+import { OverlayRef } from '@angular/cdk/overlay';
+import { ComponentType } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
   Component,
   ComponentRef,
   input,
-  OnInit, output, viewChild,
-  ViewContainerRef
+  OnInit,
+  output,
+  viewChild,
+  ViewContainerRef,
 } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
-import { ComponentType } from '@angular/cdk/portal';
-import { OverlayRef } from '@angular/cdk/overlay';
 import { DrawerCloseIconComponent } from '@ng-verse/drawer/drawer-close-icon.component';
 
 @Component({
   selector: 'app-drawer',
-  imports: [
-    DrawerCloseIconComponent
-  ],
+  imports: [DrawerCloseIconComponent],
   templateUrl: './drawer.component.html',
   styleUrl: './drawer.component.scss',
   animations: [
     trigger('slideRightLeftAnimation', [
       transition(':enter', [
-        style({ transform: 'translateX(100%)'}),
-        animate('300ms ease-out', style({ transform: 'translateX(0)'})),
+        style({ transform: 'translateX(100%)' }),
+        animate('300ms ease-out', style({ transform: 'translateX(0)' })),
       ]),
       transition(':leave', [
         animate('200ms ease-in', style({ transform: 'translateX(100%)' })),
@@ -30,9 +30,9 @@ import { DrawerCloseIconComponent } from '@ng-verse/drawer/drawer-close-icon.com
     ]),
   ],
   host: {
-    '[@slideRightLeftAnimation]': ''
+    '[@slideRightLeftAnimation]': '',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawerComponent implements OnInit {
   component = input.required<ComponentType<unknown>>();
@@ -57,8 +57,11 @@ export class DrawerComponent implements OnInit {
     return this.content().createComponent(component);
   }
 
-  private setInputs(componentRef: ComponentRef<unknown>, data: Record<string, unknown>) {
-    for(const key in data) {
+  private setInputs(
+    componentRef: ComponentRef<unknown>,
+    data: Record<string, unknown>
+  ) {
+    for (const key in data) {
       componentRef?.setInput(key, data[key]);
     }
   }

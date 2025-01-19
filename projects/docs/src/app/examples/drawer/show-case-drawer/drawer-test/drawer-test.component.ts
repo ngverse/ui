@@ -12,12 +12,10 @@ import { ButtonComponent } from '@ng-verse/button/button.component';
     DrawerTitleComponent,
     DrawerSubtitleComponent,
     DrawerCloseDirective,
-    ButtonComponent
+    ButtonComponent,
   ],
   templateUrl: './drawer-test.component.html',
   styleUrl: './drawer-test.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DrawerTestComponent {
-
-}
+export class DrawerTestComponent {}

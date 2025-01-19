@@ -68,6 +68,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Drawer',
         url: '/doc/drawer',
+        done: true,
       },
       {
         name: 'Checkbox',

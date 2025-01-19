@@ -6,12 +6,14 @@ describe('DrawerCloseDirective', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [DrawerCloseDirective],
-      providers: [{ provide: DrawerRef, useValue: new DrawerRef(null) }]
+      providers: [{ provide: DrawerRef, useValue: new DrawerRef(null) }],
     }).compileComponents();
   });
 
   it('should create an instance', () => {
-    const directive = TestBed.runInInjectionContext(() => new DrawerCloseDirective());
+    const directive = TestBed.runInInjectionContext(
+      () => new DrawerCloseDirective()
+    );
     expect(directive).toBeTruthy();
   });
 });

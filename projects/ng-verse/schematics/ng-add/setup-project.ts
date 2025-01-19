@@ -77,6 +77,12 @@ function addStyles(options: Schema) {
 
     const recorder = host.beginUpdate(styleSCSSPath);
     recorder.insertLeft(0, insertion);
+
+    const styleContent = host.read(styleSCSSPath)?.toString() || '';
+    if (!styleContent.includes('@angular/cdk/overlay-prebuilt.css')) {
+      recorder.insertLeft(0, `@use '@angular/cdk/overlay-prebuilt.css';\n`);
+    }
+
     host.commitUpdate(recorder);
   };
 }
