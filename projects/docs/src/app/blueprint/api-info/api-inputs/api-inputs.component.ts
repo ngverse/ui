@@ -33,7 +33,7 @@ interface ApiMethodType {
 
 interface ApiOutputType {
   name: string;
-  type: string;
+  value: string;
   description: string;
 }
 

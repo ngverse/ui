@@ -1,1 +1,6 @@
-<app-otp-input (filled)="codeFilled($event)"></app-otp-input>
+<div class="show-case">
+  <app-otp-input (filled)="codeFilled($event)"></app-otp-input>
+  @if (code(); as code) {
+    <p>Code is : {{ code }}</p>
+  }
+</div>

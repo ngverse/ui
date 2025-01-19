@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { OtpInputComponent } from '../../../../../../ng-verse/src/lib/otp-input/otp-input.component';
+import { Component, signal } from '@angular/core';
+import { OtpInputComponent } from '@ng-verse/otp-input/otp-input.component';
 
 @Component({
   selector: 'doc-show-case-otp-input',
@@ -8,7 +8,8 @@ import { OtpInputComponent } from '../../../../../../ng-verse/src/lib/otp-input/
   styleUrl: './show-case-otp-input.component.scss',
 })
 export class ShowCaseOtpInputComponent {
+  code = signal<string | undefined>(undefined);
   codeFilled(code: string) {
-    console.log('CODE FILED ', code);
+    this.code.set(code);
   }
 }

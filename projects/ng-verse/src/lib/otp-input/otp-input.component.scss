@@ -1,0 +1,16 @@
+.listbox-item-active {
+  outline: 1px solid var(--ring);
+}
+
+.code-container {
+  display: flex;
+  gap: 6px;
+  height: 40px;
+}
+
+.code-input {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  width: 40px;
+  text-align: center;
+}

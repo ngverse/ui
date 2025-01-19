@@ -24,7 +24,7 @@ export class SourceTreeComponent {
 
   language = signal<SOURCE_FILE_EXTENSION_TYPE>('ts');
 
-  sourceTree = input<SourceTreeFolder[]>([]);
+  sourceTree = input.required<SourceTreeFolder[]>();
 
   name = input.required<string>();
 

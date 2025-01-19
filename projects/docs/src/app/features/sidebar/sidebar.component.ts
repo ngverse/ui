@@ -143,6 +143,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'OTP Input',
         url: '/doc/otp-input',
+        done: true,
       },
       {
         name: 'Icon',

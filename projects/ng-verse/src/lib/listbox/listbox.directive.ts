@@ -1,4 +1,9 @@
-import { ActiveDescendantKeyManager, FocusMonitor } from '@angular/cdk/a11y';
+import {
+  ActiveDescendantKeyManager,
+  FocusKeyManager,
+  FocusMonitor,
+  ListKeyManager,
+} from '@angular/cdk/a11y';
 import {
   contentChildren,
   Directive,
@@ -26,9 +31,10 @@ export class ListboxDirective implements OnDestroy {
   autoActiveFirstOption = input(false);
   private host = inject<ElementRef<HTMLElement>>(ElementRef);
   items = contentChildren(ListboxItemDirective, { descendants: true });
-  keyManager: ActiveDescendantKeyManager<ListboxItemDirective> | undefined;
+  keyManager: ListKeyManager<ListboxItemDirective> | undefined;
   renderer = inject(Renderer2);
   focusMonitor = inject(FocusMonitor);
+  focusItems = input(false);
 
   state = inject(ListboxState, { optional: true });
 
@@ -52,6 +58,7 @@ export class ListboxDirective implements OnDestroy {
       const contentItems = this.items();
       const stateItems = this.state?.items();
       const horizontal = this.horizontal();
+      const focusItems = this.focusItems();
       let options = contentItems;
       if (stateItems) {
         options = stateItems;
@@ -59,9 +66,10 @@ export class ListboxDirective implements OnDestroy {
 
       if (options?.length) {
         this.keyManager?.destroy();
-        this.keyManager = new ActiveDescendantKeyManager(options)
-          .withWrap()
-          .withTypeAhead();
+        const keyManager = focusItems
+          ? new FocusKeyManager(options)
+          : new ActiveDescendantKeyManager(options);
+        this.keyManager = keyManager.withWrap().withTypeAhead();
         if (horizontal) {
           this.keyManager = this.keyManager.withHorizontalOrientation('ltr');
         }
@@ -80,13 +88,17 @@ export class ListboxDirective implements OnDestroy {
         });
       }
     });
-
-    this.focusMonitor.monitor(this.host.nativeElement).subscribe((origin) => {
-      if (origin && origin !== 'mouse') {
-        this.keyManager?.setFirstItemActive();
-      } else {
-        this.keyManager?.setActiveItem(-1);
+    effect(() => {
+      if (this.focusItems()) {
+        return;
       }
+      this.focusMonitor.monitor(this.host.nativeElement).subscribe((origin) => {
+        if (origin && origin !== 'mouse') {
+          this.keyManager?.setFirstItemActive();
+        } else {
+          this.keyManager?.setActiveItem(-1);
+        }
+      });
     });
   }
 
