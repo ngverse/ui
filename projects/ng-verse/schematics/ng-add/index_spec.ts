@@ -12,11 +12,13 @@ import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema
 const collectionPath = require.resolve('../collection.json');
 const PROJECT_NAME = 'demo';
 
-const PROJECT_ROOT = `projects/demo/src/app/`;
-const NG_VERSE_ROOT = `node_modules/ngverse/src/lib/`;
+const PROJECT_ROOT = `projects/demo/src/`;
+const PROJECT_APP_ROOT = `${PROJECT_ROOT}/app/`;
+const STYLE_PATH = `projects/demo/src/styles.scss`;
+const NG_VERSE_ROOT = `node_modules/ng-verse/src/lib/`;
 
 describe('ng-add', () => {
-  const testRunner = new SchematicTestRunner('ngverse', collectionPath);
+  const testRunner = new SchematicTestRunner('ng-verse', collectionPath);
   const workspaceOptions: WorkspaceOptions = {
     name: 'workspace',
 
@@ -29,7 +31,7 @@ describe('ng-add', () => {
     inlineStyle: false,
     inlineTemplate: false,
     routing: false,
-    style: Style.Css,
+    style: Style.Scss,
     skipTests: false,
     skipPackageJson: false,
   };
@@ -49,6 +51,8 @@ describe('ng-add', () => {
   });
 
   it('should throw an error if styles.scss is not found', async () => {
+    appTree.delete(STYLE_PATH);
+
     await expectAsync(
       testRunner.runSchematic(
         'ng-add-setup-project',
@@ -57,12 +61,11 @@ describe('ng-add', () => {
       )
     ).toBeRejectedWithError(
       SchematicsException,
-      'Could not find projects/demo/src/app/styles.scss to add ngverse.scss'
+      `Could not find ${STYLE_PATH}`
     );
   });
 
-  it('should throw an error if ngverse.scss is not found', async () => {
-    appTree.create(PROJECT_ROOT + 'styles.scss', '');
+  it('should throw an error if ng-verse.scss is not found', async () => {
     await expectAsync(
       testRunner.runSchematic(
         'ng-add-setup-project',
@@ -71,26 +74,22 @@ describe('ng-add', () => {
       )
     ).toBeRejectedWithError(
       SchematicsException,
-      `Could not find ${NG_VERSE_ROOT}ngverse.scss to add ngverse.scss`
+      `Could not find ${NG_VERSE_ROOT}ng-verse.scss to add ng-verse.scss`
     );
   });
-  it('should add ngverse.scss file to the project', async () => {
-    appTree.create(PROJECT_ROOT + 'styles.scss', '');
-    appTree.create(NG_VERSE_ROOT + 'ngverse.scss', '');
+
+  it('should add ng-verse.scss file to the project', async () => {
+    appTree.create(NG_VERSE_ROOT + 'ng-verse.scss', '');
     await testRunner.runSchematic(
       'ng-add-setup-project',
       { project: PROJECT_NAME },
       appTree
     );
-    expect(appTree.exists(PROJECT_ROOT + 'ngverse.scss')).toBe(true);
+
+    expect(appTree.exists(PROJECT_ROOT + 'ng-verse.scss')).toBe(true);
   });
-  it("should add ngverse.scss file to the project's styles", async () => {
-    appTree.create(
-      PROJECT_ROOT + 'styles.scss',
-      `@import './some.styles.scss'
-      html,body{margin:0}`
-    );
-    appTree.create(NG_VERSE_ROOT + 'ngverse.scss', '');
+  it("should add ng-verse.scss file to the project's styles", async () => {
+    appTree.create(NG_VERSE_ROOT + 'ng-verse.scss', '');
     await testRunner.runSchematic(
       'ng-add-setup-project',
       { project: PROJECT_NAME },
@@ -99,20 +98,18 @@ describe('ng-add', () => {
     const stylesContent = appTree
       .read(PROJECT_ROOT + 'styles.scss')
       ?.toString();
-    expect(stylesContent).toContain(`@use './ngverse.scss';`);
+    expect(stylesContent).toContain(`@use './ng-verse.scss';`);
   });
 
   it('should add animation to the project config', async () => {
-    appTree.create(PROJECT_ROOT + 'styles.scss', '');
-    appTree.create(NG_VERSE_ROOT + 'ngverse.scss', '');
+    appTree.create(NG_VERSE_ROOT + 'ng-verse.scss', '');
     await testRunner.runSchematic(
       'ng-add-setup-project',
       { project: PROJECT_NAME },
       appTree
     );
-
     const appConfigContent = appTree
-      .read(PROJECT_ROOT + 'app.config.ts')
+      .read(PROJECT_APP_ROOT + 'app.config.ts')
       ?.toString();
     expect(appConfigContent).toContain(
       "import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';"
@@ -120,8 +117,7 @@ describe('ng-add', () => {
     expect(appConfigContent).toContain(`provideAnimationsAsync()`);
   });
   it('should add noop animation to the project config', async () => {
-    appTree.create(PROJECT_ROOT + 'styles.scss', '');
-    appTree.create(NG_VERSE_ROOT + 'ngverse.scss', '');
+    appTree.create(NG_VERSE_ROOT + 'ng-verse.scss', '');
     await testRunner.runSchematic(
       'ng-add-setup-project',
       { project: PROJECT_NAME, animations: 'disabled' },
@@ -129,7 +125,7 @@ describe('ng-add', () => {
     );
 
     const appConfigContent = appTree
-      .read(PROJECT_ROOT + 'app.config.ts')
+      .read(PROJECT_APP_ROOT + 'app.config.ts')
       ?.toString();
     expect(appConfigContent).toContain(
       "import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';"
@@ -137,8 +133,7 @@ describe('ng-add', () => {
     expect(appConfigContent).toContain(`provideAnimationsAsync('noop')`);
   });
   it('should add excluded animation to the project config', async () => {
-    appTree.create(PROJECT_ROOT + 'styles.scss', '');
-    appTree.create(NG_VERSE_ROOT + 'ngverse.scss', '');
+    appTree.create(NG_VERSE_ROOT + 'ng-verse.scss', '');
     await testRunner.runSchematic(
       'ng-add-setup-project',
       { project: PROJECT_NAME, animations: 'excluded' },
@@ -146,15 +141,14 @@ describe('ng-add', () => {
     );
 
     const appConfigContent = appTree
-      .read(PROJECT_ROOT + 'app.config.ts')
+      .read(PROJECT_APP_ROOT + 'app.config.ts')
       ?.toString();
     expect(appConfigContent).not.toContain(
       "import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';"
     );
   });
-  it("should add ngverse to the project's package.json", async () => {
-    appTree.create(PROJECT_ROOT + 'styles.scss', '');
-    appTree.create(NG_VERSE_ROOT + 'ngverse.scss', '');
+  it("should add ng-verse to the project's package.json", async () => {
+    appTree.create(NG_VERSE_ROOT + 'ng-verse.scss', '');
     await testRunner.runSchematic(
       'ng-add-setup-project',
       { project: PROJECT_NAME },
@@ -163,11 +157,10 @@ describe('ng-add', () => {
     const packageJson = JSON.parse(
       appTree.read('package.json')?.toString() || '{}'
     );
-    expect(packageJson.dependencies['ngverse']).toBeDefined();
+    expect(packageJson.dependencies['ng-verse']).toBeDefined();
   });
   it("ng-add should add @angular/cdk to the project's package.json", async () => {
-    appTree.create(PROJECT_ROOT + 'styles.scss', '');
-    appTree.create(NG_VERSE_ROOT + 'ngverse.scss', '');
+    appTree.create(NG_VERSE_ROOT + 'ng-verse.scss', '');
     await testRunner.runSchematic('ng-add', { project: PROJECT_NAME }, appTree);
     const packageJson = JSON.parse(
       appTree.read('package.json')?.toString() || '{}'
