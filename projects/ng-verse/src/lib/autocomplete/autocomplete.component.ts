@@ -16,10 +16,10 @@ import {
 } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { ListboxDirective } from '../listbox/listbox.directive';
+import { ListboxState } from '../listbox/listbox.state';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
 import { PopoverComponent } from '../popover/popover.component';
 import { AutocompleteItemComponent } from './autocomplete-item/autocomplete-item.component';
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type OnChangeFunction = ((_: any) => void) | undefined;
 type OnTouchedFunction = (() => void) | undefined;

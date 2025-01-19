@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { DrawerHeaderComponent } from '@ng-verse/drawer/drawer-header/drawer-header.component';
-import { DrawerTitleComponent } from '@ng-verse/drawer/drawer-title/drawer-title.component';
-import { DrawerSubtitleComponent } from '@ng-verse/drawer/drawer-subtitle/drawer-subtitle.component';
-import { DrawerCloseDirective } from '@ng-verse/drawer/drawer-close.directive';
 import { ButtonComponent } from '@ng-verse/button/button.component';
+import { DrawerCloseDirective } from '@ng-verse/drawer/drawer-close.directive';
+import { DrawerHeaderComponent } from '@ng-verse/drawer/drawer-header/drawer-header.component';
+import { DrawerSubtitleComponent } from '@ng-verse/drawer/drawer-subtitle/drawer-subtitle.component';
+import { DrawerTitleComponent } from '@ng-verse/drawer/drawer-title/drawer-title.component';
 
 @Component({
   selector: 'doc-drawer-test',
