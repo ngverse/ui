@@ -1,15 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  effect,
+  inject,
   input,
-  output,
   signal,
 } from '@angular/core';
 import {
   COLLAPSE_ON_LEAVE,
   EXPAND_ON_ENTER_ANIMATION,
 } from './accordion-animations';
+import { AccordionItemProxy, AccordionState } from './accordion.state';
 import { ExpandIconComponent } from './expand-icon.component';
 
 let accordionId = 0;
@@ -31,43 +31,33 @@ function genAccordionContentId() {
   animations: [EXPAND_ON_ENTER_ANIMATION, COLLAPSE_ON_LEAVE],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccordionItemComponent {
-  opened = output();
-  closed = output();
-  isOpen = signal(false);
+export class AccordionItemComponent implements AccordionItemProxy {
   disabled = input<boolean>();
-  expanded = input();
   label = input<string>();
+  state = inject(AccordionState);
+
+  expanded = input<boolean, boolean>(false, {
+    transform: (value) => {
+      if (value) {
+        this.state.open(this);
+      } else {
+        this.state.close(this);
+      }
+      return value;
+    },
+  });
 
   id = input(genId());
   accordionContentId = genAccordionContentId();
 
-  constructor() {
-    effect(() => {
-      if (this.expanded()) {
-        this.open();
-      } else {
-        this.close();
-      }
-    });
-  }
+  isOpen = signal(false);
 
   toggle() {
-    const newIsOpen = !this.isOpen();
-    if (newIsOpen) {
-      this.open();
+    const isOpen = this.isOpen();
+    if (isOpen) {
+      this.state.close(this);
     } else {
-      this.close();
+      this.state.open(this);
     }
-  }
-
-  open() {
-    this.isOpen.set(true);
-    this.opened.emit();
-  }
-
-  close() {
-    this.isOpen.set(false);
-    this.closed.emit();
   }
 }

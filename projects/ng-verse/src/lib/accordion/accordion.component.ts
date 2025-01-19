@@ -1,13 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  contentChildren,
-  effect,
+  inject,
   input,
-  OnDestroy,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AccordionItemComponent } from './accordion-item.component';
+import { AccordionState } from './accordion.state';
 
 @Component({
   selector: 'app-accordion',
@@ -15,41 +12,15 @@ import { AccordionItemComponent } from './accordion-item.component';
   templateUrl: './accordion.component.html',
   styleUrl: './accordion.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [AccordionState],
 })
-export class AccordionComponent implements OnDestroy {
-  accordionItems = contentChildren(AccordionItemComponent);
-  multi = input(false);
-  sub: Subscription | undefined;
-  expandedIndex = input<number>();
+export class AccordionComponent {
+  state = inject(AccordionState);
 
-  constructor() {
-    effect(() => {
-      if (this.multi()) {
-        this.sub?.unsubscribe();
-        return;
-      }
-      this.sub?.unsubscribe();
-
-      this.sub = new Subscription();
-      const accordions = this.accordionItems();
-      let openedAccordion: AccordionItemComponent | undefined;
-
-      for (const item of accordions) {
-        this.sub.add(
-          item.opened.subscribe(() => {
-            if (openedAccordion === item) {
-              return;
-            }
-            if (openedAccordion) {
-              openedAccordion.close();
-            }
-            openedAccordion = item;
-          })
-        );
-      }
-    });
-  }
-  ngOnDestroy(): void {
-    this.sub?.unsubscribe();
-  }
+  multi = input<boolean, boolean>(false, {
+    transform: (value) => {
+      this.state.multi.set(value);
+      return value;
+    },
+  });
 }
