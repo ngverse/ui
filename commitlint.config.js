@@ -33,6 +33,7 @@ module.exports = {
         'toast',
         'form-field',
         'context-menu',
+        'otp-input',
       ],
     ],
   },

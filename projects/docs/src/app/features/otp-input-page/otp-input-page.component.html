@@ -1,10 +1,18 @@
 <doc-blueprint-page
   [subTitle]="
-    'Button component wraps the native HTML button element and adds additional functionality'
+    'An OTP Input is a component for entering one-time passwords securely and efficiently.'
   "
-  [label]="'Button'"
+  [label]="'OTP Input'"
 >
-  <doc-show-case name="button">
+  <doc-show-case name="otp-input">
     <doc-show-case-otp-input></doc-show-case-otp-input>
   </doc-show-case>
+  <doc-prerequisites [preps]="preprs">
+    OTP Input element uses
+    <a class="underline" [routerLink]="['../listbox']">Listbox</a>. Please
+    ensure it is added to your project if it isn't already.
+  </doc-prerequisites>
+  <doc-command-installation name="otp-input"></doc-command-installation>
+  <doc-source-tree name="otp-input" [sourceTree]="sourceTree"></doc-source-tree>
+  <doc-api-info [apiInfo]="apiInfo"></doc-api-info>
 </doc-blueprint-page>

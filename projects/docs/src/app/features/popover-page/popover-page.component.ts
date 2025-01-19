@@ -39,12 +39,12 @@ export class PopoverPageComponent {
           {
             name: 'opened',
             description: 'Emits when the popover is opened',
-            type: 'void',
+            value: 'void',
           },
           {
             name: 'closed',
             description: 'Emits when the popover is closed',
-            type: 'void',
+            value: 'void',
           },
         ],
         inputs: [

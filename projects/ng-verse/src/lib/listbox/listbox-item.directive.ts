@@ -1,4 +1,4 @@
-import { Highlightable } from '@angular/cdk/a11y';
+import { FocusableOption, Highlightable } from '@angular/cdk/a11y';
 import {
   Directive,
   ElementRef,
@@ -18,7 +18,9 @@ import { ListboxState } from './listbox.state';
     '[class.listbox-item-active]': 'isActive()',
   },
 })
-export class ListboxItemDirective implements Highlightable, OnDestroy {
+export class ListboxItemDirective
+  implements Highlightable, FocusableOption, OnDestroy
+{
   host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 
   isActive = signal(false);
@@ -41,6 +43,9 @@ export class ListboxItemDirective implements Highlightable, OnDestroy {
   }
   constructor() {
     this.state?.add(this);
+  }
+  focus(): void {
+    this.host.nativeElement.focus();
   }
   ngOnDestroy(): void {
     this.state?.remove(this);
