@@ -19,18 +19,22 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Introduction',
         url: '/doc/introduction',
+        done: true,
       },
       {
         name: 'Installation',
         url: '/doc/installation',
+        done: true,
       },
       {
         name: 'Usage',
         url: '/doc/usage',
+        done: true,
       },
       {
         name: 'Theming',
         url: '/doc/theming',
+        done: true,
       },
     ],
   },
@@ -171,15 +175,6 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Listbox',
         url: '/doc/listbox',
-      },
-    ],
-  },
-  {
-    name: 'Directives',
-    children: [
-      {
-        name: 'OutsideClick',
-        url: '/doc/outside-click',
       },
     ],
   },

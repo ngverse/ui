@@ -14,7 +14,7 @@ export class ThemingPageComponent implements OnInit {
   fileService = inject(FileService);
 
   ngOnInit(): void {
-    this.fileService.getFile('ng-verse/globals.scss').subscribe((data) => {
+    this.fileService.getFile('ng-verse/ngverse.scss').subscribe((data) => {
       this.globalsCode.set(data);
     });
   }
