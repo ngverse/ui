@@ -18,7 +18,8 @@
     "format:write": "prettier --write .",
     "semantic-release": "semantic-release",
     "serve:ssr:docs": "node dist/docs/server/server.mjs",
-    "schema:test-watch": "nodemon --watch dist/ng-verse --ext js --exec 'jasmine dist/ng-verse/**/*_spec.js'"
+    "schema:test-watch": "nodemon --watch dist/ng-verse --ext js --exec 'jasmine dist/ng-verse/**/*_spec.js'",
+    "build:ng-verse": "ng build --project=ng-verse && cd projects/ng-verse && npm run build"
   },
   "lint-staged": {
     "**/*.{html,ts,json,css,scss,md}": "prettier --write"
