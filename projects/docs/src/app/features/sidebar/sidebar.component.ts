@@ -157,6 +157,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Context Menu',
         url: '/doc/context-menu',
+        done: true,
       },
       {
         name: 'Listbox',

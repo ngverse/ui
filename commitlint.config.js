@@ -32,6 +32,7 @@ module.exports = {
         'accordion',
         'toast',
         'form-field',
+        'context-menu',
       ],
     ],
   },
