@@ -10,8 +10,13 @@ module.exports = {
         pkgRoot: 'dist/ng-verse',
       },
     ],
-    '@semantic-release/git',
-    '@semantic-release/git',
+    [
+      '@semantic-release/git',
+      {
+        assets: ['projects/ng-verse/package.json'],
+        message: 'chore(release): update package.json [skip ci]',
+      },
+    ],
     ['@semantic-release/github'],
   ],
 };
