@@ -9,9 +9,9 @@ import { DrawerTestComponent } from './drawer-test/drawer-test.component';
   styleUrl: './show-case-drawer.component.scss',
 })
 export class ShowCaseDrawerComponent {
-  drawerService = inject(DrawerService)
+  drawerService = inject(DrawerService);
 
   open() {
-    this.drawerService.open(DrawerTestComponent)
+    this.drawerService.open(DrawerTestComponent);
   }
 }

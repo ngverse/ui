@@ -4,11 +4,11 @@ import { DrawerRef } from '@ng-verse/drawer/drawer-ref';
 @Directive({
   selector: '[appDrawerClose]',
   host: {
-    '(click)': 'close()'
-  }
+    '(click)': 'close()',
+  },
 })
 export class DrawerCloseDirective {
-  private readonly drawerRef = inject(DrawerRef)
+  private readonly drawerRef = inject(DrawerRef);
   close() {
     this.drawerRef.close();
   }

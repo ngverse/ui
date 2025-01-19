@@ -8,9 +8,8 @@ describe('DrawerTitleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DrawerTitleComponent]
-    })
-    .compileComponents();
+      imports: [DrawerTitleComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DrawerTitleComponent);
     component = fixture.componentInstance;

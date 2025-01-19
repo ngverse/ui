@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-drawer-close-icon',
@@ -26,5 +26,6 @@ import { Component } from '@angular/core';
     <path d="M18 6 6 18" />
     <path d="m6 6 12 12" />
   </svg>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawerCloseIconComponent {}

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { TabGroupComponent } from '@ng-verse/tab/tab-group/tab-group.component';
-import { TabComponent } from '@ng-verse/tab/tab.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { TabComponent } from '@ng-verse/tab/tab.component';
+import { TabGroupComponent } from '../tab-group.component';
 
 @Component({
   selector: 'app-test-tab-group',

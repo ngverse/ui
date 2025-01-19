@@ -5,8 +5,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   imports: [],
   templateUrl: './drawer-title.component.html',
   styleUrl: './drawer-title.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DrawerTitleComponent {
-
-}
+export class DrawerTitleComponent {}
