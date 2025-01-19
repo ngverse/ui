@@ -9,8 +9,8 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
-import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
-import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
+import { ListboxItemDirective } from '../listbox/listbox-item.directive';
+import { ListboxDirective } from '../listbox/listbox.directive';
 
 @Component({
   selector: 'app-otp-input',

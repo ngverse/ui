@@ -11,7 +11,7 @@ import {
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { DrawerCloseIconComponent } from '@ng-verse/drawer/drawer-close-icon.component';
+import { DrawerCloseIconComponent } from '../drawer-close-icon.component';
 
 @Component({
   selector: 'app-drawer',

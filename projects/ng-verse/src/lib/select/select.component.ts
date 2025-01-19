@@ -19,10 +19,10 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
-import { ListboxState } from '@ng-verse/listbox/listbox.state';
-import { PopoverOriginDirective } from '@ng-verse/popover/popover-origin.directive';
-import { PopoverComponent } from '@ng-verse/popover/popover.component';
+import { ListboxDirective } from '../listbox/listbox.directive';
+import { ListboxState } from '../listbox/listbox.state';
+import { PopoverOriginDirective } from '../popover/popover-origin.directive';
+import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
 import { SelectIconComponent } from './select-icon.component';
 import { CompareWith, OnChangeFunction, SelectState } from './select.state';

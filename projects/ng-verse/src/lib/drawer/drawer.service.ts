@@ -1,9 +1,9 @@
-import { inject, Injectable, Injector } from '@angular/core';
-import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
+import { inject, Injectable, Injector } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DrawerRef } from '@ng-verse/drawer/drawer-ref';
-import { DrawerComponent } from '@ng-verse/drawer/drawer/drawer.component';
+import { DrawerRef } from '../drawer/drawer-ref';
+import { DrawerComponent } from '../drawer/drawer/drawer.component';
 
 @Injectable({
   providedIn: 'root',

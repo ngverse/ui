@@ -6,7 +6,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
+import { ListboxItemDirective } from '../listbox/listbox-item.directive';
 import { SelectCheckIconComponent } from './select-check-icon.component';
 import { OptionProxy, SelectState } from './select.state';
 

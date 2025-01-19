@@ -1,6 +1,6 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ButtonComponent } from '@ng-verse/button/button.component';
+import { ButtonComponent } from '../../button/button.component';
 import { DIALOG_ENTER_ANIMATION } from '../dialog-animations';
 import { DialogCloseDirective } from '../dialog-close.directive';
 

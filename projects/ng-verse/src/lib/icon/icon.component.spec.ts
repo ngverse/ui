@@ -6,8 +6,8 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { IconLoaderService } from '@ng-verse/icon/icon-loader.service';
-import { IconRegistryService } from '@ng-verse/icon/icon-registry.service';
+import { IconLoaderService } from './icon-loader.service';
+import { IconRegistryService } from './icon-registry.service';
 import { IconComponent } from './icon.component';
 
 describe('IconComponent', () => {

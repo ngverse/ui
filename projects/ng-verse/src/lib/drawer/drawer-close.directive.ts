@@ -1,5 +1,5 @@
 import { Directive, inject } from '@angular/core';
-import { DrawerRef } from '@ng-verse/drawer/drawer-ref';
+import { DrawerRef } from '../drawer/drawer-ref';
 
 @Directive({
   selector: '[appDrawerClose]',

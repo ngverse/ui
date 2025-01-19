@@ -9,10 +9,10 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
-import { ListboxState } from '@ng-verse/listbox/listbox.state';
-import { PopoverComponent } from '@ng-verse/popover/popover.component';
 import { Subscription } from 'rxjs';
+import { ListboxDirective } from '../listbox/listbox.directive';
+import { ListboxState } from '../listbox/listbox.state';
+import { PopoverComponent } from '../popover/popover.component';
 import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
 
 @Component({

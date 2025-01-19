@@ -1,6 +1,6 @@
-import { DrawerCloseDirective } from './drawer-close.directive';
 import { TestBed } from '@angular/core/testing';
-import { DrawerRef } from '@ng-verse/drawer/drawer-ref';
+import { DrawerRef } from '../drawer/drawer-ref';
+import { DrawerCloseDirective } from './drawer-close.directive';
 
 describe('DrawerCloseDirective', () => {
   beforeEach(() => {
