@@ -86,6 +86,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'drawer',
+        loadComponent: () =>
+          import('./features/drawer-page/drawer-page.component').then(
+            (b) => b.DrawerPageComponent
+          ),
+      },
+      {
         path: 'otp-input',
         loadComponent: () =>
           import('./features/otp-input-page/otp-input-page.component').then(

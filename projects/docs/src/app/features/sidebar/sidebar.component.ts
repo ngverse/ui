@@ -62,6 +62,10 @@ export const SIDEBAR_ROUTES = [
         done: true,
       },
       {
+        name: 'Drawer',
+        url: '/doc/drawer',
+      },
+      {
         name: 'Checkbox',
         url: '/doc/checkbox',
         done: true,
@@ -75,6 +79,10 @@ export const SIDEBAR_ROUTES = [
         name: 'Divider',
         url: '/doc/divider',
         done: true,
+      },
+      {
+        name: 'Drawer',
+        url: '/doc/drawer',
       },
       {
         name: 'Skeleton',

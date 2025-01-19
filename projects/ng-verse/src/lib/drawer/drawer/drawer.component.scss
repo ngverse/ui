@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  height: 100vh;
+  width: auto;
+  background: #fff;
+  padding: 12px 30px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
