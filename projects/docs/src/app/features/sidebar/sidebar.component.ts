@@ -138,6 +138,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Form Field',
         url: '/doc/form-field',
+        done: true,
       },
       {
         name: 'OTP Input',

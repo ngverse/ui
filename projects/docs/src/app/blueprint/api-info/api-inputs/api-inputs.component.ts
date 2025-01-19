@@ -3,6 +3,7 @@ import { Component, input } from '@angular/core';
 import { AccordionBodyComponent } from '@ng-verse/accordion/accordion-body.component';
 import { AccordionItemComponent } from '@ng-verse/accordion/accordion-item.component';
 import { AccordionComponent } from '@ng-verse/accordion/accordion.component';
+import { DividerComponent } from '../../../../../../ng-verse/src/lib/divider/divider.component';
 
 interface ApiInputType {
   name: string;
@@ -55,6 +56,7 @@ export interface ApiEntity {
     AccordionComponent,
     AccordionItemComponent,
     AccordionBodyComponent,
+    DividerComponent,
   ],
   templateUrl: './api-inputs.component.html',
   styleUrl: './api-inputs.component.scss',

@@ -32,9 +32,10 @@ const ERROR_MAP: Record<string, string> = {
 })
 export class ErrorGroupComponent implements OnInit, OnDestroy {
   control = input.required<AbstractControl<unknown>>();
+  silentErrors = input<string[] | undefined>();
+
   cf = inject(ChangeDetectorRef);
   errors = signal<string[]>([]);
-  silentErrors = input<string[] | undefined>();
   invalid = signal(false);
   touched = signal(false);
   sub = new Subscription();
