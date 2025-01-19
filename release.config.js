@@ -7,7 +7,7 @@ module.exports = {
     [
       '@semantic-release/npm',
       {
-        pkgRoot: 'projects/ng-verse',
+        pkgRoot: 'dist/ng-verse',
       },
     ],
     '@semantic-release/git',

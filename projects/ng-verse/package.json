@@ -2,15 +2,6 @@
   "name": "ng-verse",
   "version": "0.0.8",
   "schematics": "./schematics/collection.json",
-  "keywords": [
-    "angular",
-    "components",
-    "typescript",
-    "angular-components"
-  ],
-  "files": [
-    "dist/**"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/lukonik/ng-verse"
@@ -21,7 +12,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.schematics.json",
-    "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json dist",
+    "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json ../../dist/ng-verse/",
     "schema:watch": "tsc -w -p tsconfig.schematics.json"
   },
   "dependencies": {
