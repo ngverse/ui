@@ -22,12 +22,27 @@ export class SourceTreeBuilder {
     return folders(root);
   }
 
-  directive(name: string, root: string): SourceTreeFile {
-    return {
+  directive(
+    name: string,
+    root: string,
+    includeSpec?: boolean
+  ): SourceTreeFile[] {
+    const tsFile = {
       name: `${name}.directive.ts`,
       path: `ng-verse/${root}/${name}.directive.ts`,
-      language: 'ts',
+      language: 'ts' as const,
     };
+    if (includeSpec) {
+      return [
+        tsFile,
+        {
+          name: `${name}.directive.spec.ts`,
+          path: `ng-verse/${root}/${name}.directive.spec.ts`,
+          language: 'ts',
+        },
+      ];
+    }
+    return [tsFile];
   }
 
   file(

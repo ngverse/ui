@@ -152,6 +152,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Popover',
         url: '/doc/popover',
+        done: true,
       },
       {
         name: 'Context Menu',

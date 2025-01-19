@@ -34,7 +34,7 @@ export class TooltipPageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: ROOT,
-      files: [this.sourceTreeBuilder.directive('tooltip', ROOT)],
+      files: [...this.sourceTreeBuilder.directive('tooltip', ROOT)],
       hideName: true,
     },
     {

@@ -1,6 +1,5 @@
 import { Overlay } from '@angular/cdk/overlay';
-import { Platform } from '@angular/cdk/platform';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformServer } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,6 +11,7 @@ import {
   model,
   OnDestroy,
   output,
+  PLATFORM_ID,
   Renderer2,
   signal,
 } from '@angular/core';
@@ -32,6 +32,7 @@ interface TRIGGER_COORDINATES {
   y: number;
 }
 
+// TODO: add other positions
 type POPOVER_POSITION_Y = 'bottom';
 
 @Component({
@@ -43,25 +44,27 @@ type POPOVER_POSITION_Y = 'bottom';
   animations: [POPOVER_ANIMATIONS],
 })
 export class PopoverComponent implements OnDestroy {
-  popover = inject(ElementRef<HTMLElement>);
-  popoverEl = this.popover.nativeElement as HTMLElement;
-  private renderer2 = inject(Renderer2);
-  private document = inject(DOCUMENT);
-  platform = inject(Platform);
-
-  @HostBinding('attr.popover')
-  bind = 'manual';
-
   origin = input<PopoverOriginDirective>();
   isOpen = model(false);
   offsetY = input<number>(0);
   offsetX = input<number>(0);
   blockScroll = input(true);
   positionY = input<POPOVER_POSITION_Y>('bottom');
+  stretchToOrigin = input(true);
+
+  popover = inject(ElementRef<HTMLElement>);
+  popoverEl = this.popover.nativeElement as HTMLElement;
+  private renderer2 = inject(Renderer2);
+  private document = inject(DOCUMENT);
+  platformId = inject(PLATFORM_ID);
+
+  //host object doesn't bind to the attribute
+  //so we have to use HostBinding here
+  //probably it will be fixed in later Angular version
+  @HostBinding('attr.popover')
+  bind = 'manual';
 
   scrollBlocker = inject(Overlay).scrollStrategies.block();
-
-  stretchToOrigin = input(true);
 
   opened = output();
   closed = output();
@@ -76,7 +79,7 @@ export class PopoverComponent implements OnDestroy {
 
   constructor() {
     effect(() => {
-      if (!this.platform.isBrowser) {
+      if (isPlatformServer(this.platformId)) {
         return;
       }
       const isOpen = this.isOpen();
