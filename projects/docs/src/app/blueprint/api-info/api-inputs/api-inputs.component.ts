@@ -31,6 +31,12 @@ interface ApiMethodType {
   params: ApiMethodParam[];
 }
 
+interface ApiOutputType {
+  name: string;
+  type: string;
+  description: string;
+}
+
 export const VOID_API_RETURN_TYPE = 'void';
 
 export const VOID_API_NO_PARAMS = '--';
@@ -42,6 +48,7 @@ export const AUTO_GENERATED_API_DEFAULT_VALUE = 'Auto Generated';
 export interface ApiEntity {
   name: string;
   inputs?: ApiInputType[];
+  outputs?: ApiOutputType[];
   methods?: ApiMethodType[];
   description?: string;
   type?: 'component' | 'directive' | 'service';

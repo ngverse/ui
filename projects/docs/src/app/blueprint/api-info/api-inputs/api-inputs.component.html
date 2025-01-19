@@ -62,6 +62,41 @@
       </table>
     </div>
   }
+  @if (apiInput.outputs?.length) {
+    <p class="mb-2 text-sm">Outputs</p>
+
+    <div
+      class="relative overflow-x-auto border border-slate-200 rounded-md mb-10"
+    >
+      <table
+        class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
+      >
+        <thead
+          class="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">Type</th>
+            <th scope="col" class="px-6 py-3">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (apiOutput of apiInput.outputs; track $index) {
+            <tr class="bg-white border-b">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {{ apiOutput.name }}
+              </th>
+              <td class="px-6 py-4">{{ apiOutput.type }}</td>
+              <td class="px-6 py-4 lowercase">{{ apiOutput.description }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
   @if (apiInput.methods?.length) {
     <p class="mb-2 text-sm">Methods</p>
     <app-accordion>

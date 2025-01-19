@@ -16,7 +16,7 @@ export class OutsideClickPageComponent {
     this.sourceTreeBuilder.folder(
       root,
       root,
-      () => [this.sourceTreeBuilder.directive(root, root)],
+      () => [...this.sourceTreeBuilder.directive(root, root)],
       true
     ),
   ]);

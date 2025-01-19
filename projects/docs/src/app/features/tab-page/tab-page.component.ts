@@ -59,8 +59,8 @@ export class TabPageComponent {
       files: [
         ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
         ...this.sourceTreeBuilder.fullComponent('tab-group', ROOT),
-        this.sourceTreeBuilder.directive('tab-body', ROOT),
-        this.sourceTreeBuilder.directive('tab-header', ROOT),
+        ...this.sourceTreeBuilder.directive('tab-body', ROOT),
+        ...this.sourceTreeBuilder.directive('tab-header', ROOT),
       ],
       hideName: true,
     },
