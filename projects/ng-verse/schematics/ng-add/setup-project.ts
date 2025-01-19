@@ -8,7 +8,10 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
-import { getProjectFromWorkspace } from '@angular/cdk/schematics';
+import {
+  getProjectFromWorkspace,
+  getProjectStyleFile,
+} from '@angular/cdk/schematics';
 import { addRootProvider } from '@schematics/angular/utility';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { join } from 'path';
@@ -51,9 +54,9 @@ function addStyles(options: Schema) {
 
     const rootPath = normalize(`${project.sourceRoot}/${projectType}`);
 
-    const styleSCSSPath = normalize(join(rootPath, 'styles.scss'));
+    const styleSCSSPath = getProjectStyleFile(project);
 
-    if (!host.exists(styleSCSSPath)) {
+    if (!styleSCSSPath) {
       throw new SchematicsException(
         `Could not find ${styleSCSSPath} to add ngverse.scss`
       );
