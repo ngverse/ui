@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { ErrorComponent } from './error.component';
 
 describe('ErrorComponent', () => {
@@ -9,6 +10,7 @@ describe('ErrorComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ErrorComponent],
+      providers: [provideAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ErrorComponent);

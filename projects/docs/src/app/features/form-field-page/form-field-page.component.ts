@@ -1,4 +1,9 @@
 import { Component, inject } from '@angular/core';
+import {
+  ApiInfo,
+  ApiInfoComponent,
+} from '../../blueprint/api-info/api-info.component';
+import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -17,6 +22,7 @@ const ROOT = 'form-field';
     SourceTreeComponent,
     CommandInstallationComponent,
     ShowCaseFormFieldComponent,
+    ApiInfoComponent,
   ],
   templateUrl: './form-field-page.component.html',
   styleUrl: './form-field-page.component.scss',
@@ -45,4 +51,49 @@ export class FormFieldPageComponent {
       ),
     },
   ];
+
+  apiInfo: ApiInfo = {
+    entities: [
+      {
+        name: 'FormFieldComponent',
+        type: 'component',
+        selector: 'app-form-field',
+        description: 'A form field is a block element with field and label',
+      },
+      {
+        name: 'LabelComponent',
+        type: 'component',
+        selector: 'app-label',
+        description: 'Form Field label',
+      },
+      {
+        name: 'ErrorComponent',
+        type: 'component',
+        selector: 'app-error',
+        description: 'app-error displays an error message',
+      },
+      {
+        name: 'ErrorGroupComponent',
+        type: 'component',
+        selector: 'app-error-group',
+        description:
+          'app-error-group displays error messages automatically from the control',
+        inputs: [
+          {
+            name: 'control',
+            type: 'AbstractControl (both FormControl and ngModel is supported)',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
+            description: 'Control to bind to',
+          },
+          {
+            name: 'silentErrors',
+            type: 'string[] | undefined',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
+            description:
+              'List of errors to ignore. This can be especially useful when you want to handle specific errors and provide customized error messages',
+          },
+        ],
+      },
+    ],
+  };
 }

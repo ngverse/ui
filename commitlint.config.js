@@ -31,6 +31,7 @@ module.exports = {
         'select',
         'accordion',
         'toast',
+        'form-field',
       ],
     ],
   },
