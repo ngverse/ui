@@ -5,9 +5,16 @@ module.exports = {
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
     [
+      '@semantic-release/exec',
+      {
+        prepareCmd:
+          'ng build --project=ng-verse && cd projects/ng-verse && npm run build && npm pack',
+      },
+    ],
+    [
       '@semantic-release/npm',
       {
-        pkgRoot: 'projects/ng-verse', // Path to the project's package.json
+        pkgRoot: 'dist/ng-verse',
       },
     ],
     '@semantic-release/git',
@@ -17,13 +24,6 @@ module.exports = {
         assets: [
           { path: 'projects/ng-verse/dist/*.tgz', label: 'NPM Package' },
         ],
-      },
-    ],
-    [
-      '@semantic-release/exec',
-      {
-        prepareCmd:
-          'ng build --project=ng-verse && cd projects/ng-verse && npm run build && npm pack',
       },
     ],
   ],
