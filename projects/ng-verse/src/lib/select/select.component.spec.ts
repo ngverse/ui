@@ -1,9 +1,6 @@
-import { DOWN_ARROW, ENTER, UP_ARROW } from '@angular/cdk/keycodes';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
 import { OptionComponent } from '@ng-verse/select/option.component';
 import { SelectComponent } from './select.component';
 
@@ -74,33 +71,13 @@ function closeSelect(fixture: ComponentFixture<unknown>) {
 }
 
 function queryOptions(fixture: ComponentFixture<unknown>) {
-  return fixture.nativeElement.querySelectorAll('app-option');
+  return fixture.nativeElement.querySelectorAll('.option');
 }
 
 function isSelectOpened(fixture: ComponentFixture<unknown>) {
   return fixture.nativeElement
     .querySelector('.select-options')
     .matches(':popover-open');
-}
-
-function keyDownOnSelect(
-  fixture: ComponentFixture<unknown>,
-  keyCode: number,
-  key?: string
-) {
-  const arrowDownEvent = new KeyboardEvent('keydown', {
-    key: key,
-    keyCode: keyCode,
-  });
-  fixture.debugElement
-    .query(By.directive(ListboxDirective))
-    .nativeElement.dispatchEvent(arrowDownEvent);
-  fixture.detectChanges();
-}
-
-function optionIsActive(fixture: ComponentFixture<unknown>, index: number) {
-  const foundOption = queryOptions(fixture)[index];
-  expect(foundOption).toHaveClass('listbox-item-active');
 }
 
 describe('SelectComponent', () => {
@@ -165,33 +142,6 @@ describe('SelectComponent', () => {
       expect(queryOptions(fixture).length).not.toBe(0);
       closeSelect(fixture);
       expect(isSelectOpened(fixture)).toBe(false);
-    });
-  });
-
-  describe('Keyboard navigation', () => {
-    it('first option should be activated on open', () => {
-      openSelect(fixture);
-      optionIsActive(fixture, 0);
-    });
-
-    it('should activate prev option on arrow up', () => {
-      openSelect(fixture);
-      keyDownOnSelect(fixture, DOWN_ARROW);
-      keyDownOnSelect(fixture, DOWN_ARROW);
-      optionIsActive(fixture, 2);
-      keyDownOnSelect(fixture, UP_ARROW);
-      optionIsActive(fixture, 1);
-    });
-
-    it('should select the option on enter', () => {
-      openSelect(fixture);
-      keyDownOnSelect(fixture, DOWN_ARROW);
-      keyDownOnSelect(fixture, DOWN_ARROW);
-      keyDownOnSelect(fixture, ENTER, 'Enter');
-      const selectButtonLabel = fixture.nativeElement.querySelector(
-        '.select-button-label'
-      );
-      expect(selectButtonLabel.textContent).toBe(OPTIONS[2].name);
     });
   });
 

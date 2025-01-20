@@ -1,6 +1,8 @@
-<div>
-  <ng-content></ng-content>
+<div class="option" appListboxItem (activated)="select.toggleValue(value())">
+  <div>
+    <ng-content></ng-content>
+  </div>
+  @if (isSelected()) {
+    <app-select-check-icon class="check-icon"></app-select-check-icon>
+  }
 </div>
-@if (isSelected()) {
-  <app-select-check-icon class="check-icon"></app-select-check-icon>
-}

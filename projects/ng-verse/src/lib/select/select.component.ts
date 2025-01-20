@@ -161,7 +161,7 @@ export class SelectComponent implements ControlValueAccessor, Validator {
     this.listbox().focus();
 
     const selectedOptionIndex = this.firstSelectedOptionIndex();
-    this.listbox().activateItemOrFirstByIndex(selectedOptionIndex);
+    this.listbox().activeByIndex(selectedOptionIndex);
     this.isOpen.set(true);
   }
 
@@ -194,14 +194,18 @@ export class SelectComponent implements ControlValueAccessor, Validator {
 
   toggleValue(value: unknown) {
     let values = this.values();
-
-    const isUniqueValue = !values.some((v) => this.compareWith()(v, value));
-
-    if (isUniqueValue) {
-      values = [...values, value];
+    if (!this.multiple()) {
+      values = [value];
     } else {
-      values = values.filter((v) => !this.compareWith()(v, value));
+      const isUniqueValue = !values.some((v) => this.compareWith()(v, value));
+
+      if (isUniqueValue) {
+        values = [...values, value];
+      } else {
+        values = values.filter((v) => !this.compareWith()(v, value));
+      }
     }
+
     this.values.set(values);
 
     if (!this._registerOnChangeFn) {

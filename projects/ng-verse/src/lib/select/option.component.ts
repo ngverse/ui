@@ -7,7 +7,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
+import { ListboxItemDirective } from '../listbox/listbox-item.directive';
 import { SelectCheckIconComponent } from './select-check-icon.component';
 import { SelectComponent } from './select.component';
 
@@ -15,14 +15,8 @@ import { SelectComponent } from './select.component';
   selector: 'app-option',
   templateUrl: './option.component.html',
   styleUrl: './option.component.scss',
-  imports: [SelectCheckIconComponent],
+  imports: [SelectCheckIconComponent, ListboxItemDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  hostDirectives: [
-    {
-      directive: ListboxItemDirective,
-      inputs: ['disabled'],
-    },
-  ],
   host: {
     '[class.selected]': 'isSelected()',
   },
@@ -35,14 +29,6 @@ export class OptionComponent {
   private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 
   select = inject<SelectComponent>(forwardRef(() => SelectComponent));
-
-  private listboxItem = inject(ListboxItemDirective);
-
-  constructor() {
-    this.listboxItem.activated.subscribe(() => {
-      this.select.toggleValue(this.value());
-    });
-  }
 
   get content() {
     return this.host.nativeElement.textContent;
