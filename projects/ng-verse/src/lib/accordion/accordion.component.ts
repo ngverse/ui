@@ -1,26 +1,34 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
   input,
+  signal,
 } from '@angular/core';
-import { AccordionState } from './accordion.state';
+import { AccordionItemComponent } from './accordion-item.component';
 
 @Component({
   selector: 'app-accordion',
-  imports: [],
   templateUrl: './accordion.component.html',
   styleUrl: './accordion.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [AccordionState],
 })
 export class AccordionComponent {
-  state = inject(AccordionState);
+  multi = input<boolean>();
 
-  multi = input<boolean, boolean>(false, {
-    transform: (value) => {
-      this.state.multi.set(value);
-      return value;
-    },
-  });
+  openedAccordion = signal<AccordionItemComponent | undefined>(undefined);
+
+  open(item: AccordionItemComponent) {
+    if (!this.multi()) {
+      this.openedAccordion()?.isOpen.set(false);
+      this.openedAccordion.set(item);
+    }
+    item.isOpen.set(true);
+  }
+
+  close(item: AccordionItemComponent) {
+    item.isOpen.set(false);
+    if (this.multi() && this.openedAccordion() === item) {
+      this.openedAccordion.set(undefined);
+    }
+  }
 }

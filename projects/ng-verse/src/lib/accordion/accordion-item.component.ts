@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  forwardRef,
   inject,
   input,
   signal,
@@ -9,7 +10,7 @@ import {
   COLLAPSE_ON_LEAVE,
   EXPAND_ON_ENTER_ANIMATION,
 } from './accordion-animations';
-import { AccordionItemProxy, AccordionState } from './accordion.state';
+import { AccordionComponent } from './accordion.component';
 import { ExpandIconComponent } from './expand-icon.component';
 
 let accordionId = 0;
@@ -31,17 +32,17 @@ function genAccordionContentId() {
   animations: [EXPAND_ON_ENTER_ANIMATION, COLLAPSE_ON_LEAVE],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccordionItemComponent implements AccordionItemProxy {
+export class AccordionItemComponent {
   disabled = input<boolean>();
   label = input<string>();
-  state = inject(AccordionState);
+  accordion = inject(forwardRef(() => AccordionComponent));
 
   expanded = input<boolean, boolean>(false, {
     transform: (value) => {
       if (value) {
-        this.state.open(this);
+        this.accordion.open(this);
       } else {
-        this.state.close(this);
+        this.accordion.close(this);
       }
       return value;
     },
@@ -55,9 +56,9 @@ export class AccordionItemComponent implements AccordionItemProxy {
   toggle() {
     const isOpen = this.isOpen();
     if (isOpen) {
-      this.state.close(this);
+      this.accordion.close(this);
     } else {
-      this.state.open(this);
+      this.accordion.open(this);
     }
   }
 }
