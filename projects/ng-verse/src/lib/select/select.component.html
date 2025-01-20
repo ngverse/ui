@@ -23,7 +23,7 @@
   (closed)="panelClosed()"
   [offsetY]="8"
 >
-  <div appListbox>
+  <div (keydown)="onKeydown($event)" tabindex="0" #selectOptions>
     <ng-content select="app-option"></ng-content>
   </div>
 </app-popover>

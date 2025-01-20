@@ -1,8 +1,14 @@
-<div class="option" appListboxItem (activated)="select.toggleValue(value())">
+<button
+  [class.selected]="isSelected()"
+  tabindex="-1"
+  class="option"
+  [class.is-active]="isActive()"
+  (click)="select.toggleValue(value())"
+>
   <div>
     <ng-content></ng-content>
   </div>
   @if (isSelected()) {
     <app-select-check-icon class="check-icon"></app-select-check-icon>
   }
-</div>
+</button>

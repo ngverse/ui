@@ -6,7 +6,10 @@ import {
   effect,
   ElementRef,
   forwardRef,
+  inject,
+  Injector,
   input,
+  OnDestroy,
   signal,
   viewChild,
 } from '@angular/core';
@@ -21,6 +24,7 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ListboxDirective } from '../listbox/listbox.directive';
 import { ListboxState } from '../listbox/listbox.state';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
@@ -43,7 +47,6 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     SelectIconComponent,
     PopoverOriginDirective,
     PopoverComponent,
-    ListboxDirective,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
@@ -62,7 +65,9 @@ export type CompareWith = (o1: any, o2: any) => boolean;
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectComponent implements ControlValueAccessor, Validator {
+export class SelectComponent
+  implements ControlValueAccessor, Validator, OnDestroy
+{
   stretch = input<boolean>(false);
   multiple = input(false);
   required = input(false);
@@ -73,14 +78,15 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   values = signal<unknown[]>([]);
 
   private _onTouched: OnTouchedFunction;
-
-  private _validatorChangeFn: ValidatorChangeFunction;
-  private _registerOnChangeFn: OnChangeFunction;
-
   options = contentChildren(
     forwardRef(() => OptionComponent),
     { descendants: true }
   );
+
+  keyManager = new ActiveDescendantKeyManager(this.options, inject(Injector));
+  selectOptions = viewChild.required<ElementRef<HTMLElement>>('selectOptions');
+  private _validatorChangeFn: ValidatorChangeFunction;
+  private _registerOnChangeFn: OnChangeFunction;
 
   listbox = viewChild.required(ListboxDirective);
 
@@ -110,6 +116,13 @@ export class SelectComponent implements ControlValueAccessor, Validator {
 
     return undefined;
   });
+
+  onKeydown($event: KeyboardEvent) {
+    if ($event.key === 'Enter') {
+      this.toggleValue(this.keyManager.activeItem?.value());
+    }
+    this.keyManager.onKeydown($event);
+  }
 
   selectedOptionsLabel = computed(() => {
     const selectedOptions = this.selectedOptions();
@@ -158,11 +171,7 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   }
 
   panelOpened() {
-    this.listbox().focus();
-
-    const selectedOptionIndex = this.firstSelectedOptionIndex();
-    this.listbox().activeByIndex(selectedOptionIndex);
-    this.isOpen.set(true);
+    this.selectOptions().nativeElement.focus();
   }
 
   firstSelectedOptionIndex() {
@@ -226,5 +235,9 @@ export class SelectComponent implements ControlValueAccessor, Validator {
 
   panelClosed() {
     this._onTouched?.();
+  }
+
+  ngOnDestroy(): void {
+    this.keyManager.destroy();
   }
 }

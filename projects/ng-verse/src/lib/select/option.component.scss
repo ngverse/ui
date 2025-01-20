@@ -1,5 +1,6 @@
 .option {
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
   padding: var(--app-option-padding);
@@ -10,8 +11,8 @@
     color: var(--accent-foreground);
   }
 }
-.listbox-item-active,
-.selected {
+.selected,
+.is-active {
   background: var(--accent);
   color: var(--accent-foreground);
 }
