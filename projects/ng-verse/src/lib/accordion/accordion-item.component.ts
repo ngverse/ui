@@ -35,7 +35,7 @@ function genAccordionContentId() {
 export class AccordionItemComponent {
   disabled = input<boolean>();
   label = input<string>();
-  accordion = inject(forwardRef(() => AccordionComponent));
+  accordion = inject<AccordionComponent>(forwardRef(() => AccordionComponent));
 
   expanded = input<boolean, boolean>(false, {
     transform: (value) => {
