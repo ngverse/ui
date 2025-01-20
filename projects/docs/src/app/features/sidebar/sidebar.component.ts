@@ -173,10 +173,6 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/context-menu',
         done: true,
       },
-      {
-        name: 'Listbox',
-        url: '/doc/listbox',
-      },
     ],
   },
 ] as Group[];

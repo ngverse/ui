@@ -6,7 +6,6 @@ import {
   InjectionToken,
   input,
   signal,
-  viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -15,8 +14,6 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { ListboxDirective } from '../listbox/listbox.directive';
-import { ListboxState } from '../listbox/listbox.state';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
 import { PopoverComponent } from '../popover/popover.component';
 import { AutocompleteItemComponent } from './autocomplete-item/autocomplete-item.component';
@@ -30,12 +27,7 @@ export const SELECTION_EMITTER = new InjectionToken<
 
 @Component({
   selector: 'app-autocomplete',
-  imports: [
-    FormsModule,
-    PopoverComponent,
-    PopoverOriginDirective,
-    ListboxDirective,
-  ],
+  imports: [FormsModule, PopoverComponent, PopoverOriginDirective],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss',
   providers: [
@@ -48,7 +40,6 @@ export const SELECTION_EMITTER = new InjectionToken<
       provide: SELECTION_EMITTER,
       useValue: new Subject(),
     },
-    ListboxState,
   ],
   host: {
     '(keydown)': 'onKeydown($event)',
@@ -66,7 +57,6 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
   disabled = signal(false);
 
-  private readonly listbox = viewChild.required(ListboxDirective);
   private readonly selectionEmitter = inject(SELECTION_EMITTER, { self: true });
 
   _onChange: OnChangeFunction;
@@ -118,19 +108,11 @@ export class AutocompleteComponent implements ControlValueAccessor {
     this.disabled.set(isDisabled);
   }
 
-  onKeydown(event: KeyboardEvent) {
-    this.listbox().onKeydown(event);
-  }
-
   onInput($event: Event) {
     const value = ($event.target as HTMLInputElement)?.value.trim() ?? '';
     if (!this.isOpen()) {
       this.open();
     }
     this._onChange?.(value);
-  }
-
-  panelOpened() {
-    this.listbox().activeByIndex(-1);
   }
 }

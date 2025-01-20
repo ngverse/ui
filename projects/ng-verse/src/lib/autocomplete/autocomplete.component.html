@@ -15,9 +15,8 @@
   [offsetY]="8"
   [origin]="trigger"
   [(isOpen)]="isOpen"
-  (opened)="panelOpened()"
 >
-  <div appListbox [autoActiveFirstOption]="true">
+  <div>
     <ng-content select="app-autocomplete-item"></ng-content>
   </div>
 </app-popover>

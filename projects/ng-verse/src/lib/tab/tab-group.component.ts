@@ -17,13 +17,12 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
-import { ListboxDirective } from '../listbox/listbox.directive';
 import { TabGroupHeaderItemComponent } from './tab-group-header-item.component';
 import { TabComponent } from './tab.component';
 
 @Component({
   selector: 'app-tab-group',
-  imports: [NgTemplateOutlet, ListboxDirective, TabGroupHeaderItemComponent],
+  imports: [NgTemplateOutlet, TabGroupHeaderItemComponent],
   templateUrl: './tab-group.component.html',
   styleUrl: './tab-group.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
