@@ -38,7 +38,6 @@ export class RadioButtonPageComponent {
       files: [
         ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
         this.sourceTreeBuilder.component('radio-button-icon', ROOT),
-        this.sourceTreeBuilder.file('radio-button.state', ROOT),
         ...this.sourceTreeBuilder.fullComponent('radio-group', ROOT),
       ],
       hideName: true,

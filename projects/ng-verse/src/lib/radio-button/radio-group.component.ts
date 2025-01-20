@@ -1,22 +1,23 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
   input,
+  signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {
-  CompareWith,
-  OnChangeFunction,
-  OnTouchedFunction,
-  RadioButtonState,
-} from './radio-button.state';
 
 let inputName = 0;
 
 function getInputName() {
   return `radio-group-${inputName++}`;
 }
+
+export type OnTouchedFunction = (() => void) | undefined;
+export type OnChangeFunction = ((_: unknown) => void) | undefined;
+export type ValidatorChangeFunction = (() => void) | undefined;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type CompareWith = (o1: any, o2: any) => boolean;
 
 @Component({
   selector: 'app-radio-group',
@@ -29,34 +30,38 @@ function getInputName() {
       multi: true,
       useExisting: RadioGroupComponent,
     },
-    RadioButtonState,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioGroupComponent implements ControlValueAccessor {
   compareWith = input<CompareWith>((o1, o2) => o1 === o2);
+  value = signal<unknown>(undefined);
 
   name = input(getInputName());
   vertical = input<boolean>(false);
+  disabled = signal(false);
 
-  private _state = inject(RadioButtonState);
-
-  constructor() {
-    this._state.name = this.name;
-    this._state.compareWith = this.compareWith;
-  }
+  registerOnChangefn: OnChangeFunction;
+  validatorChangefn: ValidatorChangeFunction;
+  onTouchedfn: OnTouchedFunction;
 
   writeValue(value: unknown): void {
-    this._state.writeValue(value);
+    this.value.set(value);
   }
 
   registerOnChange(fn: OnChangeFunction): void {
-    this._state.registerOnChangefn = fn;
+    this.registerOnChangefn = fn;
   }
   registerOnTouched(fn: OnTouchedFunction): void {
-    this._state.onTouchedfn = fn;
+    this.onTouchedfn = fn;
   }
   setDisabledState(isDisabled: boolean): void {
-    this._state.disabled.set(isDisabled);
+    this.disabled.set(isDisabled);
+  }
+
+  selected(value: unknown) {
+    this.value.set(value);
+    this.registerOnChangefn?.(this.value());
+    this.onTouchedfn?.();
   }
 }

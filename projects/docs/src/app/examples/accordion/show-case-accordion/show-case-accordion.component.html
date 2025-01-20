@@ -1,5 +1,5 @@
 <div class="show-case">
-  <app-accordion [multi]="false">
+  <app-accordion [multi]="true">
     @for (item of items; track $index) {
       <app-accordion-item [label]="item.title" [expanded]="$index === 2">
         <app-accordion-body>{{ item.description }}</app-accordion-body>

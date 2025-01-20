@@ -2,11 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  forwardRef,
   inject,
   input,
 } from '@angular/core';
 import { RadioButtonIconComponent } from './radio-button-icon.component';
-import { RadioButtonState } from './radio-button.state';
+import { RadioGroupComponent } from './radio-group.component';
 
 let inputId = 0;
 
@@ -24,23 +25,23 @@ function genInputId() {
 export class RadioButtonComponent {
   disabled = input<boolean>();
   value = input.required<unknown>();
+  radioGroup = inject<RadioGroupComponent>(
+    forwardRef(() => RadioGroupComponent)
+  );
 
   id = input(genInputId());
 
   radioButtonDisabled = computed(() => {
-    return this.disabled() || this.radioButtonState.disabled();
+    return this.disabled() || this.radioGroup.disabled();
   });
 
-  private radioButtonState = inject(RadioButtonState);
-
-  name = this.radioButtonState.name;
-  compareWith = this.radioButtonState.compareWith;
+  name = this.radioGroup.name;
 
   selected = computed(() => {
-    return this.compareWith()(this.radioButtonState.getValue(), this.value());
+    return this.radioGroup.compareWith()(this.radioGroup.value(), this.value());
   });
 
   toggle() {
-    this.radioButtonState.selected(this.value());
+    this.radioGroup.selected(this.value());
   }
 }
