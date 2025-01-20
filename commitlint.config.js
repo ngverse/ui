@@ -34,6 +34,7 @@ module.exports = {
         'form-field',
         'context-menu',
         'otp-input',
+        'listbox',
       ],
     ],
   },

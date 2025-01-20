@@ -8,17 +8,16 @@
   (cdkAutofill)="autoFilled()"
 />
 <div
-  appListbox
-  [horizontal]="true"
   (paste)="onPaste($event)"
   class="code-container"
-  [focusItems]="true"
+  [horizontal]="true"
+  appFocusListbox
 >
   @for (item of codeLengthArray(); track $index) {
     <input
+      appFocusListboxItem
       autocomplete="off"
       #inputs
-      appListboxItem
       (input)="onInput($event, $index)"
       maxlength="1"
       class="code-input"
