@@ -132,6 +132,6 @@ export class AutocompleteComponent implements ControlValueAccessor {
   }
 
   panelOpened() {
-    this.listbox().activateItemOrFirstByIndex(-1);
+    this.listbox().activeByIndex(-1);
   }
 }

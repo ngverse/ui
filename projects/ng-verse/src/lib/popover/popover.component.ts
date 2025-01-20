@@ -49,20 +49,23 @@ export class PopoverComponent implements OnDestroy {
   offsetY = input<number>(0);
   offsetX = input<number>(0);
   blockScroll = input(true);
+  closeOnBackdropClick = input(true);
   positionY = input<POPOVER_POSITION_Y>('bottom');
   stretchToOrigin = input(true);
-
-  popover = inject(ElementRef<HTMLElement>);
-  popoverEl = this.popover.nativeElement as HTMLElement;
-  private renderer2 = inject(Renderer2);
-  private document = inject(DOCUMENT);
-  platformId = inject(PLATFORM_ID);
 
   //host object doesn't bind to the attribute
   //so we have to use HostBinding here
   //probably it will be fixed in later Angular version
   @HostBinding('attr.popover')
   bind = 'manual';
+
+  popover = inject(ElementRef<HTMLElement>);
+  get popoverEl() {
+    return this.popover.nativeElement;
+  }
+  private renderer2 = inject(Renderer2);
+  private document = inject(DOCUMENT);
+  platformId = inject(PLATFORM_ID);
 
   scrollBlocker = inject(Overlay).scrollStrategies.block();
 
@@ -99,7 +102,7 @@ export class PopoverComponent implements OnDestroy {
     if (this.popoverIsOpen) {
       return;
     }
-    const popover = this.popover.nativeElement;
+    const popover = this.popoverEl;
     popover.showPopover();
     //wait till the animation ends
     fromEvent(popover, 'transitionend')
@@ -116,7 +119,7 @@ export class PopoverComponent implements OnDestroy {
 
   private _hide() {
     if (this.popoverIsOpen) {
-      const popover = this.popover.nativeElement;
+      const popover = this.popoverEl;
       popover.hidePopover();
       this.closed.emit();
       if (this.blockScroll()) {
@@ -153,7 +156,9 @@ export class PopoverComponent implements OnDestroy {
         .pipe(observeOn(asyncScheduler))
         .pipe(filter((event) => !this.eventHappenedInsidePopover(event)))
         .subscribe(() => {
-          this.isOpen.set(false);
+          if (this.closeOnBackdropClick()) {
+            this.isOpen.set(false);
+          }
         })
     );
 

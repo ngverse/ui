@@ -1,5 +1,5 @@
-import { FocusableOption, Highlightable } from '@angular/cdk/a11y';
 import {
+  computed,
   Directive,
   ElementRef,
   HostBinding,
@@ -8,7 +8,6 @@ import {
   Input,
   OnDestroy,
   output,
-  signal,
 } from '@angular/core';
 import { ListboxState } from './listbox.state';
 
@@ -18,14 +17,10 @@ import { ListboxState } from './listbox.state';
     '[class.listbox-item-active]': 'isActive()',
   },
 })
-export class ListboxItemDirective
-  implements Highlightable, FocusableOption, OnDestroy
-{
+export class ListboxItemDirective implements OnDestroy {
   host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 
-  isActive = signal(false);
-
-  state = inject(ListboxState, { optional: true });
+  state = inject(ListboxState);
 
   activated = output();
 
@@ -38,24 +33,19 @@ export class ListboxItemDirective
     this.activated.emit();
   }
 
+  isActive = computed(() => this.state.isActive(this));
+
   get el() {
     return this.host.nativeElement;
   }
   constructor() {
     this.state?.add(this);
   }
-  focus(): void {
-    this.host.nativeElement.focus();
-  }
+
   ngOnDestroy(): void {
     this.state?.remove(this);
   }
-  setActiveStyles(): void {
-    this.isActive.set(true);
-  }
-  setInactiveStyles(): void {
-    this.isActive.set(false);
-  }
+
   getLabel?(): string {
     return this.el.textContent as string;
   }

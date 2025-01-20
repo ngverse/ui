@@ -9,12 +9,12 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
-import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
-import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
+import { FocusListboxItemDirective } from '@ng-verse/listbox/focus-listbox-item.directive';
+import { FocusListboxDirective } from '@ng-verse/listbox/focus-listbox.directive';
 
 @Component({
   selector: 'app-otp-input',
-  imports: [CdkAutofill, ListboxDirective, ListboxItemDirective],
+  imports: [CdkAutofill, FocusListboxDirective, FocusListboxItemDirective],
   templateUrl: './otp-input.component.html',
   styleUrl: './otp-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

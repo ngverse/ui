@@ -94,6 +94,12 @@ export class PopoverPageComponent {
               'The vertical position of the popover relative to the origin',
             default: 'bottom',
           },
+          {
+            name: 'closeOnBackdropClick',
+            type: 'boolean',
+            description: 'Closes the popover when the backdrop is clicked',
+            default: 'true',
+          },
         ],
       },
     ],

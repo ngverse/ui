@@ -43,6 +43,8 @@ describe('TooltipContainerComponent', () => {
     expect(tooltip?.textContent?.trim()).toBe('message');
   }));
   it('should display tooltip on focus', fakeAsync(() => {
+    component.tooltipEvent.set('focus');
+    fixture.detectChanges();
     const button = fixture.nativeElement.querySelector(
       'button'
     ) as HTMLButtonElement;
@@ -139,7 +141,7 @@ describe('TooltipContainerComponent', () => {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class TooltipTestComponent {
-  tooltipEvent = signal<TOOLTIP_EVENT>('both');
+  tooltipEvent = signal<TOOLTIP_EVENT>('hover');
   tooltipDelay = signal(0);
   template = viewChild<TemplateRef<unknown>>(TemplateRef);
   showCustom = signal(false);
