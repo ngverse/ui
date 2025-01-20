@@ -233,13 +233,6 @@ export const routes: Routes = [
           ).then((p) => p.ContextMenuPageComponent),
       },
       {
-        path: 'listbox',
-        loadComponent: () =>
-          import('./features/listbox-page/listbox-page.component').then(
-            (p) => p.ListboxPageComponent
-          ),
-      },
-      {
         path: 'loader',
         loadComponent: () =>
           import('./features/loader-page/loader-page.component').then(

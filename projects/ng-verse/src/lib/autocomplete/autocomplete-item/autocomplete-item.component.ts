@@ -5,19 +5,12 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { ListboxItemDirective } from '../../listbox/listbox-item.directive';
 import { SELECTION_EMITTER } from '../autocomplete.component';
 
 @Component({
   selector: 'app-autocomplete-item',
   templateUrl: './autocomplete-item.component.html',
   styleUrl: './autocomplete-item.component.scss',
-  hostDirectives: [
-    {
-      directive: ListboxItemDirective,
-      inputs: ['disabled'],
-    },
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteItemComponent {
@@ -26,11 +19,4 @@ export class AutocompleteItemComponent {
   private readonly selectionEmitter = inject(SELECTION_EMITTER, {
     skipSelf: true,
   });
-  listboxItem = inject(ListboxItemDirective);
-
-  constructor() {
-    this.listboxItem.activated.subscribe(() => {
-      this.selectionEmitter.next(this);
-    });
-  }
 }
