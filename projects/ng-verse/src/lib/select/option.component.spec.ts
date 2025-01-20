@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { OptionComponent } from './option.component';
-import { SelectState } from './select.state';
+import { SelectComponent } from './select.component';
 
 describe('OptionComponent', () => {
-  let component: OptionComponent;
-  let fixture: ComponentFixture<OptionComponent>;
+  let component: OptionTestComponent;
+  let fixture: ComponentFixture<OptionTestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OptionComponent],
-      providers: [SelectState],
+      imports: [OptionTestComponent],
+      providers: [SelectComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OptionComponent);
-    fixture.componentRef.setInput('value', 'test');
+    fixture = TestBed.createComponent(OptionTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,3 +23,15 @@ describe('OptionComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+@Component({
+  selector: 'app-test-option',
+  imports: [SelectComponent, OptionComponent],
+  template: `
+    <app-select placeholder="Test">
+      <app-option [value]="1">First Value</app-option>
+    </app-select>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+class OptionTestComponent {}

@@ -2,13 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  forwardRef,
   inject,
   input,
   signal,
 } from '@angular/core';
 import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
 import { SelectCheckIconComponent } from './select-check-icon.component';
-import { OptionProxy, SelectState } from './select.state';
+import { SelectComponent } from './select.component';
 
 @Component({
   selector: 'app-option',
@@ -26,19 +27,20 @@ import { OptionProxy, SelectState } from './select.state';
     '[class.selected]': 'isSelected()',
   },
 })
-export class OptionComponent implements OptionProxy {
+export class OptionComponent {
   isActive = signal(false);
   value = input.required<unknown>();
-  isSelected = () => this.state.isSelected(this.value());
+  isSelected = () => this.select.isSelected(this.value());
 
   private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 
-  private state = inject(SelectState);
+  select = inject<SelectComponent>(forwardRef(() => SelectComponent));
+
   private listboxItem = inject(ListboxItemDirective);
 
   constructor() {
     this.listboxItem.activated.subscribe(() => {
-      this.state.toggleValue(this.value());
+      this.select.toggleValue(this.value());
     });
   }
 
