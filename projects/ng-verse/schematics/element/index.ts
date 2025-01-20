@@ -41,9 +41,9 @@ export function element(options: Schema) {
     const applicationDir = host.getDir(applicationPath);
     const applicationDirExists =
       applicationDir.subfiles.length > 0 || applicationDir.subdirs.length > 0;
-    if (applicationDirExists && !options.force) {
+    if (applicationDirExists && !options.replace) {
       throw new SchematicsException(
-        `the ${elementName} already exists in ${applicationPath}, use --force option to overwrite`
+        `the ${elementName} already exists in ${applicationPath}, use --replace=true option to overwrite`
       );
     }
     // Copy element files from the library to the application

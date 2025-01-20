@@ -61,7 +61,7 @@ describe('ng-add', () => {
       )
     ).toBeRejectedWithError(
       SchematicsException,
-      `Could not find ${STYLE_PATH}`
+      `Could not find ${STYLE_PATH} to add ng-verse.scss`
     );
   });
 

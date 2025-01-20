@@ -12,10 +12,10 @@
         "index": 0
       }
     },
-    "force": {
+    "replace": {
       "type": "boolean",
       "default": false,
-      "description": "Force overwrite existing files."
+      "description": "Replaces existing files."
     },
     "project": {
       "type": "string",

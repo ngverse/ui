@@ -4,5 +4,5 @@ export interface Schema {
 
   project: string;
 
-  force?: boolean;
+  replace?: boolean;
 }

@@ -53,7 +53,9 @@ function addStyles(options: Schema) {
     const styleSCSSPath = getProjectStyleFile(project);
 
     if (!styleSCSSPath || !host.exists(styleSCSSPath)) {
-      throw new SchematicsException(`Could not find ${styleSCSSPath}`);
+      throw new SchematicsException(
+        `Could not find ${styleSCSSPath} to add ng-verse.scss`
+      );
     }
 
     const ngVerseStylePath = normalize(

@@ -119,11 +119,11 @@ describe('element', () => {
       )
     ).toBeRejectedWithError(
       SchematicsException,
-      `the ${componentName} already exists in projects/demo/src/app/button, use --force option to overwrite`
+      `the ${componentName} already exists in projects/demo/src/app/button, use --replace=true option to overwrite`
     );
   });
 
-  it('should not throw an exception if --force option is used', async () => {
+  it('should not throw an exception if --replace option is used', async () => {
     const componentName = 'button';
     await testRunner.runSchematic(
       'element',
@@ -132,7 +132,7 @@ describe('element', () => {
     );
     await testRunner.runSchematic(
       'element',
-      { name: componentName, project: PROJECT_NAME, force: true },
+      { name: componentName, project: PROJECT_NAME, replace: true },
       appTree
     );
   });
