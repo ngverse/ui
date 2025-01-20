@@ -16,7 +16,8 @@ export type OnTouchedFunction = (() => void) | undefined;
 export type OnChangeFunction = ((_: unknown) => void) | undefined;
 export type ValidatorChangeFunction = (() => void) | undefined;
 
-export type CompareWith = (o1: unknown, o2: unknown) => boolean;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type CompareWith = (o1: any, o2: any) => boolean;
 
 @Component({
   selector: 'app-radio-group',
