@@ -77,8 +77,6 @@ function addStyles(options: Schema) {
       styleContent.length,
       `\n ${host.read(ngVerseStylePath)?.toString()} \n`
     );
-    const content = host.read(ngVerseStylePath)?.toString();
-    console.log(content);
     host.commitUpdate(recorder);
   };
 }
