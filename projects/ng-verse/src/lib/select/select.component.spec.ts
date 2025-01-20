@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { OptionComponent } from '@ng-verse/select/option.component';
+import { OptionComponent } from '../select/option.component';
 import { SelectComponent } from './select.component';
 
 const OPTIONS = [

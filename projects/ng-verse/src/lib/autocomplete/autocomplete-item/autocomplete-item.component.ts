@@ -5,8 +5,8 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { SELECTION_EMITTER } from '@ng-verse/autocomplete/autocomplete.component';
-import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
+import { ListboxItemDirective } from '../../listbox/listbox-item.directive';
+import { SELECTION_EMITTER } from '../autocomplete.component';
 
 @Component({
   selector: 'app-autocomplete-item',

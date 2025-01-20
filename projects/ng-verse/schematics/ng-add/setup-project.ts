@@ -14,7 +14,7 @@ import {
 } from '@angular/cdk/schematics';
 import { addRootProvider } from '@schematics/angular/utility';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
-import { join } from 'path';
+import { dirname, join } from 'path';
 import { Schema } from './schema';
 
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
@@ -49,30 +49,26 @@ function addStyles(options: Schema) {
     if (!project) {
       throw new SchematicsException(`Invalid project name: ${options.project}`);
     }
-    const projectType =
-      project.extensions['projectType'] === 'application' ? 'app' : 'lib';
-
-    const rootPath = normalize(`${project.sourceRoot}/${projectType}`);
 
     const styleSCSSPath = getProjectStyleFile(project);
 
-    if (!styleSCSSPath) {
-      throw new SchematicsException(
-        `Could not find ${styleSCSSPath} to add ng-verse.scss`
-      );
+    if (!styleSCSSPath || !host.exists(styleSCSSPath)) {
+      throw new SchematicsException(`Could not find ${styleSCSSPath}`);
     }
 
     const ngVerseStylePath = normalize(
       join('node_modules', 'ng-verse', 'src', 'lib', 'ng-verse.scss')
     );
-
     if (!host.exists(ngVerseStylePath)) {
       throw new SchematicsException(
         `Could not find ${ngVerseStylePath} to add ng-verse.scss`
       );
     }
+    const styleDirectory = dirname(styleSCSSPath);
 
-    const newNgVerseStylePath = normalize(join(rootPath, 'ng-verse.scss'));
+    const newNgVerseStylePath = normalize(
+      join(styleDirectory, 'ng-verse.scss')
+    );
 
     host.create(newNgVerseStylePath, host.read(ngVerseStylePath) as Buffer);
 

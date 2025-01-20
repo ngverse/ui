@@ -4,7 +4,7 @@ import {
   ElementRef,
   inject,
 } from '@angular/core';
-import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
+import { ListboxItemDirective } from '../../listbox/listbox-item.directive';
 
 @Component({
   selector: 'app-context-menu-item',

@@ -9,8 +9,8 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
-import { FocusListboxItemDirective } from '@ng-verse/listbox/focus-listbox-item.directive';
-import { FocusListboxDirective } from '@ng-verse/listbox/focus-listbox.directive';
+import { FocusListboxItemDirective } from '../listbox/focus-listbox-item.directive';
+import { FocusListboxDirective } from '../listbox/focus-listbox.directive';
 
 @Component({
   selector: 'app-otp-input',
