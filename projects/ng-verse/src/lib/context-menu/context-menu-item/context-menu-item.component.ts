@@ -1,10 +1,14 @@
+import { Highlightable } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  forwardRef,
   inject,
+  output,
+  signal,
 } from '@angular/core';
-import { ListboxItemDirective } from '../../listbox/listbox-item.directive';
+import { ContextMenuComponent } from '../context-menu.component';
 
 @Component({
   selector: 'app-context-menu-item',
@@ -14,14 +18,26 @@ import { ListboxItemDirective } from '../../listbox/listbox-item.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'menuitem',
+    '[class.is-active]': 'isActive()',
+    '(click)': 'onClick()',
   },
-  hostDirectives: [
-    {
-      directive: ListboxItemDirective,
-      outputs: ['activated'],
-    },
-  ],
 })
-export class ContextMenuItemComponent {
+export class ContextMenuItemComponent implements Highlightable {
+  selected = output();
+  isActive = signal(false);
   host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
+
+  contextMenu = inject(forwardRef(() => ContextMenuComponent));
+
+  onClick() {
+    this.selected.emit();
+    this.contextMenu.isOpen.set(false);
+  }
+
+  setActiveStyles(): void {
+    this.isActive.set(true);
+  }
+  setInactiveStyles(): void {
+    this.isActive.set(false);
+  }
 }

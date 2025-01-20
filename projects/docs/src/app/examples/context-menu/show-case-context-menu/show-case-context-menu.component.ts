@@ -1,4 +1,3 @@
-import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +15,6 @@ import { ToastService } from '@ng-verse/toast/toast.service';
     ContextMenuComponent,
     ContextMenuTriggerDirective,
     ContextMenuItemComponent,
-    CdkCopyToClipboard,
   ],
   templateUrl: './show-case-context-menu.component.html',
   styleUrl: './show-case-context-menu.component.scss',
@@ -31,11 +29,16 @@ export class ShowCaseContextMenuComponent {
     this.color.set('red');
   }
 
-  copied() {
-    this.toast.open({
-      message: 'Copied!',
-      showCloseIcon: false,
-      closeDelay: 1000,
+  copy(text?: string | null) {
+    if (!text) {
+      return;
+    }
+    navigator.clipboard.writeText(text).then(() => {
+      this.toast.open({
+        message: 'Copied!',
+        showCloseIcon: false,
+        closeDelay: 1000,
+      });
     });
   }
 

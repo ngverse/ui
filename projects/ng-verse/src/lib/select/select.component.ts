@@ -25,8 +25,6 @@ import {
 } from '@angular/forms';
 
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { ListboxDirective } from '../listbox/listbox.directive';
-import { ListboxState } from '../listbox/listbox.state';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
 import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
@@ -56,7 +54,6 @@ export type CompareWith = (o1: any, o2: any) => boolean;
       multi: true,
       useExisting: SelectComponent,
     },
-    ListboxState,
     {
       provide: NG_VALIDATORS,
       useExisting: SelectComponent,
@@ -87,12 +84,6 @@ export class SelectComponent
   selectOptions = viewChild.required<ElementRef<HTMLElement>>('selectOptions');
   private _validatorChangeFn: ValidatorChangeFunction;
   private _registerOnChangeFn: OnChangeFunction;
-
-  listbox = viewChild.required(ListboxDirective);
-
-  selectButton = viewChild('selectButton', {
-    read: ElementRef<HTMLElement>,
-  });
 
   findOptionByValue(value: unknown) {
     return this.options().find((option) =>

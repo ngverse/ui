@@ -5,6 +5,7 @@ import {
   ElementRef,
   forwardRef,
   inject,
+  Input,
   input,
   signal,
 } from '@angular/core';
@@ -19,20 +20,6 @@ import { SelectComponent } from './select.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OptionComponent implements Highlightable {
-  setActiveStyles(): void {
-    this.isActive.set(true);
-    this.host.nativeElement.scrollIntoView({
-      block: 'nearest',
-      inline: 'nearest',
-    });
-  }
-  setInactiveStyles(): void {
-    this.isActive.set(false);
-  }
-  disabled?: boolean | undefined;
-  getLabel?(): string {
-    return this.host.nativeElement.textContent || '';
-  }
   isActive = signal(false);
   value = input.required<unknown>();
   isSelected = () => this.select.isSelected(this.value());
@@ -43,5 +30,26 @@ export class OptionComponent implements Highlightable {
 
   get content() {
     return this.host.nativeElement.textContent;
+  }
+
+  setActiveStyles(): void {
+    this.isActive.set(true);
+    this.host.nativeElement.scrollIntoView({
+      block: 'nearest',
+      inline: 'nearest',
+    });
+  }
+  setInactiveStyles(): void {
+    this.isActive.set(false);
+  }
+
+  //we can't use signal input for now
+  //it is property of highlightable interface
+  //and it needs bo be this shape
+  @Input()
+  disabled?: boolean | undefined;
+
+  getLabel?(): string {
+    return this.content || '';
   }
 }
