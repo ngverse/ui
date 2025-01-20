@@ -17,6 +17,72 @@ const PROJECT_APP_ROOT = `${PROJECT_ROOT}/app/`;
 const STYLE_PATH = `projects/demo/src/styles.scss`;
 const NG_VERSE_ROOT = `node_modules/ng-verse/src/lib/`;
 
+const NG_VERSE_STYLES = `:root {
+  --background: white;
+  --foreground: #030712;
+  --primary: #2563eb;
+  --border-radius: 6px;
+
+  --primary-foreground: white;
+
+  --inverse: #1f2937;
+  --inverse-foreground: white;
+
+  --secondary: #4b5563;
+  --secondary-foreground: white;
+
+  --accent: #f3f4f6;
+  --accent-foreground: #111827;
+
+  --danger: #dc2626;
+  --danger-foreground: white;
+
+  --warning: #ea580c;
+  --warning-foreground: white;
+
+  --success: #16a34a;
+  --success-foreground: white;
+
+  --disabled: #f3f4f6;
+  --disabled-foreground: #9ca3af;
+
+  --surface: #f9fafb;
+
+  --surface-2: #d1d5db;
+
+  --divider: #cbd5e1;
+
+  --border: 1px solid #d1d5db;
+
+  --ring: #9ca3af;
+
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  --mute-start: #e0e0e0;
+  --mute-end: #f0f0f0;
+
+  --field-height: 36px;
+  --field-padding: 6px 10px;
+
+  --app-field-border-radius: 8px;
+  --app-field-border: 1px solid #d1d5db;
+  --app-field-focus-outline: 1px solid #9ca3af;
+  --app-field-disabled-bg-color: #f3f4f6;
+  --app-field-disabled-color: #9ca3af;
+
+  --app-option-hover-bg-color: #e5e7eb;
+  --app-option-padding: 6px;
+  --app-option-cursor: pointer;
+  --app-option-disabled-color: #9ca3af;
+}
+
+html,
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+`;
+
 describe('ng-add', () => {
   const testRunner = new SchematicTestRunner('ng-verse', collectionPath);
   const workspaceOptions: WorkspaceOptions = {
@@ -61,7 +127,7 @@ describe('ng-add', () => {
       )
     ).toBeRejectedWithError(
       SchematicsException,
-      `Could not find ${STYLE_PATH}`
+      `Could not find ${STYLE_PATH} to add ng-verse.scss`
     );
   });
 
@@ -78,18 +144,8 @@ describe('ng-add', () => {
     );
   });
 
-  it('should add ng-verse.scss file to the project', async () => {
-    appTree.create(NG_VERSE_ROOT + 'ng-verse.scss', '');
-    await testRunner.runSchematic(
-      'ng-add-setup-project',
-      { project: PROJECT_NAME },
-      appTree
-    );
-
-    expect(appTree.exists(PROJECT_ROOT + 'ng-verse.scss')).toBe(true);
-  });
   it("should add ng-verse.scss file to the project's styles", async () => {
-    appTree.create(NG_VERSE_ROOT + 'ng-verse.scss', '');
+    appTree.create(NG_VERSE_ROOT + 'ng-verse.scss', NG_VERSE_STYLES);
     await testRunner.runSchematic(
       'ng-add-setup-project',
       { project: PROJECT_NAME },
@@ -98,7 +154,7 @@ describe('ng-add', () => {
     const stylesContent = appTree
       .read(PROJECT_ROOT + 'styles.scss')
       ?.toString();
-    expect(stylesContent).toContain(`@use './ng-verse.scss';`);
+    expect(stylesContent).toContain(NG_VERSE_STYLES);
   });
 
   it('should add animation to the project config', async () => {
