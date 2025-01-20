@@ -2,9 +2,10 @@
   [(isOpen)]="isOpen"
   [offsetX]="clientX()"
   [offsetY]="clientY()"
-  appListbox
-  (opened)="opened()"
-  class="context-menu"
+  #popoverEl
+  (keydown)="onKeydown($event)"
 >
-  <ng-content></ng-content>
+  <div #itemsList class="items-list" tabindex="0">
+    <ng-content></ng-content>
+  </div>
 </app-popover>

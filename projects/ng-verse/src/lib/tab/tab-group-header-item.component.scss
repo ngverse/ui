@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.tab-header {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+.is-active {
+  outline: 1px solid var(--ring);
+}

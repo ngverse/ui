@@ -2,14 +2,10 @@
   display: flex;
   position: relative;
   border-bottom: 1px solid var(--divider);
-}
 
-.tab-header {
-  padding: 12px 16px;
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-  position: relative;
+  &:focus-visible {
+    outline: 1px solid var(--ring);
+  }
 }
 
 .tab-body {

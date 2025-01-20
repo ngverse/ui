@@ -1,8 +1,12 @@
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
+  contentChildren,
   effect,
+  ElementRef,
   inject,
+  Injector,
   input,
   OnDestroy,
   OnInit,
@@ -10,9 +14,8 @@ import {
   viewChild,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ListboxDirective } from '../listbox/listbox.directive';
-import { ListboxState } from '../listbox/listbox.state';
 import { PopoverComponent } from '../popover/popover.component';
+import { ContextMenuItemComponent } from './context-menu-item/context-menu-item.component';
 import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
 
 @Component({
@@ -23,8 +26,7 @@ import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
   host: {
     tabIndex: '0',
   },
-  imports: [PopoverComponent, ListboxDirective],
-  providers: [ListboxState],
+  imports: [PopoverComponent],
 })
 export class ContextMenuComponent implements OnInit, OnDestroy {
   trigger = input.required<ContextMenuTriggerDirective>();
@@ -34,9 +36,18 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
   isOpen = signal(false);
   clientX = signal<number>(0);
   clientY = signal<number>(0);
-  listbox = viewChild.required(ListboxDirective);
-  listsboxState = inject(ListboxState);
   itemsSub = new Subscription();
+  items = contentChildren(ContextMenuItemComponent, { descendants: true });
+  keyManager = new ActiveDescendantKeyManager(this.items, inject(Injector));
+  itemsList = viewChild.required<ElementRef<HTMLElement>>('itemsList');
+
+  onKeydown($event: KeyboardEvent) {
+    if ($event.key === 'Enter') {
+      this.keyManager.activeItem?.selected.emit();
+      this.isOpen.set(false);
+    }
+    this.keyManager.onKeydown($event);
+  }
 
   constructor() {
     effect(() => {
@@ -45,19 +56,7 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
       this.clientY();
       if (isOpen) {
         this.popover().updateCoordinates();
-      }
-    });
-
-    effect(() => {
-      const items = this.listsboxState.items();
-      this.itemsSub.unsubscribe();
-      this.itemsSub = new Subscription();
-      for (const item of items) {
-        this.itemsSub.add(
-          item.activated.subscribe(() => {
-            this.isOpen.set(false);
-          })
-        );
+        this.itemsList().nativeElement.focus();
       }
     });
   }
@@ -76,9 +75,5 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
         this.isOpen.set(true);
       }
     });
-  }
-
-  opened() {
-    this.listbox().focus(true);
   }
 }

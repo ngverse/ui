@@ -14,17 +14,10 @@
   including versions of Lorem Ipsum.
 </p>
 <app-context-menu [trigger]="trigger">
-  <app-context-menu-item
-    [cdkCopyToClipboard]="content.textContent || ''"
-    (cdkCopyToClipboardCopied)="copied()"
+  <app-context-menu-item (selected)="copy(content.textContent)"
     >Copy</app-context-menu-item
   >
-  <app-context-menu-item (click)="markRead()"
+  <app-context-menu-item (selected)="markRead()"
     >Mark as Red</app-context-menu-item
   >
-  <app-context-menu-item>
-    <a [href]="'https://google.com/?q=' + content.textContent" target="_blank"
-      >Search In google</a
-    >
-  </app-context-menu-item>
 </app-context-menu>

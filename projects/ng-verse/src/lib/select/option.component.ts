@@ -1,13 +1,14 @@
+import { Highlightable } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   forwardRef,
   inject,
+  Input,
   input,
   signal,
 } from '@angular/core';
-import { ListboxItemDirective } from '../listbox/listbox-item.directive';
 import { SelectCheckIconComponent } from './select-check-icon.component';
 import { SelectComponent } from './select.component';
 
@@ -15,13 +16,10 @@ import { SelectComponent } from './select.component';
   selector: 'app-option',
   templateUrl: './option.component.html',
   styleUrl: './option.component.scss',
-  imports: [SelectCheckIconComponent, ListboxItemDirective],
+  imports: [SelectCheckIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.selected]': 'isSelected()',
-  },
 })
-export class OptionComponent {
+export class OptionComponent implements Highlightable {
   isActive = signal(false);
   value = input.required<unknown>();
   isSelected = () => this.select.isSelected(this.value());
@@ -32,5 +30,26 @@ export class OptionComponent {
 
   get content() {
     return this.host.nativeElement.textContent;
+  }
+
+  setActiveStyles(): void {
+    this.isActive.set(true);
+    this.host.nativeElement.scrollIntoView({
+      block: 'nearest',
+      inline: 'nearest',
+    });
+  }
+  setInactiveStyles(): void {
+    this.isActive.set(false);
+  }
+
+  //we can't use signal input for now
+  //it is property of highlightable interface
+  //and it needs bo be this shape
+  @Input()
+  disabled?: boolean | undefined;
+
+  getLabel?(): string {
+    return this.content || '';
   }
 }
