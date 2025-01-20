@@ -36,14 +36,4 @@ export class ShowCaseSelectComponent {
   formControlSingle = new FormControl(null, Validators.required);
 
   formControlMulti = new FormControl(['US', 'CA'], Validators.required);
-
-  constructor() {
-    this.formControlMulti.valueChanges.subscribe(() => {
-      console.log('VALUE CHANGED MULTI', this.formControlMulti.value);
-    });
-
-    this.formControlSingle.valueChanges.subscribe(() => {
-      console.log('VALUE CHANGED SINGLE', this.formControlSingle.value);
-    });
-  }
 }
