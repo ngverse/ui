@@ -1,10 +1,5 @@
 import { Component, model } from '@angular/core';
-import {
-  FormControl,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonComponent } from '@ng-verse/radio-button/radio-button.component';
 import { RadioGroupComponent } from '@ng-verse/radio-button/radio-group.component';
 
@@ -34,13 +29,7 @@ export class ShowCaseRadioButtonComponent {
       price: 100,
     },
   ];
-  formControl = new FormControl(null, Validators.required);
-  val = model();
-  constructor() {
-    this.formControl.valueChanges.subscribe(() => {
-      console.log('VALUE IS ', this.formControl.value);
-    });
-  }
+  val = model(this.values[0]);
 
   compare(o1: { price: number }, o2: { price: number }) {
     return o1?.price === o2.price;

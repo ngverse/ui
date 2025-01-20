@@ -2,45 +2,33 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  forwardRef,
   inject,
   input,
   signal,
 } from '@angular/core';
 import { ListboxItemDirective } from '../listbox/listbox-item.directive';
 import { SelectCheckIconComponent } from './select-check-icon.component';
-import { OptionProxy, SelectState } from './select.state';
+import { SelectComponent } from './select.component';
 
 @Component({
   selector: 'app-option',
   templateUrl: './option.component.html',
   styleUrl: './option.component.scss',
-  imports: [SelectCheckIconComponent],
+  imports: [SelectCheckIconComponent, ListboxItemDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  hostDirectives: [
-    {
-      directive: ListboxItemDirective,
-      inputs: ['disabled'],
-    },
-  ],
   host: {
     '[class.selected]': 'isSelected()',
   },
 })
-export class OptionComponent implements OptionProxy {
+export class OptionComponent {
   isActive = signal(false);
   value = input.required<unknown>();
-  isSelected = () => this.state.isSelected(this.value());
+  isSelected = () => this.select.isSelected(this.value());
 
   private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 
-  private state = inject(SelectState);
-  private listboxItem = inject(ListboxItemDirective);
-
-  constructor() {
-    this.listboxItem.activated.subscribe(() => {
-      this.state.toggleValue(this.value());
-    });
-  }
+  select = inject<SelectComponent>(forwardRef(() => SelectComponent));
 
   get content() {
     return this.host.nativeElement.textContent;

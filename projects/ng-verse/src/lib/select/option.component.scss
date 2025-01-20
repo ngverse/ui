@@ -1,4 +1,4 @@
-:host {
+.option {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,14 +9,13 @@
     background: var(--accent);
     color: var(--accent-foreground);
   }
+}
+.listbox-item-active,
+.selected {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
 
-  &.listbox-item-active,
-  &.selected {
-    background: var(--accent);
-    color: var(--accent-foreground);
-  }
-
-  &.option-disabled {
-    color: var(--app-option-disabled-color);
-  }
+.option-disabled {
+  color: var(--app-option-disabled-color);
 }

@@ -35,5 +35,5 @@ export class ShowCaseSelectComponent {
   countries = countries;
   formControlSingle = new FormControl(null, Validators.required);
 
-  formControlMulti = new FormControl(null, Validators.required);
+  formControlMulti = new FormControl(['US', 'CA'], Validators.required);
 }
