@@ -35,6 +35,7 @@ module.exports = {
         'context-menu',
         'otp-input',
         'listbox',
+        'drawer',
       ],
     ],
   },

@@ -1,5 +1,4 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { OverlayRef } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
@@ -37,7 +36,6 @@ import { DrawerCloseIconComponent } from '../drawer-close-icon.component';
 export class DrawerComponent implements OnInit {
   component = input.required<ComponentType<unknown>>();
   data = input<Record<string, unknown> | null>(null);
-  overlayRef = input.required<OverlayRef>();
   close = output();
 
   private componentRef: ComponentRef<unknown> | null = null;

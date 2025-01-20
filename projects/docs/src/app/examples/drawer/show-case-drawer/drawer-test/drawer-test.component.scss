@@ -1,0 +1,11 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
