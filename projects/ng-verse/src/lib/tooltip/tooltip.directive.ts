@@ -2,7 +2,6 @@ import { FocusMonitor } from '@angular/cdk/a11y';
 import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
-  AfterViewInit,
   ComponentRef,
   Directive,
   ElementRef,
@@ -14,19 +13,24 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { filter, fromEvent, Subscription } from 'rxjs';
 import { TooltipContainerComponent } from './tooltip-container/tooltip-container.component';
 export type TOOLTIP_POSITIONS = 'top' | 'right' | 'bottom' | 'left';
 
-export type TOOLTIP_EVENT = 'hover' | 'focus' | 'both';
+export type TOOLTIP_EVENT = 'hover' | 'focus';
 
 @Directive({
   selector: '[appTooltip]',
+  host: {
+    '(focus)': 'onFocus()',
+    '(blur)': 'onBlur()',
+    '(mouseenter)': 'onMouseEnter()',
+    '(mouseleave)': 'onMouseLeave()',
+  },
 })
-export class TooltipDirective implements AfterViewInit, OnDestroy {
+export class TooltipDirective implements OnDestroy {
   message = input.required<string>({ alias: 'appTooltip' });
   tooltipPosition = input<TOOLTIP_POSITIONS>('top');
-  tooltipEvent = input<TOOLTIP_EVENT>('both');
+  tooltipEvent = input<TOOLTIP_EVENT>('hover');
   tooltipDelay = input(0, { transform: numberAttribute });
   focusMonitor = inject(FocusMonitor);
   ngZone = inject(NgZone);
@@ -37,57 +41,32 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
   componentRef: ComponentRef<TooltipContainerComponent> | undefined;
 
   el = inject<ElementRef<HTMLElement>>(ElementRef);
-  sub = new Subscription();
 
   tooltipContent = input<TemplateRef<unknown>>();
   vf = inject(ViewContainerRef);
 
-  ngAfterViewInit(): void {
-    this.focusListener();
-    this.mouseListener();
+  onFocus() {
+    if (this.tooltipEvent() === 'focus') {
+      this.show();
+    }
   }
 
-  private focusListener() {
-    this.sub.add(
-      this.focusMonitor
-        .monitor(this.el.nativeElement)
-        .pipe(
-          filter(
-            () =>
-              this.tooltipEvent() === 'both' || this.tooltipEvent() === 'focus'
-          )
-        )
-        .subscribe((origin) => {
-          if (!origin) {
-            this.ngZone.run(() => this.hide());
-          } else {
-            this.ngZone.run(() => {
-              this.show();
-            });
-          }
-        })
-    );
+  onBlur() {
+    if (this.tooltipEvent() === 'focus') {
+      this.hide();
+    }
   }
 
-  private mouseListener() {
-    const filter$ = filter(
-      () => this.tooltipEvent() === 'both' || this.tooltipEvent() === 'hover'
-    );
-    this.sub.add(
-      fromEvent(this.el.nativeElement, 'mouseenter')
-        .pipe(filter$)
-        .subscribe(() => {
-          this.show();
-        })
-    );
+  onMouseEnter() {
+    if (this.tooltipEvent() === 'hover') {
+      this.show();
+    }
+  }
 
-    this.sub.add(
-      fromEvent<MouseEvent>(this.el.nativeElement, 'mouseleave')
-        .pipe(filter$)
-        .subscribe(() => {
-          this.hide();
-        })
-    );
+  onMouseLeave() {
+    if (this.tooltipEvent() === 'hover') {
+      this.hide();
+    }
   }
 
   getOverlayPosition(): ConnectedPosition {
@@ -166,7 +145,6 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
     this.clearSchedule();
   }
 }
