@@ -14,7 +14,7 @@ import {
 } from '@angular/cdk/schematics';
 import { addRootProvider } from '@schematics/angular/utility';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
-import { dirname, join } from 'path';
+import { join } from 'path';
 import { Schema } from './schema';
 
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
@@ -66,24 +66,19 @@ function addStyles(options: Schema) {
         `Could not find ${ngVerseStylePath} to add ng-verse.scss`
       );
     }
-    const styleDirectory = dirname(styleSCSSPath);
-
-    const newNgVerseStylePath = normalize(
-      join(styleDirectory, 'ng-verse.scss')
-    );
-
-    host.create(newNgVerseStylePath, host.read(ngVerseStylePath) as Buffer);
-
-    const insertion = `@use './ng-verse.scss';\n`;
 
     const recorder = host.beginUpdate(styleSCSSPath);
-    recorder.insertLeft(0, insertion);
-
     const styleContent = host.read(styleSCSSPath)?.toString() || '';
     if (!styleContent.includes('@angular/cdk/overlay-prebuilt.css')) {
       recorder.insertLeft(0, `@use '@angular/cdk/overlay-prebuilt.css';\n`);
     }
 
+    recorder.insertRight(
+      styleContent.length,
+      `\n ${host.read(ngVerseStylePath)?.toString()} \n`
+    );
+    const content = host.read(ngVerseStylePath)?.toString();
+    console.log(content);
     host.commitUpdate(recorder);
   };
 }
