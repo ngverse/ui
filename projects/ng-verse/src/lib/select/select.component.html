@@ -16,7 +16,9 @@
   ></app-select-icon>
 </button>
 <app-popover-alpha
+  [outsideClose]="true"
   [restoreFocus]="true"
+  [stretchToOrigin]="true"
   (opened)="panelOpened()"
   (closed)="panelClosed()"
   [(isOpen)]="isOpen"

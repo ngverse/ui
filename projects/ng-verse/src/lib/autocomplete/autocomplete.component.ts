@@ -19,7 +19,6 @@ import {
 import { Subject } from 'rxjs';
 import { PopoverAlphaComponent } from '../popover/popover-alpha/popover-alpha.component';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
-import { PopoverComponent } from '../popover/popover.component';
 import { AutocompleteItemComponent } from './autocomplete-item/autocomplete-item.component';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type OnChangeFunction = ((_: any) => void) | undefined;
@@ -31,12 +30,7 @@ export const SELECTION_EMITTER = new InjectionToken<
 
 @Component({
   selector: 'app-autocomplete',
-  imports: [
-    FormsModule,
-    PopoverComponent,
-    PopoverOriginDirective,
-    PopoverAlphaComponent,
-  ],
+  imports: [FormsModule, PopoverOriginDirective, PopoverAlphaComponent],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss',
   providers: [

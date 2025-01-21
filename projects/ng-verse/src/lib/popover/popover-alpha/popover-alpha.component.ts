@@ -35,6 +35,10 @@ import {
 } from 'rxjs';
 import { PopoverOriginDirective } from '../popover-origin.directive';
 export type POPOVER_POSITIONS = 'top' | 'right' | 'bottom' | 'left';
+export interface POPOVER_COORDINATES {
+  x: number;
+  y: number;
+}
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -61,12 +65,19 @@ export class PopoverAlphaComponent implements OnDestroy {
   tempRef = contentChild.required(TemplateRef);
   vf = inject(ViewContainerRef);
   isOpen = model(false);
+  hasBackdrop = input<boolean>(false);
 
-  position = input<POPOVER_POSITIONS>('bottom');
+  blockScroll = input<boolean>(false);
+
+  outsideClose = input(false);
+
+  stretchToOrigin = input(false);
 
   restoreFocus = input(false);
 
   styled = input(true);
+
+  position = input<POPOVER_POSITIONS>('bottom');
 
   overlayPosition = computed(() => [
     {
@@ -76,14 +87,10 @@ export class PopoverAlphaComponent implements OnDestroy {
     },
   ]);
 
-  hasBackdrop = input<boolean>(false);
-
-  blockScroll = input<boolean>(true);
-
-  stretchToOrigin = input(true);
-
-  origin = input.required<PopoverOriginDirective>();
+  origin = input<PopoverOriginDirective>();
   popover = viewChild.required<ElementRef<HTMLElement>>('popover');
+
+  coordinates = input<POPOVER_COORDINATES>();
 
   document = inject(DOCUMENT);
 
@@ -143,11 +150,18 @@ export class PopoverAlphaComponent implements OnDestroy {
       const scrollStrategy = this.blockScroll()
         ? this.overlay.scrollStrategies.block()
         : this.overlay.scrollStrategies.reposition();
+      const origin = this.origin();
+      const coordinates = this.coordinates();
+      const connectingTo = origin ? origin.el : coordinates;
+
+      if (!connectingTo) {
+        throw new Error('origin or coordinates must be provided');
+      }
 
       this.overlayRef = this.overlay.create({
         positionStrategy: this.overlay
           .position()
-          .flexibleConnectedTo(this.origin().el)
+          .flexibleConnectedTo(connectingTo)
           .withPositions(this.overlayPosition())
           .withLockedPosition(true),
         hasBackdrop: this.hasBackdrop(),
@@ -166,18 +180,20 @@ export class PopoverAlphaComponent implements OnDestroy {
     this.globalSub = new Subscription();
     const overlayRef = this.overlayRef as OverlayRef;
 
-    const outsideClick$ = overlayRef
-      .outsidePointerEvents()
-      .pipe(observeOn(asyncScheduler));
-    const escapeEvent$ = overlayRef
-      .keydownEvents()
-      .pipe(filter((event) => event.key === 'Escape'));
+    if (this.outsideClose()) {
+      const outsideClick$ = overlayRef
+        .outsidePointerEvents()
+        .pipe(observeOn(asyncScheduler));
+      const escapeEvent$ = overlayRef
+        .keydownEvents()
+        .pipe(filter((event) => event.key === 'Escape'));
 
-    this.globalSub.add(
-      merge(escapeEvent$, outsideClick$).subscribe(() => {
-        this.hide();
-      })
-    );
+      this.globalSub.add(
+        merge(escapeEvent$, outsideClick$).subscribe(() => {
+          this.hide();
+        })
+      );
+    }
 
     this.globalSub.add(
       fromEvent(this.document, 'scroll', {
@@ -194,9 +210,9 @@ export class PopoverAlphaComponent implements OnDestroy {
 
   private tryStretch() {
     untracked(() => {
-      if (this.stretchToOrigin()) {
-        this.popover().nativeElement.style.width =
-          this.origin().el.offsetWidth + 'px';
+      const origin = this.origin();
+      if (this.stretchToOrigin() && origin) {
+        this.popover().nativeElement.style.width = origin.el.offsetWidth + 'px';
       }
     });
   }
@@ -206,7 +222,7 @@ export class PopoverAlphaComponent implements OnDestroy {
     this.overlayRef = undefined;
     this.closed.emit();
     if (this.restoreFocus()) {
-      this.origin().el.focus();
+      this.origin()?.el.focus();
     }
   }
 
