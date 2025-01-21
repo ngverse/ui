@@ -1,22 +1,18 @@
 <input
   class="input-field"
-  (input)="onInput($event)"
   [ngModel]="inputValue()"
   (ngModelChange)="inputValue.set($event)"
   appPopoverOrigin
   #trigger="appPopoverOrigin"
-  (openPopover)="open()"
-  (closePopover)="close()"
+  (focus)="open()"
   [disabled]="disabled()"
+  (keydown)="onKeydown($event)"
+  (input)="onInput($event)"
 />
 
-<app-popover
-  class="select-options"
-  [offsetY]="8"
-  [origin]="trigger"
-  [(isOpen)]="isOpen"
->
-  <div>
+<app-popover-alpha [offsetY]="8" [origin]="trigger" [(isOpen)]="isOpen">
+  <div class="select-options">
     <ng-content select="app-autocomplete-item"></ng-content>
   </div>
-</app-popover>
+</app-popover-alpha>
+<!-- (blur)="close()" -->

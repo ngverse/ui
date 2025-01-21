@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { OptionComponent } from './option.component';
 import { SelectComponent } from './select.component';
 
@@ -11,7 +12,7 @@ describe('OptionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [OptionTestComponent],
-      providers: [SelectComponent],
+      providers: [SelectComponent, provideAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OptionTestComponent);

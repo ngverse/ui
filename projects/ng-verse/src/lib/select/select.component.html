@@ -15,7 +15,24 @@
     [class.opened]="isOpen()"
   ></app-select-icon>
 </button>
-<app-popover
+<app-popover-alpha
+  [restoreFocus]="true"
+  (opened)="panelOpened()"
+  (closed)="panelClosed()"
+  [(isOpen)]="isOpen"
+  [origin]="origin"
+  [offsetY]="8"
+>
+  <div
+    (keydown)="onKeydown($event)"
+    class="select-options"
+    tabindex="0"
+    #selectOptions
+  >
+    <ng-content select="app-option"></ng-content>
+  </div>
+</app-popover-alpha>
+<!-- <app-popover
   class="select-options"
   [(isOpen)]="isOpen"
   [origin]="origin"
@@ -26,4 +43,4 @@
   <div (keydown)="onKeydown($event)" tabindex="0" #selectOptions>
     <ng-content select="app-option"></ng-content>
   </div>
-</app-popover>
+</app-popover> -->

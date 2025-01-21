@@ -1,5 +1,7 @@
-:host {
+.autocomplete-item {
   display: block;
+  width: 100%;
+  text-align: left;
   padding: var(--app-option-padding);
   cursor: var(--app-option-cursor);
 
@@ -14,5 +16,11 @@
 
   &.option-disabled {
     color: var(--app-option-disabled-color);
+  }
+
+  &.selected,
+  &.is-active {
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
 }

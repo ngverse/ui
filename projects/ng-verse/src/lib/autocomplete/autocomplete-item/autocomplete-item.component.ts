@@ -1,11 +1,12 @@
+import { Highlightable } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   inject,
   input,
+  signal,
 } from '@angular/core';
-import { SELECTION_EMITTER } from '../autocomplete.component';
 
 @Component({
   selector: 'app-autocomplete-item',
@@ -13,10 +14,19 @@ import { SELECTION_EMITTER } from '../autocomplete.component';
   styleUrl: './autocomplete-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AutocompleteItemComponent {
+export class AutocompleteItemComponent implements Highlightable {
+  isActive = signal(false);
   value = input.required<unknown>();
   host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
-  private readonly selectionEmitter = inject(SELECTION_EMITTER, {
-    skipSelf: true,
-  });
+
+  select() {
+    console.log('HELLI');
+  }
+
+  setActiveStyles(): void {
+    this.isActive.set(true);
+  }
+  setInactiveStyles(): void {
+    this.isActive.set(false);
+  }
 }

@@ -25,8 +25,8 @@ import {
 } from '@angular/forms';
 
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { PopoverAlphaComponent } from '../popover/popover-alpha/popover-alpha.component';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
-import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
 import { SelectIconComponent } from './select-icon.component';
 
@@ -44,7 +44,7 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     ReactiveFormsModule,
     SelectIconComponent,
     PopoverOriginDirective,
-    PopoverComponent,
+    PopoverAlphaComponent,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',

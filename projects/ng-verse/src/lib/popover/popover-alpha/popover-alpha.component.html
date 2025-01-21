@@ -1,0 +1,10 @@
+<div
+  class="popover"
+  #popover
+  [hidden]="!isOpen()"
+  [@toggle]="isOpen()"
+  (@toggle.done)="onDone($event)"
+  [class.styled]="styled()"
+>
+  <ng-content></ng-content>
+</div>
