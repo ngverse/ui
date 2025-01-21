@@ -6,7 +6,6 @@ import { Directive, HostListener, output } from '@angular/core';
 })
 export class ContextMenuTriggerDirective {
   openTriggered = output<MouseEvent>();
-
   @HostListener('contextmenu', ['$event'])
   onClick($event: MouseEvent) {
     this.openTriggered.emit($event);

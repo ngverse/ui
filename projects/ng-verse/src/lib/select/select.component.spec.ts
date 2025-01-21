@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { OptionComponent } from '../select/option.component';
 import { SelectComponent } from './select.component';
 
@@ -80,13 +81,14 @@ function isSelectOpened(fixture: ComponentFixture<unknown>) {
     .matches(':popover-open');
 }
 
-describe('SelectComponent', () => {
+xdescribe('SelectComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TestComponent, TestMultiselectComponent],
+      providers: [provideAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

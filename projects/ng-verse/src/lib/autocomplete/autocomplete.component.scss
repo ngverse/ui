@@ -26,14 +26,10 @@
 }
 
 .select-options {
-  width: 100%;
-  background: white;
-  max-height: 300px;
-  overflow-y: auto;
-  list-style: none;
-  padding-left: 0;
-
-  &:empty {
-    border: none;
+  max-height: 200px;
+  min-width: 200px;
+  overflow: auto;
+  &:focus {
+    outline: none;
   }
 }

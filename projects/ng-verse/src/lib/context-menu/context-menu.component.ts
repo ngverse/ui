@@ -3,17 +3,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   contentChildren,
-  effect,
   ElementRef,
   inject,
   Injector,
   input,
-  OnDestroy,
   OnInit,
   signal,
   viewChild,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { PopoverComponent } from '../popover/popover.component';
 import { ContextMenuItemComponent } from './context-menu-item/context-menu-item.component';
 import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
@@ -28,7 +25,7 @@ import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
   },
   imports: [PopoverComponent],
 })
-export class ContextMenuComponent implements OnInit, OnDestroy {
+export class ContextMenuComponent implements OnInit {
   trigger = input.required<ContextMenuTriggerDirective>();
 
   popover = viewChild.required(PopoverComponent);
@@ -36,7 +33,6 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
   isOpen = signal(false);
   clientX = signal<number>(0);
   clientY = signal<number>(0);
-  itemsSub = new Subscription();
   items = contentChildren(ContextMenuItemComponent, { descendants: true });
   keyManager = new ActiveDescendantKeyManager(this.items, inject(Injector));
   itemsList = viewChild.required<ElementRef<HTMLElement>>('itemsList');
@@ -49,19 +45,8 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
     this.keyManager.onKeydown($event);
   }
 
-  constructor() {
-    effect(() => {
-      const isOpen = this.isOpen();
-      this.clientX();
-      this.clientY();
-      if (isOpen) {
-        this.popover().updateCoordinates();
-        this.itemsList().nativeElement.focus();
-      }
-    });
-  }
-  ngOnDestroy(): void {
-    this.itemsSub.unsubscribe();
+  opened() {
+    this.itemsList().nativeElement.focus();
   }
 
   ngOnInit(): void {

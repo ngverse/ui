@@ -86,10 +86,6 @@ export const SIDEBAR_ROUTES = [
         done: true,
       },
       {
-        name: 'Drawer',
-        url: '/doc/drawer',
-      },
-      {
         name: 'Skeleton',
         url: '/doc/skeleton',
         done: true,

@@ -8,18 +8,20 @@
 </button>
 <app-popover
   [(isOpen)]="isOpen"
-  class="popover"
   [stretchToOrigin]="false"
   [origin]="popoverTrigger"
   [offsetY]="10"
+  [outsideClose]="true"
 >
-  <p>Are you sure you want to do this?</p>
-  <div class="popover-actions">
-    <button size="sm" appButton color="danger" (click)="deleteUser()">
-      Yes
-    </button>
-    <button size="sm" appButton (click)="isOpen.set(false)" variant="stroked">
-      No
-    </button>
+  <div class="popover">
+    <p>Are you sure you want to do this?</p>
+    <div class="popover-actions">
+      <button size="sm" appButton color="danger" (click)="deleteUser()">
+        Yes
+      </button>
+      <button size="sm" appButton (click)="isOpen.set(false)" variant="stroked">
+        No
+      </button>
+    </div>
   </div>
 </app-popover>

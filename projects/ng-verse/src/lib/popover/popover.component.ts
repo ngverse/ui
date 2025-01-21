@@ -1,39 +1,49 @@
-import { Overlay } from '@angular/cdk/overlay';
-import { DOCUMENT, isPlatformServer } from '@angular/common';
+import {
+  animate,
+  AnimationEvent,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
+  ConnectedPosition,
+  FlexibleConnectedPositionStrategy,
+  Overlay,
+  OverlayRef,
+} from '@angular/cdk/overlay';
+import { DomPortal } from '@angular/cdk/portal';
+import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  contentChild,
   effect,
   ElementRef,
-  HostBinding,
   inject,
   input,
   model,
   OnDestroy,
   output,
-  PLATFORM_ID,
-  Renderer2,
-  signal,
+  TemplateRef,
+  untracked,
+  viewChild,
+  ViewContainerRef,
 } from '@angular/core';
 import {
   asyncScheduler,
   filter,
   fromEvent,
+  merge,
   observeOn,
   Subscription,
-  take,
-  throttleTime,
 } from 'rxjs';
 import { PopoverOriginDirective } from './popover-origin.directive';
-import { POPOVER_ANIMATIONS } from './popover.animations';
-
-interface TRIGGER_COORDINATES {
+export type POPOVER_POSITIONS = 'top' | 'right' | 'bottom' | 'left';
+export interface POPOVER_COORDINATES {
   x: number;
   y: number;
 }
-
-// TODO: add other positions
-type POPOVER_POSITION_Y = 'bottom';
 
 @Component({
   selector: 'app-popover',
@@ -41,174 +51,241 @@ type POPOVER_POSITION_Y = 'bottom';
   templateUrl: './popover.component.html',
   styleUrl: './popover.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [POPOVER_ANIMATIONS],
+  animations: [
+    trigger('toggle', [
+      transition('false => true', [
+        style({ transform: 'scale(0)', opacity: 0 }),
+        animate('150ms', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+      transition('true => false', [
+        style({ opacity: 1, transform: 'scale(1)', display: 'block' }),
+        animate('150ms', style({ opacity: 0, transform: 'scale(0)' })),
+      ]),
+    ]),
+  ],
 })
 export class PopoverComponent implements OnDestroy {
-  origin = input<PopoverOriginDirective>();
+  overlay = inject(Overlay);
+  tempRef = contentChild.required(TemplateRef);
+  vf = inject(ViewContainerRef);
   isOpen = model(false);
-  offsetY = input<number>(0);
-  offsetX = input<number>(0);
-  blockScroll = input(true);
-  closeOnBackdropClick = input(true);
-  positionY = input<POPOVER_POSITION_Y>('bottom');
-  stretchToOrigin = input(true);
+  hasBackdrop = input<boolean>(false);
 
-  //host object doesn't bind to the attribute
-  //so we have to use HostBinding here
-  //probably it will be fixed in later Angular version
-  @HostBinding('attr.popover')
-  bind = 'manual';
+  blockScroll = input<boolean>(false);
 
-  popover = inject(ElementRef<HTMLElement>);
-  get popoverEl() {
-    return this.popover.nativeElement;
-  }
-  private renderer2 = inject(Renderer2);
-  private document = inject(DOCUMENT);
-  platformId = inject(PLATFORM_ID);
+  outsideClose = input(false);
 
-  scrollBlocker = inject(Overlay).scrollStrategies.block();
+  stretchToOrigin = input(false);
+
+  restoreFocus = input(false);
+
+  styled = input(true);
+
+  position = input<POPOVER_POSITIONS>('bottom');
+
+  overlayPosition = computed(() => [
+    {
+      ...this.getOverlayPosition(this.position()),
+      offsetX: this.offsetX(),
+      offsetY: this.offsetY(),
+    },
+  ]);
+
+  origin = input<PopoverOriginDirective>();
+  popover = viewChild.required<ElementRef<HTMLElement>>('popover');
+
+  coordinates = input<POPOVER_COORDINATES>();
+
+  document = inject(DOCUMENT);
+
+  offsetX = input<number>();
+  offsetY = input<number>();
 
   opened = output();
   closed = output();
 
-  documenSub: Subscription | undefined;
+  overlayRef: OverlayRef | undefined;
 
-  coordinates = signal<TRIGGER_COORDINATES | undefined>(undefined);
+  globalSub: Subscription | undefined;
 
-  get popoverIsOpen() {
-    return this.popoverEl.matches(':popover-open');
+  get isOpened() {
+    return !!this.overlayRef;
   }
 
   constructor() {
     effect(() => {
-      if (isPlatformServer(this.platformId)) {
-        return;
-      }
       const isOpen = this.isOpen();
       if (isOpen) {
-        this._open();
+        this.show();
       } else {
-        this._hide();
+        this.hide();
+      }
+    });
+
+    effect(() => {
+      const coordinates = this.coordinates();
+      const overlayRef = this.overlayRef;
+      if (overlayRef && coordinates) {
+        const positionStrategy = overlayRef.getConfig()
+          .positionStrategy as FlexibleConnectedPositionStrategy;
+        positionStrategy.setOrigin(coordinates);
+        overlayRef.updatePosition();
       }
     });
   }
 
-  open(coordinates?: TRIGGER_COORDINATES) {
-    this.coordinates.set(coordinates);
-  }
-
-  private _open() {
-    if (this.popoverIsOpen) {
+  hide() {
+    if (!this.isOpened) {
       return;
     }
-    const popover = this.popoverEl;
-    popover.showPopover();
-    //wait till the animation ends
-    fromEvent(popover, 'transitionend')
-      .pipe(throttleTime(1), take(1))
-      .subscribe(() => {
-        this.opened.emit();
-      });
-    this.updateCoordinates();
-    if (this.blockScroll()) {
-      this.scrollBlocker.enable();
-    }
-    this.listenToDocument();
+
+    this.isOpen.set(false);
   }
 
-  private _hide() {
-    if (this.popoverIsOpen) {
-      const popover = this.popoverEl;
-      popover.hidePopover();
-      this.closed.emit();
-      if (this.blockScroll()) {
-        this.scrollBlocker.disable();
+  onDone(event: AnimationEvent) {
+    if (
+      event.fromState.toString() === 'true' &&
+      event.toState.toString() === 'false'
+    ) {
+      this.dispose();
+      return;
+    }
+    if (event.toState.toString() === 'true') {
+      this.listenToGlobalEvents();
+      this.opened.emit();
+    }
+  }
+
+  show() {
+    if (this.isOpened) {
+      return;
+    }
+
+    untracked(() => {
+      const scrollStrategy = this.blockScroll()
+        ? this.overlay.scrollStrategies.block()
+        : this.overlay.scrollStrategies.reposition();
+      const origin = this.origin();
+      const coordinates = this.coordinates();
+      const connectingTo = origin ? origin.el : coordinates;
+
+      if (!connectingTo) {
+        throw new Error('origin or coordinates must be provided');
       }
-      this.documenSub?.unsubscribe();
+
+      this.overlayRef = this.overlay.create({
+        positionStrategy: this.overlay
+          .position()
+          .flexibleConnectedTo(connectingTo)
+          .withPositions(this.overlayPosition())
+          .withLockedPosition(true),
+        hasBackdrop: this.hasBackdrop(),
+        scrollStrategy: scrollStrategy,
+      });
+      this.overlayRef.attach(new DomPortal(this.popover()));
+      this.tryStretch();
+    });
+  }
+
+  private listenToGlobalEvents() {
+    if (!this.isOpened) {
+      return;
+    }
+    this.globalSub?.unsubscribe();
+    this.globalSub = new Subscription();
+    const overlayRef = this.overlayRef as OverlayRef;
+
+    if (this.outsideClose()) {
+      const outsideClick$ = overlayRef
+        .outsidePointerEvents()
+        .pipe(observeOn(asyncScheduler));
+      const escapeEvent$ = overlayRef
+        .keydownEvents()
+        .pipe(filter((event) => event.key === 'Escape'));
+
+      this.globalSub.add(
+        merge(escapeEvent$, outsideClick$).subscribe(() => {
+          this.hide();
+        })
+      );
+    }
+
+    this.globalSub.add(
+      fromEvent(this.document, 'scroll', {
+        capture: true,
+        passive: true,
+      }).subscribe((event) => {
+        if (this.eventHappenedInsidePopover(event)) {
+          return;
+        }
+        overlayRef.updatePosition();
+      })
+    );
+  }
+
+  private tryStretch() {
+    untracked(() => {
+      const origin = this.origin();
+      if (this.stretchToOrigin() && origin) {
+        this.popover().nativeElement.style.width = origin.el.offsetWidth + 'px';
+      }
+    });
+  }
+
+  dispose() {
+    this.overlayRef?.dispose();
+    this.overlayRef = undefined;
+    this.closed.emit();
+    if (this.restoreFocus()) {
+      this.origin()?.el.focus();
     }
   }
 
   private eventHappenedInsidePopover(event: Event) {
+    const popoverEl = this.popover().nativeElement;
     const target = event.target as Node;
     if (target) {
-      if (target === this.popoverEl || this.popoverEl.contains(target)) {
+      if (target === popoverEl || popoverEl.contains(target)) {
         return true;
       }
     }
     return false;
   }
 
-  listenToDocument() {
-    this.documenSub?.unsubscribe();
-    this.documenSub = fromEvent(this.document, 'scroll', {
-      capture: true,
-      passive: true,
-    }).subscribe((event) => {
-      if (this.eventHappenedInsidePopover(event)) {
-        return;
-      }
-      this.updateCoordinates();
-    });
-
-    this.documenSub!.add(
-      fromEvent(this.document, 'click')
-        .pipe(observeOn(asyncScheduler))
-        .pipe(filter((event) => !this.eventHappenedInsidePopover(event)))
-        .subscribe(() => {
-          if (this.closeOnBackdropClick()) {
-            this.isOpen.set(false);
-          }
-        })
-    );
-
-    this.documenSub.add(
-      fromEvent<KeyboardEvent>(this.document, 'keydown')
-        .pipe(filter((event) => event.key === 'Escape'))
-        .subscribe(() => {
-          this.isOpen.set(false);
-        })
-    );
-  }
-
-  getTriggerBounds(): DOMRect | undefined {
-    const trigger = this.origin();
-    if (!trigger) {
-      return;
+  getOverlayPosition(position: POPOVER_POSITIONS): ConnectedPosition {
+    switch (position) {
+      case 'top':
+        return {
+          originX: 'center',
+          originY: 'top',
+          overlayX: 'center',
+          overlayY: 'bottom',
+        };
+      case 'right':
+        return {
+          originX: 'end',
+          originY: 'center',
+          overlayX: 'start',
+          overlayY: 'center',
+        };
+      case 'bottom':
+        return {
+          originX: 'center',
+          originY: 'bottom',
+          overlayX: 'center',
+          overlayY: 'top',
+        };
+      case 'left':
+        return {
+          originX: 'start',
+          originY: 'center',
+          overlayX: 'end',
+          overlayY: 'center',
+        };
     }
-    const triggerEl = trigger.el;
-    const bounds = triggerEl.getBoundingClientRect();
-    return bounds;
-  }
-
-  updateCoordinates() {
-    const triggerBounrds = this.getTriggerBounds();
-
-    const popoverEl = this.popoverEl;
-
-    const offsetX = this.offsetX();
-    let offsetY = this.offsetY();
-    let x = 0;
-    let y = 0;
-
-    if (triggerBounrds) {
-      x = triggerBounrds.x;
-      y = triggerBounrds.y;
-    }
-
-    if (this.positionY() === 'bottom' && triggerBounrds) {
-      offsetY += triggerBounrds.height;
-    }
-
-    if (this.stretchToOrigin() && triggerBounrds) {
-      this.renderer2.setStyle(popoverEl, 'width', `${triggerBounrds.width}px`);
-    }
-
-    this.renderer2.setStyle(popoverEl, 'left', `${x + offsetX}px`);
-    this.renderer2.setStyle(popoverEl, 'top', `${y + offsetY}px`);
   }
 
   ngOnDestroy(): void {
-    this.documenSub?.unsubscribe();
+    this.globalSub?.unsubscribe();
   }
 }

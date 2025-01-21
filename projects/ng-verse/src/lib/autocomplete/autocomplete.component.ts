@@ -1,10 +1,13 @@
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
   contentChildren,
   inject,
   InjectionToken,
+  Injector,
   input,
+  OnDestroy,
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -27,7 +30,7 @@ export const SELECTION_EMITTER = new InjectionToken<
 
 @Component({
   selector: 'app-autocomplete',
-  imports: [FormsModule, PopoverComponent, PopoverOriginDirective],
+  imports: [FormsModule, PopoverOriginDirective, PopoverComponent],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss',
   providers: [
@@ -41,19 +44,22 @@ export const SELECTION_EMITTER = new InjectionToken<
       useValue: new Subject(),
     },
   ],
-  host: {
-    '(keydown)': 'onKeydown($event)',
-  },
+  // host: {
+  //   '(keydown)': 'onKeydown($event)',
+  // },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AutocompleteComponent implements ControlValueAccessor {
+export class AutocompleteComponent implements ControlValueAccessor, OnDestroy {
   label = input.required<string>();
   displayWith = input<((value: unknown) => string) | null>(null);
   value = signal<unknown>(undefined);
   isOpen = signal(false);
   inputValue = signal('');
+  private readonly options = contentChildren(AutocompleteItemComponent, {
+    descendants: true,
+  });
 
-  private readonly options = contentChildren(AutocompleteItemComponent);
+  keyManager = new ActiveDescendantKeyManager(this.options, inject(Injector));
 
   disabled = signal(false);
 
@@ -62,10 +68,20 @@ export class AutocompleteComponent implements ControlValueAccessor {
   _onChange: OnChangeFunction;
   _onTouched: OnTouchedFunction;
 
+  onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.setValue(this.keyManager.activeItem?.value());
+    }
+    this.keyManager.onKeydown(event);
+  }
+
   constructor() {
     this.selectionEmitter.pipe(takeUntilDestroyed()).subscribe((comp) => {
       this.select(comp);
     });
+  }
+  ngOnDestroy(): void {
+    this.keyManager.destroy();
   }
 
   close() {
@@ -74,6 +90,10 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
   open() {
     this.isOpen.set(true);
+  }
+
+  setValue(value: unknown) {
+    this.inputValue.set(value as string);
   }
 
   select(comp: AutocompleteItemComponent) {
@@ -109,6 +129,7 @@ export class AutocompleteComponent implements ControlValueAccessor {
   }
 
   onInput($event: Event) {
+    this.keyManager.setActiveItem(-1);
     const value = ($event.target as HTMLInputElement)?.value.trim() ?? '';
     if (!this.isOpen()) {
       this.open();
