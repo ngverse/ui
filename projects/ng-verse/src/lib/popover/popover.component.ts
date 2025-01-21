@@ -5,7 +5,12 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
+import {
+  ConnectedPosition,
+  FlexibleConnectedPositionStrategy,
+  Overlay,
+  OverlayRef,
+} from '@angular/cdk/overlay';
 import { DomPortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
@@ -114,6 +119,17 @@ export class PopoverComponent implements OnDestroy {
         this.show();
       } else {
         this.hide();
+      }
+    });
+
+    effect(() => {
+      const coordinates = this.coordinates();
+      const overlayRef = this.overlayRef;
+      if (overlayRef && coordinates) {
+        const positionStrategy = overlayRef.getConfig()
+          .positionStrategy as FlexibleConnectedPositionStrategy;
+        positionStrategy.setOrigin(coordinates);
+        overlayRef.updatePosition();
       }
     });
   }
