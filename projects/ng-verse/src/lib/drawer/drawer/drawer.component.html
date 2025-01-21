@@ -1,4 +1,11 @@
-<button class="close-button" (click)="close.emit()">
-  <app-drawer-close-icon />
-</button>
-<ng-container #content></ng-container>
+<div class="drawer-header">
+  @if (title()) {
+    {{ title() }}
+  }
+
+  <button class="close-button" appDrawerClose>
+    <app-drawer-close-icon />
+  </button>
+</div>
+
+<ng-container *ngComponentOutlet="component" /> `

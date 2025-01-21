@@ -1,18 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { DrawerCloseDirective } from '@ng-verse/drawer/drawer-close.directive';
-import { DrawerHeaderComponent } from '@ng-verse/drawer/drawer-header/drawer-header.component';
-import { DrawerSubtitleComponent } from '@ng-verse/drawer/drawer-subtitle/drawer-subtitle.component';
-import { DrawerTitleComponent } from '@ng-verse/drawer/drawer-title/drawer-title.component';
-import { ButtonComponent } from '@ng-verse/button/button.component';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ButtonComponent } from '@ng-verse/button/button.component';
 import { CheckboxComponent } from '@ng-verse/checkbox/checkbox.component';
+import { DrawerCloseDirective } from '@ng-verse/drawer/drawer-close.directive';
+import { DRAWER_DATA, DrawerRef } from '@ng-verse/drawer/drawer-ref';
 
 @Component({
   selector: 'doc-drawer-test',
   imports: [
-    DrawerHeaderComponent,
-    DrawerTitleComponent,
-    DrawerSubtitleComponent,
     DrawerCloseDirective,
     ButtonComponent,
     ReactiveFormsModule,
@@ -23,5 +18,9 @@ import { CheckboxComponent } from '@ng-verse/checkbox/checkbox.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawerTestComponent {
-  protected readonly close = close;
+  private drawerRef = inject(DrawerRef);
+  data = inject<{ name: string }>(DRAWER_DATA);
+  close() {
+    this.drawerRef.close();
+  }
 }

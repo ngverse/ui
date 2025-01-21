@@ -6,8 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     `
       :host {
         display: flex;
-        width: 20px;
-        height: 20px;
       }
     `,
   ],

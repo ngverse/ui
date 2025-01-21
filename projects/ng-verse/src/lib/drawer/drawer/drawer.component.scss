@@ -3,12 +3,17 @@
   height: 100vh;
   width: auto;
   background: #fff;
-  padding: 12px 30px;
-  position: relative;
+  padding: 16px;
+  overflow: auto;
 }
 
 .close-button {
-  position: absolute;
-  top: 6px;
-  right: 6px;
+  margin-left: auto;
+}
+
+.drawer-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
 }

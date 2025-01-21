@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
 import { OverlayRef } from '@angular/cdk/overlay';
-
+import { Injectable, InjectionToken } from '@angular/core';
+export const DRAWER_DATA = new InjectionToken<unknown>('DRAWER_DATA');
 @Injectable()
 export class DrawerRef {
   private overlayRef: OverlayRef | null = null;

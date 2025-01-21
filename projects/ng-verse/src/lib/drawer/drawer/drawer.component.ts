@@ -1,20 +1,13 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ComponentType } from '@angular/cdk/portal';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ComponentRef,
-  input,
-  OnInit,
-  output,
-  viewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import { NgComponentOutlet } from '@angular/common';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { DrawerCloseIconComponent } from '../drawer-close-icon.component';
+import { DrawerCloseDirective } from '../drawer-close.directive';
 
 @Component({
   selector: 'app-drawer',
-  imports: [DrawerCloseIconComponent],
+  imports: [DrawerCloseIconComponent, DrawerCloseDirective, NgComponentOutlet],
   templateUrl: './drawer.component.html',
   styleUrl: './drawer.component.scss',
   animations: [
@@ -33,34 +26,8 @@ import { DrawerCloseIconComponent } from '../drawer-close-icon.component';
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DrawerComponent implements OnInit {
-  component = input.required<ComponentType<unknown>>();
-  data = input<Record<string, unknown> | null>(null);
-  close = output();
+export class DrawerComponent {
+  title = signal<string | undefined>(undefined);
 
-  private componentRef: ComponentRef<unknown> | null = null;
-
-  content = viewChild.required('content', { read: ViewContainerRef });
-
-  ngOnInit() {
-    this.componentRef = this.createComponent(this.component());
-    const data = this.data();
-    if (data && typeof data === 'object') {
-      this.setInputs(this.componentRef, data);
-    }
-  }
-
-  private createComponent(component: ComponentType<unknown>) {
-    this.content().clear();
-    return this.content().createComponent(component);
-  }
-
-  private setInputs(
-    componentRef: ComponentRef<unknown>,
-    data: Record<string, unknown>
-  ) {
-    for (const key in data) {
-      componentRef?.setInput(key, data[key]);
-    }
-  }
+  component!: ComponentType<unknown>;
 }

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { DrawerRef } from '../drawer-ref';
 import { DrawerComponent } from './drawer.component';
 
 describe('DrawerComponent', () => {
@@ -9,6 +10,12 @@ describe('DrawerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DrawerComponent],
+      providers: [
+        {
+          provide: DrawerRef,
+          useValue: new DrawerRef(null),
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DrawerComponent);
