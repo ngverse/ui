@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { PopoverComponent } from './popover.component';
 
 describe('PopoverOriginDirective', () => {
@@ -8,6 +9,7 @@ describe('PopoverOriginDirective', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PopoverComponent],
+      providers: [provideAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PopoverComponent);

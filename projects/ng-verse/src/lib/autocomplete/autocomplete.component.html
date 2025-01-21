@@ -10,9 +10,9 @@
   (input)="onInput($event)"
 />
 
-<app-popover-alpha [offsetY]="8" [origin]="trigger" [(isOpen)]="isOpen">
+<app-popover [offsetY]="8" [origin]="trigger" [(isOpen)]="isOpen">
   <div class="select-options">
     <ng-content select="app-autocomplete-item"></ng-content>
   </div>
-</app-popover-alpha>
+</app-popover>
 <!-- (blur)="close()" -->

@@ -11,7 +11,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { PopoverAlphaComponent } from '../popover/popover-alpha/popover-alpha.component';
+import { PopoverComponent } from '../popover/popover.component';
 import { ContextMenuItemComponent } from './context-menu-item/context-menu-item.component';
 import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
 
@@ -23,12 +23,12 @@ import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
   host: {
     tabIndex: '0',
   },
-  imports: [PopoverAlphaComponent],
+  imports: [PopoverComponent],
 })
 export class ContextMenuComponent implements OnInit {
   trigger = input.required<ContextMenuTriggerDirective>();
 
-  popover = viewChild.required(PopoverAlphaComponent);
+  popover = viewChild.required(PopoverComponent);
 
   isOpen = signal(false);
   clientX = signal<number>(0);

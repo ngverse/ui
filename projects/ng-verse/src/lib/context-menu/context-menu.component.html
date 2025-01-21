@@ -1,4 +1,4 @@
-<app-popover-alpha
+<app-popover
   [offsetY]="10"
   (opened)="opened()"
   [coordinates]="{ x: clientX(), y: clientY() }"
@@ -7,4 +7,4 @@
   <div #itemsList class="items-list" tabindex="0" (keydown)="onKeydown($event)">
     <ng-content></ng-content>
   </div>
-</app-popover-alpha>
+</app-popover>
