@@ -3,7 +3,10 @@ import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
-import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import {
+  AUTO_GENERATED_API_DEFAULT_VALUE,
+  EMPTY_API_INPUT_DEFAULT_VALUE,
+} from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -34,19 +37,16 @@ export class TooltipPageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: ROOT,
-      files: [...this.sourceTreeBuilder.directive('tooltip', ROOT)],
+      files: [
+        ...this.sourceTreeBuilder.directive('tooltip', ROOT, true),
+        ...this.sourceTreeBuilder.fullComponent('tooltip-container', `${ROOT}`),
+      ],
       hideName: true,
-    },
-    {
-      name: 'tooltip-container',
-      files: this.sourceTreeBuilder.fullComponent(
-        'tooltip-container',
-        `${ROOT}/tooltip-container`
-      ),
     },
   ];
 
   apiInfo: ApiInfo = {
+    ariaLink: 'https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/',
     entities: [
       {
         name: 'TooltipDirective',
@@ -54,7 +54,7 @@ export class TooltipPageComponent {
         selector: '[appTooltip]',
         inputs: [
           {
-            name: 'message',
+            name: 'appTooltip',
             type: 'string',
             description: 'text to display on tooltip',
             default: EMPTY_API_INPUT_DEFAULT_VALUE,
@@ -67,9 +67,9 @@ export class TooltipPageComponent {
           },
           {
             name: 'tooltipEvent',
-            type: 'hover | focus | both',
+            type: 'hover | focus',
             description: 'defines when to display tooltip',
-            default: 'both',
+            default: 'hover',
           },
           {
             name: 'tooltipDelay',
@@ -84,6 +84,12 @@ export class TooltipPageComponent {
             description:
               'The content template to be displayed inside the tooltip.',
             default: EMPTY_API_INPUT_DEFAULT_VALUE,
+          },
+          {
+            name: 'tooltipId',
+            type: 'string',
+            description: 'The id of the tooltip. it is used for accessibility',
+            default: AUTO_GENERATED_API_DEFAULT_VALUE,
           },
         ],
       },

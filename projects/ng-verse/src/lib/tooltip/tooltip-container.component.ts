@@ -25,6 +25,8 @@ export class TooltipContainerComponent {
   content = signal<TemplateRef<unknown> | undefined>(undefined);
   vf = inject(ViewContainerRef);
 
+  id = signal<string>('');
+
   contentPortal = computed(() => {
     const content = this.content();
     if (content) {
