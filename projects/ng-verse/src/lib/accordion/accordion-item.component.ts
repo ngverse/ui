@@ -13,12 +13,7 @@ import {
 import { AccordionComponent } from './accordion.component';
 import { ExpandIconComponent } from './expand-icon.component';
 
-let accordionId = 0;
 let accordionContentId = 0;
-
-function genId() {
-  return `accordion-item-${accordionId++}`;
-}
 
 function genAccordionContentId() {
   return `accordion-item-content-${accordionContentId++}`;
@@ -36,6 +31,8 @@ export class AccordionItemComponent {
   disabled = input<boolean>();
   label = input<string>();
   accordion = inject<AccordionComponent>(forwardRef(() => AccordionComponent));
+  ariaLevel = input<number>(3);
+  accordionContentId = input(genAccordionContentId());
 
   expanded = input<boolean, boolean>(false, {
     transform: (value) => {
@@ -47,10 +44,6 @@ export class AccordionItemComponent {
       return value;
     },
   });
-
-  id = input(genId());
-  accordionContentId = genAccordionContentId();
-
   isOpen = signal(false);
 
   toggle() {
