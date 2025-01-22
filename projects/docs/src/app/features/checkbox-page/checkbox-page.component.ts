@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import {
-  ApiEntity,
-  ApiInputsComponent,
-  AUTO_GENERATED_API_DEFAULT_VALUE,
-} from '../../blueprint/api-info/api-inputs/api-inputs.component';
+  ApiInfo,
+  ApiInfoComponent,
+} from '../../blueprint/api-info/api-info.component';
+import { AUTO_GENERATED_API_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -28,7 +27,6 @@ const ROOT = 'checkbox';
     CommandInstallationComponent,
     SourceTreeComponent,
     ApiInfoComponent,
-    ApiInputsComponent,
   ],
   templateUrl: './checkbox-page.component.html',
   styleUrl: './checkbox-page.component.scss',
@@ -47,38 +45,40 @@ export class CheckboxPageComponent {
     },
   ];
 
-  apiInputs: ApiEntity[] = [
-    {
-      name: 'CheckboxComponent',
-      selector: 'app-checkbox',
-      type: 'component',
-      formBindable: true,
-      inputs: [
-        {
-          name: 'disabled',
-          type: 'boolean',
-          description: 'Disables the checkbox',
-          default: 'false',
-        },
-        {
-          name: 'required',
-          type: 'boolean',
-          description: 'Adds required validation to the checkbox',
-          default: 'false',
-        },
-        {
-          name: 'labelAlign',
-          type: 'start | end',
-          description: 'Aligns the label of the checkbox',
-          default: 'end',
-        },
-        {
-          name: 'id',
-          type: 'string',
-          description: 'Sets id attribute to the native checkbox',
-          default: AUTO_GENERATED_API_DEFAULT_VALUE,
-        },
-      ],
-    },
-  ];
+  apiInfo: ApiInfo = {
+    entities: [
+      {
+        name: 'CheckboxComponent',
+        selector: 'app-checkbox',
+        type: 'component',
+        formBindable: true,
+        inputs: [
+          {
+            name: 'disabled',
+            type: 'boolean',
+            description: 'Disables the checkbox',
+            default: 'false',
+          },
+          {
+            name: 'required',
+            type: 'boolean',
+            description: 'Adds required validation to the checkbox',
+            default: 'false',
+          },
+          {
+            name: 'labelAlign',
+            type: 'start | end',
+            description: 'Aligns the label of the checkbox',
+            default: 'end',
+          },
+          {
+            name: 'id',
+            type: 'string',
+            description: 'Sets id attribute to the native checkbox',
+            default: AUTO_GENERATED_API_DEFAULT_VALUE,
+          },
+        ],
+      },
+    ],
+  };
 }
