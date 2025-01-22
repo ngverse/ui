@@ -7,41 +7,15 @@ import { AccordionHeaderComponent } from './accordion-header.component';
 import { AccordionItemComponent } from './accordion-item.component';
 import { AccordionComponent } from './accordion.component';
 
-@Component({
-  selector: 'app-host',
-  imports: [
-    AccordionComponent,
-    AccordionItemComponent,
-    AccordionHeaderComponent,
-    AccordionBodyComponent,
-  ],
-  template: `
-    <app-accordion [multi]="multi()">
-      <app-accordion-item>
-        <app-accordion-header>Header 1</app-accordion-header>
-        <app-accordion-body>Body 1</app-accordion-body>
-      </app-accordion-item>
-      <app-accordion-item>
-        <app-accordion-header>Header 2</app-accordion-header>
-        <app-accordion-body>Body 2</app-accordion-body>
-      </app-accordion-item>
-    </app-accordion>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-class HostComponent {
-  multi = signal(false);
-}
-
 describe('AccordionComponent', () => {
-  let fixture: ComponentFixture<HostComponent>;
+  let fixture: ComponentFixture<AccordionTestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [provideAnimations()],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HostComponent);
+    fixture = TestBed.createComponent(AccordionTestComponent);
     fixture.detectChanges();
   });
 
@@ -79,3 +53,28 @@ describe('AccordionComponent', () => {
     expect(secondAccordion.isOpen()).toBeTrue();
   });
 });
+@Component({
+  selector: 'app-accordion-test',
+  imports: [
+    AccordionComponent,
+    AccordionItemComponent,
+    AccordionHeaderComponent,
+    AccordionBodyComponent,
+  ],
+  template: `
+    <app-accordion [multi]="multi()">
+      <app-accordion-item>
+        <app-accordion-header>Header 1</app-accordion-header>
+        <app-accordion-body>Body 1</app-accordion-body>
+      </app-accordion-item>
+      <app-accordion-item>
+        <app-accordion-header>Header 2</app-accordion-header>
+        <app-accordion-body>Body 2</app-accordion-body>
+      </app-accordion-item>
+    </app-accordion>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+class AccordionTestComponent {
+  multi = signal(false);
+}

@@ -14,8 +14,11 @@
   width: 100%;
   font-size: 1rem;
   &:disabled {
-    color: var(--color-disabled-text);
-    fill: var(--color-disabled-text);
+    color: var(--disabled-foreground);
+  }
+  &:focus-visible {
+    outline: 1px solid var(--ring);
+    outline-offset: 4px;
   }
 }
 
@@ -25,11 +28,8 @@
 }
 
 .expand-icon {
-  margin-left: auto;
-}
-
-.expand-icon {
   transition: transform 150ms ease-in-out;
+  margin-left: auto;
 }
 
 .opened {
