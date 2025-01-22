@@ -63,7 +63,7 @@ export class ButtonPageComponent {
           },
           {
             name: 'variant',
-            type: 'fill | stroked | link | none',
+            type: 'fill | outline | link | none',
             description: 'changes the variant of the button',
             default: 'fill',
           },
