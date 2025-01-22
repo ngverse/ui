@@ -6,4 +6,21 @@
   <button appButton (click)="showConfirm()" variant="stroked" color="secondary">
     Confirm
   </button>
+
+  <button
+    appButton
+    appConfirm
+    [confirmOptions]="{
+      title: 'Delete this item?',
+      description: 'Once deleted you cannot undo this action',
+      yesLabel: 'Delete',
+      noLabel: 'Cancel',
+    }"
+    (approved)="deleteItem()"
+    (rejected)="cancel()"
+    variant="stroked"
+    color="secondary"
+  >
+    Inline Confirm
+  </button>
 </div>
