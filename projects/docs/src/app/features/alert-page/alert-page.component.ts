@@ -33,12 +33,17 @@ export class AlertPageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: ROOT,
-      files: [...this.sourceTreeBuilder.fullComponent('alert', ROOT)],
+      files: [
+        ...this.sourceTreeBuilder.fullComponent('alert', ROOT),
+        ...this.sourceTreeBuilder.fullInlineComponent('alert-header', ROOT),
+        ...this.sourceTreeBuilder.fullInlineComponent('alert-body', ROOT),
+      ],
       hideName: true,
     },
   ];
 
   apiInfo: ApiInfo = {
+    ariaLink: 'https://www.w3.org/WAI/ARIA/apg/patterns/alert/',
     entities: [
       {
         name: 'AlertComponent',
@@ -47,7 +52,7 @@ export class AlertPageComponent {
         inputs: [
           {
             name: 'type',
-            type: 'success | danger | warning | none',
+            type: 'default | success | danger | warning',
             default: 'default',
             description: 'defines the type of alert',
           },

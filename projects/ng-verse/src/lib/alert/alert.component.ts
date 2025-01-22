@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-export type ALERT_TYPES = 'success' | 'danger' | 'warning' | 'none';
+export type ALERT_TYPES = 'success' | 'danger' | 'warning' | 'default';
 
 @Component({
   selector: 'app-alert',
@@ -13,5 +13,5 @@ export type ALERT_TYPES = 'success' | 'danger' | 'warning' | 'none';
   },
 })
 export class AlertComponent {
-  type = input<ALERT_TYPES>('none');
+  type = input<ALERT_TYPES>('default');
 }
