@@ -1,22 +1,26 @@
-import { FocusMonitor } from '@angular/cdk/a11y';
 import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
+import { DOCUMENT } from '@angular/common';
 import {
-  ComponentRef,
   Directive,
   ElementRef,
   inject,
   input,
-  NgZone,
   numberAttribute,
   OnDestroy,
   TemplateRef,
-  ViewContainerRef,
 } from '@angular/core';
-import { TooltipContainerComponent } from './tooltip-container/tooltip-container.component';
+import { fromEvent, Subscription } from 'rxjs';
+import { TooltipContainerComponent } from './tooltip-container.component';
 export type TOOLTIP_POSITIONS = 'top' | 'right' | 'bottom' | 'left';
 
 export type TOOLTIP_EVENT = 'hover' | 'focus';
+
+let tooltipId = 0;
+
+function getTooltipId() {
+  return `tooltip-${tooltipId++}`;
+}
 
 @Directive({
   selector: '[appTooltip]',
@@ -25,6 +29,7 @@ export type TOOLTIP_EVENT = 'hover' | 'focus';
     '(blur)': 'onBlur()',
     '(mouseenter)': 'onMouseEnter()',
     '(mouseleave)': 'onMouseLeave()',
+    '[attr.aria-describedby]': 'tooltipId()',
   },
 })
 export class TooltipDirective implements OnDestroy {
@@ -32,18 +37,16 @@ export class TooltipDirective implements OnDestroy {
   tooltipPosition = input<TOOLTIP_POSITIONS>('top');
   tooltipEvent = input<TOOLTIP_EVENT>('hover');
   tooltipDelay = input(0, { transform: numberAttribute });
-  focusMonitor = inject(FocusMonitor);
-  ngZone = inject(NgZone);
-  overlay = inject(Overlay);
+  tooltipContent = input<TemplateRef<unknown>>();
+  tooltipId = input(getTooltipId());
+
+  private overlay = inject(Overlay);
+  private el = inject<ElementRef<HTMLElement>>(ElementRef);
+  private document = inject(DOCUMENT);
+
   overlayRef: OverlayRef | undefined;
   timeoutId: unknown | undefined;
-
-  componentRef: ComponentRef<TooltipContainerComponent> | undefined;
-
-  el = inject<ElementRef<HTMLElement>>(ElementRef);
-
-  tooltipContent = input<TemplateRef<unknown>>();
-  vf = inject(ViewContainerRef);
+  escapeSub: Subscription | undefined;
 
   onFocus() {
     if (this.tooltipEvent() === 'focus') {
@@ -69,7 +72,38 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  getOverlayPosition(): ConnectedPosition {
+  show() {
+    this.clearSchedule();
+    this.timeoutId = setTimeout(() => {
+      const originElement = this.el.nativeElement;
+      const tooltipContent = this.tooltipContent();
+      const portal = new ComponentPortal(TooltipContainerComponent);
+
+      this.overlayRef = this.overlay.create({
+        positionStrategy: this.overlay
+          .position()
+          .flexibleConnectedTo(originElement)
+          .withPositions([this.getOverlayPosition()]),
+      });
+      const componentRef = this.overlayRef.attach(portal);
+      componentRef.instance.content.set(tooltipContent);
+      componentRef.instance.message.set(this.message());
+      componentRef.instance.position.set(this.tooltipPosition());
+      componentRef.instance.id.set(this.tooltipId());
+      this.listenToEscape();
+    }, this.tooltipDelay()) as unknown;
+  }
+
+  hide() {
+    this.escapeSub?.unsubscribe();
+    this.clearSchedule();
+    if (this.overlayRef?.hasAttached()) {
+      this.overlayRef.detach();
+      this.overlayRef = undefined;
+    }
+  }
+
+  private getOverlayPosition(): ConnectedPosition {
     const offset = 6;
     const tooltipPosition = this.tooltipPosition();
     switch (tooltipPosition) {
@@ -108,43 +142,27 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  protected clearSchedule() {
+  private clearSchedule() {
     if (this.timeoutId) {
       clearTimeout(this.timeoutId as number);
       this.timeoutId = undefined;
     }
   }
 
-  show() {
-    this.clearSchedule();
-
-    this.timeoutId = setTimeout(() => {
-      const originElement = this.el.nativeElement;
-      const tooltipContent = this.tooltipContent();
-      const portal = new ComponentPortal(TooltipContainerComponent);
-
-      this.overlayRef = this.overlay.create({
-        positionStrategy: this.overlay
-          .position()
-          .flexibleConnectedTo(originElement)
-          .withPositions([this.getOverlayPosition()]),
-      });
-      this.componentRef = this.overlayRef.attach(portal);
-      this.componentRef.instance.content.set(tooltipContent);
-      this.componentRef.instance.message.set(this.message());
-      this.componentRef.instance.position.set(this.tooltipPosition());
-    }, this.tooltipDelay()) as unknown;
-  }
-
-  hide() {
-    this.clearSchedule();
-    if (this.overlayRef?.hasAttached()) {
-      this.overlayRef.detach();
-      this.overlayRef = undefined;
-    }
+  private listenToEscape() {
+    this.escapeSub?.unsubscribe();
+    this.escapeSub = fromEvent<KeyboardEvent>(
+      this.document,
+      'keydown'
+    ).subscribe((event) => {
+      if (event.key === 'Escape') {
+        this.hide();
+      }
+    });
   }
 
   ngOnDestroy(): void {
     this.clearSchedule();
+    this.escapeSub?.unsubscribe();
   }
 }

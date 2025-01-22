@@ -53,13 +53,13 @@ describe('AccordionItemComponent', () => {
     header.dispatchEvent(new Event('click'));
     fixture.detectChanges();
 
-    expect(accordionBody()).toBeDefined();
+    expect(accordionBody()).toBeTruthy();
   });
   it("should close accordion when it's open and header is clicked", () => {
     const header = accordionHeader();
     header.dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    expect(accordionBody()).toBeDefined();
+    expect(accordionBody()).toBeTruthy();
     header.dispatchEvent(new Event('click'));
     fixture.detectChanges();
   });
@@ -72,13 +72,13 @@ describe('AccordionItemComponent', () => {
   it('should expand accordion with expanded=true', () => {
     component.expanded.set(true);
     fixture.detectChanges();
-    expect(accordionBody()).toBeDefined();
+    expect(accordionBody()).toBeTruthy();
   });
   it('should set aria-level correctly', () => {
     const roleHeading = rootNative.querySelector(
       '[role=heading]'
     ) as HTMLElement;
-    expect(roleHeading).toBeDefined();
+    expect(roleHeading).toBeTruthy();
     expect(roleHeading.getAttribute('aria-level')).toBe('6');
   });
   it('should display content header', () => {
