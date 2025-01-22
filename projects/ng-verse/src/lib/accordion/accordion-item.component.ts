@@ -13,10 +13,10 @@ import {
 import { AccordionComponent } from './accordion.component';
 import { ExpandIconComponent } from './expand-icon.component';
 
-let accordionContentId = 0;
+let accordionBodyId = 0;
 
-function genAccordionContentId() {
-  return `accordion-item-content-${accordionContentId++}`;
+function genAccordionBodyId() {
+  return `accordion-item-body-${accordionBodyId++}`;
 }
 
 @Component({
@@ -32,7 +32,7 @@ export class AccordionItemComponent {
   label = input<string>();
   accordion = inject<AccordionComponent>(forwardRef(() => AccordionComponent));
   ariaLevel = input<number>(3);
-  accordionContentId = input(genAccordionContentId());
+  accordionBodyId = input(genAccordionBodyId());
 
   expanded = input<boolean, boolean>(false, {
     transform: (value) => {
