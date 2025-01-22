@@ -50,7 +50,7 @@ export class ContextMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.trigger().openTriggered.subscribe(($event) => {
+    this.trigger().triggered.subscribe(($event) => {
       $event.stopPropagation();
       $event.preventDefault();
       this.clientX.set($event.clientX);
