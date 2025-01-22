@@ -1,134 +1,155 @@
 @for (apiInput of apiInputs(); track $index) {
-  <h4 class="mb-4">
-    {{ apiInput.name }}
-    <div class="flex lg:inline-flex text-sm items-center gap-1 mt-1 lg:mt-0">
-      <span
-        [ngClass]="apiInput.type"
-        class="rounded-xl px-2 shadow-sm text-white py-0.5"
-        >{{ apiInput.type }}</span
-      >
-      @if (apiInput.selector) {
+  <div class="mb-8">
+    <h4 class="mb-4">
+      <span class="font-medium pr-1">{{ apiInput.name }}</span>
+      <div class="flex lg:inline-flex text-sm items-center gap-1 mt-1 lg:mt-0">
         <span
-          class="rounded-xl bg-amber-600 px-2 shadow-sm text-white py-0.5"
-          >{{ apiInput.selector }}</span
+          [ngClass]="apiInput.type"
+          class="rounded-xl px-2 shadow-sm text-white py-0.5"
+          >{{ apiInput.type }}</span
         >
-      }
-      @if (apiInput.formBindable) {
-        <span class="rounded-xl bg-teal-600 px-2 shadow-sm text-white py-0.5"
-          >Form Bindable</span
-        >
-      }
-    </div>
-  </h4>
-  @if (apiInput.description) {
-    <p class="mb-4 text-gray-700 text-sm">{{ apiInput.description }}</p>
-  }
-  @if (apiInput.inputs?.length) {
-    <p class="mb-2 text-sm">Inputs</p>
+        @if (apiInput.selector) {
+          <span
+            class="rounded-xl bg-amber-600 px-2 shadow-sm text-white py-0.5"
+            >{{ apiInput.selector }}</span
+          >
+        }
+        @if (apiInput.formBindable) {
+          <span class="rounded-xl bg-teal-600 px-2 shadow-sm text-white py-0.5"
+            >Form Bindable</span
+          >
+        }
+      </div>
+    </h4>
+    @if (apiInput.description) {
+      <p class="mb-4 text-gray-700 text-sm">{{ apiInput.description }}</p>
+    }
+    @if (apiInput.inputs?.length) {
+      <p class="mb-2 text-sm">Inputs</p>
 
-    <div
-      class="relative overflow-x-auto border border-slate-200 rounded-md mb-10"
-    >
-      <table
-        class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
+      <div
+        class="relative overflow-x-auto border border-slate-200 rounded-md mb-10"
       >
-        <thead
-          class="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-400"
+        <table
+          class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
         >
-          <tr>
-            <th scope="col" class="px-6 py-3">Name</th>
-            <th scope="col" class="px-6 py-3">Type</th>
-            <th scope="col" class="px-6 py-3">Default</th>
+          <thead
+            class="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-400"
+          >
+            <tr>
+              <th scope="col" class="px-6 py-3">Name</th>
+              <th scope="col" class="px-6 py-3">Type</th>
+              <th scope="col" class="px-6 py-3">Default</th>
 
-            <th scope="col" class="px-6 py-3">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (apiInput of apiInput.inputs; track $index) {
-            <tr class="bg-white border-b">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                {{ apiInput.name }}
-              </th>
-              <td class="px-6 py-4">{{ apiInput.type }}</td>
-              <td class="px-6 py-4">{{ apiInput.default }}</td>
-
-              <td class="px-6 py-4 lowercase">{{ apiInput.description }}</td>
+              <th scope="col" class="px-6 py-3">Description</th>
             </tr>
-          }
-        </tbody>
-      </table>
-    </div>
-  }
-  @if (apiInput.outputs?.length) {
-    <p class="mb-2 text-sm">Outputs</p>
+          </thead>
+          <tbody>
+            @for (apiInput of apiInput.inputs; track $index) {
+              <tr class="bg-white border-b">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {{ apiInput.name }}
+                </th>
+                <td class="px-6 py-4">{{ apiInput.type }}</td>
+                <td class="px-6 py-4">{{ apiInput.default }}</td>
 
-    <div
-      class="relative overflow-x-auto border border-slate-200 rounded-md mb-10"
-    >
-      <table
-        class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
-      >
-        <thead
-          class="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-400"
-        >
-          <tr>
-            <th scope="col" class="px-6 py-3">Name</th>
-            <th scope="col" class="px-6 py-3">Value</th>
-            <th scope="col" class="px-6 py-3">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (apiOutput of apiInput.outputs; track $index) {
-            <tr class="bg-white border-b">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                {{ apiOutput.name }}
-              </th>
-              <td class="px-6 py-4">{{ apiOutput.value }}</td>
-              <td class="px-6 py-4 lowercase">{{ apiOutput.description }}</td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
-  }
-  @if (apiInput.methods?.length) {
-    <p class="mb-2 text-sm">Methods</p>
-    <app-accordion>
-      @for (method of apiInput.methods; track $index) {
-        <app-accordion-item [label]="method.name">
-          <app-accordion-body>
-            <p>{{ method.description }}</p>
-            <p>Returns: {{ method.returnType }}</p>
-            <p>Params:</p>
-            @for (param of method.params; track $index) {
-              <p>Name:{{ param.name }}</p>
-              <p>Type: {{ param.type }}</p>
-              @if (param.fields?.length) {
-                @for (field of param.fields; track $index) {
-                  <div class="pl-4">
-                    <p>Fields</p>
-                    <p>Type: {{ field.type }}</p>
-                    <p>
-                      {{ field.name }} : {{ field.type }}
-                      {{ field.description }}
-                    </p>
-                  </div>
-                }
-              } @else {
-                <span>{{ param.name }} : {{ param.type }}</span>
-              }
+                <td class="px-6 py-4 lowercase">{{ apiInput.description }}</td>
+              </tr>
             }
-            <div></div>
-          </app-accordion-body>
-        </app-accordion-item>
-      }
-    </app-accordion>
-  }
-  <app-divider class="my-8"></app-divider>
+          </tbody>
+        </table>
+      </div>
+    }
+    @if (apiInput.outputs?.length) {
+      <p class="mb-2 text-sm">Outputs</p>
+
+      <div
+        class="relative overflow-x-auto border border-slate-200 rounded-md mb-10"
+      >
+        <table
+          class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
+        >
+          <thead
+            class="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-400"
+          >
+            <tr>
+              <th scope="col" class="px-6 py-3">Name</th>
+              <th scope="col" class="px-6 py-3">Value</th>
+              <th scope="col" class="px-6 py-3">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (apiOutput of apiInput.outputs; track $index) {
+              <tr class="bg-white border-b">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {{ apiOutput.name }}
+                </th>
+                <td class="px-6 py-4">{{ apiOutput.value }}</td>
+                <td class="px-6 py-4 lowercase">{{ apiOutput.description }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+    @if (apiInput.methods?.length) {
+      <p class="mb-2 text-sm">Methods</p>
+      <app-accordion [multi]="true">
+        @for (method of apiInput.methods; track $index) {
+          <app-accordion-item>
+            <app-accordion-header>
+              {{ method.name }}
+              <span class="text-gray-700 text-sm pl-2 font-normal italic"
+                >({{ method.description }})</span
+              >
+            </app-accordion-header>
+            <app-accordion-body>
+              <p>Returns: {{ method.returnType }}</p>
+              @if (method.params?.length) {
+                <p class="mt-2">Params:</p>
+                <ul class="pl-4 mb-4">
+                  @for (param of method.params; track $index) {
+                    <li class="my-2">
+                      <p>
+                        {{ param.name }}
+                        <span class="text-sm">({{ param.type }})</span>
+                        @if (param.description) {
+                          <span class="text-gray-700 italic text-sm">
+                            : {{ param.description }}</span
+                          >
+                        }
+                      </p>
+                      @if (param.fields?.length) {
+                        <ul class="pl-6">
+                          @for (field of param.fields; track $index) {
+                            <li class="list-disc my-2">
+                              <span
+                                >{{ field.name }}
+                                <span class="text-sm">({{ field.type }})</span>
+                                @if (field.description) {
+                                  <span class="text-gray-700 italic text-sm">
+                                    : {{ field.description }}</span
+                                  >
+                                }
+                              </span>
+                            </li>
+                          }
+                        </ul>
+                      }
+                    </li>
+                  }
+                </ul>
+              }
+            </app-accordion-body>
+          </app-accordion-item>
+        }
+      </app-accordion>
+    }
+  </div>
 }

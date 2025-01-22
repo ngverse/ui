@@ -61,12 +61,12 @@ export class DrawerPageComponent {
       {
         name: 'DrawerService',
         type: 'service',
-        description: 'Singleton service that is used to open the drawer',
+        description: 'service that opens drawer component',
         methods: [
           {
             name: 'open',
             description: 'opens the drawer',
-            returnType: VOID_API_RETURN_TYPE,
+            returnType: 'DrawerRef',
             params: [
               {
                 name: 'component',
@@ -74,16 +74,42 @@ export class DrawerPageComponent {
                 description: 'component to render inside the drawer.',
               },
               {
-                name: 'data',
-                type: 'unknown',
-                description: 'data to pass to the component.',
-              },
-              {
-                name: 'title',
-                type: 'string',
-                description: 'title of the drawer.',
+                name: 'options',
+                type: 'object',
+                fields: [
+                  {
+                    name: 'data',
+                    type: 'unknown',
+                    description: 'data to pass to the component.',
+                  },
+                  {
+                    name: 'title',
+                    type: 'string',
+                    description: 'title of the drawer.',
+                  },
+                ],
               },
             ],
+          },
+        ],
+      },
+      {
+        name: 'DrawerRef',
+        type: 'service',
+        description:
+          'DrawerRef is a class that represents a reference to a drawer component.',
+        methods: [
+          {
+            name: 'close',
+            description: 'close the drawer',
+            returnType: VOID_API_RETURN_TYPE,
+            params: [],
+          },
+          {
+            name: 'closed',
+            returnType: 'Observable<unknown>>',
+            description:
+              'observable that emits when the drawer is closed. it passes the value that was passed to the close method.',
           },
         ],
       },
@@ -93,18 +119,11 @@ export class DrawerPageComponent {
         type: 'directive',
         description:
           'A directive used to close the drawer. It can be placed on any element inside the drawer.',
-      },
-      {
-        name: 'DrawerRef',
-        type: 'service',
-        description:
-          'A simple class that can be used to manually close the drawer.',
-        methods: [
+        inputs: [
           {
-            name: 'close',
-            description: 'closes the drawer',
-            returnType: VOID_API_RETURN_TYPE,
-            params: [],
+            name: 'appDrawerClose',
+            type: 'unknown',
+            description: 'value to pass to the close method',
           },
         ],
       },

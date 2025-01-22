@@ -1,9 +1,10 @@
 import { NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { AccordionBodyComponent } from '@ng-verse/accordion/accordion-body.component';
+import { AccordionHeaderComponent } from '@ng-verse/accordion/accordion-header.component';
 import { AccordionItemComponent } from '@ng-verse/accordion/accordion-item.component';
 import { AccordionComponent } from '@ng-verse/accordion/accordion.component';
-import { DividerComponent } from '../../../../../../ng-verse/src/lib/divider/divider.component';
+import { DividerComponent } from '@ng-verse/divider/divider.component';
 
 interface ApiInputType {
   name: string;
@@ -20,7 +21,7 @@ interface ApiMethodParam {
     name: string;
     type: string;
     description: string;
-    default: string;
+    default?: string;
   }[];
 }
 
@@ -28,7 +29,7 @@ interface ApiMethodType {
   name: string;
   returnType: string;
   description?: string;
-  params: ApiMethodParam[];
+  params?: ApiMethodParam[];
 }
 
 interface ApiOutputType {
@@ -64,6 +65,7 @@ export interface ApiEntity {
     AccordionItemComponent,
     AccordionBodyComponent,
     DividerComponent,
+    AccordionHeaderComponent,
   ],
   templateUrl: './api-inputs.component.html',
   styleUrl: './api-inputs.component.scss',
