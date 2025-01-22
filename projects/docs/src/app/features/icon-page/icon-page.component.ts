@@ -81,7 +81,7 @@ export class IconPageComponent {
         methods: [
           {
             name: 'addIcon',
-            description: 'Add an icon to the registry',
+            description: 'add an icon to the registry',
             returnType: VOID_API_RETURN_TYPE,
             params: [
               {
@@ -89,12 +89,17 @@ export class IconPageComponent {
                 type: 'string',
                 description: 'The name of the icon to add.',
               },
+              {
+                name: 'url',
+                type: 'string',
+                description: 'The url of the icon to add.',
+              },
             ],
           },
           {
             name: 'getUrl',
-            description: 'Get the url of an icon',
-            returnType: VOID_API_RETURN_TYPE,
+            description: 'get the url of an icon',
+            returnType: 'string | undefined',
             params: [
               {
                 name: 'name',

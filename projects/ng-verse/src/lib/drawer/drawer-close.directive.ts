@@ -1,4 +1,4 @@
-import { Directive, inject } from '@angular/core';
+import { Directive, inject, input } from '@angular/core';
 import { DrawerRef } from '../drawer/drawer-ref';
 
 @Directive({
@@ -9,7 +9,8 @@ import { DrawerRef } from '../drawer/drawer-ref';
 })
 export class DrawerCloseDirective {
   private readonly drawerRef = inject(DrawerRef);
+  value = input<unknown>({ alias: 'appDrawerClose' });
   close() {
-    this.drawerRef.close();
+    this.drawerRef.close(this.value());
   }
 }
