@@ -39,6 +39,7 @@ export class SwitchPageComponent {
     },
   ];
   apiInfo: ApiInfo = {
+    ariaLink: 'https://www.w3.org/WAI/ARIA/apg/patterns/switch/',
     entities: [
       {
         name: 'SwitchComponent',

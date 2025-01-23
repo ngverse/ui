@@ -75,7 +75,7 @@ export class SelectComponent
   values = signal<unknown[]>([]);
 
   private _onTouched: OnTouchedFunction;
-  options = contentChildren(
+  options = contentChildren<OptionComponent>(
     forwardRef(() => OptionComponent),
     { descendants: true }
   );
@@ -163,6 +163,12 @@ export class SelectComponent
 
   panelOpened() {
     this.selectOptions().nativeElement.focus();
+    const selectedOptions = this.selectedOptions();
+    const firstOption = selectedOptions?.[0];
+    if (firstOption) {
+      firstOption.scrollIntoView();
+      this.keyManager.setActiveItem(firstOption);
+    }
   }
 
   firstSelectedOptionIndex() {
@@ -208,12 +214,9 @@ export class SelectComponent
 
     this.values.set(values);
 
-    if (!this._registerOnChangeFn) {
-      return;
-    }
     const flattenedValues = this.multiple() ? this.values() : this.values()[0];
 
-    this._registerOnChangeFn(flattenedValues);
+    this._registerOnChangeFn?.(flattenedValues);
 
     if (!this.multiple()) {
       this.isOpen.set(false);

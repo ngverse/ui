@@ -4,7 +4,7 @@
     (click)="toggle()"
     [disabled]="disabled()"
     [attr.aria-expanded]="isOpen()"
-    [attr.aria-controls]="accordionBodyId()"
+    [attr.aria-controls]="accordionBodyId"
   >
     {{ label() }}
     <ng-content select="app-accordion-header"></ng-content>
@@ -16,7 +16,7 @@
   @if (isOpen()) {
     <div
       role="region"
-      [id]="accordionBodyId()"
+      [id]="accordionBodyId"
       @expandOnEnter
       @collapseOnLeave
       class="accordion-item-body"
