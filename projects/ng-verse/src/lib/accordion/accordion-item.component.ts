@@ -32,7 +32,7 @@ export class AccordionItemComponent {
   label = input<string>();
   accordion = inject<AccordionComponent>(forwardRef(() => AccordionComponent));
   ariaLevel = input<number>(3);
-  accordionBodyId = input(genAccordionBodyId());
+  accordionBodyId = genAccordionBodyId();
 
   expanded = input<boolean, boolean>(false, {
     transform: (value) => {

@@ -3,10 +3,7 @@ import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
-import {
-  AUTO_GENERATED_API_DEFAULT_VALUE,
-  EMPTY_API_INPUT_DEFAULT_VALUE,
-} from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -84,12 +81,6 @@ export class TooltipPageComponent {
             description:
               'The content template to be displayed inside the tooltip.',
             default: EMPTY_API_INPUT_DEFAULT_VALUE,
-          },
-          {
-            name: 'tooltipId',
-            type: 'string',
-            description: 'The id of the tooltip. it is used for accessibility',
-            default: AUTO_GENERATED_API_DEFAULT_VALUE,
           },
         ],
       },

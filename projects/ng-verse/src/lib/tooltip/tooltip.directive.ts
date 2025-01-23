@@ -29,7 +29,7 @@ function getTooltipId() {
     '(blur)': 'onBlur()',
     '(mouseenter)': 'onMouseEnter()',
     '(mouseleave)': 'onMouseLeave()',
-    '[attr.aria-describedby]': 'tooltipId()',
+    '[attr.aria-describedby]': 'tooltipId',
   },
 })
 export class TooltipDirective implements OnDestroy {
@@ -38,7 +38,7 @@ export class TooltipDirective implements OnDestroy {
   tooltipEvent = input<TOOLTIP_EVENT>('hover');
   tooltipDelay = input(0, { transform: numberAttribute });
   tooltipContent = input<TemplateRef<unknown>>();
-  tooltipId = input(getTooltipId());
+  tooltipId = getTooltipId();
 
   private overlay = inject(Overlay);
   private el = inject<ElementRef<HTMLElement>>(ElementRef);
@@ -89,7 +89,7 @@ export class TooltipDirective implements OnDestroy {
       componentRef.instance.content.set(tooltipContent);
       componentRef.instance.message.set(this.message());
       componentRef.instance.position.set(this.tooltipPosition());
-      componentRef.instance.id.set(this.tooltipId());
+      componentRef.instance.id.set(this.tooltipId);
       this.listenToEscape();
     }, this.tooltipDelay()) as unknown;
   }

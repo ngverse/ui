@@ -25,9 +25,13 @@ type VALUE_TYPE = boolean | undefined | null;
 type ValidatorChangeFunction = (() => void) | undefined;
 
 let switchId = 0;
+let labelId = 0;
 
 function genId() {
   return `switch-${switchId++}`;
+}
+function genLabelId() {
+  return `switch-label-${labelId++}`;
 }
 
 type LABEL_ALIGN = 'start' | 'end';
@@ -51,17 +55,20 @@ type LABEL_ALIGN = 'start' | 'end';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    role: 'group',
     '[class.disabled]': 'disabled()',
     '[class.checked]': 'value()',
     '[class.start]': 'labelAlign() === "start"',
+    '[attr.aria-labelledby]': 'labelId',
   },
 })
 export class SwitchComponent implements ControlValueAccessor, Validator {
   labelAlign = input<LABEL_ALIGN>('end');
   disabled = model<boolean>(false);
   required = input<boolean>(false);
-  id = input(genId());
   value = signal<VALUE_TYPE>(undefined);
+  buttonId = genId();
+  labelId = genLabelId();
 
   private _registerOnChangefn: OnChangeFunction;
   private _onTouchedfn: OnTouchedFunction;
