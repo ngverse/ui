@@ -4,7 +4,6 @@ import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
-import { AUTO_GENERATED_API_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -50,26 +49,20 @@ export class SwitchPageComponent {
           {
             name: 'disabled',
             type: 'boolean',
-            description: 'Disables the switch',
+            description: 'Disables the switch.',
             default: 'false',
           },
           {
             name: 'required',
             type: 'boolean',
-            description: 'Adds required validation to the switch',
+            description: 'Applies required validation to the switch.',
             default: 'false',
           },
           {
             name: 'labelAlign',
             type: 'start | end',
-            description: 'Aligns the label of the checkbox',
+            description: 'Specifies the alignment of the switch label.',
             default: 'end',
-          },
-          {
-            name: 'id',
-            type: 'string',
-            description: 'Sets id attribute to the switch button element',
-            default: AUTO_GENERATED_API_DEFAULT_VALUE,
           },
         ],
       },
