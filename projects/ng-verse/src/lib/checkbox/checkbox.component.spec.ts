@@ -86,7 +86,7 @@ describe('CheckboxComponent', () => {
 @Component({
   imports: [CheckboxComponent, ReactiveFormsModule],
   template: `<app-checkbox
-    [id]="id()"
+    [inputId]="id()"
     [required]="required"
     [formControl]="formControl"
   >

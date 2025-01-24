@@ -3,17 +3,17 @@
     [disabled]="disabled()"
     (change)="toggle()"
     class="native-checkbox"
-    [id]="id()"
+    [id]="inputId()"
     [checked]="value()"
     type="checkbox"
   />
-  <div class="checkbox-icon">
+  <div class="checkbox-icon" aria-hidden="true">
     <app-checkbox-icon
       [@toggle]="value()"
       [checked]="value()"
     ></app-checkbox-icon>
   </div>
 </div>
-<label [htmlFor]="id()">
+<label [htmlFor]="inputId()">
   <ng-content></ng-content>
 </label>
