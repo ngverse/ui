@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '@ng-verse/button/button.component';
 import { DialogService } from '@ng-verse/dialog/dialog.service';
 import { DialogTestComponent } from '../dialog-test/dialog-test.component';
+import { ConfirmDirective } from '@ng-verse/dialog/confirm.directive';
 
 @Component({
   selector: 'doc-show-case-dialog',
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, ConfirmDirective],
   templateUrl: './show-case-dialog.component.html',
   styleUrl: './show-case-dialog.component.scss',
 })
@@ -31,5 +32,13 @@ export class ShowCaseDialogComponent {
       description: 'Please review the document',
       buttonLabel: 'OK',
     });
+  }
+
+  deleteItem() {
+    alert('Delete item');
+  }
+
+  cancel() {
+    alert('Cancel');
   }
 }

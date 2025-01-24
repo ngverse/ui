@@ -19,8 +19,7 @@
     "semantic-release": "semantic-release",
     "serve:ssr:docs": "node dist/docs/server/server.mjs",
     "schema:test-watch": "nodemon --watch dist/ng-verse --ext js --exec 'jasmine dist/ng-verse/**/*_spec.js'",
-    "build:ng-verse": "ng build --project=ng-verse && cd projects/ng-verse && npm run build",
-    "postversion": "mv dist/ng-verse/package.json projects/ng-verse/"
+    "build:ng-verse": "ng build --project=ng-verse && cd projects/ng-verse && npm run build"
   },
   "lint-staged": {
     "**/*.{html,ts,json,css,scss,md}": "prettier --write"
@@ -38,6 +37,7 @@
     "@angular/router": "^19.0.6",
     "@angular/ssr": "^19.0.7",
     "@types/file-saver": "^2.0.7",
+    "copyfiles": "^2.4.1",
     "express": "^4.18.2",
     "file-saver": "^2.0.5",
     "i": "^0.3.7",
@@ -67,7 +67,6 @@
     "@types/node": "^18.18.0",
     "angular-eslint": "19.0.2",
     "autoprefixer": "^10.4.20",
-    "copyfiles": "^2.4.1",
     "eslint": "^9.16.0",
     "husky": "^9.1.7",
     "jasmine": "^5.5.0",

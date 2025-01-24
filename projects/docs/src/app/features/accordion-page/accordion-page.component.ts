@@ -49,6 +49,7 @@ export class AccordionPageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    ariaLink: 'https://www.w3.org/WAI/ARIA/apg/patterns/accordion/',
     entities: [
       {
         name: 'AccordionComponent',

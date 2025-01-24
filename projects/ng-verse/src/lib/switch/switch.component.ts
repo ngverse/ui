@@ -13,7 +13,6 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
   Validator,
-  Validators,
 } from '@angular/forms';
 
 type OnChangeFunction = ((_: unknown) => void) | undefined;
@@ -24,10 +23,14 @@ type VALUE_TYPE = boolean | undefined | null;
 
 type ValidatorChangeFunction = (() => void) | undefined;
 
-let switchId = 0;
+let buttonId = 0;
+let labelId = 0;
 
-function genId() {
-  return `switch-${switchId++}`;
+function genButtonId() {
+  return `switch-${buttonId++}`;
+}
+function genLabelId() {
+  return `switch-label-${labelId++}`;
 }
 
 type LABEL_ALIGN = 'start' | 'end';
@@ -51,17 +54,20 @@ type LABEL_ALIGN = 'start' | 'end';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    role: 'group',
     '[class.disabled]': 'disabled()',
     '[class.checked]': 'value()',
     '[class.start]': 'labelAlign() === "start"',
+    '[attr.aria-labelledby]': 'labelId',
   },
 })
 export class SwitchComponent implements ControlValueAccessor, Validator {
   labelAlign = input<LABEL_ALIGN>('end');
   disabled = model<boolean>(false);
   required = input<boolean>(false);
-  id = input(genId());
   value = signal<VALUE_TYPE>(undefined);
+  buttonId = genButtonId();
+  labelId = genLabelId();
 
   private _registerOnChangefn: OnChangeFunction;
   private _onTouchedfn: OnTouchedFunction;
@@ -84,8 +90,8 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
     this._registerOnChangefn?.(newValue);
   }
 
-  writeValue(obj: boolean | undefined | null): void {
-    this.value.set(obj);
+  writeValue(obj: unknown): void {
+    this.value.set(!!obj);
   }
   registerOnChange(fn: OnChangeFunction): void {
     this._registerOnChangefn = fn;
@@ -104,8 +110,7 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
   }
 
   validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequiredValidator =
-      this.required() || control.hasValidator(Validators.required);
+    const hasRequiredValidator = this.required();
     return hasRequiredValidator && control.value !== true
       ? { required: true }
       : null;

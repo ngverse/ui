@@ -43,6 +43,13 @@ export class OptionComponent implements Highlightable {
     this.isActive.set(false);
   }
 
+  scrollIntoView() {
+    this.host.nativeElement.scrollIntoView({
+      block: 'center',
+      inline: 'center',
+    });
+  }
+
   //we can't use signal input for now
   //it is property of highlightable interface
   //and it needs bo be this shape

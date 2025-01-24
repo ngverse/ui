@@ -12,29 +12,26 @@ import { AccordionComponent } from '@ng-verse/accordion/accordion.component';
 export class ShowCaseAccordionComponent {
   items = [
     {
-      title: 'Frequently Asked Questions',
-      description:
-        'Find answers to the most commonly asked questions about our product and services.',
+      title: 'How to add ngverse to a project?',
+      description: 'run: ng add ngverse',
     },
     {
-      title: 'Key Features and Benefits',
-      description:
-        'Discover the unique features that set our product apart and how they can benefit you.',
+      title: 'How to add an element?',
+      description: 'run: ng generate ngverse:element [name]',
     },
     {
-      title: 'How to Get Started',
-      description:
-        'A step-by-step guide on setting up your account and making the most of our platform.',
+      title: 'How to customize an element?',
+      description: 'The source code is yours. do whatever you want to',
     },
     {
-      title: 'Troubleshooting Tips',
+      title: 'How to style an element',
       description:
-        'Common issues and quick solutions to help you get back on track without a hitch.',
+        'Elements come with default styles for a polished look right out of the box, but you can easily customize them within their SCSS files to suit your needs.',
     },
     {
-      title: 'Product Specifications',
+      title: 'Why it is called element and not component?',
       description:
-        'Detailed technical specifications of our product, including dimensions, materials, and performance capabilities.',
+        'The term element is used because ngverse is not limited to components.  It includes directives, pipes, functions, and more, making element a broader and more inclusive term.',
     },
   ];
 }

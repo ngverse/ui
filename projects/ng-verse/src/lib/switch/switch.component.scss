@@ -4,6 +4,20 @@
   &.start {
     flex-direction: row-reverse;
   }
+
+  &.disabled {
+    .toggle {
+      color: var(--disabled-foreground);
+      background-color: var(--disabled);
+    }
+    label {
+      color: var(--disabled-foreground);
+    }
+  }
+}
+
+:host.ng-invalid.ng-touched .switch-button {
+  outline: 1px solid var(--danger);
 }
 
 .switch-button {
@@ -14,14 +28,9 @@
   position: relative;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
-:host.ng-invalid.ng-touched .switch-button {
-  outline: 1px solid var(--danger);
-}
-
-.switch-button.checked {
-  background-color: var(--primary);
+  &.checked {
+    background-color: var(--primary);
+  }
 }
 
 .toggle {
@@ -37,14 +46,4 @@
 
 .switch-button.checked .toggle {
   left: 26px;
-}
-
-.disabled {
-  .toggle {
-    background-color: var(--disabled);
-    color: var(--disabled-foreground);
-  }
-  label {
-    color: var(--disabled);
-  }
 }

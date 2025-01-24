@@ -1,13 +1,18 @@
-import { Component, model } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import {
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { SwitchComponent } from '@ng-verse/switch/switch.component';
 
 @Component({
   selector: 'doc-show-case-switch',
-  imports: [SwitchComponent, FormsModule],
+  imports: [SwitchComponent, ReactiveFormsModule, FormsModule],
   templateUrl: './show-case-switch.component.html',
   styleUrl: './show-case-switch.component.scss',
 })
 export class ShowCaseSwitchComponent {
-  value = model(false);
+  formControl = new FormControl(null, Validators.requiredTrue);
 }

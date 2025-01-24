@@ -121,6 +121,21 @@ describe('TooltipContainerComponent', () => {
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip?.textContent?.trim()).toBe('Custom content');
   }));
+  it('tooltip should close on escape', fakeAsync(() => {
+    const button = fixture.nativeElement.querySelector(
+      'button'
+    ) as HTMLButtonElement;
+    button.dispatchEvent(new Event('mouseenter'));
+    fixture.detectChanges();
+    tick(0);
+    const tooltip = document.querySelector('.tooltip');
+    expect(tooltip?.textContent?.trim()).toBe('message');
+    const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape' });
+    document.dispatchEvent(escapeEvent);
+    fixture.detectChanges();
+    tick(0);
+    expect(document.querySelector('.tooltip')).toBeFalsy();
+  }));
 });
 
 @Component({

@@ -1,6 +1,6 @@
 <button
   [disabled]="disabled()"
-  [id]="id()"
+  [id]="buttonId"
   role="switch"
   class="switch-button"
   [class.checked]="value()"
@@ -9,6 +9,6 @@
 >
   <div class="toggle"></div>
 </button>
-<label [htmlFor]="id()">
+<label [htmlFor]="buttonId" [id]="labelId">
   <ng-content></ng-content>
 </label>

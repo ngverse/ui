@@ -1,13 +1,16 @@
-import { Directive, HostListener, output } from '@angular/core';
+import { Directive, output } from '@angular/core';
 
 @Directive({
   selector: '[appContextMenuTrigger]',
   exportAs: 'appContextMenuTrigger',
+  host: {
+    '(contextmenu)': 'onContextMenu($event)',
+  },
 })
 export class ContextMenuTriggerDirective {
-  openTriggered = output<MouseEvent>();
-  @HostListener('contextmenu', ['$event'])
-  onClick($event: MouseEvent) {
-    this.openTriggered.emit($event);
+  triggered = output<MouseEvent>();
+
+  onContextMenu($event: MouseEvent) {
+    this.triggered.emit($event);
   }
 }

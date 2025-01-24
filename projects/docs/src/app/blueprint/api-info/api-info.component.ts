@@ -6,6 +6,7 @@ import {
 export interface ApiInfo {
   entities: ApiEntity[];
   description?: string;
+  ariaLink?: string;
 }
 @Component({
   selector: 'doc-api-info',
@@ -14,5 +15,5 @@ export interface ApiInfo {
   styleUrl: './api-info.component.scss',
 })
 export class ApiInfoComponent {
-  apiInfo = input<ApiInfo>();
+  apiInfo = input.required<ApiInfo>();
 }

@@ -1,27 +1,23 @@
 :host {
   padding: 16px;
-  border-radius: 6px;
-  border-radius: 8px;
-  border-width: 1px;
+  border-radius: var(--border-radius);
 
   &.success {
-    color: white;
     background: var(--success);
-    border-color: var(--success-foreground);
+    color: var(--success-foreground);
   }
 
   &.danger {
-    color: white;
     background: var(--danger);
-    border-color: var(--danger-foreground);
+    color: var(--danger-foreground);
   }
   &.default {
     border: var(--border);
   }
 
   &.warning {
-    color: white;
     background: var(--warning);
-    border-color: var(--warning-foreground);
+    color: var(--warning-foreground);
+    color: white;
   }
 }

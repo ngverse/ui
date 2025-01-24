@@ -169,7 +169,7 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/context-menu',
         done: true,
       },
-    ],
+    ].sort((a, b) => a.name.localeCompare(b.name)),
   },
 ] as Group[];
 
