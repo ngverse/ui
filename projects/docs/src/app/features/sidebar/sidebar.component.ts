@@ -170,6 +170,11 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/context-menu',
         done: true,
       },
+      {
+        name: 'Roving Listbox',
+        url: '/doc/roving-listbox',
+        done: true,
+      },
     ].sort((a, b) => a.name.localeCompare(b.name)),
   },
 ] as Group[];

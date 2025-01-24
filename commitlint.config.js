@@ -36,6 +36,7 @@ module.exports = {
         'otp-input',
         'listbox',
         'drawer',
+        'roving-listbox',
       ],
     ],
   },

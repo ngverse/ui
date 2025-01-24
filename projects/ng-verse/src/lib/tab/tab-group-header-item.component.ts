@@ -9,11 +9,12 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { RovingListboxItemDirective } from '../roving-listbox/roving-listbox-item.directive';
 import { TabComponent } from './tab.component';
 
 @Component({
   selector: 'app-tab-group-header-item',
-  imports: [NgTemplateOutlet],
+  imports: [NgTemplateOutlet, RovingListboxItemDirective],
   templateUrl: './tab-group-header-item.component.html',
   styleUrl: './tab-group-header-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

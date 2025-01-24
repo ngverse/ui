@@ -1,8 +1,7 @@
 @if (tab(); as tab) {
   <button
-    appListboxItem
+    appRovingListboxItem
     #tabHeader
-    tabindex="-1"
     class="tab-header"
     (click)="selectTab.emit()"
     [class.is-active]="isActive()"

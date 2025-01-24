@@ -17,12 +17,17 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
+import { RovingListboxDirective } from '../roving-listbox/roving-listbox.directive';
 import { TabGroupHeaderItemComponent } from './tab-group-header-item.component';
 import { TabComponent } from './tab.component';
 
 @Component({
   selector: 'app-tab-group',
-  imports: [NgTemplateOutlet, TabGroupHeaderItemComponent],
+  imports: [
+    NgTemplateOutlet,
+    TabGroupHeaderItemComponent,
+    RovingListboxDirective,
+  ],
   templateUrl: './tab-group.component.html',
   styleUrl: './tab-group.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

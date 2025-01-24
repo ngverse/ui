@@ -1,8 +1,8 @@
 <div
   class="tab-group-header"
   #tabGroupHeader
-  tabindex="0"
-  (keydown)="onKeydown($event)"
+  appRovingListbox
+  [orientation]="'horizontal'"
 >
   @for (tab of tabs(); track $index) {
     <app-tab-group-header-item

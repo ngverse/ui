@@ -9,6 +9,9 @@
   cursor: pointer;
   position: relative;
   outline: none;
+  &.cdk-keyboard-focused {
+    outline: 1px solid var(--ring);
+  }
 }
 
 .is-active {
