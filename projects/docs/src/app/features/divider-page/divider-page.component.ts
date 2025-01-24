@@ -39,6 +39,8 @@ export class DividerPageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    ariaLink:
+      'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role',
     entities: [
       {
         name: 'DividerComponent',

@@ -4,10 +4,24 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   selector: 'app-divider',
   imports: [],
   template: ``,
-  styleUrl: './divider.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: `
+    :host {
+      display: block;
+      background-color: var(--divider);
+      height: 1px;
+      width: 100%;
+
+      &.vertical {
+        height: 100%;
+        width: 1px;
+      }
+    }
+  `,
   host: {
+    role: 'separator',
     '[class.vertical]': 'vertical()',
+    '[attr.aria-orientation]': 'vertical() ? "vertical" : "horizontal"',
   },
 })
 export class DividerComponent {
