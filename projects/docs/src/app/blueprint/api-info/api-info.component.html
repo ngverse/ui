@@ -9,6 +9,11 @@
       standards for accessibility.
     </p>
   }
+  @if (api.ariaDescription) {
+    <p class="mb-6">
+      {{ api.ariaDescription }}
+    </p>
+  }
   <ng-content select="doc-api-description"></ng-content>
   <ng-content select="doc-api-inputs"></ng-content>
 

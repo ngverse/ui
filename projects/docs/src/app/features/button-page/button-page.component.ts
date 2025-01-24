@@ -41,6 +41,8 @@ export class ButtonPageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    ariaDescription:
+      'The Button component uses the native <button> element as its host, making all accessibility features readily available.',
     entities: [
       {
         name: 'ButtonComponent',
