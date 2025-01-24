@@ -38,13 +38,13 @@ export class TextareaPageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    ariaDescription:
+      'The Input component uses the native <textarea> element as its host, making all accessibility features readily available.',
     entities: [
       {
         name: 'TextareaComponent',
         type: 'component',
         selector: 'textarea[appTextarea]',
-        description:
-          'appTextarea is used with native textarea element, so all native input attributes can be used',
         inputs: [
           {
             name: 'resize',
