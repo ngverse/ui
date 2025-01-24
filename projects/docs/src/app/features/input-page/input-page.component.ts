@@ -39,14 +39,14 @@ export class InputPageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    ariaDescription:
+      'The Input component uses the native <input> element as its host, making all accessibility features readily available.',
     entities: [
       {
         name: 'InputComponent',
         type: 'component',
         selector: 'input[appInput]',
         formBindable: true,
-        description:
-          'appInput is used with native input element, so all native input attributes can be used',
       },
     ],
   };
