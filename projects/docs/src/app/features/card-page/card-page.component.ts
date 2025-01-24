@@ -39,6 +39,8 @@ export class CardPageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    ariaDescription:
+      'A card is simply a container, so its accessibility features depend on the content it holds.',
     entities: [
       {
         name: 'CardComponent',
