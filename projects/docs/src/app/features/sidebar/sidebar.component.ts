@@ -133,6 +133,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Dialog',
         url: '/doc/dialog',
+        done: true,
       },
       {
         name: 'Tab',

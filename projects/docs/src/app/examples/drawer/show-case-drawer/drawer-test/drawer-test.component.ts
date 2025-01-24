@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '@ng-verse/button/button.component';
 import { CheckboxComponent } from '@ng-verse/checkbox/checkbox.component';
 import { DrawerCloseDirective } from '@ng-verse/drawer/drawer-close.directive';
-import { DRAWER_DATA, DrawerRef } from '@ng-verse/drawer/drawer-ref';
+import { DRAWER_DATA } from '@ng-verse/drawer/drawer-ref';
 
 @Component({
   selector: 'doc-drawer-test',
@@ -18,9 +18,5 @@ import { DRAWER_DATA, DrawerRef } from '@ng-verse/drawer/drawer-ref';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawerTestComponent {
-  private drawerRef = inject(DrawerRef);
   data = inject<{ name: string }>(DRAWER_DATA);
-  close() {
-    this.drawerRef.close();
-  }
 }

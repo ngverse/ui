@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '@ng-verse/button/button.component';
+import { ConfirmDirective } from '@ng-verse/dialog/confirm.directive';
 import { DialogService } from '@ng-verse/dialog/dialog.service';
 import { DialogTestComponent } from '../dialog-test/dialog-test.component';
-import { ConfirmDirective } from '@ng-verse/dialog/confirm.directive';
 
 @Component({
   selector: 'doc-show-case-dialog',
@@ -35,10 +35,8 @@ export class ShowCaseDialogComponent {
   }
 
   deleteItem() {
-    alert('Delete item');
-  }
-
-  cancel() {
-    alert('Cancel');
+    setTimeout(() => {
+      alert('Delete item');
+    });
   }
 }

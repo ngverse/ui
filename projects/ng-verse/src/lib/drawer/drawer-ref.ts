@@ -1,25 +1,23 @@
-import { OverlayRef } from '@angular/cdk/overlay';
+import { DialogRef } from '@angular/cdk/dialog';
 import { InjectionToken } from '@angular/core';
-import { Subject } from 'rxjs';
+import { DrawerComponent } from './drawer.component';
 export const DRAWER_DATA = new InjectionToken<unknown>('DRAWER_DATA');
 export class DrawerRef {
-  private overlayRef: OverlayRef | null = null;
-  private _closed = new Subject<unknown>();
+  private dialogRef: DialogRef<unknown, DrawerComponent>;
 
-  constructor(overlayRef: OverlayRef | null) {
-    this.overlayRef = overlayRef;
+  get closed() {
+    return this.dialogRef.closed;
   }
 
-  closed() {
-    return this._closed.asObservable();
+  constructor(dialogRef: DialogRef<unknown, DrawerComponent>) {
+    this.dialogRef = dialogRef;
   }
 
   close(value?: unknown) {
-    if (this.overlayRef) {
-      this.overlayRef.detach();
-      this.overlayRef = null;
-      this._closed.next(value);
-      this._closed.complete();
-    }
+    const instance = this.dialogRef.componentInstance as DrawerComponent;
+    instance.closingFinished.subscribe(() => {
+      this.dialogRef.close(value);
+    });
+    instance.startExitAnimation();
   }
 }
