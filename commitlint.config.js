@@ -37,6 +37,7 @@ module.exports = {
         'listbox',
         'drawer',
         'roving-listbox',
+        'desc-listbox',
       ],
     ],
   },

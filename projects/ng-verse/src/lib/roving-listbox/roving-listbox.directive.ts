@@ -33,10 +33,12 @@ export class RovingListboxDirective implements OnDestroy {
   orientation = input<'horizontal' | 'vertical'>('vertical');
   registry = inject(RovingListboxRegistry);
 
-  injector = inject(Injector);
   directonality = inject(Directionality);
 
-  keyManager = new RovingListboxKeyManager(this.registry.items, this.injector);
+  keyManager = new RovingListboxKeyManager(
+    this.registry.items,
+    inject(Injector)
+  );
   private tabSub: Subscription | undefined;
 
   onKeydown(event: KeyboardEvent) {
