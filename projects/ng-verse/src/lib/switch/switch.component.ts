@@ -3,7 +3,6 @@ import {
   Component,
   effect,
   input,
-  model,
   signal,
 } from '@angular/core';
 import {
@@ -63,11 +62,12 @@ type LABEL_ALIGN = 'start' | 'end';
 })
 export class SwitchComponent implements ControlValueAccessor, Validator {
   labelAlign = input<LABEL_ALIGN>('end');
-  disabled = model<boolean>(false);
   required = input<boolean>(false);
+
   value = signal<VALUE_TYPE>(undefined);
   buttonId = genButtonId();
   labelId = genLabelId();
+  disabled = signal<boolean>(false);
 
   private _registerOnChangefn: OnChangeFunction;
   private _onTouchedfn: OnTouchedFunction;

@@ -1,9 +1,9 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import {
   ChangeDetectionStrategy,
   Component,
   effect,
   input,
-  model,
   signal,
 } from '@angular/core';
 import {
@@ -13,15 +13,13 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
   Validator,
-  Validators,
 } from '@angular/forms';
-import { CHECKBOX_ANIMATION } from './checkbox-animations';
 import { CheckboxIconComponent } from './checkbox-icon.component';
 
-let checkboxId = 0;
+let inputId = 0;
 
-function genId() {
-  return `checkbox-${checkboxId++}`;
+function genInputId() {
+  return `checkbox-${inputId++}`;
 }
 
 type VALUE_TYPE = boolean | undefined | null;
@@ -57,14 +55,22 @@ type LABEL_ALIGN = 'start' | 'end';
     '[class.checked]': 'value()',
     '[class.start]': 'labelAlign() === "start"',
   },
-  animations: [CHECKBOX_ANIMATION],
+  animations: [
+    trigger('toggle', [
+      transition('* => *', [
+        style({ opacity: 0 }),
+        animate('150ms', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class CheckboxComponent implements ControlValueAccessor, Validator {
   labelAlign = input<LABEL_ALIGN>('end');
-  disabled = model<boolean>(false);
   required = input<boolean>(false);
-  id = input(genId());
+  inputId = input(genInputId());
+
   value = signal<VALUE_TYPE>(undefined);
+  disabled = signal<boolean>(false);
 
   private _registerOnChangefn: OnChangeFunction;
   private _onTouchedfn: OnTouchedFunction;
@@ -87,8 +93,8 @@ export class CheckboxComponent implements ControlValueAccessor, Validator {
     this._registerOnChangefn?.(newValue);
   }
 
-  writeValue(obj: boolean | undefined | null): void {
-    this.value.set(obj);
+  writeValue(obj: unknown): void {
+    this.value.set(!!obj);
   }
   registerOnChange(fn: OnChangeFunction): void {
     this._registerOnChangefn = fn;
@@ -107,8 +113,8 @@ export class CheckboxComponent implements ControlValueAccessor, Validator {
   }
 
   validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequiredValidator =
-      this.required() || control.hasValidator(Validators.required);
+    const hasRequiredValidator = this.required();
+
     return hasRequiredValidator && control.value !== true
       ? { required: true }
       : null;

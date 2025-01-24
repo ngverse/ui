@@ -39,13 +39,14 @@ export class CheckboxPageComponent {
       files: [
         ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
         this.sourceTreeBuilder.file('checkbox-icon.component', ROOT),
-        this.sourceTreeBuilder.file('checkbox-animations', ROOT),
       ],
       hideName: true,
     },
   ];
 
   apiInfo: ApiInfo = {
+    ariaDescription:
+      'The checkbox leverages native HTML input and label elements to ensure proper accessibility and seamless interaction with assistive technologies.',
     entities: [
       {
         name: 'CheckboxComponent',
@@ -72,7 +73,7 @@ export class CheckboxPageComponent {
             default: 'end',
           },
           {
-            name: 'id',
+            name: 'inputId',
             type: 'string',
             description: 'Sets id attribute to the native checkbox',
             default: AUTO_GENERATED_API_DEFAULT_VALUE,
