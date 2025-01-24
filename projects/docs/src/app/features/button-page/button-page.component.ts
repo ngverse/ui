@@ -57,7 +57,7 @@ export class ButtonPageComponent {
           },
           {
             name: 'size',
-            type: 'sm | md | lg',
+            type: 'sm | md | lg | none',
             description: 'changes the size of the button',
             default: 'md',
           },
