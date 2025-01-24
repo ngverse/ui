@@ -39,6 +39,8 @@ export class BadgePageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    ariaLink:
+      'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/status_role',
     entities: [
       {
         name: 'BadgeComponent',
