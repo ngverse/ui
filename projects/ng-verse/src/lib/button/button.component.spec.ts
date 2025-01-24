@@ -31,6 +31,10 @@ describe('ButtonComponent', () => {
     fixture.detectChanges();
   });
 
+  function getClassName(className: string) {
+    return `btn-${className}`;
+  }
+
   it('should create', () => {
     expect(buttonComponent).toBeTruthy();
   });
@@ -44,12 +48,16 @@ describe('ButtonComponent', () => {
   it('should add outline class on variant type change', () => {
     rootComponent.variant.set('outline');
     fixture.detectChanges();
-    expect(buttonRootElement.classList.contains('outline')).toBeTrue();
+    expect(
+      buttonRootElement.classList.contains(getClassName('outline'))
+    ).toBeTrue();
   });
   it('should add proper color type', () => {
     rootComponent.color.set('secondary');
     fixture.detectChanges();
-    expect(buttonRootElement.classList.contains('secondary')).toBeTrue();
+    expect(
+      buttonRootElement.classList.contains(getClassName('secondary'))
+    ).toBeTrue();
   });
   it('should add proper button type', () => {
     rootComponent.type.set('submit');
@@ -71,7 +79,7 @@ describe('ButtonComponent', () => {
   it('should change the size class', () => {
     rootComponent.size.set('lg');
     fixture.detectChanges();
-    expect(buttonRootElement.classList.contains('lg')).toBeTrue();
+    expect(buttonRootElement.classList.contains(getClassName('lg'))).toBeTrue();
   });
 });
 

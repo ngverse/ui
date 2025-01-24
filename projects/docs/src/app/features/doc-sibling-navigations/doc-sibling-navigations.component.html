@@ -2,7 +2,7 @@
   <button
     appButton
     color="secondary"
-    variant="stroked"
+    variant="outline"
     class="sibling-navigation"
     [class.invisible]="!prevRoute()"
     [routerLink]="[prevRoute()?.url]"
@@ -13,7 +13,7 @@
   <button
     appButton
     color="secondary"
-    variant="stroked"
+    variant="outline"
     [class.invisible]="!nextRoute()"
     class="sibling-navigation ml-auto lg:justify-end"
     [routerLink]="[nextRoute()?.url]"

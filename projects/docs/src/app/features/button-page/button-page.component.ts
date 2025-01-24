@@ -41,6 +41,8 @@ export class ButtonPageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    ariaDescription:
+      'The Button component uses the native <button> element as its host, making all accessibility features readily available.',
     entities: [
       {
         name: 'ButtonComponent',
@@ -57,13 +59,13 @@ export class ButtonPageComponent {
           },
           {
             name: 'size',
-            type: 'sm | md | lg',
+            type: 'sm | md | lg | none',
             description: 'changes the size of the button',
             default: 'md',
           },
           {
             name: 'variant',
-            type: 'fill | stroked | link | none',
+            type: 'fill | outline | link | none',
             description: 'changes the variant of the button',
             default: 'fill',
           },

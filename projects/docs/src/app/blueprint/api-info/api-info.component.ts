@@ -7,6 +7,7 @@ export interface ApiInfo {
   entities: ApiEntity[];
   description?: string;
   ariaLink?: string;
+  ariaDescription?: string;
 }
 @Component({
   selector: 'doc-api-info',

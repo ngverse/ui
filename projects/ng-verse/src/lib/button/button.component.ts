@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 import { ButtonLoaderComponent } from './button-loader.component';
 
 type COLOR_TYPES =
@@ -9,22 +14,21 @@ type COLOR_TYPES =
   | 'default'
   | 'none';
 
-type VARIANT_TYPES = 'fill' | 'stroked' | 'link' | 'none';
+type VARIANT_TYPES = 'fill' | 'outline' | 'link' | 'none';
 
 type SIZE_TYPES = 'sm' | 'md' | 'lg' | 'none';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[appButton]',
-  standalone: true,
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
   imports: [ButtonLoaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': '[variant(),color(),size()]',
-    '[class.disabled]': 'disabled()',
-    '[class.loading]': 'loading()',
+    '[class]': 'classNames()',
+    '[class.btn-disabled]': 'disabled()',
+    '[class.btn-loading]': 'loading()',
     '[attr.disabled]': 'disabled()',
   },
 })
@@ -38,4 +42,12 @@ export class ButtonComponent {
   size = input<SIZE_TYPES>('md');
 
   loading = input<boolean>();
+
+  classNames = computed(() => {
+    return [
+      `btn-${this.variant()}`,
+      `btn-${this.color()}`,
+      `btn-${this.size()}`,
+    ];
+  });
 }
