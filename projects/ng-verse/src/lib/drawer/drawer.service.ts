@@ -1,65 +1,66 @@
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
-import { inject, Injectable, Injector } from '@angular/core';
-import { filter, merge, Subscription, take } from 'rxjs';
+import { Dialog, DialogConfig } from '@angular/cdk/dialog';
+import { Overlay } from '@angular/cdk/overlay';
+import { ComponentType } from '@angular/cdk/portal';
+import { inject, Injectable } from '@angular/core';
+import { filter, merge, take } from 'rxjs';
 import { DRAWER_DATA, DrawerRef } from '../drawer/drawer-ref';
-import { DrawerComponent } from '../drawer/drawer/drawer.component';
+import { DrawerComponent } from './drawer.component';
+
+interface DrawerConfig
+  extends Pick<
+    DialogConfig,
+    'ariaDescribedBy' | 'ariaLabel' | 'ariaLabelledBy' | 'autoFocus'
+  > {
+  data?: unknown;
+  title?: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class DrawerService {
   private readonly overlay = inject(Overlay);
+  private readonly dialog = inject(Dialog);
 
-  open(
-    component: ComponentType<unknown>,
-    options?: {
-      data?: unknown;
-      title?: string;
-    }
-  ) {
-    let overlayRef: OverlayRef | null = null;
-    const subs = new Subscription();
-
-    const positionStrategy = this.overlay
-      .position()
-      .global()
-      .centerHorizontally()
-      .right();
-
-    overlayRef = this.overlay.create({
-      positionStrategy,
-      hasBackdrop: true,
-      scrollStrategy: this.overlay.scrollStrategies.block(),
+  open(component: ComponentType<unknown>, options?: DrawerConfig) {
+    const dialogRef = this.dialog.open(DrawerComponent, {
+      disableClose: true,
+      positionStrategy: this.overlay
+        .position()
+        .global()
+        .centerHorizontally()
+        .right(),
+      providers(dialogRef) {
+        return [
+          {
+            provide: DrawerRef,
+            useValue: new DrawerRef(dialogRef),
+          },
+          { provide: DRAWER_DATA, useValue: options?.data },
+        ];
+      },
+      ...options,
     });
-    const drawerRef = new DrawerRef(overlayRef);
+    const instance = dialogRef.componentInstance as DrawerComponent;
+    instance.component = component;
+    instance.title.set(options?.title);
 
-    subs.add(
-      merge(
-        overlayRef
-          .keydownEvents()
-          .pipe(filter((event) => event.key === 'Escape')),
-        overlayRef.backdropClick()
-      )
-        .pipe(take(1))
-        .subscribe(() => drawerRef.close())
+    const drawerRef = dialogRef.componentRef?.injector.get(
+      DrawerRef
+    ) as DrawerRef;
+
+    const keydownEvent$ = dialogRef.keydownEvents.pipe(
+      filter((event) => event.key === 'Escape')
     );
 
-    const customInjector = Injector.create({
-      providers: [
-        { provide: DrawerRef, useValue: drawerRef },
-        { provide: DRAWER_DATA, useValue: options?.data },
-        { provide: OverlayRef, useValue: overlayRef },
-      ],
-    });
+    const backdropEvent$ = dialogRef.backdropClick;
 
-    const overlayPortal = new ComponentPortal(
-      DrawerComponent,
-      null,
-      customInjector
-    );
-    const ref = overlayRef.attach(overlayPortal);
-    ref.instance.component = component;
-    ref.instance.title.set(options?.title);
+    merge(keydownEvent$, backdropEvent$)
+      .pipe(take(1))
+      .subscribe(() => {
+        drawerRef.close();
+      });
+
+    return drawerRef;
   }
 }

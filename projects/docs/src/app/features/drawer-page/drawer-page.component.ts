@@ -3,7 +3,10 @@ import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
-import { VOID_API_RETURN_TYPE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import {
+  EMPTY_API_INPUT_DEFAULT_VALUE,
+  VOID_API_RETURN_TYPE,
+} from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -36,27 +39,18 @@ export class DrawerPageComponent {
     {
       name: 'drawer',
       files: [
-        ...this.sourceTreeBuilder.fullComponent('drawer', `${ROOT}/drawer`),
-        ...this.sourceTreeBuilder.fullComponent(
-          'drawer-header',
-          `${ROOT}/drawer-header`
-        ),
-        ...this.sourceTreeBuilder.fullComponent(
-          'drawer-subtitle',
-          `${ROOT}/drawer-subtitle`
-        ),
-        ...this.sourceTreeBuilder.fullComponent(
-          'drawer-title',
-          `${ROOT}/drawer-title`
-        ),
+        ...this.sourceTreeBuilder.fullComponent(ROOT, `${ROOT}`),
+        ...this.sourceTreeBuilder.directive('drawer-close', `${ROOT}`, true),
         ...this.sourceTreeBuilder.service('drawer', `${ROOT}`),
-        ...this.sourceTreeBuilder.directive('drawer-close', `${ROOT}`),
         this.sourceTreeBuilder.file('drawer-ref', `${ROOT}`, 'ts'),
+        this.sourceTreeBuilder.component('drawer-close-icon', `${ROOT}`),
       ],
+      hideName: true,
     },
   ];
 
   apiInfo: ApiInfo = {
+    ariaLink: 'https://material.angular.io/cdk/dialog/overview#accessibility',
     entities: [
       {
         name: 'DrawerService',
@@ -86,6 +80,30 @@ export class DrawerPageComponent {
                     name: 'title',
                     type: 'string',
                     description: 'title of the drawer.',
+                  },
+                  {
+                    name: 'ariaDescribedBy',
+                    type: 'string',
+                    description: 'ID of the element that describes the Drawer',
+                    default: EMPTY_API_INPUT_DEFAULT_VALUE,
+                  },
+                  {
+                    name: 'ariaLabel',
+                    type: 'string',
+                    description: 'Drawer label applied via aria-label',
+                    default: EMPTY_API_INPUT_DEFAULT_VALUE,
+                  },
+                  {
+                    name: 'ariaLabelledBy',
+                    type: 'string',
+                    description: 'ID of the element that labels the Drawer.',
+                    default: EMPTY_API_INPUT_DEFAULT_VALUE,
+                  },
+                  {
+                    name: 'autoFocus',
+                    type: 'dialog | first-tabbable | first-heading | boolean',
+                    description: 'Where the Drawer should focus on open.',
+                    default: 'first-tabbable',
                   },
                 ],
               },

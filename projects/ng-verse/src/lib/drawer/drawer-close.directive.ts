@@ -9,8 +9,10 @@ import { DrawerRef } from '../drawer/drawer-ref';
 })
 export class DrawerCloseDirective {
   private readonly drawerRef = inject(DrawerRef);
-  value = input<unknown>({ alias: 'appDrawerClose' });
+  value = input<unknown>(undefined, { alias: 'appDrawerClose' });
+
   close() {
-    this.drawerRef.close(this.value());
+    const value = this.value();
+    this.drawerRef.close(value);
   }
 }
