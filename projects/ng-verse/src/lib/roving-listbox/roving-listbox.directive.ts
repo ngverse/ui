@@ -2,6 +2,7 @@ import { Directionality } from '@angular/cdk/bidi';
 import {
   afterNextRender,
   Directive,
+  effect,
   inject,
   Injector,
   input,
@@ -61,7 +62,6 @@ export class RovingListboxDirective implements OnDestroy {
           .withVerticalOrientation(false);
       }
       this.keyManager = keyManager;
-      this.keyManager.setActiveItem(0);
 
       //We need to wait next tick,
       //So the item focus fires first
@@ -72,6 +72,20 @@ export class RovingListboxDirective implements OnDestroy {
           const activeItem = this.keyManager.activeItem;
           activeItem?.restoreTabIndex();
         });
+    });
+
+    effect(() => {
+      const items = this.registry.items();
+
+      if (!this.keyManager.activeItem) {
+        items[0]?.restoreTabIndex();
+      }
+
+      for (const item of items) {
+        item.clicked.subscribe(() => {
+          this.keyManager.setActiveItem(item);
+        });
+      }
     });
   }
   ngOnDestroy(): void {

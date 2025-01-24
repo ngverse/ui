@@ -4,6 +4,7 @@ import {
   ElementRef,
   inject,
   OnDestroy,
+  output,
   signal,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -13,6 +14,7 @@ import { RovingListboxRegistry } from './roving-listbox-registry';
   selector: '[appRovingListboxItem]',
   host: {
     '[tabindex]': 'isActive()?0:-1',
+    '(click)': 'clicked.emit($event)',
   },
 })
 export class RovingListboxItemDirective implements FocusableOption, OnDestroy {
@@ -27,6 +29,8 @@ export class RovingListboxItemDirective implements FocusableOption, OnDestroy {
   /** Gets the label for this option. */
   getLabel?(): string;
 
+  clicked = output();
+
   constructor() {
     this.registry.add(this);
     this.focusSub = this.focusMonitor
@@ -34,8 +38,6 @@ export class RovingListboxItemDirective implements FocusableOption, OnDestroy {
       .subscribe((origin) => {
         if (!origin) {
           this.isActive.set(false);
-        } else if (origin === 'mouse' || origin === 'touch') {
-          this.isActive.set(true);
         }
       });
   }
