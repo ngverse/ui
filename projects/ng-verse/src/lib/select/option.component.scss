@@ -6,13 +6,12 @@
   padding: var(--app-option-padding);
   cursor: var(--app-option-cursor);
 
-  &:hover:not(.selected, .listbox-item-active, .option-disabled) {
-    background: var(--accent);
-    color: var(--accent-foreground);
+  &:focus-visible {
+    outline: 1px solid var(--ring);
+    outline-offset: -1px;
   }
 }
-.selected,
-.listbox-item-active {
+.selected {
   background: var(--accent);
   color: var(--accent-foreground);
 }

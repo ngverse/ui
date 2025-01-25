@@ -141,4 +141,9 @@ export class ListboxDirective<T = unknown> {
       this.keyManager.setFirstItemActive();
     }
   }
+
+  reset() {
+    this.keyManager.focusTarget(false);
+    this.keyManager.setActiveItem(-1);
+  }
 }

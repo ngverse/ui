@@ -1,11 +1,16 @@
 :host {
   display: block;
-  padding: var(--app-option-padding);
-  cursor: var(--app-option-cursor);
 
-  &:hover,
-  &.is-active {
-    background: var(--accent);
-    color: var(--accent-foreground);
+  .context-menu-item-button {
+    width: 100%;
+    text-align: left;
+    padding: var(--app-option-padding);
+
+    &:focus-visible,
+    &:hover {
+      outline: none;
+      background: var(--accent);
+      color: var(--accent-foreground);
+    }
   }
 }

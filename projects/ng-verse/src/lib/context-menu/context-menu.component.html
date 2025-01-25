@@ -1,11 +1,12 @@
 <app-popover
   [offsetY]="10"
   (opened)="opened()"
+  (closed)="closed()"
   [coordinates]="{ x: clientX(), y: clientY() }"
   [(isOpen)]="isOpen"
   [outsideClose]="true"
 >
-  <div #itemsList class="items-list" tabindex="0" (keydown)="onKeydown($event)">
+  <div appListbox #itemList="appListbox" class="items-list">
     <ng-content></ng-content>
   </div>
 </app-popover>
