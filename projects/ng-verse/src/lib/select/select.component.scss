@@ -3,10 +3,10 @@
 }
 
 .select-button {
-  border: var(--border);
-  border-radius: var(--border-radius);
-  height: var(--field-height);
-  padding: var(--field-padding);
+  border: var(--nv-border);
+  border-radius: var(--nv-border-radius);
+  height: var(--nv-field-height);
+  padding: var(--nv-field-padding);
 
   display: flex;
   align-items: center;
@@ -16,7 +16,7 @@
   justify-content: space-between;
 
   &:focus-visible {
-    outline: 1px solid var(--ring);
+    outline: 1px solid var(--nv-ring);
   }
 
   .select-button-label {
@@ -40,14 +40,14 @@
 
   &:disabled {
     cursor: not-allowed;
-    background: var(--disabled);
-    color: var(--disabled-foreground);
+    background: var(--nv-disabled);
+    color: var(--nv-disabled-foreground);
   }
 }
 
 :host.ng-invalid.ng-touched {
   .select-button {
-    border-color: var(--danger);
+    border-color: var(--nv-danger);
   }
 }
 
