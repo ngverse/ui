@@ -1,14 +1,15 @@
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { Directionality } from '@angular/cdk/bidi';
 import {
+  afterNextRender,
   afterRenderEffect,
   Directive,
-  ElementRef,
   inject,
   Injector,
   input,
   output,
   untracked,
 } from '@angular/core';
+import { DescListboxKeyManager } from './desc-listbox-key-manager';
 import { DescListboxRegistry } from './desc-listbox-registry';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type CompareWith = (o1: any, o2: any) => boolean;
@@ -37,25 +38,40 @@ export class DescListboxDirective {
   registry = inject(DescListboxRegistry);
   compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
   multiple = input(false);
+  withTypeAhead = input(false);
+  withWrap = input(true);
+  orientation = input<'horizontal' | 'vertical'>('vertical');
+  directonality = inject(Directionality);
 
-  keyManager = new ActiveDescendantKeyManager(
-    this.registry.items,
-    inject(Injector)
-  );
-
-  private host = inject<ElementRef<HTMLElement>>(ElementRef);
+  keyManager = new DescListboxKeyManager(this.registry.items, inject(Injector));
 
   onKeydown($event: KeyboardEvent) {
-    if ($event.key === 'Enter' && this.keyManager.activeItem) {
-      const activeItem = this.keyManager.activeItem;
-      if (activeItem) {
-        this.valueChange.emit(activeItem.value());
-      }
-    }
     this.keyManager.onKeydown($event);
   }
 
   constructor() {
+    afterNextRender(() => {
+      const orientation = this.orientation();
+      const withWrap = this.withWrap();
+
+      let keyManager = this.keyManager;
+
+      if (withWrap) {
+        keyManager = keyManager.withWrap();
+      }
+      if (this.withTypeAhead()) {
+        keyManager = keyManager.withTypeAhead();
+      }
+      if (orientation === 'vertical') {
+        keyManager = this.keyManager.withVerticalOrientation(true);
+      } else {
+        keyManager = this.keyManager
+          .withHorizontalOrientation(this.directonality.value)
+          .withVerticalOrientation(false);
+      }
+      this.keyManager = keyManager;
+    });
+
     afterRenderEffect(() => {
       const items = this.registry.items();
       const value = this.value();
@@ -92,6 +108,11 @@ export class DescListboxDirective {
   }
 
   focus() {
-    this.host.nativeElement.focus();
+    const item = this.keyManager.activeItem;
+    if (item) {
+      item.host.nativeElement.focus();
+    } else {
+      this.keyManager?.setFirstItemActive();
+    }
   }
 }

@@ -1,5 +1,4 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { NgTemplateOutlet } from '@angular/common';
 import {
   afterNextRender,
@@ -8,8 +7,6 @@ import {
   computed,
   contentChildren,
   ElementRef,
-  inject,
-  Injector,
   model,
   OnDestroy,
   output,
@@ -17,17 +14,13 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
-import { RovingListboxDirective } from '../roving-listbox/roving-listbox.directive';
-import { TabGroupHeaderItemComponent } from './tab-group-header-item.component';
+import { ListboxItemDirective } from '../listbox/listbox-item.directive';
+import { ListboxDirective } from '../listbox/listbox.directive';
 import { TabComponent } from './tab.component';
 
 @Component({
   selector: 'app-tab-group',
-  imports: [
-    NgTemplateOutlet,
-    TabGroupHeaderItemComponent,
-    RovingListboxDirective,
-  ],
+  imports: [NgTemplateOutlet, ListboxDirective, ListboxItemDirective],
   templateUrl: './tab-group.component.html',
   styleUrl: './tab-group.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,10 +35,8 @@ import { TabComponent } from './tab.component';
 })
 export class TabGroupComponent implements OnDestroy {
   tabs = contentChildren(TabComponent);
-  selectedIndex = model(0);
-  tabHeaders = viewChildren<TabGroupHeaderItemComponent>(
-    TabGroupHeaderItemComponent
-  );
+  selectedIndex = model(2);
+  tabHeaders = viewChildren<ElementRef<HTMLElement>>('tabHeader');
   tabGroupHeader =
     viewChild.required<ElementRef<HTMLElement>>('tabGroupHeader');
 
@@ -54,11 +45,6 @@ export class TabGroupComponent implements OnDestroy {
   selectedTab = computed(() =>
     this.tabs().find((_, index) => index === this.selectedIndex())
   );
-
-  keyManager = new ActiveDescendantKeyManager(
-    this.tabHeaders,
-    inject(Injector)
-  ).withHorizontalOrientation('ltr');
 
   tabInkWidth = signal(0);
   tabInkLeft = signal(0);
@@ -70,22 +56,6 @@ export class TabGroupComponent implements OnDestroy {
       this.resizeObserver = new ResizeObserver(() => this.moveInk());
       this.resizeObserver.observe(this.tabGroupHeader().nativeElement);
     });
-
-    this.keyManager.tabOut.subscribe(() => {
-      this.keyManager.setActiveItem(-1);
-    });
-  }
-
-  onKeydown($event: KeyboardEvent) {
-    if ($event.key === 'Enter') {
-      const foundIndex = this.tabHeaders().findIndex(
-        (tabHeader) => tabHeader === this.keyManager.activeItem
-      );
-      if (foundIndex !== -1) {
-        this.selectTab(foundIndex);
-      }
-    }
-    this.keyManager.onKeydown($event);
   }
 
   private moveInk() {
@@ -93,7 +63,7 @@ export class TabGroupComponent implements OnDestroy {
     const tabHeader = this.tabHeaders()[index];
     const tabGroupHeader = this.tabGroupHeader();
     if (tabHeader) {
-      const rects = tabHeader.el.getBoundingClientRect();
+      const rects = tabHeader.nativeElement.getBoundingClientRect();
       const tabGroupRects =
         tabGroupHeader.nativeElement.getBoundingClientRect();
       this.tabInkLeft.set(rects.left - tabGroupRects.left);
@@ -108,7 +78,6 @@ export class TabGroupComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.keyManager.destroy();
     this.resizeObserver?.disconnect();
   }
 }

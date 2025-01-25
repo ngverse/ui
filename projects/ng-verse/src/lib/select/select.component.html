@@ -26,9 +26,12 @@
   [offsetY]="8"
 >
   <div
-    (keydown)="onKeydown($event)"
     class="select-options"
-    tabindex="0"
+    [appListbox]="values()"
+    #listbox="appListbox"
+    (valueChange)="toggleValue($event)"
+    [multiple]="true"
+    [withTypeAhead]="true"
     #selectOptions
   >
     <ng-content select="app-option"></ng-content>

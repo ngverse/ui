@@ -1,4 +1,3 @@
-import { Highlightable } from '@angular/cdk/a11y';
 import {
   Directive,
   ElementRef,
@@ -13,21 +12,16 @@ import { DescListboxRegistry } from './desc-listbox-registry';
   selector: '[appDescListboxItem]',
   host: {
     '[class.active]': 'isActive()',
+    '[tabindex]': 'isActive()?0:-1',
   },
 })
-export class DescListboxItemDirective implements OnDestroy, Highlightable {
+export class DescListboxItemDirective implements OnDestroy {
   registry = inject(DescListboxRegistry);
   value = input<unknown>(undefined, { alias: 'appDescListboxItem' });
   isActive = signal(false);
-  private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
+  host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
   constructor() {
     this.registry.add(this);
-  }
-  setActiveStyles(): void {
-    this.isActive.set(true);
-  }
-  setInactiveStyles(): void {
-    this.isActive.set(false);
   }
   disabled?: boolean | undefined;
   getLabel?(): string {
@@ -38,9 +32,12 @@ export class DescListboxItemDirective implements OnDestroy, Highlightable {
     this.registry.remove(this);
   }
 
-  emitEnter() {
-    this.host.nativeElement.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'Enter' })
-    );
+  focus() {
+    this.host.nativeElement.focus();
+    this.isActive.set(true);
+  }
+
+  defocus() {
+    this.isActive.set(false);
   }
 }
