@@ -240,20 +240,6 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'roving-listbox',
-        loadComponent: () =>
-          import(
-            './features/roving-listbox-page/roving-listbox-page.component'
-          ).then((p) => p.RovingListboxPageComponent),
-      },
-      {
-        path: 'desc-listbox',
-        loadComponent: () =>
-          import(
-            './features/desc-listbox-page/desc-listbox-page.component'
-          ).then((p) => p.DescListboxPageComponent),
-      },
-      {
         path: '',
         redirectTo: 'introduction',
         pathMatch: 'full',
