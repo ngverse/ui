@@ -1,10 +1,10 @@
 .tab-group-header {
   display: flex;
   position: relative;
-  border-bottom: 1px solid var(--divider);
+  border-bottom: 1px solid var(--nv-divider);
 
   &:focus-visible {
-    outline: 1px solid var(--ring);
+    outline: 1px solid var(--nv-ring);
   }
 }
 
@@ -38,9 +38,5 @@
     left 0.3s ease,
     width 0.3s ease;
 
-  background-color: var(--primary);
-}
-
-.listbox {
-  outline: none;
+  background-color: var(--nv-primary);
 }

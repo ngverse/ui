@@ -12,5 +12,13 @@
       background: var(--accent);
       color: var(--accent-foreground);
     }
+    padding: var(--nv-option-padding);
+    cursor: var(--nv-option-cursor);
+
+    &:hover,
+    &.is-active {
+      background: var(--nv-accent);
+      color: var(--nv-accent-foreground);
+    }
   }
 }

@@ -3,10 +3,10 @@
   align-items: center;
   gap: 8px;
   &.ng-invalid.ng-touched {
-    color: var(--danger);
+    color: var(--nv-danger);
   }
   &.disabled {
-    color: var(--disabled-foreground);
+    color: var(--nv-disabled-foreground);
   }
 
   &.start {
@@ -16,7 +16,7 @@
 
 .checked {
   .checkbox-icon {
-    color: var(--primary);
+    color: var(--nv-primary);
   }
 }
 
@@ -35,7 +35,7 @@
   top: 0;
   z-index: 1;
   &:focus-visible + .checkbox-icon {
-    outline: 1px solid var(--ring);
+    outline: 1px solid var(--nv-ring);
     border-radius: 4px;
   }
 }

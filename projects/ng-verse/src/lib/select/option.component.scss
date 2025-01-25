@@ -3,19 +3,28 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: var(--app-option-padding);
-  cursor: var(--app-option-cursor);
+  padding: var(--nv-option-padding);
+  cursor: var(--nv-option-cursor);
 
   &:focus-visible {
     outline: 1px solid var(--ring);
     outline-offset: -1px;
   }
 }
-.selected {
-  background: var(--accent);
-  color: var(--accent-foreground);
-}
+// .selected {
+//   background: var(--accent);
+//   color: var(--accent-foreground);
+//   &:hover:not(.selected, .listbox-item-active, .option-disabled) {
+//     background: var(--nv-accent);
+//     color: var(--nv-accent-foreground);
+//   }
+// }
+// .selected,
+// .is-active {
+//   background: var(--nv-accent);
+//   color: var(--nv-accent-foreground);
+// }
 
 .option-disabled {
-  color: var(--app-option-disabled-color);
+  color: var(--nv-option-disabled-color);
 }

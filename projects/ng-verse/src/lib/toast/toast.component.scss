@@ -2,12 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--inverse);
-  color: var(--inverse-foreground);
-  border: var(--border);
-  border-radius: var(--border-radius);
+  background: var(--nv-inverse);
+  color: var(--nv-inverse-foreground);
+  border: var(--nv-border);
+  border-radius: var(--nv-border-radius);
   padding: 12px 16px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--nv-shadow);
 }
 
 .toast-close-button {
