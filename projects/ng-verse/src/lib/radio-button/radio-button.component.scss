@@ -16,7 +16,7 @@
   align-items: center;
   gap: 8px;
   &.disabled {
-    color: var(--disabled-foreground);
+    color: var(--nv-disabled-foreground);
   }
 }
 
@@ -24,11 +24,11 @@
   cursor: pointer;
   display: block;
   &.checked {
-    color: var(--primary);
+    color: var(--nv-primary);
   }
 }
 
 .native-radio-button:focus-visible + .radio-button-icon {
-  outline: 1px solid var(--ring);
+  outline: 1px solid var(--nv-ring);
   border-radius: 50%;
 }

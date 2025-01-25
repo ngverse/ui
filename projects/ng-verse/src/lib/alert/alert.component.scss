@@ -1,23 +1,23 @@
 :host {
   padding: 16px;
-  border-radius: var(--border-radius);
+  border-radius: var(--nv-border-radius);
 
   &.success {
-    background: var(--success);
-    color: var(--success-foreground);
+    background: var(--nv-success);
+    color: var(--nv-success-foreground);
   }
 
   &.danger {
-    background: var(--danger);
-    color: var(--danger-foreground);
+    background: var(--nv-danger);
+    color: var(--nv-danger-foreground);
   }
   &.default {
-    border: var(--border);
+    border: var(--nv-border);
   }
 
   &.warning {
-    background: var(--warning);
-    color: var(--warning-foreground);
+    background: var(--nv-warning);
+    color: var(--nv-warning-foreground);
     color: white;
   }
 }

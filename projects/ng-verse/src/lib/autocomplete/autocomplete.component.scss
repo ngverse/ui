@@ -8,14 +8,14 @@
   align-items: center;
   gap: 10px;
   background: transparent;
-  border: var(--border);
-  border-radius: var(--border-radius);
+  border: var(--nv-border);
+  border-radius: var(--nv-border-radius);
   padding: 4px 10px;
   width: 200px;
 
   &:disabled {
     cursor: not-allowed;
-    background: var(--app-disabled-color);
+    background: var(--nv-disabled-color);
   }
 }
 

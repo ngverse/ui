@@ -1,11 +1,11 @@
 :host {
   display: block;
-  padding: var(--app-option-padding);
-  cursor: var(--app-option-cursor);
+  padding: var(--nv-option-padding);
+  cursor: var(--nv-option-cursor);
 
   &:hover,
   &.is-active {
-    background: var(--accent);
-    color: var(--accent-foreground);
+    background: var(--nv-accent);
+    color: var(--nv-accent-foreground);
   }
 }

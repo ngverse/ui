@@ -1,5 +1,5 @@
 .listbox-item-active {
-  outline: 1px solid var(--ring);
+  outline: 1px solid var(--nv-ring);
 }
 
 .code-container {
@@ -9,8 +9,8 @@
 }
 
 .code-input {
-  border: var(--border);
-  border-radius: var(--border-radius);
+  border: var(--nv-border);
+  border-radius: var(--nv-border-radius);
   width: 40px;
   text-align: center;
 }
