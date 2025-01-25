@@ -14,10 +14,10 @@
   including versions of Lorem Ipsum.
 </p>
 <app-context-menu [trigger]="trigger">
-  <app-context-menu-item (selected)="copy(content.textContent)"
+  <app-context-menu-item (click)="copy(content.textContent)"
     >Copy</app-context-menu-item
   >
-  <app-context-menu-item (selected)="markRead()"
+  <app-context-menu-item (click)="markRead()"
     >Mark as Red</app-context-menu-item
   >
 </app-context-menu>

@@ -1,9 +1,9 @@
 <button
+  [appListboxItem]="value()"
   [class.selected]="isSelected()"
   tabindex="-1"
   class="option"
   [class.is-active]="isActive()"
-  (click)="select.toggleValue(value())"
 >
   <div>
     <ng-content></ng-content>

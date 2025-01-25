@@ -6,10 +6,7 @@ import {
   effect,
   ElementRef,
   forwardRef,
-  inject,
-  Injector,
   input,
-  OnDestroy,
   signal,
   viewChild,
 } from '@angular/core';
@@ -24,7 +21,8 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { ListboxRegistry } from '../listbox/listbox-registry';
+import { ListboxDirective } from '../listbox/listbox.directive';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
 import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
@@ -45,6 +43,7 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     SelectIconComponent,
     PopoverOriginDirective,
     PopoverComponent,
+    ListboxDirective,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
@@ -59,12 +58,11 @@ export type CompareWith = (o1: any, o2: any) => boolean;
       useExisting: SelectComponent,
       multi: true,
     },
+    ListboxRegistry,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectComponent
-  implements ControlValueAccessor, Validator, OnDestroy
-{
+export class SelectComponent implements ControlValueAccessor, Validator {
   stretch = input<boolean>(false);
   multiple = input(false);
   required = input(false);
@@ -74,13 +72,14 @@ export class SelectComponent
   disabled = signal(false);
   values = signal<unknown[]>([]);
 
+  listbox = viewChild.required(ListboxDirective);
+
   private _onTouched: OnTouchedFunction;
   options = contentChildren<OptionComponent>(
     forwardRef(() => OptionComponent),
     { descendants: true }
   );
 
-  keyManager = new ActiveDescendantKeyManager(this.options, inject(Injector));
   selectOptions = viewChild.required<ElementRef<HTMLElement>>('selectOptions');
   private _validatorChangeFn: ValidatorChangeFunction;
   private _registerOnChangeFn: OnChangeFunction;
@@ -107,13 +106,6 @@ export class SelectComponent
 
     return undefined;
   });
-
-  onKeydown($event: KeyboardEvent) {
-    if ($event.key === 'Enter') {
-      this.toggleValue(this.keyManager.activeItem?.value());
-    }
-    this.keyManager.onKeydown($event);
-  }
 
   selectedOptionsLabel = computed(() => {
     const selectedOptions = this.selectedOptions();
@@ -162,13 +154,7 @@ export class SelectComponent
   }
 
   panelOpened() {
-    this.selectOptions().nativeElement.focus();
-    const selectedOptions = this.selectedOptions();
-    const firstOption = selectedOptions?.[0];
-    if (firstOption) {
-      firstOption.scrollIntoView();
-      this.keyManager.setActiveItem(firstOption);
-    }
+    this.listbox().focus();
   }
 
   firstSelectedOptionIndex() {
@@ -229,9 +215,5 @@ export class SelectComponent
 
   panelClosed() {
     this._onTouched?.();
-  }
-
-  ngOnDestroy(): void {
-    this.keyManager.destroy();
   }
 }

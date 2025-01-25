@@ -1,11 +1,24 @@
 :host {
   display: block;
-  padding: var(--nv-option-padding);
-  cursor: var(--nv-option-cursor);
 
-  &:hover,
-  &.is-active {
-    background: var(--nv-accent);
-    color: var(--nv-accent-foreground);
+  .context-menu-item-button {
+    width: 100%;
+    text-align: left;
+    padding: var(--app-option-padding);
+
+    &:focus-visible,
+    &:hover {
+      outline: none;
+      background: var(--accent);
+      color: var(--accent-foreground);
+    }
+    padding: var(--nv-option-padding);
+    cursor: var(--nv-option-cursor);
+
+    &:hover,
+    &.is-active {
+      background: var(--nv-accent);
+      color: var(--nv-accent-foreground);
+    }
   }
 }
