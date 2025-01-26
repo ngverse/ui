@@ -6,13 +6,7 @@ import {
 } from '@angular/core';
 import { ButtonLoaderComponent } from './button-loader.component';
 
-type COLOR_TYPES =
-  | 'primary'
-  | 'secondary'
-  | 'danger'
-  | 'success'
-  | 'default'
-  | 'none';
+type COLOR_TYPES = 'primary' | 'secondary' | 'danger' | 'success' | 'none';
 
 type VARIANT_TYPES = 'fill' | 'outline' | 'link' | 'none';
 
