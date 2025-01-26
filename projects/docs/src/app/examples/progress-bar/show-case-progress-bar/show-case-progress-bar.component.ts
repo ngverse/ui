@@ -1,5 +1,5 @@
 import { Platform } from '@angular/cdk/platform';
-import { Component, inject, signal } from '@angular/core';
+import { afterNextRender, Component, inject, signal } from '@angular/core';
 import { ProgressBarComponent } from '@ng-verse/progress-bar/progress-bar.component';
 
 @Component({
@@ -13,10 +13,10 @@ export class ShowCaseProgressBarComponent {
   platform = inject(Platform);
 
   constructor() {
-    if (this.platform.isBrowser) {
+    afterNextRender(() => {
       setInterval(() => {
-        this.value.update((val) => val + 1);
-      }, 100);
-    }
+        this.value.update((val) => val + 10);
+      }, 1000);
+    });
   }
 }
