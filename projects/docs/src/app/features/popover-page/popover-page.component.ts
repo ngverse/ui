@@ -35,19 +35,13 @@ export class PopoverPageComponent {
         name: 'PopoverComponent',
         type: 'component',
         selector: 'app-popover',
-        outputs: [
-          {
-            name: 'opened',
-            description: 'Emits when the popover is opened',
-            value: 'void',
-          },
-          {
-            name: 'closed',
-            description: 'Emits when the popover is closed',
-            value: 'void',
-          },
-        ],
         inputs: [
+          {
+            name: 'isOpen',
+            type: 'model<boolean>()',
+            description: 'Determines whether the popover is open or closed',
+            default: 'false',
+          },
           {
             name: 'origin',
             type: 'PopoverOriginDirective',
@@ -55,10 +49,10 @@ export class PopoverPageComponent {
             default: EMPTY_API_INPUT_DEFAULT_VALUE,
           },
           {
-            name: 'isOpen',
-            type: 'model<boolean>()',
-            description: 'Determines whether the popover is open or closed',
-            default: 'false',
+            name: 'coordinates',
+            type: '{x:number,y:number}',
+            description:
+              'The coordinates of the popover, if origin is not provided',
           },
           {
             name: 'offsetX',
@@ -75,32 +69,70 @@ export class PopoverPageComponent {
             default: '0',
           },
           {
+            name: 'styled',
+            type: 'boolean',
+            description: 'Applies default styles to the popover',
+            default: 'false',
+          },
+          {
+            name: 'hasBackdrop',
+            type: 'boolean',
+            description: 'Displays a backdrop behind the popover',
+            default: 'false',
+          },
+          {
             name: 'blockScroll',
             type: 'boolean',
             description: 'Prevents scrolling of the page when popover is open',
-            default: 'true',
+            default: 'false',
+          },
+          {
+            name: 'outsideClose',
+            type: 'boolean',
+            description:
+              'Closes the popover when the user clicks outside or presses the escape key',
+            default: 'false',
           },
           {
             name: 'stretchToOrigin',
             type: 'boolean',
             description:
               'Stretches the width of the popover to fit the origin element',
-            default: 'true',
+            default: 'false',
+          },
+          {
+            name: 'restoreFocus',
+            type: 'boolean',
+            description:
+              'Restores focus to the origin element after the popover is closed',
+            default: 'false',
           },
           {
             name: 'positionY',
-            type: 'bottom',
+            type: 'top | right | bottom | left',
             description:
               'The vertical position of the popover relative to the origin',
             default: 'bottom',
           },
+        ],
+        outputs: [
           {
-            name: 'closeOnBackdropClick',
-            type: 'boolean',
-            description: 'Closes the popover when the backdrop is clicked',
-            default: 'true',
+            name: 'opened',
+            description: 'Emits when the popover is opened',
+            value: 'void',
+          },
+          {
+            name: 'closed',
+            description: 'Emits when the popover is closed',
+            value: 'void',
           },
         ],
+      },
+      {
+        name: 'PopoverOriginDirective',
+        type: 'directive',
+        selector: '[appPopoverOrigin]',
+        description: 'The element to which the popover should be attached',
       },
     ],
   };

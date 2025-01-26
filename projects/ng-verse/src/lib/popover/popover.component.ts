@@ -35,7 +35,7 @@ import {
   Subscription,
 } from 'rxjs';
 import { PopoverOriginDirective } from './popover-origin.directive';
-export type POPOVER_POSITIONS = 'top' | 'right' | 'bottom' | 'left';
+export type POPOVER_POSITIONS_Y = 'top' | 'right' | 'bottom' | 'left';
 export interface POPOVER_COORDINATES {
   x: number;
   y: number;
@@ -72,7 +72,7 @@ export class PopoverComponent implements OnDestroy {
   outsideClose = input(false);
   stretchToOrigin = input(false);
   restoreFocus = input(false);
-  position = input<POPOVER_POSITIONS>('bottom');
+  positionY = input<POPOVER_POSITIONS_Y>('bottom');
 
   opened = output();
   closed = output();
@@ -127,7 +127,7 @@ export class PopoverComponent implements OnDestroy {
       const origin = this.origin();
       const coordinates = this.coordinates();
       const connectingTo = origin ? origin.el : coordinates;
-      const position = this.position();
+      const position = this.positionY();
       if (!connectingTo) {
         throw new Error('origin or coordinates must be provided');
       }
@@ -215,7 +215,7 @@ export class PopoverComponent implements OnDestroy {
     });
   }
 
-  dispose() {
+  private dispose() {
     this.overlayRef?.dispose();
     this.overlayRef = undefined;
     this.closed.emit();
@@ -224,7 +224,7 @@ export class PopoverComponent implements OnDestroy {
     }
   }
 
-  getOverlayPosition(position: POPOVER_POSITIONS): ConnectedPosition {
+  private getOverlayPosition(position: POPOVER_POSITIONS_Y): ConnectedPosition {
     switch (position) {
       case 'top':
         return {
@@ -232,6 +232,8 @@ export class PopoverComponent implements OnDestroy {
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
+          offsetX: this.offsetX(),
+          offsetY: this.offsetY(),
         };
       case 'right':
         return {
@@ -239,6 +241,8 @@ export class PopoverComponent implements OnDestroy {
           originY: 'center',
           overlayX: 'start',
           overlayY: 'center',
+          offsetX: this.offsetX(),
+          offsetY: this.offsetY(),
         };
       case 'bottom':
         return {
@@ -246,6 +250,8 @@ export class PopoverComponent implements OnDestroy {
           originY: 'bottom',
           overlayX: 'center',
           overlayY: 'top',
+          offsetX: this.offsetX(),
+          offsetY: this.offsetY(),
         };
       case 'left':
         return {
@@ -253,6 +259,8 @@ export class PopoverComponent implements OnDestroy {
           originY: 'center',
           overlayX: 'end',
           overlayY: 'center',
+          offsetX: this.offsetX(),
+          offsetY: this.offsetY(),
         };
     }
   }
