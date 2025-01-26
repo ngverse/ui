@@ -22,20 +22,19 @@ import { ListboxRegistry } from './listbox-registry';
 export class ListboxItemDirective<T = unknown>
   implements ListKeyManagerOption, OnDestroy
 {
-  private host = inject<ElementRef<HTMLElement>>(ElementRef);
-  _isActive = signal(false);
-  private registry = inject(ListboxRegistry);
-
   value = input<T>(undefined, { alias: 'appListboxItem' });
-
+  _isActive = signal(false);
   clicked = output<void>();
+
+  private host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private registry = inject(ListboxRegistry);
 
   // ListKeyManagerOption currently has `disabled` as a boolean,
   // not a signal type. Therefore, we need to use the @Input decorator here.
   @Input()
   @HostBinding('disabled')
   disabled?: boolean;
-  getLabel?() {
+  getLabel() {
     return this.host.nativeElement.textContent || '';
   }
 
