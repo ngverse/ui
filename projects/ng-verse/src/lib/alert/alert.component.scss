@@ -1,23 +1,44 @@
 :host {
   padding: 16px;
+  display: block;
   border-radius: var(--nv-border-radius);
+  &.fill {
+    &.success {
+      background: var(--nv-success);
+      color: var(--nv-success-foreground);
+    }
 
-  &.success {
-    background: var(--nv-success);
-    color: var(--nv-success-foreground);
+    &.danger {
+      background: var(--nv-danger);
+      color: var(--nv-danger-foreground);
+    }
+    &.default {
+      background: var(--nv-inverse);
+      color: var(--nv-inverse-foreground);
+    }
+
+    &.warning {
+      background: var(--nv-warning);
+      color: var(--nv-warning-foreground);
+    }
   }
 
-  &.danger {
-    background: var(--nv-danger);
-    color: var(--nv-danger-foreground);
-  }
-  &.default {
-    border: var(--nv-border);
-  }
+  &.outline {
+    background: transparent;
+    // font-weight: 500;
+    &.success {
+      color: var(--nv-success);
+    }
 
-  &.warning {
-    background: var(--nv-warning);
-    color: var(--nv-warning-foreground);
-    color: white;
+    &.danger {
+      color: var(--nv-danger);
+    }
+    &.default {
+      border: var(--nv-border);
+    }
+
+    &.warning {
+      color: var(--nv-warning);
+    }
   }
 }

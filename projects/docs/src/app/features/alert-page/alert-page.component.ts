@@ -56,6 +56,12 @@ export class AlertPageComponent {
             default: 'default',
             description: 'defines the type of alert',
           },
+          {
+            name: 'variant',
+            type: 'fill | outline',
+            default: 'fill',
+            description: 'defines the variant of alert',
+          },
         ],
       },
       {

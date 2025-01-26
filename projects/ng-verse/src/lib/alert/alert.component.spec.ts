@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { AlertBodyComponent } from './alert-body.component';
 import { AlertHeaderComponent } from './alert-header.component';
-import { ALERT_TYPES, AlertComponent } from './alert.component';
+import { AlertComponent } from './alert.component';
 
 describe('AlertComponent', () => {
   let component: AlertTestComponent;
@@ -43,16 +43,22 @@ describe('AlertComponent', () => {
     const body = nativeElement.querySelector('app-alert-body') as HTMLElement;
     expect(body.textContent?.trim()).toBe('I am body');
   });
+  it('should add variant class', () => {
+    component.variant.set('outline');
+    fixture.detectChanges();
+    expect(alertRootElement.classList.contains('outline')).toBeTrue();
+  });
 });
 
 @Component({
   imports: [AlertComponent, AlertHeaderComponent, AlertBodyComponent],
-  template: `<app-alert [type]="type()">
+  template: `<app-alert [type]="type()" [variant]="variant()">
     <app-alert-header>I am header </app-alert-header>
     <app-alert-body> I am body </app-alert-body>
   </app-alert>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class AlertTestComponent {
-  type = signal<ALERT_TYPES>('default');
+  type = signal<'success' | 'danger' | 'warning' | 'default'>('default');
+  variant = signal<'fill' | 'outline'>('fill');
 }
