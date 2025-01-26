@@ -2,8 +2,7 @@
 <app-select
   [formControl]="formControlSingle"
   placeholder="Countries"
-  class="w-[250px] block"
-  [stretch]="true"
+  class="w-[250px]"
 >
   @for (option of countries; track $index) {
     <app-option [value]="option.code">{{ option.name }}</app-option>
@@ -14,8 +13,7 @@
 <app-select
   [formControl]="formControlMulti"
   placeholder="Countries"
-  class="w-[250px] block"
-  [stretch]="true"
+  class="w-[250px]"
   [multiple]="true"
 >
   @for (option of countries; track $index) {

@@ -16,8 +16,6 @@ import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
-  contentChild,
   effect,
   ElementRef,
   inject,
@@ -25,10 +23,8 @@ import {
   model,
   OnDestroy,
   output,
-  TemplateRef,
   untracked,
   viewChild,
-  ViewContainerRef,
 } from '@angular/core';
 import {
   asyncScheduler,
@@ -39,7 +35,7 @@ import {
   Subscription,
 } from 'rxjs';
 import { PopoverOriginDirective } from './popover-origin.directive';
-export type POPOVER_POSITIONS = 'top' | 'right' | 'bottom' | 'left';
+export type POPOVER_POSITIONS_Y = 'top' | 'right' | 'bottom' | 'left';
 export interface POPOVER_COORDINATES {
   x: number;
   y: number;
@@ -65,48 +61,27 @@ export interface POPOVER_COORDINATES {
   ],
 })
 export class PopoverComponent implements OnDestroy {
-  overlay = inject(Overlay);
-  tempRef = contentChild.required(TemplateRef);
-  vf = inject(ViewContainerRef);
   isOpen = model(false);
-  hasBackdrop = input<boolean>(false);
-
-  blockScroll = input<boolean>(false);
-
-  outsideClose = input(false);
-
-  stretchToOrigin = input(false);
-
-  restoreFocus = input(false);
-
-  styled = input(true);
-
-  position = input<POPOVER_POSITIONS>('bottom');
-
-  overlayPosition = computed(() => [
-    {
-      ...this.getOverlayPosition(this.position()),
-      offsetX: this.offsetX(),
-      offsetY: this.offsetY(),
-    },
-  ]);
-
   origin = input<PopoverOriginDirective>();
-  popover = viewChild.required<ElementRef<HTMLElement>>('popover');
-
   coordinates = input<POPOVER_COORDINATES>();
-
-  document = inject(DOCUMENT);
-
   offsetX = input<number>();
   offsetY = input<number>();
+  styled = input(false);
+  hasBackdrop = input<boolean>(false);
+  blockScroll = input<boolean>(false);
+  outsideClose = input(false);
+  stretchToOrigin = input(false);
+  restoreFocus = input(false);
+  positionY = input<POPOVER_POSITIONS_Y>('bottom');
 
   opened = output();
   closed = output();
 
-  overlayRef: OverlayRef | undefined;
-
-  globalSub: Subscription | undefined;
+  private overlay = inject(Overlay);
+  private popover = viewChild.required<ElementRef<HTMLElement>>('popover');
+  private document = inject(DOCUMENT);
+  private overlayRef: OverlayRef | undefined;
+  private globalSub: Subscription | undefined;
 
   get isOpened() {
     return !!this.overlayRef;
@@ -138,8 +113,37 @@ export class PopoverComponent implements OnDestroy {
     if (!this.isOpened) {
       return;
     }
-
     this.isOpen.set(false);
+  }
+
+  show() {
+    if (this.isOpened) {
+      return;
+    }
+    untracked(() => {
+      const scrollStrategy = this.blockScroll()
+        ? this.overlay.scrollStrategies.block()
+        : this.overlay.scrollStrategies.reposition();
+      const origin = this.origin();
+      const coordinates = this.coordinates();
+      const connectingTo = origin ? origin.el : coordinates;
+      const position = this.positionY();
+      if (!connectingTo) {
+        throw new Error('origin or coordinates must be provided');
+      }
+
+      this.overlayRef = this.overlay.create({
+        positionStrategy: this.overlay
+          .position()
+          .flexibleConnectedTo(connectingTo)
+          .withPositions([this.getOverlayPosition(position)])
+          .withLockedPosition(true),
+        hasBackdrop: this.hasBackdrop(),
+        scrollStrategy: scrollStrategy,
+      });
+      this.overlayRef.attach(new DomPortal(this.popover()));
+      this.tryStretch();
+    });
   }
 
   onDone(event: AnimationEvent) {
@@ -154,37 +158,6 @@ export class PopoverComponent implements OnDestroy {
       this.listenToGlobalEvents();
       this.opened.emit();
     }
-  }
-
-  show() {
-    if (this.isOpened) {
-      return;
-    }
-
-    untracked(() => {
-      const scrollStrategy = this.blockScroll()
-        ? this.overlay.scrollStrategies.block()
-        : this.overlay.scrollStrategies.reposition();
-      const origin = this.origin();
-      const coordinates = this.coordinates();
-      const connectingTo = origin ? origin.el : coordinates;
-
-      if (!connectingTo) {
-        throw new Error('origin or coordinates must be provided');
-      }
-
-      this.overlayRef = this.overlay.create({
-        positionStrategy: this.overlay
-          .position()
-          .flexibleConnectedTo(connectingTo)
-          .withPositions(this.overlayPosition())
-          .withLockedPosition(true),
-        hasBackdrop: this.hasBackdrop(),
-        scrollStrategy: scrollStrategy,
-      });
-      this.overlayRef.attach(new DomPortal(this.popover()));
-      this.tryStretch();
-    });
   }
 
   private listenToGlobalEvents() {
@@ -202,7 +175,6 @@ export class PopoverComponent implements OnDestroy {
       const escapeEvent$ = overlayRef
         .keydownEvents()
         .pipe(filter((event) => event.key === 'Escape'));
-
       this.globalSub.add(
         merge(escapeEvent$, outsideClick$).subscribe(() => {
           this.hide();
@@ -223,24 +195,6 @@ export class PopoverComponent implements OnDestroy {
     );
   }
 
-  private tryStretch() {
-    untracked(() => {
-      const origin = this.origin();
-      if (this.stretchToOrigin() && origin) {
-        this.popover().nativeElement.style.width = origin.el.offsetWidth + 'px';
-      }
-    });
-  }
-
-  dispose() {
-    this.overlayRef?.dispose();
-    this.overlayRef = undefined;
-    this.closed.emit();
-    if (this.restoreFocus()) {
-      this.origin()?.el.focus();
-    }
-  }
-
   private eventHappenedInsidePopover(event: Event) {
     const popoverEl = this.popover().nativeElement;
     const target = event.target as Node;
@@ -252,7 +206,25 @@ export class PopoverComponent implements OnDestroy {
     return false;
   }
 
-  getOverlayPosition(position: POPOVER_POSITIONS): ConnectedPosition {
+  private tryStretch() {
+    untracked(() => {
+      const origin = this.origin();
+      if (this.stretchToOrigin() && origin) {
+        this.popover().nativeElement.style.width = origin.el.offsetWidth + 'px';
+      }
+    });
+  }
+
+  private dispose() {
+    this.overlayRef?.dispose();
+    this.overlayRef = undefined;
+    this.closed.emit();
+    if (this.restoreFocus()) {
+      this.origin()?.el.focus();
+    }
+  }
+
+  private getOverlayPosition(position: POPOVER_POSITIONS_Y): ConnectedPosition {
     switch (position) {
       case 'top':
         return {
@@ -260,6 +232,8 @@ export class PopoverComponent implements OnDestroy {
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
+          offsetX: this.offsetX(),
+          offsetY: this.offsetY(),
         };
       case 'right':
         return {
@@ -267,6 +241,8 @@ export class PopoverComponent implements OnDestroy {
           originY: 'center',
           overlayX: 'start',
           overlayY: 'center',
+          offsetX: this.offsetX(),
+          offsetY: this.offsetY(),
         };
       case 'bottom':
         return {
@@ -274,6 +250,8 @@ export class PopoverComponent implements OnDestroy {
           originY: 'bottom',
           overlayX: 'center',
           overlayY: 'top',
+          offsetX: this.offsetX(),
+          offsetY: this.offsetY(),
         };
       case 'left':
         return {
@@ -281,6 +259,8 @@ export class PopoverComponent implements OnDestroy {
           originY: 'center',
           overlayX: 'end',
           overlayY: 'center',
+          offsetX: this.offsetX(),
+          offsetY: this.offsetY(),
         };
     }
   }

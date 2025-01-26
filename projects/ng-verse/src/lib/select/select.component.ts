@@ -63,7 +63,6 @@ export type CompareWith = (o1: any, o2: any) => boolean;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectComponent implements ControlValueAccessor, Validator {
-  stretch = input<boolean>(false);
   multiple = input(false);
   required = input(false);
   placeholder = input<string>();

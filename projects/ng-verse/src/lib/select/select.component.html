@@ -1,5 +1,4 @@
 <button
-  [class.stretch]="stretch()"
   class="select-button"
   #selectButton
   appPopoverOrigin
@@ -18,6 +17,8 @@
 <app-popover
   [outsideClose]="true"
   [restoreFocus]="true"
+  [blockScroll]="true"
+  [styled]="true"
   [stretchToOrigin]="true"
   (opened)="panelOpened()"
   (closed)="panelClosed()"
