@@ -21,16 +21,14 @@ import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
 })
 export class ContextMenuComponent implements OnInit {
   trigger = input.required<ContextMenuTriggerDirective>();
-
-  popover = viewChild.required(PopoverComponent);
-
   isOpen = signal(false);
+
   clientX = signal<number>(0);
   clientY = signal<number>(0);
-  itemsList = viewChild.required(ListboxDirective);
+  private listbox = viewChild.required(ListboxDirective);
 
   opened() {
-    this.itemsList().focus();
+    this.listbox().focus();
   }
 
   ngOnInit(): void {
@@ -46,6 +44,6 @@ export class ContextMenuComponent implements OnInit {
     });
   }
   closed() {
-    this.itemsList().reset();
+    this.listbox().reset();
   }
 }

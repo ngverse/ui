@@ -41,8 +41,4 @@ export class ShowCaseContextMenuComponent {
       });
     });
   }
-
-  selected() {
-    console.log('SELECTED');
-  }
 }

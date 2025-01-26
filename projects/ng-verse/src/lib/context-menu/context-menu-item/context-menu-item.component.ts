@@ -3,6 +3,7 @@ import {
   Component,
   forwardRef,
   inject,
+  input,
   output,
 } from '@angular/core';
 import { ListboxItemDirective } from '../../listbox/listbox-item.directive';
@@ -23,6 +24,8 @@ export class ContextMenuItemComponent {
   selected = output();
 
   menu = inject<ContextMenuComponent>(forwardRef(() => ContextMenuComponent));
+
+  disabled = input(false);
 
   onClick() {
     this.selected.emit();

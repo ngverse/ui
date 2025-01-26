@@ -3,24 +3,20 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: var(--nv-option-padding);
-  cursor: var(--nv-option-cursor);
+  padding: 6px;
+  cursor: pointer;
 
   &:focus-visible,
-  &:hover,
+  &:hover:not([disabled]),
   &.selected {
     background: var(--nv-accent);
     color: var(--nv-accent-foreground);
   }
   &:focus-visible {
-    outline: 1px solid var(--nv-ring);
+    outline: none;
   }
 
-  &.disabled {
+  &[disabled] {
     color: var(--nv-disabled-foreground);
   }
-}
-
-.option-disabled {
-  color: var(--nv-option-disabled-color);
 }

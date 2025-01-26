@@ -2,6 +2,7 @@ import { ListKeyManagerOption } from '@angular/cdk/a11y';
 import {
   Directive,
   ElementRef,
+  HostBinding,
   inject,
   input,
   Input,
@@ -31,6 +32,7 @@ export class ListboxItemDirective<T = unknown>
   // ListKeyManagerOption currently has `disabled` as a boolean,
   // not a signal type. Therefore, we need to use the @Input decorator here.
   @Input()
+  @HostBinding('disabled')
   disabled?: boolean;
   getLabel() {
     return this.host.nativeElement.textContent || '';
