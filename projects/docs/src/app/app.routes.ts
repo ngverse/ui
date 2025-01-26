@@ -240,6 +240,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'listbox',
+        loadComponent: () =>
+          import('./features/listbox-page/listbox-page.component').then(
+            (p) => p.ListboxPageComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'introduction',
         pathMatch: 'full',
