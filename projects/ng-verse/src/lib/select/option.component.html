@@ -3,7 +3,8 @@
   [class.selected]="isSelected()"
   tabindex="-1"
   class="option"
-  [class.is-active]="isActive()"
+  [disabled]="disabled()"
+  [class.disabled]="disabled()"
 >
   <div>
     <ng-content></ng-content>

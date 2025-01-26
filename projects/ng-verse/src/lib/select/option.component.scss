@@ -6,24 +6,20 @@
   padding: var(--nv-option-padding);
   cursor: var(--nv-option-cursor);
 
+  &:focus-visible,
+  &:hover,
+  &.selected {
+    background: var(--nv-accent);
+    color: var(--nv-accent-foreground);
+  }
   &:focus-visible {
-    outline: 1px solid var(--ring);
-    outline-offset: -1px;
+    outline: 1px solid var(--nv-ring);
+  }
+
+  &.disabled {
+    color: var(--nv-disabled-foreground);
   }
 }
-// .selected {
-//   background: var(--accent);
-//   color: var(--accent-foreground);
-//   &:hover:not(.selected, .listbox-item-active, .option-disabled) {
-//     background: var(--nv-accent);
-//     color: var(--nv-accent-foreground);
-//   }
-// }
-// .selected,
-// .is-active {
-//   background: var(--nv-accent);
-//   color: var(--nv-accent-foreground);
-// }
 
 .option-disabled {
   color: var(--nv-option-disabled-color);
