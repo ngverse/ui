@@ -5,7 +5,6 @@ import {
   forwardRef,
   inject,
   input,
-  signal,
 } from '@angular/core';
 import { ListboxItemDirective } from '../listbox/listbox-item.directive';
 import { SelectCheckIconComponent } from './select-check-icon.component';
@@ -19,9 +18,10 @@ import { SelectComponent } from './select.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OptionComponent {
-  isActive = signal(false);
   value = input.required<unknown>();
   isSelected = () => this.select.isSelected(this.value());
+
+  disabled = input(false);
 
   private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 
