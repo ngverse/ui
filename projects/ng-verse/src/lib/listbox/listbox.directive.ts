@@ -1,12 +1,12 @@
 import { Directionality } from '@angular/cdk/bidi';
 import {
-  afterNextRender,
   afterRenderEffect,
   Directive,
   effect,
   inject,
   Injector,
   input,
+  OnDestroy,
   output,
   untracked,
 } from '@angular/core';
@@ -33,7 +33,7 @@ export type CompareWith = (o1: any, o2: any) => boolean;
   },
   exportAs: 'appListbox',
 })
-export class ListboxDirective<T = unknown> {
+export class ListboxDirective<T = unknown> implements OnDestroy {
   withWrap = input(true);
   orientation = input<'horizontal' | 'vertical'>('vertical');
   value = input<T>(undefined, { alias: 'appListbox' });
@@ -53,27 +53,31 @@ export class ListboxDirective<T = unknown> {
   }
 
   constructor() {
-    afterNextRender(() => {
+    afterRenderEffect(() => {
       const orientation = this.orientation();
       const withWrap = this.withWrap();
+      const withTypeAhead = this.withTypeAhead();
 
-      let keyManager = this.keyManager;
+      untracked(() => {
+        let keyManager = this.keyManager;
+        keyManager?.destroy();
 
-      if (withWrap) {
-        keyManager = keyManager.withWrap();
-      }
-      if (this.withTypeAhead()) {
-        keyManager = keyManager.withTypeAhead();
-      }
+        if (withWrap) {
+          keyManager = keyManager.withWrap();
+        }
+        if (withTypeAhead) {
+          keyManager = keyManager.withTypeAhead();
+        }
 
-      if (orientation === 'vertical') {
-        keyManager = this.keyManager.withVerticalOrientation(true);
-      } else {
-        keyManager = this.keyManager
-          .withHorizontalOrientation(this.directonality.value)
-          .withVerticalOrientation(false);
-      }
-      this.keyManager = keyManager;
+        if (orientation === 'vertical') {
+          keyManager = this.keyManager.withVerticalOrientation(true);
+        } else {
+          keyManager = this.keyManager
+            .withHorizontalOrientation(this.directonality.value)
+            .withVerticalOrientation(false);
+        }
+        this.keyManager = keyManager;
+      });
     });
 
     afterRenderEffect(() => {
@@ -105,27 +109,40 @@ export class ListboxDirective<T = unknown> {
       this.keyManager.focusTarget(false);
 
       if (isMultiple) {
+        //If there is no value activate firrst item
         if (Array.isArray(value)) {
           if (value.length === 0) {
             this.keyManager.setFirstItemActive();
             return;
           }
-
+          //find the last value and try to find the item
+          //if it is found activate item
+          //if there is no value found we activate first item
           const lastValue = value[value.length - 1];
           const item = items.find((i) => compareWith(i.value(), lastValue));
-          if (item && this.keyManager.activeItem !== item) {
-            this.keyManager.setActiveItem(lastValue);
+          if (item) {
+            if (this.keyManager.activeItem !== item) {
+              this.keyManager.setActiveItem(item);
+            }
+          } else {
+            this.keyManager.setFirstItemActive();
           }
-          return;
         }
       } else {
+        //If there is no value we activate first
         if (value === undefined || value === null || value === '') {
           this.keyManager.setFirstItemActive();
           return;
         } else {
+          //Otherwise we try to find the item by value and activate
+          //if not found activate first
           const item = items.find((i) => compareWith(i.value(), value));
-          if (item && this.keyManager.activeItem !== item) {
-            this.keyManager.setActiveItem(item);
+          if (item) {
+            if (this.keyManager.activeItem !== item) {
+              this.keyManager.setActiveItem(item);
+            }
+          } else {
+            this.keyManager.setFirstItemActive();
           }
         }
       }
@@ -145,5 +162,9 @@ export class ListboxDirective<T = unknown> {
   reset() {
     this.keyManager.focusTarget(false);
     this.keyManager.setActiveItem(-1);
+  }
+
+  ngOnDestroy(): void {
+    this.keyManager?.destroy();
   }
 }
