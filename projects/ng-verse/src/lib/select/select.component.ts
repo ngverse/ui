@@ -3,7 +3,6 @@ import {
   Component,
   computed,
   contentChildren,
-  ElementRef,
   forwardRef,
   input,
   signal,
@@ -70,7 +69,6 @@ export class SelectComponent implements ControlValueAccessor {
     { descendants: true }
   );
 
-  selectOptions = viewChild.required<ElementRef<HTMLElement>>('selectOptions');
   private _registerOnChangeFn: OnChangeFunction;
 
   findOptionByValue(value: unknown) {

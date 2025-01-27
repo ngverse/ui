@@ -44,6 +44,8 @@ export class SelectPageComponent {
       files: [
         ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
         ...this.sourceTreeBuilder.fullComponent('option', ROOT),
+        this.sourceTreeBuilder.component('option-group', ROOT),
+        this.sourceTreeBuilder.component('option-group-label', ROOT),
         this.sourceTreeBuilder.file('select-check-icon.component', ROOT),
         this.sourceTreeBuilder.file('select-icon.component', ROOT),
       ],
@@ -69,12 +71,6 @@ export class SelectPageComponent {
         selector: 'app-select',
         formBindable: true,
         inputs: [
-          {
-            name: 'stretch',
-            type: 'boolean',
-            default: 'false',
-            description: 'determines whether the select should be stretched',
-          },
           {
             name: 'multiple',
             type: 'boolean',
@@ -103,11 +99,38 @@ export class SelectPageComponent {
         inputs: [
           {
             name: 'value',
-            type: 'any',
+            type: 'unknown',
             description: 'The value of the option',
             default: EMPTY_API_INPUT_DEFAULT_VALUE,
           },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            description: 'Determines whether the option is disabled',
+            default: 'false',
+          },
         ],
+      },
+      {
+        name: 'OptionGroupComponent',
+        type: 'component',
+        selector: 'app-option-group',
+        description: 'Groups related options',
+        inputs: [
+          {
+            name: 'label',
+            type: 'string',
+            description: 'The label of the option group',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
+          },
+        ],
+      },
+      {
+        name: 'OptionGroupLabelComponent',
+        type: 'component',
+        selector: 'app-option-group-label',
+        description:
+          'The label of the option group, you can use this component instead of label input, when you need more customization',
       },
     ],
   };

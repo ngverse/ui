@@ -20,3 +20,19 @@
     <app-option [value]="option.code">{{ option.name }}</app-option>
   }
 </app-select>
+
+<p class="mb-2 mt-4">Directories</p>
+<app-select
+  [formControl]="dirFormControl"
+  placeholder="Countries"
+  class="w-[250px]"
+>
+  @for (dir of directories; track $index) {
+    <app-option-group>
+      <app-option-group-label>{{ dir.name }}</app-option-group-label>
+      @for (file of dir.files; track $index) {
+        <app-option [value]="file.name">{{ file.name }}</app-option>
+      }
+    </app-option-group>
+  }
+</app-select>
