@@ -3,7 +3,7 @@
   #selectButton
   appPopoverOrigin
   #origin="appPopoverOrigin"
-  (click)="toggle()"
+  (click)="togglePanel()"
   [disabled]="disabled()"
 >
   <span class="select-button-label">{{
@@ -35,6 +35,7 @@
     [withTypeAhead]="true"
     #selectOptions
   >
+    <ng-content select="app-option-group"></ng-content>
     <ng-content select="app-option"></ng-content>
   </div>
 </app-popover>

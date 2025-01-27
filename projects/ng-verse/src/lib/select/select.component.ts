@@ -127,22 +127,16 @@ export class SelectComponent implements ControlValueAccessor {
     this.disabled.set(isDisabled);
   }
 
+  togglePanel() {
+    this.isOpen.update((isOpen) => !isOpen);
+  }
+
   panelOpened() {
     this.listbox().focus();
   }
-
-  firstSelectedOptionIndex() {
-    const selectedOptions = this.selectedOptions();
-    if (!selectedOptions) {
-      return -1;
-    }
-    const selectedOption = selectedOptions[0];
-    if (selectedOption) {
-      return this.options().indexOf(selectedOption);
-    }
-    return -1;
+  panelClosed() {
+    this._onTouched?.();
   }
-
   toggleValue(value: unknown) {
     let values = this.values();
     if (!this.multiple()) {
@@ -166,13 +160,5 @@ export class SelectComponent implements ControlValueAccessor {
     if (!this.multiple()) {
       this.isOpen.set(false);
     }
-  }
-
-  toggle() {
-    this.isOpen.update((isOpen) => !isOpen);
-  }
-
-  panelClosed() {
-    this._onTouched?.();
   }
 }
