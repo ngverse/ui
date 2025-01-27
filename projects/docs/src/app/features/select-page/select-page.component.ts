@@ -61,6 +61,7 @@ export class SelectPageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    ariaLink: 'https://www.w3.org/WAI/ARIA/apg/patterns/combobox/',
     entities: [
       {
         name: 'SelectComponent',

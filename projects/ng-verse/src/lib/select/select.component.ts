@@ -49,6 +49,10 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     ListboxRegistry,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'combobox',
+    '[attr.aria-expanded]': 'isOpen()',
+  },
 })
 export class SelectComponent implements ControlValueAccessor {
   multiple = input(false);

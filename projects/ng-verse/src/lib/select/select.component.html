@@ -33,7 +33,9 @@
     (valueChange)="toggleValue($event)"
     [multiple]="true"
     [withTypeAhead]="true"
+    [withWrap]="false"
     #selectOptions
+    role="listbox"
   >
     <ng-content select="app-option-group"></ng-content>
     <ng-content select="app-option"></ng-content>
