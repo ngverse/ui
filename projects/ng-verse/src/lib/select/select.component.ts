@@ -3,7 +3,6 @@ import {
   Component,
   computed,
   contentChildren,
-  effect,
   ElementRef,
   forwardRef,
   input,
@@ -11,14 +10,9 @@ import {
   viewChild,
 } from '@angular/core';
 import {
-  AbstractControl,
   ControlValueAccessor,
-  NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
-  ValidationErrors,
-  Validator,
-  Validators,
 } from '@angular/forms';
 
 import { ListboxRegistry } from '../listbox/listbox-registry';
@@ -29,7 +23,6 @@ import { OptionComponent } from './option.component';
 import { SelectIconComponent } from './select-icon.component';
 
 type OnTouchedFunction = (() => void) | undefined;
-type ValidatorChangeFunction = (() => void) | undefined;
 
 export type OnChangeFunction = ((_: unknown) => void) | undefined;
 
@@ -53,18 +46,12 @@ export type CompareWith = (o1: any, o2: any) => boolean;
       multi: true,
       useExisting: SelectComponent,
     },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: SelectComponent,
-      multi: true,
-    },
     ListboxRegistry,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectComponent implements ControlValueAccessor, Validator {
+export class SelectComponent implements ControlValueAccessor {
   multiple = input(false);
-  required = input(false);
   placeholder = input<string>();
   compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
   isOpen = signal(false);
@@ -80,7 +67,6 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   );
 
   selectOptions = viewChild.required<ElementRef<HTMLElement>>('selectOptions');
-  private _validatorChangeFn: ValidatorChangeFunction;
   private _registerOnChangeFn: OnChangeFunction;
 
   findOptionByValue(value: unknown) {
@@ -116,17 +102,6 @@ export class SelectComponent implements ControlValueAccessor, Validator {
 
   isSelected(value: unknown) {
     return this.values()?.some((v) => this.compareWith()(v, value));
-  }
-
-  constructor() {
-    effect(() => {
-      this.required();
-      this._validatorChangeFn?.();
-    });
-  }
-
-  registerOnValidatorChange?(fn: () => void): void {
-    this._validatorChangeFn = fn;
   }
 
   writeValue(values: unknown): void {
@@ -166,21 +141,6 @@ export class SelectComponent implements ControlValueAccessor, Validator {
       return this.options().indexOf(selectedOption);
     }
     return -1;
-  }
-
-  validate(control: AbstractControl<boolean>): ValidationErrors | null {
-    const hasRequired = control.hasValidator(Validators.required);
-    if (!hasRequired) {
-      return null;
-    }
-    const values = this.values();
-    const anyNotEmpty = values?.some(
-      (v) => v !== null && v !== undefined && v !== ''
-    );
-    if (anyNotEmpty) {
-      return null;
-    }
-    return { required: true };
   }
 
   toggleValue(value: unknown) {
