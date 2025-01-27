@@ -82,12 +82,6 @@ export class SelectPageComponent {
               'determines whether the select allows multiple selection',
           },
           {
-            name: 'required',
-            type: 'boolean',
-            default: 'false',
-            description: 'determines whether the select is required',
-          },
-          {
             name: 'placeholder',
             type: 'string',
             default: EMPTY_API_INPUT_DEFAULT_VALUE,
