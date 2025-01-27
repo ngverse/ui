@@ -7,6 +7,7 @@ import {
   input,
 } from '@angular/core';
 import { ListboxItemDirective } from '../listbox/listbox-item.directive';
+import { OptionGroupComponent } from './option-group.component';
 import { SelectCheckIconComponent } from './select-check-icon.component';
 import { SelectComponent } from './select.component';
 
@@ -20,8 +21,11 @@ import { SelectComponent } from './select.component';
 export class OptionComponent {
   value = input.required<unknown>();
   isSelected = () => this.select.isSelected(this.value());
+  optionGroup = inject(OptionGroupComponent, { optional: true });
 
   disabled = input(false);
+
+  inGroup = !!this.optionGroup;
 
   private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 

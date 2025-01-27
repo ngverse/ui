@@ -61,6 +61,7 @@ export class SelectPageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    ariaLink: 'https://www.w3.org/WAI/ARIA/apg/patterns/combobox/',
     entities: [
       {
         name: 'SelectComponent',
@@ -80,12 +81,6 @@ export class SelectPageComponent {
             default: 'false',
             description:
               'determines whether the select allows multiple selection',
-          },
-          {
-            name: 'required',
-            type: 'boolean',
-            default: 'false',
-            description: 'determines whether the select is required',
           },
           {
             name: 'placeholder',

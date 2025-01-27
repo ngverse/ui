@@ -6,6 +6,10 @@
   padding: 6px;
   cursor: pointer;
 
+  &.in-group {
+    padding-left: 24px;
+  }
+
   &:focus-visible,
   &:hover:not([disabled]),
   &.selected {
