@@ -27,7 +27,7 @@ export class AccordionComponent {
 
   close(item: AccordionItemComponent) {
     item.isOpen.set(false);
-    if (this.multi() && this.openedAccordion() === item) {
+    if (!this.multi() && this.openedAccordion() === item) {
       this.openedAccordion.set(undefined);
     }
   }
