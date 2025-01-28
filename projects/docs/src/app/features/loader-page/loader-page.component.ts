@@ -67,7 +67,7 @@ export class LoaderPageComponent {
             type: 'boolean',
             default: 'true',
             description:
-              "If true, the parent element's style is automatically set to relative. If false, you must explicitly set it to either relative or absolute.",
+              "If true, the parent element's style is automatically set to relative. If false, you must explicitly set it to either relative or absolute. this input is needed when overlay=[true]",
           },
           {
             name: 'transparency',

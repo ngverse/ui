@@ -23,13 +23,12 @@ export class OptionComponent {
   isSelected = () => this.select.isSelected(this.value());
   optionGroup = inject(OptionGroupComponent, { optional: true });
 
+  select = inject<SelectComponent>(forwardRef(() => SelectComponent));
   disabled = input(false);
 
   inGroup = !!this.optionGroup;
 
   private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
-
-  select = inject<SelectComponent>(forwardRef(() => SelectComponent));
 
   get content() {
     return this.host.nativeElement.textContent;

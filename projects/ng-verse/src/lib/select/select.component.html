@@ -1,6 +1,5 @@
 <button
   class="select-button"
-  #selectButton
   appPopoverOrigin
   #origin="appPopoverOrigin"
   (click)="togglePanel()"
@@ -34,7 +33,6 @@
     [multiple]="true"
     [withTypeAhead]="true"
     [withWrap]="false"
-    #selectOptions
     role="listbox"
   >
     <ng-content select="app-option-group"></ng-content>

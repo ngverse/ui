@@ -1,13 +1,21 @@
 .show-case {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.infinite-loader {
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.article {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+app-card {
+  width: 200px;
+}
+
+input,
+button {
+  width: 100%;
 }

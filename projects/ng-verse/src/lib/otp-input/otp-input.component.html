@@ -7,9 +7,15 @@
   tabindex="-1"
   (cdkAutofill)="autoFilled()"
 />
-<div (paste)="onPaste($event)" class="code-container">
+<div
+  (paste)="onPaste($event)"
+  appListbox
+  [orientation]="'horizontal'"
+  class="code-container"
+>
   @for (item of codeLengthArray(); track $index) {
     <input
+      appListboxItem
       autocomplete="off"
       #inputs
       (input)="onInput($event, $index)"

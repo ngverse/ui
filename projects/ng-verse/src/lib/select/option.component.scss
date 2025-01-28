@@ -17,7 +17,7 @@
     color: var(--nv-accent-foreground);
   }
   &:focus-visible {
-    outline: none;
+    outline: 1px solid var(--nv-ring);
   }
 
   &[disabled] {

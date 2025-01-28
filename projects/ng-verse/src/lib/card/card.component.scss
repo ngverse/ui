@@ -7,9 +7,7 @@
     background: var(--nv-surface);
   }
   &.shadow {
-    box-shadow:
-      0 4px 6px -1px var(--nv-shadow),
-      0 2px 4px -2px var(--nv-shadow);
+    box-shadow: var(--nv-shadow);
   }
   outline: 0;
 

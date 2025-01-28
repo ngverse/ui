@@ -1,10 +1,17 @@
-<div class="article">
-  <p>
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry's standard dummy text ever since the
-    1500s, when an unknown printer took a galley of type and scrambled it to
-    make a type specimen book.
-  </p>
-  <app-loader [overlay]="true" [loading]="showLoader()"></app-loader>
-  <button appButton (click)="show()">Show Loader</button>
+<div class="show-case">
+  <app-card class="infinite-loader">
+    <app-loader [loading]="true"></app-loader>
+  </app-card>
+  <app-card>
+    <app-form-field>
+      <input appInput type="text" placeholder="Username" class="input" />
+    </app-form-field>
+    <app-form-field>
+      <input appInput type="password" placeholder="Password" class="input" />
+    </app-form-field>
+    <button appButton color="primary" size="sm" (click)="show()" class="button">
+      Loader Overlay
+    </button>
+    <app-loader [overlay]="true" [loading]="showLoader()"></app-loader>
+  </app-card>
 </div>

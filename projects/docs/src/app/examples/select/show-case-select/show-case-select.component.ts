@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { OptionGroupLabelComponent } from '@ng-verse/select/option-group-label.component';
+import { OptionGroupComponent } from '@ng-verse/select/option-group.component';
 import { OptionComponent } from '@ng-verse/select/option.component';
 import { SelectComponent } from '@ng-verse/select/select.component';
 const countries = [
@@ -25,15 +27,50 @@ const countries = [
   { code: 'NG', name: 'Nigeria' },
   { code: 'EG', name: 'Egypt' },
 ];
+
+const directories = [
+  {
+    name: 'Documents',
+    files: [
+      {
+        name: 'Profile Picture',
+      },
+      {
+        name: 'Work File',
+      },
+    ],
+  },
+  {
+    name: 'Downloads',
+    files: [
+      {
+        name: 'The Dark Knight',
+      },
+      {
+        name: 'Joker',
+      },
+    ],
+  },
+];
+
 @Component({
   selector: 'doc-show-case-select',
-  imports: [SelectComponent, ReactiveFormsModule, OptionComponent],
+  imports: [
+    SelectComponent,
+    ReactiveFormsModule,
+    OptionComponent,
+    OptionGroupComponent,
+    OptionGroupLabelComponent,
+  ],
   templateUrl: './show-case-select.component.html',
   styleUrl: './show-case-select.component.scss',
 })
 export class ShowCaseSelectComponent {
   countries = countries;
+  directories = directories;
   formControlSingle = new FormControl(null, Validators.required);
 
   formControlMulti = new FormControl(['US', 'CA'], Validators.required);
+
+  dirFormControl = new FormControl(null);
 }
