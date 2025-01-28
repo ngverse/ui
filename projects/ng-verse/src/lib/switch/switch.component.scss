@@ -1,8 +1,13 @@
 :host {
   display: inline-flex;
   gap: 8px;
+  cursor: pointer;
   &.start {
     flex-direction: row-reverse;
+  }
+
+  label {
+    cursor: pointer;
   }
 
   &.disabled {
@@ -26,7 +31,6 @@
   border-radius: 15px;
   background-color: var(--nv-surface-2);
   position: relative;
-  cursor: pointer;
   transition: background-color 0.3s;
   &.checked {
     background-color: var(--nv-primary);
