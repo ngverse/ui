@@ -3,6 +3,7 @@ import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
+import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -32,22 +33,37 @@ export class DialogPageComponent {
 
   sourceTree: SourceTreeFolder[] = [
     {
-      name: ROOT,
+      name: '/',
       files: [
         ...this.sourceTreeBuilder.service('dialog', ROOT),
-        ...this.sourceTreeBuilder.fullComponent('dialog', `${ROOT}/dialog`),
-        ...this.sourceTreeBuilder.fullComponent(
-          'alert-dialog',
-          `${ROOT}/alert-dialog`
-        ),
-        ...this.sourceTreeBuilder.fullComponent(
-          'confirm-dialog',
-          `${ROOT}/confirm-dialog`
-        ),
         ...this.sourceTreeBuilder.directive('dialog-close', `${ROOT}`, true),
         this.sourceTreeBuilder.component('dialog-close-icon', `${ROOT}`),
       ],
       hideName: true,
+    },
+    {
+      name: `dialog`,
+      files: [
+        ...this.sourceTreeBuilder.fullComponent('dialog', `${ROOT}/dialog`),
+      ],
+    },
+    {
+      name: `alert-dialog`,
+      files: [
+        ...this.sourceTreeBuilder.fullComponent(
+          'alert-dialog',
+          `${ROOT}/alert-dialog`
+        ),
+      ],
+    },
+    {
+      name: `confirm-dialog`,
+      files: [
+        ...this.sourceTreeBuilder.fullComponent(
+          'confirm-dialog',
+          `${ROOT}/confirm-dialog`
+        ),
+      ],
     },
   ];
 
@@ -195,8 +211,12 @@ export class DialogPageComponent {
         inputs: [
           {
             name: 'confirmOptions',
-            type: 'object',
+            type: `{title: string;
+  description: string;
+  yesLabel?: string;
+  noLabel?: string;}`,
             description: 'object with options for the dialog',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
           },
         ],
         outputs: [

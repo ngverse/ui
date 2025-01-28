@@ -4,17 +4,27 @@
   [(ngModel)]="selectedFile"
   (ngModelChange)="fileSelect()"
 >
-  @for (file of allFiles(); track $index) {
-    <app-option [value]="file">
-      <div class="flex items-center gap-1">
-        <img
-          width="14"
-          [alt]="file.language"
-          height="14"
-          [src]="'images/' + file.language + '.svg'"
-        />
-        {{ file.name }}
-      </div>
-    </app-option>
+  @for (folder of sourceTree(); track $index) {
+    <app-option-group>
+      <app-option-group-label class="flex items-center gap-2">
+        <img width="14" [alt]="folder" height="14" src="images/folder.svg" />{{
+          folder.hideName ? '/' : '/' + folder.name
+        }}
+      </app-option-group-label>
+
+      @for (file of folder.files; track $index) {
+        <app-option [value]="file">
+          <div class="flex items-center gap-1">
+            <img
+              width="14"
+              [alt]="file.language"
+              height="14"
+              [src]="'images/' + file.language + '.svg'"
+            />
+            {{ file.name }}
+          </div>
+        </app-option>
+      }
+    </app-option-group>
   }
 </app-select>

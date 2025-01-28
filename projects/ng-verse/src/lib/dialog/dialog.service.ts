@@ -25,7 +25,7 @@ export class DialogService {
   dialog<T>(
     component: ComponentType<unknown>,
     options?: Omit<DialogOptions, 'component'>
-  ): DialogReturn<T> {
+  ) {
     const title = options?.title;
     const showClose =
       options?.showClose === undefined ? true : options?.showClose;
@@ -38,7 +38,7 @@ export class DialogService {
         showClose,
       },
     });
-    return { close: dialogRef.close, closed: dialogRef.closed };
+    return dialogRef;
   }
 
   confirm(options: ConfirmDialogOptions): DialogReturn<boolean> {

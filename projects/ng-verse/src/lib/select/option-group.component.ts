@@ -17,7 +17,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
       .option-group-label {
         padding: 10px 12px;
         font-size: 14px;
-        font-style: italic;
       }
     }
   `,
