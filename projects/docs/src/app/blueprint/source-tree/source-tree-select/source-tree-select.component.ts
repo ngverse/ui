@@ -8,6 +8,8 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { OptionGroupLabelComponent } from '@ng-verse/select/option-group-label.component';
+import { OptionGroupComponent } from '@ng-verse/select/option-group.component';
 import { OptionComponent } from '@ng-verse/select/option.component';
 import { SelectComponent } from '@ng-verse/select/select.component';
 import { ChevronDown, Folder, LucideAngularModule } from 'lucide-angular';
@@ -15,7 +17,14 @@ import { SourceTreeFile, SourceTreeFolder } from '../source-tree-builder';
 
 @Component({
   selector: 'doc-source-tree-select',
-  imports: [LucideAngularModule, SelectComponent, OptionComponent, FormsModule],
+  imports: [
+    LucideAngularModule,
+    SelectComponent,
+    OptionComponent,
+    FormsModule,
+    OptionGroupComponent,
+    OptionGroupLabelComponent,
+  ],
   templateUrl: './source-tree-select.component.html',
   styleUrl: './source-tree-select.component.scss',
 })
