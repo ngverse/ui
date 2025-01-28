@@ -14,12 +14,14 @@ export type TOAST_POSITION =
   | 'bottom_left'
   | 'left_center';
 
+export type TOAST_ACTIONS = 'success' | 'warning' | 'danger' | 'default';
+
 interface ToastOptions {
   closeDelay?: number;
   autoClose?: boolean;
   showCloseIcon?: boolean;
   message: string;
-  action?: string;
+  action?: TOAST_ACTIONS;
   position?: TOAST_POSITION;
 }
 
@@ -79,17 +81,16 @@ export class ToastService {
     instance.message.set(genOptions.message);
     instance.action.set(genOptions.action);
     instance.showCloseIcon.set(genOptions.showCloseIcon);
-    instance.tooltipPosition.set(genOptions.position);
+    instance.position.set(genOptions.position);
     if (genOptions.autoClose) {
       this.timeoutId = setTimeout(() => {
-        this.close();
+        instance.startCloseAnimation();
       }, genOptions.closeDelay);
     }
-    instance.close.subscribe(() => {
-      this.close();
-      closed$.next();
-    });
 
+    instance.closeAnimationFinished.subscribe(() => {
+      this.close();
+    });
     const closed$ = new Subject<void>();
 
     return closed$.pipe(take(1));
@@ -100,7 +101,7 @@ export class ToastService {
       clearTimeout(this.timeoutId as number);
       this.timeoutId = undefined;
     }
-    this.overlayRef?.detach();
+    this.overlayRef?.dispose();
     this.overlayRef = undefined;
   }
 }

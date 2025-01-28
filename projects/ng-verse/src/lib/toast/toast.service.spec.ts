@@ -91,7 +91,7 @@ describe('ToastService', () => {
     });
     fixture.detectChanges();
     fixture.detectChanges();
-    expect(toastCompInstance().tooltipPosition()).toBe('top_left');
+    expect(toastCompInstance().position()).toBe('top_left');
   }));
   it('should not close toast if autoClose is false', fakeAsync(() => {
     service.open({
@@ -126,7 +126,7 @@ describe('ToastService', () => {
     fixture.detectChanges();
     fixture.detectChanges();
     expect(toastDebugElement()).toBeTruthy();
-    toastCompInstance().close.emit();
+    toastCompInstance().closeAnimationFinished.emit();
     fixture.detectChanges();
     fixture.detectChanges();
     expect(toastDebugElement()).toBeNull();

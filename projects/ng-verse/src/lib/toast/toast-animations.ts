@@ -8,81 +8,35 @@ import {
 } from '@angular/animations';
 
 export const TOAST_ANIMATIONS = trigger('slide', [
-  transition('* => left', [
+  transition('* => show', [
     animation([
       animate(
         '250ms 0ms',
         keyframes([
           style({
-            visibility: 'visible',
-            transform: 'translate3d(-100%, 0, 0)',
-            easing: 'ease',
-            offset: 0,
+            opacity: 0,
+            transform: '{{startTransform}}',
           }),
           style({
-            transform: 'translate3d(0, 0, 0)',
-            easing: 'ease',
-            offset: 1,
+            transform: '{{endTransform}}',
+            opacity: 1,
           }),
         ])
       ),
     ]),
   ]),
-  transition('* => right', [
+  transition('* => hide', [
     animation([
       animate(
         '250ms 0ms',
         keyframes([
           style({
-            visibility: 'visible',
-            transform: 'translate3d(100%, 0, 0)',
-            easing: 'ease',
-            offset: 0,
+            opacity: 1,
+            transform: '{{startTransform}}',
           }),
           style({
-            transform: 'translate3d(0, 0, 0)',
-            easing: 'ease',
-            offset: 1,
-          }),
-        ])
-      ),
-    ]),
-  ]),
-  transition('* => top', [
-    animation([
-      animate(
-        '250ms 0ms',
-        keyframes([
-          style({
-            visibility: 'visible',
-            transform: 'translate3d(0, -100%, 0)',
-            easing: 'ease',
-            offset: 0,
-          }),
-          style({
-            transform: 'translate3d(0, 0, 0)',
-            easing: 'ease',
-            offset: 1,
-          }),
-        ])
-      ),
-    ]),
-  ]),
-  transition('* => bottom', [
-    animation([
-      animate(
-        '250ms 0ms',
-        keyframes([
-          style({
-            visibility: 'visible',
-            transform: 'translate3d(0, 100%, 0)',
-            easing: 'ease',
-            offset: 0,
-          }),
-          style({
-            transform: 'translate3d(0, 0, 0)',
-            easing: 'ease',
-            offset: 1,
+            transform: '{{endTransform}}',
+            opacity: 0,
           }),
         ])
       ),

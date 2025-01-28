@@ -3,10 +3,7 @@ import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
-import {
-  EMPTY_API_INPUT_DEFAULT_VALUE,
-  VOID_API_RETURN_TYPE,
-} from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -39,7 +36,7 @@ export class ToastPageComponent {
       name: 'toast',
       files: [
         ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
-        this.sourceTreeBuilder.file('toast.service', ROOT),
+        ...this.sourceTreeBuilder.service('toast', ROOT),
         this.sourceTreeBuilder.file('toast-animations', ROOT),
         this.sourceTreeBuilder.component('toast-close', ROOT),
       ],
@@ -56,7 +53,10 @@ export class ToastPageComponent {
         methods: [
           {
             name: 'open',
-            returnType: VOID_API_RETURN_TYPE,
+            returnType: 'Observable<void>',
+            returnDescription:
+              'returns observable that emits when the toast is closed',
+            description: 'Opens the toast',
             params: [
               {
                 name: 'options',
@@ -102,11 +102,10 @@ export class ToastPageComponent {
                     default: '3000ms',
                   },
                   {
-                    name: 'action',
-                    type: 'string',
-                    description:
-                      'Adds the action value as a class to the toast element, allowing you to apply styles based on the action type, such as "success" or "error".',
-                    default: 'action',
+                    name: 'type',
+                    type: 'default | success | warning | danger',
+                    description: 'Type of the toast',
+                    default: 'defaukt',
                   },
                 ],
               },
