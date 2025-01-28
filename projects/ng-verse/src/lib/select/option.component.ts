@@ -21,14 +21,14 @@ import { SelectComponent } from './select.component';
 export class OptionComponent {
   value = input.required<unknown>();
   isSelected = () => this.select.isSelected(this.value());
-
   optionGroup = inject(OptionGroupComponent, { optional: true });
-  select = inject<SelectComponent>(forwardRef(() => SelectComponent));
-  private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 
+  select = inject<SelectComponent>(forwardRef(() => SelectComponent));
   disabled = input(false);
 
   inGroup = !!this.optionGroup;
+
+  private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 
   get content() {
     return this.host.nativeElement.textContent;
