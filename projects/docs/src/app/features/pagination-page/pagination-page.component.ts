@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { PaginationComponent } from '../../../../../ng-verse/src/lib/pagination/pagination.component';
+import { PaginationComponent } from '@ngverse/pagination/pagination.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 

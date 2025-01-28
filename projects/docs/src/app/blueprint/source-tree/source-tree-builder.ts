@@ -29,7 +29,7 @@ export class SourceTreeBuilder {
   ): SourceTreeFile[] {
     const tsFile = {
       name: `${name}.directive.ts`,
-      path: `ng-verse/${root}/${name}.directive.ts`,
+      path: `ngverse/${root}/${name}.directive.ts`,
       language: 'ts' as const,
     };
     if (includeSpec) {
@@ -37,7 +37,7 @@ export class SourceTreeBuilder {
         tsFile,
         {
           name: `${name}.directive.spec.ts`,
-          path: `ng-verse/${root}/${name}.directive.spec.ts`,
+          path: `ngverse/${root}/${name}.directive.spec.ts`,
           language: 'ts',
         },
       ];
@@ -52,7 +52,7 @@ export class SourceTreeBuilder {
   ) {
     return {
       name: `${name}.${extension}`,
-      path: `ng-verse/${rootPath}/${name}.${extension}`,
+      path: `ngverse/${rootPath}/${name}.${extension}`,
       language: extension,
     };
   }
@@ -64,7 +64,7 @@ export class SourceTreeBuilder {
   ) {
     return {
       name: `${name}.component.${extension}`,
-      path: `ng-verse/${rootPath}/${name}.component.${extension}`,
+      path: `ngverse/${rootPath}/${name}.component.${extension}`,
       language: extension,
     };
   }

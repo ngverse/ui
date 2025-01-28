@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AccordionBodyComponent } from '@ng-verse/accordion/accordion-body.component';
-import { AccordionItemComponent } from '@ng-verse/accordion/accordion-item.component';
-import { AccordionComponent } from '@ng-verse/accordion/accordion.component';
+import { AccordionBodyComponent } from '@ngverse/accordion/accordion-body.component';
+import { AccordionItemComponent } from '@ngverse/accordion/accordion-item.component';
+import { AccordionComponent } from '@ngverse/accordion/accordion.component';
 
 @Component({
   selector: 'doc-show-case-accordion',

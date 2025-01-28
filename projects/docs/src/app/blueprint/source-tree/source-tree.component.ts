@@ -1,5 +1,5 @@
 import { Component, inject, input, signal } from '@angular/core';
-import { ButtonComponent } from '@ng-verse/button/button.component';
+import { ButtonComponent } from '@ngverse/button/button.component';
 import { FileService } from '../../services/file.service';
 import { SourceCodeComponent } from '../source-code/source-code.component';
 import {

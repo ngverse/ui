@@ -1,5 +1,5 @@
 /*
- * Public API Surface of ng-verse
+ * Public API Surface of ngverse
  */
 
 export * from './mock-export';

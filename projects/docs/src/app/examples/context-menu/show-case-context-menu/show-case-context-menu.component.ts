@@ -4,10 +4,10 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { ContextMenuItemComponent } from '@ng-verse/context-menu/context-menu-item/context-menu-item.component';
-import { ContextMenuTriggerDirective } from '@ng-verse/context-menu/context-menu-trigger.directive';
-import { ContextMenuComponent } from '@ng-verse/context-menu/context-menu.component';
-import { ToastService } from '@ng-verse/toast/toast.service';
+import { ContextMenuItemComponent } from '@ngverse/context-menu/context-menu-item/context-menu-item.component';
+import { ContextMenuTriggerDirective } from '@ngverse/context-menu/context-menu-trigger.directive';
+import { ContextMenuComponent } from '@ngverse/context-menu/context-menu.component';
+import { ToastService } from '@ngverse/toast/toast.service';
 
 @Component({
   selector: 'doc-show-case-context-menu',

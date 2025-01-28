@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Build library
-        run: npm run build:ng-verse
+        run: npm run build:ngverse
 
       - name: Run semantic-release
         env:

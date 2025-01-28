@@ -10,7 +10,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@ng-verse/*": ["./projects/ng-verse/src/lib/*"]
+      "@ngverse/*": ["./projects/ngverse/src/lib/*"]
     },
     "skipLibCheck": true,
     "isolatedModules": true,

@@ -27,7 +27,7 @@ module.exports = tseslint.config(
       'no-restricted-imports': [
         'error',
         {
-          patterns: ['@ng-verse/*', '**/dist/**', '../../dist/**'],
+          patterns: ['@ngverse/*', '**/dist/**', '../../dist/**'],
         },
       ],
     },
