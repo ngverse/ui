@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ButtonComponent } from '@ng-verse/button/button.component';
-import { DialogCloseDirective } from '@ng-verse/dialog/dialog-close.directive';
-import { FormFieldComponent } from '@ng-verse/form-field/form-field.component';
-import { LabelComponent } from '@ng-verse/form-field/label/label.component';
-import { InputComponent } from '@ng-verse/input/input.component';
+import { ButtonComponent } from '@ngverse/button/button.component';
+import { DialogCloseDirective } from '@ngverse/dialog/dialog-close.directive';
+import { FormFieldComponent } from '@ngverse/form-field/form-field.component';
+import { LabelComponent } from '@ngverse/form-field/label/label.component';
+import { InputComponent } from '@ngverse/input/input.component';
 
 @Component({
   selector: 'doc-dialog-test',

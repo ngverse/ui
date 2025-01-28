@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ButtonComponent } from '@ng-verse/button/button.component';
-import { ToastService } from '@ng-verse/toast/toast.service';
+import { ButtonComponent } from '@ngverse/button/button.component';
+import { ToastService } from '@ngverse/toast/toast.service';
 
 @Component({
   selector: 'doc-show-case-toast',

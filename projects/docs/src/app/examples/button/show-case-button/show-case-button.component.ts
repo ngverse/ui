@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from '@ng-verse/button/button.component';
+import { ButtonComponent } from '@ngverse/button/button.component';
 
 @Component({
   selector: 'doc-show-case-button',

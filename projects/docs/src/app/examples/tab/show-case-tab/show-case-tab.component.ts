@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { IconComponent } from '@ng-verse/icon/icon.component';
-import { TabBodyDirective } from '@ng-verse/tab/tab-body.directive';
-import { TabGroupComponent } from '@ng-verse/tab/tab-group.component';
-import { TabHeaderDirective } from '@ng-verse/tab/tab-header.directive';
-import { TabComponent } from '@ng-verse/tab/tab.component';
+import { IconComponent } from '@ngverse/icon/icon.component';
+import { TabBodyDirective } from '@ngverse/tab/tab-body.directive';
+import { TabGroupComponent } from '@ngverse/tab/tab-group.component';
+import { TabHeaderDirective } from '@ngverse/tab/tab-header.directive';
+import { TabComponent } from '@ngverse/tab/tab.component';
 import { LazyTabComponent } from '../lazy-tab/lazy-tab.component';
 
 @Component({

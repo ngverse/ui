@@ -1,7 +1,7 @@
 import { Component, computed, model } from '@angular/core';
-import { AutocompleteComponent } from '@ng-verse/autocomplete/autocomplete.component';
-import { AutocompleteItemComponent } from '@ng-verse/autocomplete/autocomplete-item/autocomplete-item.component';
 import { FormsModule } from '@angular/forms';
+import { AutocompleteItemComponent } from '@ngverse/autocomplete/autocomplete-item/autocomplete-item.component';
+import { AutocompleteComponent } from '@ngverse/autocomplete/autocomplete.component';
 
 @Component({
   selector: 'doc-show-case-autocomplete',

@@ -1,4 +1,4 @@
 npx lint-staged
 npm run format:check
 npm run lint
-npx ng test --no-watch --no-progress --browsers=ChromeHeadless --project=ng-verse
+npx ng test --no-watch --no-progress --browsers=ChromeHeadless --project=ngverse

@@ -1,6 +1,6 @@
 import { Component, model } from '@angular/core';
-import { TextareaComponent } from '@ng-verse/textarea/textarea.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TextareaComponent } from '@ngverse/textarea/textarea.component';
 
 @Component({
   selector: 'doc-show-case-textarea',

@@ -3,7 +3,7 @@ import { Overlay } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 import { inject, Injectable } from '@angular/core';
 import { filter, merge, take } from 'rxjs';
-import { DRAWER_DATA, DrawerRef } from '../drawer/drawer-ref';
+import { DRAWER_DATA, DrawerRef } from './drawer-ref';
 import { DrawerComponent } from './drawer.component';
 
 interface DrawerConfig
