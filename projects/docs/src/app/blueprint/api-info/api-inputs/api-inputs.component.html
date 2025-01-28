@@ -110,7 +110,14 @@
               >
             </app-accordion-header>
             <app-accordion-body>
-              <p>Returns: {{ method.returnType }}</p>
+              <p>
+                Returns: {{ method.returnType }}
+                @if (method.description) {
+                  <span class="text-gray-700 italic text-sm">
+                    : {{ method.returnDescription }}</span
+                  >
+                }
+              </p>
               @if (method.params?.length) {
                 <p class="mt-2">Params:</p>
                 <ul class="pl-4 mb-4">

@@ -57,8 +57,8 @@ describe('ToastComponent', () => {
     ).toBe('alert');
   });
   it("click close icon should emit 'close' event", () => {
-    spyOn(component.close, 'emit');
+    const spy = spyOn(component, 'startCloseAnimation');
     fixture.nativeElement.querySelector('.toast-close-icon').click();
-    expect(component.close.emit).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 });

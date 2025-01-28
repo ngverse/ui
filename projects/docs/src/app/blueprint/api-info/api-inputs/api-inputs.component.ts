@@ -27,6 +27,7 @@ interface ApiMethodParam {
 interface ApiMethodType {
   name: string;
   returnType: string;
+  returnDescription?: string;
   description?: string;
   params?: ApiMethodParam[];
 }
