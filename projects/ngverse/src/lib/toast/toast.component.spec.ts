@@ -4,7 +4,7 @@ import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastComponent } from './toast.component';
 
-xdescribe('ToastComponent', () => {
+describe('ToastComponent', () => {
   let component: ToastComponent;
   let fixture: ComponentFixture<ToastComponent>;
 
@@ -21,28 +21,34 @@ xdescribe('ToastComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it("should display message 'Hello, World!'", () => {
+  it("should display message 'Hello, World!'", async () => {
     component.message.set('Hello, World!');
+    await fixture.whenStable();
     expect(fixture.nativeElement.querySelector('.toast').textContent).toContain(
       'Hello, World!'
     );
   });
-  it('should apply action as class', () => {
+  it('should apply action as class', async () => {
     component.action.set('success');
+    await fixture.whenStable();
     expect(
       fixture.nativeElement
         .querySelector('.toast')
         .classList.contains('success')
     ).toBeTrue();
   });
-  it("should show close icon when 'showCloseIcon' is true", () => {
+  it("should show close icon when 'showCloseIcon' is true", async () => {
     component.showCloseIcon.set(true);
+    await fixture.whenStable();
+
     expect(
       fixture.nativeElement.querySelector('.toast-close-icon')
     ).toBeTruthy();
   });
-  it("should hide close icon when 'showCloseIcon' is false", () => {
+  it("should hide close icon when 'showCloseIcon' is false", async () => {
     component.showCloseIcon.set(false);
+    await fixture.whenStable();
+
     expect(
       fixture.nativeElement.querySelector('.toast-close-icon')
     ).toBeFalsy();
@@ -52,7 +58,8 @@ xdescribe('ToastComponent', () => {
       fixture.nativeElement.querySelector('.toast').getAttribute('role')
     ).toBe('alert');
   });
-  it("click close icon should emit 'close' event", () => {
+  it("click close icon should emit 'close' event", async () => {
+    await fixture.whenStable();
     const spy = spyOn(component, 'startCloseAnimation');
     fixture.nativeElement.querySelector('.toast-close-icon').click();
     expect(spy).toHaveBeenCalled();

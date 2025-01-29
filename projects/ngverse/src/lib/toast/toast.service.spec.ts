@@ -11,7 +11,7 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { ToastComponent } from './toast.component';
 import { ToastService } from './toast.service';
 
-xdescribe('ToastService', () => {
+describe('ToastService', () => {
   let service: ToastService;
   let fixture: ComponentFixture<ToastTestComponent>;
   let documentDebugElement: DebugElement;
