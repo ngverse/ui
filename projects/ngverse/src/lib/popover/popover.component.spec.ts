@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   model,
+  provideExperimentalZonelessChangeDetection,
   signal,
   viewChild,
 } from '@angular/core';
@@ -26,9 +27,11 @@ describe('PopoverComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PopoverTestComponent, PopoverComponent],
-      providers: [provideNoopAnimations()],
+      providers: [
+        provideNoopAnimations(),
+        provideExperimentalZonelessChangeDetection(),
+      ],
     }).compileComponents();
-
     fixture = TestBed.createComponent(PopoverTestComponent);
     component = fixture.componentInstance;
     overlayContainer = TestBed.inject(OverlayContainer);
@@ -48,21 +51,17 @@ describe('PopoverComponent', () => {
   });
   it('should open popover on IsOpen=true', async () => {
     component.isOpen.set(true);
-    fixture.detectChanges();
     await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
     ) as HTMLElement;
     expect(overlayPopover).toBeTruthy();
     expect(overlayPopover.textContent).toBe('I am First Popover content');
-    fixture.detectChanges();
   });
   it('should close popover on IsOpen=false', async () => {
     component.isOpen.set(true);
-    fixture.detectChanges();
     await fixture.whenStable();
     component.isOpen.set(false);
-    fixture.detectChanges();
     await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
@@ -70,24 +69,22 @@ describe('PopoverComponent', () => {
     expect(overlayPopover).toBeNull();
   });
   it('should update isOpen value, on outside close of popover', async () => {
-    component.isOpen.set(true);
     component.outsideClose.set(true);
-    fixture.detectChanges();
+    component.isOpen.set(true);
     await fixture.whenStable();
     fixture.nativeElement.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
+    //Click subscribtion has asyncscheduler so we have to wait for next tick
+    await new Promise<void>((resolve) => setTimeout(resolve, 1));
     await fixture.whenStable();
     expect(component.isOpen()).toBeFalse();
   });
   it('should close popover on outside click if outsideClose is true', async () => {
     component.isOpen.set(true);
     component.outsideClose.set(true);
-    fixture.detectChanges();
     await fixture.whenStable();
     fixture.nativeElement.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
+    //Click subscribtion has asyncscheduler so we have to wait for next tick
+    await new Promise<void>((resolve) => setTimeout(resolve, 1));
     await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
@@ -97,14 +94,10 @@ describe('PopoverComponent', () => {
   it('should close popover on escape click if outsideClose is true', async () => {
     component.isOpen.set(true);
     component.outsideClose.set(true);
-    fixture.detectChanges();
     await fixture.whenStable();
     document.body.dispatchEvent(
       new KeyboardEvent('keydown', { key: 'Escape' })
     );
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
     await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
@@ -114,12 +107,7 @@ describe('PopoverComponent', () => {
   it('should not close popover on outside click if outsideClose is false', async () => {
     component.isOpen.set(true);
     component.outsideClose.set(false);
-    fixture.detectChanges();
-    await fixture.whenStable();
     fixture.nativeElement.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
     await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
@@ -132,14 +120,12 @@ describe('PopoverComponent', () => {
     document.body.style.height = '1000px';
     component.isOpen.set(true);
     component.blockScroll.set(true);
-    fixture.detectChanges();
     await fixture.whenStable();
     expect(document.documentElement).toHaveClass('cdk-global-scrollblock');
   });
   it('should add style class when styled=true', async () => {
     component.isOpen.set(true);
     component.styled.set(true);
-    fixture.detectChanges();
     await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
@@ -149,7 +135,6 @@ describe('PopoverComponent', () => {
   it('should add backdrop when hasBackdrop=true', async () => {
     component.isOpen.set(true);
     component.hasBackdrop.set(true);
-    fixture.detectChanges();
     await fixture.whenStable();
     const overlayBackdrop = getOverlayContainerEl().querySelector(
       '.cdk-overlay-backdrop'
@@ -159,11 +144,9 @@ describe('PopoverComponent', () => {
   it("should emit 'close' event", async () => {
     const spy = jasmine.createSpy('closedSpty');
     component.isOpen.set(true);
-    fixture.detectChanges();
     await fixture.whenStable();
     component.popover().closed.subscribe(spy);
     component.isOpen.set(false);
-    fixture.detectChanges();
     await fixture.whenStable();
     expect(spy).toHaveBeenCalled();
   });
@@ -171,17 +154,14 @@ describe('PopoverComponent', () => {
     const spy = jasmine.createSpy('openedSpy');
     component.popover().opened.subscribe(spy);
     component.isOpen.set(true);
-    fixture.detectChanges();
     await fixture.whenStable();
     expect(spy).toHaveBeenCalled();
   });
   it('should restore focus on restoreFocus=true', async () => {
     component.isOpen.set(true);
     component.restoreFocus.set(true);
-    fixture.detectChanges();
     await fixture.whenStable();
     component.isOpen.set(false);
-    fixture.detectChanges();
     await fixture.whenStable();
     expect(document.activeElement).toBe(
       fixture.nativeElement.querySelector('.popover-button')
@@ -190,7 +170,6 @@ describe('PopoverComponent', () => {
   it('should stretch to origin if stretchToOrigin=true', async () => {
     component.isOpen.set(true);
     component.stretchToOrigin.set(true);
-    fixture.detectChanges();
     await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
