@@ -3,10 +3,14 @@ import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 import { IconLoaderService } from './icon-loader.service';
-import { IconComponent } from './icon.component';
 import { IconRegistry } from './icon.registry';
 
 const TEST_ICON = `<svg
@@ -32,16 +36,17 @@ describe('IconLoaderService', () => {
   let service: IconLoaderService;
   let registryService: IconRegistry;
   let httpMock: HttpTestingController;
-  let fixture: ComponentFixture<IconComponent>;
+  let fixture: ComponentFixture<TestIconComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [IconComponent],
+      imports: [TestIconComponent],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
         IconLoaderService,
         IconRegistry,
+        provideExperimentalZonelessChangeDetection(),
       ],
     }).compileComponents();
 
@@ -49,7 +54,7 @@ describe('IconLoaderService', () => {
     registryService = TestBed.inject(IconRegistry);
     httpMock = TestBed.inject(HttpTestingController);
     registryService.addIcon(TEST_NAME, TEST_URL);
-    fixture = TestBed.createComponent(IconComponent);
+    fixture = TestBed.createComponent(TestIconComponent);
   });
 
   afterEach(() => {
@@ -105,6 +110,13 @@ describe('IconLoaderService', () => {
     const secondRequest = firstValueFrom(service.load(TEST_NAME));
     const testRequest = httpMock.expectOne(TEST_URL);
     testRequest.flush(TEST_ICON);
+    await fixture.whenStable();
     expect(await firstRequest).not.toBe(await secondRequest);
   });
 });
+
+@Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `<p>Test</p>`,
+})
+export class TestIconComponent {}
