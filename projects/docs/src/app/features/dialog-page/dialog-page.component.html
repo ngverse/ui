@@ -1,12 +1,17 @@
 <doc-blueprint-page
   [label]="'Dialog'"
   [subTitle]="
-    'Dialog have three different types, confirm, alert and custom dialog'
+    'A window overlaid on either the primary window. It have three different types, confirm, alert and dialog'
   "
 >
   <doc-show-case name="dialog">
     <doc-show-case-dialog></doc-show-case-dialog>
   </doc-show-case>
+  <doc-prerequisites [preps]="prerequisites">
+    Dialog element uses
+    <a class="underline" [routerLink]="['../button']">Button</a>. Please ensure
+    it is added to your project if it is not already.
+  </doc-prerequisites>
   <doc-command-installation type="component" name="dialog">
   </doc-command-installation>
   <doc-source-tree [sourceTree]="sourceTree" name="dialog"></doc-source-tree>

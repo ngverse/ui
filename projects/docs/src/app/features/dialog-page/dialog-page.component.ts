@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   ApiInfo,
   ApiInfoComponent,
@@ -6,6 +7,10 @@ import {
 import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
+import {
+  Prerequisite,
+  PrerequisitesComponent,
+} from '../../blueprint/prerequisites/prerequisites.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import {
   SourceTreeBuilder,
@@ -24,12 +29,20 @@ const ROOT = 'dialog';
     CommandInstallationComponent,
     SourceTreeComponent,
     ApiInfoComponent,
+    PrerequisitesComponent,
+    RouterLink,
   ],
   templateUrl: './dialog-page.component.html',
   styleUrl: './dialog-page.component.scss',
 })
 export class DialogPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
+
+  prerequisites: Prerequisite[] = [
+    {
+      name: 'button',
+    },
+  ];
 
   sourceTree: SourceTreeFolder[] = [
     {
@@ -215,7 +228,7 @@ export class DialogPageComponent {
   description: string;
   yesLabel?: string;
   noLabel?: string;}`,
-            description: 'object with options for the dialog',
+            description: 'object with options for the confirm',
             default: EMPTY_API_INPUT_DEFAULT_VALUE,
           },
         ],
