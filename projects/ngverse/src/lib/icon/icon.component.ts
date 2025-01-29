@@ -1,3 +1,4 @@
+import { coerceCssPixelValue } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,13 +14,6 @@ import { IconLoaderService } from './icon-loader.service';
 
 const INITIAL_WIDTH = 24;
 const INITIAL_HEIGHT = 24;
-
-function coerceSize(value: number | string) {
-  if (typeof value === 'number') {
-    return `${value}px`;
-  }
-  return value;
-}
 
 @Component({
   selector: 'app-icon',
@@ -72,8 +66,8 @@ export class IconComponent {
         this.renderer.setAttribute(icon, 'width', '100%');
         this.renderer.setAttribute(icon, 'height', '100%');
       } else {
-        const coerceWdth = coerceSize(this.width());
-        const coerceHeight = coerceSize(this.height());
+        const coerceWdth = coerceCssPixelValue(this.width());
+        const coerceHeight = coerceCssPixelValue(this.height());
 
         this.renderer.setAttribute(icon, 'width', coerceWdth);
         this.renderer.setAttribute(icon, 'height', coerceHeight);

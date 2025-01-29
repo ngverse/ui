@@ -1,6 +1,6 @@
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 
-import { finalize, map, Observable, of } from 'rxjs';
+import { finalize, map, Observable, of, shareReplay, tap } from 'rxjs';
 
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -18,12 +18,7 @@ function createDomParser() {
   providedIn: 'root',
 })
 export class IconLoaderService {
-  private readonly iconsLoadingByUrl = new Map<
-    string,
-    Observable<HTMLElement>
-  >();
   private readonly _iconRegistryService = inject(IconRegistryService);
-  private readonly iconsByUrl = new Map<string, string>();
   private readonly http = inject(HttpClient);
   private readonly _domParser = createDomParser();
   private readonly _iconLoader = new Map<
@@ -47,7 +42,9 @@ export class IconLoaderService {
     }
     const iconIsLoading = this._iconLoader.get(url);
     if (iconIsLoading) {
-      return iconIsLoading;
+      return iconIsLoading.pipe(
+        map((svg) => svg?.cloneNode(true) as HTMLElement)
+      );
     }
 
     return this.fetch(url);
@@ -59,7 +56,15 @@ export class IconLoaderService {
         responseType: 'text',
       })
       .pipe(map((svg) => this.stringToSvg(svg)))
-      .pipe(finalize(() => this._iconLoader.delete(url)));
+      .pipe(
+        tap((svg) => {
+          if (svg) {
+            this._iconCache.set(url, svg);
+          }
+        })
+      )
+      .pipe(finalize(() => this._iconLoader.delete(url)))
+      .pipe(shareReplay(1));
     this._iconLoader.set(url, http$);
     return http$;
   }
