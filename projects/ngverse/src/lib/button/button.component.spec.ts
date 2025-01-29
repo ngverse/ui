@@ -4,6 +4,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   DebugElement,
+  input,
+  provideExperimentalZonelessChangeDetection,
   signal,
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -17,18 +19,20 @@ describe('ButtonComponent', () => {
   let buttonComponent: ButtonComponent;
   let buttonRootElement: HTMLElement;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [ButtonComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     });
     fixture = TestBed.createComponent(ButtonTestComponent);
+    await fixture.whenStable();
+
     debugElement = fixture.debugElement;
     htmlElement = fixture.debugElement.nativeElement;
     rootComponent = fixture.componentInstance;
     buttonComponent = debugElement.query(By.directive(ButtonComponent))
       .componentInstance as ButtonComponent;
     buttonRootElement = htmlElement.querySelector('button') as HTMLElement;
-    fixture.detectChanges();
   });
 
   function getClassName(className: string) {
@@ -41,32 +45,31 @@ describe('ButtonComponent', () => {
 
   it('should add disable attribute on disable', () => {
     rootComponent.disabled.set(true);
-    fixture.detectChanges();
     expect(buttonRootElement.hasAttribute('disabled')).toBeTrue();
   });
 
-  it('should add outline class on variant type change', () => {
+  it('should add outline class on variant type change', async () => {
     rootComponent.variant.set('outline');
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(
       buttonRootElement.classList.contains(getClassName('outline'))
     ).toBeTrue();
   });
-  it('should add proper color type', () => {
+  it('should add proper color type', async () => {
     rootComponent.color.set('secondary');
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(
       buttonRootElement.classList.contains(getClassName('secondary'))
     ).toBeTrue();
   });
-  it('should add proper button type', () => {
+  it('should add proper button type', async () => {
     rootComponent.type.set('submit');
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(buttonRootElement.getAttribute('type')).toBe('submit');
   });
-  it('should show spinner on loading', () => {
+  it('should show spinner on loading', async () => {
     rootComponent.loading.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const hasButtonLoader =
       buttonRootElement.querySelector('.button-loader') !== null;
 
@@ -76,9 +79,9 @@ describe('ButtonComponent', () => {
   it('should display text in button', () => {
     expect(buttonRootElement.textContent?.trim()).toBe('Test Button');
   });
-  it('should change the size class', () => {
-    rootComponent.size.set('lg');
-    fixture.detectChanges();
+  it('should change the size class', async () => {
+    fixture.componentRef.setInput('size', 'lg');
+    await fixture.whenStable();
     expect(buttonRootElement.classList.contains(getClassName('lg'))).toBeTrue();
   });
 });
@@ -104,5 +107,5 @@ class ButtonTestComponent {
   color = signal<string | undefined>('primary');
   type = signal<string>('button');
   loading = signal(false);
-  size = signal<string>('sm');
+  size = input<string>('sm');
 }

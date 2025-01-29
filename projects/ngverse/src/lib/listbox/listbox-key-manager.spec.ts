@@ -1,6 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ElementRef, Injector, signal } from '@angular/core';
+import {
+  ElementRef,
+  Injector,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core';
 import { ListboxItemDirective } from './listbox-item.directive';
 import { ListboxKeyManager } from './listbox-key-manager';
 import { ListboxRegistry } from './listbox-registry';
@@ -23,6 +28,7 @@ describe('ListboxKeyManager', () => {
             },
           },
         },
+        provideExperimentalZonelessChangeDetection(),
       ],
     }).compileComponents();
     TestBed.runInInjectionContext(() => {

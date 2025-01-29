@@ -4,6 +4,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  provideExperimentalZonelessChangeDetection,
   TemplateRef,
   viewChild,
 } from '@angular/core';
@@ -16,32 +17,33 @@ describe('TooltipContainerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TooltipContainerComponent, TooltipContainerTestComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TooltipContainerComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add position class to the tooltip container', () => {
+  it('should add position class to the tooltip container', async () => {
     component.position.set('bottom');
-    fixture.detectChanges();
+    await fixture.whenStable();
     const tooltipContainer = fixture.nativeElement.querySelector('.tooltip');
     expect(tooltipContainer.classList).toContain('bottom');
   });
-  it('should display message in the tooltip container', () => {
+  it('should display message in the tooltip container', async () => {
     component.message.set('Hello World');
-    fixture.detectChanges();
+    await fixture.whenStable();
     const tooltipContainer = fixture.nativeElement.querySelector('.tooltip');
     expect(tooltipContainer.textContent).toContain('Hello World');
   });
-  it('should display content in the tooltip container', () => {
+  it('should display content in the tooltip container', async () => {
     const fixture = TestBed.createComponent(TooltipContainerTestComponent);
-    fixture.detectChanges();
+    await fixture.whenStable();
+
     const tooltipContainer = fixture.nativeElement.querySelector('.tooltip');
     expect(tooltipContainer.textContent).toBe('I am tooltip');
   });

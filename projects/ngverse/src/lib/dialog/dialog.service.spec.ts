@@ -1,11 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-import { DialogService } from './dialog.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { ComponentType } from '@angular/cdk/portal';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { DialogComponent } from './dialog/dialog.component';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { DialogService } from './dialog.service';
+import { DialogComponent } from './dialog/dialog.component';
 
 describe('DialogService', () => {
   let service: DialogService;
@@ -15,7 +16,11 @@ describe('DialogService', () => {
     const dialogSpy = jasmine.createSpyObj('Dialog', ['open']);
 
     TestBed.configureTestingModule({
-      providers: [DialogService, { provide: Dialog, useValue: dialogSpy }],
+      providers: [
+        DialogService,
+        { provide: Dialog, useValue: dialogSpy },
+        provideExperimentalZonelessChangeDetection(),
+      ],
     });
 
     service = TestBed.inject(DialogService);

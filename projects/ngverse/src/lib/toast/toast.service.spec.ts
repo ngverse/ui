@@ -3,15 +3,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   DebugElement,
+  provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { ToastComponent } from './toast.component';
 import { ToastService } from './toast.service';
 
@@ -22,7 +18,11 @@ describe('ToastService', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToastTestComponent, NoopAnimationsModule],
+      imports: [ToastTestComponent],
+      providers: [
+        provideNoopAnimations(),
+        provideExperimentalZonelessChangeDetection(),
+      ],
     }).compileComponents();
     service = TestBed.inject(ToastService);
 
@@ -32,7 +32,6 @@ describe('ToastService', () => {
 
     // Wrap the document body in a DebugElement
     documentDebugElement = new DebugElement(document.body);
-    fixture.detectChanges();
   });
 
   function toastDebugElement() {
@@ -51,86 +50,69 @@ describe('ToastService', () => {
     service.open({
       message,
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastCompInstance().message()).toBe(message);
   });
-  it('should close toast automatically after 1 seconds', fakeAsync(() => {
+  it('should close toast automatically after 10ms', async () => {
     service.open({
       message: 'Hello, World!',
-      closeDelay: 1000,
+      closeDelay: 10,
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastDebugElement()).toBeTruthy();
-    tick(1000);
+    await new Promise<void>((resolve) => setTimeout(resolve, 10));
+    await fixture.whenStable();
     expect(toastDebugElement()).toBeNull();
-  }));
-  it('should pass showCloseIcon to toast', fakeAsync(() => {
+  });
+  it('should pass showCloseIcon to toast', async () => {
     service.open({
       message: 'Hello, World!',
       showCloseIcon: false,
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastCompInstance().showCloseIcon()).toBe(false);
-  }));
-  it('should pass action to toast', fakeAsync(() => {
+  });
+  it('should pass action to toast', async () => {
     service.open({
       message: 'Hello, World!',
       action: 'success',
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastCompInstance().action()).toBe('success');
-  }));
-  it('should pass position to toast', fakeAsync(() => {
+  });
+  it('should pass position to toast', async () => {
     service.open({
       message: 'Hello, World!',
       position: 'top_left',
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastCompInstance().position()).toBe('top_left');
-  }));
-  it('should not close toast if autoClose is false', fakeAsync(() => {
+  });
+  it('should not close toast if autoClose is false', async () => {
     service.open({
       message: 'Hello, World!',
       autoClose: false,
+      closeDelay: 10,
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastDebugElement()).toBeTruthy();
-    tick(1000);
+    await new Promise<void>((resolve) => setTimeout(resolve, 10));
+    await fixture.whenStable();
     expect(toastDebugElement()).toBeTruthy();
-  }));
-  it('should close previous toast if a new one is opened', fakeAsync(() => {
+  });
+  it('should close previous toast if a new one is opened', async () => {
     service.open({
       message: 'Hello, World!',
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastDebugElement()).toBeTruthy();
     service.open({
       message: 'Hello, World!',
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
 
     expect(document.querySelectorAll('.toast').length).toBe(1);
-  }));
-  it("should close toast if 'close' event is emitted", fakeAsync(() => {
+  });
+  it("should close toast if 'close' event is emitted", async () => {
     service.open({
       message: 'Hello, World!',
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastDebugElement()).toBeTruthy();
     toastCompInstance().closeAnimationFinished.emit();
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastDebugElement()).toBeNull();
-  }));
+  });
 });
 
 @Component({

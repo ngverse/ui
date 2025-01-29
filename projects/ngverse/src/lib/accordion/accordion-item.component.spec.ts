@@ -1,6 +1,11 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { AccordionBodyComponent } from './accordion-body.component';
 import { AccordionHeaderComponent } from './accordion-header.component';
 import { AccordionItemComponent } from './accordion-item.component';
@@ -13,13 +18,16 @@ describe('AccordionItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideAnimations()],
+      providers: [
+        provideNoopAnimations(),
+        provideExperimentalZonelessChangeDetection(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AccordionItemTestComponent);
     component = fixture.componentInstance;
     rootNative = fixture.nativeElement;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   function accordionHeader() {
@@ -37,41 +45,44 @@ describe('AccordionItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the label', () => {
+  it('should display the label', async () => {
     component.label.set('test label');
-    fixture.detectChanges();
+    await fixture.whenStable();
+
     const label = rootNative.querySelector(
       '.accordion-item-header'
     ) as HTMLElement;
     expect(label.textContent?.trim()).toBe('test label');
   });
 
-  it('should show body on header click', () => {
+  it('should show body on header click', async () => {
     expect(accordionBody()).toBeNull();
 
     const header = accordionHeader();
     header.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
+
+    await fixture.whenStable();
 
     expect(accordionBody()).toBeTruthy();
   });
-  it("should close accordion when it's open and header is clicked", () => {
+  it("should close accordion when it's open and header is clicked", async () => {
     const header = accordionHeader();
     header.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(accordionBody()).toBeTruthy();
     header.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(accordionBody()).toBeFalsy();
   });
-  it('should disable the header button on disabled', () => {
+  it('should disable the header button on disabled', async () => {
     component.disabled.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(accordionHeader().hasAttribute('disabled')).toBeTrue();
   });
 
-  it('should expand accordion with expanded=true', () => {
+  it('should expand accordion with expanded=true', async () => {
     component.expanded.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(accordionBody()).toBeTruthy();
   });
   it('should set aria-level correctly', () => {
@@ -81,9 +92,9 @@ describe('AccordionItemComponent', () => {
     expect(roleHeading).toBeTruthy();
     expect(roleHeading.getAttribute('aria-level')).toBe('6');
   });
-  it('should display content header', () => {
+  it('should display content header', async () => {
     component.showContentLabel.set('Content Label');
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(accordionHeader().textContent?.trim()).toBe('Content Label');
   });
 });

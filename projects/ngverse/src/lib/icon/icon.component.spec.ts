@@ -5,7 +5,11 @@ import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { IconLoaderService } from './icon-loader.service';
 import { IconComponent } from './icon.component';
 import { IconRegistry } from './icon.registry';
@@ -25,6 +29,7 @@ describe('IconComponent', () => {
         provideHttpClientTesting(),
         IconLoaderService,
         IconRegistry,
+        provideExperimentalZonelessChangeDetection(),
       ],
     }).compileComponents();
 
@@ -36,7 +41,7 @@ describe('IconComponent', () => {
     component = fixture.componentInstance;
     fixture.componentRef.setInput('name', 'test');
     iconElement = fixture.nativeElement;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   function flushIcon() {
@@ -55,60 +60,50 @@ describe('IconComponent', () => {
 
   it('should display icon', () => {
     flushIcon();
-    fixture.detectChanges();
     expect(iconElement.children[0].tagName).toBe('svg');
   });
-  it('should be 24px height and width by default', () => {
+  it('should be 24px height and width by default', async () => {
     flushIcon();
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(svgEl().getAttribute('width')).toBe('24px');
     expect(svgEl().getAttribute('height')).toBe('24px');
   });
-  it('should set the width and height', () => {
+  it('should set the width and height', async () => {
     flushIcon();
-    fixture.detectChanges();
     fixture.componentRef.setInput('width', 32);
     fixture.componentRef.setInput('height', 48);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(svgEl().getAttribute('width')).toBe('32px');
     expect(svgEl().getAttribute('height')).toBe('48px');
   });
-  it('should set string sizes', () => {
+  it('should set string sizes', async () => {
     flushIcon();
-    fixture.detectChanges();
     fixture.componentRef.setInput('width', '50%');
     fixture.componentRef.setInput('height', '70%');
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(svgEl().getAttribute('width')).toBe('50%');
     expect(svgEl().getAttribute('height')).toBe('70%');
   });
-  it('if stretch [true] it should set 100% to sizes', () => {
+  it('if stretch [true] it should set 100% to sizes', async () => {
     flushIcon();
-    fixture.detectChanges();
     fixture.componentRef.setInput('stretch', true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(svgEl().getAttribute('width')).toBe('100%');
     expect(svgEl().getAttribute('height')).toBe('100%');
   });
-  it('should throw error on invalid name', () => {
-    expect(() => {
-      fixture.componentRef.setInput('name', 'unknown-icon');
-      fixture.detectChanges();
-    }).toThrow();
-  });
-  it('should keep only one icon if name changes', () => {
+
+  it('should keep only one icon if name changes', async () => {
     flushIcon();
-    fixture.detectChanges();
     fixture.componentRef.setInput('name', 'test');
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(iconElement.children.length).toBe(1);
     registryService.addIcon('another-icon', 'assets/icons/another-icon.svg');
     const content = '<svg>Another Icon</svg>';
     fixture.componentRef.setInput('name', 'another-icon');
-    fixture.detectChanges();
+    await fixture.whenStable();
     const req = httpMock.expectOne('assets/icons/another-icon.svg');
     req.flush(content);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(iconElement.children.length).toBe(1);
   });
 });

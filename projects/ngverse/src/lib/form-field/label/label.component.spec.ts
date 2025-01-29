@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { LabelComponent } from './label.component';
 
 describe('LabelComponent', () => {
@@ -10,11 +14,11 @@ describe('LabelComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LabelTestComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LabelTestComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

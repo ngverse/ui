@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RadioButtonComponent } from './radio-button.component';
 import { RadioGroupComponent } from './radio-group.component';
@@ -13,12 +18,13 @@ describe('RadioGroupComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RadioGroupTestComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RadioGroupTestComponent);
     component = fixture.componentInstance;
     radioGroup = fixture.debugElement.children[0].componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {
@@ -29,10 +35,10 @@ describe('RadioGroupComponent', () => {
       fixture.nativeElement.querySelectorAll('app-radio-button');
     expect(radioButtons.length).toBe(3);
   });
-  it('should disable the radio button when the form control is disabled', () => {
+  it('should disable the radio button when the form control is disabled', async () => {
     const formControl = component.formControl;
     formControl.disable();
-    fixture.detectChanges();
+    await fixture.whenStable();
     const radioButtons = fixture.nativeElement.querySelectorAll(
       'input[type="radio"]'
     ) as HTMLInputElement[];
@@ -40,38 +46,38 @@ describe('RadioGroupComponent', () => {
       expect(radioButton.disabled).toBeTrue();
     });
   });
-  it("should select the radio button when it's value is selected", () => {
+  it("should select the radio button when it's value is selected", async () => {
     const formControl = component.formControl;
     formControl.setValue(component.values[0]);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const radioButton = fixture.nativeElement.querySelector(
       'input[type="radio"]'
     ) as HTMLInputElement;
     expect(radioButton.checked).toBeTrue();
   });
-  it("should add vertical class when it's vertical", () => {
+  it("should add vertical class when it's vertical", async () => {
     component.vertical.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const radioGroup = fixture.nativeElement.querySelector('.radio-group');
     expect(radioGroup.classList.contains('vertical')).toBeTrue();
   });
   it("should generate the name for the radio group when it's not provided", () => {
     expect(radioGroup.name()).toContain('radio-group-');
   });
-  it("when radio-button is clicked, it should update the form control's value", () => {
+  it("when radio-button is clicked, it should update the form control's value", async () => {
     const radioButtons = fixture.nativeElement.querySelectorAll(
       'input[type="radio"]'
     ) as HTMLInputElement[];
     radioButtons[1].dispatchEvent(new Event('change'));
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(component.formControl.value).toBe(component.values[1]);
   });
-  it('change on radio-button should mark the form control as touched', () => {
+  it('change on radio-button should mark the form control as touched', async () => {
     const radioButtons = fixture.nativeElement.querySelectorAll(
       'input[type="radio"]'
     ) as HTMLInputElement[];
     radioButtons[1].dispatchEvent(new Event('change'));
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(component.formControl.touched).toBeTrue();
   });
 });

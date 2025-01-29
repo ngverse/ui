@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { AccordionBodyComponent } from './accordion-body.component';
 import { AccordionHeaderComponent } from './accordion-header.component';
 import { AccordionItemComponent } from './accordion-item.component';
@@ -12,11 +17,14 @@ describe('AccordionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideAnimations()],
+      providers: [
+        provideNoopAnimations(),
+        provideExperimentalZonelessChangeDetection(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AccordionTestComponent);
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should render multiple accordion items', () => {
@@ -33,22 +41,19 @@ describe('AccordionComponent', () => {
     const firstAccordion = accordionItems[0].componentInstance;
     const secondAccordion = accordionItems[1].componentInstance;
     firstAccordion.toggle();
-    fixture.detectChanges();
     expect(firstAccordion.isOpen()).toBeTrue();
     expect(secondAccordion.isOpen()).toBeFalse();
   });
-  it('open accordion should not close another on multi=true', () => {
+  it('open accordion should not close another on multi=true', async () => {
     fixture.componentInstance.multi.set(true);
-    fixture.detectChanges();
     const accordionItems = fixture.debugElement.queryAll(
       By.directive(AccordionItemComponent)
     );
     const firstAccordion = accordionItems[0].componentInstance;
     const secondAccordion = accordionItems[1].componentInstance;
     firstAccordion.toggle();
-    fixture.detectChanges();
+    await fixture.whenStable();
     secondAccordion.toggle();
-    fixture.detectChanges();
     expect(firstAccordion.isOpen()).toBeTrue();
     expect(secondAccordion.isOpen()).toBeTrue();
   });

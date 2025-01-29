@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { DrawerRef } from './drawer-ref';
 import { DrawerComponent } from './drawer.component';
@@ -18,29 +22,29 @@ describe('DrawerComponent', () => {
           provide: DrawerRef,
           useValue: {},
         },
+        provideExperimentalZonelessChangeDetection(),
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DrawerComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should display title', () => {
+  it('should display title', async () => {
     component.title.set('Title');
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(
       fixture.nativeElement
         .querySelector('.drawer-header h1')
         .textContent.trim()
     ).toBe('Title');
   });
-  it('should display component', () => {
+  it('should display component', async () => {
     component.component = DrawerTestComponent;
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(fixture.nativeElement.textContent).toContain('I am component');
   });
 });

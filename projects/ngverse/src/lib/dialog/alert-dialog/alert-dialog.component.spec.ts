@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogService } from '../dialog.service';
@@ -10,9 +14,11 @@ describe('AlertDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AlertDialogTestComponent, BrowserAnimationsModule],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
     fixture = TestBed.createComponent(AlertDialogTestComponent);
 
+    await fixture.whenStable();
     dialogService = TestBed.inject(DialogService);
   });
 
@@ -33,53 +39,58 @@ describe('AlertDialogComponent', () => {
     expect(document.querySelector('.alert')).toBeTruthy();
   });
 
-  it('title should be displayed', () => {
+  it('title should be displayed', async () => {
     openAlert({
       title: 'Title text',
       description: '',
     });
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(document.querySelector('.alert-title')?.textContent).toBe(
       'Title text'
     );
   });
 
-  it('description should be displayed', () => {
+  it('description should be displayed', async () => {
     openAlert({
       description: 'This is description',
     });
-    fixture.detectChanges();
+    await fixture.whenStable();
+
     expect(document.querySelector('.alert-description')?.textContent).toBe(
       'This is description'
     );
   });
 
-  it('button labels should be OK by default', () => {
+  it('button labels should be OK by default', async () => {
     openAlert();
-    fixture.detectChanges();
+    await fixture.whenStable();
+
     const buttons = document.querySelectorAll('.alert-actions');
 
     expect(buttons[0].textContent?.trim()).toBe('OK');
   });
 
-  it('custom button labels should be displayed', () => {
+  it('custom button labels should be displayed', async () => {
     openAlert({
       buttonLabel: 'Save',
     });
-    fixture.detectChanges();
+    await fixture.whenStable();
+
     const buttons = document.querySelectorAll('.alert-actions');
 
     expect(buttons[0].textContent?.trim()).toBe('Save');
   });
 
-  it('button click should close the alert', () => {
+  it('button click should close the alert', async () => {
     openAlert();
-    fixture.detectChanges();
+    await fixture.whenStable();
+
     const yesButton = document.querySelector(
       '.alert-actions button'
     ) as HTMLElement;
     yesButton.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
+    await fixture.whenStable();
+
     expect(document.querySelector('.alert')).toBeFalsy();
   });
 });

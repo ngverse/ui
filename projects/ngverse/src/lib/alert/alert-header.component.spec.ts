@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { AlertHeaderComponent } from './alert-header.component';
 
 describe('AlertHeaderComponent', () => {
@@ -9,11 +10,11 @@ describe('AlertHeaderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AlertHeaderComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AlertHeaderComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

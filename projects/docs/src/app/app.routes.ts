@@ -58,13 +58,6 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'breadcrumb',
-        loadComponent: () =>
-          import('./features/breadcrumb-page/breadcrumb-page.component').then(
-            (b) => b.BreadcrumbPageComponent
-          ),
-      },
-      {
         path: 'badge',
         loadComponent: () =>
           import('./features/badge-page/badge-page.component').then(
@@ -133,13 +126,6 @@ export const routes: Routes = [
           import(
             './features/outside-click-page/outside-click-page.component'
           ).then((b) => b.OutsideClickPageComponent),
-      },
-      {
-        path: 'pagination',
-        loadComponent: () =>
-          import('./features/pagination-page/pagination-page.component').then(
-            (p) => p.PaginationPageComponent
-          ),
       },
       {
         path: 'checkbox',

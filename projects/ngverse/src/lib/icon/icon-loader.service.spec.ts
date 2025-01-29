@@ -3,7 +3,12 @@ import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 import { IconLoaderService } from './icon-loader.service';
 import { IconRegistry } from './icon.registry';
@@ -31,22 +36,25 @@ describe('IconLoaderService', () => {
   let service: IconLoaderService;
   let registryService: IconRegistry;
   let httpMock: HttpTestingController;
+  let fixture: ComponentFixture<TestIconComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [TestIconComponent],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
         IconLoaderService,
         IconRegistry,
+        provideExperimentalZonelessChangeDetection(),
       ],
-    });
+    }).compileComponents();
 
     service = TestBed.inject(IconLoaderService);
     registryService = TestBed.inject(IconRegistry);
     httpMock = TestBed.inject(HttpTestingController);
     registryService.addIcon(TEST_NAME, TEST_URL);
+    fixture = TestBed.createComponent(TestIconComponent);
   });
 
   afterEach(() => {
@@ -88,20 +96,27 @@ describe('IconLoaderService', () => {
     testRequest.flush(TEST_ICON);
     expect(await firstRequest).not.toBe(await secondRequest);
   });
-  it('should return cached request after first load', fakeAsync(() => {
+  it('should return cached request after first load', async () => {
     firstValueFrom(service.load(TEST_NAME));
-    tick();
+    await fixture.whenStable();
     firstValueFrom(service.load(TEST_NAME));
     const testRequest = httpMock.expectOne(TEST_URL);
     testRequest.flush(TEST_ICON);
     expect(testRequest.request.method).toBe('GET');
-  }));
-  it('should return cloned nodes on cached calls', fakeAsync(async () => {
+  });
+  it('should return cloned nodes on cached calls', async () => {
     const firstRequest = firstValueFrom(service.load(TEST_NAME));
-    tick();
+    await fixture.whenStable();
     const secondRequest = firstValueFrom(service.load(TEST_NAME));
     const testRequest = httpMock.expectOne(TEST_URL);
     testRequest.flush(TEST_ICON);
+    await fixture.whenStable();
     expect(await firstRequest).not.toBe(await secondRequest);
-  }));
+  });
 });
+
+@Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `<p>Test</p>`,
+})
+export class TestIconComponent {}

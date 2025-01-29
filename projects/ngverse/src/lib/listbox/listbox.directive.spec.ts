@@ -5,13 +5,13 @@ import {
   RIGHT_ARROW,
   UP_ARROW,
 } from '@angular/cdk/keycodes';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ListboxItemDirective } from './listbox-item.directive';
 import { ListboxDirective } from './listbox.directive';
@@ -31,11 +31,11 @@ describe('ListboxDirective', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ListboxTestComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ListboxTestComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     itemsEl = fixture.debugElement
       .queryAll(By.directive(ListboxItemDirective))
       .map((item) => item.nativeElement);
@@ -45,7 +45,7 @@ describe('ListboxDirective', () => {
     listboxEl = fixture.debugElement.query(
       By.directive(ListboxDirective)
     ).nativeElement;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {
@@ -59,9 +59,9 @@ describe('ListboxDirective', () => {
     expect(others.map((i) => i.tabIndex)).toEqual([-1, -1]);
   });
 
-  it('should navigate vertically between items', () => {
+  it('should navigate vertically between items', async () => {
     component.orientation.set('vertical');
-    fixture.detectChanges();
+    await fixture.whenStable();
 
     const firstItem = itemsEl[0];
     const secondItem = itemsEl[1];
@@ -70,32 +70,32 @@ describe('ListboxDirective', () => {
     expect(secondItem.tabIndex).toBe(-1);
     expect(thirdItem.tabIndex).toBe(-1);
     dispatchKeyEvent('ArrowDown', DOWN_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(-1);
     expect(secondItem.tabIndex).toBe(0);
     expect(thirdItem.tabIndex).toBe(-1);
     dispatchKeyEvent('ArrowDown', DOWN_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(-1);
     expect(secondItem.tabIndex).toBe(-1);
     expect(thirdItem.tabIndex).toBe(0);
 
     dispatchKeyEvent('ArrowUp', UP_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(-1);
     expect(secondItem.tabIndex).toBe(0);
     expect(thirdItem.tabIndex).toBe(-1);
 
     dispatchKeyEvent('ArrowUp', UP_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(0);
     expect(secondItem.tabIndex).toBe(-1);
     expect(thirdItem.tabIndex).toBe(-1);
   });
 
-  it('should horizontally navigate between items', () => {
+  it('should horizontally navigate between items', async () => {
     component.orientation.set('horizontal');
-    fixture.detectChanges();
+    await fixture.whenStable();
 
     const firstItem = itemsEl[0];
     const secondItem = itemsEl[1];
@@ -104,33 +104,33 @@ describe('ListboxDirective', () => {
     expect(secondItem.tabIndex).toBe(-1);
     expect(thirdItem.tabIndex).toBe(-1);
     dispatchKeyEvent('ArrowRight', RIGHT_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(-1);
     expect(secondItem.tabIndex).toBe(0);
     expect(thirdItem.tabIndex).toBe(-1);
     dispatchKeyEvent('ArrowRight', RIGHT_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(-1);
     expect(secondItem.tabIndex).toBe(-1);
     expect(thirdItem.tabIndex).toBe(0);
 
     dispatchKeyEvent('ArrowLeft', LEFT_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(-1);
     expect(secondItem.tabIndex).toBe(0);
     expect(thirdItem.tabIndex).toBe(-1);
 
     dispatchKeyEvent('ArrowLeft', LEFT_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(0);
     expect(secondItem.tabIndex).toBe(-1);
     expect(thirdItem.tabIndex).toBe(-1);
   });
 
-  it('should loop between items on withWrap', () => {
+  it('should loop between items on withWrap', async () => {
     component.withWrap.set(true);
 
-    fixture.detectChanges();
+    await fixture.whenStable();
 
     const firstItem = itemsEl[0];
     const secondItem = itemsEl[1];
@@ -139,132 +139,133 @@ describe('ListboxDirective', () => {
     expect(secondItem.tabIndex).toBe(-1);
     expect(thirdItem.tabIndex).toBe(-1);
     dispatchKeyEvent('ArrowUp', UP_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(-1);
     expect(secondItem.tabIndex).toBe(-1);
     expect(thirdItem.tabIndex).toBe(0);
     dispatchKeyEvent('ArrowDown', DOWN_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(0);
     expect(secondItem.tabIndex).toBe(-1);
     expect(thirdItem.tabIndex).toBe(-1);
   });
-  it('should activate item with TypeAhead', fakeAsync(() => {
+  it('should activate item with TypeAhead', async () => {
     component.withTypeAhead.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const firstItem = itemsEl[0];
     const thirdItem = itemsEl[2];
     expect(firstItem.tabIndex).toBe(0);
     dispatchKeyEvent('B', B);
     //Wait for 200ms because typeaHead by default emits after 200ms
-    tick(200);
-    fixture.detectChanges();
+    await new Promise<void>((resolve) => setTimeout(resolve, 200));
+    await fixture.whenStable();
+    await fixture.whenStable();
     expect(thirdItem.tabIndex).toBe(0);
-  }));
-  it('focus method should focus first item or active one', () => {
+  });
+  it('focus method should focus first item or active one', async () => {
     const firstItem = itemsEl[0];
     listbox.focus();
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(document.activeElement).toBe(firstItem);
     dispatchKeyEvent('ArrowDown', DOWN_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const secondItem = itemsEl[1];
     expect(secondItem.tabIndex).toBe(0);
     listbox.focus();
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(document.activeElement).toBe(secondItem);
   });
-  it('reset should set should reset tabState and set firstItem tabIndex=0', () => {
+  it('reset should set should reset tabState and set firstItem tabIndex=0', async () => {
     const firstItem = itemsEl[0];
-    fixture.detectChanges();
+    await fixture.whenStable();
     dispatchKeyEvent('ArrowDown', DOWN_ARROW);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const secondItem = itemsEl[1];
     expect(secondItem.tabIndex).toBe(0);
     listbox.reset();
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(0);
     expect(secondItem.tabIndex).toBe(-1);
   });
-  it('should activate the item based on value', fakeAsync(() => {
+  it('should activate the item based on value', async () => {
     component.value.set(2);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const secondItem = itemsEl[1];
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(secondItem.tabIndex).toBe(0);
-  }));
-  it('should activate first item if no value is provided', () => {
+  });
+  it('should activate first item if no value is provided', async () => {
     component.value.set(2);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const secondItem = itemsEl[1];
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(secondItem.tabIndex).toBe(0);
     component.value.set(undefined);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const firstItem = itemsEl[0];
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(0);
     component.value.set(null);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(0);
     component.value.set('');
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(0);
   });
-  it("should not activate item if value doesn't match", fakeAsync(() => {
+  it("should not activate item if value doesn't match", async () => {
     component.value.set(2);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const secondItem = itemsEl[1];
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(secondItem.tabIndex).toBe(0);
     component.value.set(-100);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const firstItem = itemsEl[0];
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(0);
-  }));
-  it('should activate last item on multiple value', () => {
+  });
+  it('should activate last item on multiple value', async () => {
     component.multiple.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const firstItem = itemsEl[0];
     expect(firstItem.tabIndex).toBe(0);
     component.value.set([3]);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const thirdItem = itemsEl[2];
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(thirdItem.tabIndex).toBe(0);
   });
-  it('should activate first tab on empty array', () => {
+  it('should activate first tab on empty array', async () => {
     component.multiple.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const firstItem = itemsEl[0];
     expect(firstItem.tabIndex).toBe(0);
     component.value.set([]);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(firstItem.tabIndex).toBe(0);
   });
-  it('compareWith should work on single', () => {
+  it('compareWith should work on single', async () => {
     const dummyCompareWith = (a: number) => a === 2;
     component.compareWith.set(dummyCompareWith);
-    fixture.detectChanges();
+    await fixture.whenStable();
     component.value.set(3);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const thirdItem = itemsEl[2];
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(thirdItem.tabIndex).toBe(-1);
     const secondItem = itemsEl[1];
     expect(secondItem.tabIndex).toBe(0);
   });
-  it('compare should work on multiple', () => {
+  it('compare should work on multiple', async () => {
     component.multiple.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const dummyCompareWith = (a: number) => a === 2;
     component.compareWith.set(dummyCompareWith);
-    fixture.detectChanges();
+    await fixture.whenStable();
     component.value.set([3]);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const thirdItem = itemsEl[2];
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(thirdItem.tabIndex).toBe(-1);
     const secondItem = itemsEl[1];
     expect(secondItem.tabIndex).toBe(0);
