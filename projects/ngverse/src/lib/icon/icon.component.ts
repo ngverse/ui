@@ -24,6 +24,9 @@ const INITIAL_HEIGHT = 24;
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'img',
+  },
 })
 export class IconComponent {
   name = input.required<string>();

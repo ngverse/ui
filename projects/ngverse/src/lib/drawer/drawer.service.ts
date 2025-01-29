@@ -9,7 +9,11 @@ import { DrawerComponent } from './drawer.component';
 interface DrawerConfig
   extends Pick<
     DialogConfig,
-    'ariaDescribedBy' | 'ariaLabel' | 'ariaLabelledBy' | 'autoFocus'
+    | 'ariaDescribedBy'
+    | 'ariaLabel'
+    | 'ariaLabelledBy'
+    | 'autoFocus'
+    | 'injector'
   > {
   data?: unknown;
   title?: string;

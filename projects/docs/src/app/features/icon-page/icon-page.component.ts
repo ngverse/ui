@@ -45,6 +45,8 @@ export class IconPageComponent {
     },
   ];
   apiInfo: ApiInfo = {
+    ariaLink:
+      'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/img_role',
     entities: [
       {
         name: 'IconComponent',
