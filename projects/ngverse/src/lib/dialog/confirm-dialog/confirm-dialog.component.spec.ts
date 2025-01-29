@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogService } from '../dialog.service';
@@ -10,6 +14,7 @@ describe('ConfirmDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ConfirmDialogTestComponent, BrowserAnimationsModule],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
     fixture = TestBed.createComponent(ConfirmDialogTestComponent);
 
@@ -35,51 +40,51 @@ describe('ConfirmDialogComponent', () => {
     expect(document.querySelector('.confirm')).toBeTruthy();
   });
 
-  it('title should be displayed', () => {
+  it('title should be displayed', async () => {
     openConfirm({
       title: 'Title text',
       description: '',
     });
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(document.querySelector('.confirm-title')?.textContent).toBe(
       'Title text'
     );
   });
 
-  it('description should be displayed', () => {
+  it('description should be displayed', async () => {
     openConfirm({
       description: 'This is description',
     });
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(document.querySelector('.confirm-description')?.textContent).toBe(
       'This is description'
     );
   });
 
-  it('button labels should be Yes/No by default', () => {
+  it('button labels should be Yes/No by default', async () => {
     openConfirm();
-    fixture.detectChanges();
+    await fixture.whenStable();
     const buttons = document.querySelectorAll('.confirm-actions button');
 
     expect(buttons[0].textContent?.trim()).toBe('Yes');
     expect(buttons[1].textContent?.trim()).toBe('No');
   });
 
-  it('custom button labels should be displayed', () => {
+  it('custom button labels should be displayed', async () => {
     openConfirm({
       yesLabel: 'Save',
       noLabel: 'Cancel',
     });
-    fixture.detectChanges();
+    await fixture.whenStable();
     const buttons = document.querySelectorAll('.confirm-actions button');
 
     expect(buttons[0].textContent?.trim()).toBe('Save');
     expect(buttons[1].textContent?.trim()).toBe('Cancel');
   });
 
-  it('yes button click should return true on close', () => {
+  it('yes button click should return true on close', async () => {
     const dialogRef = openConfirm();
-    fixture.detectChanges();
+    await fixture.whenStable();
     const yesButton = document.querySelector(
       '.confirm-actions  button'
     ) as HTMLElement;
@@ -89,11 +94,9 @@ describe('ConfirmDialogComponent', () => {
     });
 
     yesButton.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
   });
   it('no button click should return false on close', () => {
     const dialogRef = openConfirm();
-    fixture.detectChanges();
     const yesButton = document.querySelectorAll(
       '.confirm-actions  button'
     )[1] as HTMLElement;
@@ -103,7 +106,6 @@ describe('ConfirmDialogComponent', () => {
     });
 
     yesButton.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
   });
 });
 

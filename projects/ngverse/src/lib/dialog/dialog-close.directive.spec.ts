@@ -1,8 +1,13 @@
+import { DialogRef } from '@angular/cdk/dialog';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { DialogCloseDirective } from './dialog-close.directive';
-import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   template: ` <button appDialogClose [appDialogClose]="value()">Test</button>`,
@@ -17,16 +22,19 @@ describe('DialogCloseDirective', () => {
   let fixture: ComponentFixture<TestCloseComponent>;
   let mockDialogRef: jasmine.SpyObj<DialogRef>;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     mockDialogRef = jasmine.createSpyObj('DialogRef', ['close']);
 
     TestBed.configureTestingModule({
       imports: [TestCloseComponent],
-      providers: [{ provide: DialogRef, useValue: mockDialogRef }],
+      providers: [
+        { provide: DialogRef, useValue: mockDialogRef },
+        provideExperimentalZonelessChangeDetection(),
+      ],
     });
 
     fixture = TestBed.createComponent(TestCloseComponent);
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create the directive', () => {
@@ -45,15 +53,15 @@ describe('DialogCloseDirective', () => {
     expect(mockDialogRef.close).toHaveBeenCalledWith(undefined);
   });
 
-  it('should call dialogRef.close() with the provided value when clicked', () => {
+  it('should call dialogRef.close() with the provided value when clicked', async () => {
     const buttonEl = fixture.debugElement.query(
       By.directive(DialogCloseDirective)
     );
 
     fixture.componentInstance.value.set('Test Value');
-    fixture.detectChanges();
 
-    // Trigger the click event
+    await fixture.whenStable();
+
     buttonEl.triggerEventHandler('click', null);
 
     expect(mockDialogRef.close).toHaveBeenCalledWith('Test Value');

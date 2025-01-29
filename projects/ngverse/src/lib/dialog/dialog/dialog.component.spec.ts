@@ -1,10 +1,14 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { DialogComponent } from './dialog.component';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { DialogCloseDirective } from '../dialog-close.directive';
+import { DialogComponent } from './dialog.component';
 
 describe('DialogComponent', () => {
   let component: DialogComponent;
@@ -24,6 +28,7 @@ describe('DialogComponent', () => {
       imports: [DialogComponent],
       providers: [
         provideNoopAnimations(),
+        provideExperimentalZonelessChangeDetection(),
         {
           provide: DialogRef,
           useValue: dialogRefMock,
@@ -41,7 +46,7 @@ describe('DialogComponent', () => {
 
     fixture = TestBed.createComponent(DialogComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {
