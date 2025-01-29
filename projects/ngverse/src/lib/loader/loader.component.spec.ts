@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core';
 import { LoaderComponent } from './loader.component';
 
 describe('LoaderComponent', () => {
@@ -13,6 +18,7 @@ describe('LoaderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LoaderTestComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoaderTestComponent);
@@ -30,21 +36,20 @@ describe('LoaderComponent', () => {
 
   it('should show loader on [loader]=true', () => {
     component.showLoading.set(true);
-    fixture.detectChanges();
     expect(loaderElement).toBeTruthy();
   });
-  it('should change spinner radius on [spinnerRadius] change', () => {
+  it('should change spinner radius on [spinnerRadius] change', async () => {
     component.showLoading.set(true);
     component.spinnerRadius.set(500);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const loader = loaderElement.querySelector('.loader') as HTMLElement;
-
     expect(loader.clientWidth).toBe(500);
     expect(loader.clientHeight).toBe(500);
   });
-  it('background should be applied properly', () => {
+  it('background should be applied properly', async () => {
     component.showLoading.set(true);
-    fixture.detectChanges();
+
+    await fixture.whenStable();
 
     function checkOpacity(opacity: number) {
       expect(
@@ -57,23 +62,22 @@ describe('LoaderComponent', () => {
     checkOpacity(0.7);
 
     component.transparency.set('full');
-    fixture.detectChanges();
+    await fixture.whenStable();
     checkOpacity(1);
 
     component.transparency.set('none');
-    fixture.detectChanges();
+    await fixture.whenStable();
     checkOpacity(0);
   });
 
-  it('should change parent position to relative', () => {
-    fixture.detectChanges();
-
+  it('should change parent position to relative', async () => {
+    await fixture.whenStable();
     expect(rootContainerElement.style.position).toBe('relative');
   });
 
-  it('should not change position if [useParent] is false', () => {
+  it('should not change position if [useParent] is false', async () => {
     component.useParent.set(false);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(rootContainerElement.style.position).not.toBe('relative');
   });
 });
