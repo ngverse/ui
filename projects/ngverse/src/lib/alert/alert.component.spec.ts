@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core';
 import { AlertBodyComponent } from './alert-body.component';
 import { AlertHeaderComponent } from './alert-header.component';
 import { AlertComponent } from './alert.component';
@@ -14,11 +19,12 @@ describe('AlertComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AlertTestComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AlertTestComponent);
+    await fixture.whenStable();
     component = fixture.componentInstance;
-    fixture.detectChanges();
     nativeElement = fixture.nativeElement as HTMLElement;
     alertRootElement = fixture.nativeElement.querySelector('app-alert');
   });
@@ -27,9 +33,9 @@ describe('AlertComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should change class based on type', () => {
+  it('should change class based on type', async () => {
     component.type.set('success');
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(alertRootElement.classList.contains('success')).toBeTrue();
   });
   it('should render header', () => {
@@ -43,9 +49,9 @@ describe('AlertComponent', () => {
     const body = nativeElement.querySelector('app-alert-body') as HTMLElement;
     expect(body.textContent?.trim()).toBe('I am body');
   });
-  it('should add variant class', () => {
+  it('should add variant class', async () => {
     component.variant.set('outline');
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(alertRootElement.classList.contains('outline')).toBeTrue();
   });
 });
