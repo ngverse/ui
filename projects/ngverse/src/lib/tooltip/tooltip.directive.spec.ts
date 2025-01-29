@@ -28,7 +28,7 @@ describe('TooltipContainerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  fit('should display tooltip on hover', async () => {
+  it('should display tooltip on hover', async () => {
     const button = fixture.nativeElement.querySelector(
       'button'
     ) as HTMLButtonElement;
@@ -40,6 +40,7 @@ describe('TooltipContainerComponent', () => {
   });
   it('should display tooltip on focus', async () => {
     component.tooltipEvent.set('focus');
+    await fixture.whenStable();
     const button = fixture.nativeElement.querySelector(
       'button'
     ) as HTMLButtonElement;
@@ -62,6 +63,7 @@ describe('TooltipContainerComponent', () => {
   });
   it("should not display tooltip if tooltipEvent is 'focus' and it's hovered", async () => {
     component.tooltipEvent.set('focus');
+    await fixture.whenStable();
     const button = fixture.nativeElement.querySelector(
       'button'
     ) as HTMLButtonElement;
@@ -73,6 +75,7 @@ describe('TooltipContainerComponent', () => {
   });
   it('should display tooltip after tooltipDelay', async () => {
     component.tooltipDelay.set(100);
+    await fixture.whenStable();
     const button = fixture.nativeElement.querySelector(
       'button'
     ) as HTMLButtonElement;
@@ -93,16 +96,19 @@ describe('TooltipContainerComponent', () => {
     button.dispatchEvent(new Event('mouseenter'));
     button.dispatchEvent(new Event('mouseenter'));
     await fixture.whenStable();
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
     const tooltips = document.querySelectorAll('.tooltip');
     expect(tooltips.length).toBe(1);
   });
 
   it("should display custom content if it's provided", async () => {
     component.showCustom.set(true);
+    await fixture.whenStable();
     const button = fixture.nativeElement.querySelector(
       'button'
     ) as HTMLButtonElement;
     button.dispatchEvent(new Event('mouseenter'));
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
     await fixture.whenStable();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip?.textContent?.trim()).toBe('Custom content');
@@ -112,6 +118,7 @@ describe('TooltipContainerComponent', () => {
       'button'
     ) as HTMLButtonElement;
     button.dispatchEvent(new Event('mouseenter'));
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
     await fixture.whenStable();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip?.textContent?.trim()).toBe('message');

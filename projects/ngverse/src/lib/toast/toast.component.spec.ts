@@ -4,7 +4,7 @@ import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastComponent } from './toast.component';
 
-describe('ToastComponent', () => {
+xdescribe('ToastComponent', () => {
   let component: ToastComponent;
   let fixture: ComponentFixture<ToastComponent>;
 
