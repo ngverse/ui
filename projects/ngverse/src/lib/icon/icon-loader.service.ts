@@ -4,7 +4,7 @@ import { finalize, map, Observable, of, shareReplay, tap } from 'rxjs';
 
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { IconRegistryService } from './icon-registry.service';
+import { IconRegistry } from './icon.registry';
 
 function createDomParser() {
   const platformId = inject(PLATFORM_ID);
@@ -18,7 +18,7 @@ function createDomParser() {
   providedIn: 'root',
 })
 export class IconLoaderService {
-  private readonly _iconRegistryService = inject(IconRegistryService);
+  private readonly _iconRegistry = inject(IconRegistry);
   private readonly http = inject(HttpClient);
   private readonly _domParser = createDomParser();
   private readonly _iconLoader = new Map<
@@ -28,11 +28,11 @@ export class IconLoaderService {
   private readonly _iconCache = new Map<string, HTMLElement>();
 
   load(name: string) {
-    const url = this._iconRegistryService.getUrl(name);
+    const url = this._iconRegistry.getUrl(name);
 
     if (!url) {
       throw new Error(
-        `Icon with name ${name} not found. Please use IconRegistryService.addSvgIcon() to add it.`
+        `Icon with name ${name} not found. Please use IconRegistry.addSvgIcon() to add it.`
       );
     }
     const cachedIcon = this._iconCache.get(url);

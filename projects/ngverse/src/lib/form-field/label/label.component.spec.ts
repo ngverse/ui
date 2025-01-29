@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LabelComponent } from './label.component';
 
 describe('LabelComponent', () => {
   let component: LabelComponent;
-  let fixture: ComponentFixture<LabelComponent>;
+  let fixture: ComponentFixture<LabelTestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LabelComponent],
+      imports: [LabelTestComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LabelComponent);
+    fixture = TestBed.createComponent(LabelTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -19,4 +20,14 @@ describe('LabelComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should display label content', () => {
+    expect(fixture.nativeElement.textContent).toContain('I am Label');
+  });
 });
+
+@Component({
+  imports: [LabelComponent],
+  template: ` <app-label> I am Label </app-label> `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class LabelTestComponent {}

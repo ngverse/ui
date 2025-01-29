@@ -7,13 +7,13 @@ import {
 } from '@angular/common/http/testing';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { IconLoaderService } from './icon-loader.service';
-import { IconRegistryService } from './icon-registry.service';
 import { IconComponent } from './icon.component';
+import { IconRegistry } from './icon.registry';
 
 describe('IconComponent', () => {
   let component: IconComponent;
   let fixture: ComponentFixture<IconComponent>;
-  let registryService: IconRegistryService;
+  let registryService: IconRegistry;
   let httpMock: HttpTestingController;
   let iconElement: HTMLElement;
 
@@ -24,11 +24,11 @@ describe('IconComponent', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         IconLoaderService,
-        IconRegistryService,
+        IconRegistry,
       ],
     }).compileComponents();
 
-    registryService = TestBed.inject(IconRegistryService);
+    registryService = TestBed.inject(IconRegistry);
     httpMock = TestBed.inject(HttpTestingController);
 
     registryService.addIcon('test', 'assets/icons/test-icon.svg');

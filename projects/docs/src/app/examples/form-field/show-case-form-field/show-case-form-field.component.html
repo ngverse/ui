@@ -7,7 +7,9 @@
   <app-form-field>
     <app-label>Last Name</app-label>
     <input appInput class="w-full" formControlName="lastName" />
-    <app-error-group [control]="group.controls.lastName"></app-error-group>
+    @if (group.controls.lastName.touched && group.controls.lastName.invalid) {
+      <app-error>Lastname is important please fill</app-error>
+    }
   </app-form-field>
   <app-form-field>
     <app-label>Email</app-label>
@@ -17,9 +19,7 @@
   <app-form-field>
     <app-label>Age</app-label>
     <input appInput class="w-full" type="number" formControlName="age" />
-    @if (group.controls.age.touched && group.controls.age.invalid) {
-      <app-error>Please fill age</app-error>
-    }
+    <app-error-group [control]="group.controls.age"></app-error-group>
   </app-form-field>
   <app-form-field>
     <app-label>Country</app-label>

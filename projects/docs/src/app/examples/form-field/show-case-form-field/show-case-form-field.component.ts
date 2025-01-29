@@ -4,6 +4,7 @@ import { ButtonComponent } from '@ngverse/button/button.component';
 import { DialogService } from '@ngverse/dialog/dialog.service';
 import { ErrorGroupComponent } from '@ngverse/form-field/error-group/error-group.component';
 import { ErrorComponent } from '@ngverse/form-field/error/error.component';
+import { FormFieldErrorRegistry } from '@ngverse/form-field/form-field-error.registry';
 import { FormFieldComponent } from '@ngverse/form-field/form-field.component';
 import { LabelComponent } from '@ngverse/form-field/label/label.component';
 import { InputComponent } from '@ngverse/input/input.component';
@@ -29,12 +30,13 @@ import { SelectComponent } from '@ngverse/select/select.component';
 export class ShowCaseFormFieldComponent {
   formBuilder = inject(FormBuilder);
   dialog = inject(DialogService);
+  private formFieldErrorRegistry = inject(FormFieldErrorRegistry);
 
   group = this.formBuilder.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     email: ['', Validators.compose([Validators.required, Validators.email])],
-    age: ['', Validators.required],
+    age: ['', Validators.compose([Validators.required, Validators.min(10)])],
     country: [undefined, Validators.required],
   });
 
@@ -50,6 +52,13 @@ export class ShowCaseFormFieldComponent {
     { code: 'ES', name: 'Spain' },
     { code: 'CN', name: 'China' },
   ];
+
+  constructor() {
+    this.formFieldErrorRegistry.addErrors({
+      min: (error) =>
+        `Min value is ${error.min}, but your value is ${error.actual}`,
+    });
+  }
 
   register() {
     this.dialog.alert({

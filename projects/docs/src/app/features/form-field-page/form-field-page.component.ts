@@ -32,7 +32,15 @@ export class FormFieldPageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: ROOT,
-      files: this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
+      files: [
+        ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
+        this.sourceTreeBuilder.file('form-field-error.registry', ROOT),
+        this.sourceTreeBuilder.file(
+          'form-field-error.registry',
+          ROOT,
+          'spec.ts'
+        ),
+      ],
       hideName: true,
     },
     {
@@ -90,7 +98,54 @@ export class FormFieldPageComponent {
             type: 'string[] | undefined',
             default: EMPTY_API_INPUT_DEFAULT_VALUE,
             description:
-              'List of errors to ignore. This can be especially useful when you want to handle specific errors and provide customized error messages',
+              'List of errors to ignore. This can be useful when you want to display most of the errors with error group, but handle specific errors with app-error and provide customized error messages',
+          },
+        ],
+      },
+      {
+        name: 'FormFieldErrorRegistry',
+        type: 'service',
+        description: 'Service for registering error messages',
+        methods: [
+          {
+            name: 'addErrors',
+            returnType: 'void',
+            description: 'adds errors to the registry',
+            params: [
+              {
+                name: 'errors',
+                type: 'Record<string, string | ((params: unknown) => string)>',
+                description:
+                  'message value can be string or function where error object will be passed',
+              },
+            ],
+          },
+          {
+            name: 'setErrors',
+            returnType: 'void',
+            description:
+              'clears existing errors and sets new errors to the registry',
+
+            params: [
+              {
+                name: 'errors',
+                type: 'Record<string, string | ((params: unknown) => string)>',
+                description:
+                  'message value can be string or function where error object will be passed',
+              },
+            ],
+          },
+          {
+            name: 'getMessage',
+            returnType: 'string | undefined',
+            description: 'gets error message by code',
+            params: [
+              {
+                name: 'code',
+                type: 'string',
+                description: 'error code',
+              },
+            ],
           },
         ],
       },
