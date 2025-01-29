@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   DebugElement,
+  provideExperimentalZonelessChangeDetection,
   signal,
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -16,30 +17,33 @@ describe('CardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CardTestComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardTestComponent);
     cardFixture = fixture.debugElement.query(By.directive(CardComponent));
+    await fixture.whenStable();
   });
 
-  it('should add outline class', () => {
+  it('should add outline class', async () => {
     fixture.componentInstance.outline.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(cardFixture.nativeElement.classList).toContain('outline');
   });
-  it('should add shadow class', () => {
+  it('should add shadow class', async () => {
     fixture.componentInstance.shadow.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(cardFixture.nativeElement.classList).toContain('shadow');
   });
-  it('should add gap class', () => {
+  it('should add gap class', async () => {
     fixture.componentInstance.gap.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(cardFixture.nativeElement.classList).toContain('gap');
   });
-  it('should add surface class', () => {
+  it('should add surface class', async () => {
     fixture.componentInstance.surface.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
+
     expect(cardFixture.nativeElement.classList).toContain('surface');
   });
 });
