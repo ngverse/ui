@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   DebugElement,
+  provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -18,7 +19,10 @@ describe('ToastService', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ToastTestComponent],
-      providers: [provideNoopAnimations()],
+      providers: [
+        provideNoopAnimations(),
+        provideExperimentalZonelessChangeDetection(),
+      ],
     }).compileComponents();
     service = TestBed.inject(ToastService);
 
@@ -28,7 +32,6 @@ describe('ToastService', () => {
 
     // Wrap the document body in a DebugElement
     documentDebugElement = new DebugElement(document.body);
-    fixture.detectChanges();
   });
 
   function toastDebugElement() {
@@ -47,8 +50,6 @@ describe('ToastService', () => {
     service.open({
       message,
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastCompInstance().message()).toBe(message);
   });
   it('should close toast automatically after 10ms', async () => {
@@ -56,8 +57,6 @@ describe('ToastService', () => {
       message: 'Hello, World!',
       closeDelay: 10,
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastDebugElement()).toBeTruthy();
     await new Promise<void>((resolve) => setTimeout(resolve, 10));
     await fixture.whenStable();
@@ -68,8 +67,6 @@ describe('ToastService', () => {
       message: 'Hello, World!',
       showCloseIcon: false,
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastCompInstance().showCloseIcon()).toBe(false);
   });
   it('should pass action to toast', async () => {
@@ -77,8 +74,6 @@ describe('ToastService', () => {
       message: 'Hello, World!',
       action: 'success',
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastCompInstance().action()).toBe('success');
   });
   it('should pass position to toast', async () => {
@@ -86,8 +81,6 @@ describe('ToastService', () => {
       message: 'Hello, World!',
       position: 'top_left',
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastCompInstance().position()).toBe('top_left');
   });
   it('should not close toast if autoClose is false', async () => {
@@ -96,8 +89,6 @@ describe('ToastService', () => {
       autoClose: false,
       closeDelay: 10,
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastDebugElement()).toBeTruthy();
     await new Promise<void>((resolve) => setTimeout(resolve, 10));
     await fixture.whenStable();
@@ -107,14 +98,10 @@ describe('ToastService', () => {
     service.open({
       message: 'Hello, World!',
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastDebugElement()).toBeTruthy();
     service.open({
       message: 'Hello, World!',
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
 
     expect(document.querySelectorAll('.toast').length).toBe(1);
   });
@@ -122,12 +109,8 @@ describe('ToastService', () => {
     service.open({
       message: 'Hello, World!',
     });
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastDebugElement()).toBeTruthy();
     toastCompInstance().closeAnimationFinished.emit();
-    fixture.detectChanges();
-    fixture.detectChanges();
     expect(toastDebugElement()).toBeNull();
   });
 });
