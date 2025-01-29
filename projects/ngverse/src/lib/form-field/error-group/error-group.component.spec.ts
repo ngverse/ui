@@ -11,7 +11,7 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { FormFieldErrorRegistry } from '../form-field-error.registry';
 import { ErrorGroupComponent } from './error-group.component';
 
-xdescribe('ErrorGroupComponent', () => {
+describe('ErrorGroupComponent', () => {
   let component: ErrorGroupTestComponent;
   let formControl: FormControl;
   let fixture: ComponentFixture<ErrorGroupTestComponent>;
@@ -43,37 +43,42 @@ xdescribe('ErrorGroupComponent', () => {
   it('should not display anything when is valid', () => {
     expectContentIsEmpty();
   });
-  it('should not display anything when is invalid but not touched', () => {
+  it('should not display anything when is invalid but not touched', async () => {
     formControl.setValidators(Validators.required);
     formControl.setValue(null);
+    await fixture.whenStable();
     expect(formControl.invalid).toBeTrue();
     expectContentIsEmpty();
   });
-  it("should not display anything if it's touched but valid", () => {
+  it("should not display anything if it's touched but valid", async () => {
     formControl.markAsTouched();
+    await fixture.whenStable();
     expectContentIsEmpty();
   });
-  it("should display error if it's touched and invalid", () => {
+  it("should display error if it's touched and invalid", async () => {
     formControl.setValidators(Validators.required);
     formControl.setValue(null);
     formControl.markAsTouched();
+    await fixture.whenStable();
     expect(fixture.nativeElement.textContent).not.toBeFalsy();
   });
-  it('should display correct error message', () => {
+  it('should display correct error message', async () => {
     const errorMessage = 'This is required';
     errorRegistry.addErrors({ required: errorMessage });
     formControl.setValidators(Validators.required);
     formControl.setValue(null);
     formControl.markAsTouched();
+    await fixture.whenStable();
     expect(fixture.nativeElement.textContent).toContain(errorMessage);
   });
-  it('should silent errors', () => {
+  it('should silent errors', async () => {
     const errorMessage = 'This is required';
     formControl.setValidators(Validators.required);
     formControl.setValue(null);
     formControl.markAsTouched();
     errorRegistry.addErrors({ required: errorMessage });
     component.silentErrors.set(['required']);
+    await fixture.whenStable();
     expectContentIsEmpty();
   });
 });
