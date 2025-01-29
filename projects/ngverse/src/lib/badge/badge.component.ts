@@ -6,7 +6,6 @@ import {
   inject,
   input,
   Renderer2,
-  signal,
 } from '@angular/core';
 
 @Component({
@@ -22,7 +21,7 @@ import {
 export class BadgeComponent {
   value = input.required<string | number | undefined | null>();
   hide = input<boolean>(false);
-  useParent = signal(true);
+  useParent = input(true);
 
   private renderer = inject(Renderer2);
   private host = inject(ElementRef<HTMLElement>);
