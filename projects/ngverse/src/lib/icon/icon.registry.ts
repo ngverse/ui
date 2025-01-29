@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class IconRegistryService {
+export class IconRegistry {
   private readonly icons = new Map<string, string>();
 
   addIcon(name: string, url: string) {

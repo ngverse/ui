@@ -78,7 +78,7 @@ export class IconPageComponent {
         ],
       },
       {
-        name: 'IconRegistryService',
+        name: 'IconRegistry',
         type: 'service',
         methods: [
           {

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { IconRegistryService } from '@ngverse/icon/icon-registry.service';
+import { IconRegistry } from '@ngverse/icon/icon.registry';
 import { HeaderComponent } from './features/header/header.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { HeaderComponent } from './features/header/header.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  iconRegistry = inject(IconRegistryService);
+  iconRegistry = inject(IconRegistry);
 
   constructor() {
     this.iconRegistry.addIcon('copy', 'images/copy.svg');

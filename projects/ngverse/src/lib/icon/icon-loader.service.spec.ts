@@ -6,7 +6,7 @@ import {
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 import { IconLoaderService } from './icon-loader.service';
-import { IconRegistryService } from './icon-registry.service';
+import { IconRegistry } from './icon.registry';
 
 const TEST_ICON = `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ const TEST_NAME = 'test';
 
 describe('IconLoaderService', () => {
   let service: IconLoaderService;
-  let registryService: IconRegistryService;
+  let registryService: IconRegistry;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -39,12 +39,12 @@ describe('IconLoaderService', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         IconLoaderService,
-        IconRegistryService,
+        IconRegistry,
       ],
     });
 
     service = TestBed.inject(IconLoaderService);
-    registryService = TestBed.inject(IconRegistryService);
+    registryService = TestBed.inject(IconRegistry);
     httpMock = TestBed.inject(HttpTestingController);
     registryService.addIcon(TEST_NAME, TEST_URL);
   });
@@ -71,13 +71,15 @@ describe('IconLoaderService', () => {
   });
   it('should load icon by name', async () => {
     firstValueFrom(service.load(TEST_NAME));
-    httpMock.expectOne(TEST_URL);
+    const testRequest = httpMock.expectOne(TEST_URL);
+    expect(testRequest.request.method).toBe('GET');
   });
   it('should send only 1 request for  same subsequent calls', () => {
     firstValueFrom(service.load(TEST_NAME));
     firstValueFrom(service.load(TEST_NAME));
     const testRequest = httpMock.expectOne(TEST_URL);
     testRequest.flush(TEST_ICON);
+    expect(testRequest.request.method).toBe('GET');
   });
   it('should return cloned nodes on subsequent calls', async () => {
     const firstRequest = firstValueFrom(service.load(TEST_NAME));
@@ -92,6 +94,7 @@ describe('IconLoaderService', () => {
     firstValueFrom(service.load(TEST_NAME));
     const testRequest = httpMock.expectOne(TEST_URL);
     testRequest.flush(TEST_ICON);
+    expect(testRequest.request.method).toBe('GET');
   }));
   it('should return cloned nodes on cached calls', fakeAsync(async () => {
     const firstRequest = firstValueFrom(service.load(TEST_NAME));

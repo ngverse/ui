@@ -1,7 +1,7 @@
 import { Component, inject, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IconRegistryService } from '@ngverse/icon/icon-registry.service';
 import { IconComponent } from '@ngverse/icon/icon.component';
+import { IconRegistry } from '@ngverse/icon/icon.registry';
 
 @Component({
   selector: 'doc-show-case-icon',
@@ -10,14 +10,14 @@ import { IconComponent } from '@ngverse/icon/icon.component';
   styleUrl: './show-case-icon.component.scss',
 })
 export class ShowCaseIconComponent {
-  iconRegistryService = inject(IconRegistryService);
+  iconRegistry = inject(IconRegistry);
   icons = ['bird', 'cat', 'heart', 'paw', 'squirrel', 'volleyball'];
   size = model<number>(20);
   color = model<string>('#00000');
 
   constructor() {
     for (const icon of this.icons) {
-      this.iconRegistryService.addIcon(icon, `/show-case-icon/${icon}.svg`);
+      this.iconRegistry.addIcon(icon, `/show-case-icon/${icon}.svg`);
     }
   }
 }
