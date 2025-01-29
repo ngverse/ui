@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   DebugElement,
+  provideExperimentalZonelessChangeDetection,
   signal,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -19,11 +20,14 @@ describe('SwitchComponent', () => {
   let switchNativeElement: HTMLElement;
   let switchElement: HTMLElement;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [SwitchComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     });
     fixture = TestBed.createComponent(SwitchTestComponent);
+    await fixture.whenStable();
+
     debugElement = fixture.debugElement;
     htmlElement = fixture.debugElement.nativeElement;
     rootComponent = fixture.componentInstance;
@@ -33,46 +37,45 @@ describe('SwitchComponent', () => {
       By.directive(SwitchComponent)
     ).nativeElement;
     switchNativeElement = htmlElement.querySelector('button') as HTMLElement;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(switchComponent).toBeTruthy();
   });
-  it('should disable switch with disable true', () => {
+  it('should disable switch with disable true', async () => {
     switchComponent.disabled.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(switchElement.classList).toContain('disabled');
   });
   it('should be true on change', () => {
     switchNativeElement.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
     expect(rootComponent.formControl.value).toBeTrue();
   });
-  it('should add checked class on value change', () => {
+  it('should add checked class on value change', async () => {
     rootComponent.formControl.setValue(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(switchNativeElement.classList).toContain('checked');
   });
-  it('switch should be invalid with formControl required', () => {
+  it('switch should be invalid with formControl required', async () => {
     rootComponent.formControl.setValidators(Validators.required);
     rootComponent.formControl.setValue(null);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(switchElement).toHaveClass('ng-invalid');
   });
-  it('switch should be invalid with required true', () => {
+  it('switch should be invalid with required true', async () => {
     rootComponent.required.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(switchElement).toHaveClass('ng-invalid');
   });
 
-  it("ng-content should be 'Test switch'", () => {
+  it("ng-content should be 'Test switch'", async () => {
+    await fixture.whenStable();
     expect(switchElement.textContent?.trim()).toBe('Test switch');
   });
 
-  it('reverse should change label and toggle alignment', () => {
+  it('reverse should change label and toggle alignment', async () => {
     rootComponent.labelAlign.set('start');
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(switchElement.classList).toContain('start');
   });
 });
