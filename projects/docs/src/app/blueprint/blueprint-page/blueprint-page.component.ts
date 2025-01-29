@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, effect, inject, input } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'doc-blueprint-page',
@@ -8,4 +9,17 @@ import { Component, input } from '@angular/core';
 export class BlueprintPageComponent {
   label = input.required<string>();
   subTitle = input<string>();
+  title = inject(Title);
+  meta = inject(Meta);
+
+  constructor() {
+    effect(() => {
+      const label = this.label();
+      const subTitle = this.subTitle();
+      this.title.setTitle(`${label} | ngverse`);
+      if (subTitle) {
+        this.meta.updateTag({ name: 'description', content: subTitle });
+      }
+    });
+  }
 }
