@@ -3,6 +3,7 @@ import {
   Component,
   ComponentRef,
   input,
+  provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -17,76 +18,75 @@ describe('RadioButtonComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RadioButtonTestComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RadioButtonTestComponent);
     componentRef = fixture.componentRef;
     componentRef.setInput('value', 1);
-
-    fixture.detectChanges();
   });
 
-  it("should set new ID if ID isn't provided", () => {
+  it("should set new ID if ID isn't provided", async () => {
     const randomId = 'random-id';
     fixture.componentRef.setInput('id', randomId);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const input = fixture.nativeElement.querySelector('input');
     const label = fixture.nativeElement.querySelector('label');
     expect(input.id).toBe(randomId);
     expect(input.id).toEqual(label.getAttribute('for'));
   });
-  it('selection should change the icon and input checked attribute', () => {
+  it('selection should change the icon and input checked attribute', async () => {
+    await fixture.whenStable();
     const input = fixture.nativeElement.querySelector(
       'input'
     ) as HTMLInputElement;
     const icon = fixture.nativeElement.querySelector('.radio-button-icon');
     input.dispatchEvent(new Event('change'));
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(input.checked).toBeTrue();
     expect(icon.classList.contains('checked')).toBeTrue();
   });
-  it('disable should disable radio-button', () => {
+  it('disable should disable radio-button', async () => {
     const input = fixture.nativeElement.querySelector(
       'input'
     ) as HTMLInputElement;
     componentRef.setInput('disabled', true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(input.disabled).toBeTrue();
     input.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(input.checked).toBeFalse();
   });
 
-  it("name should be the same as RadioButtonState's name", () => {
+  it("name should be the same as RadioButtonState's name", async () => {
     const radioGroup = fixture.debugElement.query(
       By.directive(RadioGroupComponent)
     ).componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
     const input = fixture.nativeElement.querySelector(
       'input'
     ) as HTMLInputElement;
     expect(input.name).toEqual(radioGroup.name());
   });
-  it('RadioButtonState disabled should disable radio-button', () => {
+  it('RadioButtonState disabled should disable radio-button', async () => {
     fixture.componentInstance.formControl.disable();
-    fixture.detectChanges();
+    await fixture.whenStable();
     const input = fixture.nativeElement.querySelector(
       'input'
     ) as HTMLInputElement;
     expect(input.disabled).toBeTrue();
   });
-  it('radio-button should be selected on same value as Form control value', () => {
+  it('radio-button should be selected on same value as Form control value', async () => {
     fixture.componentRef.setInput('value', 1);
-    fixture.detectChanges();
+    await fixture.whenStable();
     fixture.componentInstance.formControl.setValue(1);
-    fixture.detectChanges();
-
+    await fixture.whenStable();
     const input = fixture.nativeElement.querySelector(
       'input'
     ) as HTMLInputElement;
     expect(input.checked).toBeTrue();
   });
-  it('compare with should select radio-button properly', () => {
+  it('compare with should select radio-button properly', async () => {
     const dummyCompareWith = (a: number) => {
       if (a === 2) {
         return true;
@@ -95,7 +95,7 @@ describe('RadioButtonComponent', () => {
     };
     fixture.componentInstance.formControl.setValue(1);
     componentRef.setInput('compareWith', dummyCompareWith);
-    fixture.detectChanges();
+    await fixture.whenStable();
     const input = fixture.nativeElement.querySelector(
       'input'
     ) as HTMLInputElement;
