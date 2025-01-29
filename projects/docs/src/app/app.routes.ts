@@ -128,13 +128,6 @@ export const routes: Routes = [
           ).then((b) => b.OutsideClickPageComponent),
       },
       {
-        path: 'pagination',
-        loadComponent: () =>
-          import('./features/pagination-page/pagination-page.component').then(
-            (p) => p.PaginationPageComponent
-          ),
-      },
-      {
         path: 'checkbox',
         loadComponent: () =>
           import('./features/checkbox-page/checkbox-page.component').then(
