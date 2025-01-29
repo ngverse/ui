@@ -1,3 +1,4 @@
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { FormFieldErrorRegistry } from './form-field-error.registry';
 
@@ -5,7 +6,9 @@ describe('FormFieldErrorRegistry', () => {
   let service: FormFieldErrorRegistry;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [provideExperimentalZonelessChangeDetection()],
+    });
     service = TestBed.inject(FormFieldErrorRegistry);
   });
 

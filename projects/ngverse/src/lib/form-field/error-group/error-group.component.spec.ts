@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { FormFieldErrorRegistry } from '../form-field-error.registry';
@@ -15,12 +20,15 @@ xdescribe('ErrorGroupComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ErrorGroupTestComponent],
-      providers: [provideNoopAnimations(), FormFieldErrorRegistry],
+      providers: [
+        provideNoopAnimations(),
+        provideExperimentalZonelessChangeDetection(),
+        FormFieldErrorRegistry,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ErrorGroupTestComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     formControl = component.formControl;
     errorRegistry = TestBed.inject(FormFieldErrorRegistry);
   });
@@ -38,20 +46,17 @@ xdescribe('ErrorGroupComponent', () => {
   it('should not display anything when is invalid but not touched', () => {
     formControl.setValidators(Validators.required);
     formControl.setValue(null);
-    fixture.detectChanges();
     expect(formControl.invalid).toBeTrue();
     expectContentIsEmpty();
   });
   it("should not display anything if it's touched but valid", () => {
     formControl.markAsTouched();
-    fixture.detectChanges();
     expectContentIsEmpty();
   });
   it("should display error if it's touched and invalid", () => {
     formControl.setValidators(Validators.required);
     formControl.setValue(null);
     formControl.markAsTouched();
-    fixture.detectChanges();
     expect(fixture.nativeElement.textContent).not.toBeFalsy();
   });
   it('should display correct error message', () => {
@@ -60,18 +65,15 @@ xdescribe('ErrorGroupComponent', () => {
     formControl.setValidators(Validators.required);
     formControl.setValue(null);
     formControl.markAsTouched();
-    fixture.detectChanges();
     expect(fixture.nativeElement.textContent).toContain(errorMessage);
   });
   it('should silent errors', () => {
     const errorMessage = 'This is required';
-    fixture.detectChanges();
     formControl.setValidators(Validators.required);
     formControl.setValue(null);
     formControl.markAsTouched();
     errorRegistry.addErrors({ required: errorMessage });
     component.silentErrors.set(['required']);
-    fixture.detectChanges();
     expectContentIsEmpty();
   });
 });

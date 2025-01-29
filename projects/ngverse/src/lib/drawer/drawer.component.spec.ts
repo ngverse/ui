@@ -42,7 +42,7 @@ describe('DrawerComponent', () => {
         .textContent.trim()
     ).toBe('Title');
   });
-  fit('should display component', async () => {
+  it('should display component', async () => {
     component.component = DrawerTestComponent;
     fixture.detectChanges(false);
     await fixture.whenStable();
