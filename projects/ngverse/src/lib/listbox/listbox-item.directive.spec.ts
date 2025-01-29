@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ListboxItemDirective } from './listbox-item.directive';
@@ -12,17 +16,20 @@ describe('ListboxItemDirective', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ListboxItemTestComponent],
-      providers: [ListboxRegistry],
+      providers: [
+        ListboxRegistry,
+        provideExperimentalZonelessChangeDetection(),
+      ],
     }).compileComponents();
     fixture = TestBed.createComponent(ListboxItemTestComponent);
 
-    fixture.detectChanges();
     directive = fixture.debugElement
       .query(By.directive(ListboxItemDirective))
       .injector.get(ListboxItemDirective);
     directiveEl = fixture.debugElement.query(
       By.directive(ListboxItemDirective)
     ).nativeElement;
+    await fixture.whenStable();
   });
 
   it('should create an instance', () => {
@@ -37,14 +44,14 @@ describe('ListboxItemDirective', () => {
   it('should set tabIndex=-1 by default', () => {
     expect(directiveEl.tabIndex).toBe(-1);
   });
-  it('should set tabIndex=0 on activate', () => {
+  it('should set tabIndex=0 on activate', async () => {
     directive.activate();
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(directiveEl.tabIndex).toBe(0);
   });
-  it('should focus itself on activate', () => {
+  it('should focus itself on activate', async () => {
     directive.activate(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(document.activeElement).toBe(directiveEl);
   });
   it('should remove from registry on destroy', () => {

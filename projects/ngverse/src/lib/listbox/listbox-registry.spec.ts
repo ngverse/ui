@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ElementRef } from '@angular/core';
+import {
+  ElementRef,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { ListboxItemDirective } from './listbox-item.directive';
 import { ListboxRegistry } from './listbox-registry';
 
@@ -9,7 +12,11 @@ describe('ListboxRegistry', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [ListboxRegistry, { provide: ElementRef, useValue: {} }],
+      providers: [
+        ListboxRegistry,
+        { provide: ElementRef, useValue: {} },
+        provideExperimentalZonelessChangeDetection(),
+      ],
     }).compileComponents();
     service = TestBed.inject(ListboxRegistry);
   });
