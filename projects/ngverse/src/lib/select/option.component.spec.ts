@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
@@ -16,7 +21,10 @@ describe('OptionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [OptionTestComponent],
-      providers: [provideNoopAnimations()],
+      providers: [
+        provideNoopAnimations(),
+        provideExperimentalZonelessChangeDetection(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OptionTestComponent);
@@ -26,15 +34,14 @@ describe('OptionComponent', () => {
     option = fixture.debugElement.query(
       By.directive(OptionComponent)
     ).componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should disable button on disabled=[true]', () => {
+  it('should disable button on disabled=[true]', async () => {
     component.disabled.set(true);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(buttonEl.disabled).toBeTrue();
   });
   it('content should return the textContent', () => {
