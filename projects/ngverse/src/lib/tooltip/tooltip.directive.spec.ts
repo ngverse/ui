@@ -1,9 +1,4 @@
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import {
   ChangeDetectionStrategy,
@@ -32,17 +27,17 @@ describe('TooltipContainerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should display tooltip on hover', fakeAsync(() => {
+  it('should display tooltip on hover', async () => {
     const button = fixture.nativeElement.querySelector(
       'button'
     ) as HTMLButtonElement;
     button.dispatchEvent(new Event('mouseenter'));
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip?.textContent?.trim()).toBe('message');
-  }));
-  it('should display tooltip on focus', fakeAsync(() => {
+  });
+  it('should display tooltip on focus', async () => {
     component.tooltipEvent.set('focus');
     fixture.detectChanges();
     const button = fixture.nativeElement.querySelector(
@@ -50,11 +45,11 @@ describe('TooltipContainerComponent', () => {
     ) as HTMLButtonElement;
     button.dispatchEvent(new Event('focus'));
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip?.textContent?.trim()).toBe('message');
-  }));
-  it("should not display tooltip if tooltipEvent is 'hover' and it's focused", fakeAsync(() => {
+  });
+  it("should not display tooltip if tooltipEvent is 'hover' and it's focused", async () => {
     component.tooltipEvent.set('hover');
     fixture.detectChanges();
     const button = fixture.nativeElement.querySelector(
@@ -62,11 +57,11 @@ describe('TooltipContainerComponent', () => {
     ) as HTMLButtonElement;
     button.dispatchEvent(new Event('focus'));
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeNull();
-  }));
-  it("should not display tooltip if tooltipEvent is 'focus' and it's hovered", fakeAsync(() => {
+  });
+  it("should not display tooltip if tooltipEvent is 'focus' and it's hovered", async () => {
     component.tooltipEvent.set('focus');
     fixture.detectChanges();
     const button = fixture.nativeElement.querySelector(
@@ -74,12 +69,12 @@ describe('TooltipContainerComponent', () => {
     ) as HTMLButtonElement;
     button.dispatchEvent(new Event('mouseenter'));
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeNull();
-  }));
-  it('should display tooltip after tooltipDelay', fakeAsync(() => {
-    component.tooltipDelay.set(500);
+  });
+  it('should display tooltip after tooltipDelay', async () => {
+    component.tooltipDelay.set(100);
     fixture.detectChanges();
     const button = fixture.nativeElement.querySelector(
       'button'
@@ -87,29 +82,29 @@ describe('TooltipContainerComponent', () => {
     button.dispatchEvent(new Event('mouseenter'));
     fixture.detectChanges();
 
-    tick(400);
+    await new Promise<void>((resolve) => setTimeout(resolve, 30));
     fixture.detectChanges();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeFalsy();
-
-    tick(100);
+    await new Promise<void>((resolve) => setTimeout(resolve, 100));
+    await fixture.whenStable();
     fixture.detectChanges();
     expect(document.querySelector('.tooltip')).toBeTruthy(); // Tooltip should exist
-  }));
+  });
 
-  it('should display only 1 tooltip even if mouseenter happens twice', fakeAsync(() => {
+  it('should display only 1 tooltip even if mouseenter happens twice', async () => {
     const button = fixture.nativeElement.querySelector(
       'button'
     ) as HTMLButtonElement;
     button.dispatchEvent(new Event('mouseenter'));
     button.dispatchEvent(new Event('mouseenter'));
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     const tooltips = document.querySelectorAll('.tooltip');
     expect(tooltips.length).toBe(1);
-  }));
+  });
 
-  it("should display custom content if it's provided", fakeAsync(() => {
+  it("should display custom content if it's provided", async () => {
     component.showCustom.set(true);
     fixture.detectChanges();
     const button = fixture.nativeElement.querySelector(
@@ -117,25 +112,25 @@ describe('TooltipContainerComponent', () => {
     ) as HTMLButtonElement;
     button.dispatchEvent(new Event('mouseenter'));
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip?.textContent?.trim()).toBe('Custom content');
-  }));
-  it('tooltip should close on escape', fakeAsync(() => {
+  });
+  it('tooltip should close on escape', async () => {
     const button = fixture.nativeElement.querySelector(
       'button'
     ) as HTMLButtonElement;
     button.dispatchEvent(new Event('mouseenter'));
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip?.textContent?.trim()).toBe('message');
     const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape' });
     document.dispatchEvent(escapeEvent);
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     expect(document.querySelector('.tooltip')).toBeFalsy();
-  }));
+  });
 });
 
 @Component({

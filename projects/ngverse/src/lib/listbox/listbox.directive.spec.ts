@@ -6,12 +6,7 @@ import {
   UP_ARROW,
 } from '@angular/cdk/keycodes';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ListboxItemDirective } from './listbox-item.directive';
 import { ListboxDirective } from './listbox.directive';
@@ -149,7 +144,7 @@ describe('ListboxDirective', () => {
     expect(secondItem.tabIndex).toBe(-1);
     expect(thirdItem.tabIndex).toBe(-1);
   });
-  it('should activate item with TypeAhead', fakeAsync(() => {
+  it('should activate item with TypeAhead', async () => {
     component.withTypeAhead.set(true);
     fixture.detectChanges();
     const firstItem = itemsEl[0];
@@ -157,10 +152,11 @@ describe('ListboxDirective', () => {
     expect(firstItem.tabIndex).toBe(0);
     dispatchKeyEvent('B', B);
     //Wait for 200ms because typeaHead by default emits after 200ms
-    tick(200);
+    await new Promise<void>((resolve) => setTimeout(resolve, 200));
+    await fixture.whenStable();
     fixture.detectChanges();
     expect(thirdItem.tabIndex).toBe(0);
-  }));
+  });
   it('focus method should focus first item or active one', () => {
     const firstItem = itemsEl[0];
     listbox.focus();
@@ -186,13 +182,13 @@ describe('ListboxDirective', () => {
     expect(firstItem.tabIndex).toBe(0);
     expect(secondItem.tabIndex).toBe(-1);
   });
-  it('should activate the item based on value', fakeAsync(() => {
+  it('should activate the item based on value', async () => {
     component.value.set(2);
     fixture.detectChanges();
     const secondItem = itemsEl[1];
     fixture.detectChanges();
     expect(secondItem.tabIndex).toBe(0);
-  }));
+  });
   it('should activate first item if no value is provided', () => {
     component.value.set(2);
     fixture.detectChanges();
@@ -211,7 +207,7 @@ describe('ListboxDirective', () => {
     fixture.detectChanges();
     expect(firstItem.tabIndex).toBe(0);
   });
-  it("should not activate item if value doesn't match", fakeAsync(() => {
+  it("should not activate item if value doesn't match", async () => {
     component.value.set(2);
     fixture.detectChanges();
     const secondItem = itemsEl[1];
@@ -222,7 +218,7 @@ describe('ListboxDirective', () => {
     const firstItem = itemsEl[0];
     fixture.detectChanges();
     expect(firstItem.tabIndex).toBe(0);
-  }));
+  });
   it('should activate last item on multiple value', () => {
     component.multiple.set(true);
     fixture.detectChanges();

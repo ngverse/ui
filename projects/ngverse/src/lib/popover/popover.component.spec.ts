@@ -1,9 +1,4 @@
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
@@ -51,152 +46,152 @@ describe('PopoverComponent', () => {
   it('should create with origin', () => {
     expect(component.popover).toBeTruthy();
   });
-  it('should open popover on IsOpen=true', fakeAsync(() => {
+  it('should open popover on IsOpen=true', async () => {
     component.isOpen.set(true);
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
     ) as HTMLElement;
     expect(overlayPopover).toBeTruthy();
     expect(overlayPopover.textContent).toBe('I am First Popover content');
     fixture.detectChanges();
-  }));
-  it('should close popover on IsOpen=false', fakeAsync(() => {
+  });
+  it('should close popover on IsOpen=false', async () => {
     component.isOpen.set(true);
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     component.isOpen.set(false);
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
     ) as HTMLElement;
     expect(overlayPopover).toBeNull();
-  }));
-  it('should update isOpen value, on outside close of popover', fakeAsync(() => {
+  });
+  it('should update isOpen value, on outside close of popover', async () => {
     component.isOpen.set(true);
     component.outsideClose.set(true);
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     fixture.nativeElement.dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     expect(component.isOpen()).toBeFalse();
-  }));
-  it('should close popover on outside click if outsideClose is true', fakeAsync(() => {
+  });
+  it('should close popover on outside click if outsideClose is true', async () => {
     component.isOpen.set(true);
     component.outsideClose.set(true);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     fixture.nativeElement.dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
     ) as HTMLElement;
     expect(overlayPopover).toBeNull();
-  }));
-  it('should close popover on escape click if outsideClose is true', fakeAsync(() => {
+  });
+  it('should close popover on escape click if outsideClose is true', async () => {
     component.isOpen.set(true);
     component.outsideClose.set(true);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     document.body.dispatchEvent(
       new KeyboardEvent('keydown', { key: 'Escape' })
     );
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
     ) as HTMLElement;
     expect(overlayPopover).toBeNull();
-  }));
-  it('should not close popover on outside click if outsideClose is false', fakeAsync(() => {
+  });
+  it('should not close popover on outside click if outsideClose is false', async () => {
     component.isOpen.set(true);
     component.outsideClose.set(false);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     fixture.nativeElement.dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
     ) as HTMLElement;
     expect(overlayPopover).toBeTruthy();
-  }));
-  it('should block scroll if blockScroll is true', fakeAsync(() => {
+  });
+  it('should block scroll if blockScroll is true', async () => {
     //We need to increase the body height to be able to scroll
     //otherwise block strategy doesn't block the scroll
     document.body.style.height = '1000px';
     component.isOpen.set(true);
     component.blockScroll.set(true);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     expect(document.documentElement).toHaveClass('cdk-global-scrollblock');
-  }));
-  it('should add style class when styled=true', fakeAsync(() => {
+  });
+  it('should add style class when styled=true', async () => {
     component.isOpen.set(true);
     component.styled.set(true);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
     ) as HTMLElement;
     expect(overlayPopover).toHaveClass('styled');
-  }));
-  it('should add backdrop when hasBackdrop=true', fakeAsync(() => {
+  });
+  it('should add backdrop when hasBackdrop=true', async () => {
     component.isOpen.set(true);
     component.hasBackdrop.set(true);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     const overlayBackdrop = getOverlayContainerEl().querySelector(
       '.cdk-overlay-backdrop'
     ) as HTMLElement;
     expect(overlayBackdrop).toBeTruthy();
-  }));
-  it("should emit 'close' event", fakeAsync(() => {
+  });
+  it("should emit 'close' event", async () => {
     const spy = jasmine.createSpy('closedSpty');
     component.isOpen.set(true);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     component.popover().closed.subscribe(spy);
     component.isOpen.set(false);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     expect(spy).toHaveBeenCalled();
-  }));
-  it("should emit 'opened' event", fakeAsync(() => {
+  });
+  it("should emit 'opened' event", async () => {
     const spy = jasmine.createSpy('openedSpy');
     component.popover().opened.subscribe(spy);
     component.isOpen.set(true);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     expect(spy).toHaveBeenCalled();
-  }));
-  it('should restore focus on restoreFocus=true', fakeAsync(() => {
+  });
+  it('should restore focus on restoreFocus=true', async () => {
     component.isOpen.set(true);
     component.restoreFocus.set(true);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     component.isOpen.set(false);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     expect(document.activeElement).toBe(
       fixture.nativeElement.querySelector('.popover-button')
     );
-  }));
-  it('should stretch to origin if stretchToOrigin=true', fakeAsync(() => {
+  });
+  it('should stretch to origin if stretchToOrigin=true', async () => {
     component.isOpen.set(true);
     component.stretchToOrigin.set(true);
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     const overlayPopover = getOverlayContainerEl().querySelector(
       '.popover'
     ) as HTMLElement;
@@ -209,7 +204,7 @@ describe('PopoverComponent', () => {
     expect(
       Math.abs(overlayPopover.clientWidth - buttonElement.clientWidth)
     ).toBeLessThanOrEqual(tolerance);
-  }));
+  });
 });
 
 @Component({

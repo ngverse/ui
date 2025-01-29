@@ -1,11 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { DrawerCloseDirective } from './drawer-close.directive';
 import { DrawerService } from './drawer.service';
@@ -34,19 +29,19 @@ describe('DrawerCloseDirective', () => {
     fixture.detectChanges();
   });
 
-  it('should close the drawer on DrawerCloseDirective click', fakeAsync(() => {
+  it('should close the drawer on DrawerCloseDirective click', async () => {
     const drawerRef = service.open(DrawerCloseTestComponent);
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     expect(getDrawerTestElement()).toBeTruthy();
     getDrawerCloseElement().dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    tick(0);
+    await fixture.whenStable();
     drawerRef.closed.subscribe((value) => {
       expect(value).toBe('test');
     });
     expect(getDrawerTestElement()).toBeFalsy();
-  }));
+  });
 });
 
 @Component({

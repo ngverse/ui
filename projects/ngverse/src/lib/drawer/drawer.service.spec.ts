@@ -1,11 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { DRAWER_DATA } from './drawer-ref';
 import { DrawerService } from './drawer.service';
@@ -50,52 +45,52 @@ describe('DrawerService', () => {
     fixture.detectChanges();
     expect(getDrawerTestComponent().textContent).toContain('Drawer test');
   });
-  it('should close the drawer on backdrop click', fakeAsync(() => {
+  it('should close the drawer on backdrop click', async () => {
     service.open(DrawerTestComponent);
     fixture.detectChanges();
     getBackdropElement().dispatchEvent(new Event('click'));
-    tick(0);
+    await fixture.whenStable();
     fixture.detectChanges();
     expect(getDrawerElement()).toBeFalsy();
-  }));
-  it('should close backdrop on ESCAPE key', fakeAsync(() => {
+  });
+  it('should close backdrop on ESCAPE key', async () => {
     service.open(DrawerTestComponent);
     fixture.detectChanges();
     document.body.dispatchEvent(
       new KeyboardEvent('keydown', { key: 'Escape' })
     );
-    tick(0);
+    await fixture.whenStable();
     fixture.detectChanges();
     expect(getDrawerElement()).toBeFalsy();
-  }));
-  it('should close drawer on DrawerRef close method', fakeAsync(() => {
+  });
+  it('should close drawer on DrawerRef close method', async () => {
     const ref = service.open(DrawerTestComponent);
     fixture.detectChanges();
     ref.close();
-    tick(0);
+    await fixture.whenStable();
     fixture.detectChanges();
     expect(getDrawerElement()).toBeFalsy();
-  }));
-  it('should emit closed event on DrawerRef close method', fakeAsync(() => {
+  });
+  it('should emit closed event on DrawerRef close method', async () => {
     const ref = service.open(DrawerTestComponent);
     fixture.detectChanges();
     ref.closed.subscribe(() => {
       expect(true).toBeTrue();
     });
     ref.close();
-    tick(0);
+    await fixture.whenStable();
     fixture.detectChanges();
-  }));
-  it('should pass the value to DrawerRef close method', fakeAsync(() => {
+  });
+  it('should pass the value to DrawerRef close method', async () => {
     const ref = service.open(DrawerTestComponent);
     fixture.detectChanges();
     ref.closed.subscribe((value) => {
       expect(value).toBe('value');
     });
     ref.close('value');
-    tick(0);
+    await fixture.whenStable();
     fixture.detectChanges();
-  }));
+  });
   it('should bass the data to DrawerTestComponent', () => {
     service.open(DrawerTestComponent, {
       data: 'John Doe',
