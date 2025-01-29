@@ -4,6 +4,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  provideExperimentalZonelessChangeDetection,
   TemplateRef,
   viewChild,
 } from '@angular/core';
@@ -16,11 +17,11 @@ describe('TooltipContainerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TooltipContainerComponent, TooltipContainerTestComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TooltipContainerComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -29,19 +30,16 @@ describe('TooltipContainerComponent', () => {
 
   it('should add position class to the tooltip container', () => {
     component.position.set('bottom');
-    fixture.detectChanges();
     const tooltipContainer = fixture.nativeElement.querySelector('.tooltip');
     expect(tooltipContainer.classList).toContain('bottom');
   });
   it('should display message in the tooltip container', () => {
     component.message.set('Hello World');
-    fixture.detectChanges();
     const tooltipContainer = fixture.nativeElement.querySelector('.tooltip');
     expect(tooltipContainer.textContent).toContain('Hello World');
   });
   it('should display content in the tooltip container', () => {
     const fixture = TestBed.createComponent(TooltipContainerTestComponent);
-    fixture.detectChanges();
     const tooltipContainer = fixture.nativeElement.querySelector('.tooltip');
     expect(tooltipContainer.textContent).toBe('I am tooltip');
   });
