@@ -24,18 +24,17 @@ function genInputId() {
 })
 export class RadioButtonComponent {
   disabled = input<boolean>();
+  id = input(genInputId());
   value = input.required<unknown>();
-  radioGroup = inject<RadioGroupComponent>(
+
+  private radioGroup = inject<RadioGroupComponent>(
     forwardRef(() => RadioGroupComponent)
   );
-
-  id = input(genInputId());
+  name = this.radioGroup.name;
 
   radioButtonDisabled = computed(() => {
     return this.disabled() || this.radioGroup.disabled();
   });
-
-  name = this.radioGroup.name;
 
   selected = computed(() => {
     return this.radioGroup.compareWith()(this.radioGroup.value(), this.value());

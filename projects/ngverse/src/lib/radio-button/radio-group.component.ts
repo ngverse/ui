@@ -14,7 +14,6 @@ function getInputName() {
 
 export type OnTouchedFunction = (() => void) | undefined;
 export type OnChangeFunction = ((_: unknown) => void) | undefined;
-export type ValidatorChangeFunction = (() => void) | undefined;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type CompareWith = (o1: any, o2: any) => boolean;
@@ -35,15 +34,15 @@ export type CompareWith = (o1: any, o2: any) => boolean;
 })
 export class RadioGroupComponent implements ControlValueAccessor {
   compareWith = input<CompareWith>((o1, o2) => o1 === o2);
-  value = signal<unknown>(undefined);
-
   name = input(getInputName());
   vertical = input<boolean>(false);
+
+  value = signal<unknown>(undefined);
+
   disabled = signal(false);
 
-  registerOnChangefn: OnChangeFunction;
-  validatorChangefn: ValidatorChangeFunction;
-  onTouchedfn: OnTouchedFunction;
+  private registerOnChangefn: OnChangeFunction;
+  private onTouchedfn: OnTouchedFunction;
 
   writeValue(value: unknown): void {
     this.value.set(value);
