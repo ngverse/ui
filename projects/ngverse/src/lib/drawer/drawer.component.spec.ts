@@ -44,7 +44,6 @@ describe('DrawerComponent', () => {
   });
   it('should display component', async () => {
     component.component = DrawerTestComponent;
-    fixture.detectChanges(false);
     await fixture.whenStable();
     expect(fixture.nativeElement.textContent).toContain('I am component');
   });

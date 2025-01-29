@@ -101,7 +101,6 @@ describe('RadioButtonComponent', () => {
     ) as HTMLInputElement;
     expect(input.checked).toBeFalsy();
     componentRef.setInput('value', 2);
-    fixture.detectChanges();
     expect(input.checked).toBeFalsy();
   });
   it('ng-content should be displayed', () => {
