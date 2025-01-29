@@ -58,13 +58,6 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'breadcrumb',
-        loadComponent: () =>
-          import('./features/breadcrumb-page/breadcrumb-page.component').then(
-            (b) => b.BreadcrumbPageComponent
-          ),
-      },
-      {
         path: 'badge',
         loadComponent: () =>
           import('./features/badge-page/badge-page.component').then(
