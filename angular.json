@@ -54,10 +54,8 @@
             "styles": ["projects/docs/src/styles.scss"],
             "scripts": [],
             "server": "projects/docs/src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "projects/docs/src/server.ts"
-            }
+            "prerender": false,
+            "ssr": false
           },
           "configurations": {
             "production": {
