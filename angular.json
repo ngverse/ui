@@ -31,7 +31,6 @@
             "outputPath": "dist/docs",
             "index": "projects/docs/src/index.html",
             "browser": "projects/docs/src/main.ts",
-            "polyfills": ["zone.js"],
             "allowedCommonJsDependencies": ["file-saver", "jszip"],
             "tsConfig": "projects/docs/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -99,7 +98,6 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/docs/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [

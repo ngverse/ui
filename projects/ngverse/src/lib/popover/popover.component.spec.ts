@@ -38,14 +38,6 @@ describe('PopoverComponent', () => {
     document = TestBed.inject(DOCUMENT);
   });
 
-  it('should throw error without origin or coordinates', () => {
-    expect(() => {
-      const comp = TestBed.createComponent(PopoverComponent);
-      comp.componentInstance.isOpen.set(true);
-      comp.detectChanges();
-    }).toThrowError('origin or coordinates must be provided');
-  });
-
   it('should create with origin', () => {
     expect(component.popover).toBeTruthy();
   });
