@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import {
   Clipboard,
@@ -17,4 +18,8 @@ export class HomePageComponent {
   Clipboard = Clipboard;
   ClipboardPaste = ClipboardPaste;
   Rocket = Rocket;
+  title = inject(Title);
+  constructor() {
+    this.title.setTitle('ngverse');
+  }
 }
