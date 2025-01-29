@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   DebugElement,
+  provideExperimentalZonelessChangeDetection,
   signal,
 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -11,13 +12,14 @@ import { BadgeComponent } from './badge.component';
 describe('BadgeComponent', () => {
   let fixture: ComponentFixture<BadgeTestComponent>;
   let debugElement: DebugElement;
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [BadgeTestComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
     });
     fixture = TestBed.createComponent(BadgeTestComponent);
+    await fixture.whenStable();
     debugElement = fixture.debugElement;
-    fixture.detectChanges();
   });
 
   it('should create an instance', () => {
@@ -29,18 +31,17 @@ describe('BadgeComponent', () => {
       .children[0];
     expect(badgeElement.nativeElement.textContent.trim()).toBe('5');
   });
-  it('should update count', () => {
+  it('should update count', async () => {
     const badgeElement = debugElement.query(By.directive(BadgeComponent))
       .children[0];
     fixture.componentInstance.count.update((c) => c + 1);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(badgeElement.nativeElement.textContent.trim()).toBe('6');
   });
   it('should hide badge', () => {
     const badgeElement = debugElement.query(By.directive(BadgeComponent))
       .children[0];
     fixture.componentInstance.hideBadge.set(true);
-    fixture.detectChanges();
     expect(badgeElement.nativeElement.style.display).toBe('');
   });
 });
