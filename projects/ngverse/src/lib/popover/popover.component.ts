@@ -12,10 +12,11 @@ import {
   OverlayRef,
 } from '@angular/cdk/overlay';
 import { DomPortal } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  contentChild,
   effect,
   ElementRef,
   inject,
@@ -23,6 +24,7 @@ import {
   model,
   OnDestroy,
   output,
+  TemplateRef,
   untracked,
   viewChild,
 } from '@angular/core';
@@ -43,7 +45,7 @@ export interface POPOVER_COORDINATES {
 
 @Component({
   selector: 'app-popover',
-  imports: [],
+  imports: [NgTemplateOutlet],
   templateUrl: './popover.component.html',
   styleUrl: './popover.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -77,6 +79,7 @@ export class PopoverComponent implements OnDestroy {
   opened = output();
   closed = output();
 
+  content = contentChild.required<TemplateRef<unknown>>(TemplateRef);
   private overlay = inject(Overlay);
   private popover = viewChild.required<ElementRef<HTMLElement>>('popover');
   private document = inject(DOCUMENT);

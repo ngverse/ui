@@ -11,8 +11,10 @@
 />
 
 <app-popover [offsetY]="8" [origin]="trigger" [(isOpen)]="isOpen">
-  <div class="select-options">
-    <ng-content select="app-autocomplete-item"></ng-content>
-  </div>
+  <ng-template>
+    <div class="select-options">
+      <ng-content select="app-autocomplete-item"></ng-content>
+    </div>
+  </ng-template>
 </app-popover>
 <!-- (blur)="close()" -->

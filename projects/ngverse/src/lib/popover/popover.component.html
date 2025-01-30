@@ -1,3 +1,4 @@
+<ng-content></ng-content>
 <div
   class="popover"
   #popover
@@ -6,5 +7,7 @@
   (@toggle.done)="onDone($event)"
   [class.styled]="styled()"
 >
-  <ng-content></ng-content>
+  @if (isOpen()) {
+    <ng-container [ngTemplateOutlet]="content()"></ng-container>
+  }
 </div>
