@@ -19,7 +19,6 @@ type Transparency = 'none' | 'semi' | 'full';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.overlay]': 'overlay()',
-    '[class.loading]': 'loading()',
     '[style.--loader-overlay-opacity]': 'opacity()',
   },
 })
@@ -28,7 +27,6 @@ export class LoaderComponent {
   overlay = input<boolean>(false);
   useParent = input(true);
   transparency = input<Transparency>('semi');
-  loading = input<boolean | undefined | null>(false);
 
   private renderer = inject(Renderer2);
   private parentEl = inject<ElementRef<HTMLElement>>(ElementRef, {

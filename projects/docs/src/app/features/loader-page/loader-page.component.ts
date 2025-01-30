@@ -44,12 +44,6 @@ export class LoaderPageComponent {
         selector: 'app-loader',
         inputs: [
           {
-            name: 'loading',
-            type: 'boolean',
-            default: 'false',
-            description: 'Displays the loader',
-          },
-          {
             name: 'radius',
             type: 'number',
             default: '50',
