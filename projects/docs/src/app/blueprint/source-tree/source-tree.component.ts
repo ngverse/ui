@@ -1,5 +1,7 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, model, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '@ngverse/button/button.component';
+import { CheckboxComponent } from '@ngverse/checkbox/checkbox.component';
 import { FileService } from '../../services/file.service';
 import { SourceCodeComponent } from '../source-code/source-code.component';
 import {
@@ -11,7 +13,13 @@ import { SourceTreeSelectComponent } from './source-tree-select/source-tree-sele
 
 @Component({
   selector: 'doc-source-tree',
-  imports: [SourceCodeComponent, SourceTreeSelectComponent, ButtonComponent],
+  imports: [
+    SourceCodeComponent,
+    SourceTreeSelectComponent,
+    ButtonComponent,
+    CheckboxComponent,
+    FormsModule,
+  ],
   templateUrl: './source-tree.component.html',
   styleUrl: './source-tree.component.scss',
 })
@@ -26,6 +34,8 @@ export class SourceTreeComponent {
 
   sourceTree = input.required<SourceTreeFolder[]>();
 
+  includeTests = model();
+
   name = input.required<string>();
 
   fileSelected(file: SourceTreeFile) {
@@ -36,6 +46,10 @@ export class SourceTreeComponent {
   }
 
   download() {
-    this.fileService.downloadSourceTree(this.name(), this.sourceTree());
+    this.fileService.downloadSourceTree(
+      this.name(),
+      this.sourceTree(),
+      !!this.includeTests()
+    );
   }
 }

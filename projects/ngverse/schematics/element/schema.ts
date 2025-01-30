@@ -5,4 +5,6 @@ export interface Schema {
   project: string;
 
   replace?: boolean;
+
+  includeTests?: string;
 }

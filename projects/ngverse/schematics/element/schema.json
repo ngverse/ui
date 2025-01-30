@@ -23,6 +23,11 @@
       "$default": {
         "$source": "projectName"
       }
+    },
+    "includeTests": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whete to include tests or not by default is false"
     }
   },
   "required": ["name"]

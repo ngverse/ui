@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
-import { SourceTreeFolder } from '../blueprint/source-tree/source-tree-builder';
-import { delay, map, tap } from 'rxjs/operators';
 import { lastValueFrom, of } from 'rxjs';
+import { delay, map, tap } from 'rxjs/operators';
+import { SourceTreeFolder } from '../blueprint/source-tree/source-tree-builder';
 
 export const EMPTY_FILE_TOKEN = 'Empty File';
 
@@ -41,7 +41,11 @@ export class FileService {
       );
   }
 
-  downloadSourceTree(zipName: string, sourceTree: SourceTreeFolder[]) {
+  downloadSourceTree(
+    zipName: string,
+    sourceTree: SourceTreeFolder[],
+    includeTests: boolean
+  ) {
     const zip = new JSZip();
     const filePromises: Promise<void>[] = [];
 
@@ -50,7 +54,10 @@ export class FileService {
       if (!folder.hideName) {
         jsFolder = zip.folder(folder.name);
       }
-      for (const file of folder.files) {
+      const files = includeTests
+        ? folder.files
+        : folder.files.filter((file) => !file.name.endsWith('.spec.ts'));
+      for (const file of files) {
         // Wrap the subscription in a Promise
         const filePromise = lastValueFrom(
           this.getFile(file.path).pipe(

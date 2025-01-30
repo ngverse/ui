@@ -48,6 +48,9 @@ export function element(options: Schema) {
     }
     // Copy element files from the library to the application
     dir.visit((filePath) => {
+      if (!options.includeTests && filePath.endsWith('.spec.ts')) {
+        return;
+      }
       const content = host.read(filePath);
       if (content) {
         const targetPath = filePath.replace(elementsPath, applicationPath);
