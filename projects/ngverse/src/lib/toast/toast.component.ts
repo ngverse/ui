@@ -20,7 +20,7 @@ import { TOAST_POSITION } from './toast.service';
 })
 export class ToastComponent {
   message = signal<string>('');
-  action = signal<string>('');
+  type = signal<string>('');
   showCloseIcon = signal<boolean>(true);
   position = signal<TOAST_POSITION>('right_bottom');
   animationState = signal<'show' | 'hide'>('show');

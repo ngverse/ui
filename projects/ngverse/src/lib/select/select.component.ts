@@ -60,6 +60,7 @@ export class SelectComponent implements ControlValueAccessor {
   isOpen = signal(false);
   disabled = signal(false);
   values = signal<unknown[]>([]);
+  stretch = input(true);
 
   listbox = viewChild.required(ListboxDirective);
 
