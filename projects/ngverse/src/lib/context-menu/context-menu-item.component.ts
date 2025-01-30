@@ -6,8 +6,8 @@ import {
   input,
   output,
 } from '@angular/core';
-import { ListboxItemDirective } from '../../listbox/listbox-item.directive';
-import { ContextMenuComponent } from '../context-menu.component';
+import { ListboxItemDirective } from '../listbox/listbox-item.directive';
+import { ContextMenuComponent } from './context-menu.component';
 
 @Component({
   selector: 'app-context-menu-item',

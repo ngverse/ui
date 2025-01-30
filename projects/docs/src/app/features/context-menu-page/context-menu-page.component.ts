@@ -53,10 +53,7 @@ export class ContextMenuPageComponent {
       name: ROOT,
       files: [
         ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
-        ...this.sourceTreeBuilder.fullComponent(
-          'context-menu-item',
-          `${ROOT}/context-menu-item`
-        ),
+        ...this.sourceTreeBuilder.fullComponent('context-menu-item', ROOT),
         ...this.sourceTreeBuilder.directive('context-menu-trigger', ROOT),
       ],
       hideName: true,
