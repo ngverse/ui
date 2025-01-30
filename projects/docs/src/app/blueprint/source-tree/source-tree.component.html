@@ -1,9 +1,13 @@
 <div class="flex items-center justify-between mb-3">
   <h5 class="text-lg my-0 mb-3 font-medium">Source code</h5>
-
-  <button appButton color="primary" variant="outline" (click)="download()">
-    Download (.zip)
-  </button>
+  <div class="flex items-center gap-2">
+    <app-checkbox [(ngModel)]="includeTests" labelAlign="start"
+      >Include Tests</app-checkbox
+    >
+    <button appButton color="primary" variant="outline" (click)="download()">
+      Download (.zip)
+    </button>
+  </div>
 </div>
 
 <div class="flex items-center justify-between mb-3">
