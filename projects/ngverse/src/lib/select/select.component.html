@@ -25,17 +25,19 @@
   [origin]="origin"
   [offsetY]="8"
 >
-  <div
-    class="select-options"
-    [appListbox]="values()"
-    #listbox="appListbox"
-    (valueChange)="toggleValue($event)"
-    [multiple]="true"
-    [withTypeAhead]="true"
-    [withWrap]="false"
-    role="listbox"
-  >
-    <ng-content select="app-option-group"></ng-content>
-    <ng-content select="app-option"></ng-content>
-  </div>
+  <ng-template>
+    <div
+      class="select-options"
+      [appListbox]="values()"
+      #listbox="appListbox"
+      (valueChange)="toggleValue($event)"
+      [multiple]="true"
+      [withTypeAhead]="true"
+      [withWrap]="false"
+      role="listbox"
+    >
+      <ng-content select="app-option-group"></ng-content>
+      <ng-content select="app-option"></ng-content>
+    </div>
+  </ng-template>
 </app-popover>

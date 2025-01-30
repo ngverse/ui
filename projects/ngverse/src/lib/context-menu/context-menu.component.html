@@ -7,7 +7,9 @@
   [styled]="true"
   [outsideClose]="true"
 >
-  <div appListbox #itemList="appListbox" class="items-list">
-    <ng-content></ng-content>
-  </div>
+  <ng-template>
+    <div appListbox #itemList="appListbox" class="items-list">
+      <ng-content></ng-content>
+    </div>
+  </ng-template>
 </app-popover>

@@ -195,7 +195,9 @@ describe('PopoverComponent', () => {
       [restoreFocus]="restoreFocus()"
       [stretchToOrigin]="stretchToOrigin()"
     >
-      <h1>I am First Popover content</h1>
+      <ng-template>
+        <h1>I am First Popover content</h1>
+      </ng-template>
     </app-popover>
   `,
   imports: [PopoverComponent, PopoverOriginDirective],

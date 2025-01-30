@@ -15,15 +15,22 @@
   [styled]="true"
   [positionY]="'bottom'"
 >
-  <div class="popover">
-    <p>Are you sure you want to do this?</p>
-    <div class="popover-actions">
-      <button size="sm" appButton color="danger" (click)="deleteUser()">
-        Yes
-      </button>
-      <button size="sm" appButton (click)="isOpen.set(false)" variant="outline">
-        No
-      </button>
+  <ng-template>
+    <div class="popover">
+      <p>Are you sure you want to do this?</p>
+      <div class="popover-actions">
+        <button size="sm" appButton color="danger" (click)="deleteUser()">
+          Yes
+        </button>
+        <button
+          size="sm"
+          appButton
+          (click)="isOpen.set(false)"
+          variant="outline"
+        >
+          No
+        </button>
+      </div>
     </div>
-  </div>
+  </ng-template>
 </app-popover>
