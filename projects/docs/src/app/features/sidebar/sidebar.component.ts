@@ -36,6 +36,11 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/theming',
         done: true,
       },
+      {
+        name: 'Schematics Usage',
+        url: '/doc/schematics-usage',
+        done: true,
+      },
     ],
   },
   {

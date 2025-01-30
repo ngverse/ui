@@ -1,0 +1,158 @@
+<doc-blog-page label="Schematics Usage">
+  <p>
+    NgVerse schematics make integrating NgVerse into your Angular project a
+    breeze. There are two primary commands you can run:
+  </p>
+  <ul>
+    <li><code>ng add ngverse</code></li>
+    <li><code>ng g ngverse:element</code> (g is an alias for generate)</li>
+  </ul>
+  <p>This page explains each command and its options in detail.</p>
+  <h2>ng g ngverse:element [element-name]</h2>
+  <p>
+    The <code>ng g ngverse:element</code> command adds a NgVerse element to your
+    project. Below are the available parameters:
+  </p>
+
+  <h3>1. <code>name</code> (Required)</h3>
+  <p>The name of the element you want to add.</p>
+  <ul>
+    <li>
+      You can specify the name using either of the following:
+      <ul>
+        <li><code>--name=button</code></li>
+        <li>
+          By passing it as the first positional argument:<br />
+          Example: <code>ng g ngverse:element button</code>
+        </li>
+      </ul>
+    </li>
+    <li>Both methods achieve the same result.</li>
+  </ul>
+  <h3>2. <code>project</code> (Optional)</h3>
+  <p>The name of the Angular project where the element should be added.</p>
+  <ul>
+    <li>
+      If your workspace contains multiple projects, you can specify which one to
+      use by passing the project name.
+    </li>
+    <li>
+      By default, the element is added to the default project specified in
+      <code>angular.json</code>.
+    </li>
+    <li>
+      If your workspace has only one project, the element will be added
+      automatically without needing this parameter.
+    </li>
+  </ul>
+  <h3>3. <code>replace</code> (Optional, default: <code>false</code>)</h3>
+  <p>Determines whether to replace existing files with the same name.</p>
+  <ul>
+    <li>
+      If a folder with the same name as the element already exists, the
+      schematic will throw an error to prevent accidental file deletions.
+    </li>
+    <li>
+      If you want to override the existing files, set <code>replace=true</code>.
+    </li>
+    <li>Example: <code>ng g ngverse:element button --replace=true</code></li>
+  </ul>
+  <p>
+    <strong
+      >⚠️ Use this option with caution to avoid overwriting important
+      files.</strong
+    >
+  </p>
+  <h3>4. <code>includeTests</code> (Optional, default: <code>false</code>)</h3>
+  <p>Specifies whether to include test files for the element.</p>
+  <ul>
+    <li>
+      NgVerse elements come with a full suite of tests to help ensure
+      reliability. However, including tests is optional for the following
+      reasons:
+      <ul>
+        <li>
+          <strong>Code changes may break tests:</strong><br />
+          After modifying an element, tests may fail because the behavior has
+          changed. In this case, you would need to debug and update the test
+          files, which can take extra time and effort.
+        </li>
+        <li>
+          <strong>Test framework compatibility:</strong><br />
+          Our tests are written in Jasmine, so if you're using another framework
+          like Jest, the tests will not run at all.<br />
+          Therefore, tests are disabled by default.
+        </li>
+      </ul>
+    </li>
+    <li>
+      If you want to include test files, use
+      <code>includeTests=true</code>.<br />
+      Example: <code>ng g ngverse:element button --includeTests=true</code>
+    </li>
+  </ul>
+  <p>
+    Keep in mind that we maintain and update our tests regularly. Tests are run
+    on every commit, merge, and release to ensure high quality. We take testing
+    seriously, so you don’t have to worry about test coverage! 🚀
+  </p>
+  <h3>5. <code>path</code> (Optional)</h3>
+  <p>Specifies where to place the element folder.</p>
+  <ul>
+    <li>
+      By default, the element is added to the root folder
+      (<code>/src/app</code>).
+    </li>
+    <li>
+      You can specify a different location using the
+      <code>--path</code> parameter.<br />
+      Example: <code>ng g ngverse:element button --path=core</code><br />
+      This will place the element in <code>/src/app/core</code>.
+    </li>
+    <li>
+      You can also change the destination by including the path in the element
+      name:<br />
+      Example: <code>ng g ngverse:element core/button</code><br />
+      This will place the element in <code>/src/app/core</code>.
+    </li>
+  </ul>
+  <p>
+    Most components are self-isolated, meaning all their dependencies are
+    located within the element folder. However, some components, like
+    <code>select</code>, depend on other elements (e.g.,
+    <code>popover</code> and <code>listbox</code>).
+  </p>
+  <p>
+    In these cases, all related element folders must reside within the same
+    parent directory because the imports are relative and expect the same folder
+    structure. While you can manually update the imports if necessary, we
+    recommend keeping all elements in the same directory to avoid issues.
+  </p>
+  <h3>Global Configuration</h3>
+  <p>
+    You can set a global configuration for the
+    <code>ng g ngverse:element</code> schematics.
+  </p>
+  <p>
+    For example, if you want to place all elements inside the
+    <code>core/ui</code> folder by default, you can add the following
+    configuration in your <code>angular.json</code> file:
+  </p>
+
+  <doc-source-code
+    language="json"
+    [allowCopy]="false"
+    [code]="configCode"
+  ></doc-source-code>
+
+  <p>Once this is configured, running the command:</p>
+  <doc-source-code
+    language="bash"
+    [code]="'ng g ngverse:element button'"
+  ></doc-source-code>
+
+  <p>
+    will automatically place the element inside the <code>core/ui</code> folder,
+    without needing to specify the <code>--path</code> parameter every time.
+  </p>
+</doc-blog-page>

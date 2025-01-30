@@ -23,6 +23,13 @@ export const routes: Routes = [
           ).then((i) => i.InstallationPageComponent),
       },
       {
+        path: 'schematics-usage',
+        loadComponent: () =>
+          import(
+            './features/schematics-usage-page/schematics-usage-page.component'
+          ).then((i) => i.SchematicsUsagePageComponent),
+      },
+      {
         path: 'usage',
         loadComponent: () =>
           import('./features/usage-page/usage-page.component').then(

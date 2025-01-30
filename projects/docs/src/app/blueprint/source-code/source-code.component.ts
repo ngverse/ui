@@ -15,13 +15,17 @@ export class SourceCodeComponent {
   code = input.required<string>();
   language = input.required<string>();
 
+  allowCopy = input(true);
+
   copied = signal(false);
 
   outline = input(true);
 
   surface = input(false);
 
-  showCopy = computed(() => this.code() !== EMPTY_FILE_TOKEN);
+  showCopy = computed(
+    () => this.allowCopy() && this.code() !== EMPTY_FILE_TOKEN
+  );
 
   copy() {
     this.copied.set(true);

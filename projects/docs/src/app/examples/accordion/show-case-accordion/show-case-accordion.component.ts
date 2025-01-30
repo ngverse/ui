@@ -17,7 +17,7 @@ export class ShowCaseAccordionComponent {
     },
     {
       title: 'How to add an element?',
-      description: 'run: ng generate ngverse:element [name]',
+      description: 'run: ng g ngverse:element [name]',
     },
     {
       title: 'How to customize an element?',
