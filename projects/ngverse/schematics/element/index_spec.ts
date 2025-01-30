@@ -153,6 +153,26 @@ describe('element', () => {
     expect(
       appTree.readContent(getProjectPath(componentName, 'component.scss'))
     ).toEqual(BUTTON_COMPONENT_SCSS);
+  });
+
+  it('should not add spec file by default', async () => {
+    const componentName = 'button';
+    await testRunner.runSchematic(
+      'element',
+      { name: componentName, project: PROJECT_NAME },
+      appTree
+    );
+    expect(
+      appTree.readContent(getProjectPath(componentName, 'component.spec.ts'))
+    ).toBeFalsy();
+  });
+  it('should add spec file if includeTests=true', async () => {
+    const componentName = 'button';
+    await testRunner.runSchematic(
+      'element',
+      { name: componentName, project: PROJECT_NAME, includeTests: true },
+      appTree
+    );
     expect(
       appTree.readContent(getProjectPath(componentName, 'component.spec.ts'))
     ).toEqual(BUTTON_COMPONENT_SPEC_TS);
