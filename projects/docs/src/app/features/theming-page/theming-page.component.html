@@ -1,23 +1,88 @@
 <doc-blog-page label="Theming">
   <p>
-    NgVerse components do not rely on a global theme file to style all
-    components. Instead, each component's styles are self-contained within its
-    own SCSS file. To update the style of a specific component, simply edit its
-    corresponding SCSS file directly.
+    NgVerse styles are self-encapsulated, meaning that styling is done within
+    the component's SCSS files rather than in a global theming file. Since you
+    have full access to the component source code, you don't need to inspect
+    elements or search through a global file to update styles. You can simply
+    edit the SCSS file within the component itself.
   </p>
   <p>
-    However, there is a small global.scss file included, which contains
-    predefined variables, such as primary-color, that components can use. The
-    purpose of this file is to ensure consistent and visually appealing styles
-    across components, particularly if you do not have a custom design in place.
-    That said, you are free to ignore this file entirely or remove the use of
-    these global variables within individual components—it's entirely up to you.
+    However, NgVerse also adds a <code>ngverse.scss</code> file to your project.
+    Let's break down what this file does.
   </p>
-  <p>
-    For example, if you want to change the style of the Button component, avoid
-    overriding classes in the global styles.scss file. Instead, make your
-    changes directly in the button.scss file.
-  </p>
-  <span>globals.scss</span>
+
+  <h2>ngverse.scss</h2>
+
   <doc-source-code language="css" [code]="globalsCode()"></doc-source-code>
+
+  <h3>Explanation</h3>
+
+  <h4>1. Normalize SCSS Import</h4>
+  <p>The first line imports the <code>normalize.scss</code> file.</p>
+  <ul>
+    <li>
+      <code>normalize.scss</code> resets inconsistent browser styles. It uses
+      <a
+        target="_blank"
+        href="https://github.com/tailwindlabs/tailwindcss/blob/main/packages/tailwindcss/preflight.css"
+        >this file</a
+      >
+      for standardization.
+    </li>
+    <li>
+      If you already have a custom reset file (e.g., <code>reset.scss</code>),
+      you can remove this import. <br />
+      <strong>Note:</strong> Small UI issues may occur if you use a different
+      reset file. You might need to adjust component styles accordingly.
+    </li>
+  </ul>
+
+  <h4>2. Angular CDK Overlay Import</h4>
+  <p>The second line imports Angular CDK's overlay styles.</p>
+  <ul>
+    <li>
+      This is essential for floating panels (e.g., popovers, dropdowns) to
+      display correctly.
+    </li>
+    <li>
+      If you are already using Angular Material or have imported this style
+      manually in <code>styles.scss</code>, you can remove this import.
+    </li>
+  </ul>
+
+  <h4>3. CSS Variables</h4>
+  <p>
+    Starting from the third line, CSS variables are defined. These variables are
+    used throughout NgVerse components.
+  </p>
+  <ul>
+    <li>
+      The main purpose of these variables is to maintain a coherent, default
+      appearance across components.
+    </li>
+    <li>
+      If you do not have a custom design, the components will still look
+      polished and consistent. You can update the variables to customize styles
+      globally.
+    </li>
+    <li>
+      Each color variable follows this structure:
+      <ul>
+        <li><code>--color-name</code>: Background color</li>
+        <li><code>--color-name-foreground</code>: Text color</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>Automatic Setup</h3>
+  <p>
+    When you run the <code>ng add ngverse</code> schematics, the
+    <code>ngverse.scss</code> file is generated and imported into your
+    <code>styles.scss</code> file automatically.
+  </p>
+  <h3>Manual Installation</h3>
+  <p>
+    If you install NgVerse manually, copy the <code>ngverse.scss</code> file and
+    import it into your <code>styles.scss</code>:
+  </p>
 </doc-blog-page>
