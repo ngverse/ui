@@ -12,9 +12,7 @@
     background: rgba($color: #fff, $alpha: var(--loader-overlay-opacity));
     z-index: 99999;
   }
-  &.loading {
-    display: flex;
-  }
+  display: flex;
 }
 
 .loader {

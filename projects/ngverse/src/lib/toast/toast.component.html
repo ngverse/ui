@@ -1,7 +1,7 @@
 <div
   class="toast"
   role="alert"
-  [class]="action()"
+  [class]="type()"
   [@slide]="animationParams()"
   (@slide.done)="onDone($event)"
 >

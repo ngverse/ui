@@ -29,7 +29,7 @@ describe('ToastComponent', () => {
     );
   });
   it('should apply action as class', async () => {
-    component.action.set('success');
+    component.type.set('success');
     await fixture.whenStable();
     expect(
       fixture.nativeElement

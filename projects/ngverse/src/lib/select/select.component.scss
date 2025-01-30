@@ -7,7 +7,6 @@
   border-radius: var(--nv-border-radius);
   height: var(--nv-field-height);
   padding: var(--nv-field-padding);
-  width: 100%;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -53,6 +52,5 @@
 
 .select-options {
   max-height: 200px;
-  min-width: 200px;
   overflow: auto;
 }

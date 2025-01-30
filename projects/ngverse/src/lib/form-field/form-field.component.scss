@@ -5,6 +5,11 @@
   margin-bottom: 20px;
   position: relative;
 }
+.form-field-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
 .form-field-errors {
   position: absolute;

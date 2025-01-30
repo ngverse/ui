@@ -14,14 +14,14 @@ export type TOAST_POSITION =
   | 'bottom_left'
   | 'left_center';
 
-export type TOAST_ACTIONS = 'success' | 'warning' | 'danger' | 'default';
+export type TOAST_TYPE = 'success' | 'warning' | 'danger' | 'default';
 
 interface ToastOptions {
   closeDelay?: number;
   autoClose?: boolean;
   showCloseIcon?: boolean;
   message: string;
-  action?: TOAST_ACTIONS;
+  type?: TOAST_TYPE;
   position?: TOAST_POSITION;
 }
 
@@ -62,7 +62,7 @@ export class ToastService {
       autoClose: options.autoClose ?? true,
       showCloseIcon: options.showCloseIcon ?? true,
       message: options.message,
-      action: options.action || 'default',
+      type: options.type || 'default',
       position: options.position ?? 'bottom_center',
     };
   }
@@ -79,7 +79,7 @@ export class ToastService {
     const compRef = this.overlayRef.attach(portal);
     const instance = compRef.instance;
     instance.message.set(genOptions.message);
-    instance.action.set(genOptions.action);
+    instance.type.set(genOptions.type);
     instance.showCloseIcon.set(genOptions.showCloseIcon);
     instance.position.set(genOptions.position);
     if (genOptions.autoClose) {

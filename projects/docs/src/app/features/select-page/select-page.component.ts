@@ -90,6 +90,13 @@ export class SelectPageComponent {
             default: 'o1 === o2',
             description: 'determines the compare function',
           },
+          {
+            name: 'stretch',
+            type: 'boolean',
+            default: 'false',
+            description:
+              'determines whether the select button should take the full width of the container',
+          },
         ],
       },
       {

@@ -72,9 +72,9 @@ describe('ToastService', () => {
   it('should pass action to toast', async () => {
     service.open({
       message: 'Hello, World!',
-      action: 'success',
+      type: 'success',
     });
-    expect(toastCompInstance().action()).toBe('success');
+    expect(toastCompInstance().type()).toBe('success');
   });
   it('should pass position to toast', async () => {
     service.open({

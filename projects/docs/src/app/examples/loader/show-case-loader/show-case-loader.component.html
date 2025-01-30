@@ -1,6 +1,6 @@
 <div class="show-case">
   <app-card class="infinite-loader">
-    <app-loader [loading]="true"></app-loader>
+    <app-loader></app-loader>
   </app-card>
   <app-card>
     <app-form-field>
@@ -12,6 +12,8 @@
     <button appButton color="primary" size="sm" (click)="show()" class="button">
       Loader Overlay
     </button>
-    <app-loader [overlay]="true" [loading]="showLoader()"></app-loader>
+    @if (showLoader()) {
+      <app-loader [overlay]="true"></app-loader>
+    }
   </app-card>
 </div>

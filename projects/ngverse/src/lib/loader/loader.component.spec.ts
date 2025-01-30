@@ -34,12 +34,7 @@ describe('LoaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should show loader on [loader]=true', () => {
-    component.showLoading.set(true);
-    expect(loaderElement).toBeTruthy();
-  });
   it('should change spinner radius on [spinnerRadius] change', async () => {
-    component.showLoading.set(true);
     component.spinnerRadius.set(500);
     await fixture.whenStable();
     const loader = loaderElement.querySelector('.loader') as HTMLElement;
@@ -47,8 +42,6 @@ describe('LoaderComponent', () => {
     expect(loader.clientHeight).toBe(500);
   });
   it('background should be applied properly', async () => {
-    component.showLoading.set(true);
-
     await fixture.whenStable();
 
     function checkOpacity(opacity: number) {
@@ -90,13 +83,11 @@ describe('LoaderComponent', () => {
       [useParent]="useParent()"
       [transparency]="transparency()"
       [radius]="spinnerRadius()"
-      [loading]="showLoading()"
     ></app-loader>
   </div> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class LoaderTestComponent {
-  showLoading = signal(false);
   spinnerRadius = signal(200);
   transparency = signal('semi');
   useParent = signal(true);
