@@ -15,6 +15,6 @@ export class PrerequisitesComponent {
 
   getCode(dep: Prerequisite) {
     const name = dep.name;
-    return `ng generate ngverse:element ${name}`;
+    return `ng g ngverse:element ${name}`;
   }
 }
