@@ -31,7 +31,7 @@
       class="select-options"
       [appListbox]="values()"
       #listbox="appListbox"
-      (itemSelected)="toggleValue($event)"
+      (selected)="toggleValue($event)"
       [multiple]="true"
       [withTypeAhead]="true"
       [withWrap]="false"

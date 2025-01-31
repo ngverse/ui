@@ -96,7 +96,7 @@ export class ListboxPageComponent {
         ],
         outputs: [
           {
-            name: 'itemSelected',
+            name: 'selected',
             value: 'the value of listbox item',
             description: 'Emits when the item is selected',
           },

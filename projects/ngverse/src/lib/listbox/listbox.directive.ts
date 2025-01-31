@@ -42,7 +42,7 @@ export class ListboxDirective implements OnDestroy {
   withTypeAhead = input(false);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  itemSelected = output<any>();
+  selected = output<any>();
 
   private registry = inject(ListboxRegistry);
   private directonality = inject(Directionality);
@@ -97,7 +97,7 @@ export class ListboxDirective implements OnDestroy {
       const items = this.registry.items();
       for (const item of items) {
         item.clicked.subscribe(() => {
-          this.itemSelected.emit(item.value());
+          this.selected.emit(item.value());
         });
       }
     });

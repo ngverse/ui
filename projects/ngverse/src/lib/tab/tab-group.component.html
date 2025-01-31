@@ -2,7 +2,7 @@
   class="tab-group-header"
   #tabGroupHeader
   [appListbox]="selectedIndex()"
-  (itemSelected)="selectTab($event)"
+  (selected)="selectTab($event)"
   [orientation]="'horizontal'"
 >
   @for (tab of tabs(); track $index) {

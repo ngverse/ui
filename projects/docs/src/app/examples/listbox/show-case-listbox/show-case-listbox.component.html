@@ -1,6 +1,6 @@
 <p>Click on any element and then navigate with arrow keys</p>
 <app-divider></app-divider>
-<ul appListbox class="list" (itemSelected)="valueChange($event)">
+<ul appListbox class="list" (selected)="valueChange($event)">
   @for (item of items; track $index) {
     <li>
       <button class="item" [appListboxItem]="item">{{ item }}</button>

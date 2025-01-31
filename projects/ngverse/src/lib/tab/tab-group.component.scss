@@ -17,12 +17,8 @@
   outline: none;
 
   &:focus-visible {
-    outline: 1px solid var(--ring);
+    outline: 1px solid var(--nv-ring);
   }
-}
-
-.is-active {
-  outline: 1px solid var(--ring);
 }
 
 .tab-body {
