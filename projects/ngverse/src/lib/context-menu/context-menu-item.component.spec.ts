@@ -1,4 +1,7 @@
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import {
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { ListboxRegistry } from '../listbox/listbox-registry';
@@ -8,7 +11,9 @@ import { ContextMenuComponent } from './context-menu.component';
 describe('ContextMenuItemComponent', () => {
   let component: ContextMenuItemComponent;
   let fixture: ComponentFixture<ContextMenuItemComponent>;
-
+  const contextMenu = {
+    isOpen: signal(true),
+  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ContextMenuItemComponent],
@@ -17,6 +22,7 @@ describe('ContextMenuItemComponent', () => {
         provideNoopAnimations(),
         ContextMenuComponent,
         ListboxRegistry,
+        { provide: ContextMenuComponent, useValue: contextMenu },
       ],
     }).compileComponents();
 
@@ -26,5 +32,21 @@ describe('ContextMenuItemComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should disable button on disabled=[true]', async () => {
+    fixture.componentRef.setInput('disabled', true);
+    await fixture.whenStable();
+    const button = fixture.nativeElement.querySelector(
+      'button'
+    ) as HTMLButtonElement;
+    expect(button.disabled).toBeTrue();
+  });
+
+  it('should set isOpen to false on click', async () => {
+    await fixture.whenStable();
+
+    fixture.nativeElement.dispatchEvent(new Event('click'));
+    await fixture.whenStable();
+    expect(contextMenu.isOpen()).toBeFalse();
   });
 });

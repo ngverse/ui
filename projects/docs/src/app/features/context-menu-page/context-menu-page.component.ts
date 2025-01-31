@@ -79,11 +79,21 @@ export class ContextMenuPageComponent {
         name: 'ContextMenuTriggerDirective',
         type: 'directive',
         selector: '[appContextMenuTrigger]',
+        description:
+          'This directive should be applied to the element that will open the context menu.',
       },
       {
         name: 'ContextMenuItemComponent',
         type: 'component',
         selector: 'app-context-menu-item',
+        inputs: [
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Disables the menu item',
+          },
+        ],
       },
     ],
   };
