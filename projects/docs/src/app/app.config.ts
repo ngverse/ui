@@ -9,7 +9,8 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
 import { provideHighlightOptions } from 'ngx-highlightjs';
 import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ scrollPositionRestoration: 'top' })
     ),
     provideHttpClient(withFetch()),
-    provideAnimations(),
+    provideAnimationsAsync(),
     provideHighlightOptions({
       fullLibraryLoader: () => import('highlight.js'),
     }),

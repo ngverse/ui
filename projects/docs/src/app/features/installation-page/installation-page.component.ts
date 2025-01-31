@@ -9,11 +9,13 @@ import { SourceCodeComponent } from '../../blueprint/source-code/source-code.com
   styleUrl: './installation-page.component.scss',
 })
 export class InstallationPageComponent {
-  animationsCode = `import { provideAnimations } from '@angular/platform-browser/animations';
+  ngVersefile = 'ngverse/ngverse.scss';
+
+  animationsCode = `import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-       provideAnimations(),
+       provideAnimationsAsync(),
      ],
 };`;
 }
