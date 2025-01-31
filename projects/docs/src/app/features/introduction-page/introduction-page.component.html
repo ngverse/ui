@@ -1,50 +1,148 @@
 <doc-blog-page label="Introduction">
   <p>
     NgVerse is a collection of feature-rich Angular components, directives,
-    pipes, and more. It has one key difference from other UI libraries: you
-    don’t install it as a dependency but instead copy/paste the components
-    directly into your project.
+    pipes, and more. It has one key difference from other UI libraries:
+    <strong>you don’t install it as a dependency</strong>. Instead, you add the
+    source code of the elements directly into your project.
   </p>
-  <h2>What Does Copy/Paste Mean?</h2>
+
+  <h2>What does that mean?</h2>
+
   <p>
-    Typically, when you need to use a UI library, you install it via a package
-    manager like npm. For example:
+    Typically, when you use a UI library, you install the library as a
+    dependency and then import components from it. NgVerse is different. You
+    install the NgVerse schematics and selectively add the components you need.
+    The component's source code is injected into your project, making it
+    <strong>fully customizable</strong>. You can explore, update, or leave it as
+    is.
   </p>
-  <pre> <code>npm install angular-some-ui-library</code> </pre>
+
   <p>
-    After installation, you configure it and import the required components from
-    the library. NgVerse is different. You don’t install the library itself.
-    Instead, you get premade, complete Angular components that you copy/paste
-    into your project. However, this doesn’t mean you have to copy/paste
-    manually; we provide schematics that handle the setup for components
-    seamlessly.
+    For example, if you were using a traditional Angular UI library, the steps
+    would look like this:
   </p>
-  <h2>Why?</h2>
+  <doc-source-code
+    language="bash"
+    code="npm install angular-ui-library"
+  ></doc-source-code>
+
+  <p>And to use a button component:</p>
+  <doc-source-code
+    language="bash"
+    code="import { ButtonComponent } from 'angular-ui-library'"
+  ></doc-source-code>
+
+  <p>In the case of NgVerse, the process is different:</p>
+
+  <h3>1. Install NgVerse schematics:</h3>
+  <doc-source-code language="bash" code="ng add ngverse"></doc-source-code>
+
+  <h3>2. Add the button component to your project:</h3>
+  <doc-source-code
+    language="bash"
+    code="ng g ngverse:element button"
+  ></doc-source-code>
+
   <p>
-    I’ve been using Angular since its release and have extensively worked with
-    various UI libraries, including Angular Material. A common issue I’ve
-    encountered is that customization is often a difficult and not practical.
-    You either have to use the components as they are or not use them at all.
-    While some libraries offer more customization freedom, they still impose
-    restrictions, making it difficult to create generic components. For
-    instance, if your design requires all select components to have a clear
-    icon, you would either need to manually add this functionality to each
-    select component or wrap the library’s select component in your own custom
-    implementation—neither of which is ideal. What you actually need is a solid
-    starting point. When designing a website, you typically require components
-    like inputs, buttons, dropdowns, accordions, and tabs with various
-    customizations. All of these components should follow a consistent guideline
-    and be fully featured. For example, when you add a select component to your
-    project, it should include essential features like floating options and
-    keyboard navigation. This is exactly what NgVerse is designed to provide.
-    When you add a select component from NgVerse, you get a complete,
-    fully-featured component that adheres to general guidelines. Plus, the
-    source code is part of your project, allowing you to customize it however
-    you want. If you want to change the style or functionality of a select
-    component, you don’t need to read extensive documentation or examine complex
-    markup to update styles. Instead, you can directly edit the source code in
-    your project. In addition to that, all the components are beautifully styled
-    and coherent with one another. So, if you don’t have a design, you can start
-    using them right away.
+    This command adds the full source code for the button component to your
+    project. It behaves just as if you had created it yourself.
+  </p>
+
+  <h2>Why this approach?</h2>
+
+  <p>
+    If you’ve extensively used UI libraries, you might wonder why NgVerse took
+    this approach. The reasons are rooted in three major concerns:
+  </p>
+
+  <h3>1. Customization</h3>
+
+  <p>
+    UI libraries often have limited customization options. For example, if you
+    want a fully-featured select component with single/multi-selection, keyboard
+    navigation, and other advanced features, building it from scratch can be
+    time-consuming and error-prone. So, you might turn to a library like Angular
+    Material.
+  </p>
+
+  <p>
+    However, you may soon realize that customizing Angular Material components
+    is
+    <strong>extremely difficult</strong> (you've probably faced this issue
+    already). You might switch to a different library that offers more control,
+    but let's say you want all your select components to include a clear icon
+    beside the placeholder. No library may provide this feature. They might
+    allow custom templates (<code>ng-template</code>), but now you have another
+    issue:
+  </p>
+
+  <ul>
+    <li>
+      Either you must use <code>ng-template</code> everywhere you use the select
+      component.
+    </li>
+    <li>
+      Or you need to wrap the library’s select component in your own custom
+      component (<code>app-select</code>) and modify it there.
+    </li>
+  </ul>
+
+  <p>
+    This approach creates a wrapper component, which requires additional work to
+    handle delegation and communication between your component and the library’s
+    component. You also risk not achieving full functionality.
+  </p>
+
+  <p>
+    In <strong>NgVerse</strong>, when you add a select component, the complete
+    source code is added to your project. By default, the component is already
+    fully featured, with options for overlays, keyboard navigation,
+    accessibility, single and multi-selection, and unit tests. If you want to
+    add a clear icon, you simply modify the source code directly within your
+    project.
+  </p>
+
+  <h3>2. Third-party Independence</h3>
+
+  <p>
+    NgVerse components evolve with your project. You don’t have to wait for a
+    third-party library to release an update to support a new Angular version,
+    make the library zoneless, or fix critical bugs.
+  </p>
+
+  <p>
+    You are in control—you decide what to upgrade and when. Your project won't
+    be forced to upgrade just because a third-party library introduced new
+    features in a newer Angular version.
+  </p>
+
+  <p>
+    For large enterprise apps, <strong>being in control</strong> of your
+    components is crucial. You can upgrade or maintain them as needed without
+    waiting for external libraries to catch up.
+  </p>
+
+  <h3>3. No Global Configuration Theming</h3>
+
+  <p>
+    Most UI libraries require you to modify global styles to update the theme.
+    Typically, you either:
+  </p>
+
+  <ul>
+    <li>Read through a large theming file.</li>
+    <li>Inspect elements to find the correct selectors.</li>
+    <li>Write CSS overrides in your global <code>styles.scss</code> file.</li>
+  </ul>
+
+  <p>
+    With <strong>NgVerse</strong>, each component comes with its own
+    <code>component.scss</code> file. If you want to update the style, you
+    simply edit the component’s style file directly, keeping your components
+    encapsulated.
+  </p>
+  <p>
+    There is a lot more to say, but enough words—it’s time to fly! 🚀 Let’s get
+    started.
   </p>
 </doc-blog-page>
