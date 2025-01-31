@@ -1,37 +1,8 @@
 <doc-blog-page label="Installation">
   <h2>Automatic Installation (Recommended)</h2>
-  <p>
-    NgVerse is not an installable library in the traditional sense; there's no
-    need to run npm install ngverse. Instead, NgVerse provides a convenient
-    schematic to handle the setup for you, making the process of copying and
-    integrating components into your project seamless and automatic. To get
-    started, run the following command:
-  </p>
+  <p>To get started, run the following command:</p>
   <doc-source-code language="bash" code="ng add ngverse"></doc-source-code>
-  <h3>What Does This Do?</h3>
-  <ul>
-    <li>
-      <strong>Adds NgVerse schematics dependency:</strong> This will manage the
-      integration of components into your project without the need to manually
-      copy or paste them.
-    </li>
-    <li>
-      <strong>Add Angular/cdk:</strong> Provides utility features like keyboard
-      navigation and floating panel support (e.g., dialogs), which are essential
-      for certain NgVerse components.
-    </li>
-    <li>
-      <strong>Provide Animations config:</strong>
-      Adds animation configurations to the root of your project for seamless
-      functionality of components like the accordion, which relies on smooth
-      open/close animations.
-    </li>
-    <li>
-      <strong>Add globals.scss style file:</strong>
-      globals.scss file will be added in your project and imported into your
-      styles.scss. For more details, refer to the Theming Guide.
-    </li>
-  </ul>
+
   <h3>Ready to Use</h3>
   <p>
     Once the installation is complete, you can generate a component with the
@@ -39,36 +10,34 @@
   </p>
   <doc-source-code
     language="bash"
-    code="ng g ngverse:component button"
+    code="ng g ngverse:element button"
   ></doc-source-code>
   <p>
-    By default, this will create the button component inside the core/components
-    folder of your project. For more information on using schematics, see the
-    Schematics Usage Guide.
+    <strong>Note:</strong> We use the term <code>element</code> during
+    generation and not <code>component</code> because NgVerse contains not only
+    components but also directives, pipes, animations, and more. Therefore,
+    <code>element</code> is a more generic term.
   </p>
+
   <h2>Manual Installation</h2>
   <p>If you prefer manual setup, follow these steps:</p>
-  <h3>Install NgVerse schematics</h3>
-  <doc-source-code language="bash" code="npm install ngverse"></doc-source-code>
   <h3>Install angular/cdk</h3>
   <doc-source-code
     language="bash"
     code="npm install @angular/cdk"
   ></doc-source-code>
+  <h3>Install NgVerse schematics</h3>
+  <doc-source-code language="bash" code="npm install ngverse"></doc-source-code>
   <h3>Add Angular animations</h3>
   <doc-source-code language="ts" [code]="animationsCode"></doc-source-code>
-  <h3>Add globals.scss</h3>
+  <h3>Add ngverse.scss</h3>
   <ul>
     <li>
-      Locate the globals.scss file in the NgVerse documentation or source.
+      Copy the content of
+      <a target="_blank" href="/ngverse/ngverse.scss">ngverse.scss</a> file.
     </li>
-    <li>
-      Copy its contents into your project and import it into your styles.scss:
-    </li>
+    <li>Add it into your project</li>
+    <li>Import it in your global styles.scss file</li>
   </ul>
-  <p>
-    You are now ready to start using NgVerse in your Angular project! For
-    further details on available components and customization, explore the
-    documentation.
-  </p>
+  <p>You are now ready to start using NgVerse in your Angular project!</p>
 </doc-blog-page>
