@@ -9,7 +9,8 @@
     "ng-add": {
       "description": "Add ngverse to the project.",
       "factory": "./ng-add/index#ngAdd",
-      "schema": "./ng-add/schema.json"
+      "schema": "./ng-add/schema.json",
+      "save": "devDependencies"
     },
     "ng-add-setup-project": {
       "description": "Sets up the specified project after the ng-add dependencies have been installed.",
