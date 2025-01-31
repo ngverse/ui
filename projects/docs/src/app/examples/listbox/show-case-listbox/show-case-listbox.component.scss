@@ -1,0 +1,11 @@
+.item {
+  width: 150px;
+  text-align: left;
+}
+.item:focus {
+  outline: 1px solid var(--nv-ring);
+}
+
+.list {
+  margin-top: 10px;
+}

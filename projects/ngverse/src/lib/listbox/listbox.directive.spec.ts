@@ -272,7 +272,7 @@ describe('ListboxDirective', () => {
   });
   it('should emit valueChange on click', () => {
     const valueChange = jasmine.createSpy('valueChange');
-    listbox.valueChange.subscribe(valueChange);
+    listbox.itemSelected.subscribe(valueChange);
     const firstItem = itemsEl[0];
     firstItem.dispatchEvent(new Event('click'));
     expect(valueChange).toHaveBeenCalledWith(1);

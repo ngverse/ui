@@ -1,1 +1,10 @@
-<p>show-case-listbox works!</p>
+<p>Click on any element and then navigate with arrow keys</p>
+<app-divider></app-divider>
+<ul appListbox class="list" (itemSelected)="valueChange($event)">
+  @for (item of items; track $index) {
+    <li>
+      <button class="item" [appListboxItem]="item">{{ item }}</button>
+    </li>
+  }
+</ul>
+<p>Your selected item Is: {{ value() }}</p>

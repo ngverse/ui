@@ -33,19 +33,23 @@ export type CompareWith = (o1: any, o2: any) => boolean;
   },
   exportAs: 'appListbox',
 })
-export class ListboxDirective<T = unknown> implements OnDestroy {
+export class ListboxDirective implements OnDestroy {
   withWrap = input(true);
   orientation = input<'horizontal' | 'vertical'>('vertical');
-  value = input<T>(undefined, { alias: 'appListbox' });
-  compareWith = input<CompareWith>((o1: T, o2: T) => o1 === o2);
-  valueChange = output<T>();
+  value = input<unknown>(undefined, { alias: 'appListbox' });
+  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
   multiple = input(false);
   withTypeAhead = input(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  itemSelected = output<any>();
+
   private registry = inject(ListboxRegistry);
   private directonality = inject(Directionality);
-
-  keyManager = new ListboxKeyManager(this.registry.items, inject(Injector));
+  private keyManager = new ListboxKeyManager(
+    this.registry.items,
+    inject(Injector)
+  );
 
   onKeydown($event: KeyboardEvent) {
     this.keyManager.focusTarget(true);
@@ -93,7 +97,7 @@ export class ListboxDirective<T = unknown> implements OnDestroy {
       const items = this.registry.items();
       for (const item of items) {
         item.clicked.subscribe(() => {
-          this.valueChange.emit(item.value() as T);
+          this.itemSelected.emit(item.value());
         });
       }
     });
