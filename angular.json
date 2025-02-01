@@ -40,6 +40,11 @@
                 "input": "projects/docs/public"
               },
               {
+                "glob": "normalize.scss",
+                "input": "projects/ngverse/src/lib",
+                "output": "ngverse"
+              },
+              {
                 "glob": "**/*",
                 "input": "projects/ngverse/src/lib",
                 "output": "ngverse"
@@ -106,7 +111,6 @@
                 "input": "projects/docs/public"
               }
             ],
-            "styles": ["projects/docs/src/styles.scss"],
             "scripts": []
           }
         },
