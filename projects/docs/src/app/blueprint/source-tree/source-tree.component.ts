@@ -1,7 +1,7 @@
 import { Component, inject, input, model, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonComponent } from '@ngverse/button/button.component';
-import { CheckboxComponent } from '@ngverse/checkbox/checkbox.component';
+import { ButtonComponent } from 'ngverse/button/button.component';
+import { CheckboxComponent } from 'ngverse/checkbox/checkbox.component';
 import { FileService } from '../../services/file.service';
 import { SourceCodeComponent } from '../source-code/source-code.component';
 import {

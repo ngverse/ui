@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { ButtonComponent } from '@ngverse/button/button.component';
-import { PopoverOriginDirective } from '@ngverse/popover/popover-origin.directive';
-import { PopoverComponent } from '@ngverse/popover/popover.component';
+import { ButtonComponent } from 'ngverse/button/button.component';
+import { PopoverOriginDirective } from 'ngverse/popover/popover-origin.directive';
+import { PopoverComponent } from 'ngverse/popover/popover.component';
 
 @Component({
   selector: 'doc-show-case-popover',

@@ -35,7 +35,7 @@ import { TabComponent } from './tab.component';
 })
 export class TabGroupComponent implements OnDestroy {
   tabs = contentChildren(TabComponent);
-  selectedIndex = model(2);
+  selectedIndex = model(0);
   tabHeaders = viewChildren<ElementRef<HTMLElement>>('tabHeader');
   tabGroupHeader =
     viewChild.required<ElementRef<HTMLElement>>('tabGroupHeader');

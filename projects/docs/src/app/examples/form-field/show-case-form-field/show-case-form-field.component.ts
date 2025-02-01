@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ButtonComponent } from '@ngverse/button/button.component';
-import { DialogService } from '@ngverse/dialog/dialog.service';
-import { ErrorGroupComponent } from '@ngverse/form-field/error-group/error-group.component';
-import { ErrorComponent } from '@ngverse/form-field/error/error.component';
-import { FormFieldErrorRegistry } from '@ngverse/form-field/form-field-error.registry';
-import { FormFieldComponent } from '@ngverse/form-field/form-field.component';
-import { LabelComponent } from '@ngverse/form-field/label/label.component';
-import { InputComponent } from '@ngverse/input/input.component';
-import { OptionComponent } from '@ngverse/select/option.component';
-import { SelectComponent } from '@ngverse/select/select.component';
+import { ButtonComponent } from 'ngverse/button/button.component';
+import { DialogService } from 'ngverse/dialog/dialog.service';
+import { ErrorGroupComponent } from 'ngverse/form-field/error-group/error-group.component';
+import { ErrorComponent } from 'ngverse/form-field/error/error.component';
+import { FormFieldErrorRegistry } from 'ngverse/form-field/form-field-error.registry';
+import { FormFieldComponent } from 'ngverse/form-field/form-field.component';
+import { LabelComponent } from 'ngverse/form-field/label/label.component';
+import { InputComponent } from 'ngverse/input/input.component';
+import { OptionComponent } from 'ngverse/select/option.component';
+import { SelectComponent } from 'ngverse/select/select.component';
 
 @Component({
   selector: 'doc-show-case-form-field',

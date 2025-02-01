@@ -8,11 +8,11 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { OptionGroupLabelComponent } from '@ngverse/select/option-group-label.component';
-import { OptionGroupComponent } from '@ngverse/select/option-group.component';
-import { OptionComponent } from '@ngverse/select/option.component';
-import { SelectComponent } from '@ngverse/select/select.component';
 import { ChevronDown, Folder, LucideAngularModule } from 'lucide-angular';
+import { OptionGroupLabelComponent } from 'ngverse/select/option-group-label.component';
+import { OptionGroupComponent } from 'ngverse/select/option-group.component';
+import { OptionComponent } from 'ngverse/select/option.component';
+import { SelectComponent } from 'ngverse/select/select.component';
 import { SourceTreeFile, SourceTreeFolder } from '../source-tree-builder';
 
 @Component({

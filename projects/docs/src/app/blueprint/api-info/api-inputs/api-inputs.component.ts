@@ -1,9 +1,9 @@
 import { NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { AccordionBodyComponent } from '@ngverse/accordion/accordion-body.component';
-import { AccordionHeaderComponent } from '@ngverse/accordion/accordion-header.component';
-import { AccordionItemComponent } from '@ngverse/accordion/accordion-item.component';
-import { AccordionComponent } from '@ngverse/accordion/accordion.component';
+import { AccordionBodyComponent } from 'ngverse/accordion/accordion-body.component';
+import { AccordionHeaderComponent } from 'ngverse/accordion/accordion-header.component';
+import { AccordionItemComponent } from 'ngverse/accordion/accordion-item.component';
+import { AccordionComponent } from 'ngverse/accordion/accordion.component';
 
 interface ApiInputType {
   name: string;

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { IconRegistry } from '@ngverse/icon/icon.registry';
+import { IconRegistry } from 'ngverse/icon/icon.registry';
 import { HeaderComponent } from './features/header/header.component';
 
 @Component({
