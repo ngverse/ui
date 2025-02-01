@@ -1,6 +1,9 @@
 .item {
   width: 150px;
   text-align: left;
+  background: transparent;
+  border: 0;
+  font-size: 1rem;
 }
 .item:focus {
   outline: 1px solid var(--nv-ring);
