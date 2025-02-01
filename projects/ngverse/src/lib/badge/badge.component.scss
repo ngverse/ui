@@ -1,8 +1,10 @@
 .badge {
-  display: inline;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 100%;
-  min-width: 16px;
-  min-height: 16px;
+  width: 20px;
+  height: 20px;
   font-size: 12px;
   font-weight: 500;
   position: absolute;
@@ -12,5 +14,4 @@
   background-color: var(--nv-danger);
   color: #fff;
   margin: -12px 0;
-  padding: 0 4px;
 }

@@ -18,6 +18,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <path d="M20 6 9 17l-5-5" />
     </svg>
   `,
+  styles: `
+    :host {
+      display: flex;
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectCheckIconComponent {}

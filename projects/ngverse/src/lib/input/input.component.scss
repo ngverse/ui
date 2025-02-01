@@ -1,8 +1,10 @@
 :host {
+  box-sizing: border-box;
   border: var(--nv-border);
   border-radius: var(--nv-border-radius);
   height: var(--nv-field-height);
   padding: var(--nv-field-padding);
+  font-size: 1rem;
   &:focus-visible {
     outline: 1px solid var(--nv-ring);
   }

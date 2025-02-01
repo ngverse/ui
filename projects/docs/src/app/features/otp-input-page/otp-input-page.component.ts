@@ -39,6 +39,9 @@ export class OtpInputPageComponent {
 
   preprs: Prerequisite[] = [
     {
+      name: 'input',
+    },
+    {
       name: 'listbox',
     },
   ];

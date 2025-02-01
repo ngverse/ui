@@ -6,6 +6,20 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+::after,
+::before,
+::backdrop,
+::file-selector-button {
+  box-sizing: border-box; /* 1 */
+}
+
+a {
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
+}
+
 html,
 body {
   margin: 0;
