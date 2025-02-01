@@ -34,11 +34,5 @@
     </app-select>
     <app-error-group [control]="group.controls.country"></app-error-group>
   </app-form-field>
-  <button
-    appButton
-    [disabled]="group.touched && group.invalid"
-    (click)="register()"
-  >
-    Register
-  </button>
+  <button appButton (click)="register()">Register</button>
 </form>
