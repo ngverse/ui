@@ -9,12 +9,18 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
+import { InputComponent } from '../input/input.component';
 import { ListboxItemDirective } from '../listbox/listbox-item.directive';
 import { ListboxDirective } from '../listbox/listbox.directive';
 
 @Component({
   selector: 'app-otp-input',
-  imports: [CdkAutofill, ListboxDirective, ListboxItemDirective],
+  imports: [
+    CdkAutofill,
+    ListboxDirective,
+    ListboxItemDirective,
+    InputComponent,
+  ],
   templateUrl: './otp-input.component.html',
   styleUrl: './otp-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,7 +30,9 @@ export class OtpInputComponent {
 
   oneTimeCode = viewChild<ElementRef<HTMLInputElement>>('oneTimeCode');
 
-  inputs = viewChildren<ElementRef<HTMLInputElement>>('inputs');
+  inputs = viewChildren('inputs', {
+    read: ElementRef<HTMLInputElement>,
+  });
 
   codeLengthArray = computed(() => new Array(this.codeLength()).fill(1));
 

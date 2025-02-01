@@ -1,5 +1,6 @@
 :host {
   display: inline-flex;
+  align-items: center;
   gap: 8px;
   cursor: pointer;
   &.start {
@@ -32,6 +33,8 @@
   background-color: var(--nv-surface-2);
   position: relative;
   transition: background-color 0.3s;
+  border: 0px;
+  cursor: pointer;
   &.checked {
     background-color: var(--nv-primary);
   }

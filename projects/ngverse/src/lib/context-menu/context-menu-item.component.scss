@@ -6,7 +6,9 @@
     text-align: left;
     padding: 6px;
     cursor: pointer;
-
+    background: transparent;
+    border: 0;
+    font-size: 1rem;
     &:focus-visible,
     &:hover:not([disabled]),
     &.selected {

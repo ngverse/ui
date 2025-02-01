@@ -15,6 +15,9 @@
   cursor: pointer;
   position: relative;
   outline: none;
+  background: transparent;
+  border: 0;
+  font-size: 1rem;
 
   &:focus-visible {
     outline: 1px solid var(--nv-ring);

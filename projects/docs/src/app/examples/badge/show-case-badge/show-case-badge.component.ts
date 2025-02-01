@@ -10,7 +10,7 @@ import { ButtonComponent } from '@ngverse/button/button.component';
   styleUrl: './show-case-badge.component.scss',
 })
 export class ShowCaseBadgeComponent {
-  count = signal(5);
+  count = signal(8);
   decreese() {
     if (!this.count()) {
       return;

@@ -22,7 +22,7 @@
 
 .radio-button-icon {
   cursor: pointer;
-  display: block;
+  display: flex;
   &.checked {
     color: var(--nv-primary);
   }

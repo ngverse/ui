@@ -20,7 +20,7 @@ const INITIAL_HEIGHT = 24;
   template: '',
   styles: `
     :host {
-      display: inline-block;
+      display: inline-flex;
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -4,12 +4,5 @@
   "lib": {
     "entryFile": "src/public-api.ts"
   },
-  "assets": [
-    "src/lib",
-    {
-      "glob": "normalize.scss",
-      "input": "src/lib",
-      "output": "/"
-    }
-  ]
+  "assets": ["src/lib"]
 }

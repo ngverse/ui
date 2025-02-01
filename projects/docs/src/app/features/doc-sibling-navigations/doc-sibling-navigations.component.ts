@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { ButtonComponent } from '@ngverse/button/button.component';
+import { IconComponent } from '@ngverse/icon/icon.component';
 import { ArrowLeft, ArrowRight, LucideAngularModule } from 'lucide-angular';
 import { filter } from 'rxjs';
 import { getAllSidebarLinks, SidebarLink } from '../sidebar/sidebar.component';
@@ -9,7 +10,7 @@ const SIDEBAR_LINKS = getAllSidebarLinks();
 
 @Component({
   selector: 'doc-doc-sibling-navigations',
-  imports: [RouterLink, LucideAngularModule, ButtonComponent],
+  imports: [RouterLink, LucideAngularModule, ButtonComponent, IconComponent],
   templateUrl: './doc-sibling-navigations.component.html',
   styleUrl: './doc-sibling-navigations.component.scss',
 })
