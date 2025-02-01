@@ -15,5 +15,7 @@ export class AppComponent {
   constructor() {
     this.iconRegistry.addIcon('copy', 'images/copy.svg');
     this.iconRegistry.addIcon('check', 'images/check.svg');
+    this.iconRegistry.addIcon('arrow-right', 'images/arrow-right.svg');
+    this.iconRegistry.addIcon('arrow-left', 'images/arrow-left.svg');
   }
 }

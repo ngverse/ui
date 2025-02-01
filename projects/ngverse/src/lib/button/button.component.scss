@@ -1,4 +1,8 @@
 :host {
+  box-sizing: border-box;
+  background: transparent;
+  font-size: 1rem;
+
   --button-color: var(--nv-background);
   --button-on-color: var(--nv-foreground);
   border-radius: var(--nv-border-radius);
@@ -71,7 +75,7 @@
     }
 
     &-outline {
-      border-color: var(--button-color);
+      border: 1px solid var(--button-color);
       color: var(--button-color);
       --spinner-color: var(--button-color);
     }

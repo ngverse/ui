@@ -7,7 +7,11 @@
     [class.invisible]="!prevRoute()"
     [routerLink]="[prevRoute()?.url]"
   >
-    <lucide-icon [img]="ArrowLeft" class="w-5 lg:w-[24px]"></lucide-icon>
+    <app-icon
+      name="arrow-left"
+      [stretch]="true"
+      class="w-5 lg:w-[24px]"
+    ></app-icon>
     {{ prevRoute()?.name }}
   </button>
   <button
@@ -19,6 +23,10 @@
     [routerLink]="[nextRoute()?.url]"
   >
     {{ nextRoute()?.name }}
-    <lucide-icon [img]="ArrowRight" class="w-5 lg:w-[24px]"></lucide-icon>
+    <app-icon
+      name="arrow-right"
+      [stretch]="true"
+      class="w-5 lg:w-[24px]"
+    ></app-icon>
   </button>
 </div>
