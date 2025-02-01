@@ -2,7 +2,6 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   contentChild,
   inject,
   input,
@@ -31,12 +30,4 @@ export class TabComponent {
   portal: TemplatePortal | undefined;
 
   disabled = input(false);
-
-  headerTemplatePortal = computed(() => {
-    const headerTemplate = this.headerTemplate();
-    if (headerTemplate) {
-      return new TemplatePortal(headerTemplate.templateRef, this.vf);
-    }
-    return undefined;
-  });
 }
