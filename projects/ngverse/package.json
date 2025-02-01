@@ -1,5 +1,5 @@
 {
-  "name": "ng-verse",
+  "name": "ngverse",
   "version": "0.0.8",
   "schematics": "./schematics/collection.json",
   "repository": {
