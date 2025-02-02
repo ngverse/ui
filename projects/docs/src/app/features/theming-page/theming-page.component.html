@@ -17,28 +17,8 @@
 
   <h3>Explanation</h3>
 
-  <h4>1. Normalize SCSS Import</h4>
-  <p>The first line imports the <code>normalize.scss</code> file.</p>
-  <ul>
-    <li>
-      <code>normalize.scss</code> resets inconsistent browser styles. It uses
-      <a
-        target="_blank"
-        href="https://github.com/tailwindlabs/tailwindcss/blob/main/packages/tailwindcss/preflight.css"
-        >this file</a
-      >
-      for standardization.
-    </li>
-    <li>
-      If you already have a custom reset file (e.g., <code>reset.scss</code>),
-      you can remove this import. <br />
-      <strong>Note:</strong> Small UI issues may occur if you use a different
-      reset file. You might need to adjust component styles accordingly.
-    </li>
-  </ul>
-
-  <h4>2. Angular CDK Overlay Import</h4>
-  <p>The second line imports Angular CDK's overlay styles.</p>
+  <h4>1. Angular CDK Overlay Import</h4>
+  <p>The first line imports Angular CDK's overlay styles.</p>
   <ul>
     <li>
       This is essential for floating panels (e.g., popovers, dropdowns) to
@@ -50,7 +30,7 @@
     </li>
   </ul>
 
-  <h4>3. CSS Variables</h4>
+  <h4>2. CSS Variables</h4>
   <p>
     Starting from the third line, CSS variables are defined. These variables are
     used throughout NgVerse components.
