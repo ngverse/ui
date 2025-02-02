@@ -32,13 +32,13 @@ export const SIDEBAR_ROUTES = [
         done: true,
       },
       {
-        name: 'Theming',
-        url: '/doc/theming',
+        name: 'Schematics Usage',
+        url: '/doc/schematics-usage',
         done: true,
       },
       {
-        name: 'Schematics Usage',
-        url: '/doc/schematics-usage',
+        name: 'Theming',
+        url: '/doc/theming',
         done: true,
       },
     ],
