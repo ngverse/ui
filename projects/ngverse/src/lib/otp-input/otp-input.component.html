@@ -1,13 +1,3 @@
-<input
-  #oneTimeCode
-  type="text"
-  inputmode="numeric"
-  name="username"
-  autocomplete="one-time-code"
-  tabindex="-1"
-  (cdkAutofill)="autoFilled()"
-  hidden
-/>
 <div
   (paste)="onPaste($event)"
   appListbox
