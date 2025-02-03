@@ -15,16 +15,18 @@ export class DocContainerPageComponent {
   toast = inject(ToastService);
   constructor() {
     afterNextRender(() => {
-      const hasValue = localStorage.getItem(EARLY_RELEASE_KEY);
-      if (!hasValue) {
-        this.toast.open({
-          position: 'top_center',
-          message: 'We are in early release. expect updates !',
-          closeDelay: 3000,
-          showCloseIcon: false,
-        });
-      }
-      localStorage.setItem(EARLY_RELEASE_KEY, 'true');
+      setTimeout(() => {
+        const hasValue = localStorage.getItem(EARLY_RELEASE_KEY);
+        if (!hasValue) {
+          this.toast.open({
+            position: 'top_center',
+            message: 'We are in early release. expect updates !',
+            closeDelay: 3000,
+            showCloseIcon: false,
+          });
+        }
+        localStorage.setItem(EARLY_RELEASE_KEY, 'true');
+      }, 1000);
     });
   }
 }
