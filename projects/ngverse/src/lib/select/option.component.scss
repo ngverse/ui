@@ -13,7 +13,7 @@
     padding-left: 24px;
   }
 
-  &:focus-visible,
+  &:focus,
   &:hover:not([disabled]),
   &.selected {
     background: var(--nv-accent);
