@@ -2,24 +2,21 @@
   <app-form-field>
     <app-label>First Name</app-label>
     <input appInput class="w-full" formControlName="firstName" />
-    <app-error-group [control]="group.controls.firstName"></app-error-group>
   </app-form-field>
-  <app-form-field>
+  <app-form-field [silentErrors]="['required']">
     <app-label>Last Name</app-label>
     <input appInput class="w-full" formControlName="lastName" />
-    @if (group.controls.lastName.touched && group.controls.lastName.invalid) {
+    @if (group.controls.lastName.errors?.['required']) {
       <app-error>Lastname is important please fill</app-error>
     }
   </app-form-field>
   <app-form-field>
     <app-label>Email</app-label>
     <input appInput class="w-full" type="email" formControlName="email" />
-    <app-error-group [control]="group.controls.email"></app-error-group>
   </app-form-field>
   <app-form-field>
     <app-label>Age</app-label>
     <input appInput class="w-full" type="number" formControlName="age" />
-    <app-error-group [control]="group.controls.age"></app-error-group>
   </app-form-field>
   <app-form-field>
     <app-label>Country</app-label>
@@ -32,7 +29,6 @@
         <app-option [value]="country.code">{{ country.name }}</app-option>
       }
     </app-select>
-    <app-error-group [control]="group.controls.country"></app-error-group>
   </app-form-field>
   <button appButton (click)="register()">Register</button>
 </form>

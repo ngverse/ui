@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
+import { IconComponent } from '@ngverse/icon/icon.component';
 import {
   Clipboard,
   ClipboardPaste,
@@ -10,7 +11,7 @@ import {
 
 @Component({
   selector: 'doc-home-page',
-  imports: [RouterLink, LucideAngularModule],
+  imports: [RouterLink, LucideAngularModule, IconComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })

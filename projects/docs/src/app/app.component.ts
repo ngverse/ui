@@ -17,5 +17,8 @@ export class AppComponent {
     this.iconRegistry.addIcon('check', 'images/check.svg');
     this.iconRegistry.addIcon('arrow-right', 'images/arrow-right.svg');
     this.iconRegistry.addIcon('arrow-left', 'images/arrow-left.svg');
+    this.iconRegistry.addIcon('clipboard', 'images/clipboard.svg');
+    this.iconRegistry.addIcon('clipboard-paste', 'images/clipboard-paste.svg');
+    this.iconRegistry.addIcon('rocket', 'images/rocket.svg');
   }
 }

@@ -6,7 +6,15 @@
   </label>
 
   <div class="form-field-errors">
-    <ng-content select="app-error-group"></ng-content>
-    <ng-content select="app-error"></ng-content>
+    @if (invalid() && touched()) {
+      @if (showErrors()) {
+        @for (error of errors(); track $index) {
+          <app-error>{{ error }}</app-error>
+        }
+      }
+      @if (showCustomErrors()) {
+        <ng-content select="app-error"></ng-content>
+      }
+    }
   </div>
 </div>
