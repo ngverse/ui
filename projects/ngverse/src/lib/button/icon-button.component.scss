@@ -1,18 +1,16 @@
 :host {
   box-sizing: border-box;
   background: transparent;
-  font-size: 1rem;
-
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   --button-color: var(--nv-background);
   --button-on-color: var(--nv-foreground);
-  border-radius: var(--nv-border-radius);
+  // border-radius: var(--nv-border-radius);
   border: var(--nv-border);
   position: relative;
   cursor: pointer;
-  font-weight: 600;
-  height: var(--button-height);
-  padding-left: var(--button-padding);
-  padding-right: var(--button-padding);
 
   &:focus {
     outline: none;
@@ -24,15 +22,21 @@
 
   &.btn {
     &-sm {
+      height: 32px;
+      width: 32px;
       --button-height: 32px;
       --button-padding: 14px;
     }
 
     &-md {
+      height: 38px;
+      width: 38px;
       --button-height: 38px;
       --button-padding: 16px;
     }
     &-lg {
+      height: 48px;
+      width: 48px;
       --button-height: 48px;
       --button-padding: 18px;
     }
