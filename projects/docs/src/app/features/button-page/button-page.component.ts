@@ -34,6 +34,7 @@ export class ButtonPageComponent {
       name: ROOT,
       files: [
         ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
+        ...this.sourceTreeBuilder.fullComponent('icon-button', ROOT),
         ...this.sourceTreeBuilder.fullInlineComponent('button-loader', ROOT),
       ],
       hideName: true,
@@ -50,6 +51,46 @@ export class ButtonPageComponent {
         selector: 'button[appButton]',
         description:
           'appButton is used with native button element, so all native input attributes can be used',
+        inputs: [
+          {
+            name: 'color',
+            type: 'primary | secondary | danger | success | none',
+            description: "Defines the button's color type",
+            default: 'primary',
+          },
+          {
+            name: 'size',
+            type: 'sm | md | lg | none',
+            description: 'changes the size of the button',
+            default: 'md',
+          },
+          {
+            name: 'variant',
+            type: 'fill | outline | link | none',
+            description: 'changes the variant of the button',
+            default: 'fill',
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            description: 'disables the button',
+            default: 'false',
+          },
+          {
+            name: 'loading',
+            type: 'boolean',
+            description:
+              'adds spinner on the button. The button will not emit any event while loading is true',
+            default: 'false',
+          },
+        ],
+      },
+      {
+        name: 'IconButtonComponent',
+        type: 'component',
+        selector: 'button[appIconButton]',
+        description:
+          'appIconButton is used with native button element, so all native input attributes can be used',
         inputs: [
           {
             name: 'color',

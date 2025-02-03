@@ -1,16 +1,32 @@
 <div class="show-case">
-  <button appButton color="primary">Primary</button>
-  <button appButton variant="link" color="success">Link</button>
-  <button appButton variant="outline" color="primary">Primary</button>
-  <button appButton color="secondary">Secondary</button>
-
-  <button appButton variant="outline" color="danger">Danger</button>
-  <button appButton variant="outline" color="success">Success</button>
-
-  <button appButton variant="outline" [loading]="true">Loading</button>
-  <button appButton [disabled]="true">Disabled</button>
-
-  <button appIconButton variant="link" [loading]="true" color="secondary">
-    <app-icon name="arrow-right"></app-icon>
-  </button>
+  <div>
+    <p class="buttons-label">Button</p>
+    <div class="buttons-container">
+      <button appButton color="primary">Primary</button>
+      <button appButton variant="link" color="success">Link</button>
+      <button appButton variant="outline" color="primary">Primary</button>
+      <button appButton color="secondary">Secondary</button>
+      <button appButton variant="outline" color="danger">Danger</button>
+      <button appButton variant="outline" color="success">Success</button>
+      <button appButton variant="outline" [loading]="true">Loading</button>
+      <button appButton [disabled]="true">Disabled</button>
+    </div>
+  </div>
+  <div>
+    <p class="buttons-label">Icon Button</p>
+    <div class="buttons-container">
+      <button appIconButton>
+        <app-icon name="arrow-right"></app-icon>
+      </button>
+      <button appIconButton color="secondary">
+        <app-icon name="arrow-right"></app-icon>
+      </button>
+      <button appIconButton color="danger" variant="outline">
+        <app-icon name="arrow-right"></app-icon>
+      </button>
+      <button appIconButton color="success" variant="link">
+        <app-icon name="arrow-right"></app-icon>
+      </button>
+    </div>
+  </div>
 </div>
