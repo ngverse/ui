@@ -1,17 +1,17 @@
 <doc-blog-page label="Theming">
   <p>
-    NgVerse styles are self-encapsulated, meaning that styling is done within
+    Ng-Verse styles are self-encapsulated, meaning that styling is done within
     the component's SCSS files rather than in a global theming file. Since you
     have full access to the component source code, you don't need to inspect
     elements or search through a global file to update styles. You can simply
     edit the SCSS file within the component itself.
   </p>
   <p>
-    However, NgVerse also adds a <code>ngverse.scss</code> file to your project.
-    Let's break down what this file does.
+    However, Ng-Verse also adds a <code>ng-verse.scss</code> file to your
+    project. Let's break down what this file does.
   </p>
 
-  <h2>ngverse.scss</h2>
+  <h2>ng-verse.scss</h2>
 
   <doc-source-code language="css" [code]="globalsCode()"></doc-source-code>
 
@@ -53,7 +53,7 @@
   <h4>3. CSS Variables</h4>
   <p>
     Starting from the third line, CSS variables are defined. These variables are
-    used throughout NgVerse components.
+    used throughout Ng-Verse components.
   </p>
   <ul>
     <li>
@@ -76,13 +76,13 @@
 
   <h3>Automatic Setup</h3>
   <p>
-    When you run the <code>ng add ngverse</code> schematics, the
-    <code>ngverse.scss</code> file is generated and imported into your
+    When you run the <code>ng add ng-verse</code> schematics, the
+    <code>ng-verse.scss</code> file is generated and imported into your
     <code>styles.scss</code> file automatically.
   </p>
   <h3>Manual Installation</h3>
   <p>
-    If you install NgVerse manually, copy the <code>ngverse.scss</code> file and
-    import it into your <code>styles.scss</code>:
+    If you install Ng-Verse manually, copy the <code>ng-verse.scss</code> file
+    and import it into your <code>styles.scss</code>:
   </p>
 </doc-blog-page>

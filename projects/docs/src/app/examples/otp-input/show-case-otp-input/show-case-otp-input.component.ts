@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { OtpInputComponent } from '@ngverse/otp-input/otp-input.component';
+import { OtpInputComponent } from '@ng-verse/otp-input/otp-input.component';
 
 @Component({
   selector: 'doc-show-case-otp-input',

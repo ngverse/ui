@@ -1,7 +1,7 @@
 import { Component, inject, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IconComponent } from '@ngverse/icon/icon.component';
-import { IconRegistry } from '@ngverse/icon/icon.registry';
+import { IconComponent } from '@ng-verse/icon/icon.component';
+import { IconRegistry } from '@ng-verse/icon/icon.registry';
 
 @Component({
   selector: 'doc-show-case-icon',

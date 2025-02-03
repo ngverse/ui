@@ -1,14 +1,14 @@
 import { Component, effect, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ButtonComponent } from '@ngverse/button/button.component';
-import { DialogService } from '@ngverse/dialog/dialog.service';
-import { ErrorComponent } from '@ngverse/form-field/error/error.component';
-import { FormFieldErrorRegistry } from '@ngverse/form-field/form-field-error.registry';
-import { FormFieldComponent } from '@ngverse/form-field/form-field.component';
-import { LabelComponent } from '@ngverse/form-field/label/label.component';
-import { InputComponent } from '@ngverse/input/input.component';
-import { OptionComponent } from '@ngverse/select/option.component';
-import { SelectComponent } from '@ngverse/select/select.component';
+import { ButtonComponent } from '@ng-verse/button/button.component';
+import { DialogService } from '@ng-verse/dialog/dialog.service';
+import { ErrorComponent } from '@ng-verse/form-field/error/error.component';
+import { FormFieldErrorRegistry } from '@ng-verse/form-field/form-field-error.registry';
+import { FormFieldComponent } from '@ng-verse/form-field/form-field.component';
+import { LabelComponent } from '@ng-verse/form-field/label/label.component';
+import { InputComponent } from '@ng-verse/input/input.component';
+import { OptionComponent } from '@ng-verse/select/option.component';
+import { SelectComponent } from '@ng-verse/select/select.component';
 
 @Component({
   selector: 'doc-show-case-form-field',

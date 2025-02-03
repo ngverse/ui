@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BadgeComponent } from '@ngverse/badge/badge.component';
-import { ButtonComponent } from '@ngverse/button/button.component';
+import { BadgeComponent } from '@ng-verse/badge/badge.component';
+import { ButtonComponent } from '@ng-verse/button/button.component';
 
 @Component({
   selector: 'doc-show-case-badge',

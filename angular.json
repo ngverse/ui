@@ -41,8 +41,8 @@
               },
               {
                 "glob": "**/*",
-                "input": "projects/ngverse/src/lib",
-                "output": "ngverse"
+                "input": "projects/ng-verse/src/lib",
+                "output": "ng-verse"
               },
               {
                 "glob": "**/*",
@@ -121,7 +121,7 @@
         }
       }
     },
-    "ngverse": {
+    "ng-verse": {
       "projectType": "library",
       "schematics": {
         "@schematics/angular:component": {
@@ -129,21 +129,21 @@
           "changeDetection": "OnPush"
         }
       },
-      "root": "projects/ngverse",
-      "sourceRoot": "projects/ngverse/src",
+      "root": "projects/ng-verse",
+      "sourceRoot": "projects/ng-verse/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/ngverse/ng-package.json"
+            "project": "projects/ng-verse/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngverse/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ng-verse/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ngverse/tsconfig.lib.json"
+              "tsConfig": "projects/ng-verse/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -151,17 +151,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/ngverse/tsconfig.spec.json"
+            "tsConfig": "projects/ng-verse/tsconfig.spec.json"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/ngverse/**/*.ts",
-              "projects/ngverse/**/*.html"
+              "projects/ng-verse/**/*.ts",
+              "projects/ng-verse/**/*.html"
             ],
-            "eslintConfig": "projects/ngverse/eslint.config.js"
+            "eslintConfig": "projects/ng-verse/eslint.config.js"
           }
         }
       }

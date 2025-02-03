@@ -4,7 +4,7 @@ Thank you for your willingness to contribute 🚀.
 
 ### <a name="submit-pr"></a> Submitting a Pull Request (PR)
 
-1. [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) the [ngverse](https://github.com/lukonik/ngverse) repo.
+1. [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) the [ng-verse](https://github.com/lukonik/ng-verse) repo.
 
 2. In your forked repository, make your changes in a new git branch:
 
@@ -29,7 +29,7 @@ Thank you for your willingness to contribute 🚀.
    git push origin my-fix-branch
    ```
 
-6. In GitHub, send a pull request to `ngverse:main`.
+6. In GitHub, send a pull request to `ng-verse:main`.
 
 ### Reviewing a Pull Request
 

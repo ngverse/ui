@@ -1,7 +1,7 @@
 import { UpperCasePipe } from '@angular/common';
 import { Component, inject, input, signal } from '@angular/core';
-import { TabGroupComponent } from '@ngverse/tab/tab-group.component';
-import { TabComponent } from '@ngverse/tab/tab.component';
+import { TabGroupComponent } from '@ng-verse/tab/tab-group.component';
+import { TabComponent } from '@ng-verse/tab/tab.component';
 import { FileService } from '../../services/file.service';
 import { SourceCodeComponent } from '../source-code/source-code.component';
 

@@ -1,25 +1,25 @@
 {
-  "name": "ngverse",
+  "name": "ng-verse",
   "version": "0.0.0",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/lukonik/ngverse"
+    "url": "https://github.com/lukonik/ng-verse"
   },
   "scripts": {
     "ng": "ng",
     "start": "ng serve --project=docs",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --project=ngverse",
+    "test": "ng test --project=ng-verse",
     "lint": "ng lint",
     "prepare": "husky",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "semantic-release": "semantic-release",
     "serve:ssr:docs": "node dist/docs/server/server.mjs",
-    "schema:test-watch": "nodemon --watch dist/ngverse --ext js --exec 'jasmine dist/ngverse/**/*_spec.js'",
-    "build:ngverse": "ng build --project=ngverse && cd projects/ngverse && npm run build"
+    "schema:test-watch": "nodemon --watch dist/ng-verse --ext js --exec 'jasmine dist/ng-verse/**/*_spec.js'",
+    "build:ng-verse": "ng build --project=ng-verse && cd projects/ng-verse && npm run build"
   },
   "lint-staged": {
     "**/*.{html,ts,json,css,scss,md}": "prettier --write"

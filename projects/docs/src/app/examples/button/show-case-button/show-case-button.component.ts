@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from '@ngverse/button/button.component';
-import { IconButtonComponent } from '@ngverse/button/icon-button.component';
-import { IconComponent } from '@ngverse/icon/icon.component';
+import { ButtonComponent } from '@ng-verse/button/button.component';
+import { IconButtonComponent } from '@ng-verse/button/icon-button.component';
+import { IconComponent } from '@ng-verse/icon/icon.component';
 
 @Component({
   selector: 'doc-show-case-button',

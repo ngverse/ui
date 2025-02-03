@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { DividerComponent } from '@ngverse/divider/divider.component';
-import { ListboxItemDirective } from '@ngverse/listbox/listbox-item.directive';
-import { ListboxDirective } from '@ngverse/listbox/listbox.directive';
+import { DividerComponent } from '@ng-verse/divider/divider.component';
+import { ListboxItemDirective } from '@ng-verse/listbox/listbox-item.directive';
+import { ListboxDirective } from '@ng-verse/listbox/listbox.directive';
 
 @Component({
   selector: 'doc-show-case-listbox',

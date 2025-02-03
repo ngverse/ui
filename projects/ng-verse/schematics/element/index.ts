@@ -31,7 +31,7 @@ export function element(options: Schema) {
     const elementName = getElementName(options.name);
 
     const elementsPath = normalize(
-      join('node_modules', 'ngverse', 'src', 'lib', elementName)
+      join('node_modules', 'ng-verse', 'src', 'lib', elementName)
     );
     const dir = host.getDir(elementsPath);
     const directoryExists = dir.subfiles.length > 0 || dir.subdirs.length > 0;
