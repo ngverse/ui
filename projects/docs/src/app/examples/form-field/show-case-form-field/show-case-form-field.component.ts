@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '@ngverse/button/button.component';
 import { DialogService } from '@ngverse/dialog/dialog.service';
-import { ErrorGroupComponent } from '@ngverse/form-field/error-group/error-group.component';
 import { ErrorComponent } from '@ngverse/form-field/error/error.component';
 import { FormFieldErrorRegistry } from '@ngverse/form-field/form-field-error.registry';
 import { FormFieldComponent } from '@ngverse/form-field/form-field.component';
@@ -20,7 +19,6 @@ import { SelectComponent } from '@ngverse/select/select.component';
     ReactiveFormsModule,
     ButtonComponent,
     ErrorComponent,
-    ErrorGroupComponent,
     SelectComponent,
     OptionComponent,
   ],
@@ -57,6 +55,11 @@ export class ShowCaseFormFieldComponent {
     this.formFieldErrorRegistry.addErrors({
       min: (error) =>
         `Min value is ${error.min}, but your value is ${error.actual}`,
+    });
+
+    effect(() => {
+      const cont = this.group.controls.lastName;
+      console.log(cont.errors?.['required']);
     });
   }
 

@@ -51,13 +51,6 @@ export class FormFieldPageComponent {
       name: 'error',
       files: this.sourceTreeBuilder.fullComponent('error', `${ROOT}/error`),
     },
-    {
-      name: 'error-group',
-      files: this.sourceTreeBuilder.fullComponent(
-        'error-group',
-        `${ROOT}/error-group`
-      ),
-    },
   ];
 
   apiInfo: ApiInfo = {
@@ -67,6 +60,22 @@ export class FormFieldPageComponent {
         type: 'component',
         selector: 'app-form-field',
         description: 'A form field is a block element with field and label',
+        inputs: [
+          {
+            name: 'showErrors',
+            type: 'boolean',
+            default: 'true',
+            description:
+              'Whether to show auto generated errors, custom errors will be still shown, it has to be controlled manually.',
+          },
+          {
+            name: 'silentErrors',
+            type: 'string[] | undefined',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
+            description:
+              'List of errors to ignore. This can be useful when you want to display most of the errors with error group, but handle specific errors with app-error and provide customized error messages',
+          },
+        ],
       },
       {
         name: 'LabelComponent',
@@ -79,28 +88,6 @@ export class FormFieldPageComponent {
         type: 'component',
         selector: 'app-error',
         description: 'app-error displays an error message',
-      },
-      {
-        name: 'ErrorGroupComponent',
-        type: 'component',
-        selector: 'app-error-group',
-        description:
-          'app-error-group displays error messages automatically from the control',
-        inputs: [
-          {
-            name: 'control',
-            type: 'AbstractControl (both FormControl and ngModel is supported)',
-            default: EMPTY_API_INPUT_DEFAULT_VALUE,
-            description: 'Control to bind to',
-          },
-          {
-            name: 'silentErrors',
-            type: 'string[] | undefined',
-            default: EMPTY_API_INPUT_DEFAULT_VALUE,
-            description:
-              'List of errors to ignore. This can be useful when you want to display most of the errors with error group, but handle specific errors with app-error and provide customized error messages',
-          },
-        ],
       },
       {
         name: 'FormFieldErrorRegistry',

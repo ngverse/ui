@@ -1,4 +1,3 @@
-import { CdkAutofill } from '@angular/cdk/text-field';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,12 +14,7 @@ import { ListboxDirective } from '../listbox/listbox.directive';
 
 @Component({
   selector: 'app-otp-input',
-  imports: [
-    CdkAutofill,
-    ListboxDirective,
-    ListboxItemDirective,
-    InputComponent,
-  ],
+  imports: [ListboxDirective, ListboxItemDirective, InputComponent],
   templateUrl: './otp-input.component.html',
   styleUrl: './otp-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,17 +31,6 @@ export class OtpInputComponent {
   codeLengthArray = computed(() => new Array(this.codeLength()).fill(1));
 
   filled = output<string>();
-
-  autoFilled() {
-    //Autofill is fired as soon as suggesion is hovered
-    //so we have to wait a bit to get the value
-    setTimeout(() => {
-      const oneTimeCodeValue = this.oneTimeCode()?.nativeElement?.value;
-      if (oneTimeCodeValue) {
-        this.fillFromText(oneTimeCodeValue);
-      }
-    }, 500);
-  }
 
   onInput(event: Event, index: number) {
     const inputEvent = event as InputEvent;
