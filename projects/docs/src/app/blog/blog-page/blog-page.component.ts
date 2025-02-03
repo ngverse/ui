@@ -15,7 +15,7 @@ export class BlogPageComponent {
   constructor() {
     effect(() => {
       const label = this.label();
-      this.title.setTitle(`${label} | ngverse`);
+      this.title.setTitle(`${label} | ng-verse`);
     });
   }
 }

@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        project: [docs, ngverse]
+        project: [docs, ng-verse]
 
     steps:
       - name: Checkout repository

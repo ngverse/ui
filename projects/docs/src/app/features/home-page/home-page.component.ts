@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-import { IconComponent } from '@ngverse/icon/icon.component';
+import { IconComponent } from '@ng-verse/icon/icon.component';
 import {
   Clipboard,
   ClipboardPaste,
@@ -21,6 +21,6 @@ export class HomePageComponent {
   Rocket = Rocket;
   title = inject(Title);
   constructor() {
-    this.title.setTitle('ngverse');
+    this.title.setTitle('ng-verse');
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SkeletonComponent } from '@ngverse/skeleton/skeleton.component';
+import { SkeletonComponent } from '@ng-verse/skeleton/skeleton.component';
 
 @Component({
   selector: 'doc-show-case-skeleton',

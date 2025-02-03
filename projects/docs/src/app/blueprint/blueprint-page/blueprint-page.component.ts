@@ -16,7 +16,7 @@ export class BlueprintPageComponent {
     effect(() => {
       const label = this.label();
       const subTitle = this.subTitle();
-      this.title.setTitle(`${label} | ngverse`);
+      this.title.setTitle(`${label} | ng-verse`);
       if (subTitle) {
         this.meta.updateTag({ name: 'description', content: subTitle });
       }

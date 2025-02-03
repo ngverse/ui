@@ -1,15 +1,15 @@
 import { Component, inject, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonComponent } from '@ngverse/button/button.component';
-import { FormFieldComponent } from '@ngverse/form-field/form-field.component';
-import { LabelComponent } from '@ngverse/form-field/label/label.component';
-import { OptionComponent } from '@ngverse/select/option.component';
-import { SelectComponent } from '@ngverse/select/select.component';
+import { ButtonComponent } from '@ng-verse/button/button.component';
+import { FormFieldComponent } from '@ng-verse/form-field/form-field.component';
+import { LabelComponent } from '@ng-verse/form-field/label/label.component';
+import { OptionComponent } from '@ng-verse/select/option.component';
+import { SelectComponent } from '@ng-verse/select/select.component';
 import {
   TOAST_POSITION,
   TOAST_TYPE,
   ToastService,
-} from '@ngverse/toast/toast.service';
+} from '@ng-verse/toast/toast.service';
 
 @Component({
   selector: 'doc-show-case-toast',

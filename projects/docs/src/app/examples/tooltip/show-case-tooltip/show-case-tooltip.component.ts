@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from '@ngverse/button/button.component';
-import { InputComponent } from '@ngverse/input/input.component';
-import { TooltipDirective } from '@ngverse/tooltip/tooltip.directive';
+import { ButtonComponent } from '@ng-verse/button/button.component';
+import { InputComponent } from '@ng-verse/input/input.component';
+import { TooltipDirective } from '@ng-verse/tooltip/tooltip.directive';
 
 @Component({
   selector: 'doc-show-case-tooltip',

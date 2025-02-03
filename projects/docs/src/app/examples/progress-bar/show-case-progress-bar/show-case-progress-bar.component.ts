@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { afterNextRender, Component, inject, signal } from '@angular/core';
-import { ProgressBarComponent } from '@ngverse/progress-bar/progress-bar.component';
+import { ProgressBarComponent } from '@ng-verse/progress-bar/progress-bar.component';
 
 @Component({
   selector: 'doc-show-case-progress-bar',

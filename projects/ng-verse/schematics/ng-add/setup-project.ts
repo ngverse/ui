@@ -28,10 +28,10 @@ function installDependenceis(): Rule {
     const packageJson = JSON.parse(
       tree.read('package.json')?.toString() || '{}'
     );
-    if (!packageJson.dependencies['ngverse']) {
+    if (!packageJson.dependencies['ng-verse']) {
       addPackageJsonDependency(tree, {
         type: NodeDependencyType.Default,
-        name: 'ngverse',
+        name: 'ng-verse',
         version: 'latest',
       });
       context.addTask(new NodePackageInstallTask());
@@ -54,25 +54,27 @@ function addStyles(options: Schema) {
 
     if (!styleSCSSPath || !host.exists(styleSCSSPath)) {
       throw new SchematicsException(
-        `Could not find ${styleSCSSPath} to add ngverse.scss`
+        `Could not find ${styleSCSSPath} to add ng-verse.scss`
       );
     }
 
     const ngVerseStylePath = normalize(
-      join('node_modules', 'ngverse', 'src', 'lib', 'ngverse.scss')
+      join('node_modules', 'ng-verse', 'src', 'lib', 'ng-verse.scss')
     );
     if (!host.exists(ngVerseStylePath)) {
       throw new SchematicsException(
-        `Could not find ${ngVerseStylePath} to add ngverse.scss`
+        `Could not find ${ngVerseStylePath} to add ng-verse.scss`
       );
     }
     const styleDirectory = dirname(styleSCSSPath);
 
-    const newNgVerseStylePath = normalize(join(styleDirectory, 'ngverse.scss'));
+    const newNgVerseStylePath = normalize(
+      join(styleDirectory, 'ng-verse.scss')
+    );
 
     host.create(newNgVerseStylePath, host.read(ngVerseStylePath) as Buffer);
 
-    const insertion = `@use './ngverse.scss';\n`;
+    const insertion = `@use './ng-verse.scss';\n`;
 
     const recorder = host.beginUpdate(styleSCSSPath);
     recorder.insertLeft(0, insertion);

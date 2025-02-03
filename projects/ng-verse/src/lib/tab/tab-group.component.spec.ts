@@ -4,13 +4,13 @@ import {
   DebugElement,
   provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
-import { TabGroupComponent } from 'ngverse/tab/tab-group.component';
-import { TabComponent } from 'ngverse/tab/tab.component';
-import { TabHeaderDirective } from 'ngverse/tab/tab-header.directive';
-import { TabBodyDirective } from 'ngverse/tab/tab-body.directive';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { TabBodyDirective } from 'ng-verse/tab/tab-body.directive';
+import { TabGroupComponent } from 'ng-verse/tab/tab-group.component';
+import { TabHeaderDirective } from 'ng-verse/tab/tab-header.directive';
+import { TabComponent } from 'ng-verse/tab/tab.component';
 
 @Component({
   imports: [
