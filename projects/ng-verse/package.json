@@ -1,7 +1,13 @@
 {
   "name": "ng-verse",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "schematics": "./schematics/collection.json",
+  "keywords": [
+    "angular",
+    "angular-components",
+    "typescript",
+    "components"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/lukonik/ng-verse"
