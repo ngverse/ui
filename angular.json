@@ -53,7 +53,7 @@
             "styles": ["projects/docs/src/styles.scss"],
             "scripts": [],
             "server": "projects/docs/src/main.server.ts",
-            "prerender": false,
+            "prerender": true,
             "ssr": false
           },
           "configurations": {
