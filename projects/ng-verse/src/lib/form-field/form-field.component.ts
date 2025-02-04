@@ -38,7 +38,7 @@ export class FormFieldComponent implements OnDestroy {
     () => !this.showErrors() || this.errors().length === 0
   );
 
-  private ngControl = contentChild.required(NgControl);
+  private ngControl = contentChild(NgControl);
   private sub: Subscription | undefined;
   private errorRegistry = inject(FormFieldErrorRegistry);
   private errorsCodes$ = toObservable(this.errorRegistry.errors);
@@ -47,8 +47,8 @@ export class FormFieldComponent implements OnDestroy {
   constructor() {
     effect(() => {
       const ngControl = this.ngControl();
-      const control = ngControl.control;
-      if (!ngControl || !control) {
+      const control = ngControl?.control;
+      if (!control) {
         this.sub?.unsubscribe();
         return;
       }
