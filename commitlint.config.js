@@ -38,6 +38,7 @@ module.exports = {
         'drawer',
         'roving-listbox',
         'desc-listbox',
+        'pagination',
       ],
     ],
   },

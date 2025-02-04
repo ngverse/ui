@@ -167,6 +167,11 @@ export const SIDEBAR_ROUTES = [
         done: true,
       },
       {
+        name: 'Pagination',
+        url: '/doc/pagination',
+        done: true,
+      },
+      {
         name: 'Listbox',
         url: '/doc/listbox',
         done: true,

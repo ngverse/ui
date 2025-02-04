@@ -1,0 +1,39 @@
+<ul class="pagination">
+  <li>
+    <button
+      class="pagination-button"
+      (click)="prevPage()"
+      [disabled]="!hasPrevPage()"
+    >
+      <app-pagination-prev-icon class="nav-icon" />
+      <span>Previous</span>
+    </button>
+  </li>
+
+  @for (page of visiblePages(); track page) {
+    @if (page === ELLIPSIS) {
+      <li class="pagination-ellipsis">...</li>
+    } @else {
+      <li>
+        <button
+          class="pagination-button"
+          [class.active]="currentPage() === page"
+          (click)="setPage($any(page))"
+        >
+          {{ page }}
+        </button>
+      </li>
+    }
+  }
+
+  <li>
+    <button
+      class="pagination-button"
+      (click)="nextPage()"
+      [disabled]="!hasNextPage()"
+    >
+      <span>Next</span>
+      <app-pagination-next-icon class="nav-icon" />
+    </button>
+  </li>
+</ul>
