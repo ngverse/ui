@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -55,14 +54,6 @@ type LABEL_ALIGN = 'start' | 'end';
     '[class.checked]': 'value()',
     '[class.start]': 'labelAlign() === "start"',
   },
-  animations: [
-    trigger('toggle', [
-      transition('* => *', [
-        style({ opacity: 0 }),
-        animate('150ms', style({ opacity: 1 })),
-      ]),
-    ]),
-  ],
 })
 export class CheckboxComponent implements ControlValueAccessor, Validator {
   labelAlign = input<LABEL_ALIGN>('end');
