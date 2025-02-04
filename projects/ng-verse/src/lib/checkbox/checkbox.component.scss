@@ -14,6 +14,33 @@
   }
 }
 
+.checkbox-icon {
+  &.checked {
+    animation: checkbox-checked 150ms linear forwards;
+  }
+  &.unchecked {
+    animation: checkbox-unchecked 150ms linear forwards;
+  }
+}
+
+@keyframes checkbox-checked {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes checkbox-unchecked {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .native-checkbox-container {
   position: relative;
   height: 24px;
