@@ -29,14 +29,14 @@ export class FileService {
         responseType: 'text',
       })
       .pipe(
-        tap((response) => {
-          this._cache.set(path, response);
-        }),
         map((response) => {
           if (!response) {
             return EMPTY_FILE_TOKEN;
           }
           return response;
+        }),
+        tap((response) => {
+          this._cache.set(path, response);
         })
       );
   }
