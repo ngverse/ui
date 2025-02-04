@@ -24,18 +24,12 @@ describe('ToastComponent', () => {
   it("should display message 'Hello, World!'", async () => {
     component.message.set('Hello, World!');
     await fixture.whenStable();
-    expect(fixture.nativeElement.querySelector('.toast').textContent).toContain(
-      'Hello, World!'
-    );
+    expect(fixture.nativeElement.textContent).toContain('Hello, World!');
   });
   it('should apply action as class', async () => {
     component.type.set('success');
     await fixture.whenStable();
-    expect(
-      fixture.nativeElement
-        .querySelector('.toast')
-        .classList.contains('success')
-    ).toBeTrue();
+    expect(fixture.nativeElement.classList.contains('success')).toBeTrue();
   });
   it("should show close icon when 'showCloseIcon' is true", async () => {
     component.showCloseIcon.set(true);
@@ -54,13 +48,11 @@ describe('ToastComponent', () => {
     ).toBeFalsy();
   });
   it("should have role 'alert'", () => {
-    expect(
-      fixture.nativeElement.querySelector('.toast').getAttribute('role')
-    ).toBe('alert');
+    expect(fixture.nativeElement.getAttribute('role')).toBe('alert');
   });
   it("click close icon should emit 'close' event", async () => {
     await fixture.whenStable();
-    const spy = spyOn(component, 'startCloseAnimation');
+    const spy = spyOn(component, 'exit');
     fixture.nativeElement.querySelector('.toast-close-icon').click();
     expect(spy).toHaveBeenCalled();
   });

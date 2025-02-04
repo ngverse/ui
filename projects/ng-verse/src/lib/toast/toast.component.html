@@ -1,14 +1,6 @@
-<div
-  class="toast"
-  role="alert"
-  [class]="type()"
-  [@slide]="animationParams()"
-  (@slide.done)="onDone($event)"
->
-  <div>{{ message() }}</div>
-  @if (showCloseIcon()) {
-    <button (click)="startCloseAnimation()" class="toast-close-button">
-      <app-toast-close-icon class="toast-close-icon"></app-toast-close-icon>
-    </button>
-  }
-</div>
+<div>{{ message() }}</div>
+@if (showCloseIcon()) {
+  <button (click)="exit()" class="toast-close-button">
+    <app-toast-close-icon class="toast-close-icon"></app-toast-close-icon>
+  </button>
+}

@@ -58,6 +58,9 @@ describe('ToastService', () => {
       closeDelay: 10,
     });
     expect(toastDebugElement()).toBeTruthy();
+    toastDebugElement().triggerEventHandler('animationend', {
+      animationName: '_toast-exit',
+    });
     await new Promise<void>((resolve) => setTimeout(resolve, 10));
     await fixture.whenStable();
     expect(toastDebugElement()).toBeNull();
@@ -98,19 +101,20 @@ describe('ToastService', () => {
     service.open({
       message: 'Hello, World!',
     });
+
     expect(toastDebugElement()).toBeTruthy();
     service.open({
       message: 'Hello, World!',
     });
 
-    expect(document.querySelectorAll('.toast').length).toBe(1);
+    expect(document.querySelectorAll('app-toast').length).toBe(1);
   });
   it("should close toast if 'close' event is emitted", async () => {
     service.open({
       message: 'Hello, World!',
     });
     expect(toastDebugElement()).toBeTruthy();
-    toastCompInstance().closeAnimationFinished.emit();
+    toastCompInstance()._exitCompleted.emit();
     expect(toastDebugElement()).toBeNull();
   });
 });
