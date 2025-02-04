@@ -10,6 +10,7 @@ import {
   output,
   untracked,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ListboxItemDirective } from './listbox-item.directive';
 import { ListboxKeyManager } from './listbox-key-manager';
 import { ListboxRegistry } from './listbox-registry';
@@ -50,6 +51,8 @@ export class ListboxDirective implements OnDestroy {
     this.registry.items,
     inject(Injector)
   );
+
+  sub: Subscription | undefined;
 
   onKeydown($event: KeyboardEvent) {
     this.keyManager.focusTarget(true);
@@ -95,10 +98,14 @@ export class ListboxDirective implements OnDestroy {
 
     effect(() => {
       const items = this.registry.items();
+      this.sub?.unsubscribe();
+      this.sub = new Subscription();
       for (const item of items) {
-        item.clicked.subscribe(() => {
-          this.selected.emit(item.value());
-        });
+        this.sub.add(
+          item.clicked.subscribe(() => {
+            this.selected.emit(item.value());
+          })
+        );
       }
     });
   }
@@ -170,5 +177,6 @@ export class ListboxDirective implements OnDestroy {
 
   ngOnDestroy(): void {
     this.keyManager?.destroy();
+    this.sub?.unsubscribe();
   }
 }
