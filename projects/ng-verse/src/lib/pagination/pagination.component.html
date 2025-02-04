@@ -10,7 +10,7 @@
     </button>
   </li>
 
-  @for (page of visiblePages(); track page) {
+  @for (page of visiblePages(); track $index) {
     @if (page === ELLIPSIS) {
       <li class="pagination-ellipsis">...</li>
     } @else {
