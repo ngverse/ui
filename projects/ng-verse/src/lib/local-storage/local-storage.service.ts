@@ -35,6 +35,8 @@ export const LOCAL_STORAGE_TOKEN = new InjectionToken<Storage>(
 export class LocalStorageService implements Storage {
   private _storage = inject(LOCAL_STORAGE_TOKEN);
 
+  readonly enabled = isPlatformBrowser(inject(PLATFORM_ID));
+
   get length() {
     return this._storage.length;
   }

@@ -23,6 +23,9 @@ describe('LocalStorageService', () => {
     it('should be created', () => {
       expect(service).toBeTruthy();
     });
+    it('should be enabled=true', () => {
+      expect(service.enabled).toBeTruthy();
+    });
     it('should call set item', () => {
       service.setItem('test', 'test');
       expect(localStorage.getItem('test')).toBe('test');
@@ -72,6 +75,9 @@ describe('LocalStorageService', () => {
     });
     it('should be created', () => {
       expect(service).toBeTruthy();
+    });
+    it('should be enabled false', () => {
+      expect(service.enabled).toBe(false);
     });
     it('should call set item', () => {
       spyOn(spyStorageMock, 'setItem');
