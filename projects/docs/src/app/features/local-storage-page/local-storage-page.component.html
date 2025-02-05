@@ -1,0 +1,26 @@
+<doc-blueprint-page
+  subTitle="LocalStorage is a secure wrapper for the browser's localStorage API, providing a mock implementation when operating in server-side rendering (SSR) mode."
+  [label]="'LocalStorage'"
+>
+  <doc-show-case name="local-storage">
+    <doc-show-case-local-storage></doc-show-case-local-storage>
+  </doc-show-case>
+  <doc-command-installation type="component" name="local-storage">
+  </doc-command-installation>
+  <doc-source-tree
+    [sourceTree]="sourceTree"
+    name="local-storage"
+  ></doc-source-tree>
+  <doc-api-info [apiInfo]="apiInfo">
+    <doc-api-description>
+      LocalStorageService implements
+      <a
+        class="underline"
+        target="_blank"
+        href="https://developer.mozilla.org/en-US/docs/Web/API/Storage"
+        >Storage</a
+      >
+      Interface so all native methods are available.
+    </doc-api-description>
+  </doc-api-info>
+</doc-blueprint-page>
