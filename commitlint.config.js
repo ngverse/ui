@@ -39,6 +39,7 @@ module.exports = {
         'roving-listbox',
         'desc-listbox',
         'local-storage',
+        'session-storage',
       ],
     ],
   },

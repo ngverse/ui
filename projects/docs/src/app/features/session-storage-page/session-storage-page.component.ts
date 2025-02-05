@@ -12,26 +12,26 @@ import {
   SourceTreeFolder,
 } from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import { ShowCaseLocalStorageComponent } from '../../examples/local-storage/show-case-local-storage/show-case-local-storage.component';
+import { ShowCaseSessionStorageComponent } from '../../examples/session-storage/show-case-session-storage/show-case-session-storage.component';
 
-const ROOT = 'local-storage';
+const ROOT = 'session-storage';
 
 @Component({
-  selector: 'doc-local-storage-page',
+  selector: 'doc-session-storage-page',
   imports: [
     BlueprintPageComponent,
     CommandInstallationComponent,
     ShowCaseComponent,
     SourceTreeComponent,
     ApiInfoComponent,
-    ShowCaseLocalStorageComponent,
+    ShowCaseSessionStorageComponent,
     ApiDescriptionComponent,
   ],
-  templateUrl: './local-storage-page.component.html',
-  styleUrl: './local-storage-page.component.scss',
+  templateUrl: './session-storage-page.component.html',
+  styleUrl: './session-storage-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LocalStoragePageComponent {
+export class SessionStoragePageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
   sourceTree: SourceTreeFolder[] = [
     {
@@ -44,7 +44,7 @@ export class LocalStoragePageComponent {
   apiInfo: ApiInfo = {
     entities: [
       {
-        name: 'LocalStorageService',
+        name: 'SessionStorageService',
         type: 'service',
         methods: [
           {
@@ -118,7 +118,7 @@ export class LocalStoragePageComponent {
             propType: 'get',
             returnType: 'boolean',
             description:
-              'Whether the local storage is enabled. if SSR the value is false.',
+              'Whether the session storage is enabled. if SSR the value is false.',
           },
         ],
       },

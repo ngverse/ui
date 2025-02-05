@@ -1,7 +1,7 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { inject, Injectable, InjectionToken, PLATFORM_ID } from '@angular/core';
 
-function mockLocalStorage(): Storage {
+function mockSessionStorage(): Storage {
   return {
     length: 0,
     key: () => null,
@@ -12,8 +12,8 @@ function mockLocalStorage(): Storage {
   };
 }
 
-export const LOCAL_STORAGE_TOKEN = new InjectionToken<Storage>(
-  'LOCAL_STORAGE_TOKEN',
+export const SESSION_STORAGE_TOKEN = new InjectionToken<Storage>(
+  'SESSION_STORAGE_TOKEN',
   {
     factory: () => {
       const platformId = inject(PLATFORM_ID);
@@ -21,9 +21,9 @@ export const LOCAL_STORAGE_TOKEN = new InjectionToken<Storage>(
       const document = inject(DOCUMENT);
 
       if (isBrowser) {
-        return document.defaultView?.localStorage ?? mockLocalStorage();
+        return document.defaultView?.sessionStorage ?? mockSessionStorage();
       } else {
-        return mockLocalStorage();
+        return mockSessionStorage();
       }
     },
   }
@@ -32,8 +32,8 @@ export const LOCAL_STORAGE_TOKEN = new InjectionToken<Storage>(
 @Injectable({
   providedIn: 'root',
 })
-export class LocalStorageService implements Storage {
-  private _storage = inject(LOCAL_STORAGE_TOKEN);
+export class SessionStorageService implements Storage {
+  private _storage = inject(SESSION_STORAGE_TOKEN);
 
   readonly enabled = isPlatformBrowser(inject(PLATFORM_ID));
 

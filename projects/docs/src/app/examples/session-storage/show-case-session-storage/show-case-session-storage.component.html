@@ -1,0 +1,20 @@
+<div class="show-case">
+  <div class="buttons">
+    <button (click)="store()" appButton variant="outline" size="sm">
+      Store current date
+    </button>
+
+    <button
+      appButton
+      (click)="read()"
+      size="sm"
+      variant="outline"
+      color="secondary"
+    >
+      Read the value
+    </button>
+  </div>
+  <p class="date-label">
+    {{ dateValue() }}
+  </p>
+</div>

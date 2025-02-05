@@ -98,6 +98,43 @@
         </table>
       </div>
     }
+    @if (apiInput.properties?.length) {
+      <p class="mb-2 text-sm">Properties</p>
+
+      <div
+        class="relative overflow-x-auto border border-slate-200 rounded-md mb-10"
+      >
+        <table
+          class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400"
+        >
+          <thead
+            class="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-400"
+          >
+            <tr>
+              <th scope="col" class="px-6 py-3">Name</th>
+              <th scope="col" class="px-6 py-3">Return Type</th>
+              <th scope="col" class="px-6 py-3">Property Type</th>
+              <th scope="col" class="px-6 py-3">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (apiProp of apiInput.properties; track $index) {
+              <tr class="bg-white border-b">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {{ apiProp.name }}
+                </th>
+                <td class="px-6 py-4">{{ apiProp.returnType }}</td>
+                <td class="px-6 py-4">{{ apiProp.propType }}</td>
+                <td class="px-6 py-4 lowercase">{{ apiProp.description }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
     @if (apiInput.methods?.length) {
       <p class="mb-2 text-sm">Methods</p>
       <app-accordion [multi]="true">
