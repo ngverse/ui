@@ -57,13 +57,13 @@ body {
 }
 
 /**
-  app input styles
+  app input and textarea styles
 **/
-.app-input {
+.app-input,
+.app-textarea {
   box-sizing: border-box;
   border: var(--nv-border);
   border-radius: var(--nv-border-radius);
-  height: var(--nv-field-height);
   padding: var(--nv-field-padding);
   font-size: 1rem;
   &:focus-visible {
@@ -82,4 +82,8 @@ body {
     border-color: var(--nv-danger);
     outline-color: transparent;
   }
+}
+
+.app-input {
+  height: var(--nv-field-height);
 }
