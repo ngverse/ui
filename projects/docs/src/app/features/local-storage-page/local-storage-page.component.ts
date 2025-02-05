@@ -46,6 +46,81 @@ export class LocalStoragePageComponent {
       {
         name: 'LocalStorageService',
         type: 'service',
+        methods: [
+          {
+            name: 'getItem',
+            returnType: 'string | null',
+            description: 'Returns the value associated with the given key.',
+            params: [
+              {
+                name: 'key',
+                type: 'string',
+                description: 'The key of the value to retrieve.',
+              },
+            ],
+          },
+          {
+            name: 'setItem',
+            returnType: 'void',
+            description: 'Associates a key with a given value.',
+            params: [
+              {
+                name: 'key',
+                type: 'string',
+                description: 'The key of the value to set.',
+              },
+              {
+                name: 'value',
+                type: 'string',
+                description: 'The value to set.',
+              },
+            ],
+          },
+          {
+            name: 'removeItem',
+            returnType: 'void',
+            description: 'Removes the value associated with the given key.',
+            params: [
+              {
+                name: 'key',
+                type: 'string',
+                description: 'The key of the value to remove.',
+              },
+            ],
+          },
+          {
+            name: 'clear',
+            returnType: 'void',
+            description: 'Removes all values from the storage.',
+          },
+          {
+            name: 'key',
+            returnType: 'string | null',
+            description: 'Returns the key of the item at the given index.',
+            params: [
+              {
+                name: 'index',
+                type: 'number',
+                description: 'The index of the item.',
+              },
+            ],
+          },
+        ],
+        properties: [
+          {
+            name: 'length',
+            propType: 'get',
+            returnType: 'number',
+            description: 'The number of items in the storage.',
+          },
+          {
+            name: 'enabled',
+            propType: 'get',
+            returnType: 'boolean',
+            description:
+              'Whether the local storage is enabled. if SSR the value is false.',
+          },
+        ],
       },
     ],
   };

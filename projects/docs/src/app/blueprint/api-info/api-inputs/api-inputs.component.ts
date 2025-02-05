@@ -38,6 +38,13 @@ interface ApiOutputType {
   description: string;
 }
 
+interface ApiPropertyType {
+  name: string;
+  returnType: string;
+  description: string;
+  propType: 'get' | 'set' | 'get;set;';
+}
+
 export const VOID_API_RETURN_TYPE = 'void';
 
 export const VOID_API_NO_PARAMS = '--';
@@ -51,6 +58,7 @@ export interface ApiEntity {
   inputs?: ApiInputType[];
   outputs?: ApiOutputType[];
   methods?: ApiMethodType[];
+  properties?: ApiPropertyType[];
   description?: string;
   type?: 'component' | 'directive' | 'service';
   selector?: string;
