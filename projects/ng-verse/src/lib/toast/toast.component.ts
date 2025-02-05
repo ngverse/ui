@@ -1,13 +1,14 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  output,
-  signal,
-} from '@angular/core';
+  animate,
+  AnimationEvent,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ToastCloseIconComponent } from './toast-close.component';
 import { TOAST_POSITION } from './toast.service';
-
-const EXIT_ANIMATION = '_toast-exit';
 
 @Component({
   selector: 'app-toast',
@@ -15,14 +16,23 @@ const EXIT_ANIMATION = '_toast-exit';
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('toggle', [
+      transition('* => enter', [
+        style({ transform: 'scale(0.8)', opacity: 0 }),
+        animate('150ms ease-out', style({ transform: 'scale(1)', opacity: 1 })),
+      ]),
+      transition('* => exit', [
+        animate('150ms ease-in', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
   host: {
     role: 'alert',
     '[class.toaster]': 'true',
-    '[class.toast-enter]': "_animationState() === 'enter'",
-    '[class.toast-exit]': "_animationState() === 'exit'",
     '[class]': 'type()',
-    '(animationend)': 'onAnimationEnd($event.animationName)',
-    '(animationcancel)': 'onAnimationEnd($event.animationName)',
+    '[@toggle]': 'animationState()',
+    '(@toggle.done)': 'onDone($event)',
   },
 })
 export class ToastComponent {
@@ -30,20 +40,18 @@ export class ToastComponent {
   type = signal<string>('');
   showCloseIcon = signal<boolean>(true);
   position = signal<TOAST_POSITION>('right_bottom');
-  _animationState = signal<'void' | 'enter' | 'exit'>('void');
-  _exitCompleted = output<void>();
+  animationState = signal<'enter' | 'exit'>('enter');
+  private _onExit = new Subject<void>();
+  onExit = this._onExit.asObservable();
 
-  onAnimationEnd(animationName: string) {
-    if (animationName === EXIT_ANIMATION) {
-      this._exitCompleted.emit();
+  onDone($event: AnimationEvent) {
+    if ($event.toState === 'exit') {
+      this._onExit.next();
+      this._onExit.complete();
     }
   }
 
-  enter() {
-    this._animationState.set('enter');
-  }
-
   exit() {
-    this._animationState.set('exit');
+    this.animationState.set('exit');
   }
 }
