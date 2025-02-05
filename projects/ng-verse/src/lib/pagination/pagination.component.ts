@@ -13,7 +13,7 @@ const ALWAYS_VISIBLE_ITEMS = 7;
 
 const ELLIPSIS = '...';
 
-function getPagination(totalPages: number, currentPage: number) {
+function generatePages(totalPages: number, currentPage: number) {
   const pages = [];
 
   if (totalPages <= ALWAYS_VISIBLE_ITEMS) {
@@ -67,7 +67,7 @@ export class PaginationComponent {
   ELLIPSIS = ELLIPSIS;
 
   visiblePages = computed(() => {
-    return getPagination(this.totalPages(), this.currentPage());
+    return generatePages(this.totalPages(), this.currentPage());
   });
 
   prevPage() {

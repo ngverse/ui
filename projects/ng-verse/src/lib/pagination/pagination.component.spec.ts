@@ -44,11 +44,29 @@ describe('PaginationComponent', () => {
     fixture.detectChanges();
   });
 
+  function goToNextPage() {
+    const nextButton = fixture.debugElement.query(
+      By.css('li:last-child .pagination-button')
+    );
+    nextButton.nativeElement.click();
+    fixture.detectChanges();
+  }
+
   it('should render pagination buttons correctly', () => {
     const paginationButtons = fixture.debugElement.queryAll(
       By.css('.pagination-button')
     );
     expect(paginationButtons.length).toBeGreaterThan(0);
+  });
+
+  it('should display prev and next buttons', () => {
+    const pageButtons = fixture.debugElement.queryAll(
+      By.css('.pagination-button')
+    );
+    expect(pageButtons[0].nativeElement.innerText).toBe('Previous');
+    expect(pageButtons[pageButtons.length - 1].nativeElement.innerText).toBe(
+      'Next'
+    );
   });
 
   it('should disable previous button on first page', () => {
@@ -76,11 +94,130 @@ describe('PaginationComponent', () => {
   });
 
   it('should emit pageChange event when next button is clicked', () => {
-    const nextButton = fixture.debugElement.query(
-      By.css('li:last-child .pagination-button')
-    );
-    nextButton.nativeElement.click();
-    fixture.detectChanges();
+    goToNextPage();
     expect(component.currentPage()).toBe(2);
+  });
+
+  it('should emit pageChange event when prev button is clicked', () => {
+    goToNextPage();
+
+    const firstButton = fixture.debugElement.query(
+      By.css('li:first-child .pagination-button')
+    );
+    firstButton.nativeElement.click();
+    fixture.detectChanges();
+
+    expect(component.currentPage()).toBe(1);
+  });
+
+  describe('Page buttons generation', () => {
+    it('should generate and display correct page buttons', () => {
+      const cases = [
+        {
+          totalPages: 10,
+          currentPage: 1,
+          expectedPages: ['1', '2', '3', '4', '5', '...', '10'],
+        },
+        {
+          totalPages: 10,
+          currentPage: 2,
+          expectedPages: ['1', '2', '3', '4', '5', '...', '10'],
+        },
+        {
+          totalPages: 10,
+          currentPage: 3,
+          expectedPages: ['1', '2', '3', '4', '5', '...', '10'],
+        },
+        {
+          totalPages: 10,
+          currentPage: 4,
+          expectedPages: ['1', '2', '3', '4', '5', '...', '10'],
+        },
+        {
+          totalPages: 10,
+          currentPage: 5,
+          expectedPages: ['1', '...', '4', '5', '6', '...', '10'],
+        },
+        {
+          totalPages: 10,
+          currentPage: 6,
+          expectedPages: ['1', '...', '5', '6', '7', '...', '10'],
+        },
+        {
+          totalPages: 10,
+          currentPage: 7,
+          expectedPages: ['1', '...', '6', '7', '8', '9', '10'],
+        },
+        {
+          totalPages: 10,
+          currentPage: 8,
+          expectedPages: ['1', '...', '6', '7', '8', '9', '10'],
+        },
+        {
+          totalPages: 2,
+          currentPage: 1,
+          expectedPages: ['1', '2'],
+        },
+        {
+          totalPages: 1,
+          currentPage: 1,
+          expectedPages: ['1'],
+        },
+        {
+          totalPages: 5,
+          currentPage: 1,
+          expectedPages: ['1', '2', '3', '4', '5'],
+        },
+        {
+          totalPages: 5,
+          currentPage: 3,
+          expectedPages: ['1', '2', '3', '4', '5'],
+        },
+        {
+          totalPages: 0,
+          currentPage: 1,
+          expectedPages: [],
+        },
+        {
+          totalPages: 13,
+          currentPage: 1,
+          expectedPages: ['1', '2', '3', '4', '5', '...', '13'],
+        },
+        {
+          totalPages: 13,
+          currentPage: 6,
+          expectedPages: ['1', '...', '5', '6', '7', '...', '13'],
+        },
+        {
+          totalPages: 13,
+          currentPage: 9,
+          expectedPages: ['1', '...', '8', '9', '10', '...', '13'],
+        },
+        {
+          totalPages: 13,
+          currentPage: 11,
+          expectedPages: ['1', '...', '9', '10', '11', '12', '13'],
+        },
+        //Out of range current page
+        {
+          totalPages: 5,
+          currentPage: 10,
+          expectedPages: ['1', '2', '3', '4', '5'],
+        },
+      ];
+
+      for (const _case of cases) {
+        const { totalPages, currentPage, expectedPages } = _case;
+        component.totalPages.set(totalPages);
+        component.currentPage.set(currentPage);
+        fixture.detectChanges();
+        // query all buttons except prev/next
+        const pageButtons = fixture.debugElement
+          .queryAll(By.css('li:not(:first-child):not(:last-child)'))
+          .map((pageButton) => pageButton.nativeElement.innerText);
+
+        expect(pageButtons).toEqual(expectedPages);
+      }
+    });
   });
 });
