@@ -1,6 +1,5 @@
 :host {
   display: block;
-  opacity: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,39 +21,6 @@
   &.warning {
     background: var(--nv-warning);
     color: var(--nv-warning-foreground);
-  }
-
-  &.toast-enter {
-    animation-name: _toast-enter;
-    animation-duration: 150ms;
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    animation-fill-mode: forwards;
-  }
-
-  &.toast-exit {
-    animation: _toast-exit 75ms cubic-bezier(0.4, 0, 1, 1) forwards;
-    animation-name: _toast-exit;
-  }
-}
-@keyframes _toast-enter {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes _toast-exit {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
   }
 }
 

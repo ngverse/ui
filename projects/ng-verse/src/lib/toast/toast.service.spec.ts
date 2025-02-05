@@ -114,7 +114,8 @@ describe('ToastService', () => {
       message: 'Hello, World!',
     });
     expect(toastDebugElement()).toBeTruthy();
-    toastCompInstance()._exitCompleted.emit();
+    toastCompInstance().exit();
+    await fixture.whenStable();
     expect(toastDebugElement()).toBeNull();
   });
 });

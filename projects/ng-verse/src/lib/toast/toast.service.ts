@@ -82,14 +82,13 @@ export class ToastService {
     instance.type.set(genOptions.type);
     instance.showCloseIcon.set(genOptions.showCloseIcon);
     instance.position.set(genOptions.position);
-    instance.enter();
     if (genOptions.autoClose) {
       this.timeoutId = setTimeout(() => {
         instance.exit();
       }, genOptions.closeDelay);
     }
 
-    instance._exitCompleted.subscribe(() => {
+    instance.onExit.subscribe(() => {
       this.close();
     });
     const closed$ = new Subject<void>();
