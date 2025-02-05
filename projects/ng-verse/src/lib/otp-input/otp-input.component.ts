@@ -8,13 +8,13 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
-import { InputComponent } from '../input/input.component';
+import { InputDirective } from '../input/input.directive';
 import { ListboxItemDirective } from '../listbox/listbox-item.directive';
 import { ListboxDirective } from '../listbox/listbox.directive';
 
 @Component({
   selector: 'app-otp-input',
-  imports: [ListboxDirective, ListboxItemDirective, InputComponent],
+  imports: [ListboxDirective, ListboxItemDirective, InputDirective],
   templateUrl: './otp-input.component.html',
   styleUrl: './otp-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

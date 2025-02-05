@@ -33,20 +33,20 @@ export class InputPageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: ROOT,
-      files: [...this.sourceTreeBuilder.inlineComponent(ROOT, ROOT)],
+      files: [...this.sourceTreeBuilder.directive(ROOT, ROOT, true)],
       hideName: true,
     },
   ];
 
   apiInfo: ApiInfo = {
+    stylesInGlobal: true,
     ariaDescription:
-      'The Input component uses the native <input> element as its host, making all accessibility features readily available.',
+      'The Input directive uses the native <input> element as its host, making all accessibility features readily available.',
     entities: [
       {
-        name: 'InputComponent',
-        type: 'component',
+        name: 'InputDirective',
+        type: 'directive',
         selector: 'input[appInput]',
-        formBindable: true,
       },
     ],
   };

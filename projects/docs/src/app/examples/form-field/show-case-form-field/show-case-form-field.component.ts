@@ -6,7 +6,7 @@ import { ErrorComponent } from '@ng-verse/form-field/error/error.component';
 import { FormFieldErrorRegistry } from '@ng-verse/form-field/form-field-error.registry';
 import { FormFieldComponent } from '@ng-verse/form-field/form-field.component';
 import { LabelComponent } from '@ng-verse/form-field/label/label.component';
-import { InputComponent } from '@ng-verse/input/input.component';
+import { InputDirective } from '@ng-verse/input/input.directive';
 import { OptionComponent } from '@ng-verse/select/option.component';
 import { SelectComponent } from '@ng-verse/select/select.component';
 
@@ -15,7 +15,7 @@ import { SelectComponent } from '@ng-verse/select/select.component';
   imports: [
     FormFieldComponent,
     LabelComponent,
-    InputComponent,
+    InputDirective,
     ReactiveFormsModule,
     ButtonComponent,
     ErrorComponent,
