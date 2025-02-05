@@ -33,7 +33,7 @@ export class DividerPageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: 'divider',
-      files: [...this.sourceTreeBuilder.inlineComponent(ROOT, ROOT)],
+      files: [...this.sourceTreeBuilder.fullInlineComponent(ROOT, ROOT)],
       hideName: true,
     },
   ];
