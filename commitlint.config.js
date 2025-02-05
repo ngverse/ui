@@ -40,6 +40,7 @@ module.exports = {
         'desc-listbox',
         'local-storage',
         'session-storage',
+        'dark-mode',
       ],
     ],
   },

@@ -254,6 +254,13 @@ export const routes: Routes = [
           ).then((p) => p.SessionStoragePageComponent),
       },
       {
+        path: 'dark-mode',
+        loadComponent: () =>
+          import('./features/dark-mode-page/dark-mode-page.component').then(
+            (p) => p.DarkModePageComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'introduction',
         pathMatch: 'full',

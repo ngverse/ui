@@ -1,0 +1,7 @@
+<button (click)="toggleDarkMode()" class="dark-mode-toggle">
+  @if (darkMode()) {
+    <app-light-mode-icon class="dark-mode-icon" />
+  } @else {
+    <app-dark-mode-icon class="dark-mode-icon" />
+  }
+</button>
