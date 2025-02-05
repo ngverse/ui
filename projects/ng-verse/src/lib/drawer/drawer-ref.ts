@@ -15,9 +15,9 @@ export class DrawerRef {
 
   close(value?: unknown) {
     const instance = this.dialogRef.componentInstance as DrawerComponent;
-    instance.closingFinished.subscribe(() => {
+    instance.onExit.subscribe(() => {
       this.dialogRef.close(value);
     });
-    instance.startExitAnimation();
+    instance.exit();
   }
 }
