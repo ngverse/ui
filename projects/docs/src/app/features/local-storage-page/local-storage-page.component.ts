@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ApiDescriptionComponent } from '../../blueprint/api-info/api-description/api-description.component';
 import {
   ApiInfo,
   ApiInfoComponent,
@@ -11,42 +12,40 @@ import {
   SourceTreeFolder,
 } from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import { ShowCaseInputComponent } from '../../examples/input/show-case-input/show-case-input.component';
+import { ShowCaseLocalStorageComponent } from '../../examples/local-storage/show-case-local-storage/show-case-local-storage.component';
 
-const ROOT = 'input';
+const ROOT = 'local-storage';
 
 @Component({
-  selector: 'doc-input-page',
+  selector: 'doc-local-storage-page',
   imports: [
     BlueprintPageComponent,
-    ShowCaseComponent,
-    ShowCaseInputComponent,
     CommandInstallationComponent,
+    ShowCaseComponent,
     SourceTreeComponent,
     ApiInfoComponent,
+    ShowCaseLocalStorageComponent,
+    ApiDescriptionComponent,
   ],
-  templateUrl: './input-page.component.html',
-  styleUrl: './input-page.component.scss',
+  templateUrl: './local-storage-page.component.html',
+  styleUrl: './local-storage-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputPageComponent {
+export class LocalStoragePageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
   sourceTree: SourceTreeFolder[] = [
     {
       name: ROOT,
-      files: [...this.sourceTreeBuilder.directive(ROOT, ROOT, true)],
+      files: [...this.sourceTreeBuilder.service(ROOT, ROOT)],
       hideName: true,
     },
   ];
 
   apiInfo: ApiInfo = {
-    stylesInGlobal: true,
-    ariaDescription:
-      'The Input directive uses the native <input> element as its host, making all accessibility features readily available.',
     entities: [
       {
-        name: 'InputDirective',
-        type: 'directive',
-        selector: 'input[appInput]',
+        name: 'LocalStorageService',
+        type: 'service',
       },
     ],
   };

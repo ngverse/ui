@@ -32,18 +32,19 @@ export class TextareaPageComponent {
   sourceTree: SourceTreeFolder[] = [
     {
       name: 'textarea',
-      files: [...this.sourceTreeBuilder.inlineComponent(ROOT, ROOT)],
+      files: [...this.sourceTreeBuilder.directive(ROOT, ROOT, true)],
       hideName: true,
     },
   ];
 
   apiInfo: ApiInfo = {
     ariaDescription:
-      'The Input component uses the native <textarea> element as its host, making all accessibility features readily available.',
+      'The Textarea directive uses the native <textarea> element as its host, making all accessibility features readily available.',
+    stylesInGlobal: true,
     entities: [
       {
-        name: 'TextareaComponent',
-        type: 'component',
+        name: 'TextareaDirective',
+        type: 'directive',
         selector: 'textarea[appTextarea]',
         inputs: [
           {

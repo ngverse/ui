@@ -84,11 +84,11 @@ export class ToastService {
     instance.position.set(genOptions.position);
     if (genOptions.autoClose) {
       this.timeoutId = setTimeout(() => {
-        instance.startCloseAnimation();
+        instance.exit();
       }, genOptions.closeDelay);
     }
 
-    instance.closeAnimationFinished.subscribe(() => {
+    instance.onExit.subscribe(() => {
       this.close();
     });
     const closed$ = new Subject<void>();

@@ -12,6 +12,13 @@
   @if (api.ariaDescription) {
     <p class="mb-6">WAI-ARIA: {{ api.ariaDescription }}</p>
   }
+  @if (api.stylesInGlobal) {
+    <p class="mb-6">
+      The styles can be found in the
+      <a [routerLink]="['/doc/theming']" class="underline">ngverse.scss</a>
+      file.
+    </p>
+  }
   <ng-content select="doc-api-description"></ng-content>
   <ng-content select="doc-api-inputs"></ng-content>
 

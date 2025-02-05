@@ -55,3 +55,35 @@ body {
   background-color: var(--nv-background);
   color: var(--nv-foreground);
 }
+
+/**
+  app input and textarea styles
+**/
+.app-input,
+.app-textarea {
+  box-sizing: border-box;
+  border: var(--nv-border);
+  border-radius: var(--nv-border-radius);
+  padding: var(--nv-field-padding);
+  font-size: 1rem;
+  &:focus-visible {
+    outline: 1px solid var(--nv-ring);
+  }
+  &:disabled,
+  &[readonly] {
+    background: var(--nv-disabled);
+    color: var(--nv-disabled-foreground);
+    &::placeholder {
+      color: var(--nv-disabled-foreground);
+    }
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color: var(--nv-danger);
+    outline-color: transparent;
+  }
+}
+
+.app-input {
+  height: var(--nv-field-height);
+}

@@ -37,7 +37,6 @@ export class ToastPageComponent {
       files: [
         ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
         ...this.sourceTreeBuilder.service('toast', ROOT),
-        this.sourceTreeBuilder.file('toast-animations', ROOT),
         this.sourceTreeBuilder.component('toast-close', ROOT),
       ],
       hideName: true,

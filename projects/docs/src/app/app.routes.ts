@@ -247,6 +247,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'local-storage',
+        loadComponent: () =>
+          import(
+            './features/local-storage-page/local-storage-page.component'
+          ).then((p) => p.LocalStoragePageComponent),
+      },
+      {
         path: '',
         redirectTo: 'introduction',
         pathMatch: 'full',

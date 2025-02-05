@@ -11,15 +11,7 @@
               [routerLinkActive]="'selected'"
               class="ml-0 my-3 hover:bg-slate-100 h-8 cursor-pointer flex pl-4 pr-2 rounded-md justify-between items-center"
               [routerLink]="link.url"
-              [class.in-progress]="!link.done"
               >{{ link.name }}
-              @if (!link.done) {
-                <div
-                  class="text-xs bg-blue-300 text-white rounded-lg px-1 py-0.5"
-                >
-                  In Progress
-                </div>
-              }
             </a>
           </li>
         }

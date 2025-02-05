@@ -7,12 +7,8 @@ import {
 } from '@angular/animations';
 import { ComponentType } from '@angular/cdk/portal';
 import { NgComponentOutlet } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  output,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Subject } from 'rxjs';
 import { DrawerCloseIconComponent } from './drawer-close-icon.component';
 import { DrawerCloseDirective } from './drawer-close.directive';
 
@@ -23,14 +19,14 @@ import { DrawerCloseDirective } from './drawer-close.directive';
   styleUrl: './drawer.component.scss',
   animations: [
     trigger('toggle', [
-      transition('* => opening', [
+      transition('* => enter', [
         style({ transform: 'translateX(100%)', opacity: 0 }),
         animate(
           '300ms ease-out',
           style({ transform: 'translateX(0)', opacity: 1 })
         ),
       ]),
-      transition('* => closing', [
+      transition('* => exit', [
         animate(
           '200ms ease-in',
           style({ transform: 'translateX(100%)', opacity: 0 })
@@ -46,17 +42,19 @@ import { DrawerCloseDirective } from './drawer-close.directive';
 })
 export class DrawerComponent {
   title = signal<string | undefined>(undefined);
-  animationState = signal<'opening' | 'closing'>('opening');
+  animationState = signal<'enter' | 'exit'>('enter');
   component!: ComponentType<unknown>;
-  closingFinished = output();
+  private _onExit = new Subject<void>();
+  onExit = this._onExit.asObservable();
 
   onDone($event: AnimationEvent) {
-    if ($event.toState === 'closing') {
-      this.closingFinished.emit();
+    if ($event.toState === 'exit') {
+      this._onExit.next();
+      this._onExit.complete();
     }
   }
 
-  startExitAnimation() {
-    this.animationState.set('closing');
+  exit() {
+    this.animationState.set('exit');
   }
 }

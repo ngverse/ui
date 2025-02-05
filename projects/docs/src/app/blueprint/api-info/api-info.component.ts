@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   ApiEntity,
   ApiInputsComponent,
@@ -8,10 +9,11 @@ export interface ApiInfo {
   description?: string;
   ariaLink?: string;
   ariaDescription?: string;
+  stylesInGlobal?: boolean;
 }
 @Component({
   selector: 'doc-api-info',
-  imports: [ApiInputsComponent],
+  imports: [ApiInputsComponent, RouterLink],
   templateUrl: './api-info.component.html',
   styleUrl: './api-info.component.scss',
 })
