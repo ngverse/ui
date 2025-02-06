@@ -1,0 +1,43 @@
+:host {
+  .active-page {
+    border: 1px solid var(--nv-ring);
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 6px;
+}
+
+.pagination-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--nv-border-radius);
+  padding: 4px 8px;
+  cursor: pointer;
+  background: transparent;
+  min-width: 36px;
+  column-gap: 8px;
+  min-height: 36px;
+
+  &:hover {
+    background-color: #ededed;
+  }
+
+  &:disabled {
+    background: var(--nv-disabled);
+    color: var(--nv-disabled-foreground);
+  }
+}
+
+.pagination-ellipsis {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 36px;
+}

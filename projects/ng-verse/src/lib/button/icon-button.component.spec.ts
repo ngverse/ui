@@ -43,8 +43,9 @@ describe('IconButtonComponent', () => {
     expect(buttonComponent).toBeTruthy();
   });
 
-  it('should add disable attribute on disable', () => {
+  it('should add disable attribute on disable', async () => {
     rootComponent.disabled.set(true);
+    await fixture.whenStable();
     expect(buttonRootElement.hasAttribute('disabled')).toBeTrue();
   });
 

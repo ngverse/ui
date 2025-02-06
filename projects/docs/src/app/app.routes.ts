@@ -219,6 +219,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'pagination',
+        loadComponent: () =>
+          import('./features/pagination-page/pagination-page.component').then(
+            (b) => b.PaginationPageComponent
+          ),
+      },
+      {
         path: 'context-menu',
         loadComponent: () =>
           import(

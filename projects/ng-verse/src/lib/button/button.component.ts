@@ -23,7 +23,7 @@ type SIZE_TYPES = 'sm' | 'md' | 'lg' | 'none';
     '[class]': 'classNames()',
     '[class.btn-disabled]': 'disabled()',
     '[class.btn-loading]': 'loading()',
-    '[attr.disabled]': 'disabled()',
+    '[disabled]': 'disabled()',
   },
 })
 export class ButtonComponent {

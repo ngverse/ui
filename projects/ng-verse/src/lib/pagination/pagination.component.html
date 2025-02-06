@@ -1,0 +1,54 @@
+<nav role="navigation" [attr.aria-label]="ariaLabel()">
+  <ul class="pagination">
+    <li>
+      <button
+        size="sm"
+        variant="link"
+        color="secondary"
+        appButton
+        [attr.aria-label]="prevPageAriaLabel()"
+        (click)="prevPage()"
+        [disabled]="!hasPrevPage()"
+      >
+        <app-pagination-prev-icon class="nav-icon" />
+        <span>Previous</span>
+      </button>
+    </li>
+
+    @for (page of visiblePages(); track $index) {
+      @if (page === ELLIPSIS) {
+        <li class="pagination-ellipsis">...</li>
+      } @else {
+        <li>
+          <button
+            appIconButton
+            [class.active-page]="currentPage() === page"
+            (click)="setPage($any(page))"
+            [attr.aria-label]="pageAriaLabel() + page"
+            [attr.aria-current]="currentPage() === page"
+            variant="link"
+            size="sm"
+            color="secondary"
+          >
+            {{ page }}
+          </button>
+        </li>
+      }
+    }
+
+    <li>
+      <button
+        size="sm"
+        variant="link"
+        color="secondary"
+        appButton
+        (click)="nextPage()"
+        [disabled]="!hasNextPage()"
+        [attr.aria-label]="nextPageAriaLabel()"
+      >
+        <span>Next</span>
+        <app-pagination-next-icon class="nav-icon" />
+      </button>
+    </li>
+  </ul>
+</nav>
