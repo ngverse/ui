@@ -5,8 +5,10 @@ import {
   input,
   output,
 } from '@angular/core';
-import { PaginationPrevIconComponent } from 'ng-verse/pagination/pagination-prev-icon.component';
-import { PaginationNextIconComponent } from 'ng-verse/pagination/pagination-next-icon.component';
+import { ButtonComponent } from '../button/button.component';
+import { IconButtonComponent } from '../button/icon-button.component';
+import { PaginationNextIconComponent } from './pagination-next-icon.component';
+import { PaginationPrevIconComponent } from './pagination-prev-icon.component';
 
 // We will keep always 7 visible items so it will prevent the width of the pagination from changing
 const ALWAYS_VISIBLE_ITEMS = 7;
@@ -53,7 +55,12 @@ function generatePages(totalPages: number, currentPage: number) {
 
 @Component({
   selector: 'app-pagination',
-  imports: [PaginationPrevIconComponent, PaginationNextIconComponent],
+  imports: [
+    PaginationPrevIconComponent,
+    PaginationNextIconComponent,
+    ButtonComponent,
+    IconButtonComponent,
+  ],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -61,6 +68,10 @@ function generatePages(totalPages: number, currentPage: number) {
 export class PaginationComponent {
   currentPage = input.required<number>();
   totalPages = input.required<number>();
+  ariaLabel = input<string>();
+  prevPageAriaLabel = input<string>('Previus Page');
+  nextPageAriaLabel = input<string>('Next Page');
+  pageAriaLabel = input<string>('Page ');
 
   pageChange = output<number>();
 

@@ -1,6 +1,13 @@
+:host {
+  .active-page {
+    border: 1px solid var(--nv-ring);
+  }
+}
+
 .pagination {
   display: flex;
   align-items: center;
+  justify-content: center;
   column-gap: 6px;
 }
 
@@ -15,10 +22,6 @@
   min-width: 36px;
   column-gap: 8px;
   min-height: 36px;
-
-  &.active {
-    border: var(--nv-border);
-  }
 
   &:hover {
     background-color: #ededed;
@@ -37,9 +40,4 @@
   align-items: center;
   justify-content: center;
   line-height: 36px;
-}
-
-.nav-icon {
-  width: 14px;
-  height: 14px;
 }

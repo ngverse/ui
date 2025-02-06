@@ -5,8 +5,8 @@ import {
   signal,
 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PaginationComponent } from './pagination.component';
 import { By } from '@angular/platform-browser';
+import { PaginationComponent } from './pagination.component';
 
 @Component({
   selector: 'app-test-pagination',
@@ -46,23 +46,19 @@ describe('PaginationComponent', () => {
 
   function goToNextPage() {
     const nextButton = fixture.debugElement.query(
-      By.css('li:last-child .pagination-button')
+      By.css('li:last-child button')
     );
     nextButton.nativeElement.click();
     fixture.detectChanges();
   }
 
   it('should render pagination buttons correctly', () => {
-    const paginationButtons = fixture.debugElement.queryAll(
-      By.css('.pagination-button')
-    );
+    const paginationButtons = fixture.debugElement.queryAll(By.css('button'));
     expect(paginationButtons.length).toBeGreaterThan(0);
   });
 
   it('should display prev and next buttons', () => {
-    const pageButtons = fixture.debugElement.queryAll(
-      By.css('.pagination-button')
-    );
+    const pageButtons = fixture.debugElement.queryAll(By.css('button'));
     expect(pageButtons[0].nativeElement.innerText).toBe('Previous');
     expect(pageButtons[pageButtons.length - 1].nativeElement.innerText).toBe(
       'Next'
@@ -71,22 +67,20 @@ describe('PaginationComponent', () => {
 
   it('should disable previous button on first page', () => {
     const prevButton = fixture.debugElement.query(
-      By.css('li:first-child .pagination-button')
+      By.css('li:first-child button')
     );
     expect(prevButton.nativeElement.disabled).toBeTrue();
   });
 
   it('should enable next button when not on last page', () => {
     const nextButton = fixture.debugElement.query(
-      By.css('li:last-child .pagination-button')
+      By.css('li:last-child button')
     );
     expect(nextButton.nativeElement.disabled).toBeFalse();
   });
 
   it('should change pages when a page number is clicked', () => {
-    const pageButtons = fixture.debugElement.queryAll(
-      By.css('.pagination-button')
-    );
+    const pageButtons = fixture.debugElement.queryAll(By.css('button'));
     const pageNumber = parseInt(pageButtons[2].nativeElement.innerText);
     pageButtons[2].nativeElement.click();
     fixture.detectChanges();
@@ -102,7 +96,7 @@ describe('PaginationComponent', () => {
     goToNextPage();
 
     const firstButton = fixture.debugElement.query(
-      By.css('li:first-child .pagination-button')
+      By.css('li:first-child button')
     );
     firstButton.nativeElement.click();
     fixture.detectChanges();

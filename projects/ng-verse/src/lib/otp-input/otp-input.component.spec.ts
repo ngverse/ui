@@ -6,7 +6,7 @@ import {
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { OtpInputComponent } from 'ng-verse/otp-input/otp-input.component';
+import { OtpInputComponent } from '../otp-input/otp-input.component';
 
 @Component({
   selector: 'app-otp-test',

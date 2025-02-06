@@ -1,10 +1,16 @@
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
+import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
+import {
+  Prerequisite,
+  PrerequisitesComponent,
+} from '../../blueprint/prerequisites/prerequisites.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import {
   SourceTreeBuilder,
@@ -23,12 +29,16 @@ const ROOT = 'pagination';
     SourceTreeComponent,
     ApiInfoComponent,
     ShowCasePaginationComponent,
+    PrerequisitesComponent,
+    RouterLink,
   ],
   templateUrl: './pagination-page.component.html',
   styleUrl: './pagination-page.component.scss',
 })
 export class PaginationPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
+
+  preps: Prerequisite[] = [{ name: 'button' }];
 
   sourceTree: SourceTreeFolder[] = [
     {
@@ -43,6 +53,7 @@ export class PaginationPageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    ariaLink: 'https://www.a11ymatters.com/pattern/pagination',
     entities: [
       {
         name: 'PaginationComponent',
@@ -53,11 +64,13 @@ export class PaginationPageComponent {
             name: 'currentPage',
             type: 'number',
             description: 'Specifies the current page',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
           },
           {
             name: 'totalPages',
             type: 'number',
             description: 'Specifies the total pages',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
           },
         ],
         outputs: [
