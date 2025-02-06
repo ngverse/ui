@@ -1,4 +1,9 @@
-<button (click)="toggleDarkMode()" class="dark-mode-toggle">
+<button
+  appIconButton
+  variant="outline"
+  color="primary"
+  (click)="toggleDarkMode()"
+>
   @if (darkMode()) {
     <app-light-mode-icon class="dark-mode-icon" />
   } @else {

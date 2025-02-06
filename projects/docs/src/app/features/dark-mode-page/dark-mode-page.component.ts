@@ -11,8 +11,12 @@ import {
   SourceTreeFolder,
 } from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
-import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { ShowCaseDarkModeComponent } from '../../examples/dark-mode/show-case-dark-mode/show-case-dark-mode.component';
+import {
+  Prerequisite,
+  PrerequisitesComponent,
+} from '../../blueprint/prerequisites/prerequisites.component';
+import { RouterLink } from '@angular/router';
 
 const ROOT = 'dark-mode';
 
@@ -25,6 +29,8 @@ const ROOT = 'dark-mode';
     ApiInfoComponent,
     ShowCaseComponent,
     CommandInstallationComponent,
+    PrerequisitesComponent,
+    RouterLink,
   ],
   templateUrl: './dark-mode-page.component.html',
   styleUrl: './dark-mode-page.component.scss',
@@ -32,6 +38,8 @@ const ROOT = 'dark-mode';
 })
 export class DarkModePageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
+
+  preps: Prerequisite[] = [{ name: 'button' }, { name: 'local-storage' }];
 
   sourceTree: SourceTreeFolder[] = [
     {
@@ -41,38 +49,43 @@ export class DarkModePageComponent {
           'dark-mode-toggle',
           `${ROOT}/dark-mode-toggle`
         ),
+        this.sourceTreeBuilder.component(
+          'dark-mode-icon',
+          `${ROOT}/dark-mode-toggle`
+        ),
+        this.sourceTreeBuilder.component(
+          'light-mode-icon',
+          `${ROOT}/dark-mode-toggle`
+        ),
       ],
       hideName: true,
     },
   ];
 
   apiInfo: ApiInfo = {
-    ariaLink:
-      'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/status_role',
     entities: [
       {
-        name: 'BadgeComponent',
+        name: 'DarkModeToggleComponent',
         type: 'component',
-        selector: 'app-badge',
-        inputs: [
+        selector: 'app-dark-mode-toggle',
+      },
+      {
+        name: 'DarkModeService',
+        type: 'service',
+        description: 'service that stores and control dark mode state',
+        properties: [
           {
-            name: 'value',
-            type: 'number | string | null | undefined',
-            description: 'text to display in badge',
-            default: EMPTY_API_INPUT_DEFAULT_VALUE,
+            name: 'darkMode',
+            returnType: 'Signal<boolean>',
+            description: 'stores current dark mode state',
+            propType: 'get',
           },
+        ],
+        methods: [
           {
-            name: 'hide',
-            type: 'boolean',
-            description: 'hides the badge content',
-            default: 'false',
-          },
-          {
-            name: 'useParent',
-            type: 'boolean',
-            description:
-              "If true, the parent element's style is automatically set to relative. If false, you must explicitly set it to either relative or absolute.",
-            default: 'true',
+            name: 'setDarkMode',
+            description: 'sets dark mode state',
+            returnType: 'void',
           },
         ],
       },

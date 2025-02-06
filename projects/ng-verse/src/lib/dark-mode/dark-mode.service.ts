@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { LocalStorageService } from 'ng-verse/local-storage/local-storage.service';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 
 const DARK_MODE_KEY = 'dark-mode';
 
