@@ -40,6 +40,7 @@ module.exports = {
         'desc-listbox',
         'pagination',
         'local-storage',
+        'session-storage',
       ],
     ],
   },

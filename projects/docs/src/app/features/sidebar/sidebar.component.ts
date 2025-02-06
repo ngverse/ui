@@ -158,6 +158,10 @@ export const SIDEBAR_ROUTES = [
         name: 'LocalStorage',
         url: '/doc/local-storage',
       },
+      {
+        name: 'SessionStorage',
+        url: '/doc/session-storage',
+      },
     ],
   },
 ] as Group[];

@@ -254,6 +254,13 @@ export const routes: Routes = [
           ).then((p) => p.LocalStoragePageComponent),
       },
       {
+        path: 'session-storage',
+        loadComponent: () =>
+          import(
+            './features/session-storage-page/session-storage-page.component'
+          ).then((p) => p.SessionStoragePageComponent),
+      },
+      {
         path: '',
         redirectTo: 'introduction',
         pathMatch: 'full',
