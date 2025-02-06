@@ -2,6 +2,10 @@
   box-sizing: border-box;
   background: transparent;
   font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 
   --button-color: var(--nv-background);
   --button-on-color: var(--nv-foreground);
@@ -66,7 +70,7 @@
       background-color: var(--button-color);
       color: var(--button-on-color);
       --spinner-color: var(--button-on-color);
-      &:hover {
+      &:hover:not(:disabled) {
         opacity: 0.85;
       }
       &:active {
@@ -88,7 +92,7 @@
 
     &-outline,
     &-link {
-      &:hover {
+      &:hover:not(:disabled) {
         background-color: var(--nv-accent);
       }
       &:active {
@@ -97,7 +101,9 @@
     }
 
     &-disabled {
-      background-color: var(--nv-disabled);
+      &:not(.btn-link) {
+        background-color: var(--nv-disabled);
+      }
       color: var(--nv-disabled-foreground);
       cursor: default;
     }

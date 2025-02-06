@@ -138,6 +138,10 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/popover',
       },
       {
+        name: 'Pagination',
+        url: '/doc/pagination',
+      },
+      {
         name: 'Listbox',
         url: '/doc/listbox',
       },
