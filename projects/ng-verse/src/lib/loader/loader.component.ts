@@ -39,7 +39,7 @@ export class LoaderComponent {
       case 'full':
         return 1;
       case 'semi':
-        return 0.7;
+        return 0.1;
       case 'none':
         return 0;
     }

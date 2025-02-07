@@ -1,5 +1,12 @@
 @use '@angular/cdk/overlay-prebuilt.css';
 
+// Base variables that is same for light and dark mode
+:root {
+  --nv-field-height: 36px;
+  --nv-field-padding: 6px 10px;
+}
+
+// Light theme
 :root {
   --nv-background: white;
   --nv-foreground: #030712;
@@ -32,9 +39,12 @@
 
   --nv-surface-2: #d1d5db;
 
-  --nv-divider: #cbd5e1;
+  // Overlay commonly used with opacity, so it needs to be a tuple in order to work
+  --nv-overlay: 0, 0, 0;
 
-  --nv-border: 1px solid #d1d5db;
+  --nv-divider: #cbd5e1;
+  --nv-border-color: #d1d5db;
+  --nv-border: 1px solid var(--nv-border-color);
 
   --nv-ring: #9ca3af;
 
@@ -45,26 +55,28 @@
   --nv-mute-start: #e0e0e0;
   --nv-mute-end: #f0f0f0;
 
-  --nv-field-height: 36px;
-  --nv-field-padding: 6px 10px;
+  .cdk-overlay-backdrop {
+    background: rgba(var(--nv-overlay), 0.3);
+  }
 }
 
+// Dark theme
 :root.dark {
   --nv-background: #030712;
   --nv-foreground: white;
   --nv-border-radius: 6px;
 
-  --nv-primary: #3b82f6;
-  --nv-primary-foreground: white;
+  --nv-primary: #8b5cf6;
+  --nv-primary-foreground: black;
 
   --nv-inverse: white;
   --nv-inverse-foreground: #030712;
 
-  --nv-secondary: #4b5563;
-  --nv-secondary-foreground: white;
+  --nv-secondary: #d1d5db;
+  --nv-secondary-foreground: black;
 
-  --nv-accent: #e5e7eb;
-  --nv-accent-foreground: #030712;
+  --nv-accent: #d1d5db;
+  --nv-accent-foreground: black;
 
   --nv-danger: #dc2626;
   --nv-danger-foreground: white;
@@ -82,9 +94,13 @@
 
   --nv-surface-2: #d1d5db;
 
-  --nv-divider: #cbd5e1;
+  // Overlay commonly used with opacity, so it needs to be a tuple in order to work
+  --nv-overlay: 255, 255, 255;
 
-  --nv-border: 1px solid #d1d5db;
+  --nv-divider: #6b7280;
+
+  --nv-border-color: #6b7280;
+  --nv-border: 1px solid var(--nv-border-color);
 
   --nv-ring: #9ca3af;
 
@@ -95,10 +111,12 @@
   --nv-mute-start: #e0e0e0;
   --nv-mute-end: #f0f0f0;
 
-  --nv-field-height: 36px;
-  --nv-field-padding: 6px 10px;
+  .cdk-overlay-backdrop {
+    background: rgba(var(--nv-overlay), 0.3);
+  }
 }
 
+//Default background and text color
 html,
 body {
   background-color: var(--nv-background);
@@ -106,7 +124,8 @@ body {
 }
 
 /**
-  app input and textarea styles
+  input and text area are directives, so we need to set the styles in global style file
+  these are input and text area styles
 **/
 .app-input,
 .app-textarea {

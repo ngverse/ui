@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { DarkModeIconComponent } from './dark-mode-icon.component';
-import { LightModeIconComponent } from './light-mode-icon.component';
 import { IconButtonComponent } from '../../button/icon-button.component';
 import { DarkModeService } from '../dark-mode.service';
+import { DarkModeIconComponent } from './dark-mode-icon.component';
+import { LightModeIconComponent } from './light-mode-icon.component';
 
 @Component({
   selector: 'app-dark-mode-toggle',
@@ -13,9 +13,9 @@ import { DarkModeService } from '../dark-mode.service';
 })
 export class DarkModeToggleComponent {
   private readonly darkModeService = inject(DarkModeService);
-  darkMode = this.darkModeService.darkMode;
+  isDarkMode = this.darkModeService.enabled;
 
   toggleDarkMode() {
-    this.darkModeService.setDarkMode(!this.darkMode());
+    this.darkModeService.toggle();
   }
 }

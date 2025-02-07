@@ -1,5 +1,5 @@
 <h5 class="text-lg my-0 mb-3 font-medium">Showcase</h5>
-<div class="rounded-md border border-solid border-slate-200">
+<app-card class="block">
   <app-tab-group [selectedIndex]="0" (tabChanged)="tabChanged($event)">
     <app-tab label="PREVIEW">
       <ng-content></ng-content>
@@ -15,4 +15,4 @@
       </app-tab>
     }
   </app-tab-group>
-</div>
+</app-card>

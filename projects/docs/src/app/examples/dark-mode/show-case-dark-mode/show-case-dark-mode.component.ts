@@ -12,5 +12,5 @@ import { DarkModeService } from 'ng-verse/dark-mode/dark-mode.service';
 export class ShowCaseDarkModeComponent {
   private readonly darkModeService = inject(DarkModeService);
 
-  isDarkMode = this.darkModeService.darkMode;
+  isDarkMode = this.darkModeService.enabled;
 }

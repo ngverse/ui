@@ -7,6 +7,8 @@ a {
 }
 
 .sidebar {
+  border-right: 1px solid var(--nv-border-color);
+
   @screen lg {
     height: calc(100vh - 56px);
     @apply sticky top-[56px];

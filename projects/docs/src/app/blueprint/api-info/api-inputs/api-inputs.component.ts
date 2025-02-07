@@ -4,6 +4,7 @@ import { AccordionBodyComponent } from '@ng-verse/accordion/accordion-body.compo
 import { AccordionHeaderComponent } from '@ng-verse/accordion/accordion-header.component';
 import { AccordionItemComponent } from '@ng-verse/accordion/accordion-item.component';
 import { AccordionComponent } from '@ng-verse/accordion/accordion.component';
+import { CardComponent } from '../../../../../../ng-verse/src/lib/card/card.component';
 
 interface ApiInputType {
   name: string;
@@ -73,6 +74,7 @@ export interface ApiEntity {
     AccordionItemComponent,
     AccordionBodyComponent,
     AccordionHeaderComponent,
+    CardComponent,
   ],
   templateUrl: './api-inputs.component.html',
   styleUrl: './api-inputs.component.scss',
