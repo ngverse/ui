@@ -20,5 +20,8 @@ export class AppComponent {
     this.iconRegistry.addIcon('clipboard', 'images/clipboard.svg');
     this.iconRegistry.addIcon('clipboard-paste', 'images/clipboard-paste.svg');
     this.iconRegistry.addIcon('rocket', 'images/rocket.svg');
+    this.iconRegistry.addIcon('external-link', 'images/external-link.svg');
+    this.iconRegistry.addIcon('star', 'images/star.svg');
+    this.iconRegistry.addIcon('github', 'images/github.svg');
   }
 }

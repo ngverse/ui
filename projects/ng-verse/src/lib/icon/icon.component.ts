@@ -26,6 +26,7 @@ const INITIAL_HEIGHT = 24;
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'img',
+    '[attr.aria-hidden]': 'true',
   },
 })
 export class IconComponent {
