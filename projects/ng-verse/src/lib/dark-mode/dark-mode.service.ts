@@ -1,7 +1,7 @@
-import { inject, Injectable, RendererFactory2, signal } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { LocalStorageService } from '../local-storage/local-storage.service';
 import { DOCUMENT } from '@angular/common';
+import { inject, Injectable, RendererFactory2, signal } from '@angular/core';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 
 const DARK_MODE_STORAGE_KEY = 'dark-mode';
 const DARK_MODE_ATTRIBUTE = 'data-dark-mode';
@@ -47,9 +47,7 @@ export class DarkModeService {
     );
     if (storedDarkMode) {
       this._darkMode.set(coerceBooleanProperty(storedDarkMode));
-    } else if (
-      this.window?.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
+    } else {
       this._darkMode.set(true);
     }
 

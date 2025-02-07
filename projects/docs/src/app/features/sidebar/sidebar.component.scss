@@ -2,10 +2,6 @@ a {
   text-decoration: none;
 }
 
-:host {
-  background: white;
-}
-
 .selected {
   @apply bg-slate-100 font-medium;
 }
@@ -19,4 +15,13 @@ a {
 
 .in-progress {
   @apply text-gray-400 pointer-events-none;
+}
+
+.sidebar-link {
+  &:hover,
+  &.selected {
+    @apply font-medium;
+    background: var(--nv-accent);
+    color: var(--nv-accent-foreground);
+  }
 }

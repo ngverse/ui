@@ -3,9 +3,8 @@
 :root {
   --nv-background: white;
   --nv-foreground: #030712;
-  --nv-primary: #2563eb;
   --nv-border-radius: 6px;
-
+  --nv-primary: #2563eb;
   --nv-primary-foreground: white;
 
   --nv-inverse: #1f2937;
@@ -50,6 +49,56 @@
   --nv-field-padding: 6px 10px;
 }
 
+:root[data-dark-mode='true'] {
+  --nv-background: #030712;
+  --nv-foreground: white;
+  --nv-border-radius: 6px;
+
+  --nv-primary: #3b82f6;
+  --nv-primary-foreground: white;
+
+  --nv-inverse: white;
+  --nv-inverse-foreground: #030712;
+
+  --nv-secondary: #4b5563;
+  --nv-secondary-foreground: white;
+
+  --nv-accent: #e5e7eb;
+  --nv-accent-foreground: #030712;
+
+  --nv-danger: #dc2626;
+  --nv-danger-foreground: white;
+
+  --nv-warning: #ea580c;
+  --nv-warning-foreground: white;
+
+  --nv-success: #16a34a;
+  --nv-success-foreground: white;
+
+  --nv-disabled: #f3f4f6;
+  --nv-disabled-foreground: #9ca3af;
+
+  --nv-surface: #1f2937;
+
+  --nv-surface-2: #d1d5db;
+
+  --nv-divider: #cbd5e1;
+
+  --nv-border: 1px solid #d1d5db;
+
+  --nv-ring: #9ca3af;
+
+  --nv-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1), 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --nv-mute-start: #e0e0e0;
+  --nv-mute-end: #f0f0f0;
+
+  --nv-field-height: 36px;
+  --nv-field-padding: 6px 10px;
+}
+
 html,
 body {
   background-color: var(--nv-background);
@@ -61,6 +110,7 @@ body {
 **/
 .app-input,
 .app-textarea {
+  background: var(--nv-background);
   box-sizing: border-box;
   border: var(--nv-border);
   border-radius: var(--nv-border-radius);

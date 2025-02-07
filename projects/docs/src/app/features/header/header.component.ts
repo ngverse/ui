@@ -3,6 +3,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { ButtonComponent } from '@ng-verse/button/button.component';
+import { DarkModeToggleComponent } from '@ng-verse/dark-mode/dark-mode-toggle/dark-mode-toggle.component';
 import { IconComponent } from '@ng-verse/icon/icon.component';
 import { LucideAngularModule, Menu } from 'lucide-angular';
 import { filter, take, takeUntil } from 'rxjs';
@@ -17,6 +18,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     LucideAngularModule,
     ButtonComponent,
     IconComponent,
+    DarkModeToggleComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

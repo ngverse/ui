@@ -1,8 +1,9 @@
 <button
   appIconButton
-  variant="outline"
-  color="primary"
+  variant="link"
+  color="secondary"
   (click)="toggleDarkMode()"
+  size="sm"
 >
   @if (darkMode()) {
     <app-light-mode-icon class="dark-mode-icon" />
