@@ -4,7 +4,6 @@ import { inject, Injectable, RendererFactory2, signal } from '@angular/core';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 
 const DARK_MODE_STORAGE_KEY = 'dark-mode';
-const DARK_MODE_ATTRIBUTE = 'data-dark-mode';
 
 @Injectable({
   providedIn: 'root',
@@ -34,11 +33,8 @@ export class DarkModeService {
   }
 
   private setHtmlDarkModeAttribute(darkMode: boolean) {
-    this.renderer.setAttribute(
-      this.rootHtml,
-      DARK_MODE_ATTRIBUTE,
-      darkMode ? 'true' : 'false'
-    );
+    this.renderer.removeClass(this.rootHtml, darkMode ? 'light' : 'dark');
+    this.renderer.addClass(this.rootHtml, darkMode ? 'dark' : 'light');
   }
 
   private initialize() {

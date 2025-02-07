@@ -1,4 +1,4 @@
-html[data-dark-mode='true'] {
+html.dark {
   pre code.hljs {
     display: block;
     overflow-x: auto;
