@@ -6,8 +6,6 @@ import { lastValueFrom, of } from 'rxjs';
 import { delay, map, tap } from 'rxjs/operators';
 import { SourceTreeFolder } from '../blueprint/source-tree/source-tree-builder';
 
-export const EMPTY_FILE_TOKEN = 'Empty File';
-
 interface FileType {
   name: string;
   content: Blob | string;
@@ -29,12 +27,6 @@ export class FileService {
         responseType: 'text',
       })
       .pipe(
-        map((response) => {
-          if (!response) {
-            return EMPTY_FILE_TOKEN;
-          }
-          return response;
-        }),
         tap((response) => {
           this._cache.set(path, response);
         })
@@ -62,14 +54,10 @@ export class FileService {
         const filePromise = lastValueFrom(
           this.getFile(file.path).pipe(
             map((content) => {
-              let fileContent = content;
-              if (fileContent === EMPTY_FILE_TOKEN) {
-                fileContent = '';
-              }
               if (folder.hideName) {
-                zip.file(file.name, fileContent);
+                zip.file(file.name, content);
               } else {
-                jsFolder?.file(file.name, fileContent);
+                jsFolder?.file(file.name, content);
               }
             })
           )
