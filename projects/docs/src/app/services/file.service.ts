@@ -62,10 +62,14 @@ export class FileService {
         const filePromise = lastValueFrom(
           this.getFile(file.path).pipe(
             map((content) => {
+              let fileContent = content;
+              if (fileContent === EMPTY_FILE_TOKEN) {
+                fileContent = '';
+              }
               if (folder.hideName) {
-                zip.file(file.name, content);
+                zip.file(file.name, fileContent);
               } else {
-                jsFolder?.file(file.name, content);
+                jsFolder?.file(file.name, fileContent);
               }
             })
           )
