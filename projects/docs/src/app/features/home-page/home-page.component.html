@@ -26,12 +26,27 @@
           </span>
         </div>
       </h2>
-      <div class="flex justify-center mt-6">
-        <a [routerLink]="['/doc']" class="mx-auto">
-          <button
-            class="text-white bg-blue-600 font-bold px-10 text-xl rounded-md py-4 border-0 cursor-pointer"
-          >
+      <div class="flex justify-center items-center mt-6 gap-2">
+        <a [routerLink]="['/doc']">
+          <button appButton color="primary" class="w-40" size="lg">
             Get Started
+          </button>
+        </a>
+        <a href="https://github.com/lukonik/ng-verse" target="_blank">
+          <button
+            appButton
+            color="secondary"
+            size="lg"
+            variant="outline"
+            class="w-40"
+          >
+            Give it a star
+            <app-icon
+              width="20"
+              class="text-yellow-400"
+              height="20"
+              name="star"
+            ></app-icon>
           </button>
         </a>
       </div>
