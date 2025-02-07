@@ -3,5 +3,8 @@
     "deploymentEnabled": {
       "main": false
     }
+  },
+  "github": {
+    "autoJobCancelation": false
   }
 }
