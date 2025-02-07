@@ -28,3 +28,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PATH }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm run semantic-release
+
+      - name: Trigger Vercel deployment
+        if: success() # Run this step only if the previous steps succeeded
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_PATH }}
+        run: curl -X POST "$DEPLOY_HOOK"

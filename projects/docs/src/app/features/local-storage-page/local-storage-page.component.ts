@@ -42,6 +42,8 @@ export class LocalStoragePageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    articleLink:
+      'https://medium.com/ngverse/make-localstorage-ssr-compatible-in-angular-431d7ce5714e',
     entities: [
       {
         name: 'LocalStorageService',
