@@ -2,7 +2,8 @@
   display: block;
   height: 100vh;
   width: auto;
-  background: #fff;
+  background: var(--nv-background);
+  color: var(--nv-foreground);
   padding: 16px;
   overflow: auto;
 }
