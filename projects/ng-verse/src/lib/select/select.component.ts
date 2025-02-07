@@ -14,6 +14,9 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
+import { SelectionModel } from '@angular/cdk/collections';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import { ListboxRegistry } from '../listbox/listbox-registry';
 import { ListboxDirective } from '../listbox/listbox.directive';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
@@ -56,43 +59,40 @@ export type CompareWith = (o1: any, o2: any) => boolean;
 export class SelectComponent implements ControlValueAccessor {
   multiple = input(false);
   placeholder = input<string>();
-  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
+  compareWith = input<CompareWith, CompareWith>(
+    (o1: unknown, o2: unknown) => o1 === o2,
+    {
+      transform: (value) => {
+        this._selectionModel.compareWith = value;
+        this._selectionModel.setSelection(this._selectionModel.selected);
+        return value;
+      },
+    }
+  );
   isOpen = signal(false);
   disabled = signal(false);
-  values = signal<unknown[]>([]);
   stretch = input(true);
+
+  private _selectionModel = new SelectionModel(true);
+  private _onTouched: OnTouchedFunction;
+  private _registerOnChangeFn: OnChangeFunction;
+
+  values = toSignal(
+    this._selectionModel.changed.pipe(map(() => this._selectionModel.selected))
+  );
 
   listbox = viewChild.required(ListboxDirective);
 
-  private _onTouched: OnTouchedFunction;
   options = contentChildren<OptionComponent>(
     forwardRef(() => OptionComponent),
     { descendants: true }
   );
 
-  private _registerOnChangeFn: OnChangeFunction;
-
-  findOptionByValue(value: unknown) {
-    return this.options().find((option) =>
-      this.compareWith()(option.value(), value)
-    );
-  }
-
   selectedOptions = computed(() => {
-    const values = this.values();
-    const valueOptions = [];
-
-    if (values?.length) {
-      for (const value of values) {
-        const valueOption = this.findOptionByValue(value);
-        if (valueOption) {
-          valueOptions.push(valueOption);
-        }
-      }
-      return valueOptions;
-    }
-
-    return undefined;
+    const valueOptions = this.options().filter((option) =>
+      this.isSelected(option.value())
+    );
+    return valueOptions;
   });
 
   selectedOptionsLabel = computed(() => {
@@ -104,18 +104,36 @@ export class SelectComponent implements ControlValueAccessor {
   });
 
   isSelected(value: unknown) {
-    return this.values()?.some((v) => this.compareWith()(v, value));
+    this.values();
+    return this._selectionModel.isSelected(value);
   }
 
   writeValue(values: unknown): void {
     if (values === null || values === undefined || values === '') {
-      this.values.set([]);
+      this._selectionModel.clear();
       return;
     }
-    const coerced: unknown[] = this.multiple()
-      ? (values as unknown[])
-      : [values];
-    this.values.set(coerced);
+    if (this.multiple()) {
+      this._selectionModel.setSelection(...(values as unknown[]));
+    } else {
+      this._selectionModel.setSelection(values);
+    }
+  }
+
+  toggleValue(value: unknown) {
+    if (!this.multiple()) {
+      this._selectionModel.clear(false);
+    }
+    this._selectionModel.toggle(value);
+    const flattenedValues = this.multiple()
+      ? this._selectionModel.selected
+      : this._selectionModel.selected[0];
+
+    this._registerOnChangeFn?.(flattenedValues);
+
+    if (!this.multiple()) {
+      this.isOpen.set(false);
+    }
   }
 
   registerOnChange(fn: OnChangeFunction): void {
@@ -139,29 +157,5 @@ export class SelectComponent implements ControlValueAccessor {
   }
   panelClosed() {
     this._onTouched?.();
-  }
-  toggleValue(value: unknown) {
-    let values = this.values();
-    if (!this.multiple()) {
-      values = [value];
-    } else {
-      const isUniqueValue = !values.some((v) => this.compareWith()(v, value));
-
-      if (isUniqueValue) {
-        values = [...values, value];
-      } else {
-        values = values.filter((v) => !this.compareWith()(v, value));
-      }
-    }
-
-    this.values.set(values);
-
-    const flattenedValues = this.multiple() ? this.values() : this.values()[0];
-
-    this._registerOnChangeFn?.(flattenedValues);
-
-    if (!this.multiple()) {
-      this.isOpen.set(false);
-    }
   }
 }

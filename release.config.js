@@ -1,6 +1,8 @@
 module.exports = {
   branches: ['main'],
   repositoryUrl: 'https://github.com/lukonik/ng-verse',
+  preset: 'angular',
+  releaseRules: [{ type: 'refactor', release: 'patch' }],
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
