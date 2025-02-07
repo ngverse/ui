@@ -2,11 +2,12 @@
   <button class="lg:hidden" (click)="showSidebar()">
     <lucide-angular [img]="Menu"></lucide-angular>
   </button>
-  <a [routerLink]="['/']" class="inline-flex gap-2 items-center">
-    <img src="logo.png" width="40" alt="logo" />
-    <doc-project-name
-      class="font-bold text-blue-600 text-xl"
-    ></doc-project-name>
+  <a
+    [routerLink]="['/']"
+    class="inline-flex gap-2 items-center text-blue-600 dark:text-violet-500"
+  >
+    <app-icon name="logo" width="40" height="40"></app-icon>
+    <doc-project-name class="font-bold text-xl"></doc-project-name>
   </a>
   <app-dark-mode-toggle class="ml-auto mr-2"></app-dark-mode-toggle>
   <a href="https://github.com/lukonik/ng-verse" target="_blank">
