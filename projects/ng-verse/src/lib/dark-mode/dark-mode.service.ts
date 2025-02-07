@@ -10,9 +10,9 @@ const DARK_MODE_STORAGE_KEY = 'dark-mode';
   providedIn: 'root',
 })
 export class DarkModeService {
-  private _darkMode = signal(false);
+  private _isEnabled = signal(false);
 
-  enabled = this._darkMode.asReadonly();
+  isEnabled = this._isEnabled.asReadonly();
 
   private readonly platform = inject(Platform);
   private readonly localStorageService = inject(LocalStorageService);
@@ -25,21 +25,21 @@ export class DarkModeService {
     this.initialize();
 
     effect(() => {
-      const darkMode = this._darkMode();
+      const darkMode = this._isEnabled();
       this.localStorageService.setItem(DARK_MODE_STORAGE_KEY, darkMode + '');
       this.setHtmlDarkModeAttribute(darkMode);
     });
   }
 
   toggle() {
-    this._darkMode.update((darkMode) => !darkMode);
+    this._isEnabled.update((darkMode) => !darkMode);
   }
 
   enable() {
-    this._darkMode.set(true);
+    this._isEnabled.set(true);
   }
   disable() {
-    this._darkMode.set(false);
+    this._isEnabled.set(false);
   }
 
   private setHtmlDarkModeAttribute(darkMode: boolean) {
@@ -57,18 +57,18 @@ export class DarkModeService {
       );
 
       if (storedDarkMode) {
-        this._darkMode.set(coerceBooleanProperty(storedDarkMode));
+        this._isEnabled.set(coerceBooleanProperty(storedDarkMode));
         return;
       }
       if (
         this.platform.isBrowser &&
         this.window?.matchMedia('(prefers-color-scheme: dark)').matches
       ) {
-        this._darkMode.set(true);
+        this._isEnabled.set(true);
         return;
       }
 
-      this._darkMode.set(false);
+      this._isEnabled.set(false);
     }
   }
 }

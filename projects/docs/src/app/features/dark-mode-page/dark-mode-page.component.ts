@@ -1,10 +1,15 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
+import {
+  Prerequisite,
+  PrerequisitesComponent,
+} from '../../blueprint/prerequisites/prerequisites.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import {
   SourceTreeBuilder,
@@ -12,11 +17,6 @@ import {
 } from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseDarkModeComponent } from '../../examples/dark-mode/show-case-dark-mode/show-case-dark-mode.component';
-import {
-  Prerequisite,
-  PrerequisitesComponent,
-} from '../../blueprint/prerequisites/prerequisites.component';
-import { RouterLink } from '@angular/router';
 
 const ROOT = 'dark-mode';
 
@@ -68,6 +68,7 @@ export class DarkModePageComponent {
         name: 'DarkModeToggleComponent',
         type: 'component',
         selector: 'app-dark-mode-toggle',
+        description: 'button that toggles dark mode',
       },
       {
         name: 'DarkModeService',
@@ -75,16 +76,26 @@ export class DarkModePageComponent {
         description: 'service that stores and control dark mode state',
         properties: [
           {
-            name: 'darkMode',
+            name: 'isEnabled',
             returnType: 'Signal<boolean>',
-            description: 'stores current dark mode state',
+            description: 'indicates if dark mode is enabled',
             propType: 'get',
           },
         ],
         methods: [
           {
-            name: 'setDarkMode',
-            description: 'sets dark mode state',
+            name: 'toggle',
+            description: 'toggles dark mode',
+            returnType: 'void',
+          },
+          {
+            name: 'enable',
+            description: 'enables dark mode',
+            returnType: 'void',
+          },
+          {
+            name: 'disable',
+            description: 'disables dark mode',
             returnType: 'void',
           },
         ],

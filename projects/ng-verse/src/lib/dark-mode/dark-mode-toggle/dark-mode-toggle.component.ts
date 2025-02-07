@@ -13,7 +13,7 @@ import { LightModeIconComponent } from './light-mode-icon.component';
 })
 export class DarkModeToggleComponent {
   private readonly darkModeService = inject(DarkModeService);
-  isDarkMode = this.darkModeService.enabled;
+  isDarkMode = this.darkModeService.isEnabled;
 
   toggleDarkMode() {
     this.darkModeService.toggle();
