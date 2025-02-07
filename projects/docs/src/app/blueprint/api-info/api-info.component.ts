@@ -1,10 +1,12 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { IconComponent } from 'ng-verse/icon/icon.component';
 import {
   ApiEntity,
   ApiInputsComponent,
 } from './api-inputs/api-inputs.component';
 export interface ApiInfo {
+  articleLink?: string;
   entities: ApiEntity[];
   description?: string;
   ariaLink?: string;
@@ -13,7 +15,7 @@ export interface ApiInfo {
 }
 @Component({
   selector: 'doc-api-info',
-  imports: [ApiInputsComponent, RouterLink],
+  imports: [ApiInputsComponent, RouterLink, IconComponent],
   templateUrl: './api-info.component.html',
   styleUrl: './api-info.component.scss',
 })
