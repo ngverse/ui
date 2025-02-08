@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  OnInit,
   signal,
   viewChild,
 } from '@angular/core';
@@ -19,7 +18,7 @@ import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
   imports: [PopoverComponent, ListboxDirective],
   providers: [ListboxRegistry],
 })
-export class ContextMenuComponent implements OnInit {
+export class ContextMenuComponent {
   trigger = input.required<ContextMenuTriggerDirective>();
   isOpen = signal(false);
 
@@ -31,18 +30,6 @@ export class ContextMenuComponent implements OnInit {
     this.listbox().focus();
   }
 
-  ngOnInit(): void {
-    this.trigger().triggered.subscribe(($event) => {
-      $event.stopPropagation();
-      $event.preventDefault();
-      this.clientX.set($event.clientX);
-      this.clientY.set($event.clientY);
-      const isOpen = this.isOpen();
-      if (!isOpen) {
-        this.isOpen.set(true);
-      }
-    });
-  }
   closed() {
     this.listbox().reset();
   }

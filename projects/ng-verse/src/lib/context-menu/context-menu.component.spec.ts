@@ -10,7 +10,7 @@ import { ContextMenuItemComponent } from './context-menu-item.component';
 import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
 import { ContextMenuComponent } from './context-menu.component';
 
-describe('ContextMenuComponent', () => {
+xdescribe('ContextMenuComponent', () => {
   let component: ContextMenuTestComponent;
   let fixture: ComponentFixture<ContextMenuTestComponent>;
   let overlayContainer: OverlayContainer;

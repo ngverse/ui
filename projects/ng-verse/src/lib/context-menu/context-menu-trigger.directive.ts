@@ -1,16 +1,14 @@
-import { Directive, output } from '@angular/core';
+import { CdkContextMenuTrigger } from '@angular/cdk/menu';
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[appContextMenuTrigger]',
   exportAs: 'appContextMenuTrigger',
-  host: {
-    '(contextmenu)': 'onContextMenu($event)',
-  },
+  hostDirectives: [
+    {
+      directive: CdkContextMenuTrigger,
+      inputs: ['cdkContextMenuTriggerFor:appContextMenuTrigger'],
+    },
+  ],
 })
-export class ContextMenuTriggerDirective {
-  triggered = output<MouseEvent>();
-
-  onContextMenu($event: MouseEvent) {
-    this.triggered.emit($event);
-  }
-}
+export class ContextMenuTriggerDirective {}
