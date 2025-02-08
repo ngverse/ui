@@ -25,16 +25,18 @@
 </div>
 <!--we need explicitely set ng-content, in order ssr work properly see (https://github.com/angular/angular/issues/50543)-->
 <ng-content></ng-content>
-<div class="tab-body" [@tabChange]="selectedIndex()">
+<div [@tabChange]="selectedIndex()" class="tab-body">
   @if (selectedTab(); as selectedTab) {
-    @if (selectedTab.bodyTemplate(); as bodyTemplate) {
-      <ng-container
-        [ngTemplateOutlet]="bodyTemplate.templateRef"
-      ></ng-container>
-    } @else {
-      @if (selectedTab.templateRef(); as templateRef) {
-        <ng-container [ngTemplateOutlet]="templateRef"></ng-container>
+    <div [class.body-gap]="selectedTab.gap()">
+      @if (selectedTab.bodyTemplate(); as bodyTemplate) {
+        <ng-container
+          [ngTemplateOutlet]="bodyTemplate.templateRef"
+        ></ng-container>
+      } @else {
+        @if (selectedTab.templateRef(); as templateRef) {
+          <ng-container [ngTemplateOutlet]="templateRef"></ng-container>
+        }
       }
-    }
+    </div>
   }
 </div>
