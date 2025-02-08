@@ -3,8 +3,12 @@ import {
   Component,
   computed,
   contentChildren,
+  ElementRef,
   forwardRef,
+  inject,
+  Injector,
   input,
+  OnDestroy,
   signal,
   viewChild,
 } from '@angular/core';
@@ -14,11 +18,10 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { ListboxRegistry } from '../listbox/listbox-registry';
-import { ListboxDirective } from '../listbox/listbox.directive';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
 import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
@@ -38,7 +41,6 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     SelectIconComponent,
     PopoverOriginDirective,
     PopoverComponent,
-    ListboxDirective,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
@@ -48,7 +50,6 @@ export type CompareWith = (o1: any, o2: any) => boolean;
       multi: true,
       useExisting: SelectComponent,
     },
-    ListboxRegistry,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
@@ -56,9 +57,20 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     '[attr.aria-expanded]': 'isOpen()',
   },
 })
-export class SelectComponent implements ControlValueAccessor {
+export class SelectComponent implements ControlValueAccessor, OnDestroy {
   multiple = input(false);
   placeholder = input<string>();
+  options = contentChildren<OptionComponent>(
+    forwardRef(() => OptionComponent),
+    { descendants: true }
+  );
+  private keyManager = new ActiveDescendantKeyManager(
+    this.options,
+    inject(Injector)
+  ).withTypeAhead();
+
+  selectOption = viewChild<ElementRef<HTMLElement>>('selectOption');
+
   compareWith = input<CompareWith, CompareWith>(
     (o1: unknown, o2: unknown) => o1 === o2,
     {
@@ -73,19 +85,23 @@ export class SelectComponent implements ControlValueAccessor {
   disabled = signal(false);
   stretch = input(true);
 
+  activeDescendantId = toSignal(
+    this.keyManager.change.pipe(map(() => this.keyManager.activeItem?.id()))
+  );
+
+  onKeydown($event: KeyboardEvent) {
+    if ($event.key === 'Enter' && this.keyManager.activeItem) {
+      this.toggleValue(this.keyManager.activeItem);
+    }
+    this.keyManager.onKeydown($event);
+  }
+
   private _selectionModel = new SelectionModel(true);
   private _onTouched: OnTouchedFunction;
   private _registerOnChangeFn: OnChangeFunction;
 
   values = toSignal(
     this._selectionModel.changed.pipe(map(() => this._selectionModel.selected))
-  );
-
-  listbox = viewChild.required(ListboxDirective);
-
-  options = contentChildren<OptionComponent>(
-    forwardRef(() => OptionComponent),
-    { descendants: true }
   );
 
   selectedOptions = computed(() => {
@@ -120,7 +136,9 @@ export class SelectComponent implements ControlValueAccessor {
     }
   }
 
-  toggleValue(value: unknown) {
+  toggleValue(option: OptionComponent) {
+    this.keyManager.setActiveItem(option);
+    const value = option.value();
     if (!this.multiple()) {
       this._selectionModel.clear(false);
     }
@@ -153,9 +171,19 @@ export class SelectComponent implements ControlValueAccessor {
   }
 
   panelOpened() {
-    this.listbox().focus();
+    this.selectOption()?.nativeElement.focus();
+    this.keyManager.activeItem?.scrollIntoView();
+    const selectedOptions = this.selectedOptions();
+
+    if (selectedOptions.length) {
+      this.keyManager.setActiveItem(selectedOptions[0]);
+    }
   }
   panelClosed() {
     this._onTouched?.();
+  }
+
+  ngOnDestroy(): void {
+    this.keyManager.destroy();
   }
 }

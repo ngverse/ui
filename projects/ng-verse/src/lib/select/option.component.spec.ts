@@ -16,7 +16,7 @@ import { SelectComponent } from './select.component';
 describe('OptionComponent', () => {
   let component: OptionTestComponent;
   let fixture: ComponentFixture<OptionTestComponent>;
-  let buttonEl: HTMLButtonElement;
+  let optionEl: HTMLElement;
   let option: OptionComponent;
 
   beforeEach(async () => {
@@ -30,8 +30,8 @@ describe('OptionComponent', () => {
 
     fixture = TestBed.createComponent(OptionTestComponent);
     component = fixture.componentInstance;
-    buttonEl = fixture.debugElement.query(By.css('app-option button'))
-      .nativeElement as HTMLButtonElement;
+    optionEl = fixture.debugElement.query(By.css('app-option'))
+      .nativeElement as HTMLElement;
     option = fixture.debugElement.query(
       By.directive(OptionComponent)
     ).componentInstance;
@@ -40,10 +40,10 @@ describe('OptionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should disable button on disabled=[true]', async () => {
+  it('should disable option on disabled=[true]', async () => {
     component.disabled.set(true);
     await fixture.whenStable();
-    expect(buttonEl.disabled).toBeTrue();
+    expect(optionEl.getAttribute('aria-disabled')).toBeTruthy();
   });
   it('content should return the textContent', () => {
     expect(option.content).toBe('First Value');

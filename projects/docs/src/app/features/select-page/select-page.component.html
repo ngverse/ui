@@ -5,11 +5,11 @@
   <doc-show-case name="select">
     <doc-show-case-select name="select"></doc-show-case-select>
   </doc-show-case>
-  <doc-prerequisites [preps]="prerequisites">
-    Select element uses
-    <a class="underline" [routerLink]="['../popover']">Popover</a> and
-    <a class="underline" [routerLink]="['../listbox']">Listbox</a>. Please
-    ensure they are added to your project if they aren't already.
+  <doc-prerequisites
+    name="Select"
+    [preps]="prerequisites"
+    [preprsAuto]="prerequisites"
+  >
   </doc-prerequisites>
   <doc-command-installation type="component" name="select">
   </doc-command-installation>
