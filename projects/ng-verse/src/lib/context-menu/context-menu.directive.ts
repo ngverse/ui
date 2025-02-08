@@ -16,7 +16,7 @@ import { Directive, ElementRef, inject, OnDestroy } from '@angular/core';
 })
 export class ContextMenuDirective implements OnDestroy {
   animationBuilder = inject(AnimationBuilder);
-  private player!: AnimationPlayer;
+  player!: AnimationPlayer;
   host = inject(ElementRef);
 
   menu = inject(CdkMenu);
