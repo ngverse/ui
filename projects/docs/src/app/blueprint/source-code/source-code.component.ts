@@ -3,6 +3,7 @@ import { Component, computed, input, signal } from '@angular/core';
 import { IconComponent } from '@ng-verse/icon/icon.component';
 import { CardComponent } from 'ng-verse/card/card.component';
 import { Highlight } from 'ngx-highlightjs';
+import { EMPTY_FILE_TOKEN } from '../../services/file.service';
 
 @Component({
   selector: 'doc-source-code',
@@ -22,7 +23,9 @@ export class SourceCodeComponent {
 
   surface = input(false);
 
-  showCopy = computed(() => this.allowCopy() && !!this.code());
+  showCopy = computed(
+    () => this.allowCopy() && !!this.code() && this.code() !== EMPTY_FILE_TOKEN
+  );
 
   copy() {
     this.copied.set(true);

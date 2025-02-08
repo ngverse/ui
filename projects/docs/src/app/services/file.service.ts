@@ -11,6 +11,8 @@ interface FileType {
   content: Blob | string;
 }
 
+export const EMPTY_FILE_TOKEN = 'Empty File';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,6 +28,14 @@ export class FileService {
       .get(path, {
         responseType: 'text',
       })
+      .pipe(
+        map((response) => {
+          if (!response) {
+            return EMPTY_FILE_TOKEN;
+          }
+          return response;
+        })
+      )
       .pipe(
         tap((response) => {
           this._cache.set(path, response);
@@ -54,10 +64,14 @@ export class FileService {
         const filePromise = lastValueFrom(
           this.getFile(file.path).pipe(
             map((content) => {
+              let fileContent = content;
+              if (content === EMPTY_FILE_TOKEN) {
+                fileContent = '';
+              }
               if (folder.hideName) {
-                zip.file(file.name, content);
+                zip.file(file.name, fileContent);
               } else {
-                jsFolder?.file(file.name, content);
+                jsFolder?.file(file.name, fileContent);
               }
             })
           )
