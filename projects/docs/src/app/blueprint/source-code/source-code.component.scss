@@ -6,6 +6,7 @@
   right: 10px;
   top: 10px;
   position: absolute;
+  z-index: 1;
   cursor: pointer;
   @layer lg {
     @apply block;

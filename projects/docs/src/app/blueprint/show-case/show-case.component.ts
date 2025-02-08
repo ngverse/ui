@@ -34,11 +34,7 @@ export class ShowCaseComponent {
           `examples/${this.name()}/show-case-${this.name()}/show-case-${this.name()}.component.${extension}`
         )
         .subscribe((response) => {
-          if (!response) {
-            this.code.set('Empty File');
-          } else {
-            this.code.set(response);
-          }
+          this.code.set(response);
         });
     }
   }

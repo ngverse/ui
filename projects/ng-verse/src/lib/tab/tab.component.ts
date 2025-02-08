@@ -27,6 +27,8 @@ export class TabComponent {
 
   bodyTemplate = contentChild(TabBodyDirective);
 
+  gap = input(true);
+
   portal: TemplatePortal | undefined;
 
   disabled = input(false);
