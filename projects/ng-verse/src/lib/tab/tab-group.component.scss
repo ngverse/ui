@@ -2,9 +2,13 @@
   display: flex;
   position: relative;
   border-bottom: 1px solid var(--nv-divider);
-
+  &:focus {
+    outline: none;
+  }
   &:focus-visible {
-    outline: 1px solid var(--nv-ring);
+    app-tab-group-header.is-active {
+      outline: 1px solid var(--nv-ring);
+    }
   }
 }
 

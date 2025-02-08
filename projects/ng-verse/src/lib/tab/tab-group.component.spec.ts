@@ -50,7 +50,7 @@ describe('TabGroupComponent', () => {
 
     fixture = TestBed.createComponent(TabGroupTestComponent);
     fixture.detectChanges();
-    tabHeaders = fixture.debugElement.queryAll(By.css('.tab-header'));
+    tabHeaders = fixture.debugElement.queryAll(By.css('app-tab-group-header'));
   });
 
   it('should render custom label', () => {

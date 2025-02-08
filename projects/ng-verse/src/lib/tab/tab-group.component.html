@@ -1,20 +1,16 @@
 <div
   class="tab-group-header"
   #tabGroupHeader
-  [appListbox]="selectedIndex()"
-  (selected)="selectTab($event)"
-  [orientation]="'horizontal'"
+  (keydown)="onKeydown($event)"
+  tabindex="0"
+  (focus)="onTabGroupFocus()"
 >
   @for (tab of tabs(); track $index) {
-    <button #tabHeader class="tab-header" [appListboxItem]="$index">
-      @if (tab.headerTemplate(); as headerTemplate) {
-        <ng-container
-          [ngTemplateOutlet]="headerTemplate.templateRef"
-        ></ng-container>
-      } @else {
-        {{ tab.label() }}
-      }
-    </button>
+    <app-tab-group-header
+      [tab]="tab"
+      #tabHeader
+      (click)="selectTab($index)"
+    ></app-tab-group-header>
   }
   <div
     #tabInk
