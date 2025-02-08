@@ -41,6 +41,7 @@ module.exports = {
         'pagination',
         'local-storage',
         'session-storage',
+        'dark-mode',
       ],
     ],
   },

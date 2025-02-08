@@ -149,6 +149,10 @@ export const SIDEBAR_ROUTES = [
         name: 'Context Menu',
         url: '/doc/context-menu',
       },
+      {
+        name: 'Dark Mode',
+        url: '/doc/dark-mode',
+      },
     ].sort((a, b) => a.name.localeCompare(b.name)),
   },
   {

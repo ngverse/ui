@@ -2,15 +2,13 @@ a {
   text-decoration: none;
 }
 
-:host {
-  background: white;
-}
-
 .selected {
   @apply bg-slate-100 font-medium;
 }
 
 .sidebar {
+  border-right: 1px solid var(--nv-border-color);
+
   @screen lg {
     height: calc(100vh - 56px);
     @apply sticky top-[56px];
@@ -19,4 +17,13 @@ a {
 
 .in-progress {
   @apply text-gray-400 pointer-events-none;
+}
+
+.sidebar-link {
+  &:hover,
+  &.selected {
+    @apply font-medium;
+    background: var(--nv-accent);
+    color: var(--nv-accent-foreground);
+  }
 }

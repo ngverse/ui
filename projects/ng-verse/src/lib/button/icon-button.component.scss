@@ -94,12 +94,12 @@
     &-link {
       &:hover:not(:disabled) {
         background-color: var(--nv-accent);
+        color: var(--nv-accent-foreground);
       }
       &:active {
         opacity: 0.7;
       }
     }
-
     &-disabled {
       &:not(.btn-link) {
         background-color: var(--nv-disabled);

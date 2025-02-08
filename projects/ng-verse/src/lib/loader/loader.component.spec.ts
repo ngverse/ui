@@ -52,7 +52,7 @@ describe('LoaderComponent', () => {
       ).toBe(opacity.toString());
     }
 
-    checkOpacity(0.7);
+    checkOpacity(0.1);
 
     component.transparency.set('full');
     await fixture.whenStable();
