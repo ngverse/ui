@@ -9,12 +9,10 @@ import {
   viewChildren,
 } from '@angular/core';
 import { InputDirective } from '../input/input.directive';
-import { ListboxItemDirective } from '../listbox/listbox-item.directive';
-import { ListboxDirective } from '../listbox/listbox.directive';
 
 @Component({
   selector: 'app-otp-input',
-  imports: [ListboxDirective, ListboxItemDirective, InputDirective],
+  imports: [InputDirective],
   templateUrl: './otp-input.component.html',
   styleUrl: './otp-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,6 +44,14 @@ export class OtpInputComponent {
       this.moveToNext(index);
     }
     this.checkIfFilled();
+  }
+
+  onKeydown($event: KeyboardEvent, index: number) {
+    if ($event.key === 'ArrowRight') {
+      this.moveToNext(index);
+    } else if ($event.key === 'ArrowLeft') {
+      this.moveToPrev(index);
+    }
   }
 
   onPaste(event: ClipboardEvent) {
