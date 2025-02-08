@@ -1,17 +1,50 @@
 <h4 class="m-0 text-xl font-normal">Prerequisites</h4>
-<p class="mt-2">
-  <ng-content></ng-content>
-  <br />
-  Element folders must be in the same directory for imports to work correctly.
-</p>
 
-<div class="flex flex-col gap-4 mt-4">
-  @for (dep of preps(); track $index) {
-    <doc-source-code
-      [surface]="true"
-      [code]="getCode(dep)"
-      language="bash"
-    ></doc-source-code>
-  }
-</div>
-<p class="mt-2"></p>
+@if (preprsAuto(); as prepsAuto) {
+  <p class="mt-2">
+    {{ name() }} element uses
+    @for (item of prepsAuto; track $index) {
+      <a class="underline" [routerLink]="['../', item.name]">{{
+        item.label
+      }}</a>
+      @if ($index < prepsAuto.length - 1) {
+        and
+      } @else {
+        .
+      }
+    }
+    Ensure {{ prepsAuto.length === 1 ? 'it is ' : 'they are ' }} added to your
+    project if
+    {{ prepsAuto.length === 1 ? 'it is not ' : 'they are not' }} already.
+    <br />
+    Element folders must be in the same directory for imports to work correctly.
+  </p>
+
+  <div class="flex flex-col gap-4 mt-4">
+    @for (dep of preps(); track $index) {
+      <doc-source-code
+        [surface]="true"
+        [code]="getCode(dep)"
+        language="bash"
+      ></doc-source-code>
+    }
+  </div>
+  <p class="mt-2"></p>
+} @else {
+  <p class="mt-2">
+    <ng-content></ng-content>
+    <br />
+    Element folders must be in the same directory for imports to work correctly.
+  </p>
+
+  <div class="flex flex-col gap-4 mt-4">
+    @for (dep of preps(); track $index) {
+      <doc-source-code
+        [surface]="true"
+        [code]="getCode(dep)"
+        language="bash"
+      ></doc-source-code>
+    }
+  </div>
+  <p class="mt-2"></p>
+}

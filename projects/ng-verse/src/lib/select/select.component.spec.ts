@@ -31,7 +31,7 @@ describe('SelectComponent', () => {
   }
 
   function queryOptions() {
-    return getOverlayContainerEl().querySelectorAll<HTMLElement>('.option');
+    return getOverlayContainerEl().querySelectorAll<HTMLElement>('app-option');
   }
 
   function isSelectOpened() {
