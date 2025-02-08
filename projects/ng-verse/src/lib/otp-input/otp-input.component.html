@@ -1,16 +1,11 @@
-<div
-  (paste)="onPaste($event)"
-  appListbox
-  [orientation]="'horizontal'"
-  class="code-container"
->
+<div (paste)="onPaste($event)" class="code-container">
   @for (item of codeLengthArray(); track $index) {
     <input
       appInput
-      appListboxItem
       autocomplete="off"
       #inputs
       (input)="onInput($event, $index)"
+      (keydown)="onKeydown($event, $index)"
       maxlength="1"
       class="code-input"
     />
