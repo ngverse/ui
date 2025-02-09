@@ -21,7 +21,8 @@
       } @else {
         <li>
           <button
-            appIconButton
+            appButton
+            icon
             [class.active-page]="currentPage() === page"
             (click)="setPage($any(page))"
             [attr.aria-label]="pageAriaLabel() + page"

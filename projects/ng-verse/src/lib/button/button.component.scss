@@ -1,4 +1,6 @@
 :host {
+  /** General styles **/
+
   box-sizing: border-box;
   background: transparent;
   font-size: 1rem;
@@ -14,8 +16,62 @@
   position: relative;
   cursor: pointer;
   font-weight: 600;
-  padding-left: var(--button-padding);
-  padding-right: var(--button-padding);
+
+  &.icon {
+    border-radius: 100%;
+  }
+
+  /** General ends here **/
+  /** Variant styles **/
+
+  &.btn-fill {
+    background-color: var(--button-color);
+    color: var(--button-on-color);
+    --spinner-color: var(--button-on-color);
+  }
+
+  &.btn-outline {
+    border: 1px solid var(--button-color);
+    color: var(--button-color);
+    --spinner-color: var(--button-color);
+  }
+
+  &.btn-link {
+    color: var(--button-color);
+    --spinner-color: var(--button-color);
+    border: 0;
+  }
+
+  /** Variant ends here ** /
+
+/** Color styles **/
+  &.btn-primary {
+    --button-color: var(--nv-primary);
+    --button-on-color: var(--nv-primary-foreground);
+  }
+
+  &.btn-secondary {
+    --button-color: var(--nv-secondary);
+    --button-on-color: var(--nv-secondary-foreground);
+  }
+
+  &.btn-danger {
+    --button-color: var(--nv-danger);
+    --button-on-color: var(--nv-danger-foreground);
+  }
+
+  &.btn-warning {
+    --button-color: var(--nv-warning);
+    --button-on-color: var(--nv-warning-foreground);
+  }
+
+  &.btn-success {
+    --button-color: var(--nv-success);
+    --button-on-color: var(--nv-success-foreground);
+  }
+  /** Color ends here **/
+
+  /** State styles **/
 
   &:focus {
     outline: none;
@@ -25,92 +81,72 @@
     outline: 1px solid var(--nv-ring);
   }
 
-  &.btn {
-    &-sm {
-      height: 32px;
-      --button-padding: 14px;
-    }
-
-    &-md {
-      height: 38px;
-      --button-padding: 16px;
-    }
-    &-lg {
-      height: 48px;
-      --button-padding: 18px;
-    }
-
-    &-primary {
-      --button-color: var(--nv-primary);
-      --button-on-color: var(--nv-primary-foreground);
-    }
-
-    &-secondary {
-      --button-color: var(--nv-secondary);
-      --button-on-color: var(--nv-secondary-foreground);
-    }
-
-    &-danger {
-      --button-color: var(--nv-danger);
-      --button-on-color: var(--nv-danger-foreground);
-    }
-
-    &-warning {
-      --button-color: var(--nv-warning);
-      --button-on-color: var(--nv-warning-foreground);
-    }
-
-    &-success {
-      --button-color: var(--nv-success);
-      --button-on-color: var(--nv-success-foreground);
-    }
-
-    &-fill {
+  &:hover:not(:disabled) {
+    &.btn-fill {
       background-color: var(--button-color);
       color: var(--button-on-color);
       --spinner-color: var(--button-on-color);
-      &:hover:not(:disabled) {
-        opacity: 0.85;
-      }
-      &:active {
-        opacity: 0.7;
-      }
     }
-
-    &-outline {
-      border: 1px solid var(--button-color);
-      color: var(--button-color);
-      --spinner-color: var(--button-color);
-    }
-
-    &-link {
-      color: var(--button-color);
-      --spinner-color: var(--button-color);
-      border: 0;
-    }
-
-    &-outline,
-    &-link {
-      &:hover:not(:disabled) {
-        background-color: var(--nv-accent);
-        color: var(--nv-accent-foreground);
-      }
-      &:active {
-        opacity: 0.7;
-      }
-    }
-
-    &-disabled {
-      &:not(.btn-link) {
-        background-color: var(--nv-disabled);
-      }
-      color: var(--nv-disabled-foreground);
-      cursor: default;
-    }
-
-    &-loading {
-      pointer-events: none;
-      color: transparent;
+    &.btn-outline,
+    &.btn-link {
+      background-color: var(--nv-accent);
+      color: var(--nv-accent-foreground);
     }
   }
+  &:active {
+    opacity: 0.7;
+  }
+
+  &:disabled {
+    &:not(.btn-link) {
+      background-color: var(--nv-disabled);
+    }
+    color: var(--nv-disabled-foreground);
+    cursor: default;
+  }
+
+  &.btn-loading {
+    pointer-events: none;
+    color: transparent;
+  }
+
+  /** State ends here **/
+
+  /** Size styles **/
+
+  &:not(.icon) {
+    &.btn-sm {
+      height: 32px;
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+
+    &.btn-md {
+      height: 38px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    &.btn-lg {
+      height: 48px;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+  }
+  &.icon {
+    &.btn-sm {
+      height: 32px;
+      width: 32px;
+    }
+
+    &.btn-md {
+      height: 38px;
+      width: 38px;
+    }
+    &.btn-lg {
+      height: 48px;
+      width: 48px;
+    }
+  }
+
+  /** Size ends here **/
 }

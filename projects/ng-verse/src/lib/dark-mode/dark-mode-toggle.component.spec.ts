@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DarkModeToggleComponent } from './dark-mode-toggle.component';
 import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { DarkModeToggleComponent } from './dark-mode-toggle.component';
 
-xdescribe('DarkModeToggleComponent', () => {
+describe('DarkModeToggleComponent', () => {
   let component: DarkModeToggleComponent;
   let fixture: ComponentFixture<DarkModeToggleComponent>;
 
