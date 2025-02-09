@@ -28,13 +28,12 @@
 >
   <ng-template>
     <div
+      [ariaMultiSelectable]="multiple()"
+      [attr.aria-activedescendant]="activeDescendantId()"
+      tabindex="0"
+      #selectOption
+      (keydown)="onKeydown($event)"
       class="select-options"
-      [appListbox]="values()"
-      #listbox="appListbox"
-      (selected)="toggleValue($event)"
-      [multiple]="true"
-      [withTypeAhead]="true"
-      [withWrap]="false"
       role="listbox"
     >
       <ng-content select="app-option-group"></ng-content>

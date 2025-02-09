@@ -1,14 +1,6 @@
-<button
-  [class.in-group]="inGroup"
-  [appListboxItem]="value()"
-  [class.selected]="isSelected()"
-  class="option"
-  [disabled]="disabled()"
->
-  <div>
-    <ng-content></ng-content>
-  </div>
-  @if (isSelected()) {
-    <app-select-check-icon class="check-icon"></app-select-check-icon>
-  }
-</button>
+<div>
+  <ng-content></ng-content>
+</div>
+@if (isSelected()) {
+  <app-select-check-icon class="check-icon"></app-select-check-icon>
+}

@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import {
   ApiInfo,
   ApiInfoComponent,
@@ -31,7 +30,6 @@ const ROOT = 'select';
     SourceTreeComponent,
     ApiInfoComponent,
     PrerequisitesComponent,
-    RouterLink,
   ],
   templateUrl: './select-page.component.html',
   styleUrl: './select-page.component.scss',
@@ -56,9 +54,7 @@ export class SelectPageComponent {
   prerequisites: Prerequisite[] = [
     {
       name: 'popover',
-    },
-    {
-      name: 'listbox',
+      label: 'Popover',
     },
   ];
 

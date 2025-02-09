@@ -1,7 +1,9 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  inject,
   input,
   signal,
 } from '@angular/core';
@@ -14,12 +16,6 @@ import {
   Validator,
 } from '@angular/forms';
 import { CheckboxIconComponent } from './checkbox-icon.component';
-
-let inputId = 0;
-
-function genInputId() {
-  return `checkbox-${inputId++}`;
-}
 
 type VALUE_TYPE = boolean | undefined | null;
 
@@ -58,7 +54,7 @@ type LABEL_ALIGN = 'start' | 'end';
 export class CheckboxComponent implements ControlValueAccessor, Validator {
   labelAlign = input<LABEL_ALIGN>('end');
   required = input<boolean>(false);
-  inputId = input(genInputId());
+  inputId = input(inject(_IdGenerator).getId('checkbox-'));
 
   value = signal<VALUE_TYPE>(undefined);
   disabled = signal<boolean>(false);
