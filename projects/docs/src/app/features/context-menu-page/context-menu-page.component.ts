@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ApiDescriptionComponent } from '../../blueprint/api-info/api-description/api-description.component';
 import {
   ApiInfo,
   ApiInfoComponent,
@@ -7,18 +7,10 @@ import {
 import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
-import {
-  Prerequisite,
-  PrerequisitesComponent,
-} from '../../blueprint/prerequisites/prerequisites.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
-import {
-  SourceTreeBuilder,
-  SourceTreeFolder,
-} from '../../blueprint/source-tree/source-tree-builder';
+import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseContextMenuComponent } from '../../examples/context-menu/show-case-context-menu/show-case-context-menu.component';
-const ROOT = 'context-menu';
 
 @Component({
   selector: 'doc-context-menu-page',
@@ -27,10 +19,9 @@ const ROOT = 'context-menu';
     ShowCaseComponent,
     ShowCaseContextMenuComponent,
     CommandInstallationComponent,
-    PrerequisitesComponent,
-    RouterLink,
     SourceTreeComponent,
     ApiInfoComponent,
+    ApiDescriptionComponent,
   ],
   templateUrl: './context-menu-page.component.html',
   styleUrl: './context-menu-page.component.scss',
@@ -39,53 +30,33 @@ const ROOT = 'context-menu';
 export class ContextMenuPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
 
-  prerequisites: Prerequisite[] = [
-    {
-      name: 'popover',
-    },
-    {
-      name: 'listbox',
-    },
-  ];
-
-  sourceTree: SourceTreeFolder[] = [
-    {
-      name: ROOT,
-      files: [
-        ...this.sourceTreeBuilder.fullComponent(ROOT, ROOT),
-        ...this.sourceTreeBuilder.fullComponent('context-menu-item', ROOT),
-        ...this.sourceTreeBuilder.directive('context-menu-trigger', ROOT),
-      ],
-      hideName: true,
-    },
-  ];
-
   apiInfo: ApiInfo = {
+    stylesInGlobal: true,
     entities: [
-      {
-        name: 'ContextMenuComponent',
-        type: 'component',
-        selector: 'app-context-menu',
-        inputs: [
-          {
-            name: 'trigger',
-            type: 'ContextMenuTriggerDirective',
-            description: 'Trigger element',
-            default: EMPTY_API_INPUT_DEFAULT_VALUE,
-          },
-        ],
-      },
       {
         name: 'ContextMenuTriggerDirective',
         type: 'directive',
         selector: '[appContextMenuTrigger]',
         description:
           'This directive should be applied to the element that will open the context menu.',
+        inputs: [
+          {
+            name: 'appContextMenuTrigger',
+            type: 'ng-template',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
+            description: 'The template to use for the context menu.',
+          },
+        ],
       },
       {
-        name: 'ContextMenuItemComponent',
-        type: 'component',
-        selector: 'app-context-menu-item',
+        name: 'ContextMenuDirective',
+        type: 'directive',
+        selector: '[appContextMenu]',
+      },
+      {
+        name: 'ContextMenuItemDirective',
+        type: 'directive',
+        selector: '[appContextMenuItem]',
         inputs: [
           {
             name: 'disabled',

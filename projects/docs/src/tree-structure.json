@@ -250,19 +250,19 @@
       "name": "context-menu",
       "files": [
         {
-          "path": "context-menu/context-menu-item.component.html",
-          "name": "context-menu-item.component.html",
-          "language": "html"
-        },
-        {
-          "path": "context-menu/context-menu-item.component.spec.ts",
-          "name": "context-menu-item.component.spec.ts",
+          "path": "context-menu/context-menu-item.directive.spec.ts",
+          "name": "context-menu-item.directive.spec.ts",
           "language": "spec.ts"
         },
         {
-          "path": "context-menu/context-menu-item.component.ts",
-          "name": "context-menu-item.component.ts",
+          "path": "context-menu/context-menu-item.directive.ts",
+          "name": "context-menu-item.directive.ts",
           "language": "ts"
+        },
+        {
+          "path": "context-menu/context-menu-trigger.directive.spec.ts",
+          "name": "context-menu-trigger.directive.spec.ts",
+          "language": "spec.ts"
         },
         {
           "path": "context-menu/context-menu-trigger.directive.ts",
@@ -270,18 +270,13 @@
           "language": "ts"
         },
         {
-          "path": "context-menu/context-menu.component.html",
-          "name": "context-menu.component.html",
-          "language": "html"
-        },
-        {
-          "path": "context-menu/context-menu.component.spec.ts",
-          "name": "context-menu.component.spec.ts",
+          "path": "context-menu/context-menu.directive.spec.ts",
+          "name": "context-menu.directive.spec.ts",
           "language": "spec.ts"
         },
         {
-          "path": "context-menu/context-menu.component.ts",
-          "name": "context-menu.component.ts",
+          "path": "context-menu/context-menu.directive.ts",
+          "name": "context-menu.directive.ts",
           "language": "ts"
         }
       ]

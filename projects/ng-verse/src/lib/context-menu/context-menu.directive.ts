@@ -15,13 +15,11 @@ import { Directive, ElementRef, inject, OnDestroy } from '@angular/core';
   },
 })
 export class ContextMenuDirective implements OnDestroy {
-  animationBuilder = inject(AnimationBuilder);
-  player!: AnimationPlayer;
-  host = inject(ElementRef);
+  private animationBuilder = inject(AnimationBuilder);
+  private player!: AnimationPlayer;
+  private host = inject(ElementRef);
 
-  menu = inject(CdkMenu);
-
-  animation = this.animationBuilder.build([
+  private animation = this.animationBuilder.build([
     style({ transform: 'scale(0)', opacity: 0 }),
     animate('150ms', style({ opacity: 1, transform: 'scale(1)' })),
   ]);
@@ -30,7 +28,7 @@ export class ContextMenuDirective implements OnDestroy {
     this.enter();
   }
 
-  enter() {
+  private enter() {
     this.player = this.animation.create(this.host.nativeElement);
     this.player.play();
   }

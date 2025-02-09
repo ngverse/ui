@@ -5,17 +5,19 @@
   <doc-show-case name="context-menu">
     <doc-show-case-context-menu></doc-show-case-context-menu>
   </doc-show-case>
-  <doc-prerequisites [preps]="prerequisites">
-    Select element uses
-    <a class="underline" [routerLink]="['../popover']">Popover</a> and
-    <a class="underline" [routerLink]="['../listbox']">Listbox</a>. Please
-    ensure they are added to your project if they aren't already.
-  </doc-prerequisites>
   <doc-command-installation type="component" name="context-menu">
   </doc-command-installation>
-  <doc-source-tree
-    name="context-menu"
-    [sourceTree]="sourceTree"
-  ></doc-source-tree>
-  <doc-api-info [apiInfo]="apiInfo"></doc-api-info>
+  <doc-source-tree name="context-menu"></doc-source-tree>
+  <doc-api-info [apiInfo]="apiInfo">
+    <doc-api-description>
+      ContextMenu uses
+      <a
+        target="_blank"
+        class="underline"
+        href="https://material.angular.io/cdk/menu/overview#context-menus"
+        >Angular/cdk/Menu</a
+      >
+      under the hood
+    </doc-api-description>
+  </doc-api-info>
 </doc-blueprint-page>
