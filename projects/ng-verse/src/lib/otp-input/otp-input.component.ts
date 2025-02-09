@@ -1,3 +1,4 @@
+import { AutofillEvent, CdkAutofill } from '@angular/cdk/text-field';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +13,7 @@ import { InputDirective } from '../input/input.directive';
 
 @Component({
   selector: 'app-otp-input',
-  imports: [InputDirective],
+  imports: [InputDirective, CdkAutofill],
   templateUrl: './otp-input.component.html',
   styleUrl: './otp-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,6 +30,12 @@ export class OtpInputComponent {
   codeLengthArray = computed(() => new Array(this.codeLength()).fill(1));
 
   filled = output<string>();
+
+  check(ev: AutofillEvent) {
+    setTimeout(() => {
+      alert((ev.target as HTMLInputElement).value);
+    }, 500);
+  }
 
   onInput(event: Event, index: number) {
     const inputEvent = event as InputEvent;
