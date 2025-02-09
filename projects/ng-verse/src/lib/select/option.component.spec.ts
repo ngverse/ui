@@ -9,7 +9,6 @@ import {
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { ListboxRegistry } from '../listbox/listbox-registry';
 import { OptionComponent } from './option.component';
 import { SelectComponent } from './select.component';
 
@@ -53,7 +52,7 @@ describe('OptionComponent', () => {
 @Component({
   selector: 'app-test-option',
   imports: [SelectComponent, OptionComponent, FormsModule],
-  providers: [SelectComponent, ListboxRegistry],
+  providers: [SelectComponent],
   template: `
     <app-option [value]="1" [disabled]="disabled()">First Value</app-option>
   `,

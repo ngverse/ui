@@ -142,10 +142,6 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/pagination',
       },
       {
-        name: 'Listbox',
-        url: '/doc/listbox',
-      },
-      {
         name: 'Context Menu',
         url: '/doc/context-menu',
       },

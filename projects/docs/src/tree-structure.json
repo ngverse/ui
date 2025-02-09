@@ -630,52 +630,6 @@
       ]
     },
     {
-      "path": "listbox",
-      "name": "listbox",
-      "files": [
-        {
-          "path": "listbox/listbox-item.directive.spec.ts",
-          "name": "listbox-item.directive.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "listbox/listbox-item.directive.ts",
-          "name": "listbox-item.directive.ts",
-          "language": "ts"
-        },
-        {
-          "path": "listbox/listbox-key-manager.spec.ts",
-          "name": "listbox-key-manager.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "listbox/listbox-key-manager.ts",
-          "name": "listbox-key-manager.ts",
-          "language": "ts"
-        },
-        {
-          "path": "listbox/listbox-registry.spec.ts",
-          "name": "listbox-registry.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "listbox/listbox-registry.ts",
-          "name": "listbox-registry.ts",
-          "language": "ts"
-        },
-        {
-          "path": "listbox/listbox.directive.spec.ts",
-          "name": "listbox.directive.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "listbox/listbox.directive.ts",
-          "name": "listbox.directive.ts",
-          "language": "ts"
-        }
-      ]
-    },
-    {
       "path": "loader",
       "name": "loader",
       "files": [
