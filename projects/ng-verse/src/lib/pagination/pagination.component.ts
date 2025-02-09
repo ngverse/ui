@@ -6,7 +6,6 @@ import {
   output,
 } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
-import { IconButtonComponent } from '../button/icon-button.component';
 import { PaginationNextIconComponent } from './pagination-next-icon.component';
 import { PaginationPrevIconComponent } from './pagination-prev-icon.component';
 
@@ -59,7 +58,6 @@ function generatePages(totalPages: number, currentPage: number) {
     PaginationPrevIconComponent,
     PaginationNextIconComponent,
     ButtonComponent,
-    IconButtonComponent,
   ],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss',

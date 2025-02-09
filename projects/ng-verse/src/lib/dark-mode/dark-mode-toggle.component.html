@@ -1,0 +1,11 @@
+<button
+  appButton
+  icon
+  variant="link"
+  color="secondary"
+  (click)="toggleDarkMode()"
+  size="sm"
+  aria-label="Dark Mode"
+>
+  <app-dark-mode-icon [isEnabled]="isEnabled()" class="dark-mode-icon" />
+</button>

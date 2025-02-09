@@ -1,4 +1,5 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -21,9 +22,9 @@ type SIZE_TYPES = 'sm' | 'md' | 'lg' | 'none';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': 'classNames()',
-    '[class.btn-disabled]': 'disabled()',
     '[class.btn-loading]': 'loading()',
     '[disabled]': 'disabled()',
+    '[class.icon]': 'icon()',
   },
 })
 export class ButtonComponent {
@@ -34,6 +35,8 @@ export class ButtonComponent {
   disabled = input<boolean>();
 
   size = input<SIZE_TYPES>('md');
+
+  icon = input(undefined, { transform: booleanAttribute });
 
   loading = input<boolean>();
 

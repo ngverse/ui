@@ -180,21 +180,6 @@
           "path": "button/button.component.ts",
           "name": "button.component.ts",
           "language": "ts"
-        },
-        {
-          "path": "button/icon-button.component.html",
-          "name": "icon-button.component.html",
-          "language": "html"
-        },
-        {
-          "path": "button/icon-button.component.spec.ts",
-          "name": "icon-button.component.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "button/icon-button.component.ts",
-          "name": "icon-button.component.ts",
-          "language": "ts"
         }
       ]
     },
@@ -286,35 +271,24 @@
       "name": "dark-mode",
       "files": [
         {
-          "path": "dark-mode/dark-mode-toggle",
-          "name": "dark-mode-toggle",
-          "files": [
-            {
-              "path": "dark-mode/dark-mode-toggle/dark-mode-icon.component.ts",
-              "name": "dark-mode-icon.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "dark-mode/dark-mode-toggle/dark-mode-toggle.component.html",
-              "name": "dark-mode-toggle.component.html",
-              "language": "html"
-            },
-            {
-              "path": "dark-mode/dark-mode-toggle/dark-mode-toggle.component.spec.ts",
-              "name": "dark-mode-toggle.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "dark-mode/dark-mode-toggle/dark-mode-toggle.component.ts",
-              "name": "dark-mode-toggle.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "dark-mode/dark-mode-toggle/light-mode-icon.component.ts",
-              "name": "light-mode-icon.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "dark-mode/dark-mode-icon.component.ts",
+          "name": "dark-mode-icon.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "dark-mode/dark-mode-toggle.component.html",
+          "name": "dark-mode-toggle.component.html",
+          "language": "html"
+        },
+        {
+          "path": "dark-mode/dark-mode-toggle.component.spec.ts",
+          "name": "dark-mode-toggle.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "dark-mode/dark-mode-toggle.component.ts",
+          "name": "dark-mode-toggle.component.ts",
+          "language": "ts"
         },
         {
           "path": "dark-mode/dark-mode.service.spec.ts",
