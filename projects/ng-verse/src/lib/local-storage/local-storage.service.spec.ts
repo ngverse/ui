@@ -18,6 +18,7 @@ describe('LocalStorageService', () => {
         providers: [provideExperimentalZonelessChangeDetection()],
       });
       service = TestBed.inject(LocalStorageService);
+      localStorage.clear();
     });
 
     it('should be created', () => {
