@@ -4,17 +4,17 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { ContextMenuItemComponent } from '@ng-verse/context-menu/context-menu-item.component';
+import { ContextMenuItemDirective } from '@ng-verse/context-menu/context-menu-item.directive';
 import { ContextMenuTriggerDirective } from '@ng-verse/context-menu/context-menu-trigger.directive';
-import { ContextMenuComponent } from '@ng-verse/context-menu/context-menu.component';
+import { ContextMenuDirective } from '@ng-verse/context-menu/context-menu.directive';
 import { ToastService } from '@ng-verse/toast/toast.service';
 
 @Component({
   selector: 'doc-show-case-context-menu',
   imports: [
-    ContextMenuComponent,
+    ContextMenuDirective,
     ContextMenuTriggerDirective,
-    ContextMenuItemComponent,
+    ContextMenuItemDirective,
   ],
   templateUrl: './show-case-context-menu.component.html',
   styleUrl: './show-case-context-menu.component.scss',

@@ -5,12 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import {
-  ConnectedPosition,
-  FlexibleConnectedPositionStrategy,
-  Overlay,
-  OverlayRef,
-} from '@angular/cdk/overlay';
+import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { DomPortal } from '@angular/cdk/portal';
 import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import {
@@ -38,10 +33,6 @@ import {
 } from 'rxjs';
 import { PopoverOriginDirective } from './popover-origin.directive';
 export type POPOVER_POSITIONS_Y = 'top' | 'right' | 'bottom' | 'left';
-export interface POPOVER_COORDINATES {
-  x: number;
-  y: number;
-}
 
 @Component({
   selector: 'app-popover',
@@ -64,8 +55,7 @@ export interface POPOVER_COORDINATES {
 })
 export class PopoverComponent implements OnDestroy {
   isOpen = model(false);
-  origin = input<PopoverOriginDirective>();
-  coordinates = input<POPOVER_COORDINATES>();
+  origin = input.required<PopoverOriginDirective>();
   offsetX = input<number>();
   offsetY = input<number>();
   styled = input(false);
@@ -99,17 +89,6 @@ export class PopoverComponent implements OnDestroy {
         this.hide();
       }
     });
-
-    effect(() => {
-      const coordinates = this.coordinates();
-      const overlayRef = this.overlayRef;
-      if (overlayRef && coordinates) {
-        const positionStrategy = overlayRef.getConfig()
-          .positionStrategy as FlexibleConnectedPositionStrategy;
-        positionStrategy.setOrigin(coordinates);
-        overlayRef.updatePosition();
-      }
-    });
   }
 
   hide() {
@@ -128,12 +107,8 @@ export class PopoverComponent implements OnDestroy {
         ? this.overlay.scrollStrategies.block()
         : this.overlay.scrollStrategies.reposition();
       const origin = this.origin();
-      const coordinates = this.coordinates();
-      const connectingTo = origin ? origin.el : coordinates;
+      const connectingTo = origin.el;
       const position = this.positionY();
-      if (!connectingTo) {
-        throw new Error('origin or coordinates must be provided');
-      }
 
       this.overlayRef = this.overlay.create({
         positionStrategy: this.overlay

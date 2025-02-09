@@ -32,7 +32,7 @@
   --nv-success: #16a34a;
   --nv-success-foreground: white;
 
-  --nv-disabled: #f3f4f6;
+  --nv-disabled: #f9fafb;
   --nv-disabled-foreground: #9ca3af;
 
   --nv-surface: #f9fafb;
@@ -156,4 +156,39 @@ body {
 
 .app-input {
   height: var(--nv-field-height);
+}
+
+/**
+  context menu is directive, so we need to set the styles in global style file
+  this is context menu styles
+**/
+.app-context-menu {
+  box-shadow: var(--nv-shadow);
+  background-color: var(--nv-background);
+  border-radius: var(--nv-border-radius);
+  border: var(--nv-border);
+}
+
+.app-context-menu-item {
+  width: 100%;
+  text-align: left;
+  padding: 6px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  font-size: 1rem;
+  &:focus-visible,
+  &:hover:not([aria-disabled]),
+  &.selected {
+    background: var(--nv-accent);
+    color: var(--nv-accent-foreground);
+  }
+  &:focus-visible {
+    outline: none;
+  }
+
+  &[aria-disabled] {
+    background: var(--nv-disabled);
+    color: var(--nv-disabled-foreground);
+  }
 }

@@ -49,12 +49,6 @@ export class PopoverPageComponent {
             default: EMPTY_API_INPUT_DEFAULT_VALUE,
           },
           {
-            name: 'coordinates',
-            type: '{x:number,y:number}',
-            description:
-              'The coordinates of the popover, if origin is not provided',
-          },
-          {
             name: 'offsetX',
             type: 'number',
             description:
