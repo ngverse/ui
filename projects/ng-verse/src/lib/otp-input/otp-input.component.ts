@@ -33,7 +33,8 @@ export class OtpInputComponent {
 
   check(ev: AutofillEvent) {
     setTimeout(() => {
-      alert((ev.target as HTMLInputElement).value);
+      const value = (ev.target as HTMLInputElement).value;
+      this.fillFromText(value);
     }, 500);
   }
 
