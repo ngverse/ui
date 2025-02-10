@@ -45,5 +45,5 @@
 }
 
 .card {
-  @apply mb-10 block;
+  @apply mb-10 block overflow-x-auto;
 }

@@ -7,7 +7,7 @@ import { SourceTreeFile, SourceTreeFolder } from './source-tree-builder';
 export class SourceTreeResolver {
   getSourceTree(name: string) {
     const foundDir = data.files.find((folder) => folder.name === name);
-    if (!foundDir) {
+    if (!foundDir || !foundDir.files) {
       console.warn('Dir not found ', name);
       return;
     }

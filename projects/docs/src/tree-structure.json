@@ -1,5 +1,5 @@
 {
-  "path": "",
+  "path": ".",
   "name": "lib",
   "files": [
     {
@@ -27,6 +27,11 @@
           "language": "html"
         },
         {
+          "path": "accordion/accordion-item.component.scss",
+          "name": "accordion-item.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "accordion/accordion-item.component.spec.ts",
           "name": "accordion-item.component.spec.ts",
           "language": "spec.ts"
@@ -40,6 +45,11 @@
           "path": "accordion/accordion.component.html",
           "name": "accordion.component.html",
           "language": "html"
+        },
+        {
+          "path": "accordion/accordion.component.scss",
+          "name": "accordion.component.scss",
+          "language": "scss"
         },
         {
           "path": "accordion/accordion.component.spec.ts",
@@ -88,6 +98,11 @@
           "language": "html"
         },
         {
+          "path": "alert/alert.component.scss",
+          "name": "alert.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "alert/alert.component.spec.ts",
           "name": "alert.component.spec.ts",
           "language": "spec.ts"
@@ -113,6 +128,11 @@
               "language": "html"
             },
             {
+              "path": "autocomplete/autocomplete-item/autocomplete-item.component.scss",
+              "name": "autocomplete-item.component.scss",
+              "language": "scss"
+            },
+            {
               "path": "autocomplete/autocomplete-item/autocomplete-item.component.ts",
               "name": "autocomplete-item.component.ts",
               "language": "ts"
@@ -123,6 +143,11 @@
           "path": "autocomplete/autocomplete.component.html",
           "name": "autocomplete.component.html",
           "language": "html"
+        },
+        {
+          "path": "autocomplete/autocomplete.component.scss",
+          "name": "autocomplete.component.scss",
+          "language": "scss"
         },
         {
           "path": "autocomplete/autocomplete.component.ts",
@@ -139,6 +164,11 @@
           "path": "badge/badge.component.html",
           "name": "badge.component.html",
           "language": "html"
+        },
+        {
+          "path": "badge/badge.component.scss",
+          "name": "badge.component.scss",
+          "language": "scss"
         },
         {
           "path": "badge/badge.component.spec.ts",
@@ -172,6 +202,11 @@
           "language": "html"
         },
         {
+          "path": "button/button.component.scss",
+          "name": "button.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "button/button.component.spec.ts",
           "name": "button.component.spec.ts",
           "language": "spec.ts"
@@ -191,6 +226,11 @@
           "path": "card/card.component.html",
           "name": "card.component.html",
           "language": "html"
+        },
+        {
+          "path": "card/card.component.scss",
+          "name": "card.component.scss",
+          "language": "scss"
         },
         {
           "path": "card/card.component.spec.ts",
@@ -217,6 +257,11 @@
           "path": "checkbox/checkbox.component.html",
           "name": "checkbox.component.html",
           "language": "html"
+        },
+        {
+          "path": "checkbox/checkbox.component.scss",
+          "name": "checkbox.component.scss",
+          "language": "scss"
         },
         {
           "path": "checkbox/checkbox.component.spec.ts",
@@ -281,6 +326,11 @@
           "language": "html"
         },
         {
+          "path": "dark-mode/dark-mode-toggle.component.scss",
+          "name": "dark-mode-toggle.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "dark-mode/dark-mode-toggle.component.spec.ts",
           "name": "dark-mode-toggle.component.spec.ts",
           "language": "spec.ts"
@@ -316,6 +366,11 @@
               "language": "html"
             },
             {
+              "path": "dialog/alert-dialog/alert-dialog.component.scss",
+              "name": "alert-dialog.component.scss",
+              "language": "scss"
+            },
+            {
               "path": "dialog/alert-dialog/alert-dialog.component.spec.ts",
               "name": "alert-dialog.component.spec.ts",
               "language": "spec.ts"
@@ -335,6 +390,11 @@
               "path": "dialog/confirm-dialog/confirm-dialog.component.html",
               "name": "confirm-dialog.component.html",
               "language": "html"
+            },
+            {
+              "path": "dialog/confirm-dialog/confirm-dialog.component.scss",
+              "name": "confirm-dialog.component.scss",
+              "language": "scss"
             },
             {
               "path": "dialog/confirm-dialog/confirm-dialog.component.spec.ts",
@@ -366,6 +426,11 @@
               "path": "dialog/dialog/dialog.component.html",
               "name": "dialog.component.html",
               "language": "html"
+            },
+            {
+              "path": "dialog/dialog/dialog.component.scss",
+              "name": "dialog.component.scss",
+              "language": "scss"
             },
             {
               "path": "dialog/dialog/dialog.component.spec.ts",
@@ -457,6 +522,11 @@
           "language": "html"
         },
         {
+          "path": "drawer/drawer.component.scss",
+          "name": "drawer.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "drawer/drawer.component.spec.ts",
           "name": "drawer.component.spec.ts",
           "language": "spec.ts"
@@ -492,6 +562,11 @@
               "language": "html"
             },
             {
+              "path": "form-field/error/error.component.scss",
+              "name": "error.component.scss",
+              "language": "scss"
+            },
+            {
               "path": "form-field/error/error.component.spec.ts",
               "name": "error.component.spec.ts",
               "language": "spec.ts"
@@ -519,6 +594,11 @@
           "language": "html"
         },
         {
+          "path": "form-field/form-field.component.scss",
+          "name": "form-field.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "form-field/form-field.component.spec.ts",
           "name": "form-field.component.spec.ts",
           "language": "spec.ts"
@@ -536,6 +616,11 @@
               "path": "form-field/label/label.component.html",
               "name": "label.component.html",
               "language": "html"
+            },
+            {
+              "path": "form-field/label/label.component.scss",
+              "name": "label.component.scss",
+              "language": "scss"
             },
             {
               "path": "form-field/label/label.component.spec.ts",
@@ -613,6 +698,11 @@
           "language": "html"
         },
         {
+          "path": "loader/loader.component.scss",
+          "name": "loader.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "loader/loader.component.spec.ts",
           "name": "loader.component.spec.ts",
           "language": "spec.ts"
@@ -641,6 +731,11 @@
       ]
     },
     {
+      "path": "ng-verse.scss",
+      "name": "ng-verse.scss",
+      "language": "scss"
+    },
+    {
       "path": "otp-input",
       "name": "otp-input",
       "files": [
@@ -648,6 +743,11 @@
           "path": "otp-input/otp-input.component.html",
           "name": "otp-input.component.html",
           "language": "html"
+        },
+        {
+          "path": "otp-input/otp-input.component.scss",
+          "name": "otp-input.component.scss",
+          "language": "scss"
         },
         {
           "path": "otp-input/otp-input.component.spec.ts",
@@ -692,6 +792,11 @@
           "language": "html"
         },
         {
+          "path": "pagination/pagination.component.scss",
+          "name": "pagination.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "pagination/pagination.component.spec.ts",
           "name": "pagination.component.spec.ts",
           "language": "spec.ts"
@@ -723,6 +828,11 @@
           "language": "html"
         },
         {
+          "path": "popover/popover.component.scss",
+          "name": "popover.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "popover/popover.component.spec.ts",
           "name": "popover.component.spec.ts",
           "language": "spec.ts"
@@ -742,6 +852,11 @@
           "path": "progress-bar/progress-bar.component.html",
           "name": "progress-bar.component.html",
           "language": "html"
+        },
+        {
+          "path": "progress-bar/progress-bar.component.scss",
+          "name": "progress-bar.component.scss",
+          "language": "scss"
         },
         {
           "path": "progress-bar/progress-bar.component.spec.ts",
@@ -770,6 +885,11 @@
           "language": "html"
         },
         {
+          "path": "radio-button/radio-button.component.scss",
+          "name": "radio-button.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "radio-button/radio-button.component.spec.ts",
           "name": "radio-button.component.spec.ts",
           "language": "spec.ts"
@@ -783,6 +903,11 @@
           "path": "radio-button/radio-group.component.html",
           "name": "radio-group.component.html",
           "language": "html"
+        },
+        {
+          "path": "radio-button/radio-group.component.scss",
+          "name": "radio-group.component.scss",
+          "language": "scss"
         },
         {
           "path": "radio-button/radio-group.component.spec.ts",
@@ -821,6 +946,11 @@
           "language": "html"
         },
         {
+          "path": "select/option.component.scss",
+          "name": "option.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "select/option.component.spec.ts",
           "name": "option.component.spec.ts",
           "language": "spec.ts"
@@ -844,6 +974,11 @@
           "path": "select/select.component.html",
           "name": "select.component.html",
           "language": "html"
+        },
+        {
+          "path": "select/select.component.scss",
+          "name": "select.component.scss",
+          "language": "scss"
         },
         {
           "path": "select/select.component.spec.ts",
@@ -878,6 +1013,11 @@
       "name": "skeleton",
       "files": [
         {
+          "path": "skeleton/skeleton.component.scss",
+          "name": "skeleton.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "skeleton/skeleton.component.spec.ts",
           "name": "skeleton.component.spec.ts",
           "language": "spec.ts"
@@ -897,6 +1037,11 @@
           "path": "switch/switch.component.html",
           "name": "switch.component.html",
           "language": "html"
+        },
+        {
+          "path": "switch/switch.component.scss",
+          "name": "switch.component.scss",
+          "language": "scss"
         },
         {
           "path": "switch/switch.component.spec.ts",
@@ -935,6 +1080,11 @@
           "language": "html"
         },
         {
+          "path": "tab/tab-group.component.scss",
+          "name": "tab-group.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "tab/tab-group.component.spec.ts",
           "name": "tab-group.component.spec.ts",
           "language": "spec.ts"
@@ -953,6 +1103,11 @@
           "path": "tab/tab.component.html",
           "name": "tab.component.html",
           "language": "html"
+        },
+        {
+          "path": "tab/tab.component.scss",
+          "name": "tab.component.scss",
+          "language": "scss"
         },
         {
           "path": "tab/tab.component.ts",
@@ -992,6 +1147,11 @@
           "language": "html"
         },
         {
+          "path": "toast/toast.component.scss",
+          "name": "toast.component.scss",
+          "language": "scss"
+        },
+        {
           "path": "toast/toast.component.spec.ts",
           "name": "toast.component.spec.ts",
           "language": "spec.ts"
@@ -1021,6 +1181,11 @@
           "path": "tooltip/tooltip-container.component.html",
           "name": "tooltip-container.component.html",
           "language": "html"
+        },
+        {
+          "path": "tooltip/tooltip-container.component.scss",
+          "name": "tooltip-container.component.scss",
+          "language": "scss"
         },
         {
           "path": "tooltip/tooltip-container.component.spec.ts",

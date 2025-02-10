@@ -40,9 +40,7 @@ export class OtpInputPageComponent {
   preprs: Prerequisite[] = [
     {
       name: 'input',
-    },
-    {
-      name: 'listbox',
+      label: 'Input',
     },
   ];
 
@@ -54,6 +52,8 @@ export class OtpInputPageComponent {
     },
   ];
   apiInfo: ApiInfo = {
+    ariaLink:
+      'https://ej2.syncfusion.com/react/documentation/otp-input/accessibility',
     entities: [
       {
         name: 'OtpInputComponent',
@@ -61,10 +61,16 @@ export class OtpInputPageComponent {
         type: 'component',
         inputs: [
           {
-            name: 'otpLength',
+            name: 'codeLength',
             type: 'number',
             default: '4',
             description: 'The length of the OTP',
+          },
+          {
+            name: 'inputMode',
+            type: 'string',
+            default: 'numeric',
+            description: 'The input mode of the OTP',
           },
         ],
         outputs: [
@@ -72,6 +78,30 @@ export class OtpInputPageComponent {
             name: 'filled',
             description: 'Emits the value of OTP when the OTP is filled',
             value: 'string',
+          },
+        ],
+        methods: [
+          {
+            name: 'focus',
+            returnType: 'void',
+            description: 'Focuses the first input',
+          },
+          {
+            name: 'fillFromText',
+            returnType: 'void',
+            description: 'Fills the OTP from text',
+            params: [
+              {
+                name: 'text',
+                type: 'string',
+                description: 'The text to fill the OTP',
+              },
+            ],
+          },
+          {
+            name: 'clear',
+            returnType: 'void',
+            description: 'Clears the OTP',
           },
         ],
       },
