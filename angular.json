@@ -48,7 +48,8 @@
                 "glob": "**/*",
                 "input": "projects/docs/src/app/examples",
                 "output": "examples"
-              }
+              },
+              "projects/docs/src/sitemap.xml"
             ],
             "styles": ["projects/docs/src/styles.scss"],
             "scripts": [],

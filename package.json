@@ -9,7 +9,6 @@
   "scripts": {
     "ng": "ng",
     "start": "node scripts/generate-tree.js && ng serve --project=docs",
-    "start:public": "ng serve --host 0.0.0.0 --disable-host-check",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --project=ng-verse",
@@ -21,7 +20,7 @@
     "serve:ssr:docs": "node dist/docs/server/server.mjs",
     "schema:test-watch": "nodemon --watch dist/ng-verse --ext js --exec 'jasmine dist/ng-verse/**/*_spec.js'",
     "build:ng-verse": "ng build --project=ng-verse && cd projects/ng-verse && npm run build",
-    "build:docs": "node scripts/generate-tree.js && ng build --project=docs"
+    "build:docs": "node scripts/generate-tree.js && ng build --project=docs && node scripts/generate-sitemap.js"
   },
   "lint-staged": {
     "**/*.{html,ts,json,css,scss,md}": "prettier --write"
@@ -38,6 +37,7 @@
     "@angular/platform-server": "^19.0.6",
     "@angular/router": "^19.0.6",
     "@angular/ssr": "^19.0.7",
+    "@docsearch/js": "^3.8.3",
     "@types/file-saver": "^2.0.7",
     "copyfiles": "^2.4.1",
     "express": "^4.18.2",
@@ -84,6 +84,7 @@
     "postcss": "^8.4.49",
     "prettier": "3.4.2",
     "semantic-release": "^24.2.1",
+    "sitemap": "^8.0.0",
     "tailwindcss": "^3.4.16",
     "typescript": "~5.6.2",
     "typescript-eslint": "8.18.0"

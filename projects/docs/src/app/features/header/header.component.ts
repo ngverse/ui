@@ -1,7 +1,9 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Component, inject } from '@angular/core';
+import { afterNextRender, Component, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import '@docsearch/css';
+import docsearch from '@docsearch/js';
 import { ButtonComponent } from '@ng-verse/button/button.component';
 import { DarkModeToggleComponent } from '@ng-verse/dark-mode/dark-mode-toggle.component';
 import { IconComponent } from '@ng-verse/icon/icon.component';
@@ -29,11 +31,21 @@ export class HeaderComponent {
   overlayRef: OverlayRef | undefined;
   router = inject(Router);
 
+  constructor() {
+    afterNextRender(() => {
+      docsearch({
+        appId: 'X673ZXLVHG',
+        apiKey: 'bad40449d2ac4f445576ed2d6a65176b',
+        indexName: 'ng-verse',
+        container: '#docsearch',
+      });
+    });
+  }
+
   showSidebar() {
     this.overlayRef = this.overlay.create({
       positionStrategy: this.overlay.position().global().left(),
-      // height: '100%',
-      // width: '90vw',
+
       hasBackdrop: true,
       disposeOnNavigation: true,
     });
