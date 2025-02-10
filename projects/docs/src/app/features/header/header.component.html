@@ -9,22 +9,20 @@
     <app-icon name="logo" width="40" height="40"></app-icon>
     <doc-project-name class="font-bold text-xl"></doc-project-name>
   </a>
+
   <app-dark-mode-toggle class="ml-auto mr-2"></app-dark-mode-toggle>
   <a href="https://github.com/lukonik/ng-verse" target="_blank">
     <button
       appButton
+      icon
       color="secondary"
       variant="outline"
       size="sm"
+      variant="link"
       aria-label="Star on Github"
     >
-      Star on
-      <app-icon
-        width="20"
-        height="20"
-        class="text-yellow-400"
-        name="github"
-      ></app-icon>
+      <app-icon width="20" height="20" name="github"></app-icon>
     </button>
   </a>
+  <div id="docsearch"></div>
 </header>
