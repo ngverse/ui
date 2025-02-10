@@ -8,14 +8,6 @@ import { By } from '@angular/platform-browser';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { OtpInputComponent } from '../otp-input/otp-input.component';
 
-@Component({
-  selector: 'app-otp-test',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: ` <app-otp-input /> `,
-  imports: [OtpInputComponent],
-})
-export class OtpTestComponent {}
-
 describe('OtpInputComponent', () => {
   let component: OtpTestComponent;
   let fixture: ComponentFixture<OtpTestComponent>;
@@ -90,4 +82,25 @@ describe('OtpInputComponent', () => {
     fixture.detectChanges();
     expect(childComponent.filled.emit).toHaveBeenCalledWith('1234');
   });
+
+  it('should focus first input on focus', () => {
+    childComponent.focus();
+    expect(document.activeElement).toBe(inputs[0]);
+  });
+
+  it('should fill inputs by fillFromText', () => {
+    childComponent.fillFromText('1234');
+    expect(inputs[0].value).toBe('1');
+    expect(inputs[1].value).toBe('2');
+    expect(inputs[2].value).toBe('3');
+    expect(inputs[3].value).toBe('4');
+  });
 });
+
+@Component({
+  selector: 'app-otp-test',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: ` <app-otp-input /> `,
+  imports: [OtpInputComponent],
+})
+export class OtpTestComponent {}

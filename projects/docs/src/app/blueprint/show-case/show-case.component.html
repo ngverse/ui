@@ -1,5 +1,5 @@
 <h5 class="text-lg my-0 mb-3 font-medium">Showcase</h5>
-<app-card class="block">
+<app-card class="block" [gap]="false">
   <app-tab-group [selectedIndex]="0" (tabChanged)="tabChanged($event)">
     <app-tab label="PREVIEW">
       <ng-content></ng-content>

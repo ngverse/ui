@@ -1,15 +1,32 @@
-import { Component, signal } from '@angular/core';
-import { OtpInputComponent } from '@ng-verse/otp-input/otp-input.component';
+import { Component, inject, signal, viewChild } from '@angular/core';
+import { ButtonComponent } from '@ng-verse/button/button.component';
+import { OtpInputComponent } from 'ng-verse/otp-input/otp-input.component';
+import { ToastService } from 'ng-verse/toast/toast.service';
 
 @Component({
   selector: 'doc-show-case-otp-input',
-  imports: [OtpInputComponent],
+  imports: [OtpInputComponent, ButtonComponent],
   templateUrl: './show-case-otp-input.component.html',
   styleUrl: './show-case-otp-input.component.scss',
 })
 export class ShowCaseOtpInputComponent {
-  code = signal<string | undefined>(undefined);
+  loading = signal(false);
+  otpInput = viewChild.required(OtpInputComponent);
+  toast = inject(ToastService);
+
   codeFilled(code: string) {
-    this.code.set(code);
+    this.toast.open({
+      message: `Code filled: ${code}`,
+      showCloseIcon: false,
+    });
+  }
+
+  recieveCode() {
+    this.loading.set(true);
+
+    setTimeout(() => {
+      this.otpInput().fillFromText('1234');
+      this.loading.set(false);
+    }, 1000);
   }
 }

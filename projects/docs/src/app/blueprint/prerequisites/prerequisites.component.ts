@@ -13,7 +13,7 @@ export interface Prerequisite {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrerequisitesComponent {
-  preps = input.required<Prerequisite[]>();
+  preps = input<Prerequisite[]>();
   name = input<string>();
 
   preprsAuto = input<Prerequisite[]>();
