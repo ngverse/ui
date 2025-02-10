@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @use '../../ng-verse/src/lib/ng-verse';
 @use '@angular/cdk/overlay-prebuilt.css';
+@import './docsearch.css';
 @import './highlight-dark.css';
 @import './highlight-light.css';
 @tailwind base;

@@ -2,7 +2,6 @@ import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { afterNextRender, Component, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import '@docsearch/css';
 import docsearch from '@docsearch/js';
 import { ButtonComponent } from '@ng-verse/button/button.component';
 import { DarkModeToggleComponent } from '@ng-verse/dark-mode/dark-mode-toggle.component';
