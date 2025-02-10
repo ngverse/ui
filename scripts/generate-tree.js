@@ -18,6 +18,16 @@ function cleanTreePaths(tree, baseDir) {
   return tree;
 }
 
+function normalizePathsRecursively(node) {
+  node.path = path.posix.normalize(node.path.split(path.sep).join('/'));
+
+  if (node.children) {
+    node.children = node.children.map(normalizePathsRecursively);
+  }
+
+  return node;
+}
+
 // Custom function to add the `language` field
 function addLanguageField(tree) {
   if (tree.children === undefined) {
@@ -54,11 +64,13 @@ function renameToFiles(node) {
 
 // Generate the directory tree
 let tree = dirTree(baseDir, {
-  extensions: /\.(ts|js|json|html|css)$/, // Optional: Filter by file types
+  extensions: /\.(ts|js|json|html|css|scss)$/, // Optional: Filter by file types
 });
 
 // Clean up paths
 tree = cleanTreePaths(tree, baseDir);
+
+tree = normalizePathsRecursively(tree);
 
 tree = addLanguageField(tree);
 
