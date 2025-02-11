@@ -63,14 +63,14 @@ export class OtpInputComponent implements OnDestroy {
     this.cf.detectChanges();
   }
 
-  /**
-   * When autofill is emitted,
-   * the input value is not synced right away.
-   * so we use setInterval to check the input value
-   */
   _autoFilled() {
-    //if the value is not resolved after 10 times of tick
-    //then we assume that the value is not resolved and stop the interval
+    /**
+     * When autofill is emitted,
+     * the input value is not synced right away.
+     * so we use setInterval to check the input value
+     * if the value is not resolved after 10 times of tick
+     * then we assume that the value is not resolved and stop the interval
+     */
     const MAX_TICK = 10;
     let currentIteration = 0;
     const INTERVAL_TIME = 100;
@@ -82,7 +82,6 @@ export class OtpInputComponent implements OnDestroy {
         if (value) {
           this.fillFromText(value);
           this.autoFillSub?.unsubscribe();
-
           return;
         }
         if (currentIteration > MAX_TICK) {
