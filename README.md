@@ -4,6 +4,11 @@ Ng-Verse is a collection of feature-rich Angular components, directives, and pip
 
 For more info visit the [docs](https://www.ng-verse.dev)
 
+# Announcement
+
+Thank you all for your feedback! The huge stable release is
+coming—stay tuned!
+
 [![npm](https://img.shields.io/npm/v/ng-verse?label=npm&logo=npm)](https://www.npmjs.com/package/ng-verse)
 
 <p align="center">

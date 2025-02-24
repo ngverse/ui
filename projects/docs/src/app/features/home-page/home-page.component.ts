@@ -10,10 +10,21 @@ import {
   LucideAngularModule,
   Rocket,
 } from 'lucide-angular';
+import { AlertBodyComponent } from '../../../../../ng-verse/src/lib/alert/alert-body.component';
+import { AlertHeaderComponent } from '../../../../../ng-verse/src/lib/alert/alert-header.component';
+import { AlertComponent } from '../../../../../ng-verse/src/lib/alert/alert.component';
 
 @Component({
   selector: 'doc-home-page',
-  imports: [RouterLink, LucideAngularModule, IconComponent, ButtonComponent],
+  imports: [
+    RouterLink,
+    LucideAngularModule,
+    IconComponent,
+    ButtonComponent,
+    AlertComponent,
+    AlertHeaderComponent,
+    AlertBodyComponent,
+  ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
