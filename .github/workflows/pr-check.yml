@@ -29,5 +29,5 @@ jobs:
       - name: Check docs
         run: npm run check:docs
 
-      - name: Check kit
-        run: npm run check:kit
+      - name: Check ngverse
+        run: npm run check:ngverse
