@@ -28,7 +28,7 @@ export class HomePageComponent {
     this.title.setTitle('ngverse');
 
     this.meta.addTags([
-      { property: 'og:title', content: 'Ng-Verse' },
+      { property: 'og:title', content: 'NgVerse' },
       {
         property: 'og:description',
         content: 'Collection of Angular components',
@@ -37,7 +37,7 @@ export class HomePageComponent {
         property: 'og:image',
         content: 'https://www.ngverse.dev/logo.png',
       },
-      { property: 'og:image:alt', content: 'Ng-Verse logo' },
+      { property: 'og:image:alt', content: 'NgVerse logo' },
       { property: 'og:url', content: this.document.location.href },
       { property: 'og:type', content: 'website' },
     ]);
