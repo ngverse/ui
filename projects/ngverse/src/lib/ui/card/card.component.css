@@ -4,10 +4,10 @@
     border: var(--border);
   }
   &.surface {
-    background: var(--surface);
+    background: var(--color-surface);
   }
   &.shadow {
-    box-shadow: var(--shadow);
+    box-shadow: var(--color-shadow);
   }
   outline: 0;
 

@@ -10,7 +10,7 @@
   }
 
   &.listbox-item-active {
-    background: var(--primary-color);
+    background: var(--color-primary-color);
     color: white;
   }
 
@@ -20,7 +20,7 @@
 
   &.selected,
   &.is-active {
-    background: var(--accent);
-    color: var(--accent-foreground);
+    background: var(--color-accent);
+    color: var(--color-accent-foreground);
   }
 }

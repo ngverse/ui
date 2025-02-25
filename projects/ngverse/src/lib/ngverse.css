@@ -1,111 +1,112 @@
 @import '@angular/cdk/overlay-prebuilt.css';
 @reference "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --field-height: 36px;
   --field-padding: 6px 10px;
+  --border-radius: 6px;
 }
 
-:root {
-  --background: white;
-  --foreground: #030712;
-  --border-radius: 6px;
-  --primary: #2563eb;
-  --primary-foreground: white;
+@theme static {
+  --color-background: white;
+  --color-foreground: #030712;
+  --color-primary: #2563eb;
+  --color-primary-foreground: white;
 
-  --inverse: #1f2937;
-  --inverse-foreground: white;
+  --color-inverse: #1f2937;
+  --color-inverse-foreground: white;
 
-  --secondary: #4b5563;
-  --secondary-foreground: white;
+  --color-secondary: #4b5563;
+  --color-secondary-foreground: white;
 
-  --accent: #f3f4f6;
-  --accent-foreground: #111827;
+  --color-accent: #f3f4f6;
+  --color-accent-foreground: #111827;
 
-  --danger: #dc2626;
-  --danger-foreground: white;
+  --color-danger: #dc2626;
+  --color-danger-foreground: white;
 
-  --warning: #ea580c;
-  --warning-foreground: white;
+  --color-warning: #ea580c;
+  --color-warning-foreground: white;
 
-  --success: #16a34a;
-  --success-foreground: white;
+  --color-success: #16a34a;
+  --color-success-foreground: white;
 
-  --disabled: #f9fafb;
-  --disabled-foreground: #9ca3af;
+  --color-disabled: #f9fafb;
+  --color-disabled-foreground: #9ca3af;
 
-  --surface: #f9fafb;
+  --color-surface: #f9fafb;
 
-  --surface-2: #d1d5db;
+  --color-surface-2: #d1d5db;
 
   --overlay: 0, 0, 0;
 
-  --divider: #cbd5e1;
-  --border-color: #d1d5db;
-  --border: 1px solid var(--border-color);
+  --color-divider: #cbd5e1;
+  --color-border: #d1d5db;
+  --border: 1px solid var(--color-border);
 
-  --ring: #9ca3af;
+  --color-ring: #9ca3af;
 
-  --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1),
-    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --color-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1), 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-  --mute-start: #e0e0e0;
-  --mute-end: #f0f0f0;
+  --color-mute-start: #e0e0e0;
+  --color-mute-end: #f0f0f0;
 }
 
 :root.cdk-overlay-backdrop {
   background: rgba(var(--overlay), 0.3);
 }
 
-:root.dark {
-  --background: #030712;
-  --foreground: white;
-  --border-radius: 6px;
+@variant dark {
+  --color-background: #030712;
+  --color-foreground: white;
 
-  --primary: #8b5cf6;
-  --primary-foreground: black;
+  --color-primary: #8b5cf6;
+  --color-primary-foreground: black;
 
-  --inverse: white;
-  --inverse-foreground: #030712;
+  --color-inverse: white;
+  --color-inverse-foreground: #030712;
 
-  --secondary: #d1d5db;
-  --secondary-foreground: black;
+  --color-secondary: #d1d5db;
+  --color-secondary-foreground: black;
 
-  --accent: #d1d5db;
-  --accent-foreground: black;
+  --color-accent: #d1d5db;
+  --color-accent-foreground: black;
 
-  --danger: #dc2626;
-  --danger-foreground: white;
+  --color-danger: #dc2626;
+  --color-danger-foreground: white;
 
-  --warning: #ea580c;
-  --warning-foreground: white;
+  --color-warning: #ea580c;
+  --color-warning-foreground: white;
 
-  --success: #16a34a;
-  --success-foreground: white;
+  --color-success: #16a34a;
+  --color-success-foreground: white;
 
-  --disabled: #6b7280;
-  --disabled-foreground: #9ca3af;
+  --color-disabled: #6b7280;
+  --color-disabled-foreground: #9ca3af;
 
-  --surface: #1f2937;
+  --color-surface: #1f2937;
 
-  --surface-2: #d1d5db;
+  --color-surface-2: #d1d5db;
 
   --overlay: 255, 255, 255;
 
-  --divider: #6b7280;
+  --color-divider: #6b7280;
 
-  --border-color: #6b7280;
-  --border: 1px solid var(--border-color);
+  --color-border: #6b7280;
+  --border: 1px solid var(--color-border);
 
-  --ring: #9ca3af;
+  --color-ring: #9ca3af;
 
-  --shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1),
+  --color-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1),
     0 4px 6px -4px rgba(255, 255, 255, 0.1),
     0 10px 15px -3px rgba(255, 255, 255, 0.1),
     0 4px 6px -4px rgba(255, 255, 255, 0.1);
 
-  --mute-start: #e0e0e0;
-  --mute-end: #f0f0f0;
+  --color-mute-start: #e0e0e0;
+  --color-mute-end: #f0f0f0;
 }
 
 :root.dark.cdk-overlay-backdrop {
@@ -114,8 +115,8 @@
 
 html,
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 }
 
 /**
@@ -124,26 +125,26 @@ body {
 **/
 .app-input,
 .app-textarea {
-  background: var(--background);
+  background: var(--color-background);
   box-sizing: border-box;
   border: var(--border);
   border-radius: var(--border-radius);
   padding: var(--field-padding);
   font-size: 1rem;
   &:focus-visible {
-    outline: 1px solid var(--ring);
+    outline: 1px solid var(--color-ring);
   }
   &:disabled,
   &[readonly] {
-    background: var(--disabled);
-    color: var(--disabled-foreground);
+    background: var(--color-disabled);
+    color: var(--color-disabled-foreground);
     &::placeholder {
-      color: var(--disabled-foreground);
+      color: var(--color-disabled-foreground);
     }
   }
 
   &.ng-invalid.ng-touched {
-    border-color: var(--danger);
+    border-color: var(--color-danger);
     outline-color: transparent;
   }
 }
@@ -157,8 +158,8 @@ body {
   this is context menu styles
 **/
 .app-context-menu {
-  box-shadow: var(--shadow);
-  background-color: var(--background);
+  box-shadow: var(--color-shadow);
+  background-color: var(--color-background);
   border-radius: var(--border-radius);
   border: var(--border);
 }
@@ -174,15 +175,15 @@ body {
   &:focus-visible,
   &:hover:not([aria-disabled]),
   &.selected {
-    background: var(--accent);
-    color: var(--accent-foreground);
+    background: var(--color-accent);
+    color: var(--color-accent-foreground);
   }
   &:focus-visible {
     outline: none;
   }
 
   &[aria-disabled] {
-    background: var(--disabled);
-    color: var(--disabled-foreground);
+    background: var(--color-disabled);
+    color: var(--color-disabled-foreground);
   }
 }

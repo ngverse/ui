@@ -9,8 +9,8 @@
   justify-content: center;
   gap: 6px;
 
-  --button-color: var(--background);
-  --button-on-color: var(--foreground);
+  --button-color: var(--color-background);
+  --button-on-color: var(--color-foreground);
   border-radius: var(--border-radius);
   border: var(--border);
   position: relative;
@@ -46,28 +46,28 @@
 
 /** Color styles **/
   &.btn-primary {
-    --button-color: var(--primary);
-    --button-on-color: var(--primary-foreground);
+    --button-color: var(--color-primary);
+    --button-on-color: var(--color-primary-foreground);
   }
 
   &.btn-secondary {
-    --button-color: var(--secondary);
-    --button-on-color: var(--secondary-foreground);
+    --button-color: var(--color-secondary);
+    --button-on-color: var(--color-secondary-foreground);
   }
 
   &.btn-danger {
-    --button-color: var(--danger);
-    --button-on-color: var(--danger-foreground);
+    --button-color: var(--color-danger);
+    --button-on-color: var(--color-danger-foreground);
   }
 
   &.btn-warning {
-    --button-color: var(--warning);
-    --button-on-color: var(--warning-foreground);
+    --button-color: var(--color-warning);
+    --button-on-color: var(--color-warning-foreground);
   }
 
   &.btn-success {
-    --button-color: var(--success);
-    --button-on-color: var(--success-foreground);
+    --button-color: var(--color-success);
+    --button-on-color: var(--color-success-foreground);
   }
   /** Color ends here **/
 
@@ -78,7 +78,7 @@
   }
 
   &:focus-visible {
-    outline: 1px solid var(--ring);
+    outline: 1px solid var(--color-ring);
   }
 
   &:hover:not(:disabled) {
@@ -89,8 +89,8 @@
     }
     &.btn-outline,
     &.btn-link {
-      background-color: var(--accent);
-      color: var(--accent-foreground);
+      background-color: var(--color-accent);
+      color: var(--color-accent-foreground);
     }
   }
   &:active {
@@ -99,9 +99,9 @@
 
   &:disabled {
     &:not(.btn-link) {
-      background-color: var(--disabled);
+      background-color: var(--color-disabled);
     }
-    color: var(--disabled-foreground);
+    color: var(--color-disabled-foreground);
     cursor: default;
   }
 

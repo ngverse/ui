@@ -1,7 +1,7 @@
 :host {
   display: block;
   margin-bottom: 12px;
-  border-bottom: 1px solid var(--divider);
+  border-bottom: 1px solid var(--color-divider);
   padding-bottom: 12px;
 }
 
@@ -14,10 +14,10 @@
   width: 100%;
   font-size: 1rem;
   &:disabled {
-    color: var(--disabled-foreground);
+    color: var(--color-disabled-foreground);
   }
   &:focus-visible {
-    outline: 1px solid var(--ring);
+    outline: 1px solid var(--color-ring);
     outline-offset: 4px;
   }
 }

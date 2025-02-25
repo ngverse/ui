@@ -3,11 +3,11 @@ const path = require('path');
 const dirTree = require('directory-tree');
 
 // Define your base directory
-const baseDir = path.resolve('./projects/ngverse/src/lib');
+const baseDir = path.resolve('./projects/ngverse/src/lib/ui');
 
 // Custom function to modify paths in the tree
 function cleanTreePaths(tree, baseDir) {
-  tree.path = path.relative(baseDir, tree.path); // Make path relative to base directory
+  tree.path = 'ui/' + path.relative(baseDir, tree.path); // Make path relative to base directory
 
   if (tree.children) {
     tree.children = tree.children.map((child) =>

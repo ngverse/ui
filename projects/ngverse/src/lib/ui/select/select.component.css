@@ -17,7 +17,7 @@
   justify-content: space-between;
 
   &:focus-visible {
-    outline: 1px solid var(--ring);
+    outline: 1px solid var(--color-ring);
   }
 
   .select-button-label {
@@ -41,14 +41,14 @@
 
   &:disabled {
     cursor: not-allowed;
-    background: var(--disabled);
-    color: var(--disabled-foreground);
+    background: var(--color-disabled);
+    color: var(--color-disabled-foreground);
   }
 }
 
 :host.ng-invalid.ng-touched {
   .select-button {
-    border-color: var(--danger);
+    border-color: var(--color-danger);
   }
 }
 

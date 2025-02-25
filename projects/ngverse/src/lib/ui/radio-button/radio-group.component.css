@@ -10,5 +10,5 @@
 }
 
 :host.ng-invalid.ng-touched {
-  color: var(--danger-color);
+  color: var(--color-danger-color);
 }

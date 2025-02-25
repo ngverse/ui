@@ -1,8 +1,8 @@
 .dialog {
-  background: var(--background);
+  background: var(--color-background);
   border-radius: var(--border-radius);
   border: var(--border);
-  box-shadow: var(--shadow);
+  box-shadow: var(--color-shadow);
 }
 
 .dialog-header {

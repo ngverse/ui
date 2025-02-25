@@ -1,1217 +1,1206 @@
 {
-  "path": ".",
-  "name": "lib",
+  "path": "ui/",
+  "name": "ui",
   "files": [
     {
-      "path": "ngverse.css",
-      "name": "ngverse.css",
-      "language": "css"
-    },
-    {
-      "path": "ui",
-      "name": "ui",
+      "path": "ui/accordion",
+      "name": "accordion",
       "files": [
         {
-          "path": "ui/accordion",
-          "name": "accordion",
+          "path": "ui/accordion/accordion-animations.ts",
+          "name": "accordion-animations.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/accordion/accordion-body.component.ts",
+          "name": "accordion-body.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/accordion/accordion-header.component.ts",
+          "name": "accordion-header.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/accordion/accordion-item.component.css",
+          "name": "accordion-item.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/accordion/accordion-item.component.html",
+          "name": "accordion-item.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/accordion/accordion-item.component.spec.ts",
+          "name": "accordion-item.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/accordion/accordion-item.component.ts",
+          "name": "accordion-item.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/accordion/accordion.component.css",
+          "name": "accordion.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/accordion/accordion.component.html",
+          "name": "accordion.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/accordion/accordion.component.spec.ts",
+          "name": "accordion.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/accordion/accordion.component.ts",
+          "name": "accordion.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/accordion/expand-icon.component.ts",
+          "name": "expand-icon.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/alert",
+      "name": "alert",
+      "files": [
+        {
+          "path": "ui/alert/alert-body.component.spec.ts",
+          "name": "alert-body.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/alert/alert-body.component.ts",
+          "name": "alert-body.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/alert/alert-header.component.spec.ts",
+          "name": "alert-header.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/alert/alert-header.component.ts",
+          "name": "alert-header.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/alert/alert.component.css",
+          "name": "alert.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/alert/alert.component.html",
+          "name": "alert.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/alert/alert.component.spec.ts",
+          "name": "alert.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/alert/alert.component.ts",
+          "name": "alert.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/autocomplete",
+      "name": "autocomplete",
+      "files": [
+        {
+          "path": "ui/autocomplete/autocomplete-item",
+          "name": "autocomplete-item",
           "files": [
             {
-              "path": "ui/accordion/accordion-animations.ts",
-              "name": "accordion-animations.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/accordion/accordion-body.component.ts",
-              "name": "accordion-body.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/accordion/accordion-header.component.ts",
-              "name": "accordion-header.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/accordion/accordion-item.component.css",
-              "name": "accordion-item.component.css",
+              "path": "ui/autocomplete/autocomplete-item/autocomplete-item.component.css",
+              "name": "autocomplete-item.component.css",
               "language": "css"
             },
             {
-              "path": "ui/accordion/accordion-item.component.html",
-              "name": "accordion-item.component.html",
+              "path": "ui/autocomplete/autocomplete-item/autocomplete-item.component.html",
+              "name": "autocomplete-item.component.html",
               "language": "html"
             },
             {
-              "path": "ui/accordion/accordion-item.component.spec.ts",
-              "name": "accordion-item.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/accordion/accordion-item.component.ts",
-              "name": "accordion-item.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/accordion/accordion.component.css",
-              "name": "accordion.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/accordion/accordion.component.html",
-              "name": "accordion.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/accordion/accordion.component.spec.ts",
-              "name": "accordion.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/accordion/accordion.component.ts",
-              "name": "accordion.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/accordion/expand-icon.component.ts",
-              "name": "expand-icon.component.ts",
+              "path": "ui/autocomplete/autocomplete-item/autocomplete-item.component.ts",
+              "name": "autocomplete-item.component.ts",
               "language": "ts"
             }
           ]
         },
         {
-          "path": "ui/alert",
-          "name": "alert",
+          "path": "ui/autocomplete/autocomplete.component.css",
+          "name": "autocomplete.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/autocomplete/autocomplete.component.html",
+          "name": "autocomplete.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/autocomplete/autocomplete.component.ts",
+          "name": "autocomplete.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/badge",
+      "name": "badge",
+      "files": [
+        {
+          "path": "ui/badge/badge.component.css",
+          "name": "badge.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/badge/badge.component.html",
+          "name": "badge.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/badge/badge.component.spec.ts",
+          "name": "badge.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/badge/badge.component.ts",
+          "name": "badge.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/button",
+      "name": "button",
+      "files": [
+        {
+          "path": "ui/button/button-loader.component.spec.ts",
+          "name": "button-loader.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/button/button-loader.component.ts",
+          "name": "button-loader.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/button/button.component.css",
+          "name": "button.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/button/button.component.html",
+          "name": "button.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/button/button.component.spec.ts",
+          "name": "button.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/button/button.component.ts",
+          "name": "button.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/card",
+      "name": "card",
+      "files": [
+        {
+          "path": "ui/card/card.component.css",
+          "name": "card.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/card/card.component.html",
+          "name": "card.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/card/card.component.spec.ts",
+          "name": "card.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/card/card.component.ts",
+          "name": "card.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/checkbox",
+      "name": "checkbox",
+      "files": [
+        {
+          "path": "ui/checkbox/checkbox-icon.component.ts",
+          "name": "checkbox-icon.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/checkbox/checkbox.component.css",
+          "name": "checkbox.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/checkbox/checkbox.component.html",
+          "name": "checkbox.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/checkbox/checkbox.component.spec.ts",
+          "name": "checkbox.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/checkbox/checkbox.component.ts",
+          "name": "checkbox.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/context-menu",
+      "name": "context-menu",
+      "files": [
+        {
+          "path": "ui/context-menu/context-menu-item.directive.spec.ts",
+          "name": "context-menu-item.directive.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/context-menu/context-menu-item.directive.ts",
+          "name": "context-menu-item.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/context-menu/context-menu-trigger.directive.spec.ts",
+          "name": "context-menu-trigger.directive.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/context-menu/context-menu-trigger.directive.ts",
+          "name": "context-menu-trigger.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/context-menu/context-menu.directive.spec.ts",
+          "name": "context-menu.directive.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/context-menu/context-menu.directive.ts",
+          "name": "context-menu.directive.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/dark-mode",
+      "name": "dark-mode",
+      "files": [
+        {
+          "path": "ui/dark-mode/dark-mode-icon.component.ts",
+          "name": "dark-mode-icon.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/dark-mode/dark-mode-toggle.component.css",
+          "name": "dark-mode-toggle.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/dark-mode/dark-mode-toggle.component.html",
+          "name": "dark-mode-toggle.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/dark-mode/dark-mode-toggle.component.spec.ts",
+          "name": "dark-mode-toggle.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/dark-mode/dark-mode-toggle.component.ts",
+          "name": "dark-mode-toggle.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/dark-mode/dark-mode.service.spec.ts",
+          "name": "dark-mode.service.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/dark-mode/dark-mode.service.ts",
+          "name": "dark-mode.service.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/dialog",
+      "name": "dialog",
+      "files": [
+        {
+          "path": "ui/dialog/alert-dialog",
+          "name": "alert-dialog",
           "files": [
             {
-              "path": "ui/alert/alert-body.component.spec.ts",
-              "name": "alert-body.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/alert/alert-body.component.ts",
-              "name": "alert-body.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/alert/alert-header.component.spec.ts",
-              "name": "alert-header.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/alert/alert-header.component.ts",
-              "name": "alert-header.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/alert/alert.component.css",
-              "name": "alert.component.css",
+              "path": "ui/dialog/alert-dialog/alert-dialog.component.css",
+              "name": "alert-dialog.component.css",
               "language": "css"
             },
             {
-              "path": "ui/alert/alert.component.html",
-              "name": "alert.component.html",
+              "path": "ui/dialog/alert-dialog/alert-dialog.component.html",
+              "name": "alert-dialog.component.html",
               "language": "html"
             },
             {
-              "path": "ui/alert/alert.component.spec.ts",
-              "name": "alert.component.spec.ts",
+              "path": "ui/dialog/alert-dialog/alert-dialog.component.spec.ts",
+              "name": "alert-dialog.component.spec.ts",
               "language": "spec.ts"
             },
             {
-              "path": "ui/alert/alert.component.ts",
-              "name": "alert.component.ts",
+              "path": "ui/dialog/alert-dialog/alert-dialog.component.ts",
+              "name": "alert-dialog.component.ts",
               "language": "ts"
             }
           ]
         },
         {
-          "path": "ui/autocomplete",
-          "name": "autocomplete",
+          "path": "ui/dialog/confirm-dialog",
+          "name": "confirm-dialog",
           "files": [
             {
-              "path": "ui/autocomplete/autocomplete-item",
-              "name": "autocomplete-item",
-              "files": [
-                {
-                  "path": "ui/autocomplete/autocomplete-item/autocomplete-item.component.css",
-                  "name": "autocomplete-item.component.css",
-                  "language": "css"
-                },
-                {
-                  "path": "ui/autocomplete/autocomplete-item/autocomplete-item.component.html",
-                  "name": "autocomplete-item.component.html",
-                  "language": "html"
-                },
-                {
-                  "path": "ui/autocomplete/autocomplete-item/autocomplete-item.component.ts",
-                  "name": "autocomplete-item.component.ts",
-                  "language": "ts"
-                }
-              ]
-            },
-            {
-              "path": "ui/autocomplete/autocomplete.component.css",
-              "name": "autocomplete.component.css",
+              "path": "ui/dialog/confirm-dialog/confirm-dialog.component.css",
+              "name": "confirm-dialog.component.css",
               "language": "css"
             },
             {
-              "path": "ui/autocomplete/autocomplete.component.html",
-              "name": "autocomplete.component.html",
+              "path": "ui/dialog/confirm-dialog/confirm-dialog.component.html",
+              "name": "confirm-dialog.component.html",
               "language": "html"
             },
             {
-              "path": "ui/autocomplete/autocomplete.component.ts",
-              "name": "autocomplete.component.ts",
+              "path": "ui/dialog/confirm-dialog/confirm-dialog.component.spec.ts",
+              "name": "confirm-dialog.component.spec.ts",
+              "language": "spec.ts"
+            },
+            {
+              "path": "ui/dialog/confirm-dialog/confirm-dialog.component.ts",
+              "name": "confirm-dialog.component.ts",
               "language": "ts"
             }
           ]
         },
         {
-          "path": "ui/badge",
-          "name": "badge",
-          "files": [
-            {
-              "path": "ui/badge/badge.component.css",
-              "name": "badge.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/badge/badge.component.html",
-              "name": "badge.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/badge/badge.component.spec.ts",
-              "name": "badge.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/badge/badge.component.ts",
-              "name": "badge.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/dialog/confirm.directive.spec.ts",
+          "name": "confirm.directive.spec.ts",
+          "language": "spec.ts"
         },
         {
-          "path": "ui/button",
-          "name": "button",
-          "files": [
-            {
-              "path": "ui/button/button-loader.component.spec.ts",
-              "name": "button-loader.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/button/button-loader.component.ts",
-              "name": "button-loader.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/button/button.component.css",
-              "name": "button.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/button/button.component.html",
-              "name": "button.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/button/button.component.spec.ts",
-              "name": "button.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/button/button.component.ts",
-              "name": "button.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/dialog/confirm.directive.ts",
+          "name": "confirm.directive.ts",
+          "language": "ts"
         },
         {
-          "path": "ui/card",
-          "name": "card",
-          "files": [
-            {
-              "path": "ui/card/card.component.css",
-              "name": "card.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/card/card.component.html",
-              "name": "card.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/card/card.component.spec.ts",
-              "name": "card.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/card/card.component.ts",
-              "name": "card.component.ts",
-              "language": "ts"
-            }
-          ]
-        },
-        {
-          "path": "ui/checkbox",
-          "name": "checkbox",
-          "files": [
-            {
-              "path": "ui/checkbox/checkbox-icon.component.ts",
-              "name": "checkbox-icon.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/checkbox/checkbox.component.css",
-              "name": "checkbox.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/checkbox/checkbox.component.html",
-              "name": "checkbox.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/checkbox/checkbox.component.spec.ts",
-              "name": "checkbox.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/checkbox/checkbox.component.ts",
-              "name": "checkbox.component.ts",
-              "language": "ts"
-            }
-          ]
-        },
-        {
-          "path": "ui/context-menu",
-          "name": "context-menu",
-          "files": [
-            {
-              "path": "ui/context-menu/context-menu-item.directive.spec.ts",
-              "name": "context-menu-item.directive.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/context-menu/context-menu-item.directive.ts",
-              "name": "context-menu-item.directive.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/context-menu/context-menu-trigger.directive.spec.ts",
-              "name": "context-menu-trigger.directive.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/context-menu/context-menu-trigger.directive.ts",
-              "name": "context-menu-trigger.directive.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/context-menu/context-menu.directive.spec.ts",
-              "name": "context-menu.directive.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/context-menu/context-menu.directive.ts",
-              "name": "context-menu.directive.ts",
-              "language": "ts"
-            }
-          ]
-        },
-        {
-          "path": "ui/dark-mode",
-          "name": "dark-mode",
-          "files": [
-            {
-              "path": "ui/dark-mode/dark-mode-icon.component.ts",
-              "name": "dark-mode-icon.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/dark-mode/dark-mode-toggle.component.css",
-              "name": "dark-mode-toggle.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/dark-mode/dark-mode-toggle.component.html",
-              "name": "dark-mode-toggle.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/dark-mode/dark-mode-toggle.component.spec.ts",
-              "name": "dark-mode-toggle.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/dark-mode/dark-mode-toggle.component.ts",
-              "name": "dark-mode-toggle.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/dark-mode/dark-mode.service.spec.ts",
-              "name": "dark-mode.service.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/dark-mode/dark-mode.service.ts",
-              "name": "dark-mode.service.ts",
-              "language": "ts"
-            }
-          ]
-        },
-        {
-          "path": "ui/dialog",
+          "path": "ui/dialog/dialog",
           "name": "dialog",
           "files": [
             {
-              "path": "ui/dialog/alert-dialog",
-              "name": "alert-dialog",
-              "files": [
-                {
-                  "path": "ui/dialog/alert-dialog/alert-dialog.component.css",
-                  "name": "alert-dialog.component.css",
-                  "language": "css"
-                },
-                {
-                  "path": "ui/dialog/alert-dialog/alert-dialog.component.html",
-                  "name": "alert-dialog.component.html",
-                  "language": "html"
-                },
-                {
-                  "path": "ui/dialog/alert-dialog/alert-dialog.component.spec.ts",
-                  "name": "alert-dialog.component.spec.ts",
-                  "language": "spec.ts"
-                },
-                {
-                  "path": "ui/dialog/alert-dialog/alert-dialog.component.ts",
-                  "name": "alert-dialog.component.ts",
-                  "language": "ts"
-                }
-              ]
-            },
-            {
-              "path": "ui/dialog/confirm-dialog",
-              "name": "confirm-dialog",
-              "files": [
-                {
-                  "path": "ui/dialog/confirm-dialog/confirm-dialog.component.css",
-                  "name": "confirm-dialog.component.css",
-                  "language": "css"
-                },
-                {
-                  "path": "ui/dialog/confirm-dialog/confirm-dialog.component.html",
-                  "name": "confirm-dialog.component.html",
-                  "language": "html"
-                },
-                {
-                  "path": "ui/dialog/confirm-dialog/confirm-dialog.component.spec.ts",
-                  "name": "confirm-dialog.component.spec.ts",
-                  "language": "spec.ts"
-                },
-                {
-                  "path": "ui/dialog/confirm-dialog/confirm-dialog.component.ts",
-                  "name": "confirm-dialog.component.ts",
-                  "language": "ts"
-                }
-              ]
-            },
-            {
-              "path": "ui/dialog/confirm.directive.spec.ts",
-              "name": "confirm.directive.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/dialog/confirm.directive.ts",
-              "name": "confirm.directive.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/dialog/dialog",
-              "name": "dialog",
-              "files": [
-                {
-                  "path": "ui/dialog/dialog/dialog.component.css",
-                  "name": "dialog.component.css",
-                  "language": "css"
-                },
-                {
-                  "path": "ui/dialog/dialog/dialog.component.html",
-                  "name": "dialog.component.html",
-                  "language": "html"
-                },
-                {
-                  "path": "ui/dialog/dialog/dialog.component.spec.ts",
-                  "name": "dialog.component.spec.ts",
-                  "language": "spec.ts"
-                },
-                {
-                  "path": "ui/dialog/dialog/dialog.component.ts",
-                  "name": "dialog.component.ts",
-                  "language": "ts"
-                }
-              ]
-            },
-            {
-              "path": "ui/dialog/dialog-animations.ts",
-              "name": "dialog-animations.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/dialog/dialog-close-icon.component.ts",
-              "name": "dialog-close-icon.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/dialog/dialog-close.directive.spec.ts",
-              "name": "dialog-close.directive.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/dialog/dialog-close.directive.ts",
-              "name": "dialog-close.directive.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/dialog/dialog.service.spec.ts",
-              "name": "dialog.service.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/dialog/dialog.service.ts",
-              "name": "dialog.service.ts",
-              "language": "ts"
-            }
-          ]
-        },
-        {
-          "path": "ui/divider",
-          "name": "divider",
-          "files": [
-            {
-              "path": "ui/divider/divider.component.spec.ts",
-              "name": "divider.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/divider/divider.component.ts",
-              "name": "divider.component.ts",
-              "language": "ts"
-            }
-          ]
-        },
-        {
-          "path": "ui/drawer",
-          "name": "drawer",
-          "files": [
-            {
-              "path": "ui/drawer/drawer-close-icon.component.ts",
-              "name": "drawer-close-icon.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/drawer/drawer-close.directive.spec.ts",
-              "name": "drawer-close.directive.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/drawer/drawer-close.directive.ts",
-              "name": "drawer-close.directive.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/drawer/drawer-ref.ts",
-              "name": "drawer-ref.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/drawer/drawer.component.css",
-              "name": "drawer.component.css",
+              "path": "ui/dialog/dialog/dialog.component.css",
+              "name": "dialog.component.css",
               "language": "css"
             },
             {
-              "path": "ui/drawer/drawer.component.html",
-              "name": "drawer.component.html",
+              "path": "ui/dialog/dialog/dialog.component.html",
+              "name": "dialog.component.html",
               "language": "html"
             },
             {
-              "path": "ui/drawer/drawer.component.spec.ts",
-              "name": "drawer.component.spec.ts",
+              "path": "ui/dialog/dialog/dialog.component.spec.ts",
+              "name": "dialog.component.spec.ts",
               "language": "spec.ts"
             },
             {
-              "path": "ui/drawer/drawer.component.ts",
-              "name": "drawer.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/drawer/drawer.service.spec.ts",
-              "name": "drawer.service.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/drawer/drawer.service.ts",
-              "name": "drawer.service.ts",
+              "path": "ui/dialog/dialog/dialog.component.ts",
+              "name": "dialog.component.ts",
               "language": "ts"
             }
           ]
         },
         {
-          "path": "ui/form-field",
-          "name": "form-field",
+          "path": "ui/dialog/dialog-animations.ts",
+          "name": "dialog-animations.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/dialog/dialog-close-icon.component.ts",
+          "name": "dialog-close-icon.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/dialog/dialog-close.directive.spec.ts",
+          "name": "dialog-close.directive.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/dialog/dialog-close.directive.ts",
+          "name": "dialog-close.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/dialog/dialog.service.spec.ts",
+          "name": "dialog.service.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/dialog/dialog.service.ts",
+          "name": "dialog.service.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/divider",
+      "name": "divider",
+      "files": [
+        {
+          "path": "ui/divider/divider.component.spec.ts",
+          "name": "divider.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/divider/divider.component.ts",
+          "name": "divider.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/drawer",
+      "name": "drawer",
+      "files": [
+        {
+          "path": "ui/drawer/drawer-close-icon.component.ts",
+          "name": "drawer-close-icon.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/drawer/drawer-close.directive.spec.ts",
+          "name": "drawer-close.directive.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/drawer/drawer-close.directive.ts",
+          "name": "drawer-close.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/drawer/drawer-ref.ts",
+          "name": "drawer-ref.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/drawer/drawer.component.css",
+          "name": "drawer.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/drawer/drawer.component.html",
+          "name": "drawer.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/drawer/drawer.component.spec.ts",
+          "name": "drawer.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/drawer/drawer.component.ts",
+          "name": "drawer.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/drawer/drawer.service.spec.ts",
+          "name": "drawer.service.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/drawer/drawer.service.ts",
+          "name": "drawer.service.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/form-field",
+      "name": "form-field",
+      "files": [
+        {
+          "path": "ui/form-field/error",
+          "name": "error",
           "files": [
             {
-              "path": "ui/form-field/error",
-              "name": "error",
-              "files": [
-                {
-                  "path": "ui/form-field/error/error.component.css",
-                  "name": "error.component.css",
-                  "language": "css"
-                },
-                {
-                  "path": "ui/form-field/error/error.component.html",
-                  "name": "error.component.html",
-                  "language": "html"
-                },
-                {
-                  "path": "ui/form-field/error/error.component.spec.ts",
-                  "name": "error.component.spec.ts",
-                  "language": "spec.ts"
-                },
-                {
-                  "path": "ui/form-field/error/error.component.ts",
-                  "name": "error.component.ts",
-                  "language": "ts"
-                }
-              ]
-            },
-            {
-              "path": "ui/form-field/form-field-error.registry.spec.ts",
-              "name": "form-field-error.registry.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/form-field/form-field-error.registry.ts",
-              "name": "form-field-error.registry.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/form-field/form-field.component.css",
-              "name": "form-field.component.css",
+              "path": "ui/form-field/error/error.component.css",
+              "name": "error.component.css",
               "language": "css"
             },
             {
-              "path": "ui/form-field/form-field.component.html",
-              "name": "form-field.component.html",
+              "path": "ui/form-field/error/error.component.html",
+              "name": "error.component.html",
               "language": "html"
             },
             {
-              "path": "ui/form-field/form-field.component.spec.ts",
-              "name": "form-field.component.spec.ts",
+              "path": "ui/form-field/error/error.component.spec.ts",
+              "name": "error.component.spec.ts",
               "language": "spec.ts"
             },
             {
-              "path": "ui/form-field/form-field.component.ts",
-              "name": "form-field.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/form-field/label",
-              "name": "label",
-              "files": [
-                {
-                  "path": "ui/form-field/label/label.component.css",
-                  "name": "label.component.css",
-                  "language": "css"
-                },
-                {
-                  "path": "ui/form-field/label/label.component.html",
-                  "name": "label.component.html",
-                  "language": "html"
-                },
-                {
-                  "path": "ui/form-field/label/label.component.spec.ts",
-                  "name": "label.component.spec.ts",
-                  "language": "spec.ts"
-                },
-                {
-                  "path": "ui/form-field/label/label.component.ts",
-                  "name": "label.component.ts",
-                  "language": "ts"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "path": "ui/icon",
-          "name": "icon",
-          "files": [
-            {
-              "path": "ui/icon/icon-loader.service.spec.ts",
-              "name": "icon-loader.service.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/icon/icon-loader.service.ts",
-              "name": "icon-loader.service.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/icon/icon.component.spec.ts",
-              "name": "icon.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/icon/icon.component.ts",
-              "name": "icon.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/icon/icon.registry.spec.ts",
-              "name": "icon.registry.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/icon/icon.registry.ts",
-              "name": "icon.registry.ts",
+              "path": "ui/form-field/error/error.component.ts",
+              "name": "error.component.ts",
               "language": "ts"
             }
           ]
         },
         {
-          "path": "ui/input",
-          "name": "input",
-          "files": [
-            {
-              "path": "ui/input/input.directive.spec.ts",
-              "name": "input.directive.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/input/input.directive.ts",
-              "name": "input.directive.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/form-field/form-field-error.registry.spec.ts",
+          "name": "form-field-error.registry.spec.ts",
+          "language": "spec.ts"
         },
         {
-          "path": "ui/loader",
-          "name": "loader",
+          "path": "ui/form-field/form-field-error.registry.ts",
+          "name": "form-field-error.registry.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/form-field/form-field.component.css",
+          "name": "form-field.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/form-field/form-field.component.html",
+          "name": "form-field.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/form-field/form-field.component.spec.ts",
+          "name": "form-field.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/form-field/form-field.component.ts",
+          "name": "form-field.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/form-field/label",
+          "name": "label",
           "files": [
             {
-              "path": "ui/loader/loader.component.css",
-              "name": "loader.component.css",
+              "path": "ui/form-field/label/label.component.css",
+              "name": "label.component.css",
               "language": "css"
             },
             {
-              "path": "ui/loader/loader.component.html",
-              "name": "loader.component.html",
+              "path": "ui/form-field/label/label.component.html",
+              "name": "label.component.html",
               "language": "html"
             },
             {
-              "path": "ui/loader/loader.component.spec.ts",
-              "name": "loader.component.spec.ts",
+              "path": "ui/form-field/label/label.component.spec.ts",
+              "name": "label.component.spec.ts",
               "language": "spec.ts"
             },
             {
-              "path": "ui/loader/loader.component.ts",
-              "name": "loader.component.ts",
+              "path": "ui/form-field/label/label.component.ts",
+              "name": "label.component.ts",
               "language": "ts"
             }
           ]
+        }
+      ]
+    },
+    {
+      "path": "ui/icon",
+      "name": "icon",
+      "files": [
+        {
+          "path": "ui/icon/icon-loader.service.spec.ts",
+          "name": "icon-loader.service.spec.ts",
+          "language": "spec.ts"
         },
         {
-          "path": "ui/local-storage",
-          "name": "local-storage",
-          "files": [
-            {
-              "path": "ui/local-storage/local-storage.service.spec.ts",
-              "name": "local-storage.service.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/local-storage/local-storage.service.ts",
-              "name": "local-storage.service.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/icon/icon-loader.service.ts",
+          "name": "icon-loader.service.ts",
+          "language": "ts"
         },
         {
-          "path": "ui/otp-input",
-          "name": "otp-input",
-          "files": [
-            {
-              "path": "ui/otp-input/otp-input.component.css",
-              "name": "otp-input.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/otp-input/otp-input.component.html",
-              "name": "otp-input.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/otp-input/otp-input.component.spec.ts",
-              "name": "otp-input.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/otp-input/otp-input.component.ts",
-              "name": "otp-input.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/icon/icon.component.spec.ts",
+          "name": "icon.component.spec.ts",
+          "language": "spec.ts"
         },
         {
-          "path": "ui/outside-click",
-          "name": "outside-click",
-          "files": [
-            {
-              "path": "ui/outside-click/outside-click.directive.ts",
-              "name": "outside-click.directive.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/icon/icon.component.ts",
+          "name": "icon.component.ts",
+          "language": "ts"
         },
         {
-          "path": "ui/pagination",
-          "name": "pagination",
-          "files": [
-            {
-              "path": "ui/pagination/pagination-next-icon.component.ts",
-              "name": "pagination-next-icon.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/pagination/pagination-prev-icon.component.ts",
-              "name": "pagination-prev-icon.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/pagination/pagination.component.css",
-              "name": "pagination.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/pagination/pagination.component.html",
-              "name": "pagination.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/pagination/pagination.component.spec.ts",
-              "name": "pagination.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/pagination/pagination.component.ts",
-              "name": "pagination.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/icon/icon.registry.spec.ts",
+          "name": "icon.registry.spec.ts",
+          "language": "spec.ts"
         },
         {
-          "path": "ui/popover",
-          "name": "popover",
-          "files": [
-            {
-              "path": "ui/popover/popover-origin.directive.spec.ts",
-              "name": "popover-origin.directive.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/popover/popover-origin.directive.ts",
-              "name": "popover-origin.directive.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/popover/popover.component.css",
-              "name": "popover.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/popover/popover.component.html",
-              "name": "popover.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/popover/popover.component.spec.ts",
-              "name": "popover.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/popover/popover.component.ts",
-              "name": "popover.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/icon/icon.registry.ts",
+          "name": "icon.registry.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/input",
+      "name": "input",
+      "files": [
+        {
+          "path": "ui/input/input.directive.spec.ts",
+          "name": "input.directive.spec.ts",
+          "language": "spec.ts"
         },
         {
-          "path": "ui/progress-bar",
-          "name": "progress-bar",
-          "files": [
-            {
-              "path": "ui/progress-bar/progress-bar.component.css",
-              "name": "progress-bar.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/progress-bar/progress-bar.component.html",
-              "name": "progress-bar.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/progress-bar/progress-bar.component.spec.ts",
-              "name": "progress-bar.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/progress-bar/progress-bar.component.ts",
-              "name": "progress-bar.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/input/input.directive.ts",
+          "name": "input.directive.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/loader",
+      "name": "loader",
+      "files": [
+        {
+          "path": "ui/loader/loader.component.css",
+          "name": "loader.component.css",
+          "language": "css"
         },
         {
-          "path": "ui/radio-button",
-          "name": "radio-button",
-          "files": [
-            {
-              "path": "ui/radio-button/radio-button-icon.component.ts",
-              "name": "radio-button-icon.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/radio-button/radio-button.component.css",
-              "name": "radio-button.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/radio-button/radio-button.component.html",
-              "name": "radio-button.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/radio-button/radio-button.component.spec.ts",
-              "name": "radio-button.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/radio-button/radio-button.component.ts",
-              "name": "radio-button.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/radio-button/radio-group.component.css",
-              "name": "radio-group.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/radio-button/radio-group.component.html",
-              "name": "radio-group.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/radio-button/radio-group.component.spec.ts",
-              "name": "radio-group.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/radio-button/radio-group.component.ts",
-              "name": "radio-group.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/loader/loader.component.html",
+          "name": "loader.component.html",
+          "language": "html"
         },
         {
-          "path": "ui/select",
-          "name": "select",
-          "files": [
-            {
-              "path": "ui/select/option-group-label.component.ts",
-              "name": "option-group-label.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/select/option-group.component.spec.ts",
-              "name": "option-group.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/select/option-group.component.ts",
-              "name": "option-group.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/select/option.component.css",
-              "name": "option.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/select/option.component.html",
-              "name": "option.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/select/option.component.spec.ts",
-              "name": "option.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/select/option.component.ts",
-              "name": "option.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/select/select-check-icon.component.ts",
-              "name": "select-check-icon.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/select/select-icon.component.ts",
-              "name": "select-icon.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/select/select.component.css",
-              "name": "select.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/select/select.component.html",
-              "name": "select.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/select/select.component.spec.ts",
-              "name": "select.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/select/select.component.ts",
-              "name": "select.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/loader/loader.component.spec.ts",
+          "name": "loader.component.spec.ts",
+          "language": "spec.ts"
         },
         {
-          "path": "ui/session-storage",
-          "name": "session-storage",
-          "files": [
-            {
-              "path": "ui/session-storage/session-storage.service.spec.ts",
-              "name": "session-storage.service.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/session-storage/session-storage.service.ts",
-              "name": "session-storage.service.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/loader/loader.component.ts",
+          "name": "loader.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/local-storage",
+      "name": "local-storage",
+      "files": [
+        {
+          "path": "ui/local-storage/local-storage.service.spec.ts",
+          "name": "local-storage.service.spec.ts",
+          "language": "spec.ts"
         },
         {
-          "path": "ui/skeleton",
-          "name": "skeleton",
-          "files": [
-            {
-              "path": "ui/skeleton/skeleton.component.css",
-              "name": "skeleton.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/skeleton/skeleton.component.spec.ts",
-              "name": "skeleton.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/skeleton/skeleton.component.ts",
-              "name": "skeleton.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/local-storage/local-storage.service.ts",
+          "name": "local-storage.service.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/otp-input",
+      "name": "otp-input",
+      "files": [
+        {
+          "path": "ui/otp-input/otp-input.component.css",
+          "name": "otp-input.component.css",
+          "language": "css"
         },
         {
-          "path": "ui/switch",
-          "name": "switch",
-          "files": [
-            {
-              "path": "ui/switch/switch.component.css",
-              "name": "switch.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/switch/switch.component.html",
-              "name": "switch.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/switch/switch.component.spec.ts",
-              "name": "switch.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/switch/switch.component.ts",
-              "name": "switch.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/otp-input/otp-input.component.html",
+          "name": "otp-input.component.html",
+          "language": "html"
         },
         {
-          "path": "ui/tab",
-          "name": "tab",
-          "files": [
-            {
-              "path": "ui/tab/tab-body.directive.ts",
-              "name": "tab-body.directive.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/tab/tab-group-header.component.spec.ts",
-              "name": "tab-group-header.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/tab/tab-group-header.component.ts",
-              "name": "tab-group-header.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/tab/tab-group.component.css",
-              "name": "tab-group.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/tab/tab-group.component.html",
-              "name": "tab-group.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/tab/tab-group.component.spec.ts",
-              "name": "tab-group.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/tab/tab-group.component.ts",
-              "name": "tab-group.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/tab/tab-header.directive.ts",
-              "name": "tab-header.directive.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/tab/tab.component.css",
-              "name": "tab.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/tab/tab.component.html",
-              "name": "tab.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/tab/tab.component.ts",
-              "name": "tab.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/otp-input/otp-input.component.spec.ts",
+          "name": "otp-input.component.spec.ts",
+          "language": "spec.ts"
         },
         {
-          "path": "ui/textarea",
-          "name": "textarea",
-          "files": [
-            {
-              "path": "ui/textarea/textarea.directive.spec.ts",
-              "name": "textarea.directive.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/textarea/textarea.directive.ts",
-              "name": "textarea.directive.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/otp-input/otp-input.component.ts",
+          "name": "otp-input.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/outside-click",
+      "name": "outside-click",
+      "files": [
+        {
+          "path": "ui/outside-click/outside-click.directive.ts",
+          "name": "outside-click.directive.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/pagination",
+      "name": "pagination",
+      "files": [
+        {
+          "path": "ui/pagination/pagination-next-icon.component.ts",
+          "name": "pagination-next-icon.component.ts",
+          "language": "ts"
         },
         {
-          "path": "ui/toast",
-          "name": "toast",
-          "files": [
-            {
-              "path": "ui/toast/toast-close.component.ts",
-              "name": "toast-close.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/toast/toast.component.css",
-              "name": "toast.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/toast/toast.component.html",
-              "name": "toast.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/toast/toast.component.spec.ts",
-              "name": "toast.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/toast/toast.component.ts",
-              "name": "toast.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/toast/toast.service.spec.ts",
-              "name": "toast.service.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/toast/toast.service.ts",
-              "name": "toast.service.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/pagination/pagination-prev-icon.component.ts",
+          "name": "pagination-prev-icon.component.ts",
+          "language": "ts"
         },
         {
-          "path": "ui/tooltip",
-          "name": "tooltip",
-          "files": [
-            {
-              "path": "ui/tooltip/tooltip-container.component.css",
-              "name": "tooltip-container.component.css",
-              "language": "css"
-            },
-            {
-              "path": "ui/tooltip/tooltip-container.component.html",
-              "name": "tooltip-container.component.html",
-              "language": "html"
-            },
-            {
-              "path": "ui/tooltip/tooltip-container.component.spec.ts",
-              "name": "tooltip-container.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/tooltip/tooltip-container.component.ts",
-              "name": "tooltip-container.component.ts",
-              "language": "ts"
-            },
-            {
-              "path": "ui/tooltip/tooltip.directive.spec.ts",
-              "name": "tooltip.directive.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "ui/tooltip/tooltip.directive.ts",
-              "name": "tooltip.directive.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "ui/pagination/pagination.component.css",
+          "name": "pagination.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/pagination/pagination.component.html",
+          "name": "pagination.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/pagination/pagination.component.spec.ts",
+          "name": "pagination.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/pagination/pagination.component.ts",
+          "name": "pagination.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/popover",
+      "name": "popover",
+      "files": [
+        {
+          "path": "ui/popover/popover-origin.directive.spec.ts",
+          "name": "popover-origin.directive.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/popover/popover-origin.directive.ts",
+          "name": "popover-origin.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/popover/popover.component.css",
+          "name": "popover.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/popover/popover.component.html",
+          "name": "popover.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/popover/popover.component.spec.ts",
+          "name": "popover.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/popover/popover.component.ts",
+          "name": "popover.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/progress-bar",
+      "name": "progress-bar",
+      "files": [
+        {
+          "path": "ui/progress-bar/progress-bar.component.css",
+          "name": "progress-bar.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/progress-bar/progress-bar.component.html",
+          "name": "progress-bar.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/progress-bar/progress-bar.component.spec.ts",
+          "name": "progress-bar.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/progress-bar/progress-bar.component.ts",
+          "name": "progress-bar.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/radio-button",
+      "name": "radio-button",
+      "files": [
+        {
+          "path": "ui/radio-button/radio-button-icon.component.ts",
+          "name": "radio-button-icon.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/radio-button/radio-button.component.css",
+          "name": "radio-button.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/radio-button/radio-button.component.html",
+          "name": "radio-button.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/radio-button/radio-button.component.spec.ts",
+          "name": "radio-button.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/radio-button/radio-button.component.ts",
+          "name": "radio-button.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/radio-button/radio-group.component.css",
+          "name": "radio-group.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/radio-button/radio-group.component.html",
+          "name": "radio-group.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/radio-button/radio-group.component.spec.ts",
+          "name": "radio-group.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/radio-button/radio-group.component.ts",
+          "name": "radio-group.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/select",
+      "name": "select",
+      "files": [
+        {
+          "path": "ui/select/option-group-label.component.ts",
+          "name": "option-group-label.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/select/option-group.component.spec.ts",
+          "name": "option-group.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/select/option-group.component.ts",
+          "name": "option-group.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/select/option.component.css",
+          "name": "option.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/select/option.component.html",
+          "name": "option.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/select/option.component.spec.ts",
+          "name": "option.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/select/option.component.ts",
+          "name": "option.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/select/select-check-icon.component.ts",
+          "name": "select-check-icon.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/select/select-icon.component.ts",
+          "name": "select-icon.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/select/select.component.css",
+          "name": "select.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/select/select.component.html",
+          "name": "select.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/select/select.component.spec.ts",
+          "name": "select.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/select/select.component.ts",
+          "name": "select.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/session-storage",
+      "name": "session-storage",
+      "files": [
+        {
+          "path": "ui/session-storage/session-storage.service.spec.ts",
+          "name": "session-storage.service.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/session-storage/session-storage.service.ts",
+          "name": "session-storage.service.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/skeleton",
+      "name": "skeleton",
+      "files": [
+        {
+          "path": "ui/skeleton/skeleton.component.css",
+          "name": "skeleton.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/skeleton/skeleton.component.spec.ts",
+          "name": "skeleton.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/skeleton/skeleton.component.ts",
+          "name": "skeleton.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/switch",
+      "name": "switch",
+      "files": [
+        {
+          "path": "ui/switch/switch.component.css",
+          "name": "switch.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/switch/switch.component.html",
+          "name": "switch.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/switch/switch.component.spec.ts",
+          "name": "switch.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/switch/switch.component.ts",
+          "name": "switch.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/tab",
+      "name": "tab",
+      "files": [
+        {
+          "path": "ui/tab/tab-body.directive.ts",
+          "name": "tab-body.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/tab/tab-group-header.component.spec.ts",
+          "name": "tab-group-header.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/tab/tab-group-header.component.ts",
+          "name": "tab-group-header.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/tab/tab-group.component.css",
+          "name": "tab-group.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/tab/tab-group.component.html",
+          "name": "tab-group.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/tab/tab-group.component.spec.ts",
+          "name": "tab-group.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/tab/tab-group.component.ts",
+          "name": "tab-group.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/tab/tab-header.directive.ts",
+          "name": "tab-header.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/tab/tab.component.css",
+          "name": "tab.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/tab/tab.component.html",
+          "name": "tab.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/tab/tab.component.ts",
+          "name": "tab.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/textarea",
+      "name": "textarea",
+      "files": [
+        {
+          "path": "ui/textarea/textarea.directive.spec.ts",
+          "name": "textarea.directive.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/textarea/textarea.directive.ts",
+          "name": "textarea.directive.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/toast",
+      "name": "toast",
+      "files": [
+        {
+          "path": "ui/toast/toast-close.component.ts",
+          "name": "toast-close.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/toast/toast.component.css",
+          "name": "toast.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/toast/toast.component.html",
+          "name": "toast.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/toast/toast.component.spec.ts",
+          "name": "toast.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/toast/toast.component.ts",
+          "name": "toast.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/toast/toast.service.spec.ts",
+          "name": "toast.service.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/toast/toast.service.ts",
+          "name": "toast.service.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "ui/tooltip",
+      "name": "tooltip",
+      "files": [
+        {
+          "path": "ui/tooltip/tooltip-container.component.css",
+          "name": "tooltip-container.component.css",
+          "language": "css"
+        },
+        {
+          "path": "ui/tooltip/tooltip-container.component.html",
+          "name": "tooltip-container.component.html",
+          "language": "html"
+        },
+        {
+          "path": "ui/tooltip/tooltip-container.component.spec.ts",
+          "name": "tooltip-container.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/tooltip/tooltip-container.component.ts",
+          "name": "tooltip-container.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "ui/tooltip/tooltip.directive.spec.ts",
+          "name": "tooltip.directive.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "ui/tooltip/tooltip.directive.ts",
+          "name": "tooltip.directive.ts",
+          "language": "ts"
         }
       ]
     }

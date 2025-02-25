@@ -1,5 +1,5 @@
 :host {
-  background-color: var(--mute-start);
+  background-color: var(--color-mute-start);
   border-radius: 4px;
   width: 100%;
   height: 20px;
@@ -10,12 +10,12 @@
 
 @keyframes pulse {
   0% {
-    background-color: var(--mute-start);
+    background-color: var(--color-mute-start);
   }
   50% {
-    background-color: var(--mute-end);
+    background-color: var(--color-mute-end);
   }
   100% {
-    background-color: var(--mute-start);
+    background-color: var(--color-mute-start);
   }
 }

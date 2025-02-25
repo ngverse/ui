@@ -2,8 +2,8 @@
   display: block;
   height: 100vh;
   width: auto;
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-background);
+  color: var(--color-foreground);
   padding: 16px;
   overflow: auto;
 }

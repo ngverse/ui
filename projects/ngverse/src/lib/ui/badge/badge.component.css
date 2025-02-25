@@ -11,7 +11,7 @@
   bottom: 100%;
   left: 100%;
   text-align: center;
-  background-color: var(--danger);
+  background-color: var(--color-danger);
   color: #fff;
   margin: -12px 0;
 }
