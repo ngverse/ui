@@ -5,8 +5,8 @@ import {
   OnDestroy,
   signal,
 } from '@angular/core';
-import { ButtonComponent } from '../../../@/ui/button/button.component';
-import { SessionStorageService } from '../../../@/ui/session-storage/session-storage.service';
+import { ButtonComponent } from '@/ui/button/button.component';
+import { SessionStorageService } from '@/ui/session-storage/session-storage.service';
 const STORAGE_KEY = 'current-date';
 
 @Component({

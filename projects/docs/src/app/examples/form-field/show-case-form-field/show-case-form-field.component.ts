@@ -1,14 +1,14 @@
 import { Component, effect, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ButtonComponent } from '../../../@/ui/button/button.component';
-import { DialogService } from '../../../@/ui/dialog/dialog.service';
-import { ErrorComponent } from '../../../@/ui/form-field/error/error.component';
-import { FormFieldErrorRegistry } from '../../../@/ui/form-field/form-field-error.registry';
-import { FormFieldComponent } from '../../../@/ui/form-field/form-field.component';
-import { LabelComponent } from '../../../@/ui/form-field/label/label.component';
-import { InputDirective } from '../../../@/ui/input/input.directive';
-import { OptionComponent } from '../../../@/ui/select/option.component';
-import { SelectComponent } from '../../../@/ui/select/select.component';
+import { ButtonComponent } from '@/ui/button/button.component';
+import { DialogService } from '@/ui/dialog/dialog.service';
+import { ErrorComponent } from '@/ui/form-field/error/error.component';
+import { FormFieldErrorRegistry } from '@/ui/form-field/form-field-error.registry';
+import { FormFieldComponent } from '@/ui/form-field/form-field.component';
+import { LabelComponent } from '@/ui/form-field/label/label.component';
+import { InputDirective } from '@/ui/input/input.directive';
+import { OptionComponent } from '@/ui/select/option.component';
+import { SelectComponent } from '@/ui/select/select.component';
 
 @Component({
   selector: 'doc-show-case-form-field',

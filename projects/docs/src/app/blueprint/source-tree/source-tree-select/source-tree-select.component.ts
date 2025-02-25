@@ -9,10 +9,10 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChevronDown, Folder, LucideAngularModule } from 'lucide-angular';
-import { OptionGroupLabelComponent } from '../../../@/ui/select/option-group-label.component';
-import { OptionGroupComponent } from '../../../@/ui/select/option-group.component';
-import { OptionComponent } from '../../../@/ui/select/option.component';
-import { SelectComponent } from '../../../@/ui/select/select.component';
+import { OptionGroupLabelComponent } from '@/ui/select/option-group-label.component';
+import { OptionGroupComponent } from '@/ui/select/option-group.component';
+import { OptionComponent } from '@/ui/select/option.component';
+import { SelectComponent } from '@/ui/select/select.component';
 import { SourceTreeFile, SourceTreeFolder } from '../source-tree-builder';
 
 @Component({
