@@ -7,7 +7,7 @@ import { A11yAccordionDirective } from './a11y-accordion.directive';
     '(click)': 'toggled.emit()',
     '[attr.aria-controls]': 'panelId',
     '[attr.aria-expanded]': 'isExpanded()',
-    class: 'gn-accordion-title',
+    class: 'a11y-accordion-title',
     '[id]': 'id',
   },
 })
