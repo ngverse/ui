@@ -4,6 +4,14 @@ NgVerse is a collection of feature-rich Angular components, directives, and pipe
 
 For more info visit the [docs](https://www.ngverse.dev)
 
+
+
+
+# Announcement
+
+Thank you all for your feedback! The huge stable release is
+coming—stay tuned!
+
 [![npm](https://img.shields.io/npm/v/ngverse?label=npm&logo=npm)](https://www.npmjs.com/package/ngverse)
 
 <p align="center">
