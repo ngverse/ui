@@ -1,7 +1,7 @@
 import { Component, inject, signal, viewChild } from '@angular/core';
-import { ButtonComponent } from '@ng-verse/button/button.component';
-import { OtpInputComponent } from 'ng-verse/otp-input/otp-input.component';
-import { ToastService } from 'ng-verse/toast/toast.service';
+import { ButtonComponent } from '../../../../../../ngverse/src/lib/button/button.component';
+import { OtpInputComponent } from '../../../../../../ngverse/src/lib/otp-input/otp-input.component';
+import { ToastService } from '../../../../../../ngverse/src/lib/toast/toast.service';
 
 @Component({
   selector: 'doc-show-case-otp-input',

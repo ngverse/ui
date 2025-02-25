@@ -1,6 +1,6 @@
 module.exports = {
   branches: ['main'],
-  repositoryUrl: 'https://github.com/lukonik/ng-verse',
+  repositoryUrl: 'https://github.com/lukonik/ngverse',
   preset: 'angular',
   releaseRules: [{ type: 'refactor', release: 'patch' }],
   plugins: [
@@ -9,13 +9,13 @@ module.exports = {
     [
       '@semantic-release/npm',
       {
-        pkgRoot: 'dist/ng-verse',
+        pkgRoot: 'dist/ngverse',
       },
     ],
     [
       '@semantic-release/git',
       {
-        assets: ['projects/ng-verse/package.json'],
+        assets: ['projects/ngverse/package.json'],
         message: 'chore(release): update package.json [skip ci]',
       },
     ],

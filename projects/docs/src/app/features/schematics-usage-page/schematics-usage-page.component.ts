@@ -13,7 +13,7 @@ import { SourceCodeComponent } from '../../blueprint/source-code/source-code.com
 export class SchematicsUsagePageComponent {
   configCode = ` "projectType": "application",
   "schematics": {
-    "ng-verse:element": {
+    "ngverse:element": {
       "path": "core/ui"
     }
   }`;

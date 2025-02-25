@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { DarkModeToggleComponent } from 'ng-verse/dark-mode/dark-mode-toggle.component';
-import { DarkModeService } from 'ng-verse/dark-mode/dark-mode.service';
+import { DarkModeToggleComponent } from '../../../../../../ngverse/src/lib/dark-mode/dark-mode-toggle.component';
+import { DarkModeService } from '../../../../../../ngverse/src/lib/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'doc-show-case-dark-mode',

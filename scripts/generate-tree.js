@@ -3,7 +3,7 @@ const path = require('path');
 const dirTree = require('directory-tree');
 
 // Define your base directory
-const baseDir = path.resolve('./projects/ng-verse/src/lib');
+const baseDir = path.resolve('./projects/ngverse/src/lib');
 
 // Custom function to modify paths in the tree
 function cleanTreePaths(tree, baseDir) {

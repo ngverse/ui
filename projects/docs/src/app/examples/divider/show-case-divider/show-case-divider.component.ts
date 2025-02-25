@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DividerComponent } from '@ng-verse/divider/divider.component';
+import { DividerComponent } from '../../../../../../ngverse/src/lib/divider/divider.component';
 
 @Component({
   selector: 'doc-show-case-divider',

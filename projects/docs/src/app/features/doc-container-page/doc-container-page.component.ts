@@ -1,6 +1,6 @@
 import { afterNextRender, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ToastService } from '@ng-verse/toast/toast.service';
+import { ToastService } from '../../../../../ngverse/src/lib/toast/toast.service';
 import { DocSiblingNavigationsComponent } from '../doc-sibling-navigations/doc-sibling-navigations.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 const EARLY_RELEASE_KEY = 'early-release';

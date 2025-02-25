@@ -4,13 +4,13 @@
     breeze. There are two primary commands you can run:
   </p>
   <ul>
-    <li><code>ng add ng-verse</code></li>
-    <li><code>ng g ng-verse:element</code> (g is an alias for generate)</li>
+    <li><code>ng add ngverse</code></li>
+    <li><code>ng g ngverse:element</code> (g is an alias for generate)</li>
   </ul>
   <p>This page explains each command and its options in detail.</p>
-  <h2>ng g ng-verse:element [element-name]</h2>
+  <h2>ng g ngverse:element [element-name]</h2>
   <p>
-    The <code>ng g ng-verse:element</code> command adds a Ng-Verse element to
+    The <code>ng g ngverse:element</code> command adds a Ng-Verse element to
     your project. Below are the available parameters:
   </p>
 
@@ -23,7 +23,7 @@
         <li><code>--name=button</code></li>
         <li>
           By passing it as the first positional argument:<br />
-          Example: <code>ng g ng-verse:element button</code>
+          Example: <code>ng g ngverse:element button</code>
         </li>
       </ul>
     </li>
@@ -55,7 +55,7 @@
     <li>
       If you want to override the existing files, set <code>replace=true</code>.
     </li>
-    <li>Example: <code>ng g ng-verse:element button --replace=true</code></li>
+    <li>Example: <code>ng g ngverse:element button --replace=true</code></li>
   </ul>
   <p>
     <strong
@@ -88,7 +88,7 @@
     <li>
       If you want to include test files, use
       <code>includeTests=true</code>.<br />
-      Example: <code>ng g ng-verse:element button --includeTests=true</code>
+      Example: <code>ng g ngverse:element button --includeTests=true</code>
     </li>
   </ul>
   <p>
@@ -106,13 +106,13 @@
     <li>
       You can specify a different location using the
       <code>--path</code> parameter.<br />
-      Example: <code>ng g ng-verse:element button --path=core</code><br />
+      Example: <code>ng g ngverse:element button --path=core</code><br />
       This will place the element in <code>/src/app/core</code>.
     </li>
     <li>
       You can also change the destination by including the path in the element
       name:<br />
-      Example: <code>ng g ng-verse:element core/button</code><br />
+      Example: <code>ng g ngverse:element core/button</code><br />
       This will place the element in <code>/src/app/core</code>.
     </li>
   </ul>
@@ -131,7 +131,7 @@
   <h3>Global Configuration</h3>
   <p>
     You can set a global configuration for the
-    <code>ng g ng-verse:element</code> schematics.
+    <code>ng g ngverse:element</code> schematics.
   </p>
   <p>
     For example, if you want to place all elements inside the
@@ -148,17 +148,17 @@
   <p>Once this is configured, running the command:</p>
   <doc-source-code
     language="bash"
-    [code]="'ng g ng-verse:element button'"
+    [code]="'ng g ngverse:element button'"
   ></doc-source-code>
 
   <p>
     will automatically place the element inside the <code>core/ui</code> folder,
     without needing to specify the <code>--path</code> parameter every time.
   </p>
-  <h2>ng add ng-verse</h2>
+  <h2>ng add ngverse</h2>
 
   <p>
-    The <code>ng add ng-verse</code> command configures your project to use the
+    The <code>ng add ngverse</code> command configures your project to use the
     Ng-Verse library. Let’s first explain what it does, and then describe the
     parameters you can pass. The command performs the following actions:
   </p>
@@ -182,7 +182,7 @@
     </li>
   </ul>
 
-  <h3>2. Install <code>ng-verse</code> schematics</h3>
+  <h3>2. Install <code>ngverse</code> schematics</h3>
   <p>
     Ng-Verse schematics are installed to automate adding elements to your
     project.
@@ -191,14 +191,14 @@
     <li>
       ⚠️ This step does not install the Ng-Verse component library itself. You
       won’t be able to import components directly from
-      <code>ng-verse</code>. You'll need to add them manually using the command:
-      <code>ng g ng-verse:element</code>.
+      <code>ngverse</code>. You'll need to add them manually using the command:
+      <code>ng g ngverse:element</code>.
     </li>
   </ul>
 
-  <h3>3. Add <code>ng-verse.scss</code> to your project</h3>
+  <h3>3. Add <code>ngverse.scss</code> to your project</h3>
   <p>
-    The file <code>ng-verse.scss</code> is added and imported in your
+    The file <code>ngverse.scss</code> is added and imported in your
     <code>styles.scss</code> file.
   </p>
   <ul>
@@ -230,8 +230,8 @@
 
   <p>After a successful run, Ng-Verse is ready to use!</p>
 
-  <h3>Parameters for <code>ng add ng-verse</code></h3>
-  <p>The <code>ng add ng-verse</code> command has a couple of parameters:</p>
+  <h3>Parameters for <code>ng add ngverse</code></h3>
+  <p>The <code>ng add ngverse</code> command has a couple of parameters:</p>
 
   <h4>1. <code>project</code> (Optional)</h4>
   <p>Specifies which Angular project to configure.</p>

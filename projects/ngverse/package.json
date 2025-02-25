@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/lukonik/ng-verse"
+    "url": "https://github.com/lukonik/ngverse"
   },
   "peerDependencies": {
     "@angular/common": ">=19.0.0",
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.schematics.json",
-    "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json ../../dist/ng-verse/ && cp ../../README.md ../../dist/ng-verse/",
+    "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json ../../dist/ngverse/ && cp ../../README.md ../../dist/ngverse/",
     "schema:watch": "tsc -w -p tsconfig.schematics.json"
   },
   "dependencies": {

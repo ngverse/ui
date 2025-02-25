@@ -62,7 +62,7 @@ export class FileService {
       for (const file of files) {
         // Wrap the subscription in a Promise
         const filePromise = lastValueFrom(
-          this.getFile('ng-verse/' + file.path).pipe(
+          this.getFile('ngverse/' + file.path).pipe(
             map((content) => {
               let fileContent = content;
               if (content === EMPTY_FILE_TOKEN) {

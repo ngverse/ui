@@ -1,14 +1,14 @@
 import { Component, effect, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ButtonComponent } from '@ng-verse/button/button.component';
-import { DialogService } from '@ng-verse/dialog/dialog.service';
-import { ErrorComponent } from '@ng-verse/form-field/error/error.component';
-import { FormFieldErrorRegistry } from '@ng-verse/form-field/form-field-error.registry';
-import { FormFieldComponent } from '@ng-verse/form-field/form-field.component';
-import { LabelComponent } from '@ng-verse/form-field/label/label.component';
-import { InputDirective } from '@ng-verse/input/input.directive';
-import { OptionComponent } from '@ng-verse/select/option.component';
-import { SelectComponent } from '@ng-verse/select/select.component';
+import { ButtonComponent } from '../../../../../../ngverse/src/lib/button/button.component';
+import { DialogService } from '../../../../../../ngverse/src/lib/dialog/dialog.service';
+import { ErrorComponent } from '../../../../../../ngverse/src/lib/form-field/error/error.component';
+import { FormFieldErrorRegistry } from '../../../../../../ngverse/src/lib/form-field/form-field-error.registry';
+import { FormFieldComponent } from '../../../../../../ngverse/src/lib/form-field/form-field.component';
+import { LabelComponent } from '../../../../../../ngverse/src/lib/form-field/label/label.component';
+import { InputDirective } from '../../../../../../ngverse/src/lib/input/input.directive';
+import { OptionComponent } from '../../../../../../ngverse/src/lib/select/option.component';
+import { SelectComponent } from '../../../../../../ngverse/src/lib/select/select.component';
 
 @Component({
   selector: 'doc-show-case-form-field',

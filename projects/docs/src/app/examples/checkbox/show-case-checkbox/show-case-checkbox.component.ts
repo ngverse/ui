@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CheckboxComponent } from '@ng-verse/checkbox/checkbox.component';
+import { CheckboxComponent } from '../../../../../../ngverse/src/lib/checkbox/checkbox.component';
 
 @Component({
   selector: 'doc-show-case-checkbox',

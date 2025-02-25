@@ -7,7 +7,7 @@
       "schema": "./element/schema.json"
     },
     "ng-add": {
-      "description": "Add ng-verse to the project.",
+      "description": "Add ngverse to the project.",
       "factory": "./ng-add/index#ngAdd",
       "schema": "./ng-add/schema.json",
       "save": "devDependencies"
