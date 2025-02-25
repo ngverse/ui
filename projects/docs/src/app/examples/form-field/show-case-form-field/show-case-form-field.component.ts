@@ -1,14 +1,14 @@
 import { Component, effect, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ButtonComponent } from '../../../../../../ngverse/src/lib/button/button.component';
-import { DialogService } from '../../../../../../ngverse/src/lib/dialog/dialog.service';
-import { ErrorComponent } from '../../../../../../ngverse/src/lib/form-field/error/error.component';
-import { FormFieldErrorRegistry } from '../../../../../../ngverse/src/lib/form-field/form-field-error.registry';
-import { FormFieldComponent } from '../../../../../../ngverse/src/lib/form-field/form-field.component';
-import { LabelComponent } from '../../../../../../ngverse/src/lib/form-field/label/label.component';
-import { InputDirective } from '../../../../../../ngverse/src/lib/input/input.directive';
-import { OptionComponent } from '../../../../../../ngverse/src/lib/select/option.component';
-import { SelectComponent } from '../../../../../../ngverse/src/lib/select/select.component';
+import { ButtonComponent } from '@/ui/button/button.component';
+import { DialogService } from '@/ui/dialog/dialog.service';
+import { ErrorComponent } from '@/ui/form-field/error/error.component';
+import { FormFieldErrorRegistry } from '@/ui/form-field/form-field-error.registry';
+import { FormFieldComponent } from '@/ui/form-field/form-field.component';
+import { LabelComponent } from '@/ui/form-field/label/label.component';
+import { InputDirective } from '@/ui/input/input.directive';
+import { OptionComponent } from '@/ui/select/option.component';
+import { SelectComponent } from '@/ui/select/select.component';
 
 @Component({
   selector: 'doc-show-case-form-field',

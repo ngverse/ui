@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DividerComponent } from '../../../../../ngverse/src/lib/divider/divider.component';
-import { IconComponent } from '../../../../../ngverse/src/lib/icon/icon.component';
+import { DividerComponent } from '@/ui/divider/divider.component';
+import { IconComponent } from '@/ui/icon/icon.component';
 import {
   ApiEntity,
   ApiInputsComponent,

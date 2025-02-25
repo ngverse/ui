@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { OptionGroupLabelComponent } from '../../../../../../ngverse/src/lib/select/option-group-label.component';
-import { OptionGroupComponent } from '../../../../../../ngverse/src/lib/select/option-group.component';
-import { OptionComponent } from '../../../../../../ngverse/src/lib/select/option.component';
-import { SelectComponent } from '../../../../../../ngverse/src/lib/select/select.component';
+import { OptionGroupLabelComponent } from '@/ui/select/option-group-label.component';
+import { OptionGroupComponent } from '@/ui/select/option-group.component';
+import { OptionComponent } from '@/ui/select/option.component';
+import { SelectComponent } from '@/ui/select/select.component';
 const countries = [
   { code: 'KA', name: 'Georgia' },
   { code: 'US', name: 'United States' },

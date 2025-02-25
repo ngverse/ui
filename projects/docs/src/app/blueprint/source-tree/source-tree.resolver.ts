@@ -29,7 +29,7 @@ export class SourceTreeResolver {
           hideName: false,
         });
       } else {
-        rootFolder.files.push(dir as SourceTreeFile);
+        // rootFolder.files.push(dir as SourceTreeFile);
       }
     }
 

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { ButtonComponent } from '../../../../../../ngverse/src/lib/button/button.component';
-import { CardComponent } from '../../../../../../ngverse/src/lib/card/card.component';
-import { FormFieldComponent } from '../../../../../../ngverse/src/lib/form-field/form-field.component';
-import { InputDirective } from '../../../../../../ngverse/src/lib/input/input.directive';
-import { LoaderComponent } from '../../../../../../ngverse/src/lib/loader/loader.component';
+import { ButtonComponent } from '@/ui/button/button.component';
+import { CardComponent } from '@/ui/card/card.component';
+import { FormFieldComponent } from '@/ui/form-field/form-field.component';
+import { InputDirective } from '@/ui/input/input.directive';
+import { LoaderComponent } from '@/ui/loader/loader.component';
 
 @Component({
   selector: 'doc-show-case-loader',

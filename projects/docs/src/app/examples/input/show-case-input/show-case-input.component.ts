@@ -1,7 +1,7 @@
 import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CheckboxComponent } from '../../../../../../ngverse/src/lib/checkbox/checkbox.component';
-import { InputDirective } from '../../../../../../ngverse/src/lib/input/input.directive';
+import { CheckboxComponent } from '@/ui/checkbox/checkbox.component';
+import { InputDirective } from '@/ui/input/input.directive';
 
 @Component({
   selector: 'doc-show-case-input',
