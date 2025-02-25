@@ -7,7 +7,7 @@ import { InputDirective } from '../../../../../../ngverse/src/lib/input/input.di
   selector: 'doc-show-case-input',
   imports: [InputDirective, FormsModule, CheckboxComponent, FormsModule],
   templateUrl: './show-case-input.component.html',
-  styleUrl: './show-case-input.component.scss',
+  styleUrl: './show-case-input.component.css',
 })
 export class ShowCaseInputComponent {
   username = model();

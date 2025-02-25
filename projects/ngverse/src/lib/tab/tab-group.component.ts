@@ -26,7 +26,7 @@ import { TabComponent } from './tab.component';
   selector: 'app-tab-group',
   imports: [NgTemplateOutlet, TabGroupHeaderComponent],
   templateUrl: './tab-group.component.html',
-  styleUrl: './tab-group.component.scss',
+  styleUrl: './tab-group.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('tabChange', [

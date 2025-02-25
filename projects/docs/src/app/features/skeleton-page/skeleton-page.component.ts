@@ -24,7 +24,7 @@ const ROOT = 'skeleton';
     ApiInfoComponent,
   ],
   templateUrl: './skeleton-page.component.html',
-  styleUrl: './skeleton-page.component.scss',
+  styleUrl: './skeleton-page.component.css',
 })
 export class SkeletonPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'app-autocomplete-item',
   templateUrl: './autocomplete-item.component.html',
-  styleUrl: './autocomplete-item.component.scss',
+  styleUrl: './autocomplete-item.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteItemComponent implements Highlightable {

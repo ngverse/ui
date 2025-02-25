@@ -12,7 +12,7 @@ import { RadioGroupComponent } from '../../../../../../ngverse/src/lib/radio-but
     FormsModule,
   ],
   templateUrl: './show-case-radio-button.component.html',
-  styleUrl: './show-case-radio-button.component.scss',
+  styleUrl: './show-case-radio-button.component.css',
 })
 export class ShowCaseRadioButtonComponent {
   values = [

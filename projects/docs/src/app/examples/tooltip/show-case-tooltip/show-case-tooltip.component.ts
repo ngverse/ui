@@ -7,6 +7,6 @@ import { TooltipDirective } from '../../../../../../ngverse/src/lib/tooltip/tool
   selector: 'doc-show-case-tooltip',
   imports: [TooltipDirective, ButtonComponent, InputDirective],
   templateUrl: './show-case-tooltip.component.html',
-  styleUrl: './show-case-tooltip.component.scss',
+  styleUrl: './show-case-tooltip.component.css',
 })
 export class ShowCaseTooltipComponent {}

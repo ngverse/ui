@@ -1,0 +1,152 @@
+:host {
+  /** General styles **/
+
+  box-sizing: border-box;
+  background: transparent;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  --button-color: var(--background);
+  --button-on-color: var(--foreground);
+  border-radius: var(--border-radius);
+  border: var(--border);
+  position: relative;
+  cursor: pointer;
+  font-weight: 600;
+
+  &.icon {
+    border-radius: 100%;
+  }
+
+  /** General ends here **/
+  /** Variant styles **/
+
+  &.btn-fill {
+    background-color: var(--button-color);
+    color: var(--button-on-color);
+    --spinner-color: var(--button-on-color);
+  }
+
+  &.btn-outline {
+    border: 1px solid var(--button-color);
+    color: var(--button-color);
+    --spinner-color: var(--button-color);
+  }
+
+  &.btn-link {
+    color: var(--button-color);
+    --spinner-color: var(--button-color);
+    border: 0;
+  }
+
+  /** Variant ends here ** /
+
+/** Color styles **/
+  &.btn-primary {
+    --button-color: var(--primary);
+    --button-on-color: var(--primary-foreground);
+  }
+
+  &.btn-secondary {
+    --button-color: var(--secondary);
+    --button-on-color: var(--secondary-foreground);
+  }
+
+  &.btn-danger {
+    --button-color: var(--danger);
+    --button-on-color: var(--danger-foreground);
+  }
+
+  &.btn-warning {
+    --button-color: var(--warning);
+    --button-on-color: var(--warning-foreground);
+  }
+
+  &.btn-success {
+    --button-color: var(--success);
+    --button-on-color: var(--success-foreground);
+  }
+  /** Color ends here **/
+
+  /** State styles **/
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--ring);
+  }
+
+  &:hover:not(:disabled) {
+    &.btn-fill {
+      background-color: var(--button-color);
+      color: var(--button-on-color);
+      --spinner-color: var(--button-on-color);
+    }
+    &.btn-outline,
+    &.btn-link {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+  }
+  &:active {
+    opacity: 0.7;
+  }
+
+  &:disabled {
+    &:not(.btn-link) {
+      background-color: var(--disabled);
+    }
+    color: var(--disabled-foreground);
+    cursor: default;
+  }
+
+  &.btn-loading {
+    pointer-events: none;
+    color: transparent;
+  }
+
+  /** State ends here **/
+
+  /** Size styles **/
+
+  &:not(.icon) {
+    &.btn-sm {
+      height: 32px;
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+
+    &.btn-md {
+      height: 38px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    &.btn-lg {
+      height: 48px;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+  }
+  &.icon {
+    &.btn-sm {
+      height: 32px;
+      width: 32px;
+    }
+
+    &.btn-md {
+      height: 38px;
+      width: 38px;
+    }
+    &.btn-lg {
+      height: 48px;
+      width: 48px;
+    }
+  }
+
+  /** Size ends here **/
+}

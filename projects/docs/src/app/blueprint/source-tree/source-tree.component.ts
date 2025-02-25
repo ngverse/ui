@@ -22,7 +22,7 @@ import { SourceTreeResolver } from './source-tree.resolver';
     FormsModule,
   ],
   templateUrl: './source-tree.component.html',
-  styleUrl: './source-tree.component.scss',
+  styleUrl: './source-tree.component.css',
 })
 export class SourceTreeComponent implements OnInit {
   fileService = inject(FileService);

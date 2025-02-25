@@ -22,7 +22,7 @@ const ROOT = 'tab';
     ApiInfoComponent,
   ],
   templateUrl: './tab-page.component.html',
-  styleUrl: './tab-page.component.scss',
+  styleUrl: './tab-page.component.css',
 })
 export class TabPageComponent {
   selectedIndex = signal(0);

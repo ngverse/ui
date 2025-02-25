@@ -13,7 +13,7 @@ const STORAGE_KEY = 'current-date';
   selector: 'doc-show-case-session-storage',
   imports: [ButtonComponent],
   templateUrl: './show-case-session-storage.component.html',
-  styleUrl: './show-case-session-storage.component.scss',
+  styleUrl: './show-case-session-storage.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowCaseSessionStorageComponent implements OnDestroy {

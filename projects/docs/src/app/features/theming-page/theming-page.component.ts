@@ -6,7 +6,7 @@ import { FileService } from '../../services/file.service';
 @Component({
   selector: 'doc-theming-page',
   templateUrl: './theming-page.component.html',
-  styleUrl: './theming-page.component.scss',
+  styleUrl: './theming-page.component.css',
   imports: [BlogPageComponent, SourceCodeComponent],
 })
 export class ThemingPageComponent implements OnInit {
@@ -14,7 +14,7 @@ export class ThemingPageComponent implements OnInit {
   fileService = inject(FileService);
 
   ngOnInit(): void {
-    this.fileService.getFile('ngverse/ngverse.scss').subscribe((data) => {
+    this.fileService.getFile('ngverse/ngverse.css').subscribe((data) => {
       this.globalsCode.set(data);
     });
   }

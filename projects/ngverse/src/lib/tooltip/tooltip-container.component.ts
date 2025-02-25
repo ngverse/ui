@@ -14,7 +14,7 @@ import {
   selector: 'app-tooltip-container',
   imports: [CdkPortalOutlet, NgClass],
   templateUrl: './tooltip-container.component.html',
-  styleUrl: './tooltip-container.component.scss',
+  styleUrl: './tooltip-container.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipContainerComponent {

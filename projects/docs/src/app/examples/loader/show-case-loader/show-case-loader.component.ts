@@ -16,7 +16,7 @@ import { LoaderComponent } from '../../../../../../ngverse/src/lib/loader/loader
     CardComponent,
   ],
   templateUrl: './show-case-loader.component.html',
-  styleUrl: './show-case-loader.component.scss',
+  styleUrl: './show-case-loader.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowCaseLoaderComponent {

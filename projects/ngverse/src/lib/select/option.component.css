@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px;
+  cursor: pointer;
+  background: transparent;
+  border: 0px;
+  font-size: 1rem;
+
+  &.in-group {
+    padding-left: 24px;
+  }
+
+  &.is-active,
+  &:hover:not([disabled]),
+  &.selected {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+  &:focus-visible {
+    outline: 1px solid var(--ring);
+  }
+
+  &[disabled] {
+    color: var(--disabled-foreground);
+  }
+}

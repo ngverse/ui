@@ -12,7 +12,7 @@ import {
   selector: 'app-badge',
   imports: [],
   templateUrl: './badge.component.html',
-  styleUrl: './badge.component.scss',
+  styleUrl: './badge.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'status',

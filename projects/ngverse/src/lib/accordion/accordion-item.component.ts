@@ -23,7 +23,7 @@ function genAccordionBodyId() {
   selector: 'app-accordion-item',
   imports: [ExpandIconComponent],
   templateUrl: './accordion-item.component.html',
-  styleUrl: './accordion-item.component.scss',
+  styleUrl: './accordion-item.component.css',
   animations: [EXPAND_ON_ENTER_ANIMATION, COLLAPSE_ON_LEAVE],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,0 +1,5 @@
+@reference "tailwindcss";
+
+.file-label {
+  @apply cursor-pointer border-0 border-b border-solid border-gray-200 p-3;
+}

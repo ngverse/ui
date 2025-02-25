@@ -8,7 +8,7 @@ import { DialogTestComponent } from '../dialog-test/dialog-test.component';
   selector: 'doc-show-case-dialog',
   imports: [ButtonComponent, ConfirmDirective],
   templateUrl: './show-case-dialog.component.html',
-  styleUrl: './show-case-dialog.component.scss',
+  styleUrl: './show-case-dialog.component.css',
 })
 export class ShowCaseDialogComponent {
   dialogService = inject(DialogService);

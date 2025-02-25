@@ -22,7 +22,7 @@ export type CompareWith = (o1: any, o2: any) => boolean;
   selector: 'app-radio-group',
   imports: [],
   templateUrl: './radio-group.component.html',
-  styleUrl: './radio-group.component.scss',
+  styleUrl: './radio-group.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

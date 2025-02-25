@@ -1,0 +1,14 @@
+.dialog {
+  background: var(--background);
+  border-radius: var(--border-radius);
+  border: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.dialog-header {
+  padding: 10px;
+  display: flex;
+  button {
+    margin-left: auto;
+  }
+}

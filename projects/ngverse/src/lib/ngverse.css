@@ -1,0 +1,188 @@
+@import '@angular/cdk/overlay-prebuilt.css';
+@reference "tailwindcss";
+
+:root {
+  --field-height: 36px;
+  --field-padding: 6px 10px;
+}
+
+:root {
+  --background: white;
+  --foreground: #030712;
+  --border-radius: 6px;
+  --primary: #2563eb;
+  --primary-foreground: white;
+
+  --inverse: #1f2937;
+  --inverse-foreground: white;
+
+  --secondary: #4b5563;
+  --secondary-foreground: white;
+
+  --accent: #f3f4f6;
+  --accent-foreground: #111827;
+
+  --danger: #dc2626;
+  --danger-foreground: white;
+
+  --warning: #ea580c;
+  --warning-foreground: white;
+
+  --success: #16a34a;
+  --success-foreground: white;
+
+  --disabled: #f9fafb;
+  --disabled-foreground: #9ca3af;
+
+  --surface: #f9fafb;
+
+  --surface-2: #d1d5db;
+
+  --overlay: 0, 0, 0;
+
+  --divider: #cbd5e1;
+  --border-color: #d1d5db;
+  --border: 1px solid var(--border-color);
+
+  --ring: #9ca3af;
+
+  --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1),
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --mute-start: #e0e0e0;
+  --mute-end: #f0f0f0;
+}
+
+:root.cdk-overlay-backdrop {
+  background: rgba(var(--overlay), 0.3);
+}
+
+:root.dark {
+  --background: #030712;
+  --foreground: white;
+  --border-radius: 6px;
+
+  --primary: #8b5cf6;
+  --primary-foreground: black;
+
+  --inverse: white;
+  --inverse-foreground: #030712;
+
+  --secondary: #d1d5db;
+  --secondary-foreground: black;
+
+  --accent: #d1d5db;
+  --accent-foreground: black;
+
+  --danger: #dc2626;
+  --danger-foreground: white;
+
+  --warning: #ea580c;
+  --warning-foreground: white;
+
+  --success: #16a34a;
+  --success-foreground: white;
+
+  --disabled: #6b7280;
+  --disabled-foreground: #9ca3af;
+
+  --surface: #1f2937;
+
+  --surface-2: #d1d5db;
+
+  --overlay: 255, 255, 255;
+
+  --divider: #6b7280;
+
+  --border-color: #6b7280;
+  --border: 1px solid var(--border-color);
+
+  --ring: #9ca3af;
+
+  --shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1),
+    0 4px 6px -4px rgba(255, 255, 255, 0.1),
+    0 10px 15px -3px rgba(255, 255, 255, 0.1),
+    0 4px 6px -4px rgba(255, 255, 255, 0.1);
+
+  --mute-start: #e0e0e0;
+  --mute-end: #f0f0f0;
+}
+
+:root.dark.cdk-overlay-backdrop {
+  background: rgba(var(--overlay), 0.3);
+}
+
+html,
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/**
+  input and text area are directives, so we need to set the styles in global style file
+  these are input and text area styles
+**/
+.app-input,
+.app-textarea {
+  background: var(--background);
+  box-sizing: border-box;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--field-padding);
+  font-size: 1rem;
+  &:focus-visible {
+    outline: 1px solid var(--ring);
+  }
+  &:disabled,
+  &[readonly] {
+    background: var(--disabled);
+    color: var(--disabled-foreground);
+    &::placeholder {
+      color: var(--disabled-foreground);
+    }
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color: var(--danger);
+    outline-color: transparent;
+  }
+}
+
+.app-input {
+  height: var(--field-height);
+}
+
+/**
+  context menu is directive, so we need to set the styles in global style file
+  this is context menu styles
+**/
+.app-context-menu {
+  box-shadow: var(--shadow);
+  background-color: var(--background);
+  border-radius: var(--border-radius);
+  border: var(--border);
+}
+
+.app-context-menu-item {
+  width: 100%;
+  text-align: left;
+  padding: 6px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  font-size: 1rem;
+  &:focus-visible,
+  &:hover:not([aria-disabled]),
+  &.selected {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+  &:focus-visible {
+    outline: none;
+  }
+
+  &[aria-disabled] {
+    background: var(--disabled);
+    color: var(--disabled-foreground);
+  }
+}

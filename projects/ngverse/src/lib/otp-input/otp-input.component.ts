@@ -19,7 +19,7 @@ import { InputDirective } from '../input/input.directive';
   selector: 'app-otp-input',
   imports: [InputDirective, CdkAutofill],
   templateUrl: './otp-input.component.html',
-  styleUrl: './otp-input.component.scss',
+  styleUrl: './otp-input.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OtpInputComponent implements OnDestroy {

@@ -7,7 +7,7 @@ import { ToastService } from '../../../../../../ngverse/src/lib/toast/toast.serv
   selector: 'doc-show-case-otp-input',
   imports: [OtpInputComponent, ButtonComponent],
   templateUrl: './show-case-otp-input.component.html',
-  styleUrl: './show-case-otp-input.component.scss',
+  styleUrl: './show-case-otp-input.component.css',
 })
 export class ShowCaseOtpInputComponent {
   loading = signal(false);

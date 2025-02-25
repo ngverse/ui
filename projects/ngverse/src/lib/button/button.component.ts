@@ -17,7 +17,7 @@ type SIZE_TYPES = 'sm' | 'md' | 'lg' | 'none';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[appButton]',
   templateUrl: './button.component.html',
-  styleUrl: './button.component.scss',
+  styleUrl: './button.component.css',
   imports: [ButtonLoaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

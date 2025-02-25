@@ -12,7 +12,7 @@ const SIDEBAR_LINKS = getAllSidebarLinks();
   selector: 'doc-doc-sibling-navigations',
   imports: [RouterLink, LucideAngularModule, ButtonComponent, IconComponent],
   templateUrl: './doc-sibling-navigations.component.html',
-  styleUrl: './doc-sibling-navigations.component.scss',
+  styleUrl: './doc-sibling-navigations.component.css',
 })
 export class DocSiblingNavigationsComponent {
   router = inject(Router);

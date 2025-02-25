@@ -25,7 +25,7 @@ const ROOT = 'button';
     ShowCaseButtonComponent,
   ],
   templateUrl: './button-page.component.html',
-  styleUrl: './button-page.component.scss',
+  styleUrl: './button-page.component.css',
 })
 export class ButtonPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

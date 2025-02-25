@@ -24,7 +24,7 @@ const ROOT = 'loader';
     ApiInfoComponent,
   ],
   templateUrl: './loader-page.component.html',
-  styleUrl: './loader-page.component.scss',
+  styleUrl: './loader-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoaderPageComponent {

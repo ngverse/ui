@@ -1,0 +1,43 @@
+:host {
+  padding: 16px;
+  display: block;
+  border-radius: var(--border-radius);
+  &.fill {
+    &.success {
+      background: var(--success);
+      color: var(--success-foreground);
+    }
+
+    &.danger {
+      background: var(--danger);
+      color: var(--danger-foreground);
+    }
+    &.default {
+      background: var(--inverse);
+      color: var(--inverse-foreground);
+    }
+
+    &.warning {
+      background: var(--warning);
+      color: var(--warning-foreground);
+    }
+  }
+
+  &.outline {
+    background: transparent;
+    &.success {
+      color: var(--success);
+    }
+
+    &.danger {
+      color: var(--danger);
+    }
+    &.default {
+      border: var(--border);
+    }
+
+    &.warning {
+      color: var(--warning);
+    }
+  }
+}

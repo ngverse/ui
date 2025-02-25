@@ -29,7 +29,7 @@ const ROOT = 'icon';
     ApiDescriptionComponent,
   ],
   templateUrl: './icon-page.component.html',
-  styleUrl: './icon-page.component.scss',
+  styleUrl: './icon-page.component.css',
 })
 export class IconPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

@@ -5,7 +5,7 @@ import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'doc-blueprint-page',
   templateUrl: './blueprint-page.component.html',
-  styleUrl: './blueprint-page.component.scss',
+  styleUrl: './blueprint-page.component.css',
 })
 export class BlueprintPageComponent {
   label = input.required<string>();

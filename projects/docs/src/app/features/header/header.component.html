@@ -1,16 +1,15 @@
-<header class="flex px-5 justify-between items-center sticky top-0 z-50 header">
-  <button class="lg:hidden" (click)="showSidebar()">
+<header class="header sticky top-0 z-50 flex items-center justify-between px-5">
+  <button class="lg:hidden" aria-label="toggle menu" (click)="showSidebar()">
     <lucide-angular [img]="Menu"></lucide-angular>
   </button>
-  <a
-    [routerLink]="['/']"
-    class="inline-flex gap-2 ml-2 lg:ml-0 items-center text-blue-600 dark:text-violet-500"
-  >
-    <app-icon name="logo" width="40" height="40"></app-icon>
-    <doc-project-name class="font-bold text-xl"></doc-project-name>
-  </a>
+  <div class="text-blue-600 dark:text-violet-500">
+    <a [routerLink]="['/']" class="ml-2 inline-flex items-center gap-2 lg:ml-0">
+      <app-icon name="logo" width="40" height="40"></app-icon>
+      <doc-project-name class="text-xl font-bold"></doc-project-name>
+    </a>
+  </div>
 
-  <app-dark-mode-toggle class="ml-auto mr-2"></app-dark-mode-toggle>
+  <app-dark-mode-toggle class="mr-2 ml-auto"></app-dark-mode-toggle>
   <a href="https://github.com/lukonik/ngverse" target="_blank">
     <button
       appButton

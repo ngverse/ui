@@ -32,7 +32,7 @@ const ROOT = 'select';
     PrerequisitesComponent,
   ],
   templateUrl: './select-page.component.html',
-  styleUrl: './select-page.component.scss',
+  styleUrl: './select-page.component.css',
 })
 export class SelectPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

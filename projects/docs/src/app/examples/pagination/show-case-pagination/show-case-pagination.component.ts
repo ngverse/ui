@@ -5,7 +5,7 @@ import { PaginationComponent } from '../../../../../../ngverse/src/lib/paginatio
   selector: 'doc-show-case-pagination',
   imports: [PaginationComponent],
   templateUrl: './show-case-pagination.component.html',
-  styleUrl: './show-case-pagination.component.scss',
+  styleUrl: './show-case-pagination.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowCasePaginationComponent {

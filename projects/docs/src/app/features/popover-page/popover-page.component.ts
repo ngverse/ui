@@ -23,7 +23,7 @@ const ROOT = 'popover';
     ApiInfoComponent,
   ],
   templateUrl: './popover-page.component.html',
-  styleUrl: './popover-page.component.scss',
+  styleUrl: './popover-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopoverPageComponent {

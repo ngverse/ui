@@ -23,7 +23,7 @@ import { SelectComponent } from '../../../../../../ngverse/src/lib/select/select
     OptionComponent,
   ],
   templateUrl: './show-case-form-field.component.html',
-  styleUrl: './show-case-form-field.component.scss',
+  styleUrl: './show-case-form-field.component.css',
 })
 export class ShowCaseFormFieldComponent {
   formBuilder = inject(FormBuilder);

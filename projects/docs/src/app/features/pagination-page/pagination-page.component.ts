@@ -33,7 +33,7 @@ const ROOT = 'pagination';
     RouterLink,
   ],
   templateUrl: './pagination-page.component.html',
-  styleUrl: './pagination-page.component.scss',
+  styleUrl: './pagination-page.component.css',
 })
 export class PaginationPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

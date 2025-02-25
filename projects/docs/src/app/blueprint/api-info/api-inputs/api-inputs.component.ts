@@ -77,7 +77,7 @@ export interface ApiEntity {
     CardComponent,
   ],
   templateUrl: './api-inputs.component.html',
-  styleUrl: './api-inputs.component.scss',
+  styleUrl: './api-inputs.component.css',
 })
 export class ApiInputsComponent {
   apiInputs = input.required<ApiEntity[]>();

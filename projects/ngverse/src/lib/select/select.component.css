@@ -1,0 +1,58 @@
+:host {
+  display: inline-block;
+}
+
+.select-button {
+  font-size: 1rem;
+  cursor: pointer;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  height: var(--field-height);
+  padding: var(--field-padding);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+
+  &:focus-visible {
+    outline: 1px solid var(--ring);
+  }
+
+  .select-button-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &.stretch {
+    width: 100%;
+  }
+
+  .select-button-icon {
+    transition: transform 0.15s ease-in-out;
+    display: flex;
+
+    &.opened {
+      transform: rotate(180deg);
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--disabled);
+    color: var(--disabled-foreground);
+  }
+}
+
+:host.ng-invalid.ng-touched {
+  .select-button {
+    border-color: var(--danger);
+  }
+}
+
+.select-options {
+  max-height: 200px;
+  overflow: auto;
+}

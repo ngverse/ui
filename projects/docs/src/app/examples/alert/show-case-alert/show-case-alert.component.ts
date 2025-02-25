@@ -7,6 +7,6 @@ import { AlertComponent } from '../../../../../../ngverse/src/lib/alert/alert.co
   selector: 'doc-show-case-alert',
   imports: [AlertComponent, AlertHeaderComponent, AlertBodyComponent],
   templateUrl: './show-case-alert.component.html',
-  styleUrl: './show-case-alert.component.scss',
+  styleUrl: './show-case-alert.component.css',
 })
 export class ShowCaseAlertComponent {}

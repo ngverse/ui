@@ -6,7 +6,7 @@ type ALERT_VARIANT_TYPES = 'fill' | 'outline';
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
-  styleUrl: './alert.component.scss',
+  styleUrl: './alert.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'alert',

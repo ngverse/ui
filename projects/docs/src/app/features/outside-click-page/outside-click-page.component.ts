@@ -7,7 +7,7 @@ import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.com
   selector: 'doc-outside-click-page',
   imports: [BlueprintPageComponent, SourceTreeComponent],
   templateUrl: './outside-click-page.component.html',
-  styleUrl: './outside-click-page.component.scss',
+  styleUrl: './outside-click-page.component.css',
 })
 export class OutsideClickPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

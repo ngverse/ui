@@ -38,7 +38,7 @@ export type POPOVER_POSITIONS_Y = 'top' | 'right' | 'bottom' | 'left';
   selector: 'app-popover',
   imports: [NgTemplateOutlet],
   templateUrl: './popover.component.html',
-  styleUrl: './popover.component.scss',
+  styleUrl: './popover.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('toggle', [

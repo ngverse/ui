@@ -18,7 +18,7 @@ export interface ApiInfo {
   selector: 'doc-api-info',
   imports: [ApiInputsComponent, RouterLink, IconComponent, DividerComponent],
   templateUrl: './api-info.component.html',
-  styleUrl: './api-info.component.scss',
+  styleUrl: './api-info.component.css',
 })
 export class ApiInfoComponent {
   apiInfo = input.required<ApiInfo>();

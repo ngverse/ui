@@ -6,7 +6,7 @@ import { CheckboxComponent } from '../../../../../../ngverse/src/lib/checkbox/ch
   selector: 'doc-show-case-checkbox',
   imports: [ReactiveFormsModule, CheckboxComponent, FormsModule],
   templateUrl: './show-case-checkbox.component.html',
-  styleUrl: './show-case-checkbox.component.scss',
+  styleUrl: './show-case-checkbox.component.css',
 })
 export class ShowCaseCheckboxComponent {
   formControl = new FormControl(false);

@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   selector: 'app-card',
   imports: [],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss',
+  styleUrl: './card.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.surface]': 'surface()',

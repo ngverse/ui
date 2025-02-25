@@ -9,7 +9,7 @@ import { AccordionItemComponent } from './accordion-item.component';
 @Component({
   selector: 'app-accordion',
   templateUrl: './accordion.component.html',
-  styleUrl: './accordion.component.scss',
+  styleUrl: './accordion.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccordionComponent {

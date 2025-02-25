@@ -31,7 +31,7 @@ type LABEL_ALIGN = 'start' | 'end';
   selector: 'app-checkbox',
   imports: [CheckboxIconComponent],
   templateUrl: './checkbox.component.html',
-  styleUrl: './checkbox.component.scss',
+  styleUrl: './checkbox.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

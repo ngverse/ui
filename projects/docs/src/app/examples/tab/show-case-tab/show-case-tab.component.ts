@@ -17,7 +17,7 @@ import { LazyTabComponent } from '../lazy-tab/lazy-tab.component';
     LazyTabComponent,
   ],
   templateUrl: './show-case-tab.component.html',
-  styleUrl: './show-case-tab.component.scss',
+  styleUrl: './show-case-tab.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowCaseTabComponent {}

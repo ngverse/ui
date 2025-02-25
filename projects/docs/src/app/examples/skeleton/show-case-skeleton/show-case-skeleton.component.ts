@@ -5,6 +5,6 @@ import { SkeletonComponent } from '../../../../../../ngverse/src/lib/skeleton/sk
   selector: 'doc-show-case-skeleton',
   imports: [SkeletonComponent],
   templateUrl: './show-case-skeleton.component.html',
-  styleUrl: './show-case-skeleton.component.scss',
+  styleUrl: './show-case-skeleton.component.css',
 })
 export class ShowCaseSkeletonComponent {}

@@ -1,0 +1,33 @@
+@reference "tailwindcss";
+
+a {
+  text-decoration: none;
+}
+
+.selected {
+  @apply bg-slate-100 font-medium;
+}
+
+.sidebar {
+  border-right: 1px solid var(--border-color);
+  background: var(--background);
+  height: 100vh;
+  padding-bottom: 60px;
+  @variant lg {
+    height: calc(100vh - 56px);
+    @apply sticky top-[56px];
+  }
+}
+
+.in-progress {
+  @apply pointer-events-none text-gray-400;
+}
+
+.sidebar-link {
+  &:hover,
+  &.selected {
+    @apply font-medium;
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+}

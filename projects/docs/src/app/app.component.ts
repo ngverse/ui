@@ -7,7 +7,7 @@ import { HeaderComponent } from './features/header/header.component';
   selector: 'doc-root',
   imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   iconRegistry = inject(IconRegistry);

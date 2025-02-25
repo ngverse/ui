@@ -7,7 +7,7 @@ import { ButtonComponent } from '../../../../../../ngverse/src/lib/button/button
   selector: 'doc-show-case-badge',
   imports: [FormsModule, ButtonComponent, BadgeComponent],
   templateUrl: './show-case-badge.component.html',
-  styleUrl: './show-case-badge.component.scss',
+  styleUrl: './show-case-badge.component.css',
 })
 export class ShowCaseBadgeComponent {
   count = signal(8);

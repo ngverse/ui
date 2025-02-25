@@ -11,7 +11,7 @@ import { SwitchComponent } from '../../../../../../ngverse/src/lib/switch/switch
   selector: 'doc-show-case-switch',
   imports: [SwitchComponent, ReactiveFormsModule, FormsModule],
   templateUrl: './show-case-switch.component.html',
-  styleUrl: './show-case-switch.component.scss',
+  styleUrl: './show-case-switch.component.css',
 })
 export class ShowCaseSwitchComponent {
   formControl = new FormControl(null, Validators.requiredTrue);

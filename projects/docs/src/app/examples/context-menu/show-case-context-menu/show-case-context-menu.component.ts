@@ -17,7 +17,7 @@ import { ToastService } from '../../../../../../ngverse/src/lib/toast/toast.serv
     ContextMenuItemDirective,
   ],
   templateUrl: './show-case-context-menu.component.html',
-  styleUrl: './show-case-context-menu.component.scss',
+  styleUrl: './show-case-context-menu.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowCaseContextMenuComponent {

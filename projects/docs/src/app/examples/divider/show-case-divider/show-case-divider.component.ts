@@ -5,6 +5,6 @@ import { DividerComponent } from '../../../../../../ngverse/src/lib/divider/divi
   selector: 'doc-show-case-divider',
   imports: [DividerComponent],
   templateUrl: './show-case-divider.component.html',
-  styleUrl: './show-case-divider.component.scss',
+  styleUrl: './show-case-divider.component.css',
 })
 export class ShowCaseDividerComponent {}

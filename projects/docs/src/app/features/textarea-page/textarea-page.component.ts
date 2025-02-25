@@ -24,7 +24,7 @@ const ROOT = 'textarea';
     ShowCaseTextareaComponent,
   ],
   templateUrl: './textarea-page.component.html',
-  styleUrl: './textarea-page.component.scss',
+  styleUrl: './textarea-page.component.css',
 })
 export class TextareaPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

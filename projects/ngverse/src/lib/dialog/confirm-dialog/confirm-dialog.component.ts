@@ -14,7 +14,7 @@ export interface ConfirmDialogOptions {
   selector: 'app-confirm-dialog',
   imports: [ButtonComponent],
   templateUrl: './confirm-dialog.component.html',
-  styleUrl: './confirm-dialog.component.scss',
+  styleUrl: './confirm-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [DIALOG_ENTER_ANIMATION],
 })

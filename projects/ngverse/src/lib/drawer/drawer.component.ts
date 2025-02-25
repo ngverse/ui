@@ -16,7 +16,7 @@ import { DrawerCloseDirective } from './drawer-close.directive';
   selector: 'app-drawer',
   imports: [DrawerCloseIconComponent, DrawerCloseDirective, NgComponentOutlet],
   templateUrl: './drawer.component.html',
-  styleUrl: './drawer.component.scss',
+  styleUrl: './drawer.component.css',
   animations: [
     trigger('toggle', [
       transition('* => enter', [

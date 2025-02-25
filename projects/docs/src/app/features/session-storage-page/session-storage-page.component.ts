@@ -28,7 +28,7 @@ const ROOT = 'session-storage';
     ApiDescriptionComponent,
   ],
   templateUrl: './session-storage-page.component.html',
-  styleUrl: './session-storage-page.component.scss',
+  styleUrl: './session-storage-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SessionStoragePageComponent {

@@ -60,7 +60,7 @@ function generatePages(totalPages: number, currentPage: number) {
     ButtonComponent,
   ],
   templateUrl: './pagination.component.html',
-  styleUrl: './pagination.component.scss',
+  styleUrl: './pagination.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent {

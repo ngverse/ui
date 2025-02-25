@@ -38,7 +38,7 @@ type LABEL_ALIGN = 'start' | 'end';
   selector: 'app-switch',
   imports: [],
   templateUrl: './switch.component.html',
-  styleUrl: './switch.component.scss',
+  styleUrl: './switch.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

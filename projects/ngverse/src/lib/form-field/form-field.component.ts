@@ -24,7 +24,7 @@ import { FormFieldErrorRegistry } from './form-field-error.registry';
   selector: 'app-form-field',
   imports: [ErrorComponent],
   templateUrl: './form-field.component.html',
-  styleUrl: './form-field.component.scss',
+  styleUrl: './form-field.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormFieldComponent implements OnDestroy {

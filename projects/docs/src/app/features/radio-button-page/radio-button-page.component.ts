@@ -28,7 +28,7 @@ const ROOT = 'radio-button';
     ApiInfoComponent,
   ],
   templateUrl: './radio-button-page.component.html',
-  styleUrl: './radio-button-page.component.scss',
+  styleUrl: './radio-button-page.component.css',
 })
 export class RadioButtonPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

@@ -25,7 +25,7 @@ const ROOT = 'form-field';
     ApiInfoComponent,
   ],
   templateUrl: './form-field-page.component.html',
-  styleUrl: './form-field-page.component.scss',
+  styleUrl: './form-field-page.component.css',
 })
 export class FormFieldPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

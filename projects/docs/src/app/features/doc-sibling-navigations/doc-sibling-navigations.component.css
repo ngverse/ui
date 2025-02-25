@@ -1,0 +1,16 @@
+@reference "tailwindcss";
+
+.sibling-navigation {
+  @apply flex h-12 flex-1 items-center justify-center gap-2 rounded-md border border-solid px-5 text-sm;
+
+  @variant lg {
+    @apply h-20 flex-1 px-10 text-base lg:w-[300px];
+
+    &:first-child {
+      @apply justify-start;
+    }
+    &:last-child {
+      @apply justify-end;
+    }
+  }
+}

@@ -14,7 +14,7 @@ const minMaxTransform = (value: number) => {
   selector: 'app-progress-bar',
   imports: [],
   templateUrl: './progress-bar.component.html',
-  styleUrl: './progress-bar.component.scss',
+  styleUrl: './progress-bar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgressBarComponent {

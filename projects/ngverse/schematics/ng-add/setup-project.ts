@@ -54,25 +54,25 @@ function addStyles(options: Schema) {
 
     if (!styleSCSSPath || !host.exists(styleSCSSPath)) {
       throw new SchematicsException(
-        `Could not find ${styleSCSSPath} to add ngverse.scss`
+        `Could not find ${styleSCSSPath} to add ngverse.css`
       );
     }
 
     const ngVerseStylePath = normalize(
-      join('node_modules', 'ngverse', 'src', 'lib', 'ngverse.scss')
+      join('node_modules', 'ngverse', 'src', 'lib', 'ngverse.css')
     );
     if (!host.exists(ngVerseStylePath)) {
       throw new SchematicsException(
-        `Could not find ${ngVerseStylePath} to add ngverse.scss`
+        `Could not find ${ngVerseStylePath} to add ngverse.css`
       );
     }
     const styleDirectory = dirname(styleSCSSPath);
 
-    const newNgVerseStylePath = normalize(join(styleDirectory, 'ngverse.scss'));
+    const newNgVerseStylePath = normalize(join(styleDirectory, 'ngverse.css'));
 
     host.create(newNgVerseStylePath, host.read(ngVerseStylePath) as Buffer);
 
-    const insertion = `@use './ngverse.scss';\n`;
+    const insertion = `@use './ngverse.css';\n`;
 
     const recorder = host.beginUpdate(styleSCSSPath);
     recorder.insertLeft(0, insertion);

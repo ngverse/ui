@@ -1,0 +1,17 @@
+:host {
+  &.outline {
+    border-radius: var(--border-radius);
+    border: var(--border);
+  }
+  &.surface {
+    background: var(--surface);
+  }
+  &.shadow {
+    box-shadow: var(--shadow);
+  }
+  outline: 0;
+
+  &.gap {
+    padding: 10px;
+  }
+}

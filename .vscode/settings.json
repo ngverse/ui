@@ -9,6 +9,9 @@
     "node_modules": true,
     "dist": true
   },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always"
   },

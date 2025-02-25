@@ -6,7 +6,7 @@ import { Meta, Title } from '@angular/platform-browser';
   selector: 'doc-blog-page',
   imports: [],
   templateUrl: './blog-page.component.html',
-  styleUrl: './blog-page.component.scss',
+  styleUrl: './blog-page.component.css',
 })
 export class BlogPageComponent {
   label = input.required<string>();

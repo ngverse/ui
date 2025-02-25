@@ -33,7 +33,7 @@ const ROOT = 'dark-mode';
     RouterLink,
   ],
   templateUrl: './dark-mode-page.component.html',
-  styleUrl: './dark-mode-page.component.scss',
+  styleUrl: './dark-mode-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DarkModePageComponent {
