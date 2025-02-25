@@ -1,12 +1,10 @@
-@use '@angular/cdk/overlay-prebuilt.css';
+@import '@angular/cdk/overlay-prebuilt.css';
 
-// Base variables that is same for light and dark mode
 :root {
   --nv-field-height: 36px;
   --nv-field-padding: 6px 10px;
 }
 
-// Light theme
 :root {
   --nv-background: white;
   --nv-foreground: #030712;
@@ -39,7 +37,6 @@
 
   --nv-surface-2: #d1d5db;
 
-  // Overlay commonly used with opacity, so it needs to be a tuple in order to work
   --nv-overlay: 0, 0, 0;
 
   --nv-divider: #cbd5e1;
@@ -54,13 +51,12 @@
 
   --nv-mute-start: #e0e0e0;
   --nv-mute-end: #f0f0f0;
-
-  .cdk-overlay-backdrop {
-    background: rgba(var(--nv-overlay), 0.3);
-  }
 }
 
-// Dark theme
+:root.cdk-overlay-backdrop {
+  background: rgba(var(--nv-overlay), 0.3);
+}
+
 :root.dark {
   --nv-background: #030712;
   --nv-foreground: white;
@@ -94,7 +90,6 @@
 
   --nv-surface-2: #d1d5db;
 
-  // Overlay commonly used with opacity, so it needs to be a tuple in order to work
   --nv-overlay: 255, 255, 255;
 
   --nv-divider: #6b7280;
@@ -111,13 +106,12 @@
 
   --nv-mute-start: #e0e0e0;
   --nv-mute-end: #f0f0f0;
-
-  .cdk-overlay-backdrop {
-    background: rgba(var(--nv-overlay), 0.3);
-  }
 }
 
-//Default background and text color
+:root.dark.cdk-overlay-backdrop {
+  background: rgba(var(--nv-overlay), 0.3);
+}
+
 html,
 body {
   background-color: var(--nv-background);

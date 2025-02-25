@@ -14,7 +14,7 @@ const PROJECT_NAME = 'demo';
 
 const PROJECT_ROOT = `projects/demo/src/`;
 const PROJECT_APP_ROOT = `${PROJECT_ROOT}/app/`;
-const STYLE_PATH = `projects/demo/src/styles.scss`;
+const STYLE_PATH = `projects/demo/src/styles.css`;
 const NG_VERSE_ROOT = `node_modules/ngverse/src/lib/`;
 
 describe('ng-add', () => {
@@ -50,7 +50,7 @@ describe('ng-add', () => {
     );
   });
 
-  it('should throw an error if styles.scss is not found', async () => {
+  it('should throw an error if styles.css is not found', async () => {
     appTree.delete(STYLE_PATH);
 
     await expectAsync(
@@ -85,9 +85,7 @@ describe('ng-add', () => {
       { project: PROJECT_NAME },
       appTree
     );
-    const stylesContent = appTree
-      .read(PROJECT_ROOT + 'styles.scss')
-      ?.toString();
+    const stylesContent = appTree.read(PROJECT_ROOT + 'styles.css')?.toString();
     expect(stylesContent).toContain(`@use './ngverse.scss';`);
   });
 

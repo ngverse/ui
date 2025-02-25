@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .sibling-navigation {
   @apply h-12 px-5 flex items-center gap-2 rounded-md border border-solid  flex-1 justify-center text-sm;
 

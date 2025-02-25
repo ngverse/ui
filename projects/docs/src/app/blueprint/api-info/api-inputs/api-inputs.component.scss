@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .api-inputs {
   width: 100%;
   overflow-x: auto;
@@ -38,6 +40,11 @@
 
 .table {
   @apply w-full text-sm text-left  rtl:text-right text-slate-500 dark:text-gray-200;
+
+  td,
+  th {
+    border-bottom: 1px solid var(--color-gray-300);
+  }
 }
 
 .head {

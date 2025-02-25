@@ -40,6 +40,7 @@
     "@angular/router": "^19.0.6",
     "@angular/ssr": "^19.0.7",
     "@docsearch/js": "^3.8.3",
+    "@tailwindcss/postcss": "^4.0.8",
     "@types/file-saver": "^2.0.7",
     "copyfiles": "^2.4.1",
     "express": "^4.18.2",
@@ -49,7 +50,9 @@
     "lucide-angular": "^0.462.0",
     "ngx-highlightjs": "^12.0.0",
     "npm": "^10.9.2",
+    "postcss": "^8.5.3",
     "rxjs": "~7.8.0",
+    "tailwindcss": "^4.0.8",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -65,7 +68,7 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.1",
     "@semantic-release/npm": "^12.0.1",
-    "@tailwindcss/typography": "^0.5.15",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
@@ -84,11 +87,9 @@
     "lint-staged": "^15.3.0",
     "ng-packagr": "^19.0.0",
     "nodemon": "^3.1.9",
-    "postcss": "^8.4.49",
     "prettier": "3.4.2",
     "semantic-release": "^24.2.1",
     "sitemap": "^8.0.0",
-    "tailwindcss": "^3.4.16",
     "typescript": "~5.6.2",
     "typescript-eslint": "8.18.0"
   }

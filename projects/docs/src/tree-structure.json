@@ -731,9 +731,9 @@
       ]
     },
     {
-      "path": "ngverse.scss",
-      "name": "ngverse.scss",
-      "language": "scss"
+      "path": "ngverse.css",
+      "name": "ngverse.css",
+      "language": "ts"
     },
     {
       "path": "otp-input",

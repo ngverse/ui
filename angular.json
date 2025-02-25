@@ -51,7 +51,7 @@
               },
               "projects/docs/src/sitemap.xml"
             ],
-            "styles": ["projects/docs/src/styles.scss"],
+            "styles": ["projects/docs/src/styles.css"],
             "scripts": [],
             "server": "projects/docs/src/main.server.ts",
             "prerender": true,

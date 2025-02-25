@@ -1,12 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@use '../../ngverse/src/lib/ngverse';
-@use '@angular/cdk/overlay-prebuilt.css';
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+@import '@angular/cdk/overlay-prebuilt.css';
 @import './docsearch.css';
 @import './highlight-dark.css';
 @import './highlight-light.css';
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import '../../ngverse/src/lib/ngverse';
 
 *,
 ::after,
