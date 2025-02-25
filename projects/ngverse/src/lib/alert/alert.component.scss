@@ -1,43 +1,43 @@
 :host {
   padding: 16px;
   display: block;
-  border-radius: var(--nv-border-radius);
+  border-radius: var(--border-radius);
   &.fill {
     &.success {
-      background: var(--nv-success);
-      color: var(--nv-success-foreground);
+      background: var(--success);
+      color: var(--success-foreground);
     }
 
     &.danger {
-      background: var(--nv-danger);
-      color: var(--nv-danger-foreground);
+      background: var(--danger);
+      color: var(--danger-foreground);
     }
     &.default {
-      background: var(--nv-inverse);
-      color: var(--nv-inverse-foreground);
+      background: var(--inverse);
+      color: var(--inverse-foreground);
     }
 
     &.warning {
-      background: var(--nv-warning);
-      color: var(--nv-warning-foreground);
+      background: var(--warning);
+      color: var(--warning-foreground);
     }
   }
 
   &.outline {
     background: transparent;
     &.success {
-      color: var(--nv-success);
+      color: var(--success);
     }
 
     &.danger {
-      color: var(--nv-danger);
+      color: var(--danger);
     }
     &.default {
-      border: var(--nv-border);
+      border: var(--border);
     }
 
     &.warning {
-      color: var(--nv-warning);
+      color: var(--warning);
     }
   }
 }

@@ -9,14 +9,14 @@
     right: 0;
     bottom: 0;
     top: 0;
-    background: rgba(var(--nv-overlay), var(--loader-overlay-opacity));
+    background: rgba(var(--overlay), var(--loader-overlay-opacity));
     z-index: 99999;
   }
   display: flex;
 }
 
 .loader {
-  border: 5px solid var(--nv-primary);
+  border: 5px solid var(--primary);
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;

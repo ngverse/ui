@@ -2,25 +2,25 @@
   display: block;
   width: 100%;
   text-align: left;
-  padding: var(--nv-option-padding);
-  cursor: var(--nv-option-cursor);
+  padding: var(--option-padding);
+  cursor: var(--option-cursor);
 
   &:hover:not(.listbox-item-active, .option-disabled) {
-    background: var(--nv-option-hover-bg-color);
+    background: var(--option-hover-bg-color);
   }
 
   &.listbox-item-active {
-    background: var(--nv-primary-color);
+    background: var(--primary-color);
     color: white;
   }
 
   &.option-disabled {
-    color: var(--nv-option-disabled-color);
+    color: var(--option-disabled-color);
   }
 
   &.selected,
   &.is-active {
-    background: var(--nv-accent);
-    color: var(--nv-accent-foreground);
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
 }

@@ -9,8 +9,8 @@ a {
 }
 
 .sidebar {
-  border-right: 1px solid var(--nv-border-color);
-  background: var(--nv-background);
+  border-right: 1px solid var(--border-color);
+  background: var(--background);
   height: 100vh;
   padding-bottom: 60px;
   @screen lg {
@@ -27,7 +27,7 @@ a {
   &:hover,
   &.selected {
     @apply font-medium;
-    background: var(--nv-accent);
-    color: var(--nv-accent-foreground);
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
 }

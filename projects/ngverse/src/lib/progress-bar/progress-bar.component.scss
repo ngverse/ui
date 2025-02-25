@@ -1,9 +1,9 @@
 .progress-bar-container {
-  border-radius: var(--nv-border-radius);
+  border-radius: var(--border-radius);
   position: relative;
   overflow-x: hidden;
   height: 12px;
-  border: var(--nv-border);
+  border: var(--border);
 }
 /* determinate */
 .determinate-bar {
@@ -12,7 +12,7 @@
   transition: transform 0.3s ease-out;
   transform-origin: left;
   height: 100%;
-  background: var(--nv-primary);
+  background: var(--primary);
   position: absolute;
   text-align: center;
   width: 100%;
@@ -23,13 +23,13 @@
 .indeterminate-line {
   position: absolute;
   opacity: 0.4;
-  background: var(--nv-surface);
+  background: var(--surface);
   width: 150%;
   height: 100%;
 }
 .indeterminate-subline {
   position: absolute;
-  background: var(--nv-primary);
+  background: var(--primary);
   height: 100%;
   &.inc {
     animation: indeterminateIncrease 2s infinite;

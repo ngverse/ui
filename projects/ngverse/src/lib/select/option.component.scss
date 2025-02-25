@@ -16,14 +16,14 @@
   &.is-active,
   &:hover:not([disabled]),
   &.selected {
-    background: var(--nv-accent);
-    color: var(--nv-accent-foreground);
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
   &:focus-visible {
-    outline: 1px solid var(--nv-ring);
+    outline: 1px solid var(--ring);
   }
 
   &[disabled] {
-    color: var(--nv-disabled-foreground);
+    color: var(--disabled-foreground);
   }
 }

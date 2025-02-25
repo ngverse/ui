@@ -1,13 +1,13 @@
 .tab-group-header {
   display: flex;
   position: relative;
-  border-bottom: 1px solid var(--nv-divider);
+  border-bottom: 1px solid var(--divider);
   &:focus {
     outline: none;
   }
   &:focus-visible {
     app-tab-group-header.is-active {
-      outline: 1px solid var(--nv-ring);
+      outline: 1px solid var(--ring);
     }
   }
 }
@@ -24,7 +24,7 @@
   font-size: 1rem;
 
   &:focus-visible {
-    outline: 1px solid var(--nv-ring);
+    outline: 1px solid var(--ring);
   }
 }
 
@@ -41,5 +41,5 @@
     left 0.3s ease,
     width 0.3s ease;
 
-  background-color: var(--nv-primary);
+  background-color: var(--primary);
 }

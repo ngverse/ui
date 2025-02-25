@@ -9,10 +9,10 @@
   justify-content: center;
   gap: 6px;
 
-  --button-color: var(--nv-background);
-  --button-on-color: var(--nv-foreground);
-  border-radius: var(--nv-border-radius);
-  border: var(--nv-border);
+  --button-color: var(--background);
+  --button-on-color: var(--foreground);
+  border-radius: var(--border-radius);
+  border: var(--border);
   position: relative;
   cursor: pointer;
   font-weight: 600;
@@ -46,28 +46,28 @@
 
 /** Color styles **/
   &.btn-primary {
-    --button-color: var(--nv-primary);
-    --button-on-color: var(--nv-primary-foreground);
+    --button-color: var(--primary);
+    --button-on-color: var(--primary-foreground);
   }
 
   &.btn-secondary {
-    --button-color: var(--nv-secondary);
-    --button-on-color: var(--nv-secondary-foreground);
+    --button-color: var(--secondary);
+    --button-on-color: var(--secondary-foreground);
   }
 
   &.btn-danger {
-    --button-color: var(--nv-danger);
-    --button-on-color: var(--nv-danger-foreground);
+    --button-color: var(--danger);
+    --button-on-color: var(--danger-foreground);
   }
 
   &.btn-warning {
-    --button-color: var(--nv-warning);
-    --button-on-color: var(--nv-warning-foreground);
+    --button-color: var(--warning);
+    --button-on-color: var(--warning-foreground);
   }
 
   &.btn-success {
-    --button-color: var(--nv-success);
-    --button-on-color: var(--nv-success-foreground);
+    --button-color: var(--success);
+    --button-on-color: var(--success-foreground);
   }
   /** Color ends here **/
 
@@ -78,7 +78,7 @@
   }
 
   &:focus-visible {
-    outline: 1px solid var(--nv-ring);
+    outline: 1px solid var(--ring);
   }
 
   &:hover:not(:disabled) {
@@ -89,8 +89,8 @@
     }
     &.btn-outline,
     &.btn-link {
-      background-color: var(--nv-accent);
-      color: var(--nv-accent-foreground);
+      background-color: var(--accent);
+      color: var(--accent-foreground);
     }
   }
   &:active {
@@ -99,9 +99,9 @@
 
   &:disabled {
     &:not(.btn-link) {
-      background-color: var(--nv-disabled);
+      background-color: var(--disabled);
     }
-    color: var(--nv-disabled-foreground);
+    color: var(--disabled-foreground);
     cursor: default;
   }
 

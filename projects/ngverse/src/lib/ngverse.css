@@ -1,121 +1,121 @@
 @import '@angular/cdk/overlay-prebuilt.css';
+@reference "tailwindcss";
 
 :root {
-  --nv-field-height: 36px;
-  --nv-field-padding: 6px 10px;
+  --field-height: 36px;
+  --field-padding: 6px 10px;
 }
 
 :root {
-  --nv-background: white;
-  --nv-foreground: #030712;
-  --nv-border-radius: 6px;
-  --nv-primary: #2563eb;
-  --nv-primary-foreground: white;
+  --background: white;
+  --foreground: #030712;
+  --border-radius: 6px;
+  --primary: #2563eb;
+  --primary-foreground: white;
 
-  --nv-inverse: #1f2937;
-  --nv-inverse-foreground: white;
+  --inverse: #1f2937;
+  --inverse-foreground: white;
 
-  --nv-secondary: #4b5563;
-  --nv-secondary-foreground: white;
+  --secondary: #4b5563;
+  --secondary-foreground: white;
 
-  --nv-accent: #f3f4f6;
-  --nv-accent-foreground: #111827;
+  --accent: #f3f4f6;
+  --accent-foreground: #111827;
 
-  --nv-danger: #dc2626;
-  --nv-danger-foreground: white;
+  --danger: #dc2626;
+  --danger-foreground: white;
 
-  --nv-warning: #ea580c;
-  --nv-warning-foreground: white;
+  --warning: #ea580c;
+  --warning-foreground: white;
 
-  --nv-success: #16a34a;
-  --nv-success-foreground: white;
+  --success: #16a34a;
+  --success-foreground: white;
 
-  --nv-disabled: #f9fafb;
-  --nv-disabled-foreground: #9ca3af;
+  --disabled: #f9fafb;
+  --disabled-foreground: #9ca3af;
 
-  --nv-surface: #f9fafb;
+  --surface: #f9fafb;
 
-  --nv-surface-2: #d1d5db;
+  --surface-2: #d1d5db;
 
-  --nv-overlay: 0, 0, 0;
+  --overlay: 0, 0, 0;
 
-  --nv-divider: #cbd5e1;
-  --nv-border-color: #d1d5db;
-  --nv-border: 1px solid var(--nv-border-color);
+  --divider: #cbd5e1;
+  --border-color: #d1d5db;
+  --border: 1px solid var(--border-color);
 
-  --nv-ring: #9ca3af;
+  --ring: #9ca3af;
 
-  --nv-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1), 0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1),
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-  --nv-mute-start: #e0e0e0;
-  --nv-mute-end: #f0f0f0;
+  --mute-start: #e0e0e0;
+  --mute-end: #f0f0f0;
 }
 
 :root.cdk-overlay-backdrop {
-  background: rgba(var(--nv-overlay), 0.3);
+  background: rgba(var(--overlay), 0.3);
 }
 
 :root.dark {
-  --nv-background: #030712;
-  --nv-foreground: white;
-  --nv-border-radius: 6px;
+  --background: #030712;
+  --foreground: white;
+  --border-radius: 6px;
 
-  --nv-primary: #8b5cf6;
-  --nv-primary-foreground: black;
+  --primary: #8b5cf6;
+  --primary-foreground: black;
 
-  --nv-inverse: white;
-  --nv-inverse-foreground: #030712;
+  --inverse: white;
+  --inverse-foreground: #030712;
 
-  --nv-secondary: #d1d5db;
-  --nv-secondary-foreground: black;
+  --secondary: #d1d5db;
+  --secondary-foreground: black;
 
-  --nv-accent: #d1d5db;
-  --nv-accent-foreground: black;
+  --accent: #d1d5db;
+  --accent-foreground: black;
 
-  --nv-danger: #dc2626;
-  --nv-danger-foreground: white;
+  --danger: #dc2626;
+  --danger-foreground: white;
 
-  --nv-warning: #ea580c;
-  --nv-warning-foreground: white;
+  --warning: #ea580c;
+  --warning-foreground: white;
 
-  --nv-success: #16a34a;
-  --nv-success-foreground: white;
+  --success: #16a34a;
+  --success-foreground: white;
 
-  --nv-disabled: #6b7280;
-  --nv-disabled-foreground: #9ca3af;
+  --disabled: #6b7280;
+  --disabled-foreground: #9ca3af;
 
-  --nv-surface: #1f2937;
+  --surface: #1f2937;
 
-  --nv-surface-2: #d1d5db;
+  --surface-2: #d1d5db;
 
-  --nv-overlay: 255, 255, 255;
+  --overlay: 255, 255, 255;
 
-  --nv-divider: #6b7280;
+  --divider: #6b7280;
 
-  --nv-border-color: #6b7280;
-  --nv-border: 1px solid var(--nv-border-color);
+  --border-color: #6b7280;
+  --border: 1px solid var(--border-color);
 
-  --nv-ring: #9ca3af;
+  --ring: #9ca3af;
 
-  --nv-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1),
+  --shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1),
     0 4px 6px -4px rgba(255, 255, 255, 0.1),
     0 10px 15px -3px rgba(255, 255, 255, 0.1),
     0 4px 6px -4px rgba(255, 255, 255, 0.1);
 
-  --nv-mute-start: #e0e0e0;
-  --nv-mute-end: #f0f0f0;
+  --mute-start: #e0e0e0;
+  --mute-end: #f0f0f0;
 }
 
 :root.dark.cdk-overlay-backdrop {
-  background: rgba(var(--nv-overlay), 0.3);
+  background: rgba(var(--overlay), 0.3);
 }
 
 html,
 body {
-  background-color: var(--nv-background);
-  color: var(--nv-foreground);
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 /**
@@ -124,32 +124,32 @@ body {
 **/
 .app-input,
 .app-textarea {
-  background: var(--nv-background);
+  background: var(--background);
   box-sizing: border-box;
-  border: var(--nv-border);
-  border-radius: var(--nv-border-radius);
-  padding: var(--nv-field-padding);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--field-padding);
   font-size: 1rem;
   &:focus-visible {
-    outline: 1px solid var(--nv-ring);
+    outline: 1px solid var(--ring);
   }
   &:disabled,
   &[readonly] {
-    background: var(--nv-disabled);
-    color: var(--nv-disabled-foreground);
+    background: var(--disabled);
+    color: var(--disabled-foreground);
     &::placeholder {
-      color: var(--nv-disabled-foreground);
+      color: var(--disabled-foreground);
     }
   }
 
   &.ng-invalid.ng-touched {
-    border-color: var(--nv-danger);
+    border-color: var(--danger);
     outline-color: transparent;
   }
 }
 
 .app-input {
-  height: var(--nv-field-height);
+  height: var(--field-height);
 }
 
 /**
@@ -157,10 +157,10 @@ body {
   this is context menu styles
 **/
 .app-context-menu {
-  box-shadow: var(--nv-shadow);
-  background-color: var(--nv-background);
-  border-radius: var(--nv-border-radius);
-  border: var(--nv-border);
+  box-shadow: var(--shadow);
+  background-color: var(--background);
+  border-radius: var(--border-radius);
+  border: var(--border);
 }
 
 .app-context-menu-item {
@@ -174,15 +174,15 @@ body {
   &:focus-visible,
   &:hover:not([aria-disabled]),
   &.selected {
-    background: var(--nv-accent);
-    color: var(--nv-accent-foreground);
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
   &:focus-visible {
     outline: none;
   }
 
   &[aria-disabled] {
-    background: var(--nv-disabled);
-    color: var(--nv-disabled-foreground);
+    background: var(--disabled);
+    color: var(--disabled-foreground);
   }
 }

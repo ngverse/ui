@@ -1,6 +1,6 @@
 :host {
   .active-page {
-    border: 1px solid var(--nv-ring);
+    border: 1px solid var(--ring);
   }
 }
 
@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--nv-border-radius);
+  border-radius: var(--border-radius);
   padding: 4px 8px;
   cursor: pointer;
   background: transparent;
@@ -28,8 +28,8 @@
   }
 
   &:disabled {
-    background: var(--nv-disabled);
-    color: var(--nv-disabled-foreground);
+    background: var(--disabled);
+    color: var(--disabled-foreground);
   }
 }
 

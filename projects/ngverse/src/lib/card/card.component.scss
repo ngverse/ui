@@ -1,13 +1,13 @@
 :host {
   &.outline {
-    border-radius: var(--nv-border-radius);
-    border: var(--nv-border);
+    border-radius: var(--border-radius);
+    border: var(--border);
   }
   &.surface {
-    background: var(--nv-surface);
+    background: var(--surface);
   }
   &.shadow {
-    box-shadow: var(--nv-shadow);
+    box-shadow: var(--shadow);
   }
   outline: 0;
 

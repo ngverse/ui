@@ -3,24 +3,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--nv-inverse);
-  color: var(--nv-inverse-foreground);
-  border: var(--nv-border);
-  border-radius: var(--nv-border-radius);
+  background: var(--inverse);
+  color: var(--inverse-foreground);
+  border: var(--border);
+  border-radius: var(--border-radius);
   padding: 12px 16px;
-  box-shadow: var(--nv-shadow);
+  box-shadow: var(--shadow);
 
   &.success {
-    background: var(--nv-success);
-    color: var(--nv-success-foreground);
+    background: var(--success);
+    color: var(--success-foreground);
   }
   &.danger {
-    background: var(--nv-danger);
-    color: var(--nv-danger-foreground);
+    background: var(--danger);
+    color: var(--danger-foreground);
   }
   &.warning {
-    background: var(--nv-warning);
-    color: var(--nv-warning-foreground);
+    background: var(--warning);
+    color: var(--warning-foreground);
   }
 }
 
