@@ -4,9 +4,6 @@ NgVerse is a collection of feature-rich Angular components, directives, and pipe
 
 For more info visit the [docs](https://www.ngverse.dev)
 
-
-
-
 # Announcement
 
 Thank you all for your feedback! The huge stable release is
