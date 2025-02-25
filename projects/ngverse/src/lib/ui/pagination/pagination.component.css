@@ -1,6 +1,6 @@
 :host {
   .active-page {
-    border: 1px solid var(--ring);
+    border: 1px solid var(--color-ring);
   }
 }
 
@@ -28,8 +28,8 @@
   }
 
   &:disabled {
-    background: var(--disabled);
-    color: var(--disabled-foreground);
+    background: var(--color-disabled);
+    color: var(--color-disabled-foreground);
   }
 }
 

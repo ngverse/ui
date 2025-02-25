@@ -12,7 +12,7 @@
   transition: transform 0.3s ease-out;
   transform-origin: left;
   height: 100%;
-  background: var(--primary);
+  background: var(--color-primary);
   position: absolute;
   text-align: center;
   width: 100%;
@@ -23,13 +23,13 @@
 .indeterminate-line {
   position: absolute;
   opacity: 0.4;
-  background: var(--surface);
+  background: var(--color-surface);
   width: 150%;
   height: 100%;
 }
 .indeterminate-subline {
   position: absolute;
-  background: var(--primary);
+  background: var(--color-primary);
   height: 100%;
   &.inc {
     animation: indeterminateIncrease 2s infinite;

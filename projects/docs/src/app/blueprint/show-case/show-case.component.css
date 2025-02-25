@@ -2,5 +2,5 @@
 
 .active-tab {
   @apply border-b-2 border-solid;
-  border-color: var(--primary);
+  border-color: var(--color-primary);
 }
