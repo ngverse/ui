@@ -2,8 +2,8 @@ import { Component, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { ArrowLeft, ArrowRight, LucideAngularModule } from 'lucide-angular';
 import { filter } from 'rxjs';
-import { ButtonComponent } from '../../../../../ngverse/src/lib/ui/button/button.component';
-import { IconComponent } from '../../../../../ngverse/src/lib/ui/icon/icon.component';
+import { ButtonComponent } from '../../@/ui/button/button.component';
+import { IconComponent } from '../../@/ui/icon/icon.component';
 import { getAllSidebarLinks, SidebarLink } from '../sidebar/sidebar.component';
 
 const SIDEBAR_LINKS = getAllSidebarLinks();

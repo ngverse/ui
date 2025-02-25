@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ButtonComponent } from '../../../../../../ngverse/src/lib/ui/button/button.component';
-import { CheckboxComponent } from '../../../../../../ngverse/src/lib/ui/checkbox/checkbox.component';
-import { DrawerCloseDirective } from '../../../../../../ngverse/src/lib/ui/drawer/drawer-close.directive';
-import { DRAWER_DATA } from '../../../../../../ngverse/src/lib/ui/drawer/drawer-ref';
-import { DrawerService } from '../../../../../../ngverse/src/lib/ui/drawer/drawer.service';
+import { ButtonComponent } from '../../../@/ui/button/button.component';
+import { CheckboxComponent } from '../../../@/ui/checkbox/checkbox.component';
+import { DrawerCloseDirective } from '../../../@/ui/drawer/drawer-close.directive';
+import { DRAWER_DATA } from '../../../@/ui/drawer/drawer-ref';
+import { DrawerService } from '../../../@/ui/drawer/drawer.service';
 
 @Component({
   selector: 'doc-show-case-drawer',

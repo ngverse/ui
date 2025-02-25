@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { SwitchComponent } from '../../../../../../ngverse/src/lib/ui/switch/switch.component';
+import { SwitchComponent } from '../../../@/ui/switch/switch.component';
 
 @Component({
   selector: 'doc-show-case-switch',

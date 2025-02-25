@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from '../../../../../../ngverse/src/lib/ui/button/button.component';
-import { IconComponent } from '../../../../../../ngverse/src/lib/ui/icon/icon.component';
+import { ButtonComponent } from '../../../@/ui/button/button.component';
+import { IconComponent } from '../../../@/ui/icon/icon.component';
 
 @Component({
   selector: 'doc-show-case-button',
