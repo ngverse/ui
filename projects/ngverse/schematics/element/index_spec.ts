@@ -20,7 +20,7 @@ const BUTTON_COMPONENT_SCSS = 'BUTTON SCSS';
 const BUTTON_COMPONENT_SPEC_TS = 'BUTTON SPEC';
 
 function createElementPath(name: string, extension: string) {
-  return `node_modules/ng-verse/src/lib/${name}/${name}.${extension}`;
+  return `node_modules/ngverse/src/lib/${name}/${name}.${extension}`;
 }
 
 function getProjectPath(name: string, extension: string) {
@@ -47,7 +47,7 @@ function createButtonComponent(appTree: UnitTestTree) {
 }
 
 describe('element', () => {
-  const testRunner = new SchematicTestRunner('ng-verse', collectionPath);
+  const testRunner = new SchematicTestRunner('ngverse', collectionPath);
   const workspaceOptions: WorkspaceOptions = {
     name: 'workspace',
 

@@ -6,7 +6,7 @@ import {
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { OtpInputComponent } from '../otp-input/otp-input.component';
+import { OtpInputComponent } from './otp-input.component';
 
 describe('OtpInputComponent', () => {
   let component: OtpTestComponent;

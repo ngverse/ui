@@ -9,7 +9,7 @@ import { SourceCodeComponent } from '../../blueprint/source-code/source-code.com
   styleUrl: './installation-page.component.scss',
 })
 export class InstallationPageComponent {
-  ngVersefile = 'ng-verse/ng-verse.scss';
+  ngVersefile = 'ngverse/ngverse.scss';
 
   animationsCode = `import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 

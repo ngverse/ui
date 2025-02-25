@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AccordionBodyComponent } from '@ng-verse/accordion/accordion-body.component';
-import { AccordionItemComponent } from '@ng-verse/accordion/accordion-item.component';
-import { AccordionComponent } from '@ng-verse/accordion/accordion.component';
+import { AccordionBodyComponent } from '../../../../../../ngverse/src/lib/accordion/accordion-body.component';
+import { AccordionItemComponent } from '../../../../../../ngverse/src/lib/accordion/accordion-item.component';
+import { AccordionComponent } from '../../../../../../ngverse/src/lib/accordion/accordion.component';
 
 @Component({
   selector: 'doc-show-case-accordion',
@@ -12,12 +12,12 @@ import { AccordionComponent } from '@ng-verse/accordion/accordion.component';
 export class ShowCaseAccordionComponent {
   items = [
     {
-      title: 'How to add ng-verse to a project?',
-      description: 'run: ng add ng-verse',
+      title: 'How to add ngverse to a project?',
+      description: 'run: ng add ngverse',
     },
     {
       title: 'How to add an element?',
-      description: 'run: ng g ng-verse:element [name]',
+      description: 'run: ng g ngverse:element [name]',
     },
     {
       title: 'How to customize an element?',
@@ -31,7 +31,7 @@ export class ShowCaseAccordionComponent {
     {
       title: 'Why it is called element and not component?',
       description:
-        'The term element is used because ng-verse is not limited to components.  It includes directives, pipes, functions, and more, making element a broader and more inclusive term.',
+        'The term element is used because ngverse is not limited to components.  It includes directives, pipes, functions, and more, making element a broader and more inclusive term.',
     },
   ];
 }

@@ -18,7 +18,7 @@ export class BlueprintPageComponent {
     effect(() => {
       const label = this.label();
       const subTitle = this.subTitle();
-      this.title.setTitle(`${label} | ng-verse`);
+      this.title.setTitle(`${label} | ngverse`);
       if (subTitle) {
         this.meta.updateTag({ name: 'description', content: subTitle });
       }
@@ -30,9 +30,9 @@ export class BlueprintPageComponent {
         },
         {
           property: 'og:image',
-          content: 'https://www.ng-verse.dev/logo.png',
+          content: 'https://www.ngverse.dev/logo.png',
         },
-        { property: 'og:image:alt', content: 'Ng-Verse logo' },
+        { property: 'og:image:alt', content: 'NgVerse logo' },
         { property: 'og:url', content: this.document.location.href },
         { property: 'og:type', content: 'website' },
       ]);

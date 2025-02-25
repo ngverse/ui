@@ -1,8 +1,8 @@
 import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonComponent } from '@ng-verse/button/button.component';
-import { CardComponent } from '@ng-verse/card/card.component';
-import { InputDirective } from '@ng-verse/input/input.directive';
+import { ButtonComponent } from '../../../../../../ngverse/src/lib/button/button.component';
+import { CardComponent } from '../../../../../../ngverse/src/lib/card/card.component';
+import { InputDirective } from '../../../../../../ngverse/src/lib/input/input.directive';
 
 @Component({
   selector: 'doc-show-case-card',

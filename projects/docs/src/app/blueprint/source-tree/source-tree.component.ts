@@ -1,7 +1,7 @@
 import { Component, inject, input, model, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonComponent } from '@ng-verse/button/button.component';
-import { CheckboxComponent } from '@ng-verse/checkbox/checkbox.component';
+import { ButtonComponent } from '../../../../../ngverse/src/lib/button/button.component';
+import { CheckboxComponent } from '../../../../../ngverse/src/lib/checkbox/checkbox.component';
 import { FileService } from '../../services/file.service';
 import { SourceCodeComponent } from '../source-code/source-code.component';
 import {
@@ -55,7 +55,7 @@ export class SourceTreeComponent implements OnInit {
 
   fileSelected(file: SourceTreeFile) {
     this.language.set(file.language === 'spec.ts' ? 'ts' : file.language);
-    this.fileService.getFile(`ng-verse/${file.path}`).subscribe((data) => {
+    this.fileService.getFile(`ngverse/${file.path}`).subscribe((data) => {
       this.code.set(data);
     });
   }

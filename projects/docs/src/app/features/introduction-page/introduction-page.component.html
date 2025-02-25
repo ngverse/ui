@@ -1,6 +1,6 @@
 <doc-blog-page label="Introduction">
   <p>
-    Ng-Verse is a collection of feature-rich Angular components, directives,
+    NgVerse is a collection of feature-rich Angular components, directives,
     pipes, and more. It has one key difference from other UI libraries:
     <strong>you don’t install it as a dependency</strong>. Instead, you add the
     source code of the elements directly into your project.
@@ -10,8 +10,8 @@
 
   <p>
     Typically, when you use a UI library, you install the library as a
-    dependency and then import components from it. Ng-Verse is different. You
-    install the Ng-Verse schematics and selectively add the components you need.
+    dependency and then import components from it. NgVerse is different. You
+    install the NgVerse schematics and selectively add the components you need.
     The component's source code is injected into your project, making it
     <strong>fully customizable</strong>. You can explore, update, or leave it as
     is.
@@ -32,15 +32,15 @@
     code="import { ButtonComponent } from 'angular-ui-library'"
   ></doc-source-code>
 
-  <p>In the case of Ng-Verse, the process is different:</p>
+  <p>In the case of NgVerse, the process is different:</p>
 
-  <h3>1. Install Ng-Verse schematics:</h3>
-  <doc-source-code language="bash" code="ng add ng-verse"></doc-source-code>
+  <h3>1. Install NgVerse schematics:</h3>
+  <doc-source-code language="bash" code="ng add ngverse"></doc-source-code>
 
   <h3>2. Add the button component to your project:</h3>
   <doc-source-code
     language="bash"
-    code="ng g ng-verse:element button"
+    code="ng g ngverse:element button"
   ></doc-source-code>
 
   <p>
@@ -74,7 +74,7 @@
   <h2>Why this approach?</h2>
 
   <p>
-    If you’ve extensively used UI libraries, you might wonder why Ng-Verse took
+    If you’ve extensively used UI libraries, you might wonder why NgVerse took
     this approach. The reasons are rooted in three major concerns:
   </p>
 
@@ -117,7 +117,7 @@
   </p>
 
   <p>
-    In <strong>Ng-Verse</strong>, when you add a select component, the complete
+    In <strong>NgVerse</strong>, when you add a select component, the complete
     source code is added to your project. By default, the component is already
     fully featured, with options for overlays, keyboard navigation,
     accessibility, single and multi-selection, and unit tests. If you want to
@@ -128,7 +128,7 @@
   <h3>2. Third-party Independence</h3>
 
   <p>
-    Ng-Verse components evolve with your project. You don’t have to wait for a
+    NgVerse components evolve with your project. You don’t have to wait for a
     third-party library to release an update to support a new Angular version,
     make the library zoneless, or fix critical bugs.
   </p>
@@ -159,7 +159,7 @@
   </ul>
 
   <p>
-    With <strong>Ng-Verse</strong>, each component comes with its own
+    With <strong>NgVerse</strong>, each component comes with its own
     <code>component.scss</code> file. If you want to update the style, you
     simply edit the component’s style file directly, keeping your components
     encapsulated.

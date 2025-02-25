@@ -7,10 +7,10 @@ import {
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { TabBodyDirective } from '../tab/tab-body.directive';
-import { TabGroupComponent } from '../tab/tab-group.component';
-import { TabHeaderDirective } from '../tab/tab-header.directive';
-import { TabComponent } from '../tab/tab.component';
+import { TabBodyDirective } from './tab-body.directive';
+import { TabGroupComponent } from './tab-group.component';
+import { TabHeaderDirective } from './tab-header.directive';
+import { TabComponent } from './tab.component';
 
 @Component({
   imports: [
