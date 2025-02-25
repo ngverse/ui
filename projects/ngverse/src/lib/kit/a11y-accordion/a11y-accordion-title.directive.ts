@@ -1,18 +1,9 @@
-import {
-  Directive,
-  ElementRef,
-  inject,
-  input,
-  OnDestroy,
-  output,
-} from '@angular/core';
+import { Directive, ElementRef, inject, input, output } from '@angular/core';
 import { A11yAccordionDirective } from './a11y-accordion.directive';
-import { A1yyAccordionStack } from './a11y-accordion.stack';
 
 @Directive({
   selector: '[appA11yAccordionTitle]',
   host: {
-    '(keydown)': 'onKeydown($event)',
     '(click)': 'toggled.emit()',
     '[attr.aria-controls]': 'panelId',
     '[attr.aria-expanded]': 'isExpanded()',
@@ -20,8 +11,7 @@ import { A1yyAccordionStack } from './a11y-accordion.stack';
     '[id]': 'id',
   },
 })
-export class A11yAccordionTitleDirective implements OnDestroy {
-  private stack = inject(A1yyAccordionStack);
+export class A11yAccordionTitleDirective {
   private element = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>)
     .nativeElement;
   private accordion = inject(A11yAccordionDirective);
@@ -32,19 +22,7 @@ export class A11yAccordionTitleDirective implements OnDestroy {
   isExpanded = input.required<boolean>();
   toggled = output();
 
-  onKeydown(event: KeyboardEvent) {
-    this.stack.onKeydown(event);
-  }
-
-  constructor() {
-    this.stack.add(this);
-  }
-
   focus() {
     this.element.focus();
-  }
-
-  ngOnDestroy(): void {
-    this.stack.remove(this);
   }
 }

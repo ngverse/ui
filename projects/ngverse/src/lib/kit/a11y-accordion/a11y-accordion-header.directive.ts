@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, input } from '@angular/core';
 
 @Directive({
   selector: '[appA11yAccordionHeader]',
@@ -8,4 +8,6 @@ import { Directive } from '@angular/core';
     class: 'a11y-accordion-header',
   },
 })
-export class A11yAccordionHeaderDirective {}
+export class A11yAccordionHeaderDirective {
+  ariaLevel = input<string | undefined>('3');
+}

@@ -1,27 +1,26 @@
-<div [class.opened]="isOpen()" role="heading" [attr.aria-level]="ariaLevel()">
-  <button
-    class="accordion-item-header"
-    (click)="toggle()"
-    [disabled]="disabled()"
-    [attr.aria-expanded]="isOpen()"
-    [attr.aria-controls]="accordionBodyId"
-  >
-    {{ label() }}
-    <ng-content select="app-accordion-header"></ng-content>
-    <app-expand-icon
-      [class.icon-opened]="isOpen()"
-      class="expand-icon"
-    ></app-expand-icon>
-  </button>
-  @if (isOpen()) {
-    <div
-      role="region"
-      [id]="accordionBodyId"
-      @expandOnEnter
-      @collapseOnLeave
-      class="accordion-item-body"
+<div [class.opened]="isOpen()" appA11yAccordion>
+  <div appA11yAccordionHeader [ariaLevel]="ariaLevel()">
+    <button
+      appA11yAccordionTitle
+      [isExpanded]="isOpen()"
+      class="accordion-item-header"
+      (click)="toggle()"
+      [disabled]="disabled()"
     >
-      <ng-content select="app-accordion-body"></ng-content>
-    </div>
-  }
+      {{ label() }}
+      <ng-content select="app-accordion-header"></ng-content>
+      <app-expand-icon
+        [class.icon-opened]="isOpen()"
+        class="expand-icon"
+      ></app-expand-icon>
+    </button>
+  </div>
+
+  <div appA11yAccordionPanel [isExpanded]="isOpen()">
+    @if (isOpen()) {
+      <div @expandOnEnter @collapseOnLeave class="accordion-item-body">
+        <ng-content select="app-accordion-body"></ng-content>
+      </div>
+    }
+  </div>
 </div>

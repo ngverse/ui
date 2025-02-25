@@ -1,3 +1,7 @@
+import { A11yAccordionHeaderDirective } from '@/kit/a11y-accordion/a11y-accordion-header.directive';
+import { A11yAccordionPanelDirective } from '@/kit/a11y-accordion/a11y-accordion-panel.directive';
+import { A11yAccordionTitleDirective } from '@/kit/a11y-accordion/a11y-accordion-title.directive';
+import { A11yAccordionDirective } from '@/kit/a11y-accordion/a11y-accordion.directive';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,15 +17,15 @@ import {
 import { AccordionComponent } from './accordion.component';
 import { ExpandIconComponent } from './expand-icon.component';
 
-let accordionBodyId = 0;
-
-function genAccordionBodyId() {
-  return `accordion-item-body-${accordionBodyId++}`;
-}
-
 @Component({
   selector: 'app-accordion-item',
-  imports: [ExpandIconComponent],
+  imports: [
+    ExpandIconComponent,
+    A11yAccordionDirective,
+    A11yAccordionHeaderDirective,
+    A11yAccordionPanelDirective,
+    A11yAccordionTitleDirective,
+  ],
   templateUrl: './accordion-item.component.html',
   styleUrl: './accordion-item.component.css',
   animations: [EXPAND_ON_ENTER_ANIMATION, COLLAPSE_ON_LEAVE],
@@ -31,8 +35,8 @@ export class AccordionItemComponent {
   disabled = input<boolean>();
   label = input<string>();
   accordion = inject<AccordionComponent>(forwardRef(() => AccordionComponent));
-  ariaLevel = input<number>(3);
-  accordionBodyId = genAccordionBodyId();
+
+  ariaLevel = input<string>('3');
 
   expanded = input<boolean, boolean>(false, {
     transform: (value) => {

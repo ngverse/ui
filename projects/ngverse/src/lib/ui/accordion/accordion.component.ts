@@ -1,3 +1,4 @@
+import { A11yAccordionGroupDirective } from '@/kit/a11y-accordion/a11y-accordion-group.directive';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,6 +12,8 @@ import { AccordionItemComponent } from './accordion-item.component';
   templateUrl: './accordion.component.html',
   styleUrl: './accordion.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [A11yAccordionGroupDirective],
+  hostDirectives: [A11yAccordionGroupDirective],
 })
 export class AccordionComponent {
   multi = input<boolean>();

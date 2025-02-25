@@ -1,4 +1,4 @@
-import { Directive, inject } from '@angular/core';
+import { Directive, inject, input } from '@angular/core';
 import { A11yAccordionDirective } from './a11y-accordion.directive';
 
 @Directive({
@@ -8,10 +8,12 @@ import { A11yAccordionDirective } from './a11y-accordion.directive';
     class: 'a11y-accordion-panel',
     role: 'region',
     '[attr.aria-labelledby]': 'titleId',
+    '[inert]': '!isExpanded()',
   },
 })
 export class A11yAccordionPanelDirective {
   private accordion = inject(A11yAccordionDirective);
+  isExpanded = input.required<boolean>();
 
   id = this.accordion.panelId;
   titleId = this.accordion.titleId;
