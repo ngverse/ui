@@ -77,6 +77,6 @@ tree = addLanguageField(tree);
 tree = renameToFiles(tree);
 
 // Convert the tree to a JSON string
-const jsonOutput = JSON.stringify(tree, null, 2);
+const jsonOutput = JSON.stringify(tree, null, 2) + '\n'; //Add extra line for prettier style
 
 fs.writeFileSync('projects/docs/src/tree-structure.json', jsonOutput, 'utf8');
