@@ -4,5 +4,7 @@
   "tabWidth": 2,
   "trailingComma": "es5",
   "printWidth": 80,
-  "arrowParens": "always"
+  "arrowParens": "always",
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./projects/docs/src/styles.css"
 }

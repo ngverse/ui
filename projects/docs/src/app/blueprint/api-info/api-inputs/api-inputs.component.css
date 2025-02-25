@@ -39,7 +39,7 @@
 }
 
 .table {
-  @apply w-full text-sm text-left  rtl:text-right text-slate-500 dark:text-gray-200;
+  @apply w-full text-left text-sm text-slate-500 rtl:text-right dark:text-gray-200;
 
   td,
   th {
@@ -48,7 +48,7 @@
 }
 
 .head {
-  @apply text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-slate-200;
+  @apply bg-gray-50 text-xs text-slate-700 uppercase dark:bg-slate-700 dark:text-slate-200;
 }
 
 .card {

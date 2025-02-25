@@ -1,7 +1,7 @@
 <div class="home">
-  <div class="container justify-center mx-auto pt-10 relative h-screen">
+  <div class="relative container mx-auto h-screen justify-center pt-10">
     <div>
-      <div class="flex justify-center items-center px-3">
+      <div class="flex items-center justify-center px-3">
         <app-alert class="mb-4" type="success">
           <app-alert-header>Announcement!</app-alert-header>
           <app-alert-body>
@@ -11,15 +11,15 @@
         </app-alert>
       </div>
       <h1
-        class="text-blue-600 dark:text-violet-500 font-bold mb-4 text-center text-4xl lg:text-6xl"
+        class="mb-4 text-center text-4xl font-bold text-blue-600 lg:text-6xl dark:text-violet-500"
       >
         NgVerse
       </h1>
-      <h2 class="text-4xl font-bold text-center mb-4 lg:text-7xl mt-0">
+      <h2 class="mt-0 mb-4 text-center text-4xl font-bold lg:text-7xl">
         <div>Not Just Another</div>
         <div>UI Library</div>
       </h2>
-      <h2 class="capitalize text-xl font-medium text-center leading-normal">
+      <h2 class="text-center text-xl leading-normal font-medium capitalize">
         <div>Complete Zoneless Angular Components</div>
         <div>
           Just
@@ -37,9 +37,9 @@
           </span>
         </div>
       </h2>
-      <div class="flex justify-center items-center mt-6 gap-2">
+      <div class="mt-6 flex items-center justify-center gap-2">
         <a [routerLink]="['/doc']">
-          <button appButton color="primary" class="w-40 h-14" size="none">
+          <button appButton color="primary" class="h-14 w-40" size="none">
             Get Started
           </button>
         </a>

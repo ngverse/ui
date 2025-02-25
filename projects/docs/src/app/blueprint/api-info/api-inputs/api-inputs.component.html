@@ -1,28 +1,28 @@
 @for (apiInput of apiInputs(); track $index) {
   <div class="mb-8">
     <h4 class="mb-4">
-      <span class="font-medium pr-1">{{ apiInput.name }}</span>
-      <div class="flex lg:inline-flex text-sm items-center gap-1 mt-1 lg:mt-0">
+      <span class="pr-1 font-medium">{{ apiInput.name }}</span>
+      <div class="mt-1 flex items-center gap-1 text-sm lg:mt-0 lg:inline-flex">
         <span
           [ngClass]="apiInput.type"
-          class="rounded-xl px-2 shadow-sm text-white py-0.5"
+          class="rounded-xl px-2 py-0.5 text-white shadow-sm"
           >{{ apiInput.type }}</span
         >
         @if (apiInput.selector) {
           <span
-            class="rounded-xl bg-amber-600 px-2 shadow-sm text-white py-0.5"
+            class="rounded-xl bg-amber-600 px-2 py-0.5 text-white shadow-sm"
             >{{ apiInput.selector }}</span
           >
         }
         @if (apiInput.formBindable) {
-          <span class="rounded-xl bg-teal-600 px-2 shadow-sm text-white py-0.5"
+          <span class="rounded-xl bg-teal-600 px-2 py-0.5 text-white shadow-sm"
             >Form Bindable</span
           >
         }
       </div>
     </h4>
     @if (apiInput.description) {
-      <p class="mb-4 text-gray-700 dark:text-gray-100 text-sm">
+      <p class="mb-4 text-sm text-gray-700 dark:text-gray-100">
         {{ apiInput.description }}
       </p>
     }
@@ -44,7 +44,7 @@
               <tr class="border-b">
                 <th
                   scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white"
                 >
                   {{ apiInput.name }}
                 </th>
@@ -77,7 +77,7 @@
               <tr class="border-b">
                 <th
                   scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white"
                 >
                   {{ apiOutput.name }}
                 </th>
@@ -106,10 +106,10 @@
           </thead>
           <tbody>
             @for (apiProp of apiInput.properties; track $index) {
-              <tr class="bg-white border-b">
+              <tr class="border-b bg-white">
                 <th
                   scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white"
                 >
                   {{ apiProp.name }}
                 </th>
@@ -130,7 +130,7 @@
             <app-accordion-header>
               {{ method.name }}
               <span
-                class="text-gray-700 dark:text-gray-100 text-sm pl-2 font-normal italic"
+                class="pl-2 text-sm font-normal text-gray-700 italic dark:text-gray-100"
                 >({{ method.description }})</span
               >
             </app-accordion-header>
@@ -138,14 +138,14 @@
               <p>
                 Returns: {{ method.returnType }}
                 @if (method.returnDescription) {
-                  <span class="text-gray-700 dark:text-gray-100 italic text-sm">
+                  <span class="text-sm text-gray-700 italic dark:text-gray-100">
                     : {{ method.returnDescription }}</span
                   >
                 }
               </p>
               @if (method.params?.length) {
                 <p class="mt-2">Params:</p>
-                <ul class="pl-4 mb-4">
+                <ul class="mb-4 pl-4">
                   @for (param of method.params; track $index) {
                     <li class="my-2">
                       <p>
@@ -153,7 +153,7 @@
                         <span class="text-sm">({{ param.type }})</span>
                         @if (param.description) {
                           <span
-                            class="text-gray-700 dark:text-gray-100 italic text-sm"
+                            class="text-sm text-gray-700 italic dark:text-gray-100"
                           >
                             : {{ param.description }}</span
                           >
@@ -162,13 +162,13 @@
                       @if (param.fields?.length) {
                         <ul class="pl-6">
                           @for (field of param.fields; track $index) {
-                            <li class="list-disc my-2">
+                            <li class="my-2 list-disc">
                               <span
                                 >{{ field.name }}
                                 <span class="text-sm">({{ field.type }})</span>
                                 @if (field.description) {
                                   <span
-                                    class="text-gray-700 dark:text-gray-100 italic text-sm"
+                                    class="text-sm text-gray-700 italic dark:text-gray-100"
                                   >
                                     : {{ field.description }}</span
                                   >

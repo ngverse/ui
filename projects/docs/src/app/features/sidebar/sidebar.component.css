@@ -20,7 +20,7 @@ a {
 }
 
 .in-progress {
-  @apply text-gray-400 pointer-events-none;
+  @apply pointer-events-none text-gray-400;
 }
 
 .sidebar-link {

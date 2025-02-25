@@ -1,7 +1,7 @@
 <div
-  class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-3"
+  class="mb-3 flex flex-col items-start justify-between lg:flex-row lg:items-center"
 >
-  <h5 class="text-lg my-0 mb-3 font-medium">Source code</h5>
+  <h5 class="my-0 mb-3 text-lg font-medium">Source code</h5>
   <div class="flex items-center gap-2">
     <app-checkbox [(ngModel)]="includeTests" labelAlign="start"
       >Include Tests</app-checkbox
@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="flex items-center justify-between mb-3">
+<div class="mb-3 flex items-center justify-between">
   <doc-source-tree-select
     [sourceTree]="sourceTreeAlpha()"
     (fileSelected)="fileSelected($event)"
