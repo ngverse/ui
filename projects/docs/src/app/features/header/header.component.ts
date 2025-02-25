@@ -22,7 +22,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     DarkModeToggleComponent,
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
   Menu = Menu;
