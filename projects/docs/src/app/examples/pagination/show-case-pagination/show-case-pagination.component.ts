@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { PaginationComponent } from '../../../../../../ngverse/src/lib/pagination/pagination.component';
+import { PaginationComponent } from '../../../../../../ngverse/src/lib/ui/pagination/pagination.component';
 
 @Component({
   selector: 'doc-show-case-pagination',

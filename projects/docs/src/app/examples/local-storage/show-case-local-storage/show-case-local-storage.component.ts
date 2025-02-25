@@ -5,8 +5,8 @@ import {
   OnDestroy,
   signal,
 } from '@angular/core';
-import { ButtonComponent } from '../../../../../../ngverse/src/lib/button/button.component';
-import { LocalStorageService } from '../../../../../../ngverse/src/lib/local-storage/local-storage.service';
+import { ButtonComponent } from '../../../../../../ngverse/src/lib/ui/button/button.component';
+import { LocalStorageService } from '../../../../../../ngverse/src/lib/ui/local-storage/local-storage.service';
 const STORAGE_KEY = 'current-date';
 
 @Component({

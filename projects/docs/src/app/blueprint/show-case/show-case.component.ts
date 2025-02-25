@@ -1,8 +1,8 @@
 import { UpperCasePipe } from '@angular/common';
 import { Component, inject, input, signal } from '@angular/core';
-import { CardComponent } from '../../../../../ngverse/src/lib/card/card.component';
-import { TabGroupComponent } from '../../../../../ngverse/src/lib/tab/tab-group.component';
-import { TabComponent } from '../../../../../ngverse/src/lib/tab/tab.component';
+import { CardComponent } from '../../../../../ngverse/src/lib/ui/card/card.component';
+import { TabGroupComponent } from '../../../../../ngverse/src/lib/ui/tab/tab-group.component';
+import { TabComponent } from '../../../../../ngverse/src/lib/ui/tab/tab.component';
 import { FileService } from '../../services/file.service';
 import { SourceCodeComponent } from '../source-code/source-code.component';
 

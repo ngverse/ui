@@ -8,11 +8,11 @@ import {
   LucideAngularModule,
   Rocket,
 } from 'lucide-angular';
-import { AlertBodyComponent } from '../../../../../ngverse/src/lib/alert/alert-body.component';
-import { AlertHeaderComponent } from '../../../../../ngverse/src/lib/alert/alert-header.component';
-import { AlertComponent } from '../../../../../ngverse/src/lib/alert/alert.component';
-import { ButtonComponent } from '../../../../../ngverse/src/lib/button/button.component';
-import { IconComponent } from '../../../../../ngverse/src/lib/icon/icon.component';
+import { AlertBodyComponent } from '../../../../../ngverse/src/lib/ui/alert/alert-body.component';
+import { AlertHeaderComponent } from '../../../../../ngverse/src/lib/ui/alert/alert-header.component';
+import { AlertComponent } from '../../../../../ngverse/src/lib/ui/alert/alert.component';
+import { ButtonComponent } from '../../../../../ngverse/src/lib/ui/button/button.component';
+import { IconComponent } from '../../../../../ngverse/src/lib/ui/icon/icon.component';
 
 @Component({
   selector: 'doc-home-page',
