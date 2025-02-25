@@ -37,8 +37,8 @@ function addLanguageField(tree) {
       language = 'spec.ts';
     } else if (name.includes('html')) {
       language = 'html';
-    } else if (name.includes('scss')) {
-      language = 'scss';
+    } else if (name.includes('css')) {
+      language = 'css';
     }
     tree.language = language;
   }
@@ -64,7 +64,7 @@ function renameToFiles(node) {
 
 // Generate the directory tree
 let tree = dirTree(baseDir, {
-  extensions: /\.(ts|js|json|html|css|scss)$/, // Optional: Filter by file types
+  extensions: /\.(ts|js|json|html|css|css)$/, // Optional: Filter by file types
 });
 
 // Clean up paths

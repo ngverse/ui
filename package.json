@@ -25,7 +25,7 @@
     "check:ngverse": "ng lint ngverse && npm run format:check && ng test --no-watch --no-progress --browsers=ChromeHeadless --project=ngverse && ng build --project=ngverse"
   },
   "lint-staged": {
-    "**/*.{html,ts,json,css,scss,md}": "prettier --write"
+    "**/*.{html,ts,json,css,md}": "prettier --write"
   },
   "dependencies": {
     "@angular/animations": "^19.0.6",

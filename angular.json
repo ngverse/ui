@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss",
+          "style": "css",
           "skipTests": true,
           "changeDetection": "OnPush"
         },
@@ -33,7 +33,7 @@
             "browser": "projects/docs/src/main.ts",
             "allowedCommonJsDependencies": ["file-saver", "jszip"],
             "tsConfig": "projects/docs/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": "css",
             "assets": [
               {
                 "glob": "**/*",
@@ -100,7 +100,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/docs/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": "css",
             "assets": [
               {
                 "glob": "**/*",
@@ -126,7 +126,7 @@
       "projectType": "library",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss",
+          "style": "css",
           "changeDetection": "OnPush"
         }
       },

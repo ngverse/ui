@@ -19,7 +19,7 @@ import { SourceCodeComponent } from '../source-code/source-code.component';
   styleUrl: './show-case.component.css',
 })
 export class ShowCaseComponent {
-  tabs = ['html', 'ts', 'scss'];
+  tabs = ['html', 'ts', 'css'];
   fileService = inject(FileService);
   code = signal<string>('');
   language = signal<string>('');
