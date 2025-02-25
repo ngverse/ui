@@ -19,7 +19,7 @@ function genInputId() {
   selector: 'app-radio-button',
   imports: [RadioButtonIconComponent],
   templateUrl: './radio-button.component.html',
-  styleUrl: './radio-button.component.scss',
+  styleUrl: './radio-button.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioButtonComponent {

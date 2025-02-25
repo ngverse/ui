@@ -37,7 +37,7 @@ function createButtonComponent(appTree: UnitTestTree) {
     BUTTON_COMPONENT_HTML
   );
   appTree.create(
-    createElementPath('button', 'component.scss'),
+    createElementPath('button', 'component.css'),
     BUTTON_COMPONENT_SCSS
   );
   appTree.create(
@@ -151,7 +151,7 @@ describe('element', () => {
       appTree.readContent(getProjectPath(componentName, 'component.html'))
     ).toEqual(BUTTON_COMPONENT_HTML);
     expect(
-      appTree.readContent(getProjectPath(componentName, 'component.scss'))
+      appTree.readContent(getProjectPath(componentName, 'component.css'))
     ).toEqual(BUTTON_COMPONENT_SCSS);
   });
 

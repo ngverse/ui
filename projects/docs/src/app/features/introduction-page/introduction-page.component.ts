@@ -6,6 +6,6 @@ import { SourceCodeComponent } from '../../blueprint/source-code/source-code.com
   selector: 'doc-introduction-page',
   imports: [BlogPageComponent, SourceCodeComponent],
   templateUrl: './introduction-page.component.html',
-  styleUrl: './introduction-page.component.scss',
+  styleUrl: './introduction-page.component.css',
 })
 export class IntroductionPageComponent {}

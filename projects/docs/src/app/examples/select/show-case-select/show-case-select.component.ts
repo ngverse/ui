@@ -63,7 +63,7 @@ const directories = [
     OptionGroupLabelComponent,
   ],
   templateUrl: './show-case-select.component.html',
-  styleUrl: './show-case-select.component.scss',
+  styleUrl: './show-case-select.component.css',
 })
 export class ShowCaseSelectComponent {
   countries = countries;

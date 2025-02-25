@@ -30,7 +30,7 @@ const ROOT = 'drawer';
     ShowCaseDrawerComponent,
   ],
   templateUrl: './drawer-page.component.html',
-  styleUrl: './drawer-page.component.scss',
+  styleUrl: './drawer-page.component.css',
 })
 export class DrawerPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

@@ -26,7 +26,7 @@ const ROOT = 'switch';
     ApiInfoComponent,
   ],
   templateUrl: './switch-page.component.html',
-  styleUrl: './switch-page.component.scss',
+  styleUrl: './switch-page.component.css',
 })
 export class SwitchPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

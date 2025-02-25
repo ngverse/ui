@@ -43,7 +43,7 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     PopoverComponent,
   ],
   templateUrl: './select.component.html',
-  styleUrl: './select.component.scss',
+  styleUrl: './select.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

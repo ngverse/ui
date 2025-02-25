@@ -15,7 +15,7 @@ import { InputDirective } from '../../../../../../ngverse/src/lib/input/input.di
     LabelComponent,
   ],
   templateUrl: './dialog-test.component.html',
-  styleUrl: './dialog-test.component.scss',
+  styleUrl: './dialog-test.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogTestComponent {}

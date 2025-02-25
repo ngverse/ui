@@ -26,7 +26,7 @@ import { SourceTreeFile, SourceTreeFolder } from '../source-tree-builder';
     OptionGroupLabelComponent,
   ],
   templateUrl: './source-tree-select.component.html',
-  styleUrl: './source-tree-select.component.scss',
+  styleUrl: './source-tree-select.component.css',
 })
 export class SourceTreeSelectComponent {
   isOpen = signal(true);

@@ -27,7 +27,7 @@ const ROOT = 'toast';
     ApiInfoComponent,
   ],
   templateUrl: './toast-page.component.html',
-  styleUrl: './toast-page.component.scss',
+  styleUrl: './toast-page.component.css',
 })
 export class ToastPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

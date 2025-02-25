@@ -25,7 +25,7 @@ const ROOT = 'card';
     ShowCaseCardComponent,
   ],
   templateUrl: './card-page.component.html',
-  styleUrl: './card-page.component.scss',
+  styleUrl: './card-page.component.css',
 })
 export class CardPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

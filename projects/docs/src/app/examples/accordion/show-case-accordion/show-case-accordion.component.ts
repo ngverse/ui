@@ -7,7 +7,7 @@ import { AccordionComponent } from '../../../../../../ngverse/src/lib/accordion/
   selector: 'doc-show-case-accordion',
   imports: [AccordionComponent, AccordionItemComponent, AccordionBodyComponent],
   templateUrl: './show-case-accordion.component.html',
-  styleUrl: './show-case-accordion.component.scss',
+  styleUrl: './show-case-accordion.component.css',
 })
 export class ShowCaseAccordionComponent {
   items = [

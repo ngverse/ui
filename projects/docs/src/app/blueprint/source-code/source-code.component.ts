@@ -9,7 +9,7 @@ import { EMPTY_FILE_TOKEN } from '../../services/file.service';
   selector: 'doc-source-code',
   imports: [Highlight, ClipboardModule, IconComponent, CardComponent],
   templateUrl: './source-code.component.html',
-  styleUrl: './source-code.component.scss',
+  styleUrl: './source-code.component.css',
 })
 export class SourceCodeComponent {
   code = input.required<string>();

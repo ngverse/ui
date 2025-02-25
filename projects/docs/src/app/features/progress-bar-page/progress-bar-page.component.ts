@@ -25,7 +25,7 @@ const ROOT = 'progress-bar';
     ApiInfoComponent,
   ],
   templateUrl: './progress-bar-page.component.html',
-  styleUrl: './progress-bar-page.component.scss',
+  styleUrl: './progress-bar-page.component.css',
 })
 export class ProgressBarPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

@@ -6,7 +6,7 @@ import { TextareaDirective } from '../../../../../../ngverse/src/lib/textarea/te
   selector: 'doc-show-case-textarea',
   imports: [TextareaDirective, FormsModule],
   templateUrl: './show-case-textarea.component.html',
-  styleUrl: './show-case-textarea.component.scss',
+  styleUrl: './show-case-textarea.component.css',
 })
 export class ShowCaseTextareaComponent {
   title = model();

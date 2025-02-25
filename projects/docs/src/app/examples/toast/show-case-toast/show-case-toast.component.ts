@@ -22,7 +22,7 @@ import {
     LabelComponent,
   ],
   templateUrl: './show-case-toast.component.html',
-  styleUrl: './show-case-toast.component.scss',
+  styleUrl: './show-case-toast.component.css',
 })
 export class ShowCaseToastComponent {
   toastService = inject(ToastService);

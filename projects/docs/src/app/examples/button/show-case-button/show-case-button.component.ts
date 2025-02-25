@@ -6,6 +6,6 @@ import { IconComponent } from '../../../../../../ngverse/src/lib/icon/icon.compo
   selector: 'doc-show-case-button',
   imports: [ButtonComponent, IconComponent],
   templateUrl: './show-case-button.component.html',
-  styleUrl: './show-case-button.component.scss',
+  styleUrl: './show-case-button.component.css',
 })
 export class ShowCaseButtonComponent {}

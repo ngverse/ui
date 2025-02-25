@@ -174,7 +174,7 @@ export function getAllSidebarLinks() {
   selector: 'doc-sidebar',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+  styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent {
   routes: Group[] = SIDEBAR_ROUTES;

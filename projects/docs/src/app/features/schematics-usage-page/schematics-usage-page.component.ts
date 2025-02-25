@@ -7,7 +7,7 @@ import { SourceCodeComponent } from '../../blueprint/source-code/source-code.com
   selector: 'doc-schematics-usage-page',
   imports: [BlogPageComponent, SourceCodeComponent, RouterLink],
   templateUrl: './schematics-usage-page.component.html',
-  styleUrl: './schematics-usage-page.component.scss',
+  styleUrl: './schematics-usage-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SchematicsUsagePageComponent {

@@ -14,7 +14,7 @@ import { TOAST_POSITION } from './toast.service';
   selector: 'app-toast',
   imports: [ToastCloseIconComponent],
   templateUrl: './toast.component.html',
-  styleUrl: './toast.component.scss',
+  styleUrl: './toast.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('toggle', [

@@ -20,7 +20,7 @@ export interface DialogOptions
   selector: 'app-dialog',
   imports: [CdkPortalOutlet, DialogCloseIconComponent, DialogCloseDirective],
   templateUrl: './dialog.component.html',
-  styleUrl: './dialog.component.scss',
+  styleUrl: './dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [DIALOG_ENTER_ANIMATION],
 })

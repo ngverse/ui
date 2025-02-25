@@ -27,7 +27,7 @@ const ROOT = 'tooltip';
     ApiInfoComponent,
   ],
   templateUrl: './tooltip-page.component.html',
-  styleUrl: './tooltip-page.component.scss',
+  styleUrl: './tooltip-page.component.css',
 })
 export class TooltipPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

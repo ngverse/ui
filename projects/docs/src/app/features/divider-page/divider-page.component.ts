@@ -25,7 +25,7 @@ const ROOT = 'divider';
     ShowCaseDividerComponent,
   ],
   templateUrl: './divider-page.component.html',
-  styleUrl: './divider-page.component.scss',
+  styleUrl: './divider-page.component.css',
 })
 export class DividerPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

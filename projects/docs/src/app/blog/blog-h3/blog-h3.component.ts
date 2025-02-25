@@ -4,7 +4,7 @@ import { Component, input } from '@angular/core';
   selector: 'doc-blog-h3',
   imports: [],
   templateUrl: './blog-h3.component.html',
-  styleUrl: './blog-h3.component.scss',
+  styleUrl: './blog-h3.component.css',
 })
 export class BlogH3Component {
   label = input.required<string>();

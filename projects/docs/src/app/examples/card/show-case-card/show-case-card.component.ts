@@ -8,7 +8,7 @@ import { InputDirective } from '../../../../../../ngverse/src/lib/input/input.di
   selector: 'doc-show-case-card',
   imports: [CardComponent, ButtonComponent, FormsModule, InputDirective],
   templateUrl: './show-case-card.component.html',
-  styleUrl: './show-case-card.component.scss',
+  styleUrl: './show-case-card.component.css',
 })
 export class ShowCaseCardComponent {
   username = model('');

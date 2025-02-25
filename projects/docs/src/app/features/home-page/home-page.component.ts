@@ -26,7 +26,7 @@ import { IconComponent } from '../../../../../ngverse/src/lib/icon/icon.componen
     AlertBodyComponent,
   ],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss',
+  styleUrl: './home-page.component.css',
 })
 export class HomePageComponent {
   Clipboard = Clipboard;

@@ -16,7 +16,7 @@ import { TabHeaderDirective } from './tab-header.directive';
   selector: 'app-tab',
   imports: [],
   templateUrl: './tab.component.html',
-  styleUrl: './tab.component.scss',
+  styleUrl: './tab.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabComponent {

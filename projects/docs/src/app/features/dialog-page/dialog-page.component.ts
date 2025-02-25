@@ -33,7 +33,7 @@ const ROOT = 'dialog';
     RouterLink,
   ],
   templateUrl: './dialog-page.component.html',
-  styleUrl: './dialog-page.component.scss',
+  styleUrl: './dialog-page.component.css',
 })
 export class DialogPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

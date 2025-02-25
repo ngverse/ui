@@ -29,7 +29,7 @@ const ROOT = 'checkbox';
     ApiInfoComponent,
   ],
   templateUrl: './checkbox-page.component.html',
-  styleUrl: './checkbox-page.component.scss',
+  styleUrl: './checkbox-page.component.css',
 })
 export class CheckboxPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

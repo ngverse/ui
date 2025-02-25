@@ -7,7 +7,7 @@ import { PopoverComponent } from '../../../../../../ngverse/src/lib/popover/popo
   selector: 'doc-show-case-popover',
   imports: [PopoverOriginDirective, ButtonComponent, PopoverComponent],
   templateUrl: './show-case-popover.component.html',
-  styleUrl: './show-case-popover.component.scss',
+  styleUrl: './show-case-popover.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowCasePopoverComponent {

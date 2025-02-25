@@ -8,7 +8,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "node scripts/generate-tree.js && ng serve --project=docs",
+    "start": "node scripts/generate-tree.js && ng serve --project=docs --no-hmr",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --project=ngverse",

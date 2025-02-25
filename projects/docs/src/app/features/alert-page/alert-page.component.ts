@@ -26,7 +26,7 @@ const ROOT = 'alert';
     ApiInfoComponent,
   ],
   templateUrl: './alert-page.component.html',
-  styleUrl: './alert-page.component.scss',
+  styleUrl: './alert-page.component.css',
 })
 export class AlertPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

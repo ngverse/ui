@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-error',
   imports: [],
   templateUrl: './error.component.html',
-  styleUrl: './error.component.scss',
+  styleUrl: './error.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('toggle', [

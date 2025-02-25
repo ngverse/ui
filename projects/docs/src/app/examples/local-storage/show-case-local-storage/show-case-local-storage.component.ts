@@ -13,7 +13,7 @@ const STORAGE_KEY = 'current-date';
   selector: 'doc-show-case-local-storage',
   imports: [ButtonComponent],
   templateUrl: './show-case-local-storage.component.html',
-  styleUrl: './show-case-local-storage.component.scss',
+  styleUrl: './show-case-local-storage.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowCaseLocalStorageComponent implements OnDestroy {

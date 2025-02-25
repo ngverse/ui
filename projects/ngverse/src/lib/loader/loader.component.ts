@@ -15,7 +15,7 @@ type Transparency = 'none' | 'semi' | 'full';
   selector: 'app-loader',
   imports: [],
   templateUrl: './loader.component.html',
-  styleUrl: './loader.component.scss',
+  styleUrl: './loader.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.overlay]': 'overlay()',

@@ -7,6 +7,6 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   selector: 'doc-doc-container-page',
   imports: [SidebarComponent, RouterOutlet, DocSiblingNavigationsComponent],
   templateUrl: './doc-container-page.component.html',
-  styleUrl: './doc-container-page.component.scss',
+  styleUrl: './doc-container-page.component.css',
 })
 export class DocContainerPageComponent {}

@@ -14,7 +14,7 @@ export interface AlertDialogOption {
   selector: 'app-alert-dialog',
   imports: [DialogCloseDirective, ButtonComponent],
   templateUrl: './alert-dialog.component.html',
-  styleUrl: './alert-dialog.component.scss',
+  styleUrl: './alert-dialog.component.css',
   animations: [DIALOG_ENTER_ANIMATION],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

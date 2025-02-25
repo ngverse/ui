@@ -7,7 +7,7 @@ import { DarkModeService } from './dark-mode.service';
   selector: 'app-dark-mode-toggle',
   imports: [DarkModeIconComponent, ButtonComponent],
   templateUrl: './dark-mode-toggle.component.html',
-  styleUrl: './dark-mode-toggle.component.scss',
+  styleUrl: './dark-mode-toggle.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DarkModeToggleComponent {

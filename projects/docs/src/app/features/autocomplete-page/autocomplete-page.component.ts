@@ -17,7 +17,7 @@ import { ShowCaseAutocompleteComponent } from '../../examples/autocomplete/show-
     ShowCaseAutocompleteComponent,
   ],
   templateUrl: './autocomplete-page.component.html',
-  styleUrl: './autocomplete-page.component.scss',
+  styleUrl: './autocomplete-page.component.css',
 })
 export class AutocompletePageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

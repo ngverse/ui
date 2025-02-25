@@ -28,7 +28,7 @@ const ROOT = 'accordion';
     CommandInstallationComponent,
   ],
   templateUrl: './accordion-page.component.html',
-  styleUrl: './accordion-page.component.scss',
+  styleUrl: './accordion-page.component.css',
 })
 export class AccordionPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

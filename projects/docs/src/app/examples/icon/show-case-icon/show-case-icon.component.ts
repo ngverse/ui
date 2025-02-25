@@ -7,7 +7,7 @@ import { IconRegistry } from '../../../../../../ngverse/src/lib/icon/icon.regist
   selector: 'doc-show-case-icon',
   imports: [IconComponent, FormsModule],
   templateUrl: './show-case-icon.component.html',
-  styleUrl: './show-case-icon.component.scss',
+  styleUrl: './show-case-icon.component.css',
 })
 export class ShowCaseIconComponent {
   iconRegistry = inject(IconRegistry);

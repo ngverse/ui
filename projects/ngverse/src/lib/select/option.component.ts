@@ -16,7 +16,7 @@ import { SelectComponent } from './select.component';
 @Component({
   selector: 'app-option',
   templateUrl: './option.component.html',
-  styleUrl: './option.component.scss',
+  styleUrl: './option.component.css',
   imports: [SelectCheckIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

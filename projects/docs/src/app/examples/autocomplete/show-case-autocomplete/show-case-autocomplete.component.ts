@@ -7,7 +7,7 @@ import { AutocompleteComponent } from '../../../../../../ngverse/src/lib/autocom
   selector: 'doc-show-case-autocomplete',
   imports: [AutocompleteComponent, AutocompleteItemComponent, FormsModule],
   templateUrl: './show-case-autocomplete.component.html',
-  styleUrl: './show-case-autocomplete.component.scss',
+  styleUrl: './show-case-autocomplete.component.css',
 })
 export class ShowCaseAutocompleteComponent {
   readonly items = ['Angular', 'React', 'Vue', 'Svelte', 'Next.js'];

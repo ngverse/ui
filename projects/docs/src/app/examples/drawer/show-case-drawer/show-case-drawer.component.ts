@@ -10,7 +10,7 @@ import { DrawerService } from '../../../../../../ngverse/src/lib/drawer/drawer.s
   selector: 'doc-show-case-drawer',
   imports: [ButtonComponent],
   templateUrl: './show-case-drawer.component.html',
-  styleUrl: './show-case-drawer.component.scss',
+  styleUrl: './show-case-drawer.component.css',
 })
 export class ShowCaseDrawerComponent {
   drawerService = inject(DrawerService);

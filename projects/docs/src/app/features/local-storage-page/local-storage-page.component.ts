@@ -28,7 +28,7 @@ const ROOT = 'local-storage';
     ApiDescriptionComponent,
   ],
   templateUrl: './local-storage-page.component.html',
-  styleUrl: './local-storage-page.component.scss',
+  styleUrl: './local-storage-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LocalStoragePageComponent {

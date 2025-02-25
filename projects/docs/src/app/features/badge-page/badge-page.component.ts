@@ -25,7 +25,7 @@ const ROOT = 'badge';
     ShowCaseBadgeComponent,
   ],
   templateUrl: './badge-page.component.html',
-  styleUrl: './badge-page.component.scss',
+  styleUrl: './badge-page.component.css',
 })
 export class BadgePageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

@@ -32,7 +32,7 @@ const ROOT = 'otp-input';
     RouterLink,
   ],
   templateUrl: './otp-input-page.component.html',
-  styleUrl: './otp-input-page.component.scss',
+  styleUrl: './otp-input-page.component.css',
 })
 export class OtpInputPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

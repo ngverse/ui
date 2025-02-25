@@ -24,7 +24,7 @@ import { ShowCaseContextMenuComponent } from '../../examples/context-menu/show-c
     ApiDescriptionComponent,
   ],
   templateUrl: './context-menu-page.component.html',
-  styleUrl: './context-menu-page.component.scss',
+  styleUrl: './context-menu-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContextMenuPageComponent {

@@ -9,7 +9,7 @@ export interface Prerequisite {
   selector: 'doc-prerequisites',
   imports: [SourceCodeComponent, RouterLink],
   templateUrl: './prerequisites.component.html',
-  styleUrl: './prerequisites.component.scss',
+  styleUrl: './prerequisites.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrerequisitesComponent {

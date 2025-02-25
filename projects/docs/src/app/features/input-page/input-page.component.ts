@@ -26,7 +26,7 @@ const ROOT = 'input';
     ApiInfoComponent,
   ],
   templateUrl: './input-page.component.html',
-  styleUrl: './input-page.component.scss',
+  styleUrl: './input-page.component.css',
 })
 export class InputPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);

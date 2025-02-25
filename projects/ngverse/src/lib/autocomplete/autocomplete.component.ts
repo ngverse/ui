@@ -32,7 +32,7 @@ export const SELECTION_EMITTER = new InjectionToken<
   selector: 'app-autocomplete',
   imports: [FormsModule, PopoverOriginDirective, PopoverComponent],
   templateUrl: './autocomplete.component.html',
-  styleUrl: './autocomplete.component.scss',
+  styleUrl: './autocomplete.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
