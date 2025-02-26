@@ -1,7 +1,21 @@
+export interface ApiMethoParam {
+  name: string;
+  description: string;
+  type: string;
+  default?: string;
+}
+
 export interface ApiMethod {
-  params: Record<string, string>;
+  params: ApiMethoParam[];
   returnType: string;
   name: string;
+  description: string;
+}
+
+export interface ApiField {
+  name: string;
+  type: string;
+  default?: string;
   description: string;
 }
 
@@ -28,31 +42,17 @@ export interface ApiDirective {
   inputs?: ApiInput[];
 }
 
-export interface ApiComponent {
-  name: string;
-  selector: string;
-  description: string;
+export interface ApiComponent extends ApiDirective {
   methods?: ApiMethod[];
-  outputs?: ApiOutput[];
-  inputs?: ApiInput[];
-}
-
-export interface ApiClass {
-  name: string;
-  selector: string;
-  description: string;
-  methods?: ApiMethod[];
-  outputs?: ApiOutput[];
-  inputs?: ApiInput[];
 }
 
 export interface ApiInterface {
   name: string;
-  selector: string;
   description: string;
+  fields: ApiField[];
+}
+export interface ApiClass extends ApiInterface {
   methods?: ApiMethod[];
-  outputs?: ApiOutput[];
-  inputs?: ApiInput[];
 }
 
 export interface ApiConstant {

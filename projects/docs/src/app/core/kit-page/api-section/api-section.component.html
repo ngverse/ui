@@ -1,5 +1,22 @@
 @let section = api();
 
+@if (section.components) {
+  <h3 class="mt-8 pb-3 text-4xl">Components</h3>
+  <app-divider></app-divider>
+  @for (component of section.components; track $index) {
+    <h4 class="mt-10 text-3xl">{{ component.name }}</h4>
+    @if (component.inputs) {
+      <doc-api-inputs [api]="component.inputs"></doc-api-inputs>
+    }
+    @if (component.outputs) {
+      <doc-api-outputs [api]="component.outputs"></doc-api-outputs>
+    }
+    @if (component.methods) {
+      <doc-api-methods [api]="component.methods"></doc-api-methods>
+    }
+  }
+}
+
 @if (section.directives) {
   <h3 class="mt-8 pb-3 text-4xl">Directives</h3>
   <app-divider></app-divider>
@@ -7,6 +24,34 @@
     <h4 class="mt-10 text-3xl">{{ directive.name }}</h4>
     @if (directive.inputs) {
       <doc-api-inputs [api]="directive.inputs"></doc-api-inputs>
+    }
+    @if (directive.outputs) {
+      <doc-api-outputs [api]="directive.outputs"></doc-api-outputs>
+    }
+  }
+}
+
+@if (section.interfaces) {
+  <h3 class="mt-8 pb-3 text-4xl">Interfaces</h3>
+  <app-divider></app-divider>
+  @for (interface of section.interfaces; track $index) {
+    <h4 class="mt-10 text-3xl">{{ interface.name }}</h4>
+    @if (interface.fields) {
+      <doc-api-fields [api]="interface.fields"></doc-api-fields>
+    }
+  }
+}
+
+@if (section.classes) {
+  <h3 class="mt-8 pb-3 text-4xl">Classess</h3>
+  <app-divider></app-divider>
+  @for (class of section.classes; track $index) {
+    <h4 class="mt-10 text-3xl">{{ class.name }}</h4>
+    @if (class.fields) {
+      <doc-api-fields [api]="class.fields"></doc-api-fields>
+    }
+    @if (class.methods) {
+      <doc-api-methods [api]="class.methods"></doc-api-methods>
     }
   }
 }

@@ -16,3 +16,7 @@
 .card {
   @apply mb-10 block overflow-x-auto;
 }
+
+a {
+  color: red;
+}

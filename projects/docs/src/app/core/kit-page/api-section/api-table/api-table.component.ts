@@ -18,16 +18,7 @@ export class ApiTableComponent {
     return !!item['required'];
   }
 
-  keys(item: Record<string, unknown>) {
-    const lowered = this.headers().map((h) => h.toLowerCase());
-    const keys = Object.keys(item).filter(
-      (it) => it.toLowerCase() !== 'required'
-    );
-
-    return keys.sort((a, b) => {
-      return (
-        lowered.indexOf(a.toLowerCase()) - lowered.indexOf(b.toLowerCase())
-      );
-    });
+  getValue(item: Record<string, unknown>, key: string) {
+    return item[key.toLowerCase()];
   }
 }

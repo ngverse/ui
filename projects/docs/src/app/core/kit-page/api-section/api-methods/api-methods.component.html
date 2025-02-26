@@ -1,1 +1,8 @@
-<p>api-methods works!</p>
+@for (method of api(); track $index) {
+  <p>{{ method.name }} {{ method.description }} {{ method.returnType }}</p>
+  <doc-api-table
+    label="Params"
+    [data]="method.params"
+    [headers]="['Name', 'Type', 'Default', 'Description']"
+  ></doc-api-table>
+}

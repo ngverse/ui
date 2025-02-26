@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ApiMethod } from '../../kit-page.types';
+import { ApiField } from '../../kit-page.types';
 import { ApiTableComponent } from '../api-table/api-table.component';
 
 @Component({
-  selector: 'doc-api-methods',
+  selector: 'doc-api-fields',
   imports: [ApiTableComponent],
-  templateUrl: './api-methods.component.html',
-  styleUrl: './api-methods.component.css',
+  templateUrl: './api-fields.component.html',
+  styleUrl: './api-fields.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ApiMethodsComponent {
-  api = input.required<ApiMethod[]>();
+export class ApiFieldsComponent {
+  api = input.required<ApiField[]>();
 }
