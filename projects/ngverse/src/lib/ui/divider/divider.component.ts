@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   styles: `
     :host {
       display: block;
-      background-color: var(--nv-divider);
+      background-color: var(--color-divider);
       height: 1px;
       width: 100%;
 

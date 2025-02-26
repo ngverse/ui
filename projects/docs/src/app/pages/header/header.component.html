@@ -5,11 +5,12 @@
   <div class="text-blue-600 dark:text-violet-500">
     <a [routerLink]="['/']" class="ml-2 inline-flex items-center gap-2 lg:ml-0">
       <app-icon name="logo" width="40" height="40"></app-icon>
-      <doc-project-name class="text-xl font-bold"></doc-project-name>
+      NgVerse
     </a>
   </div>
-
-  <app-dark-mode-toggle class="mr-2 ml-auto"></app-dark-mode-toggle>
+  <a [routerLink]="'/doc'" class="mr-3 ml-auto">Doc</a>
+  <a [routerLink]="'/kit'" class="mr-3">Kit</a>
+  <app-dark-mode-toggle class="mr-2"></app-dark-mode-toggle>
   <a href="https://github.com/lukonik/ngverse" target="_blank">
     <button
       appButton

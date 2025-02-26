@@ -1,9 +1,8 @@
-<div class="doc-container-page">
+<div class="lg:flex lg:gap-10">
   <doc-sidebar [routes]="routes" class="hidden lg:block"></doc-sidebar>
   <div class="pb-20 lg:flex-1">
     <div class="w-full max-w-[1024px] pr-1 lg:pr-3">
       <router-outlet></router-outlet>
-      <doc-doc-sibling-navigations></doc-doc-sibling-navigations>
     </div>
   </div>
 </div>

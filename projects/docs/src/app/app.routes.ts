@@ -2,6 +2,27 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'kit',
+    loadComponent: () =>
+      import('./pages/kit-container-page/kit-container-page.component').then(
+        (k) => k.KitContainerPageComponent
+      ),
+    children: [
+      {
+        path: 'a11y-accordion',
+        loadComponent: () =>
+          import(
+            './pages/a11y-accordion-page/a11y-accordion-page.component'
+          ).then((d) => d.A11yAccordionPageComponent),
+      },
+      {
+        path: '',
+        redirectTo: 'a11y-accordion',
+        pathMatch: 'full',
+      },
+    ],
+  },
+  {
     path: 'doc',
     loadComponent: () =>
       import('./pages/doc-container-page/doc-container-page.component').then(

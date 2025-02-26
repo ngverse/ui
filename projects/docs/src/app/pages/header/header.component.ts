@@ -8,14 +8,12 @@ import { filter, take, takeUntil } from 'rxjs';
 import { ButtonComponent } from '@/ui/button/button.component';
 import { DarkModeToggleComponent } from '@/ui/dark-mode/dark-mode-toggle.component';
 import { IconComponent } from '@/ui/icon/icon.component';
-import { ProjectNameComponent } from '../../core/project-name/project-name.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'doc-header',
   imports: [
     RouterLink,
-    ProjectNameComponent,
     LucideAngularModule,
     ButtonComponent,
     IconComponent,

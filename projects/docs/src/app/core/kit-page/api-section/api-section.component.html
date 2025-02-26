@@ -1,0 +1,12 @@
+@let section = api();
+
+@if (section.directives) {
+  <h3 class="mt-8 pb-3 text-4xl">Directives</h3>
+  <app-divider></app-divider>
+  @for (directive of section.directives; track $index) {
+    <h4 class="mt-10 text-3xl">{{ directive.name }}</h4>
+    @if (directive.inputs) {
+      <doc-api-inputs [api]="directive.inputs"></doc-api-inputs>
+    }
+  }
+}

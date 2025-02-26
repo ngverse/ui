@@ -12,8 +12,8 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  // "editor.codeActionsOnSave": {
-  //   "source.organizeImports": "always"
-  // },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
   "prettier.configPath": "./.prettierrc"
 }
