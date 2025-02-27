@@ -1,6 +1,6 @@
+import { TextareaDirective } from '@/ui/textarea/textarea.directive';
 import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TextareaDirective } from '@/ui/textarea/textarea.directive';
 
 @Component({
   selector: 'doc-show-case-textarea',

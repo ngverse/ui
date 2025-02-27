@@ -1,10 +1,10 @@
-import { AccordionItemComponent } from '@/ui/accordion/accordion-item.component';
-import { NgClass } from '@angular/common';
-import { Component, input } from '@angular/core';
-import { AccordionComponent } from '@/ui/accordion/accordion.component';
 import { AccordionBodyComponent } from '@/ui/accordion/accordion-body.component';
 import { AccordionHeaderComponent } from '@/ui/accordion/accordion-header.component';
+import { AccordionItemComponent } from '@/ui/accordion/accordion-item.component';
+import { AccordionComponent } from '@/ui/accordion/accordion.component';
 import { CardComponent } from '@/ui/card/card.component';
+import { NgClass } from '@angular/common';
+import { Component, input } from '@angular/core';
 
 interface ApiInputType {
   name: string;

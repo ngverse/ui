@@ -1,3 +1,8 @@
+import { AlertBodyComponent } from '@/ui/alert/alert-body.component';
+import { AlertHeaderComponent } from '@/ui/alert/alert-header.component';
+import { AlertComponent } from '@/ui/alert/alert.component';
+import { ButtonComponent } from '@/ui/button/button.component';
+import { IconComponent } from '@/ui/icon/icon.component';
 import { DOCUMENT } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
@@ -8,11 +13,6 @@ import {
   LucideAngularModule,
   Rocket,
 } from 'lucide-angular';
-import { AlertBodyComponent } from '@/ui/alert/alert-body.component';
-import { AlertHeaderComponent } from '@/ui/alert/alert-header.component';
-import { AlertComponent } from '@/ui/alert/alert.component';
-import { ButtonComponent } from '@/ui/button/button.component';
-import { IconComponent } from '@/ui/icon/icon.component';
 
 @Component({
   selector: 'doc-home-page',

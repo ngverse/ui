@@ -1,3 +1,4 @@
+import { SwitchComponent } from '@/ui/switch/switch.component';
 import { Component } from '@angular/core';
 import {
   FormControl,
@@ -5,7 +6,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { SwitchComponent } from '@/ui/switch/switch.component';
 
 @Component({
   selector: 'doc-show-case-switch',

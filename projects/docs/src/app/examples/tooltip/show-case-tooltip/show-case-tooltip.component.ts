@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
 import { ButtonComponent } from '@/ui/button/button.component';
 import { InputDirective } from '@/ui/input/input.directive';
 import { TooltipDirective } from '@/ui/tooltip/tooltip.directive';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'doc-show-case-tooltip',

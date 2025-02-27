@@ -1,5 +1,3 @@
-import { Component, inject, model } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '@/ui/button/button.component';
 import { FormFieldComponent } from '@/ui/form-field/form-field.component';
 import { LabelComponent } from '@/ui/form-field/label/label.component';
@@ -10,6 +8,8 @@ import {
   TOAST_TYPE,
   ToastService,
 } from '@/ui/toast/toast.service';
+import { Component, inject, model } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'doc-show-case-toast',
