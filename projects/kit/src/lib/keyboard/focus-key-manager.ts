@@ -1,4 +1,4 @@
-import { GnBaseRegistry } from '../utils/base-registry';
+import { BaseRegistry } from '../utils/base-registry';
 import {
   isDownArrow,
   isEndKey,
@@ -10,7 +10,7 @@ import {
 
 export class GnFocusKeyManager<
   T extends { focus: () => void },
-> extends GnBaseRegistry<T> {
+> extends BaseRegistry<T> {
   constructor(
     public withWrap = false,
     public horizontal = false

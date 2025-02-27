@@ -1,6 +1,6 @@
 import { signal } from '@angular/core';
 
-export class GnBaseRegistry<T> {
+export class BaseRegistry<T> {
   protected _items = signal<readonly T[]>([]);
 
   items = this._items.asReadonly();

@@ -22,7 +22,9 @@
   background: transparent;
   border: 0;
   font-size: 1rem;
-
+  &:disabled {
+    color: var(--color-disabled-foreground);
+  }
   &:focus-visible {
     outline: 1px solid var(--color-ring);
   }

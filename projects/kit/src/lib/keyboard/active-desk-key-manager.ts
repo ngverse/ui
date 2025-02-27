@@ -1,5 +1,5 @@
 import { OutputEmitterRef, Signal, signal } from '@angular/core';
-import { GnBaseRegistry } from '@ng-genesis/utils/base-registry';
+import { BaseRegistry } from '../utils/base-registry';
 import {
   isDownArrow,
   isEndKey,
@@ -22,7 +22,7 @@ export interface GnActiveDescOption {
 
 export class GnActiveDescKeyManager<
   T extends GnActiveDescOption,
-> extends GnBaseRegistry<T> {
+> extends BaseRegistry<T> {
   private _activeItem = signal<T | null>(null);
   constructor(
     public withWrap = false,

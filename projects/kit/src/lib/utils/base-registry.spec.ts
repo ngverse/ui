@@ -1,10 +1,10 @@
-import { GnBaseRegistry } from './base-registry';
+import { BaseRegistry } from './base-registry';
 
 describe('BaseRegistry', () => {
-  let service: GnBaseRegistry<unknown>;
+  let service: BaseRegistry<unknown>;
 
   beforeEach(() => {
-    service = new GnBaseRegistry();
+    service = new BaseRegistry();
   });
 
   it('should create an instance', () => {
