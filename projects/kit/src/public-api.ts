@@ -12,3 +12,5 @@ export * from './lib/tab/tab-list.directive';
 export * from './lib/tab/tab-panel.directive';
 export * from './lib/tab/tab-stack';
 export * from './lib/tab/tab.directive';
+
+export * from './lib/alert/alert.directive';

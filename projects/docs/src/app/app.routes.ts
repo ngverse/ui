@@ -16,6 +16,20 @@ export const routes: Routes = [
           ).then((d) => d.A11yAccordionPageComponent),
       },
       {
+        path: 'a11y-tab',
+        loadComponent: () =>
+          import('./pages/a11y-tab-page/a11y-tab-page.component').then(
+            (d) => d.A11yTabPageComponent
+          ),
+      },
+      {
+        path: 'a11y-alert',
+        loadComponent: () =>
+          import('./pages/a11y-alert-page/a11y-alert-page.component').then(
+            (d) => d.A11yAlertPageComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'a11y-accordion',
         pathMatch: 'full',

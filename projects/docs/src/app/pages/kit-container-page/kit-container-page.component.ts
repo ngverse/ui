@@ -10,6 +10,14 @@ const routes: SidebarGroup[] = [
         name: 'Accordion',
         url: '/kit/a11y-accordion',
       },
+      {
+        name: 'Tab',
+        url: '/kit/a11y-tab',
+      },
+      {
+        name: 'Alert',
+        url: '/kit/a11y-alert',
+      },
     ],
   },
 ];
