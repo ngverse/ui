@@ -7,6 +7,12 @@ import {
   signal,
 } from '@angular/core';
 import {
+  A11yAccordionDirective,
+  A11yAccordionHeaderDirective,
+  A11yAccordionPanelDirective,
+  A11yAccordionTitleDirective,
+} from 'kit';
+import {
   COLLAPSE_ON_LEAVE,
   EXPAND_ON_ENTER_ANIMATION,
 } from './accordion-animations';
@@ -21,17 +27,23 @@ function genAccordionBodyId() {
 
 @Component({
   selector: 'app-accordion-item',
-  imports: [ExpandIconComponent],
+  imports: [
+    ExpandIconComponent,
+    A11yAccordionHeaderDirective,
+    A11yAccordionTitleDirective,
+    A11yAccordionPanelDirective,
+  ],
   templateUrl: './accordion-item.component.html',
   styleUrl: './accordion-item.component.css',
   animations: [EXPAND_ON_ENTER_ANIMATION, COLLAPSE_ON_LEAVE],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  hostDirectives: [A11yAccordionDirective],
 })
 export class AccordionItemComponent {
   disabled = input<boolean>();
   label = input<string>();
   accordion = inject<AccordionComponent>(forwardRef(() => AccordionComponent));
-  ariaLevel = input<number>(3);
+  ariaLevel = input<string>('3');
   accordionBodyId = genAccordionBodyId();
 
   expanded = input<boolean, boolean>(false, {

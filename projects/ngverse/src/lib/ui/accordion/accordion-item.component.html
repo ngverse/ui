@@ -1,10 +1,14 @@
-<div [class.opened]="isOpen()" role="heading" [attr.aria-level]="ariaLevel()">
+<div
+  [class.opened]="isOpen()"
+  ktA11yAccordionHeader
+  [a11yAriaLevel]="ariaLevel()"
+>
   <button
+    ktA11yAccordionTitle
+    [a11yIsExpanded]="isOpen()"
     class="accordion-item-header"
     (click)="toggle()"
     [disabled]="disabled()"
-    [attr.aria-expanded]="isOpen()"
-    [attr.aria-controls]="accordionBodyId"
   >
     {{ label() }}
     <ng-content select="app-accordion-header"></ng-content>
@@ -15,6 +19,7 @@
   </button>
   @if (isOpen()) {
     <div
+      ktA11yAccordionPanel
       role="region"
       [id]="accordionBodyId"
       @expandOnEnter
