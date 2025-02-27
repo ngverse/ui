@@ -10,7 +10,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@/ui/*": ["./projects/ngverse/src/lib/ui/*"],
+      "@/ui/*": ["./projects/ngverse/src/lib/*"],
       "kit": ["./dist/kit"]
     },
     "skipLibCheck": true,

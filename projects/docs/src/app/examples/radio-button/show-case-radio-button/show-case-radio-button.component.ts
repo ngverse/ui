@@ -1,7 +1,7 @@
-import { Component, model } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonComponent } from '@/ui/radio-button/radio-button.component';
 import { RadioGroupComponent } from '@/ui/radio-button/radio-group.component';
+import { Component, model } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'doc-show-case-radio-button',

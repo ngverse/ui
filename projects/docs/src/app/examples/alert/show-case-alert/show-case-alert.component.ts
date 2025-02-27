@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
 import { AlertBodyComponent } from '@/ui/alert/alert-body.component';
 import { AlertHeaderComponent } from '@/ui/alert/alert-header.component';
 import { AlertComponent } from '@/ui/alert/alert.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'doc-show-case-alert',

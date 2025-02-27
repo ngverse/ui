@@ -1,7 +1,7 @@
-import { Component, inject, signal, viewChild } from '@angular/core';
 import { ButtonComponent } from '@/ui/button/button.component';
 import { OtpInputComponent } from '@/ui/otp-input/otp-input.component';
 import { ToastService } from '@/ui/toast/toast.service';
+import { Component, inject, signal, viewChild } from '@angular/core';
 
 @Component({
   selector: 'doc-show-case-otp-input',

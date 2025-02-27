@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '@/ui/button/button.component';
 import { ConfirmDirective } from '@/ui/dialog/confirm.directive';
 import { DialogService } from '@/ui/dialog/dialog.service';
+import { Component, inject } from '@angular/core';
 import { DialogTestComponent } from '../dialog-test/dialog-test.component';
 
 @Component({

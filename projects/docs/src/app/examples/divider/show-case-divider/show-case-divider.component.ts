@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { DividerComponent } from '@/ui/divider/divider.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'doc-show-case-divider',

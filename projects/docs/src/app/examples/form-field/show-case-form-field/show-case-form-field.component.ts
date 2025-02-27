@@ -1,5 +1,3 @@
-import { Component, effect, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '@/ui/button/button.component';
 import { DialogService } from '@/ui/dialog/dialog.service';
 import { ErrorComponent } from '@/ui/form-field/error/error.component';
@@ -9,6 +7,8 @@ import { LabelComponent } from '@/ui/form-field/label/label.component';
 import { InputDirective } from '@/ui/input/input.directive';
 import { OptionComponent } from '@/ui/select/option.component';
 import { SelectComponent } from '@/ui/select/select.component';
+import { Component, effect, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'doc-show-case-form-field',
