@@ -1,38 +1,50 @@
 import { Highlightable } from '@angular/cdk/a11y';
 import {
-  computed,
   Directive,
   ElementRef,
   inject,
   input,
   linkedSignal,
   OnDestroy,
+  output,
 } from '@angular/core';
-import { A11yTabStack } from './tab-stack';
+import { A11ySelectStack } from './select-stack';
 
 @Directive({
-  selector: 'button[ktA11yTab]',
+  selector: '[ktA11yOption]',
   host: {
-    role: 'tab',
-    '[attr.aria-controls]': 'panelId()',
+    role: 'option',
     '[attr.aria-selected]': 'a11yIsSelected()',
-    '[tabindex]': 'isActive()? 0 : -1',
+    '[attr.aria-disabled]': 'a11yIsDisabled()',
     '(keydown)': 'onKeydown($event)',
-    '[id]': 'id()',
+    '[tabindex]': 'isActive()? 0 : -1',
     '(focus)': 'onFocus()',
+    '(click)': 'pressed.emit()',
   },
 })
-export class A11yTabDirective implements OnDestroy, Highlightable {
+export class A11yOptionDirective implements OnDestroy, Highlightable {
+  pressed = output<Event>();
   a11yIsSelected = input.required<boolean>();
-  private stack = inject(A11yTabStack);
+  a11yIsDisabled = input<boolean, boolean | undefined>(false, {
+    transform: (value: boolean | undefined) => {
+      this.disabled = value;
+      return !!value;
+    },
+  });
+  private stack = inject(A11ySelectStack);
   isActive = linkedSignal(() => this.a11yIsSelected());
   element = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>)
     .nativeElement;
-  panelId = computed(() => this.stack.getPanelIdByTab(this));
-  id = computed(() => this.stack.getTabId(this));
   constructor() {
     this.stack.add(this);
   }
+
+  getLabel(): string {
+    return this.element.textContent || '';
+  }
+
+  disabled?: boolean | undefined;
+
   onFocus() {
     this.stack.setActiveItem(this);
   }
@@ -45,6 +57,10 @@ export class A11yTabDirective implements OnDestroy, Highlightable {
   }
 
   onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.pressed.emit(event);
+    }
     this.stack.onKeydown(event);
   }
 

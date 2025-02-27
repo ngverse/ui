@@ -5,7 +5,7 @@ import { inject, Injector, signal } from '@angular/core';
 export class BaseStack<T extends Highlightable> {
   private _dir = inject(Directionality);
   protected _items = signal<readonly T[]>([]);
-  private _listKeyManager = new ActiveDescendantKeyManager(
+  protected _listKeyManager = new ActiveDescendantKeyManager(
     this._items,
     inject(Injector)
   );
@@ -19,7 +19,7 @@ export class BaseStack<T extends Highlightable> {
     this._items.update((items) => items.filter((i) => i !== item));
   }
 
-  onKeyDown(event: KeyboardEvent) {
+  onKeydown(event: KeyboardEvent) {
     this._listKeyManager.onKeydown(event);
   }
 

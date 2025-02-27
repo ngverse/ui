@@ -36,6 +36,7 @@ module.exports = tseslint.config(
           patterns: ['*ngverse*', '*/ngverse/*'],
         },
       ],
+      '@typescript-eslint/member-ordering': 'off',
     },
   },
   {
