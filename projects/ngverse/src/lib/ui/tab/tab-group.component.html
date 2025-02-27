@@ -1,38 +1,45 @@
-<div
-  class="tab-group-header"
-  #tabGroupHeader
-  (keydown)="onKeydown($event)"
-  tabindex="0"
-  (focus)="onTabGroupFocus()"
->
-  @for (tab of tabs(); track $index) {
-    <app-tab-group-header
-      [tab]="tab"
-      #tabHeader
-      (click)="selectTab($index)"
-    ></app-tab-group-header>
-  }
-  <div
-    #tabInk
-    class="tab-ink"
-    [style.width.px]="tabInkWidth()"
-    [style.left.px]="tabInkLeft()"
-  ></div>
-</div>
-<!--we need explicitely set ng-content, in order ssr work properly see (https://github.com/angular/angular/issues/50543)-->
-<ng-content></ng-content>
-<div [@tabChange]="selectedIndex()" class="tab-body">
-  @if (selectedTab(); as selectedTab) {
-    <div [class.body-gap]="selectedTab.gap()">
-      @if (selectedTab.bodyTemplate(); as bodyTemplate) {
-        <ng-container
-          [ngTemplateOutlet]="bodyTemplate.templateRef"
-        ></ng-container>
-      } @else {
-        @if (selectedTab.templateRef(); as templateRef) {
-          <ng-container [ngTemplateOutlet]="templateRef"></ng-container>
+<div ktA11yTabGroup>
+  <div class="tab-group-header" #tabGroupHeader ktA11yTabList>
+    @for (tab of tabs(); track $index) {
+      <button
+        (click)="selectTab($index)"
+        #tabHeader
+        ktA11yTab
+        [disabled]="tab.disabled()"
+        [a11yIsSelected]="selectedIndex() === $index"
+        class="tab-header"
+      >
+        @if (tab.headerTemplate(); as headerTemplate) {
+          <ng-container
+            [ngTemplateOutlet]="headerTemplate.templateRef"
+          ></ng-container>
+        } @else {
+          {{ tab.label() }}
         }
-      }
-    </div>
-  }
+      </button>
+    }
+    <div
+      #tabInk
+      class="tab-ink"
+      [style.width.px]="tabInkWidth()"
+      [style.left.px]="tabInkLeft()"
+    ></div>
+  </div>
+  <!--we need explicitely set ng-content, in order ssr work properly see (https://github.com/angular/angular/issues/50543)-->
+  <ng-content></ng-content>
+  <div [@tabChange]="selectedIndex()" class="tab-body" ktA11yTabPanel>
+    @if (selectedTab(); as selectedTab) {
+      <div [class.body-gap]="selectedTab.gap()">
+        @if (selectedTab.bodyTemplate(); as bodyTemplate) {
+          <ng-container
+            [ngTemplateOutlet]="bodyTemplate.templateRef"
+          ></ng-container>
+        } @else {
+          @if (selectedTab.templateRef(); as templateRef) {
+            <ng-container [ngTemplateOutlet]="templateRef"></ng-container>
+          }
+        }
+      </div>
+    }
+  </div>
 </div>

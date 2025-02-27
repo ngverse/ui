@@ -1,5 +1,4 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { Directionality } from '@angular/cdk/bidi';
 import { NgTemplateOutlet } from '@angular/common';
 import {
@@ -10,7 +9,6 @@ import {
   contentChildren,
   ElementRef,
   inject,
-  Injector,
   input,
   model,
   OnDestroy,
@@ -19,12 +17,23 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
-import { TabGroupHeaderComponent } from './tab-group-header.component';
+import {
+  A11yTabDirective,
+  A11yTabGroupDirective,
+  A11yTabListDirective,
+  A11yTabPanelDirective,
+} from 'kit';
 import { TabComponent } from './tab.component';
 
 @Component({
   selector: 'app-tab-group',
-  imports: [NgTemplateOutlet, TabGroupHeaderComponent],
+  imports: [
+    NgTemplateOutlet,
+    A11yTabListDirective,
+    A11yTabGroupDirective,
+    A11yTabDirective,
+    A11yTabPanelDirective,
+  ],
   templateUrl: './tab-group.component.html',
   styleUrl: './tab-group.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,28 +51,16 @@ export class TabGroupComponent implements OnDestroy {
   selectedIndex = model(0);
   bodyGap = input(true);
 
-  tabHeaders = viewChildren(TabGroupHeaderComponent);
+  tabHeaders = viewChildren<ElementRef<HTMLElement>>('tabHeader');
 
   tabHeadersEl = computed(() =>
-    this.tabHeaders().map((tabHeader) => tabHeader.element)
+    this.tabHeaders().map((tabHeader) => tabHeader.nativeElement)
   );
 
   tabGroupHeader =
     viewChild.required<ElementRef<HTMLElement>>('tabGroupHeader');
 
   direction = inject(Directionality);
-
-  keyManager = new ActiveDescendantKeyManager(
-    this.tabHeaders,
-    inject(Injector)
-  ).withHorizontalOrientation(this.direction.value);
-
-  onKeydown(event: KeyboardEvent) {
-    if (event.key === 'Enter' && this.keyManager.activeItemIndex !== null) {
-      this.selectTab(this.keyManager.activeItemIndex);
-    }
-    this.keyManager.onKeydown(event);
-  }
 
   tabChanged = output<number>();
 
@@ -83,10 +80,14 @@ export class TabGroupComponent implements OnDestroy {
     });
   }
 
-  onTabGroupFocus() {
-    if (!this.keyManager.activeItem) {
-      this.keyManager.setFirstItemActive();
-    }
+  selectTab($event: number) {
+    this.selectedIndex.set($event);
+    this.tabChanged.emit($event);
+    this.moveInk();
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver?.disconnect();
   }
 
   private moveInk() {
@@ -100,16 +101,5 @@ export class TabGroupComponent implements OnDestroy {
       this.tabInkLeft.set(rects.left - tabGroupRects.left);
       this.tabInkWidth.set(rects.width);
     }
-  }
-
-  selectTab($event: number) {
-    this.keyManager.setActiveItem($event);
-    this.selectedIndex.set($event);
-    this.tabChanged.emit($event);
-    this.moveInk();
-  }
-
-  ngOnDestroy(): void {
-    this.resizeObserver?.disconnect();
   }
 }

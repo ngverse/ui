@@ -4,12 +4,14 @@ import {
   input,
   signal,
 } from '@angular/core';
+import { A11yAccordionGroupDirective } from 'kit';
 import { AccordionItemComponent } from './accordion-item.component';
 
 @Component({
   selector: 'app-accordion',
   templateUrl: './accordion.component.html',
   styleUrl: './accordion.component.css',
+  hostDirectives: [A11yAccordionGroupDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccordionComponent {

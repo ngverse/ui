@@ -1,0 +1,46 @@
+<h4 class="mt-6 mb-2 text-3xl capitalize">{{ label() }}</h4>
+<app-card class="card" [gap]="false">
+  <table class="api-table table">
+    <thead class="head">
+      <tr class="capitalize">
+        @for (header of headers(); track $index) {
+          <th scope="col" class="px-6 py-3">{{ header }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (data of data(); track $index) {
+        <tr class="border-b">
+          @for (
+            key of headers();
+            track $index;
+            let isLast = $last;
+            let isFirst = $first
+          ) {
+            @let value = getValue(data, key);
+
+            @if (isFirst) {
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white"
+              >
+                {{ value }}
+                @if (hasRequired(data)) {
+                  <span class="text-danger">*</span>
+                }
+              </th>
+            } @else {
+              <td class="px-6 py-4">
+                @if (isLast) {
+                  <span [innerHTML]="value"></span>
+                } @else {
+                  {{ value ?? '--' }}
+                }
+              </td>
+            }
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</app-card>

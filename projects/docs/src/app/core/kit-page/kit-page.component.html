@@ -1,0 +1,31 @@
+<div class="px-5 pt-10 lg:px-0">
+  <h1 class="mb-2 text-4xl font-bold capitalize lg:text-5xl">
+    {{ name() }}
+  </h1>
+  @if (description()) {
+    <h2 class="m-0 text-lg font-light">{{ description() }}</h2>
+  }
+</div>
+
+<nav class="flex gap-3">
+  @for (section of sections; track $index) {
+    <button
+      (click)="setSection(section)"
+      class="border-b-2 border-b-transparent px-6 py-4 uppercase"
+      [class]="
+        activeSection() === section ? '!border-b-primary font-medium' : ''
+      "
+    >
+      {{ section }}
+    </button>
+  }
+</nav>
+
+@switch (activeSection()) {
+  @case ('Overview') {
+    <ng-content select="doc-overview-section"></ng-content>
+  }
+  @case ('API') {
+    <ng-content select="doc-api-section"></ng-content>
+  }
+}

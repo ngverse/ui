@@ -1,0 +1,28 @@
+<header class="header sticky top-0 z-50 flex items-center justify-between px-5">
+  <button class="lg:hidden" aria-label="toggle menu" (click)="showSidebar()">
+    <lucide-angular [img]="Menu"></lucide-angular>
+  </button>
+  <div class="text-blue-600 dark:text-violet-500">
+    <a [routerLink]="['/']" class="ml-2 inline-flex items-center gap-2 lg:ml-0">
+      <app-icon name="logo" width="40" height="40"></app-icon>
+      NgVerse
+    </a>
+  </div>
+  <a [routerLink]="'/doc'" class="mr-3 ml-auto">Doc</a>
+  <a [routerLink]="'/kit'" class="mr-3">Kit</a>
+  <app-dark-mode-toggle class="mr-2"></app-dark-mode-toggle>
+  <a href="https://github.com/lukonik/ngverse" target="_blank">
+    <button
+      appButton
+      icon
+      color="secondary"
+      variant="outline"
+      size="sm"
+      variant="link"
+      aria-label="Star on Github"
+    >
+      <app-icon width="20" height="20" name="github"></app-icon>
+    </button>
+  </a>
+  <div id="docsearch"></div>
+</header>

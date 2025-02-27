@@ -32,3 +32,11 @@ body {
   margin: 0 auto;
   width: 100%;
 }
+
+@layer components {
+  .api-table {
+    a {
+      text-decoration: underline !important;
+    }
+  }
+}
