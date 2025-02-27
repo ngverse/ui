@@ -24,12 +24,6 @@ module.exports = tseslint.config(
         },
       ],
       '@angular-eslint/prefer-on-push-component-change-detection': ['error'],
-      'no-restricted-imports': [
-        'error',
-        {
-          patterns: ['@ngverse/*', '**/dist/**', '../../dist/**', 'ngverse/*'],
-        },
-      ],
     },
   },
   {

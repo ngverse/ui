@@ -19,7 +19,7 @@ import {
   A11ySelectDirective,
   A11ySelectTriggerDirective,
   DynamicValueModel,
-} from 'kit';
+} from '@ngverse/kit';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
 import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';

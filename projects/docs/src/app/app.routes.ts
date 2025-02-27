@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'kit',
+    path: '@ngverse/kit',
     loadComponent: () =>
       import('./pages/kit-container-page/kit-container-page.component').then(
         (k) => k.KitContainerPageComponent

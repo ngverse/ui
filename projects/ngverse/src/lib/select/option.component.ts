@@ -7,7 +7,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { A11yOptionDirective } from 'kit';
+import { A11yOptionDirective } from '@ngverse/kit';
 import { OptionGroupComponent } from './option-group.component';
 import { SelectCheckIconComponent } from './select-check-icon.component';
 import { SelectComponent } from './select.component';

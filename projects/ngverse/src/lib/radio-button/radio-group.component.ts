@@ -5,7 +5,7 @@ import {
   signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SingleValueModel, ValueModelCompareWith } from 'kit';
+import { SingleValueModel, ValueModelCompareWith } from '@ngverse/kit';
 
 let inputName = 0;
 

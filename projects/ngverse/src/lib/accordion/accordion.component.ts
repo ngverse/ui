@@ -4,7 +4,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { A11yAccordionGroupDirective } from 'kit';
+import { A11yAccordionGroupDirective } from '@ngverse/kit';
 import { AccordionItemComponent } from './accordion-item.component';
 
 @Component({

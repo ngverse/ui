@@ -22,7 +22,7 @@ import {
   A11yTabGroupDirective,
   A11yTabListDirective,
   A11yTabPanelDirective,
-} from 'kit';
+} from '@ngverse/kit';
 import { TabComponent } from './tab.component';
 
 @Component({

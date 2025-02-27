@@ -30,12 +30,6 @@ module.exports = tseslint.config(
           style: 'kebab-case',
         },
       ],
-      'no-restricted-imports': [
-        'error',
-        {
-          patterns: ['*ngverse*', '*/ngverse/*'],
-        },
-      ],
       '@typescript-eslint/member-ordering': 'off',
     },
   },

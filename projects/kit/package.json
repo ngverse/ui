@@ -1,5 +1,5 @@
 {
-  "name": "kit",
+  "name": "'@ngverse/kit'",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^19.1.0",

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { A11yAlertDirective } from 'kit';
+import { A11yAlertDirective } from '@ngverse/kit';
 
 type ALERT_TYPES = 'success' | 'danger' | 'warning' | 'default';
 type ALERT_VARIANT_TYPES = 'fill' | 'outline';
