@@ -809,42 +809,6 @@
       ]
     },
     {
-      "path": "popover",
-      "name": "popover",
-      "files": [
-        {
-          "path": "popover/popover-origin.directive.spec.ts",
-          "name": "popover-origin.directive.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "popover/popover-origin.directive.ts",
-          "name": "popover-origin.directive.ts",
-          "language": "ts"
-        },
-        {
-          "path": "popover/popover.component.css",
-          "name": "popover.component.css",
-          "language": "css"
-        },
-        {
-          "path": "popover/popover.component.html",
-          "name": "popover.component.html",
-          "language": "html"
-        },
-        {
-          "path": "popover/popover.component.spec.ts",
-          "name": "popover.component.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "popover/popover.component.ts",
-          "name": "popover.component.ts",
-          "language": "ts"
-        }
-      ]
-    },
-    {
       "path": "progress-bar",
       "name": "progress-bar",
       "files": [

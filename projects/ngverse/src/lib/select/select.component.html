@@ -2,8 +2,8 @@
   ktA11ySelectTrigger
   class="select-button"
   [class.stretch]="stretch()"
-  appPopoverOrigin
-  #origin="appPopoverOrigin"
+  ktPopoverOrigin
+  #origin="ktPopoverOrigin"
   (click)="togglePanel()"
   [disabled]="disabled()"
 >
@@ -15,7 +15,7 @@
     [class.opened]="isOpen()"
   ></app-select-icon>
 </button>
-<app-popover
+<kt-popover
   [outsideClose]="true"
   [restoreFocus]="true"
   [blockScroll]="true"
@@ -33,4 +33,4 @@
       <ng-content select="app-option"></ng-content>
     </div>
   </ng-template>
-</app-popover>
+</kt-popover>

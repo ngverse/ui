@@ -19,18 +19,16 @@ import {
   A11ySelectDirective,
   A11ySelectTriggerDirective,
   DynamicValueModel,
+  PopoverComponent,
+  PopoverOriginDirective,
+  ValueModelCompareWith,
 } from '@ngverse/kit';
-import { PopoverOriginDirective } from '../popover/popover-origin.directive';
-import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
 import { SelectIconComponent } from './select-icon.component';
 
 type OnTouchedFunction = (() => void) | undefined;
 
 export type OnChangeFunction = ((_: unknown) => void) | undefined;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type CompareWith = (o1: any, o2: any) => boolean;
 
 @Component({
   selector: 'app-select',
@@ -72,7 +70,7 @@ export class SelectComponent implements ControlValueAccessor {
     },
   });
 
-  compareWith = input<CompareWith, CompareWith>(
+  compareWith = input<ValueModelCompareWith, ValueModelCompareWith>(
     (o1: unknown, o2: unknown) => o1 === o2,
     {
       transform: (value) => {

@@ -24,3 +24,6 @@ export * from './lib/select/select.directive';
 export * from './lib/value-models/dynamic-value-model';
 export * from './lib/value-models/single-value-model';
 export * from './lib/value-models/value-model.types';
+
+export * from './lib/popover/popover-origin.directive';
+export * from './lib/popover/popover.component';

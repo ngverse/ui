@@ -35,7 +35,7 @@ import { PopoverOriginDirective } from './popover-origin.directive';
 export type POPOVER_POSITIONS_Y = 'top' | 'right' | 'bottom' | 'left';
 
 @Component({
-  selector: 'app-popover',
+  selector: 'kt-popover',
   imports: [NgTemplateOutlet],
   templateUrl: './popover.component.html',
   styleUrl: './popover.component.css',
