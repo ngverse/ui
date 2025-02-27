@@ -20,3 +20,5 @@ export * from './lib/select/option.directive';
 export * from './lib/select/select-stack';
 export * from './lib/select/select-trigger.directive';
 export * from './lib/select/select.directive';
+
+export * from './lib/value-models/dynamic-value-model';

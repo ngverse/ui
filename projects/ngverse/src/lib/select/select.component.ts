@@ -14,14 +14,12 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { SelectionModel } from '@angular/cdk/collections';
-import { toSignal } from '@angular/core/rxjs-interop';
 import {
   A11yOptionGroupDirective,
   A11ySelectDirective,
   A11ySelectTriggerDirective,
+  DynamicValueModel,
 } from 'kit';
-import { map } from 'rxjs';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
 import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
@@ -57,21 +55,28 @@ export type CompareWith = (o1: any, o2: any) => boolean;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectComponent implements ControlValueAccessor {
-  multiple = input(false);
   placeholder = input<string>();
   options = contentChildren<OptionComponent>(
     forwardRef(() => OptionComponent),
     { descendants: true }
   );
 
+  private _valueModel = new DynamicValueModel();
+
   a11ySelect = inject(A11ySelectDirective);
+
+  multiple = input<boolean, boolean>(false, {
+    transform: (value) => {
+      this._valueModel.setMultiple(value);
+      return value;
+    },
+  });
 
   compareWith = input<CompareWith, CompareWith>(
     (o1: unknown, o2: unknown) => o1 === o2,
     {
       transform: (value) => {
-        this._selectionModel.compareWith = value;
-        this._selectionModel.setSelection(this._selectionModel.selected);
+        this._valueModel.setCompareWith(value);
         return value;
       },
     }
@@ -79,11 +84,6 @@ export class SelectComponent implements ControlValueAccessor {
   isOpen = signal(false);
   disabled = signal(false);
   stretch = input(true);
-  private _selectionModel = new SelectionModel(true);
-
-  values = toSignal(
-    this._selectionModel.changed.pipe(map(() => this._selectionModel.selected))
-  );
 
   selectedOptions = computed(() => {
     const valueOptions = this.options().filter((option) =>
@@ -104,31 +104,19 @@ export class SelectComponent implements ControlValueAccessor {
   private _registerOnChangeFn: OnChangeFunction;
 
   isSelected(value: unknown) {
-    this.values();
-    return this._selectionModel.isSelected(value);
+    return this._valueModel.isSelected(value);
   }
 
   writeValue(values: unknown): void {
-    if (values === null || values === undefined || values === '') {
-      this._selectionModel.clear();
-      return;
-    }
-    if (this.multiple()) {
-      this._selectionModel.setSelection(...(values as unknown[]));
-    } else {
-      this._selectionModel.setSelection(values);
-    }
+    this._valueModel.setValue(values);
   }
 
   toggleValue(option: OptionComponent) {
     const value = option.value();
-    if (!this.multiple()) {
-      this._selectionModel.clear(false);
-    }
-    this._selectionModel.toggle(value);
-    const flattenedValues = this.multiple()
-      ? this._selectionModel.selected
-      : this._selectionModel.selected[0];
+
+    this._valueModel.toggleValue(value);
+
+    const flattenedValues = this._valueModel.value();
 
     this._registerOnChangeFn?.(flattenedValues);
 
