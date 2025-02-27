@@ -116,9 +116,7 @@ export class SelectComponent implements ControlValueAccessor {
 
     this._valueModel.toggleValue(value);
 
-    const flattenedValues = this._valueModel.value();
-
-    this._registerOnChangeFn?.(flattenedValues);
+    this._registerOnChangeFn?.(this._valueModel.value());
 
     if (!this.multiple()) {
       this.isOpen.set(false);

@@ -37,10 +37,10 @@ export class RadioButtonComponent {
   });
 
   selected = computed(() => {
-    return this.radioGroup.compareWith()(this.radioGroup.value(), this.value());
+    return this.radioGroup.isSelected(this.value());
   });
 
   toggle() {
-    this.radioGroup.selected(this.value());
+    this.radioGroup.select(this.value());
   }
 }

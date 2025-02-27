@@ -22,3 +22,5 @@ export * from './lib/select/select-trigger.directive';
 export * from './lib/select/select.directive';
 
 export * from './lib/value-models/dynamic-value-model';
+export * from './lib/value-models/single-value-model';
+export * from './lib/value-models/value-model.types';

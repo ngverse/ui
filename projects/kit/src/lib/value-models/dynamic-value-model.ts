@@ -1,11 +1,10 @@
 import { computed, signal } from '@angular/core';
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type CompareWith = (o1: any, o2: any) => boolean;
+import { ValueModelCompareWith } from './value-model.types';
 
 export class DynamicValueModel<T> {
   public readonly isMultiple = signal<boolean>(false);
   private _value = signal<T[]>([]);
-  private readonly compareWith = signal<CompareWith>(
+  private readonly compareWith = signal<ValueModelCompareWith>(
     (o1: unknown, o2: unknown) => o1 === o2
   );
 
@@ -31,7 +30,7 @@ export class DynamicValueModel<T> {
     this._value.set([]);
   }
 
-  setCompareWith(compareWith: CompareWith) {
+  setCompareWith(compareWith: ValueModelCompareWith) {
     this.compareWith.set(compareWith);
   }
 
