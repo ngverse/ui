@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { A11yProgressbarDirective } from '@ngverse/kit';
 
 const minMaxTransform = (value: number) => {
   if (value < 0) {
@@ -12,7 +13,7 @@ const minMaxTransform = (value: number) => {
 
 @Component({
   selector: 'app-progress-bar',
-  imports: [],
+  imports: [A11yProgressbarDirective],
   templateUrl: './progress-bar.component.html',
   styleUrl: './progress-bar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

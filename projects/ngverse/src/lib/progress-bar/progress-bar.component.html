@@ -1,12 +1,15 @@
 <div class="progress-bar-container">
   @if (indeterminate()) {
-    <div class="indeterminate-line"></div>
-    <div class="indeterminate-subline inc"></div>
-    <div class="indeterminate-subline dec"></div>
+    <div ktA11yProgressbar>
+      <div class="indeterminate-line"></div>
+      <div class="indeterminate-subline inc"></div>
+      <div class="indeterminate-subline dec"></div>
+    </div>
   } @else {
     <div
+      ktA11yProgressbar
+      [a11yValueNow]="value()"
       class="determinate-bar"
-      role="progressbar"
       [style.transform]="transformValue()"
     ></div>
   }
