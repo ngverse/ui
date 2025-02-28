@@ -42,11 +42,6 @@ describe('CheckboxComponent', () => {
   it('should create', () => {
     expect(checkboxComponent).toBeTruthy();
   });
-  it('should disable checkbox with disable true', async () => {
-    checkboxComponent.disabled.set(true);
-    await fixture.whenStable();
-    expect(checkboxElement.classList).toContain('disabled');
-  });
 
   it('icon should be checked when value is true', async () => {
     rootComponent.formControl.setValue(true);

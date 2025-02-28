@@ -44,11 +44,6 @@ type LABEL_ALIGN = 'start' | 'end';
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.disabled]': 'disabled()',
-    '[class.checked]': 'value()',
-    '[class.start]': 'labelAlign() === "start"',
-  },
 })
 export class CheckboxComponent implements ControlValueAccessor, Validator {
   labelAlign = input<LABEL_ALIGN>('end');
