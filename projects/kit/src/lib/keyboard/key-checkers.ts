@@ -29,3 +29,7 @@ export function isEnter(event: KeyboardEvent) {
 export function isEscape(event: KeyboardEvent) {
   return event.key === 'Escape';
 }
+
+export function isSpaceKey(event: KeyboardEvent) {
+  return event.key === ' ';
+}

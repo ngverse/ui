@@ -28,3 +28,7 @@ export * from './lib/value-models/value-model.types';
 export * from './lib/popover/popover-origin.directive';
 export * from './lib/popover/popover.component';
 export * from './lib/popover/popover.service';
+
+export * from './lib/checkbox/checkbox.directive';
+
+export * from './lib/icon/icon.directive';
