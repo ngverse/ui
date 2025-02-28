@@ -43,8 +43,78 @@ export function popoverPositionToConnectionPosition(
         offsetX: offsetX,
         offsetY: offsetY,
       };
-    default:
-      throw new Error('Not implemented');
+    case 'bottom-end':
+      return {
+        originX: 'end',
+        originY: 'bottom',
+        overlayX: 'start',
+        overlayY: 'top',
+        offsetX: offsetX,
+        offsetY: offsetY,
+      };
+    case 'bottom-start':
+      return {
+        originX: 'start',
+        originY: 'bottom',
+        overlayX: 'end',
+        overlayY: 'top',
+        offsetX: offsetX,
+        offsetY: offsetY,
+      };
+    case 'left-end':
+      return {
+        originX: 'end',
+        originY: 'center',
+        overlayX: 'start',
+        overlayY: 'center',
+        offsetX: offsetX,
+        offsetY: offsetY,
+      };
+    case 'left-start':
+      return {
+        originX: 'start',
+        originY: 'center',
+        overlayX: 'end',
+        overlayY: 'center',
+        offsetX: offsetX,
+        offsetY: offsetY,
+      };
+    case 'right-end':
+      return {
+        originX: 'end',
+        originY: 'center',
+        overlayX: 'start',
+        overlayY: 'center',
+        offsetX: offsetX,
+        offsetY: offsetY,
+      };
+    case 'right-start':
+      return {
+        originX: 'start',
+        originY: 'center',
+        overlayX: 'end',
+        overlayY: 'center',
+        offsetX: offsetX,
+        offsetY: offsetY,
+      };
+    case 'top-end':
+      return {
+        originX: 'end',
+        originY: 'top',
+        overlayX: 'start',
+        overlayY: 'bottom',
+        offsetX: offsetX,
+        offsetY: offsetY,
+      };
+    case 'top-start':
+      return {
+        originX: 'start',
+        originY: 'top',
+        overlayX: 'end',
+        overlayY: 'bottom',
+        offsetX: offsetX,
+        offsetY: offsetY,
+      };
   }
 }
 
