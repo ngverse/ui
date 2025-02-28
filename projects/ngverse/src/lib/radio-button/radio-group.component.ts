@@ -7,6 +7,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   A11yRadioGroupDirective,
+  A11yRadioStack,
   SingleValueModel,
   ValueModelCompareWith,
 } from '@ngverse/kit';
@@ -30,6 +31,7 @@ export type OnChangeFunction = ((_: unknown) => void) | undefined;
       multi: true,
       useExisting: RadioGroupComponent,
     },
+    A11yRadioStack,
   ],
   hostDirectives: [A11yRadioGroupDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,

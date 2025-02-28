@@ -17,6 +17,7 @@ import {
 import {
   A11yOptionGroupDirective,
   A11ySelectDirective,
+  A11ySelectStack,
   A11ySelectTriggerDirective,
   DynamicValueModel,
   PopoverComponent,
@@ -48,6 +49,7 @@ export type OnChangeFunction = ((_: unknown) => void) | undefined;
       multi: true,
       useExisting: SelectComponent,
     },
+    A11ySelectStack,
   ],
   hostDirectives: [A11ySelectDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,

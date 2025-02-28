@@ -40,6 +40,7 @@ export * from './lib/progressbar/progressbar.directive';
 
 export * from './lib/radio/radio-button.directive';
 export * from './lib/radio/radio-group.directive';
+export * from './lib/radio/radio-stack';
 
 export * from './lib/local-storage/local-storage.service';
 export * from './lib/session-storage/session-storage.service';
