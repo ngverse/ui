@@ -6,6 +6,7 @@ import {
   inject,
   input,
 } from '@angular/core';
+import { A11yRadioButtonDirective } from '@ngverse/kit';
 import { RadioButtonIconComponent } from './radio-button-icon.component';
 import { RadioGroupComponent } from './radio-group.component';
 
@@ -17,7 +18,7 @@ function genInputId() {
 
 @Component({
   selector: 'app-radio-button',
-  imports: [RadioButtonIconComponent],
+  imports: [RadioButtonIconComponent, A11yRadioButtonDirective],
   templateUrl: './radio-button.component.html',
   styleUrl: './radio-button.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

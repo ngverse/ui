@@ -1,21 +1,18 @@
-<div class="radio-button" [class.disabled]="radioButtonDisabled()">
+<div
+  class="radio-button"
+  ktA11yRadioButton
+  (pressed)="toggle()"
+  [a11yIsChecked]="selected()"
+  [a11yIsDisabled]="radioButtonDisabled()"
+>
   <div class="native-radio-button-container">
-    <input
-      [disabled]="radioButtonDisabled()"
-      (change)="toggle()"
-      class="native-radio-button"
-      [id]="id()"
-      type="radio"
-      [name]="name()"
-      [checked]="selected()"
-    />
     <app-radio-button-icon
       [class.checked]="selected()"
       class="radio-button-icon"
       [checked]="selected()"
     ></app-radio-button-icon>
   </div>
-  <label class="radio-button-label" [for]="id()">
+  <span class="radio-button-label">
     <ng-content></ng-content>
-  </label>
+  </span>
 </div>

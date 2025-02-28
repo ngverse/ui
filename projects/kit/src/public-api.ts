@@ -37,3 +37,6 @@ export * from './lib/icon/icon.directive';
 export * from './lib/switch/switch.directive';
 
 export * from './lib/progressbar/progressbar.directive';
+
+export * from './lib/radio/radio-button.directive';
+export * from './lib/radio/radio-group.directive';

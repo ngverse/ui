@@ -5,7 +5,11 @@ import {
   signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SingleValueModel, ValueModelCompareWith } from '@ngverse/kit';
+import {
+  A11yRadioGroupDirective,
+  SingleValueModel,
+  ValueModelCompareWith,
+} from '@ngverse/kit';
 
 let inputName = 0;
 
@@ -18,7 +22,6 @@ export type OnChangeFunction = ((_: unknown) => void) | undefined;
 
 @Component({
   selector: 'app-radio-group',
-  imports: [],
   templateUrl: './radio-group.component.html',
   styleUrl: './radio-group.component.css',
   providers: [
@@ -28,6 +31,7 @@ export type OnChangeFunction = ((_: unknown) => void) | undefined;
       useExisting: RadioGroupComponent,
     },
   ],
+  hostDirectives: [A11yRadioGroupDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioGroupComponent implements ControlValueAccessor {
