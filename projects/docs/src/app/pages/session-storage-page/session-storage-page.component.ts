@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ApiDescriptionComponent } from '../../blueprint/api-info/api-description/api-description.component';
-import {
-  ApiInfo,
-  ApiInfoComponent,
-} from '../../blueprint/api-info/api-info.component';
+import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -12,6 +9,10 @@ import {
   SourceTreeFolder,
 } from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
+import { ApiSectionComponent } from '../../core/kit-page/api-section/api-section.component';
+import { KitPageComponent } from '../../core/kit-page/kit-page.component';
+import { ApiSection } from '../../core/kit-page/kit-page.types';
+import { OverviewSectionComponent } from '../../core/kit-page/overview-section/overview-section.component';
 import { ShowCaseSessionStorageComponent } from '../../examples/session-storage/show-case-session-storage/show-case-session-storage.component';
 
 const ROOT = 'session-storage';
@@ -26,6 +27,9 @@ const ROOT = 'session-storage';
     ApiInfoComponent,
     ShowCaseSessionStorageComponent,
     ApiDescriptionComponent,
+    KitPageComponent,
+    OverviewSectionComponent,
+    ApiSectionComponent,
   ],
   templateUrl: './session-storage-page.component.html',
   styleUrl: './session-storage-page.component.css',
@@ -41,11 +45,11 @@ export class SessionStoragePageComponent {
     },
   ];
 
-  apiInfo: ApiInfo = {
-    entities: [
+  api: ApiSection = {
+    services: [
       {
         name: 'SessionStorageService',
-        type: 'service',
+        description: '',
         methods: [
           {
             name: 'getItem',
@@ -109,13 +113,13 @@ export class SessionStoragePageComponent {
         properties: [
           {
             name: 'length',
-            propType: 'get',
+            type: 'get',
             returnType: 'number',
             description: 'The number of items in the storage.',
           },
           {
             name: 'enabled',
-            propType: 'get',
+            type: 'get',
             returnType: 'boolean',
             description:
               'Whether the session storage is enabled. if SSR the value is false.',

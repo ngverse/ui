@@ -2,7 +2,7 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
 import { effect, inject, Injectable, signal } from '@angular/core';
-import { LocalStorageService } from '../local-storage/local-storage.service';
+import { LocalStorageService } from '../../../../kit/src/local-storage/local-storage.service';
 
 const DARK_MODE_STORAGE_KEY = 'dark-mode';
 

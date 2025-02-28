@@ -18,6 +18,14 @@ const routes: SidebarGroup[] = [
         name: 'Alert',
         url: '/kit/a11y-alert',
       },
+      {
+        name: 'Session Storage',
+        url: '/kit/session-storage',
+      },
+      {
+        name: 'Local Storage',
+        url: '/kit/local-storage',
+      },
     ],
   },
 ];

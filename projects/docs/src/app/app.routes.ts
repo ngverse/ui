@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '@ngverse/kit',
+    path: 'kit',
     loadComponent: () =>
       import('./pages/kit-container-page/kit-container-page.component').then(
         (k) => k.KitContainerPageComponent
@@ -28,6 +28,20 @@ export const routes: Routes = [
           import('./pages/a11y-alert-page/a11y-alert-page.component').then(
             (d) => d.A11yAlertPageComponent
           ),
+      },
+      {
+        path: 'session-storage',
+        loadComponent: () =>
+          import(
+            './pages/session-storage-page/session-storage-page.component'
+          ).then((d) => d.SessionStoragePageComponent),
+      },
+      {
+        path: 'local-storage',
+        loadComponent: () =>
+          import(
+            './pages/local-storage-page/local-storage-page.component'
+          ).then((d) => d.LocalStoragePageComponent),
       },
       {
         path: '',

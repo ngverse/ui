@@ -1,4 +1,16 @@
-<doc-blueprint-page
+<doc-kit-page
+  description="SessionStorage is a secure wrapper for the browser's sessionStorage API, providing a mock implementation when operating in server-side rendering (SSR) mode."
+  [name]="'SessionStorage'"
+>
+  <doc-overview-section>
+    <doc-show-case name="session-storage">
+      <doc-show-case-session-storage></doc-show-case-session-storage>
+    </doc-show-case>
+    <p>Session storage is great</p>
+  </doc-overview-section>
+  <doc-api-section [api]="api"></doc-api-section>
+</doc-kit-page>
+<!-- <doc-blueprint-page
   subTitle="SessionStorage is a secure wrapper for the browser's sessionStorage API, providing a mock implementation when operating in server-side rendering (SSR) mode."
   [label]="'SessionStorage'"
 >
@@ -23,4 +35,4 @@
       Interface so all native methods are available.
     </doc-api-description>
   </doc-api-info>
-</doc-blueprint-page>
+</doc-blueprint-page> -->

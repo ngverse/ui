@@ -5,6 +5,7 @@ import { ApiFieldsComponent } from './api-fields/api-fields.component';
 import { ApiInputsComponent } from './api-inputs/api-inputs.component';
 import { ApiMethodsComponent } from './api-methods/api-methods.component';
 import { ApiOutputsComponent } from './api-outputs/api-outputs.component';
+import { ApiPropertiesComponent } from './api-properties/api-properties.component';
 
 @Component({
   selector: 'doc-api-section',
@@ -14,6 +15,7 @@ import { ApiOutputsComponent } from './api-outputs/api-outputs.component';
     ApiOutputsComponent,
     ApiFieldsComponent,
     ApiMethodsComponent,
+    ApiPropertiesComponent,
   ],
   templateUrl: './api-section.component.html',
   styleUrl: './api-section.component.css',

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   input,
   signal,
 } from '@angular/core';
@@ -13,9 +14,18 @@ import {
 })
 export class KitPageComponent {
   sections = ['Overview', 'API', 'Examples'];
-  activeSection = signal('API');
+  activeSection = signal('Overview');
   name = input.required<string>();
   description = input.required<string>();
+
+  showExamples = input(false);
+
+  filteredSections = computed(() => {
+    if (this.showExamples()) {
+      return ['Overview', 'API', 'Examples'];
+    }
+    return ['Overview', 'API'];
+  });
 
   setSection(section: string) {
     this.activeSection.set(section);

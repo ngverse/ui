@@ -31,6 +31,23 @@
   }
 }
 
+@if (section.services) {
+  <h3 class="mt-8 pb-3 text-4xl">Services</h3>
+  <app-divider></app-divider>
+  @for (service of section.services; track $index) {
+    <h4 class="mt-10 text-3xl">{{ service.name }}</h4>
+    @if (service.fields) {
+      <doc-api-fields [api]="service.fields"></doc-api-fields>
+    }
+    @if (service.properties) {
+      <doc-api-properties [api]="service.properties"></doc-api-properties>
+    }
+    @if (service.methods) {
+      <doc-api-methods [api]="service.methods"></doc-api-methods>
+    }
+  }
+}
+
 @if (section.interfaces) {
   <h3 class="mt-8 pb-3 text-4xl">Interfaces</h3>
   <app-divider></app-divider>
@@ -49,6 +66,9 @@
     <h4 class="mt-10 text-3xl">{{ class.name }}</h4>
     @if (class.fields) {
       <doc-api-fields [api]="class.fields"></doc-api-fields>
+    }
+    @if (class.properties) {
+      <doc-api-methods [api]="class.properties"></doc-api-methods>
     }
     @if (class.methods) {
       <doc-api-methods [api]="class.methods"></doc-api-methods>

@@ -19,6 +19,11 @@ export class ApiTableComponent {
   }
 
   getValue(item: Record<string, unknown>, key: string) {
-    return item[key.toLowerCase()];
+    const mapedKey = key.replace(' ', '').toLowerCase();
+    const value =
+      item[
+        Object.keys(item).find((k) => k.toLowerCase() === mapedKey) as string
+      ];
+    return value;
   }
 }
