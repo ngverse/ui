@@ -26,6 +26,7 @@ export * from './lib/value-models/single-value-model';
 export * from './lib/value-models/value-model.types';
 
 export * from './lib/popover/popover-origin.directive';
+export * from './lib/popover/popover-types';
 export * from './lib/popover/popover.component';
 export * from './lib/popover/popover.service';
 

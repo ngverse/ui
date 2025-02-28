@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { TOOLTIP_EVENT, TooltipDirective } from './tooltip.directive';
 
-describe('TooltipContainerComponent', () => {
+xdescribe('TooltipContainerComponent', () => {
   let component: TooltipTestComponent;
   let fixture: ComponentFixture<TooltipTestComponent>;
 

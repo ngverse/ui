@@ -66,7 +66,6 @@ export class PopoverComponent implements OnDestroy {
   outsideClose = input(false);
   stretchToOrigin = input(false);
   restoreFocus = input(false);
-  positionY = input<POPOVER_POSITIONS_Y>('bottom');
   position = input<POPOVER_POSITION>('bottom');
 
   opened = output();

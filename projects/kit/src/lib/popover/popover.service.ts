@@ -70,8 +70,8 @@ export class PopoverService {
       hasBackdrop: options.hasBackdrop,
       scrollStrategy: scrollStrategy,
     });
-    overlayRef.attach(options.component);
 
+    overlayRef.attach(options.component);
     return overlayRef;
   }
 }
