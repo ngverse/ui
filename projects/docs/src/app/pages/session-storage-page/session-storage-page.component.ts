@@ -1,32 +1,16 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ApiDescriptionComponent } from '../../blueprint/api-info/api-description/api-description.component';
-import { ApiInfoComponent } from '../../blueprint/api-info/api-info.component';
-import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
-import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
-import {
-  SourceTreeBuilder,
-  SourceTreeFolder,
-} from '../../blueprint/source-tree/source-tree-builder';
-import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ApiSectionComponent } from '../../core/kit-page/api-section/api-section.component';
 import { KitPageComponent } from '../../core/kit-page/kit-page.component';
 import { ApiSection } from '../../core/kit-page/kit-page.types';
 import { OverviewSectionComponent } from '../../core/kit-page/overview-section/overview-section.component';
 import { ShowCaseSessionStorageComponent } from '../../examples/session-storage/show-case-session-storage/show-case-session-storage.component';
 
-const ROOT = 'session-storage';
-
 @Component({
   selector: 'doc-session-storage-page',
   imports: [
-    BlueprintPageComponent,
-    CommandInstallationComponent,
     ShowCaseComponent,
-    SourceTreeComponent,
-    ApiInfoComponent,
     ShowCaseSessionStorageComponent,
-    ApiDescriptionComponent,
     KitPageComponent,
     OverviewSectionComponent,
     ApiSectionComponent,
@@ -36,15 +20,6 @@ const ROOT = 'session-storage';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SessionStoragePageComponent {
-  sourceTreeBuilder = inject(SourceTreeBuilder);
-  sourceTree: SourceTreeFolder[] = [
-    {
-      name: ROOT,
-      files: [...this.sourceTreeBuilder.service(ROOT, ROOT)],
-      hideName: true,
-    },
-  ];
-
   api: ApiSection = {
     services: [
       {

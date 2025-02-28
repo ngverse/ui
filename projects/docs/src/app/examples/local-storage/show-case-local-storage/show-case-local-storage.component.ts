@@ -6,7 +6,7 @@ import {
   OnDestroy,
   signal,
 } from '@angular/core';
-import { LocalStorageService } from '../../../../../../kit/src/local-storage/local-storage.service';
+import { LocalStorageService } from '@ngverse/kit';
 const STORAGE_KEY = 'current-date';
 
 @Component({

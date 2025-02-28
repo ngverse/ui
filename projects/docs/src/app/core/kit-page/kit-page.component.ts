@@ -5,11 +5,18 @@ import {
   input,
   signal,
 } from '@angular/core';
+import {
+  A11yTabDirective,
+  A11yTabGroupDirective,
+  A11yTabListDirective,
+} from '@ngverse/kit';
 
 @Component({
   selector: 'doc-kit-page',
   templateUrl: './kit-page.component.html',
   styleUrl: './kit-page.component.css',
+  imports: [A11yTabListDirective, A11yTabDirective],
+  hostDirectives: [A11yTabGroupDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class KitPageComponent {

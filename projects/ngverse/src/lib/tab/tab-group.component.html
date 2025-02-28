@@ -1,5 +1,9 @@
 <div ktA11yTabGroup>
-  <div class="tab-group-header" #tabGroupHeader ktA11yTabList>
+  <div
+    class="relative flex border-b border-divider outline-none"
+    #tabGroupHeader
+    ktA11yTabList
+  >
     @for (tab of tabs(); track $index) {
       <button
         (click)="selectTab($index)"
@@ -7,7 +11,7 @@
         ktA11yTab
         [disabled]="tab.disabled()"
         [a11yIsSelected]="selectedIndex() === $index"
-        class="tab-header"
+        class="flex cursor-pointer justify-center px-3 py-4 focus-visible:outline-ring"
       >
         @if (tab.headerTemplate(); as headerTemplate) {
           <ng-container
@@ -20,14 +24,14 @@
     }
     <div
       #tabInk
-      class="tab-ink"
+      class="tab-ink transition-left transition-width absolute bottom-0 left-0 h-0.5 bg-primary duration-300 ease-in-out"
       [style.width.px]="tabInkWidth()"
       [style.left.px]="tabInkLeft()"
     ></div>
   </div>
   <!--we need explicitely set ng-content, in order ssr work properly see (https://github.com/angular/angular/issues/50543)-->
   <ng-content></ng-content>
-  <div [@tabChange]="selectedIndex()" class="tab-body" ktA11yTabPanel>
+  <div [@tabChange]="selectedIndex()" class="p-5" ktA11yTabPanel>
     @if (selectedTab(); as selectedTab) {
       <div [class.body-gap]="selectedTab.gap()">
         @if (selectedTab.bodyTemplate(); as bodyTemplate) {

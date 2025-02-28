@@ -1,11 +1,11 @@
 import { DividerComponent } from '@/ui/divider/divider.component';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ApiPropertiesComponent } from '../api-properties/api-properties.component';
 import { ApiSection } from '../kit-page.types';
 import { ApiFieldsComponent } from './api-fields/api-fields.component';
 import { ApiInputsComponent } from './api-inputs/api-inputs.component';
 import { ApiMethodsComponent } from './api-methods/api-methods.component';
 import { ApiOutputsComponent } from './api-outputs/api-outputs.component';
-import { ApiPropertiesComponent } from './api-properties/api-properties.component';
 
 @Component({
   selector: 'doc-api-section',

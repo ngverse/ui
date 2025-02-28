@@ -41,5 +41,5 @@ export * from './lib/progressbar/progressbar.directive';
 export * from './lib/radio/radio-button.directive';
 export * from './lib/radio/radio-group.directive';
 
-export * from './local-storage/local-storage.service';
-export * from './session-storage/session-storage.service';
+export * from './lib/local-storage/local-storage.service';
+export * from './lib/session-storage/session-storage.service';
