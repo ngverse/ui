@@ -1,14 +1,14 @@
-<button
-  [disabled]="disabled()"
-  [id]="buttonId"
-  role="switch"
-  class="switch-button"
-  [class.checked]="value()"
-  [attr.aria-checked]="value()"
-  (click)="toggle()"
+<div
+  class="switch"
+  ktA11ySwitch
+  [a11yIsChecked]="value()"
+  (pressed)="toggle()"
+  [a11yIsDisabled]="disabled()"
 >
-  <div class="toggle"></div>
-</button>
-<label [htmlFor]="buttonId" [id]="labelId">
-  <ng-content></ng-content>
-</label>
+  <div class="switch-button" [class.checked]="value()">
+    <div class="toggle"></div>
+  </div>
+  <span class="switch-label">
+    <ng-content></ng-content>
+  </span>
+</div>

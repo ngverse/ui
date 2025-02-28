@@ -32,3 +32,5 @@ export * from './lib/popover/popover.service';
 export * from './lib/checkbox/checkbox.directive';
 
 export * from './lib/icon/icon.directive';
+
+export * from './lib/switch/switch.directive';

@@ -13,6 +13,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+import { A11ySwitchDirective } from '@ngverse/kit';
 
 type OnChangeFunction = ((_: unknown) => void) | undefined;
 
@@ -22,21 +23,11 @@ type VALUE_TYPE = boolean | undefined | null;
 
 type ValidatorChangeFunction = (() => void) | undefined;
 
-let buttonId = 0;
-let labelId = 0;
-
-function genButtonId() {
-  return `switch-${buttonId++}`;
-}
-function genLabelId() {
-  return `switch-label-${labelId++}`;
-}
-
 type LABEL_ALIGN = 'start' | 'end';
 
 @Component({
   selector: 'app-switch',
-  imports: [],
+  imports: [A11ySwitchDirective],
   templateUrl: './switch.component.html',
   styleUrl: './switch.component.css',
   providers: [
@@ -65,8 +56,6 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
   required = input<boolean>(false);
 
   value = signal<VALUE_TYPE>(undefined);
-  buttonId = genButtonId();
-  labelId = genLabelId();
   disabled = signal<boolean>(false);
 
   private _registerOnChangefn: OnChangeFunction;
