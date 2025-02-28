@@ -71,7 +71,7 @@ export class PopoverService {
       scrollStrategy: scrollStrategy,
     });
 
-    overlayRef.attach(options.component);
-    return overlayRef;
+    const componentRef = overlayRef.attach(options.component);
+    return { overlayRef, componentRef };
   }
 }

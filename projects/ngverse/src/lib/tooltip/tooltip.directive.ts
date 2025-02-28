@@ -85,12 +85,12 @@ export class TooltipDirective implements OnDestroy {
         return;
       }
 
-      this.overlayRef = this.popoverService.connected({
+      const { overlayRef, componentRef } = this.popoverService.connected({
         component: portal,
         origin: originElement,
         position: this.tooltipPosition(),
       });
-      const componentRef = this.overlayRef.attach(portal);
+      this.overlayRef = overlayRef;
       componentRef.instance.content.set(tooltipContent);
       componentRef.instance.message.set(this.message());
       componentRef.instance.position.set(this.tooltipPosition());

@@ -109,7 +109,7 @@ export class PopoverComponent implements OnDestroy {
       const connectingTo = origin.el;
       const position = this.position();
 
-      this.overlayRef = this.popoverService.connected({
+      const { overlayRef } = this.popoverService.connected({
         component: new DomPortal(this.popover()),
         origin: connectingTo,
         position,
@@ -118,6 +118,7 @@ export class PopoverComponent implements OnDestroy {
         blockScroll: this.blockScroll(),
         hasBackdrop: this.hasBackdrop(),
       });
+      this.overlayRef = overlayRef;
       this.tryStretch();
     });
   }
