@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChevronDownIcon } from '@ngverse/icons-lu';
 import {
   A11yAccordionDirective,
   A11yAccordionGroupDirective,
@@ -15,6 +16,7 @@ import {
     A11yAccordionHeaderDirective,
     A11yAccordionTitleDirective,
     A11yAccordionPanelDirective,
+    ChevronDownIcon,
   ],
   templateUrl: './show-case-a11y-accordion.component.html',
   styleUrl: './show-case-a11y-accordion.component.css',

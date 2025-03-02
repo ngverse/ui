@@ -9,6 +9,13 @@ export const routes: Routes = [
       ),
     children: [
       {
+        path: 'a11y-checkbox',
+        loadComponent: () =>
+          import(
+            './pages/a11y-checkbox-page/a11y-checkbox-page.component'
+          ).then((d) => d.A11yCheckboxPageComponent),
+      },
+      {
         path: 'a11y-accordion',
         loadComponent: () =>
           import(

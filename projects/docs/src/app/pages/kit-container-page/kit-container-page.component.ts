@@ -15,6 +15,10 @@ const routes: SidebarGroup[] = [
         url: '/kit/a11y-tab',
       },
       {
+        name: 'Checkbox',
+        url: '/kit/a11y-checkbox',
+      },
+      {
         name: 'Alert',
         url: '/kit/a11y-alert',
       },

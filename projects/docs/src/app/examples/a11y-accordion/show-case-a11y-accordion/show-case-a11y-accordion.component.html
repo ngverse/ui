@@ -2,18 +2,24 @@
 
 <div ktA11yAccordionGroup>
   @for (accordion of accordions; track $index) {
+    @let expanded = _expansions[$index];
+
     <div ktA11yAccordion>
       <div ktA11yAccordionHeader>
         <button
           class="mb-4 w-full cursor-pointer border-b border-b-divider pb-4 text-left"
           ktA11yAccordionTitle
-          [a11yIsExpanded]="!!_expansions[$index]"
+          [a11yIsExpanded]="expanded"
           (click)="toggle($index)"
         >
           {{ accordion.label }}
+          <chevron-down-icon
+            [class.rotate-180]="expanded"
+            class="transform transition-transform"
+          ></chevron-down-icon>
         </button>
       </div>
-      <div [hidden]="!_expansions[$index]" class="pb-5" ktA11yAccordionPanel>
+      <div [hidden]="!expanded" class="pb-5" ktA11yAccordionPanel>
         {{ accordion.body }}
       </div>
     </div>
