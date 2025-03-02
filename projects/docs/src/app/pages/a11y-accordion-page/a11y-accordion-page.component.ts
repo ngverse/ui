@@ -1,126 +1,72 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
 import { ApiSectionComponent } from '../../core/kit-page/api-section/api-section.component';
 import { KitPageComponent } from '../../core/kit-page/kit-page.component';
 import { ApiSection } from '../../core/kit-page/kit-page.types';
+import { OverviewSectionHeaderComponent } from '../../core/kit-page/overview-section/overview-section-header/overview-section-header.component';
 import { OverviewSectionComponent } from '../../core/kit-page/overview-section/overview-section.component';
+import { ShowCaseA11yAccordionComponent } from '../../examples/a11y-accordion/show-case-a11y-accordion/show-case-a11y-accordion.component';
 
 @Component({
   selector: 'doc-a11y-accordion-page',
-  imports: [KitPageComponent, OverviewSectionComponent, ApiSectionComponent],
+  imports: [
+    KitPageComponent,
+    ApiSectionComponent,
+    OverviewSectionComponent,
+    OverviewSectionHeaderComponent,
+    ShowCaseA11yAccordionComponent,
+    ShowCaseComponent,
+  ],
   templateUrl: './a11y-accordion-page.component.html',
   styleUrl: './a11y-accordion-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class A11yAccordionPageComponent {
   api: ApiSection = {
-    classes: [
-      {
-        name: 'A11yAccordion',
-        description: 'this is acc',
-        fields: [
-          {
-            name: 'color',
-            type: 'primary | secondary | danger | success | none',
-            default: 'primary',
-            description: 'this is acc',
-          },
-        ],
-        methods: [
-          {
-            name: 'open',
-            description: 'open',
-            returnType: 'void',
-            params: [
-              {
-                name: 'index',
-                type: 'number',
-                description: 'index',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-    components: [
-      {
-        name: 'A1yyAccordion',
-        selector: '[A1yyAccordion]',
-        description: 'this is acc',
-        methods: [
-          {
-            name: 'open',
-            description: 'open',
-            returnType: 'void',
-            params: [
-              {
-                name: 'index',
-                type: 'number',
-                description: 'index',
-              },
-            ],
-          },
-        ],
-        inputs: [
-          {
-            description:
-              "Defines the <a href='https://www.google.com'>Google</a>  button's color type",
-            type: 'primary | secondary | danger | success | none',
-            name: 'color',
-            default: 'primary',
-            required: true,
-          },
-        ],
-        outputs: [
-          {
-            name: 'pageChange',
-            description:
-              'Emits when the page has been changed with the new page number',
-            type: 'number',
-          },
-        ],
-      },
-    ],
     directives: [
       {
-        name: 'A1yyAccordion',
+        name: 'A11yAccordionGroupDirective',
         selector: '[A1yyAccordion]',
-        description: 'this is acc',
+        description: 'the root directive for a11y accordion group',
+      },
+      {
+        name: 'A11yAccordionDirective',
+        selector: '[ktA11yAccordion]',
+        description: 'the root directive for a11y accordion',
+      },
+      {
+        name: 'A11yAccordionHeaderDirective',
+        selector: '[ktA11yAccordionHeader]',
+        description:
+          'the header of accordion header, it serves as a label for accordion',
         inputs: [
           {
+            name: 'a11yAriaLevel',
+            type: 'string',
             description:
-              "Defines the <a href='https://www.google.com'>Google</a>  button's color type",
-            type: 'primary | secondary | danger | success | none',
-            name: 'color',
-            default: 'primary',
-            required: true,
-          },
-        ],
-        outputs: [
-          {
-            name: 'pageChange',
-            description:
-              'Emits when the page has been changed with the new page number',
-            type: 'number',
+              'the level of the header, default is 3, the values should be from 1...6',
           },
         ],
       },
-    ],
-    interfaces: [
       {
-        name: 'MatDialogRef',
-        description: 'DIALOG REF',
-        fields: [
+        name: 'A11yAccordionTitleDirective',
+        selector: 'button[ktA11yAccordionTitle]',
+        description:
+          'the toggle button of the accordion, it must be inside accordion header',
+        inputs: [
           {
-            name: 'close',
-            type: '() => void',
-            description: 'close dialog',
-          },
-          {
-            name: 'afterClosed',
-            type: '() => Observable<void>',
-            description: 'afterClosed',
+            name: 'a11yIsExpanded',
+            type: 'boolean',
+            description:
+              'adds proper aria attribute, when the accordion is expanded',
+            required: true,
           },
         ],
+      },
+      {
+        name: 'A11yAccordionPanelDirective',
+        selector: '[ktA11yAccordionPanel]',
+        description: 'the content of the accordion',
       },
     ],
   };

@@ -1,4 +1,25 @@
-<doc-kit-page name="A11y Accordion" description="A11y Accordion">
-  <doc-overview-section> IA M OVERVIEW </doc-overview-section>
-  <doc-api-section [api]="api"> I AM API SECTION </doc-api-section>
+<doc-kit-page
+  name="A11y Accordion"
+  description="A11y Accordion provides elements that follow the ARIA Accordion Pattern, automatically adding the necessary ARIA behaviors to your component."
+>
+  <doc-overview-section>
+    <doc-overview-section-header>
+      A11y Accordion enhances your custom accordion components with ARIA
+      functionality, following the
+      <a
+        class="underline"
+        target="_blank"
+        href="https://www.w3.org/WAI/ARIA/apg/patterns/accordion/"
+        >ARIA Accordion Pattern.</a
+      >
+      It does not handle behaviors like opening or closing the accordion—this is
+      left to you. Instead, it focuses solely on providing accessibility
+      features.
+    </doc-overview-section-header>
+
+    <doc-show-case name="a11y-accordion">
+      <doc-show-case-a11y-accordion></doc-show-case-a11y-accordion>
+    </doc-show-case>
+  </doc-overview-section>
+  <doc-api-section [api]="api"> </doc-api-section>
 </doc-kit-page>

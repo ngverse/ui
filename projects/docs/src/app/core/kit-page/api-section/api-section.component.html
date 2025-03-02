@@ -22,6 +22,8 @@
   <app-divider></app-divider>
   @for (directive of section.directives; track $index) {
     <h4 class="mt-10 text-3xl">{{ directive.name }}</h4>
+    <p class="mt-4">Selector: {{ directive.selector }}</p>
+    <p clast="mt-4">{{ directive.description }}</p>
     @if (directive.inputs) {
       <doc-api-inputs [api]="directive.inputs"></doc-api-inputs>
     }

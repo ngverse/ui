@@ -9,6 +9,7 @@ import {
   A11yTabDirective,
   A11yTabGroupDirective,
   A11yTabListDirective,
+  A11yTabStack,
 } from '@ngverse/kit';
 
 @Component({
@@ -17,11 +18,12 @@ import {
   styleUrl: './kit-page.component.css',
   imports: [A11yTabListDirective, A11yTabDirective],
   hostDirectives: [A11yTabGroupDirective],
+  providers: [A11yTabStack],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class KitPageComponent {
   sections = ['Overview', 'API', 'Examples'];
-  activeSection = signal('Overview');
+  activeSection = signal(this.sections[0]);
   name = input.required<string>();
   description = input.required<string>();
 
@@ -29,9 +31,9 @@ export class KitPageComponent {
 
   filteredSections = computed(() => {
     if (this.showExamples()) {
-      return ['Overview', 'API', 'Examples'];
+      return this.sections;
     }
-    return ['Overview', 'API'];
+    return this.sections.slice(0, 2);
   });
 
   setSection(section: string) {
