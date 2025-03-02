@@ -11,7 +11,7 @@ import {
   A11yAccordionHeaderDirective,
   A11yAccordionPanelDirective,
   A11yAccordionTitleDirective,
-} from 'kit';
+} from '@ngverse/kit';
 import {
   COLLAPSE_ON_LEAVE,
   EXPAND_ON_ENTER_ANIMATION,

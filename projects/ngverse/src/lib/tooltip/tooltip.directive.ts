@@ -1,4 +1,4 @@
-import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
@@ -10,6 +10,7 @@ import {
   OnDestroy,
   TemplateRef,
 } from '@angular/core';
+import { POPOVER_POSITION, PopoverService } from '@ngverse/kit';
 import { fromEvent, Subscription } from 'rxjs';
 import { TooltipContainerComponent } from './tooltip-container.component';
 export type TOOLTIP_POSITIONS = 'top' | 'right' | 'bottom' | 'left';
@@ -34,13 +35,14 @@ function getTooltipId() {
 })
 export class TooltipDirective implements OnDestroy {
   message = input.required<string>({ alias: 'appTooltip' });
-  tooltipPosition = input<TOOLTIP_POSITIONS>('top');
+  tooltipPosition = input<POPOVER_POSITION>('top');
   tooltipEvent = input<TOOLTIP_EVENT>('hover');
   tooltipDelay = input(0, { transform: numberAttribute });
   tooltipContent = input<TemplateRef<unknown>>();
   tooltipId = getTooltipId();
 
-  private overlay = inject(Overlay);
+  private popoverService = inject(PopoverService);
+
   private el = inject<ElementRef<HTMLElement>>(ElementRef);
   private document = inject(DOCUMENT);
 
@@ -79,13 +81,16 @@ export class TooltipDirective implements OnDestroy {
       const tooltipContent = this.tooltipContent();
       const portal = new ComponentPortal(TooltipContainerComponent);
 
-      this.overlayRef = this.overlay.create({
-        positionStrategy: this.overlay
-          .position()
-          .flexibleConnectedTo(originElement)
-          .withPositions([this.getOverlayPosition()]),
+      if (this.overlayRef) {
+        return;
+      }
+
+      const { overlayRef, componentRef } = this.popoverService.connected({
+        component: portal,
+        origin: originElement,
+        position: this.tooltipPosition(),
       });
-      const componentRef = this.overlayRef.attach(portal);
+      this.overlayRef = overlayRef;
       componentRef.instance.content.set(tooltipContent);
       componentRef.instance.message.set(this.message());
       componentRef.instance.position.set(this.tooltipPosition());
@@ -100,45 +105,6 @@ export class TooltipDirective implements OnDestroy {
     if (this.overlayRef?.hasAttached()) {
       this.overlayRef.detach();
       this.overlayRef = undefined;
-    }
-  }
-
-  private getOverlayPosition(): ConnectedPosition {
-    const offset = 6;
-    const tooltipPosition = this.tooltipPosition();
-    switch (tooltipPosition) {
-      case 'top':
-        return {
-          originX: 'center',
-          originY: 'top',
-          overlayX: 'center',
-          overlayY: 'bottom',
-          offsetY: -offset,
-        };
-      case 'right':
-        return {
-          originX: 'end',
-          originY: 'center',
-          overlayX: 'start',
-          overlayY: 'center',
-          offsetX: offset,
-        };
-      case 'bottom':
-        return {
-          originX: 'center',
-          originY: 'bottom',
-          overlayX: 'center',
-          overlayY: 'top',
-          offsetY: offset,
-        };
-      case 'left':
-        return {
-          originX: 'start',
-          originY: 'center',
-          overlayX: 'end',
-          overlayY: 'center',
-          offsetX: -offset,
-        };
     }
   }
 

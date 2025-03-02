@@ -5,7 +5,6 @@ import { A11yAccordionDirective } from './accordion.directive';
   selector: '[ktA11yAccordionPanel]',
   host: {
     '[id]': 'id',
-    class: 'kt-a11y-accordion-panel',
     role: 'region',
     '[attr.aria-labelledby]': 'titleId',
   },

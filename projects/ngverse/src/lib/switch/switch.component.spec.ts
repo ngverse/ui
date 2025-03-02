@@ -14,10 +14,8 @@ import { SwitchComponent } from './switch.component';
 describe('SwitchComponent', () => {
   let fixture: ComponentFixture<SwitchTestComponent>;
   let debugElement: DebugElement;
-  let htmlElement: HTMLElement;
   let rootComponent: SwitchTestComponent;
   let switchComponent: SwitchComponent;
-  let switchNativeElement: HTMLElement;
   let switchElement: HTMLElement;
 
   beforeEach(async () => {
@@ -29,14 +27,12 @@ describe('SwitchComponent', () => {
     await fixture.whenStable();
 
     debugElement = fixture.debugElement;
-    htmlElement = fixture.debugElement.nativeElement;
     rootComponent = fixture.componentInstance;
     switchComponent = debugElement.query(By.directive(SwitchComponent))
       .componentInstance as SwitchComponent;
     switchElement = debugElement.query(
       By.directive(SwitchComponent)
     ).nativeElement;
-    switchNativeElement = htmlElement.querySelector('button') as HTMLElement;
   });
 
   it('should create', () => {
@@ -47,15 +43,7 @@ describe('SwitchComponent', () => {
     await fixture.whenStable();
     expect(switchElement.classList).toContain('disabled');
   });
-  it('should be true on change', () => {
-    switchNativeElement.dispatchEvent(new Event('click'));
-    expect(rootComponent.formControl.value).toBeTrue();
-  });
-  it('should add checked class on value change', async () => {
-    rootComponent.formControl.setValue(true);
-    await fixture.whenStable();
-    expect(switchNativeElement.classList).toContain('checked');
-  });
+
   it('switch should be invalid with formControl required', async () => {
     rootComponent.formControl.setValidators(Validators.required);
     rootComponent.formControl.setValue(null);

@@ -1,4 +1,4 @@
-:host {
+.option {
   display: flex;
   width: 100%;
   align-items: center;
@@ -15,12 +15,14 @@
 
   &.is-active,
   &:hover:not([disabled]),
-  &.selected {
+  &[aria-selected='true'] {
     background: var(--color-accent);
     color: var(--color-accent-foreground);
   }
-  &:focus-visible {
+  &:focus {
     outline: 1px solid var(--color-ring);
+    background: var(--color-accent);
+    color: var(--color-accent-foreground);
   }
 
   &[disabled] {

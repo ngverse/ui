@@ -22,7 +22,8 @@ import {
   A11yTabGroupDirective,
   A11yTabListDirective,
   A11yTabPanelDirective,
-} from 'kit';
+  A11yTabStack,
+} from '@ngverse/kit';
 import { TabComponent } from './tab.component';
 
 @Component({
@@ -45,6 +46,7 @@ import { TabComponent } from './tab.component';
       ]),
     ]),
   ],
+  providers: [A11yTabStack],
 })
 export class TabGroupComponent implements OnDestroy {
   tabs = contentChildren(TabComponent);

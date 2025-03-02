@@ -5,7 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ConnectedPosition, OverlayRef } from '@angular/cdk/overlay';
 import { DomPortal } from '@angular/cdk/portal';
 import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import {
@@ -32,10 +32,12 @@ import {
   Subscription,
 } from 'rxjs';
 import { PopoverOriginDirective } from './popover-origin.directive';
+import { POPOVER_POSITION } from './popover-types';
+import { PopoverService } from './popover.service';
 export type POPOVER_POSITIONS_Y = 'top' | 'right' | 'bottom' | 'left';
 
 @Component({
-  selector: 'app-popover',
+  selector: 'kt-popover',
   imports: [NgTemplateOutlet],
   templateUrl: './popover.component.html',
   styleUrl: './popover.component.css',
@@ -64,17 +66,17 @@ export class PopoverComponent implements OnDestroy {
   outsideClose = input(false);
   stretchToOrigin = input(false);
   restoreFocus = input(false);
-  positionY = input<POPOVER_POSITIONS_Y>('bottom');
+  position = input<POPOVER_POSITION>('bottom');
 
   opened = output();
   closed = output();
 
   content = contentChild.required<TemplateRef<unknown>>(TemplateRef);
-  private overlay = inject(Overlay);
   private popover = viewChild.required<ElementRef<HTMLElement>>('popover');
   private document = inject(DOCUMENT);
   private overlayRef: OverlayRef | undefined;
   private globalSub: Subscription | undefined;
+  private popoverService = inject(PopoverService);
 
   get isOpened() {
     return !!this.overlayRef;
@@ -103,23 +105,20 @@ export class PopoverComponent implements OnDestroy {
       return;
     }
     untracked(() => {
-      const scrollStrategy = this.blockScroll()
-        ? this.overlay.scrollStrategies.block()
-        : this.overlay.scrollStrategies.reposition();
       const origin = this.origin();
       const connectingTo = origin.el;
-      const position = this.positionY();
+      const position = this.position();
 
-      this.overlayRef = this.overlay.create({
-        positionStrategy: this.overlay
-          .position()
-          .flexibleConnectedTo(connectingTo)
-          .withPositions([this.getOverlayPosition(position)])
-          .withLockedPosition(true),
+      const { overlayRef } = this.popoverService.connected({
+        component: new DomPortal(this.popover()),
+        origin: connectingTo,
+        position,
+        offsetX: this.offsetX(),
+        offsetY: this.offsetY(),
+        blockScroll: this.blockScroll(),
         hasBackdrop: this.hasBackdrop(),
-        scrollStrategy: scrollStrategy,
       });
-      this.overlayRef.attach(new DomPortal(this.popover()));
+      this.overlayRef = overlayRef;
       this.tryStretch();
     });
   }

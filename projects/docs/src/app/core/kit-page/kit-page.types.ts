@@ -5,8 +5,15 @@ export interface ApiMethoParam {
   default?: string;
 }
 
+export interface ApiProperty {
+  name: string;
+  type: 'get' | 'set' | 'get;set;';
+  description: string;
+  returnType: string;
+}
+
 export interface ApiMethod {
-  params: ApiMethoParam[];
+  params?: ApiMethoParam[];
   returnType: string;
   name: string;
   description: string;
@@ -49,10 +56,11 @@ export interface ApiComponent extends ApiDirective {
 export interface ApiInterface {
   name: string;
   description: string;
-  fields: ApiField[];
+  fields?: ApiField[];
 }
 export interface ApiClass extends ApiInterface {
   methods?: ApiMethod[];
+  properties?: ApiProperty[];
 }
 
 export interface ApiConstant {
@@ -80,4 +88,5 @@ export interface ApiSection {
   interfaces?: ApiInterface[];
   constants?: ApiConstant[];
   functions?: ApiFunction[];
+  services?: ApiClass[];
 }

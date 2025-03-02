@@ -38,13 +38,14 @@ export class A11yTabDirective implements OnDestroy, Highlightable {
   }
   setActiveStyles(): void {
     this.element.focus();
+    this.isActive.set(true);
   }
   setInactiveStyles(): void {
     this.isActive.set(false);
   }
 
   onKeydown(event: KeyboardEvent) {
-    this.stack.onKeyDown(event);
+    this.stack.onKeydown(event);
   }
 
   ngOnDestroy(): void {

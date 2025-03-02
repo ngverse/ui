@@ -6,8 +6,10 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { afterNextRender, Component, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import docsearch from '@docsearch/js';
+import { ExternalLinkIcon } from '@ngverse/icons-lu';
 import { LucideAngularModule, Menu } from 'lucide-angular';
 import { filter, take, takeUntil } from 'rxjs';
+import { DividerComponent } from '../../../../../ngverse/src/lib/divider/divider.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
@@ -18,6 +20,8 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     ButtonComponent,
     IconComponent,
     DarkModeToggleComponent,
+    ExternalLinkIcon,
+    DividerComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',

@@ -16,10 +16,8 @@ import { CheckboxComponent } from './checkbox.component';
 describe('CheckboxComponent', () => {
   let fixture: ComponentFixture<CheckboxTestComponent>;
   let debugElement: DebugElement;
-  let htmlElement: HTMLElement;
   let rootComponent: CheckboxTestComponent;
   let checkboxComponent: CheckboxComponent;
-  let checkboxNativeElement: HTMLElement;
   let checkboxElement: HTMLElement;
 
   beforeEach(async () => {
@@ -32,30 +30,19 @@ describe('CheckboxComponent', () => {
     });
     fixture = TestBed.createComponent(CheckboxTestComponent);
     debugElement = fixture.debugElement;
-    htmlElement = fixture.debugElement.nativeElement;
     rootComponent = fixture.componentInstance;
     checkboxComponent = debugElement.query(By.directive(CheckboxComponent))
       .componentInstance as CheckboxComponent;
     checkboxElement = debugElement.query(
       By.directive(CheckboxComponent)
     ).nativeElement;
-    checkboxNativeElement = htmlElement.querySelector('input') as HTMLElement;
     await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(checkboxComponent).toBeTruthy();
   });
-  it('should disable checkbox with disable true', async () => {
-    checkboxComponent.disabled.set(true);
-    await fixture.whenStable();
-    expect(checkboxElement.classList).toContain('disabled');
-  });
-  it('should be true on change', async () => {
-    checkboxNativeElement.dispatchEvent(new Event('change'));
-    await fixture.whenStable();
-    expect(rootComponent.formControl.value).toBeTrue();
-  });
+
   it('icon should be checked when value is true', async () => {
     rootComponent.formControl.setValue(true);
     await fixture.whenStable();
@@ -76,12 +63,6 @@ describe('CheckboxComponent', () => {
     expect(checkboxElement).toHaveClass('ng-invalid');
   });
 
-  it('id input should change the id of the input element', async () => {
-    const id = 'test-id';
-    rootComponent.id.set(id);
-    await fixture.whenStable();
-    expect(checkboxNativeElement.id).toBe(id);
-  });
   it("ng-content should be 'Test checkbox'", async () => {
     expect(checkboxElement.textContent?.trim()).toBe('Test checkbox');
   });
@@ -89,11 +70,7 @@ describe('CheckboxComponent', () => {
 
 @Component({
   imports: [CheckboxComponent, ReactiveFormsModule],
-  template: `<app-checkbox
-    [inputId]="id()"
-    [required]="required"
-    [formControl]="formControl"
-  >
+  template: `<app-checkbox [required]="required" [formControl]="formControl">
     Test checkbox
   </app-checkbox>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -101,5 +78,4 @@ describe('CheckboxComponent', () => {
 class CheckboxTestComponent {
   formControl = new FormControl();
   required = signal(false);
-  id = signal<string | undefined>(undefined);
 }

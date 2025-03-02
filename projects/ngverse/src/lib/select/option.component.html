@@ -1,6 +1,16 @@
-<div>
-  <ng-content></ng-content>
+<div
+  ktA11yOption
+  [a11yIsSelected]="isSelected()"
+  class="option"
+  [a11yIsDisabled]="disabled()"
+  [class.in-group]="inGroup"
+  [class.selected]="isSelected()"
+  (pressed)="onClick()"
+>
+  <div>
+    <ng-content></ng-content>
+  </div>
+  @if (isSelected()) {
+    <app-select-check-icon class="check-icon"></app-select-check-icon>
+  }
 </div>
-@if (isSelected()) {
-  <app-select-check-icon class="check-icon"></app-select-check-icon>
-}

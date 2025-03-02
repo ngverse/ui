@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { A11yAlertDirective } from '@ngverse/kit';
 
 type ALERT_TYPES = 'success' | 'danger' | 'warning' | 'default';
 type ALERT_VARIANT_TYPES = 'fill' | 'outline';
@@ -9,9 +10,9 @@ type ALERT_VARIANT_TYPES = 'fill' | 'outline';
   styleUrl: './alert.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    role: 'alert',
     '[class]': '[type(), variant()]',
   },
+  hostDirectives: [A11yAlertDirective],
 })
 export class AlertComponent {
   type = input<ALERT_TYPES>('default');

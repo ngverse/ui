@@ -180,10 +180,10 @@ describe('PopoverComponent', () => {
 
 @Component({
   template: `
-    <button appPopoverOrigin #origin1="appPopoverOrigin" class="popover-button">
+    <button ktPopoverOrigin #origin1="ktPopoverOrigin" class="popover-button">
       Popover 1 origin
     </button>
-    <app-popover
+    <kt-popover
       #popover1
       [origin]="origin1"
       [(isOpen)]="isOpen"
@@ -198,7 +198,7 @@ describe('PopoverComponent', () => {
       <ng-template>
         <h1>I am First Popover content</h1>
       </ng-template>
-    </app-popover>
+    </kt-popover>
   `,
   imports: [PopoverComponent, PopoverOriginDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,

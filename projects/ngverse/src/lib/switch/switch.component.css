@@ -1,5 +1,9 @@
 :host {
   display: inline-flex;
+}
+
+.switch {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -7,16 +11,12 @@
     flex-direction: row-reverse;
   }
 
-  label {
-    cursor: pointer;
-  }
-
-  &.disabled {
+  &[aria-disabled='true'] {
     .toggle {
       color: var(--color-disabled-foreground);
       background-color: var(--color-disabled);
     }
-    label {
+    .switch-label {
       color: var(--color-disabled-foreground);
     }
   }

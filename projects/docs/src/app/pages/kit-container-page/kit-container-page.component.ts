@@ -10,6 +10,26 @@ const routes: SidebarGroup[] = [
         name: 'Accordion',
         url: '/kit/a11y-accordion',
       },
+      {
+        name: 'Tab',
+        url: '/kit/a11y-tab',
+      },
+      {
+        name: 'Checkbox',
+        url: '/kit/a11y-checkbox',
+      },
+      {
+        name: 'Alert',
+        url: '/kit/a11y-alert',
+      },
+      {
+        name: 'Session Storage',
+        url: '/kit/session-storage',
+      },
+      {
+        name: 'Local Storage',
+        url: '/kit/local-storage',
+      },
     ],
   },
 ];

@@ -11,7 +11,7 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/ui/*": ["./projects/ngverse/src/lib/*"],
-      "kit": ["./dist/kit"]
+      "@ngverse/kit": ["./dist/kit"]
     },
     "skipLibCheck": true,
     "isolatedModules": true,

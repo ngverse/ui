@@ -7,9 +7,11 @@
   }
 </div>
 
-<nav class="flex gap-3">
-  @for (section of sections; track $index) {
+<nav class="flex gap-3" ktA11yTabList>
+  @for (section of filteredSections(); track $index) {
     <button
+      ktA11yTab
+      [a11yIsSelected]="activeSection() === section"
       (click)="setSection(section)"
       class="border-b-2 border-b-transparent px-6 py-4 uppercase"
       [class]="

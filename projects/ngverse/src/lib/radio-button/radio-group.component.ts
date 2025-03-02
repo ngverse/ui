@@ -5,6 +5,12 @@ import {
   signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  A11yRadioGroupDirective,
+  A11yRadioStack,
+  SingleValueModel,
+  ValueModelCompareWith,
+} from '@ngverse/kit';
 
 let inputName = 0;
 
@@ -15,12 +21,8 @@ function getInputName() {
 export type OnTouchedFunction = (() => void) | undefined;
 export type OnChangeFunction = ((_: unknown) => void) | undefined;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type CompareWith = (o1: any, o2: any) => boolean;
-
 @Component({
   selector: 'app-radio-group',
-  imports: [],
   templateUrl: './radio-group.component.html',
   styleUrl: './radio-group.component.css',
   providers: [
@@ -29,15 +31,25 @@ export type CompareWith = (o1: any, o2: any) => boolean;
       multi: true,
       useExisting: RadioGroupComponent,
     },
+    A11yRadioStack,
   ],
+  hostDirectives: [A11yRadioGroupDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioGroupComponent implements ControlValueAccessor {
-  compareWith = input<CompareWith>((o1, o2) => o1 === o2);
+  compareWith = input<ValueModelCompareWith, ValueModelCompareWith>(
+    (o1: unknown, o2: unknown) => o1 === o2,
+    {
+      transform: (value) => {
+        this._valueModel.setCompareWith(value);
+        return value;
+      },
+    }
+  );
   name = input(getInputName());
   vertical = input<boolean>(false);
 
-  value = signal<unknown>(undefined);
+  private _valueModel = new SingleValueModel();
 
   disabled = signal(false);
 
@@ -45,7 +57,11 @@ export class RadioGroupComponent implements ControlValueAccessor {
   private onTouchedfn: OnTouchedFunction;
 
   writeValue(value: unknown): void {
-    this.value.set(value);
+    this._valueModel.setValue(value);
+  }
+
+  isSelected(value: unknown) {
+    return this._valueModel.isSelected(value);
   }
 
   registerOnChange(fn: OnChangeFunction): void {
@@ -58,9 +74,9 @@ export class RadioGroupComponent implements ControlValueAccessor {
     this.disabled.set(isDisabled);
   }
 
-  selected(value: unknown) {
-    this.value.set(value);
-    this.registerOnChangefn?.(this.value());
+  select(value: unknown) {
+    this._valueModel.setValue(value);
+    this.registerOnChangefn?.(this._valueModel.value());
     this.onTouchedfn?.();
   }
 }

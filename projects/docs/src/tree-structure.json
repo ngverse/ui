@@ -715,22 +715,6 @@
       ]
     },
     {
-      "path": "local-storage",
-      "name": "local-storage",
-      "files": [
-        {
-          "path": "local-storage/local-storage.service.spec.ts",
-          "name": "local-storage.service.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "local-storage/local-storage.service.ts",
-          "name": "local-storage.service.ts",
-          "language": "ts"
-        }
-      ]
-    },
-    {
       "path": "ngverse.css",
       "name": "ngverse.css",
       "language": "css"
@@ -804,42 +788,6 @@
         {
           "path": "pagination/pagination.component.ts",
           "name": "pagination.component.ts",
-          "language": "ts"
-        }
-      ]
-    },
-    {
-      "path": "popover",
-      "name": "popover",
-      "files": [
-        {
-          "path": "popover/popover-origin.directive.spec.ts",
-          "name": "popover-origin.directive.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "popover/popover-origin.directive.ts",
-          "name": "popover-origin.directive.ts",
-          "language": "ts"
-        },
-        {
-          "path": "popover/popover.component.css",
-          "name": "popover.component.css",
-          "language": "css"
-        },
-        {
-          "path": "popover/popover.component.html",
-          "name": "popover.component.html",
-          "language": "html"
-        },
-        {
-          "path": "popover/popover.component.spec.ts",
-          "name": "popover.component.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "popover/popover.component.ts",
-          "name": "popover.component.ts",
           "language": "ts"
         }
       ]
@@ -988,22 +936,6 @@
         {
           "path": "select/select.component.ts",
           "name": "select.component.ts",
-          "language": "ts"
-        }
-      ]
-    },
-    {
-      "path": "session-storage",
-      "name": "session-storage",
-      "files": [
-        {
-          "path": "session-storage/session-storage.service.spec.ts",
-          "name": "session-storage.service.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "session-storage/session-storage.service.ts",
-          "name": "session-storage.service.ts",
           "language": "ts"
         }
       ]

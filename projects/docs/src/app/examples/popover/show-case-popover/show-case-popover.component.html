@@ -1,19 +1,19 @@
 <button
   appButton
-  appPopoverOrigin
-  #popoverTrigger="appPopoverOrigin"
+  ktPopoverOrigin
+  #popoverTrigger="ktPopoverOrigin"
   (click)="toggle()"
 >
   Delete User
 </button>
-<app-popover
+<kt-popover
   [(isOpen)]="isOpen"
   [stretchToOrigin]="false"
   [origin]="popoverTrigger"
   [offsetY]="10"
   [outsideClose]="true"
   [styled]="true"
-  [positionY]="'bottom'"
+  [position]="'bottom'"
 >
   <ng-template>
     <div class="popover">
@@ -33,4 +33,4 @@
       </div>
     </div>
   </ng-template>
-</app-popover>
+</kt-popover>

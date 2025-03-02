@@ -1,19 +1,17 @@
-<div class="native-checkbox-container">
-  <input
-    [disabled]="disabled()"
-    (change)="toggle()"
-    class="native-checkbox"
-    [id]="inputId()"
+<div
+  class="checkbox group has-[.ng-invalid]/text-danger inline-flex cursor-pointer items-center gap-2 outline-none"
+  [class.flex-row-reverse]="labelAlign() === 'start'"
+  ktA11yCheckbox
+  [a11yIsChecked]="value()"
+  [a11yIsDisabled]="disabled()"
+  (pressed)="toggle()"
+>
+  <app-checkbox-icon
+    ktA11yIcon
+    class="checkbox-icon group-focus-visible:ring"
     [checked]="value()"
-    type="checkbox"
-  />
-  <div class="checkbox-icon" aria-hidden="true">
-    <app-checkbox-icon
-      class="checkbox-icon"
-      [checked]="value()"
-    ></app-checkbox-icon>
-  </div>
+  ></app-checkbox-icon>
+  <span>
+    <ng-content></ng-content>
+  </span>
 </div>
-<label [htmlFor]="inputId()">
-  <ng-content></ng-content>
-</label>

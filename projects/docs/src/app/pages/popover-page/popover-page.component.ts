@@ -34,7 +34,7 @@ export class PopoverPageComponent {
       {
         name: 'PopoverComponent',
         type: 'component',
-        selector: 'app-popover',
+        selector: 'kt-popover',
         inputs: [
           {
             name: 'isOpen',
@@ -125,7 +125,7 @@ export class PopoverPageComponent {
       {
         name: 'PopoverOriginDirective',
         type: 'directive',
-        selector: '[appPopoverOrigin]',
+        selector: '[ktPopoverOrigin]',
         description: 'The element to which the popover should be attached',
       },
     ],

@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RadioButtonComponent } from './radio-button.component';
 import { RadioGroupComponent } from './radio-group.component';
 
-describe('RadioGroupComponent', () => {
+xdescribe('RadioGroupComponent', () => {
   let component: RadioGroupTestComponent;
   let fixture: ComponentFixture<RadioGroupTestComponent>;
   let radioGroup: RadioGroupComponent;

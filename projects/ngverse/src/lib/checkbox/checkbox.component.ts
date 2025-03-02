@@ -1,9 +1,7 @@
-import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
   effect,
-  inject,
   input,
   signal,
 } from '@angular/core';
@@ -15,6 +13,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+import { A11yCheckboxDirective, A11yIconDirective } from '@ngverse/kit';
 import { CheckboxIconComponent } from './checkbox-icon.component';
 
 type VALUE_TYPE = boolean | undefined | null;
@@ -29,7 +28,7 @@ type LABEL_ALIGN = 'start' | 'end';
 
 @Component({
   selector: 'app-checkbox',
-  imports: [CheckboxIconComponent],
+  imports: [CheckboxIconComponent, A11yCheckboxDirective, A11yIconDirective],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.css',
   providers: [
@@ -45,16 +44,10 @@ type LABEL_ALIGN = 'start' | 'end';
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.disabled]': 'disabled()',
-    '[class.checked]': 'value()',
-    '[class.start]': 'labelAlign() === "start"',
-  },
 })
 export class CheckboxComponent implements ControlValueAccessor, Validator {
   labelAlign = input<LABEL_ALIGN>('end');
   required = input<boolean>(false);
-  inputId = input(inject(_IdGenerator).getId('checkbox-'));
 
   value = signal<VALUE_TYPE>(undefined);
   disabled = signal<boolean>(false);
@@ -71,9 +64,6 @@ export class CheckboxComponent implements ControlValueAccessor, Validator {
   }
 
   toggle() {
-    if (this.disabled()) {
-      return;
-    }
     this._onTouchedfn?.();
     const newValue = !this.value();
     this.value.set(newValue);

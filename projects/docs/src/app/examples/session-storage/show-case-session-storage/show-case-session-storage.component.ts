@@ -1,5 +1,4 @@
 import { ButtonComponent } from '@/ui/button/button.component';
-import { SessionStorageService } from '@/ui/session-storage/session-storage.service';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +6,7 @@ import {
   OnDestroy,
   signal,
 } from '@angular/core';
+import { SessionStorageService } from '@ngverse/kit';
 const STORAGE_KEY = 'current-date';
 
 @Component({
