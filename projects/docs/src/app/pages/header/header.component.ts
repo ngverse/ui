@@ -9,7 +9,6 @@ import docsearch from '@docsearch/js';
 import { ExternalLinkIcon } from '@ngverse/icons-lu';
 import { LucideAngularModule, Menu } from 'lucide-angular';
 import { filter, take, takeUntil } from 'rxjs';
-import { ExpandIconComponent } from '../../../../../ngverse/src/lib/accordion/expand-icon.component';
 import { DividerComponent } from '../../../../../ngverse/src/lib/divider/divider.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
@@ -21,7 +20,6 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     ButtonComponent,
     IconComponent,
     DarkModeToggleComponent,
-    ExpandIconComponent,
     ExternalLinkIcon,
     DividerComponent,
   ],
