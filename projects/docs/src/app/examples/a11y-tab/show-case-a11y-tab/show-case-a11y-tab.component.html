@@ -1,0 +1,21 @@
+<div ktA11yTabGroup>
+  <div ktA11yTabList class="flex gap-2">
+    @for (tab of tabs; track $index) {
+      <button
+        class="cursor-pointer border-b border-b-divider px-4 py-2 pb-4"
+        [class.border-b-primary]="epxandedIndex() === $index"
+        ktA11yTab
+        [a11yIsSelected]="epxandedIndex() === $index"
+        (click)="toggle($index)"
+      >
+        {{ tab.label }}
+      </button>
+    }
+  </div>
+
+  @for (tab of tabs; track $index) {
+    <div class="p-2" [hidden]="epxandedIndex() !== $index" ktA11yTabPanel>
+      {{ tab.body }}
+    </div>
+  }
+</div>
