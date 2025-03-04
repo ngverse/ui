@@ -2,7 +2,7 @@
 
 NgVerse is a collection of feature-rich Angular components, directives, and pipes. Unlike traditional libraries, it requires no installation—just copy and paste what you need into your project and fly 🚀.
 
-For more info visit the [docs](https://www.ngverse.dev)
+For more info visit the [docs](https://ui.ngverse.dev)
 
 # Announcement
 

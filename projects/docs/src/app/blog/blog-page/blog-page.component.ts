@@ -25,7 +25,7 @@ export class BlogPageComponent {
         },
         {
           property: 'og:image',
-          content: 'https://www.ngverse.dev/logo.png',
+          content: 'https://ui.ngverse.dev/logo.png',
         },
         { property: 'og:image:alt', content: 'NgVerse logo' },
         { property: 'og:url', content: this.document.location.href },

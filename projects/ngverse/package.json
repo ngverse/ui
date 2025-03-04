@@ -1,7 +1,10 @@
 {
-  "name": "ngverse",
+  "name": "@ngverse/ui",
   "version": "2.0.0",
   "schematics": "./schematics/collection.json",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "angular",
     "angular-components",
