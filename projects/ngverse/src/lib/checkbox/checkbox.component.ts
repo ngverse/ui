@@ -27,6 +27,22 @@ type ValidatorChangeFunction = (() => void) | undefined;
 
 type LABEL_ALIGN = 'start' | 'end';
 
+// <!-- :host {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: 8px;
+//   &.ng-invalid.ng-touched {
+//     color: var(--color-danger);
+//   }
+//   &.disabled {
+//     color: var(--color-disabled-foreground);
+//   }
+
+//   &.start {
+//     flex-direction: row-reverse;
+//   }
+// } -->
+
 @Component({
   selector: 'app-checkbox',
   imports: [CheckboxIconComponent],
@@ -46,6 +62,8 @@ type LABEL_ALIGN = 'start' | 'end';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    class:
+      'inline-flex items-center gap-2 [.ng-invalid.ng-touched]:text-danger [.disabled]:text-disabled-foreground [.start]:flex-row-reverse',
     '[class.disabled]': 'disabled()',
     '[class.checked]': 'value()',
     '[class.start]': 'labelAlign() === "start"',
