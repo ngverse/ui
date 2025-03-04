@@ -1,18 +1,17 @@
-<div class="native-checkbox-container">
+<div class="native-checkbox-container relative h-6 w-6">
   <input
     [disabled]="disabled()"
     (change)="toggle()"
-    class="native-checkbox"
+    class="peer absolute top-0 right-0 bottom-0 left-0 z-1 h-full w-full opacity-0"
     [id]="inputId()"
     [checked]="value()"
     type="checkbox"
   />
-  <div class="checkbox-icon" aria-hidden="true">
-    <app-checkbox-icon
-      class="checkbox-icon"
-      [checked]="value()"
-    ></app-checkbox-icon>
-  </div>
+  <app-checkbox-icon
+    class="block rounded-sm peer-focus-visible:outline peer-focus-visible:outline-ring"
+    aria-hidden="true"
+    [checked]="value()"
+  ></app-checkbox-icon>
 </div>
 <label [htmlFor]="inputId()">
   <ng-content></ng-content>
