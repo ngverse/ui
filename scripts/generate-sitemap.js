@@ -46,7 +46,7 @@ const links = [
 ];
 
 // Create a stream to write to
-const stream = new SitemapStream({ hostname: 'https://www.ngverse.dev/' });
+const stream = new SitemapStream({ hostname: 'https://ui.ngverse.dev/' });
 
 // Generate the sitemap and save to a file
 streamToPromise(Readable.from(links).pipe(stream))

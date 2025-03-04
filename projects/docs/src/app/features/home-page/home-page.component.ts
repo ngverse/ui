@@ -1,3 +1,8 @@
+import { AlertBodyComponent } from '@/ui/alert/alert-body.component';
+import { AlertHeaderComponent } from '@/ui/alert/alert-header.component';
+import { AlertComponent } from '@/ui/alert/alert.component';
+import { ButtonComponent } from '@/ui/button/button.component';
+import { IconComponent } from '@/ui/icon/icon.component';
 import { DOCUMENT } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
@@ -8,11 +13,6 @@ import {
   LucideAngularModule,
   Rocket,
 } from 'lucide-angular';
-import { AlertBodyComponent } from '@/ui/alert/alert-body.component';
-import { AlertHeaderComponent } from '@/ui/alert/alert-header.component';
-import { AlertComponent } from '@/ui/alert/alert.component';
-import { ButtonComponent } from '@/ui/button/button.component';
-import { IconComponent } from '@/ui/icon/icon.component';
 
 @Component({
   selector: 'doc-home-page',
@@ -46,7 +46,7 @@ export class HomePageComponent {
       },
       {
         property: 'og:image',
-        content: 'https://www.ngverse.dev/logo.png',
+        content: 'https://ui.ngverse.dev/logo.png',
       },
       { property: 'og:image:alt', content: 'NgVerse logo' },
       { property: 'og:url', content: this.document.location.href },
