@@ -30,8 +30,8 @@ describe('ContextMenuItemDirective', () => {
   it('should create', () => {
     expect(new ContextMenuItemDirective()).toBeTruthy();
   });
-  it('should have app-context-menu class', () => {
-    expect(element.querySelector('div')).toHaveClass('app-context-menu');
+  it('should have context-menu class', () => {
+    expect(element.querySelector('div')).toHaveClass('context-menu');
   });
   it('should have CdkMenu attached', () => {
     const contextMenuItem = fixture.debugElement.query(

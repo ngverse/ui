@@ -120,70 +120,66 @@ body {
 }
 
 /**
-  input and text area are directives, so we need to set the styles in global style file
-  these are input and text area styles
+  Directives doesn't have it's own style, so we define them here, for example input,textarea...
 **/
-.app-input,
-.app-textarea {
-  background: var(--color-background);
-  box-sizing: border-box;
-  border: var(--border);
-  border-radius: var(--border-radius);
-  padding: var(--field-padding);
-  font-size: 1rem;
-  &:focus-visible {
-    outline: 1px solid var(--color-ring);
+@layer components {
+  .input {
+    height: var(--field-height);
   }
-  &:disabled,
-  &[readonly] {
-    background: var(--color-disabled);
-    color: var(--color-disabled-foreground);
-    &::placeholder {
+  .input,
+  .textarea {
+    background: var(--color-background);
+    box-sizing: border-box;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: var(--field-padding);
+    font-size: 1rem;
+    &:focus-visible {
+      outline: 1px solid var(--color-ring);
+    }
+    &:disabled,
+    &[readonly] {
+      background: var(--color-disabled);
       color: var(--color-disabled-foreground);
+      &::placeholder {
+        color: var(--color-disabled-foreground);
+      }
+    }
+
+    &.ng-invalid.ng-touched {
+      border-color: var(--color-danger);
+      outline-color: transparent;
     }
   }
 
-  &.ng-invalid.ng-touched {
-    border-color: var(--color-danger);
-    outline-color: transparent;
-  }
-}
-
-.app-input {
-  height: var(--field-height);
-}
-
-/**
-  context menu is directive, so we need to set the styles in global style file
-  this is context menu styles
-**/
-.app-context-menu {
-  box-shadow: var(--color-shadow);
-  background-color: var(--color-background);
-  border-radius: var(--border-radius);
-  border: var(--border);
-}
-
-.app-context-menu-item {
-  width: 100%;
-  text-align: left;
-  padding: 6px;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  font-size: 1rem;
-  &:focus-visible,
-  &:hover:not([aria-disabled]),
-  &.selected {
-    background: var(--color-accent);
-    color: var(--color-accent-foreground);
-  }
-  &:focus-visible {
-    outline: none;
+  .context-menu {
+    box-shadow: var(--color-shadow);
+    background-color: var(--color-background);
+    border-radius: var(--border-radius);
+    border: var(--border);
   }
 
-  &[aria-disabled] {
-    background: var(--color-disabled);
-    color: var(--color-disabled-foreground);
+  .context-menu-item {
+    width: 100%;
+    text-align: left;
+    padding: 6px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    font-size: 1rem;
+    &:focus-visible,
+    &:hover:not([aria-disabled]),
+    &.selected {
+      background: var(--color-accent);
+      color: var(--color-accent-foreground);
+    }
+    &:focus-visible {
+      outline: none;
+    }
+
+    &[aria-disabled] {
+      background: var(--color-disabled);
+      color: var(--color-disabled-foreground);
+    }
   }
 }

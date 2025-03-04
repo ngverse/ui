@@ -12,7 +12,7 @@ export type TEXTAREA_RESIZE_TYPES =
   selector: 'textarea[appTextarea]',
   host: {
     '[style.resize]': 'resize()',
-    '[class.app-textarea]': 'true',
+    '[class.textarea]': 'true',
   },
 })
 export class TextareaDirective {
