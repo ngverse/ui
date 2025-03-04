@@ -3,45 +3,44 @@
     The minimum required Angular version for installation is
     <strong>&gt;=19.0.2</strong>.
   </p>
-  <h2 class="!mt-8">Automatic Installation (Recommended)</h2>
-  <p>To get started, run the following command:</p>
-  <doc-source-code language="bash" code="ng add ngverse"></doc-source-code>
-
-  <h4>Ready to Use</h4>
-  <p>
-    Once the installation is complete, you can generate a component with the
-    following command:
-  </p>
-  <doc-source-code
-    language="bash"
-    code="ng g ngverse:element button"
-  ></doc-source-code>
-  <p>
-    <strong>Note:</strong> We use the term <code>element</code> during
-    generation and not <code>component</code> because NgVerse contains not only
-    components but also directives, pipes, animations, and more. Therefore,
-    <code>element</code> is a more generic term.
-  </p>
-
-  <h2>Manual Installation</h2>
-  <p>If you prefer manual setup, follow these steps:</p>
-  <h4>Install angular/cdk</h4>
+  <h3>Install angular/cdk</h3>
   <doc-source-code
     language="bash"
     code="npm install @angular/cdk"
   ></doc-source-code>
-  <h4>Install NgVerse schematics</h4>
+  <h3>Install tailwind (v4)</h3>
+  <doc-source-code
+    language="bash"
+    code="npm install tailwindcss @tailwindcss/postcss postcss --force  "
+  ></doc-source-code>
+  <p>
+    Create a <code>.postcssrc.json</code> file in the root of your project and
+    add the <code>&#64;tailwindcss/postcss</code> plugin to your PostCSS
+    configuration.
+  </p>
+  <doc-source-code language="json" [code]="postcssCode"></doc-source-code>
+  <p>
+    Add an <code>&#64;import</code> to <code>styles.css</code> that imports
+    Tailwind CSS.
+  </p>
+  <doc-source-code
+    language="css"
+    code='@import "tailwindcss";'
+  ></doc-source-code>
+  <h3>Install ngverse schematics</h3>
   <doc-source-code language="bash" code="npm install ngverse"></doc-source-code>
-  <h4>Add Angular animations</h4>
+  <h3>Add Angular animations</h3>
   <doc-source-code language="ts" [code]="animationsCode"></doc-source-code>
-  <h4>Add ngverse.css</h4>
-  <ul>
-    <li>
-      Copy the content of
-      <a target="_blank" href="/ngverse/ngverse.css">ngverse.css</a> file.
-    </li>
-    <li>Add it into your project</li>
-    <li>Import it in your global styles.css file</li>
-  </ul>
+  <h3>Update typescript import</h3>
+  <doc-source-code language="json" [code]="tsImportCode"></doc-source-code>
+  <h3>Add ngverse styles to styles.css</h3>
+  <p>
+    Copy the <code>ngverse.css</code> file content and paste it into
+    <code>styles.css</code>
+  </p>
+  <doc-source-code
+    [code]="ngVerseStyleContent()"
+    language="css"
+  ></doc-source-code>
   <p>You are now ready to start using NgVerse in your Angular project!</p>
 </doc-blog-page>
