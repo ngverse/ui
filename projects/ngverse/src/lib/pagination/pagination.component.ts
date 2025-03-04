@@ -5,9 +5,9 @@ import {
   input,
   output,
 } from '@angular/core';
-import { ButtonComponent } from '../button/button.component';
 import { PaginationNextIconComponent } from './pagination-next-icon.component';
 import { PaginationPrevIconComponent } from './pagination-prev-icon.component';
+import { ButtonComponent } from '@/ui/button/button.component';
 
 // We will keep always 7 visible items so it will prevent the width of the pagination from changing
 const ALWAYS_VISIBLE_ITEMS = 7;

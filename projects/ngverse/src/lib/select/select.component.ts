@@ -22,10 +22,10 @@ import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { PopoverOriginDirective } from '../popover/popover-origin.directive';
-import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
 import { SelectIconComponent } from './select-icon.component';
+import { PopoverComponent } from '@/ui/popover/popover.component';
+import { PopoverOriginDirective } from '@/ui/popover/popover-origin.directive';
 
 type OnTouchedFunction = (() => void) | undefined;
 
