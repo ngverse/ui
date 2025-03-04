@@ -36,7 +36,7 @@ describe('AlertDialogComponent', () => {
 
   it('should be created', () => {
     openAlert();
-    expect(document.querySelector('.alert')).toBeTruthy();
+    expect(document.querySelector('app-alert-dialog')).toBeTruthy();
   });
 
   it('title should be displayed', async () => {
@@ -45,9 +45,7 @@ describe('AlertDialogComponent', () => {
       description: '',
     });
     await fixture.whenStable();
-    expect(document.querySelector('.alert-title')?.textContent).toBe(
-      'Title text'
-    );
+    expect(document.querySelector('h2')?.textContent).toBe('Title text');
   });
 
   it('description should be displayed', async () => {
@@ -56,7 +54,7 @@ describe('AlertDialogComponent', () => {
     });
     await fixture.whenStable();
 
-    expect(document.querySelector('.alert-description')?.textContent).toBe(
+    expect(document.querySelector('p')?.textContent).toBe(
       'This is description'
     );
   });
@@ -65,7 +63,7 @@ describe('AlertDialogComponent', () => {
     openAlert();
     await fixture.whenStable();
 
-    const buttons = document.querySelectorAll('.alert-actions');
+    const buttons = document.querySelectorAll('button');
 
     expect(buttons[0].textContent?.trim()).toBe('OK');
   });
@@ -76,7 +74,7 @@ describe('AlertDialogComponent', () => {
     });
     await fixture.whenStable();
 
-    const buttons = document.querySelectorAll('.alert-actions');
+    const buttons = document.querySelectorAll('button');
 
     expect(buttons[0].textContent?.trim()).toBe('Save');
   });
@@ -85,9 +83,7 @@ describe('AlertDialogComponent', () => {
     openAlert();
     await fixture.whenStable();
 
-    const yesButton = document.querySelector(
-      '.alert-actions button'
-    ) as HTMLElement;
+    const yesButton = document.querySelector('button') as HTMLElement;
     yesButton.dispatchEvent(new Event('click'));
     await fixture.whenStable();
 
