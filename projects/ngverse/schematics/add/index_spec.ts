@@ -204,4 +204,16 @@ describe('element', () => {
       appTree.readContent(getProjectPath(componentName, 'component.ts'))
     ).toEqual(modifiedButton);
   });
+
+  fit('should put component properly when path provided', async () => {
+    const componentName = 'button';
+
+    await testRunner.runSchematic(
+      'add',
+      { name: componentName, project: PROJECT_NAME, path: 'ui' },
+      appTree
+    );
+    const path = 'projects/demo/src/app/ui/button/button.component.ts';
+    expect(appTree.readContent(path)).toEqual(BUTTON_COMPONENT_TS);
+  });
 });

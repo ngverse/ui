@@ -32,6 +32,10 @@
     "prefix": {
       "type": "string",
       "description": "The prefix of the element. if not provided, it will take prefix from the project, if it is also null it will be 'app'"
+    },
+    "path": {
+      "type": "string",
+      "description": "the path to put the generated element"
     }
   },
   "required": ["name"]
