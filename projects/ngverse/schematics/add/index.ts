@@ -13,7 +13,7 @@ function getElementName(inputPath: string): string {
   return basename(normalizedPath);
 }
 
-export function element(options: Schema) {
+export function add(options: Schema) {
   return async (host: Tree) => {
     const workspace = await getWorkspace(host);
 
@@ -81,6 +81,6 @@ function prefixIsDefault(prefix?: string) {
  * @param prefix
  */
 function updatePrefix(content: string, prefix: string) {
-  const defaultSelector = 'app';
+  const defaultSelector = /\bapp\b/g; // Match 'app' as a whole word
   return content.replace(defaultSelector, prefix);
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ButtonComponent } from '../button/button.component';
 import { DarkModeIconComponent } from './dark-mode-icon.component';
 import { DarkModeService } from './dark-mode.service';
+import { ButtonComponent } from '@/ui/button/button.component';
 
 @Component({
   selector: 'app-dark-mode-toggle',

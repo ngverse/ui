@@ -89,7 +89,7 @@ describe('element', () => {
 
   it('should throw error on empty name', async () => {
     await expectAsync(
-      testRunner.runSchematic('element', appTree)
+      testRunner.runSchematic('add', appTree)
     ).toBeRejectedWithError(
       InvalidInputOptions,
       /Data path "" must have required property 'name'/
@@ -100,7 +100,7 @@ describe('element', () => {
     const componentName = 'foo';
     await expectAsync(
       testRunner.runSchematic(
-        'element',
+        'add',
         { name: componentName, project: PROJECT_NAME },
         appTree
       )
@@ -113,14 +113,14 @@ describe('element', () => {
   it('should throw an exception on existing component', async () => {
     const componentName = 'button';
     await testRunner.runSchematic(
-      'element',
+      'add',
       { name: componentName, project: PROJECT_NAME },
       appTree
     );
 
     await expectAsync(
       testRunner.runSchematic(
-        'element',
+        'add',
         { name: componentName, project: PROJECT_NAME },
         appTree
       )
@@ -133,12 +133,12 @@ describe('element', () => {
   it('should not throw an exception if --replace option is used', async () => {
     const componentName = 'button';
     await testRunner.runSchematic(
-      'element',
+      'add',
       { name: componentName, project: PROJECT_NAME },
       appTree
     );
     await testRunner.runSchematic(
-      'element',
+      'add',
       { name: componentName, project: PROJECT_NAME, replace: true },
       appTree
     );
@@ -147,7 +147,7 @@ describe('element', () => {
   it('should add components to project files', async () => {
     const componentName = 'button';
     await testRunner.runSchematic(
-      'element',
+      'add',
       { name: componentName, project: PROJECT_NAME },
       appTree
     );
@@ -165,7 +165,7 @@ describe('element', () => {
   it('should not add spec file by default', async () => {
     const componentName = 'button';
     await testRunner.runSchematic(
-      'element',
+      'add',
       { name: componentName, project: PROJECT_NAME },
       appTree
     );
@@ -176,7 +176,7 @@ describe('element', () => {
   it('should add spec file if includeTests=true', async () => {
     const componentName = 'button';
     await testRunner.runSchematic(
-      'element',
+      'add',
       { name: componentName, project: PROJECT_NAME, includeTests: true },
       appTree
     );
@@ -196,7 +196,7 @@ describe('element', () => {
     }
 `;
     await testRunner.runSchematic(
-      'element',
+      'add',
       { name: componentName, project: PROJECT_NAME, prefix: 'demo' },
       appTree
     );
