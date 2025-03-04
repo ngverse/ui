@@ -9,4 +9,6 @@ export interface Schema {
   includeTests?: string;
 
   prefix?: string;
+
+  path?: string;
 }

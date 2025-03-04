@@ -26,8 +26,11 @@ export function add(options: Schema) {
     const prefix = options.prefix || project.prefix;
 
     const rootPath = normalize(`${project.sourceRoot}/${projectType}`);
-
-    const applicationPath = normalize(join(rootPath, options.name));
+    let path = './';
+    if (options.path) {
+      path = `./${options.path}`;
+    }
+    const applicationPath = normalize(join(rootPath, path, options.name));
     const elementName = getElementName(options.name);
 
     const elementsPath = normalize(
