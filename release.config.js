@@ -1,7 +1,7 @@
 module.exports = {
   branches: ['main'],
   repositoryUrl: 'https://github.com/lukonik/ngverse',
-  preset: 'angular',
+  preset: 'conventionalcommits',
   releaseRules: [{ type: 'refactor', release: 'patch' }],
   plugins: [
     '@semantic-release/commit-analyzer',

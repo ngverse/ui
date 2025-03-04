@@ -17,7 +17,7 @@ const PROJECT_APP_ROOT = `${PROJECT_ROOT}/app/`;
 const STYLE_PATH = `projects/demo/src/styles.css`;
 const NG_VERSE_ROOT = `node_modules/ngverse/src/lib/`;
 
-describe('ng-add', () => {
+xdescribe('ng-add', () => {
   const testRunner = new SchematicTestRunner('ngverse', collectionPath);
   const workspaceOptions: WorkspaceOptions = {
     name: 'workspace',

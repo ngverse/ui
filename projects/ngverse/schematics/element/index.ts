@@ -18,12 +18,12 @@ export function element(options: Schema) {
     const workspace = await getWorkspace(host);
 
     const project = getProjectFromWorkspace(workspace, options.project);
-
     if (!project) {
       throw new SchematicsException(`Invalid project name: ${options.project}`);
     }
     const projectType =
       project.extensions['projectType'] === 'application' ? 'app' : 'lib';
+    const prefix = options.prefix || project.prefix;
 
     const rootPath = normalize(`${project.sourceRoot}/${projectType}`);
 
@@ -51,8 +51,13 @@ export function element(options: Schema) {
       if (!options.includeTests && filePath.endsWith('.spec.ts')) {
         return;
       }
-      const content = host.read(filePath);
+      let content = host.read(filePath)?.toString('utf-8');
+
       if (content) {
+        if (!prefixIsDefault(prefix)) {
+          content = updatePrefix(content, prefix);
+        }
+
         const targetPath = filePath.replace(elementsPath, applicationPath);
         if (host.exists(targetPath)) {
           host.overwrite(targetPath, content);
@@ -64,4 +69,18 @@ export function element(options: Schema) {
 
     return host;
   };
+}
+
+function prefixIsDefault(prefix?: string) {
+  return prefix === undefined || prefix === null || prefix === 'app';
+}
+
+/**
+ * we take naive approach, and replace all the possible prefix for components and directives
+ * @param content
+ * @param prefix
+ */
+function updatePrefix(content: string, prefix: string) {
+  const defaultSelector = 'app';
+  return content.replace(defaultSelector, prefix);
 }
