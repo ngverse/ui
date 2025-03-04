@@ -14,7 +14,14 @@ const collectionPath = require.resolve('../collection.json');
 
 const PROJECT_NAME = 'demo';
 
-const BUTTON_COMPONENT_TS = `BUTTON TYPESCRIPT`;
+const BUTTON_COMPONENT_TS = `
+    @Component({
+       selector:"app-button",
+       template:"<ng-content></ng-content>"
+    })
+    export class ButtonComponent{
+    }
+`;
 const BUTTON_COMPONENT_HTML = 'BUTTON HTML';
 const BUTTON_COMPONENT_SCSS = 'BUTTON SCSS';
 const BUTTON_COMPONENT_SPEC_TS = 'BUTTON SPEC';
@@ -176,5 +183,25 @@ describe('element', () => {
     expect(
       appTree.readContent(getProjectPath(componentName, 'component.spec.ts'))
     ).toEqual(BUTTON_COMPONENT_SPEC_TS);
+  });
+
+  it('should update prefix of the component', async () => {
+    const componentName = 'button';
+    const modifiedButton = `
+    @Component({
+       selector:"demo-button",
+       template:"<ng-content></ng-content>"
+    })
+    export class ButtonComponent{
+    }
+`;
+    await testRunner.runSchematic(
+      'element',
+      { name: componentName, project: PROJECT_NAME, prefix: 'demo' },
+      appTree
+    );
+    expect(
+      appTree.readContent(getProjectPath(componentName, 'component.ts'))
+    ).toEqual(modifiedButton);
   });
 });
