@@ -9,5 +9,5 @@ import { SourceCodeComponent } from '../source-code/source-code.component';
 })
 export class CommandInstallationComponent {
   name = input.required<string>();
-  installation = computed(() => `ng g ngverse:element ${this.name()}`);
+  installation = computed(() => `ng g ngverse:add ${this.name()}`);
 }
