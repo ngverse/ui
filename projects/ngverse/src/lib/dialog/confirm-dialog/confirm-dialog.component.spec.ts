@@ -37,7 +37,7 @@ describe('ConfirmDialogComponent', () => {
 
   it('should be created', () => {
     openConfirm();
-    expect(document.querySelector('.confirm')).toBeTruthy();
+    expect(document.querySelector('div')).toBeTruthy();
   });
 
   it('title should be displayed', async () => {
@@ -46,9 +46,7 @@ describe('ConfirmDialogComponent', () => {
       description: '',
     });
     await fixture.whenStable();
-    expect(document.querySelector('.confirm-title')?.textContent).toBe(
-      'Title text'
-    );
+    expect(document.querySelector('h2')?.textContent).toBe('Title text');
   });
 
   it('description should be displayed', async () => {
@@ -56,7 +54,7 @@ describe('ConfirmDialogComponent', () => {
       description: 'This is description',
     });
     await fixture.whenStable();
-    expect(document.querySelector('.confirm-description')?.textContent).toBe(
+    expect(document.querySelector('p')?.textContent).toBe(
       'This is description'
     );
   });
@@ -64,7 +62,7 @@ describe('ConfirmDialogComponent', () => {
   it('button labels should be Yes/No by default', async () => {
     openConfirm();
     await fixture.whenStable();
-    const buttons = document.querySelectorAll('.confirm-actions button');
+    const buttons = document.querySelectorAll('button');
 
     expect(buttons[0].textContent?.trim()).toBe('Yes');
     expect(buttons[1].textContent?.trim()).toBe('No');
@@ -76,7 +74,7 @@ describe('ConfirmDialogComponent', () => {
       noLabel: 'Cancel',
     });
     await fixture.whenStable();
-    const buttons = document.querySelectorAll('.confirm-actions button');
+    const buttons = document.querySelectorAll('button');
 
     expect(buttons[0].textContent?.trim()).toBe('Save');
     expect(buttons[1].textContent?.trim()).toBe('Cancel');
@@ -85,9 +83,7 @@ describe('ConfirmDialogComponent', () => {
   it('yes button click should return true on close', async () => {
     const dialogRef = openConfirm();
     await fixture.whenStable();
-    const yesButton = document.querySelector(
-      '.confirm-actions  button'
-    ) as HTMLElement;
+    const yesButton = document.querySelector('button') as HTMLElement;
 
     dialogRef.closed.subscribe((value) => {
       expect(value).toBeTrue();
@@ -97,9 +93,7 @@ describe('ConfirmDialogComponent', () => {
   });
   it('no button click should return false on close', () => {
     const dialogRef = openConfirm();
-    const yesButton = document.querySelectorAll(
-      '.confirm-actions  button'
-    )[1] as HTMLElement;
+    const yesButton = document.querySelectorAll('button')[1] as HTMLElement;
 
     dialogRef.closed.subscribe((value) => {
       expect(value).toBeFalse();
