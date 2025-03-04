@@ -3,7 +3,7 @@ import { Directive } from '@angular/core';
 @Directive({
   selector: 'input[appInput]',
   host: {
-    '[class.app-input]': 'true',
+    '[class.input]': 'true',
   },
 })
 export class InputDirective {}

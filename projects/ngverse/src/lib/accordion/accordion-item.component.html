@@ -1,27 +1,29 @@
-<div [class.opened]="isOpen()" role="heading" [attr.aria-level]="ariaLevel()">
+<h3 role="heading">
   <button
-    class="accordion-item-header"
+    class="peer flex w-full cursor-pointer items-center focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-ring disabled:text-disabled-foreground aria-expanded:font-medium"
     (click)="toggle()"
     [disabled]="disabled()"
     [attr.aria-expanded]="isOpen()"
+    [id]="accordionTriggerId"
     [attr.aria-controls]="accordionBodyId"
   >
     {{ label() }}
     <ng-content select="app-accordion-header"></ng-content>
     <app-expand-icon
-      [class.icon-opened]="isOpen()"
-      class="expand-icon"
+      [class.rotate-180]="isOpen()"
+      class="ml-auto transition-transform"
     ></app-expand-icon>
   </button>
-  @if (isOpen()) {
-    <div
-      role="region"
-      [id]="accordionBodyId"
-      @expandOnEnter
-      @collapseOnLeave
-      class="accordion-item-body"
-    >
-      <ng-content select="app-accordion-body"></ng-content>
-    </div>
-  }
-</div>
+</h3>
+@if (isOpen()) {
+  <div
+    role="region"
+    [id]="accordionBodyId"
+    [attr.aria-labelledby]="accordionTriggerId"
+    @expandOnEnter
+    @collapseOnLeave
+    class="mt-3 px-1.5"
+  >
+    <ng-content select="app-accordion-body"></ng-content>
+  </div>
+}

@@ -25,10 +25,10 @@ describe('TextareaComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should apply app-textarea class', async () => {
+  it('should apply textarea class', async () => {
     await fixture.whenStable();
     expect(fixture.nativeElement.querySelector('textarea').classList).toContain(
-      'app-textarea'
+      'textarea'
     );
   });
   it('should apply resize style', async () => {

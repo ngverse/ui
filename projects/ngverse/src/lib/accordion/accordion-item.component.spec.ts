@@ -31,13 +31,11 @@ describe('AccordionItemComponent', () => {
   });
 
   function accordionHeader() {
-    return rootNative.querySelector(
-      '#accordion1 .accordion-item-header'
-    ) as HTMLElement;
+    return rootNative.querySelector('#accordion1 button') as HTMLElement;
   }
   function accordionBody() {
     return rootNative.querySelector(
-      '#accordion1 .accordion-item-body'
+      '#accordion1 [role="region"]'
     ) as HTMLElement | null;
   }
 
@@ -49,9 +47,7 @@ describe('AccordionItemComponent', () => {
     component.label.set('test label');
     await fixture.whenStable();
 
-    const label = rootNative.querySelector(
-      '.accordion-item-header'
-    ) as HTMLElement;
+    const label = accordionHeader();
     expect(label.textContent?.trim()).toBe('test label');
   });
 
@@ -85,13 +81,7 @@ describe('AccordionItemComponent', () => {
     await fixture.whenStable();
     expect(accordionBody()).toBeTruthy();
   });
-  it('should set aria-level correctly', () => {
-    const roleHeading = rootNative.querySelector(
-      '[role=heading]'
-    ) as HTMLElement;
-    expect(roleHeading).toBeTruthy();
-    expect(roleHeading.getAttribute('aria-level')).toBe('6');
-  });
+
   it('should display content header', async () => {
     component.showContentLabel.set('Content Label');
     await fixture.whenStable();

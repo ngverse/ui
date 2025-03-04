@@ -20,6 +20,6 @@ export class PrerequisitesComponent {
 
   getCode(dep: Prerequisite) {
     const name = dep.name;
-    return `ng g ngverse:element ${name}`;
+    return `ng g ngverse:add ${name}`;
   }
 }

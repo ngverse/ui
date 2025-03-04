@@ -1,3 +1,4 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,12 +14,6 @@ import {
 import { AccordionComponent } from './accordion.component';
 import { ExpandIconComponent } from './expand-icon.component';
 
-let accordionBodyId = 0;
-
-function genAccordionBodyId() {
-  return `accordion-item-body-${accordionBodyId++}`;
-}
-
 @Component({
   selector: 'app-accordion-item',
   imports: [ExpandIconComponent],
@@ -26,13 +21,16 @@ function genAccordionBodyId() {
   styleUrl: './accordion-item.component.css',
   animations: [EXPAND_ON_ENTER_ANIMATION, COLLAPSE_ON_LEAVE],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block mb-3 pb-3 border-b border-divider',
+  },
 })
 export class AccordionItemComponent {
   disabled = input<boolean>();
   label = input<string>();
   accordion = inject<AccordionComponent>(forwardRef(() => AccordionComponent));
-  ariaLevel = input<number>(3);
-  accordionBodyId = genAccordionBodyId();
+  accordionBodyId = inject(_IdGenerator).getId('accordion-item-body-');
+  accordionTriggerId = inject(_IdGenerator).getId('accordion-item-trigger-');
 
   expanded = input<boolean, boolean>(false, {
     transform: (value) => {

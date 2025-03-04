@@ -4,7 +4,7 @@
   <p class="mt-2">
     {{ name() }} element uses
     @for (item of prepsAuto; track $index) {
-      <a class="underline" [routerLink]="['../', item.name]">{{
+      <a class="!underline" [routerLink]="['../', item.name]">{{
         item.label
       }}</a>
       @if ($index < prepsAuto.length - 1) {
@@ -17,7 +17,6 @@
     project if
     {{ prepsAuto.length === 1 ? 'it is not ' : 'they are not' }} already.
     <br />
-    Element folders must be in the same directory for imports to work correctly.
   </p>
 
   <div class="mt-4 flex flex-col gap-4">

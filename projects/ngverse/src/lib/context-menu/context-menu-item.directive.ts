@@ -10,7 +10,7 @@ import { Directive } from '@angular/core';
     },
   ],
   host: {
-    '[class.app-context-menu-item]': 'true',
+    '[class.context-menu-item]': 'true',
   },
 })
 export class ContextMenuItemDirective {}
