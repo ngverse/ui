@@ -4,7 +4,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/lukonik/ngverse"
+    "url": "https://github.com/ngverse/ui"
   },
   "scripts": {
     "ng": "ng",
