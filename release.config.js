@@ -1,6 +1,6 @@
 module.exports = {
   branches: ['main'],
-  repositoryUrl: 'https://github.com/lukonik/ngverse',
+  repositoryUrl: 'https://github.com/ngverse/ui',
   preset: 'conventionalcommits',
   releaseRules: [{ type: 'refactor', release: 'patch' }],
   plugins: [
