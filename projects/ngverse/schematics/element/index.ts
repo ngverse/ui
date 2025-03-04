@@ -81,6 +81,6 @@ function prefixIsDefault(prefix?: string) {
  * @param prefix
  */
 function updatePrefix(content: string, prefix: string) {
-  const defaultSelector = 'app';
+  const defaultSelector = /\bapp\b/g; // Match 'app' as a whole word
   return content.replace(defaultSelector, prefix);
 }
