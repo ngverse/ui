@@ -129,7 +129,6 @@ body {
   .input,
   .textarea {
     background: var(--color-background);
-    box-sizing: border-box;
     border: var(--border);
     border-radius: var(--border-radius);
     padding: var(--field-padding);

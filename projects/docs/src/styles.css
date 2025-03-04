@@ -7,14 +7,6 @@
 @import './highlight-light.css';
 @import '../../ngverse/src/lib/ngverse';
 
-*,
-::after,
-::before,
-::backdrop,
-::file-selector-button {
-  box-sizing: border-box; /* 1 */
-}
-
 a {
   color: inherit;
   -webkit-text-decoration: inherit;
