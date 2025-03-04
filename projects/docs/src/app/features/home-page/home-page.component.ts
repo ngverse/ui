@@ -1,6 +1,3 @@
-import { AlertBodyComponent } from '@/ui/alert/alert-body.component';
-import { AlertHeaderComponent } from '@/ui/alert/alert-header.component';
-import { AlertComponent } from '@/ui/alert/alert.component';
 import { ButtonComponent } from '@/ui/button/button.component';
 import { IconComponent } from '@/ui/icon/icon.component';
 import { DOCUMENT } from '@angular/common';
@@ -16,15 +13,7 @@ import {
 
 @Component({
   selector: 'doc-home-page',
-  imports: [
-    RouterLink,
-    LucideAngularModule,
-    IconComponent,
-    ButtonComponent,
-    AlertComponent,
-    AlertHeaderComponent,
-    AlertBodyComponent,
-  ],
+  imports: [RouterLink, LucideAngularModule, IconComponent, ButtonComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
