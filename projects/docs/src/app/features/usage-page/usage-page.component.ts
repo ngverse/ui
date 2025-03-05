@@ -8,4 +8,11 @@ import { SourceCodeComponent } from '../../blueprint/source-code/source-code.com
   templateUrl: './usage-page.component.html',
   styleUrl: './usage-page.component.css',
 })
-export class UsagePageComponent {}
+export class UsagePageComponent {
+  configCode = ` "projectType": "application",
+  "schematics": {
+    "@ngverse/ui:add": {
+      "path": "ui"
+    }
+  }`;
+}

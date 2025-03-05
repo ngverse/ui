@@ -1,11 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { BlogPageComponent } from '../../blog/blog-page/blog-page.component';
 import { SourceCodeComponent } from '../../blueprint/source-code/source-code.component';
+import { ProjectNameComponent } from '../../core/project-name/project-name.component';
 import { FileService } from '../../services/file.service';
 
 @Component({
   selector: 'doc-installation-page',
-  imports: [BlogPageComponent, SourceCodeComponent],
+  imports: [BlogPageComponent, SourceCodeComponent, ProjectNameComponent],
   templateUrl: './installation-page.component.html',
   styleUrl: './installation-page.component.css',
 })
@@ -14,6 +15,13 @@ export class InstallationPageComponent {
   fileService = inject(FileService);
 
   ngVerseStyleContent = signal<string>('');
+
+  configCode = ` "projectType": "application",
+  "schematics": {
+    "@ngverse/ui:add": {
+      "path": "ui"
+    }
+  }`;
 
   tsImportCode = `
   ...
@@ -34,7 +42,7 @@ export class InstallationPageComponent {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-       provideAnimationsAsync(),
+       provideAnimationsAsync()
      ],
 };`;
 

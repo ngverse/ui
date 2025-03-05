@@ -6,6 +6,7 @@
 @import './highlight-dark.css';
 @import './highlight-light.css';
 @import '../../ngverse/src/lib/ngverse';
+@import '@angular/cdk/overlay-prebuilt.css';
 
 a {
   color: inherit;

@@ -29,10 +29,6 @@ export const SIDEBAR_ROUTES = [
         url: '/doc/usage',
       },
       {
-        name: 'Schematics Usage',
-        url: '/doc/schematics-usage',
-      },
-      {
         name: 'Theming',
         url: '/doc/theming',
       },

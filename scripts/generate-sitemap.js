@@ -8,7 +8,6 @@ const freq = 'daily';
 const links = [
   { url: '/doc/introduction/', changefreq: freq, priority: priority },
   { url: '/doc/installation/', changefreq: freq, priority: priority },
-  { url: '/doc/schematics-usage/', changefreq: freq, priority: priority },
   { url: '/doc/usage/', changefreq: freq, priority: priority },
   { url: '/doc/theming/', changefreq: freq, priority: priority },
   { url: '/doc/accordion/', changefreq: freq, priority: priority },
