@@ -1,88 +1,53 @@
 <doc-blog-page label="Theming">
   <p>
-    NgVerse styles are self-encapsulated, meaning that styling is done within
-    the component's SCSS files rather than in a global theming file. Since you
-    have full access to the component source code, you don't need to inspect
-    elements or search through a global file to update styles. You can simply
-    edit the SCSS file within the component itself.
+    <doc-project-name [code]="true"></doc-project-name> relies on
+    <code>Tailwind CSS</code>
+    as its styling framework, meaning all components are styled using Tailwind
+    utility classes and CSS variables. With <code>Tailwind CSS v4</code>, the
+    <doc-project-name [code]="true"></doc-project-name> library has fully
+    transitioned to native CSS, moving away from preprocessors like SASS or
+    LESS. As a result, all
+    <doc-project-name [code]="true"></doc-project-name> components are built
+    using pure CSS instead of SASS. However, thanks to Tailwind CSS, features
+    such as nesting and other enhancements previously available in preprocessors
+    are now natively supported
   </p>
   <p>
-    However, NgVerse also adds a <code>ngverse.css</code> file to your project.
-    Let's break down what this file does.
+    <doc-project-name [code]="true"></doc-project-name> comes with a predefined
+    Tailwind CSS theme configuration to maintain a consistent design across all
+    components. Most of the theme settings are color variables used throughout
+    the components. This setup ensures that if you want to change the primary
+    color, you can do so in a single place, and it will automatically apply to
+    all components.
+  </p>
+  <p>
+    For example, by default, the primary color is:
+    <code>--color-blue-500 </code> If you want to change it to amber, simply
+    update it to: <code>--color-amber-500</code>
+    This makes customization easy and ensures design consistency across your
+    project.
   </p>
 
-  <h2>ngverse.css</h2>
+  <h2><doc-project-name></doc-project-name> styles</h2>
 
   <doc-source-code language="css" [code]="globalsCode()"></doc-source-code>
 
-  <h3>Explanation</h3>
-
-  <h4>1. Normalize SCSS Import</h4>
-  <p>The first line imports the <code>normalize.css</code> file.</p>
+  <h3>CSS Variables</h3>
+  <p>CSS Variables follow the following pattern:</p>
   <ul>
-    <li>
-      <code>normalize.css</code> resets inconsistent browser styles. It uses
-      <a
-        target="_blank"
-        href="https://github.com/tailwindlabs/tailwindcss/blob/main/packages/tailwindcss/preflight.css"
-        >this file</a
-      >
-      for standardization.
-    </li>
-    <li>
-      If you already have a custom reset file (e.g., <code>reset.css</code>),
-      you can remove this import. <br />
-      <strong>Note:</strong> Small UI issues may occur if you use a different
-      reset file. You might need to adjust component styles accordingly.
-    </li>
+    <li><code>--color-name</code>: Background color</li>
+    <li><code>--color-name-foreground</code>: Text color</li>
   </ul>
-
-  <h4>2. Angular CDK Overlay Import</h4>
-  <p>The second line imports Angular CDK's overlay styles.</p>
-  <ul>
-    <li>
-      This is essential for floating panels (e.g., popovers, dropdowns) to
-      display correctly.
-    </li>
-    <li>
-      If you are already using Angular Material or have imported this style
-      manually in <code>styles.css</code>, you can remove this import.
-    </li>
-  </ul>
-
-  <h4>3. CSS Variables</h4>
+  <h3>Customizing Component Styles</h3>
   <p>
-    Starting from the third line, CSS variables are defined. These variables are
-    used throughout NgVerse components.
-  </p>
-  <ul>
-    <li>
-      The main purpose of these variables is to maintain a coherent, default
-      appearance across components.
-    </li>
-    <li>
-      If you do not have a custom design, the components will still look
-      polished and consistent. You can update the variables to customize styles
-      globally.
-    </li>
-    <li>
-      Each color variable follows this structure:
-      <ul>
-        <li><code>--color-name</code>: Background color</li>
-        <li><code>--color-name-foreground</code>: Text color</li>
-      </ul>
-    </li>
-  </ul>
-
-  <h3>Automatic Setup</h3>
-  <p>
-    When you run the <code>ng add ngverse</code> schematics, the
-    <code>ngverse.css</code> file is generated and imported into your
-    <code>styles.css</code> file automatically.
-  </p>
-  <h3>Manual Installation</h3>
-  <p>
-    If you install NgVerse manually, copy the <code>ngverse.css</code> file and
-    import it into your <code>styles.css</code>:
+    While <doc-project-name [code]="true"></doc-project-name> provides a default
+    styling system, you are not restricted to using it as-is. You have full
+    flexibility to customize component styles inside their respective styling
+    files based on your project’s needs. How you choose to style the components
+    is entirely up to you—whether by extending Tailwind classes, adding custom
+    styles, or overriding existing ones.
+    <doc-project-name [code]="true"></doc-project-name> is designed to be
+    adaptable, allowing you to create a unique design while maintaining
+    consistency.
   </p>
 </doc-blog-page>

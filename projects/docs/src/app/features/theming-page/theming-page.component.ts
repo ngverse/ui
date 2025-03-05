@@ -1,13 +1,14 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { BlogPageComponent } from '../../blog/blog-page/blog-page.component';
 import { SourceCodeComponent } from '../../blueprint/source-code/source-code.component';
+import { ProjectNameComponent } from '../../core/project-name/project-name.component';
 import { FileService } from '../../services/file.service';
 
 @Component({
   selector: 'doc-theming-page',
   templateUrl: './theming-page.component.html',
   styleUrl: './theming-page.component.css',
-  imports: [BlogPageComponent, SourceCodeComponent],
+  imports: [BlogPageComponent, SourceCodeComponent, ProjectNameComponent],
 })
 export class ThemingPageComponent implements OnInit {
   globalsCode = signal('');

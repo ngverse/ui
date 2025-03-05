@@ -4,17 +4,17 @@
     feature-rich Angular components. It has one key difference from other UI
     libraries: <br />
     <strong>you don’t install it as a dependency</strong>. Instead, you add the
-    source code of the elements directly into your project.
+    source code of the components directly into your project.
   </p>
 
   <h2>What does that mean?</h2>
 
   <p>
     Typically, when you use a UI library, you install the library as a
-    dependency and then import components from it.
-    <code><doc-project-name></doc-project-name></code> is different. You install
-    the schematics and selectively add the components you need. The component's
-    source code is injected into your project, making it
+    dependency and then import components from it.<br />
+    <doc-project-name [code]="true"></doc-project-name> is different. You
+    install the schematics and selectively add the components you need. The
+    component's source code is injected into your project, making it
     <strong>fully customizable</strong>. You can explore, update, or leave it as
     is.
   </p>
@@ -52,12 +52,10 @@
   <h2>Key Features</h2>
 
   <ul>
-    <li>
-      <strong>Tailwind:</strong> We rely on Tailwind CSS as a css framework
-    </li>
+    <li><strong>Tailwind:</strong> We use Tailwind CSS as a CSS framework</li>
     <li>
       <strong>Zoneless:</strong> We don't rely on <code>zone.js</code>. All
-      elements are zoneless, meaning they will work regardless of whether your
+      components are zoneless, meaning they will work regardless of whether your
       app includes <code>zone.js</code> or not.
     </li>
     <li>

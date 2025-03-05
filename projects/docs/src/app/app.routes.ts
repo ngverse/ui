@@ -24,10 +24,8 @@ export const routes: Routes = [
       },
       {
         path: 'schematics-usage',
-        loadComponent: () =>
-          import(
-            './features/schematics-usage-page/schematics-usage-page.component'
-          ).then((i) => i.SchematicsUsagePageComponent),
+        pathMatch: 'full',
+        redirectTo: 'usage',
       },
       {
         path: 'usage',

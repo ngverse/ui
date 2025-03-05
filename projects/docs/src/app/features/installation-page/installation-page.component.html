@@ -20,6 +20,11 @@
     </li>
   </ul>
   <h2>Install &#64;angular/cdk</h2>
+  <p>
+    <doc-project-name [code]="true"></doc-project-name> leverages Angular CDK as
+    a low-level toolkit to handle essential functionalities such as
+    accessibility, floating panels, and other foundational UI behaviors.
+  </p>
   <doc-source-code
     language="bash"
     code="npm install @angular/cdk"
@@ -33,6 +38,10 @@
     code="@import '@angular/cdk/overlay-prebuilt.css';"
   ></doc-source-code>
   <h2>Install tailwind (v4)</h2>
+  <p>
+    <doc-project-name [code]="true"></doc-project-name> uses Tailwind CSS as a
+    CSS framework
+  </p>
   <doc-source-code
     language="bash"
     code="npm install tailwindcss @tailwindcss/postcss postcss --force  "
@@ -67,7 +76,7 @@
     [allowCopy]="false"
     code='import { ButtonComponent } from "../../../../button/button.component";'
   ></doc-source-code>
-  <p>You should use an absolute path: typescript Copy Edit</p>
+  <p>You should use an absolute path:</p>
   <doc-source-code
     language="ts"
     [allowCopy]="false"
@@ -89,8 +98,9 @@
   ></doc-source-code>
   <p>
     Most of the time, you'll want to group generated components within the same
-    root folder. Instead of manually passing the <code>--path</code> option
-    every time you generate a component, you can configure it globally in your
+    root folder. Instead of manually passing the <br />
+    <code>--path</code> option every time you generate a component, you can
+    configure it globally in your
     <code>angular.json</code>
     file.
   </p>
@@ -104,10 +114,8 @@
     Additionally, two versions are provided:
   </p>
   <ul>
-    <li>Light mode for a bright and clean appearance.</li>
-    <li>
-      Dark mode for a visually comfortable experience in low-light environments.
-    </li>
+    <li>Light mode.</li>
+    <li>Dark mode.</li>
   </ul>
   <p>
     Copy the styles content and paste it into

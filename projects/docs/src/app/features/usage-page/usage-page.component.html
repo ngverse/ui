@@ -1,7 +1,5 @@
 <doc-blog-page label="Usage">
-  <p>
-    To add a component to your project, run the following command: sh Copy Edit
-  </p>
+  <p>To add a component to your project, run the following command:</p>
   <doc-source-code
     language="bash"
     code="ng g @ngverse/ui:add button"
@@ -22,8 +20,8 @@
     <li>
       You can specify a different location using the
       <code>--path</code> parameter. Example:
-      <code>ng g ngverse:component button --path=core</code>
-      This will place the component in <code>/src/app/core</code>.
+      <code>ng g ngverse:component button --path=ui</code>
+      This will place the component in <code>/src/app/ui</code>.
     </li>
   </ul>
   <h3>2. <code>prefix</code> (Optional)</h3>
@@ -55,11 +53,7 @@
     </li>
     <li>
       If your workspace contains multiple projects, you can specify which one to
-      use by passing the project name.
-    </li>
-    <li>
-      By default, the component is added to the default project specified in
-      <code>angular.json</code>.
+      use by passing the project name. or it will try to use the default project
     </li>
   </ul>
   <h2>Global Configuration</h2>
