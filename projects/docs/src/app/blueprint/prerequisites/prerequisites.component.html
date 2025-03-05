@@ -4,7 +4,7 @@
   <p class="mt-2">
     {{ name() }} element uses
     @for (item of prepsAuto; track $index) {
-      <a class="!underline" [routerLink]="['../', item.name]">{{
+      <a class="underline" [routerLink]="['../', item.name]">{{
         item.label
       }}</a>
       @if ($index < prepsAuto.length - 1) {
