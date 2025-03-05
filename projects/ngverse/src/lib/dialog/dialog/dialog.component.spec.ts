@@ -63,9 +63,9 @@ describe('DialogComponent', () => {
   });
 
   it('should display title', () => {
-    expect(
-      fixture.nativeElement.querySelector('.dialog-header p').textContent.trim()
-    ).toBe('Dialog');
+    expect(fixture.nativeElement.querySelector('p').textContent.trim()).toBe(
+      'Dialog'
+    );
   });
 
   it('should display component', () => {
