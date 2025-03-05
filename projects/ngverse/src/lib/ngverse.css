@@ -1,5 +1,3 @@
-@import '@angular/cdk/overlay-prebuilt.css';
-@reference "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {

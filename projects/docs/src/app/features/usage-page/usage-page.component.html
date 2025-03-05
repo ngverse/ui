@@ -1,46 +1,93 @@
 <doc-blog-page label="Usage">
   <p>
-    NgVerse provides three simple methods to add elements to your application:
-  </p>
-  <h2>Using NgVerse Schematics</h2>
-  <p>
-    The easiest way to add a element to your project is by using NgVerse
-    schematics. This approach automates the process for you. Simply specify the
-    element you want, and schematics will handle the setup.
-  </p>
-  <p>
-    For example, to add a tab component to your project, run the following
-    command:
+    To add a component to your project, run the following command: sh Copy Edit
   </p>
   <doc-source-code
     language="bash"
-    code="ng g ngverse:component tab"
+    code="ng g @ngverse/ui:add button"
   ></doc-source-code>
   <p>
-    This command will create a folder for the tab component in your project,
-    with its source code
+    This will generate a <code>button</code> folder in your project's root
+    directory, containing the <code>ButtonComponent</code>. Additionally, the
+    generator provides the following options:
   </p>
-  <h2>Downloading the Component Files</h2>
-  <p>Alternatively, you can download the element files directly:</p>
-  <p>
-    Navigate to the desired element&#39;s page on the NgVerse documentation
-    site.
-  </p>
+  <h2>Options</h2>
+  <h3>1. <code>path</code> (Optional)</h3>
+  <p>Specifies where to place the component folder.</p>
   <ul>
-    <li>Click the Download ZIP button.</li>
-    <li>Extract the downloaded ZIP folder.</li>
-    <li>Import the extracted folder into your project.</li>
-    <li>Once added, the element will be ready to use.</li>
+    <li>
+      By default, the component is added to the root folder
+      (<code>/src/app</code>).
+    </li>
+    <li>
+      You can specify a different location using the
+      <code>--path</code> parameter. Example:
+      <code>ng g ngverse:component button --path=core</code>
+      This will place the component in <code>/src/app/core</code>.
+    </li>
   </ul>
-  <h2>Copy/Paste the Source Code</h2>
-  <p>
-    Every element page includes a source code tree that you can manually copy
-    and paste into your project. Follow these steps:
-  </p>
+  <h3>2. <code>prefix</code> (Optional)</h3>
+  <p>Specifies the prefix of component</p>
   <ul>
-    <li>Navigate to the desired element&#39;s page.</li>
-    <li>View the source code tree.</li>
-    <li>Copy the necessary files or code snippets.</li>
-    <li>Paste them into your project in the appropriate locations.</li>
+    <li>
+      By default, it will use the project's prefix. If no prefix is provided, it
+      will default to 'app'.
+    </li>
   </ul>
+  <h3>3. <code>replace</code> (Optional, default: <code>false</code>)</h3>
+  <p>Determines whether to replace existing files with the same name.</p>
+  <ul>
+    <li>
+      If a folder with the same name as the component already exists, the
+      schematic will throw an error to prevent accidental file deletions.
+    </li>
+    <li>
+      If you want to override the existing files, set <code>replace=true</code>.
+    </li>
+    <li>Example: <code>ng g ngverse:component button --replace=true</code></li>
+  </ul>
+  <h3>4. <code>project</code> (Optional)</h3>
+  <p>The name of the Angular project where the component should be added.</p>
+  <ul>
+    <li>
+      If your workspace has only one project, the component will be added
+      automatically without needing this parameter.
+    </li>
+    <li>
+      If your workspace contains multiple projects, you can specify which one to
+      use by passing the project name.
+    </li>
+    <li>
+      By default, the component is added to the default project specified in
+      <code>angular.json</code>.
+    </li>
+  </ul>
+  <h2>Global Configuration</h2>
+  <p>
+    You can set a global configuration for the
+    <code>ng g &#64;ngverse/ui:add</code> schematics.
+  </p>
+  <p>
+    For example, if you want to place all components inside the
+    <code>ui</code> folder by default, you can add the following configuration
+    in your <code>angular.json</code> file:
+  </p>
+
+  <doc-source-code
+    language="json"
+    [allowCopy]="false"
+    [code]="configCode"
+  ></doc-source-code>
+
+  <p>Once this is configured, running the command:</p>
+  <doc-source-code
+    language="bash"
+    [code]="'ng g @ngverse/ui:add button'"
+  ></doc-source-code>
+
+  <p>
+    will automatically place the component inside the
+    <code>ui</code> folder, without needing to specify the
+    <code>--path</code> parameter every time.
+  </p>
 </doc-blog-page>

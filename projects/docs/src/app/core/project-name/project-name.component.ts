@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'doc-project-name',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './project-name.component.html',
   styleUrl: './project-name.component.css',
 })
-export class ProjectNameComponent {}
+export class ProjectNameComponent {
+  code = input(false);
+}
