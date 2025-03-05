@@ -3,7 +3,10 @@ import {
   ApiInfo,
   ApiInfoComponent,
 } from '../../blueprint/api-info/api-info.component';
-import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inputs/api-inputs.component';
+import {
+  EMPTY_API_INPUT_DEFAULT_VALUE,
+  VOID_API_RETURN_TYPE,
+} from '../../blueprint/api-info/api-inputs/api-inputs.component';
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
@@ -49,6 +52,7 @@ export class AccordionPageComponent {
   ];
 
   apiInfo: ApiInfo = {
+    reliesOn: 'https://material.angular.io/cdk/accordion/overview',
     ariaLink: 'https://www.w3.org/WAI/ARIA/apg/patterns/accordion/',
     entities: [
       {
@@ -62,6 +66,18 @@ export class AccordionPageComponent {
             type: 'boolean',
             description: 'allows multiple panels to be open simultaneously',
             default: 'false',
+          },
+        ],
+        methods: [
+          {
+            name: 'closeAll',
+            returnType: VOID_API_RETURN_TYPE,
+            description: 'closes all accordion-items',
+          },
+          {
+            name: 'openAll',
+            returnType: VOID_API_RETURN_TYPE,
+            description: 'opens all accordion-items',
           },
         ],
       },
@@ -87,8 +103,44 @@ export class AccordionPageComponent {
           {
             name: 'expanded',
             type: 'boolean',
-            description: 'opens the accordion-item',
+            description: 'expands the accordion-item',
             default: 'false',
+          },
+        ],
+        outputs: [
+          {
+            name: 'opened',
+            value: VOID_API_RETURN_TYPE,
+            description: 'emits when the accordion item is opened',
+          },
+          {
+            name: 'closed',
+            value: VOID_API_RETURN_TYPE,
+            description: 'emits when the accordion item is closed',
+          },
+          {
+            name: 'destroyed',
+            value: VOID_API_RETURN_TYPE,
+            description: 'emits when the accordion item is destroyed',
+          },
+        ],
+        methods: [
+          {
+            name: 'toggle',
+            description: 'toggles the accordion-item',
+            returnType: 'void',
+            params: [],
+          },
+          {
+            name: 'open',
+            description: 'opens the accordion-item',
+            returnType: 'void',
+            params: [],
+          },
+          {
+            name: 'close',
+            description: 'closes the accordion-item',
+            returnType: 'void',
           },
         ],
       },

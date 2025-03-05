@@ -41,8 +41,8 @@ describe('AccordionComponent', () => {
     const firstAccordion = accordionItems[0].componentInstance;
     const secondAccordion = accordionItems[1].componentInstance;
     firstAccordion.toggle();
-    expect(firstAccordion.isOpen()).toBeTrue();
-    expect(secondAccordion.isOpen()).toBeFalse();
+    expect(firstAccordion.expanded).toBeTrue();
+    expect(secondAccordion.expanded).toBeFalse();
   });
   it('open accordion should not close another on multi=true', async () => {
     fixture.componentInstance.multi.set(true);
@@ -54,8 +54,8 @@ describe('AccordionComponent', () => {
     firstAccordion.toggle();
     await fixture.whenStable();
     secondAccordion.toggle();
-    expect(firstAccordion.isOpen()).toBeTrue();
-    expect(secondAccordion.isOpen()).toBeTrue();
+    expect(firstAccordion.expanded).toBeTrue();
+    expect(secondAccordion.expanded).toBeTrue();
   });
 });
 @Component({
