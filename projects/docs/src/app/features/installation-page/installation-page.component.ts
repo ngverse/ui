@@ -27,7 +27,7 @@ export class InstallationPageComponent {
   ...
   "compilerOptions": {
     "paths": {
-      "@/ui/*": ["./src/app/ui"]
+      "@/ui/*": ["./src/app/ui/*"]
     }
    ....
     `;
