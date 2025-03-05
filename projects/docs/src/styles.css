@@ -8,12 +8,6 @@
 @import '../../ngverse/src/lib/ngverse';
 @import '@angular/cdk/overlay-prebuilt.css';
 
-a {
-  color: inherit;
-  -webkit-text-decoration: inherit;
-  text-decoration: inherit;
-}
-
 html,
 body {
   margin: 0;
