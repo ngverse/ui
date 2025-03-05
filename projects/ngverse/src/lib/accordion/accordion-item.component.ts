@@ -1,17 +1,15 @@
 import { _IdGenerator } from '@angular/cdk/a11y';
+import { CdkAccordionItem } from '@angular/cdk/accordion';
 import {
   ChangeDetectionStrategy,
   Component,
-  forwardRef,
   inject,
   input,
-  signal,
 } from '@angular/core';
 import {
   COLLAPSE_ON_LEAVE,
   EXPAND_ON_ENTER_ANIMATION,
 } from './accordion-animations';
-import { AccordionComponent } from './accordion.component';
 import { ExpandIconComponent } from './expand-icon.component';
 
 @Component({
@@ -25,31 +23,8 @@ import { ExpandIconComponent } from './expand-icon.component';
     class: 'block mb-3 pb-3 border-b border-divider',
   },
 })
-export class AccordionItemComponent {
-  disabled = input<boolean>();
+export class AccordionItemComponent extends CdkAccordionItem {
   label = input<string>();
-  accordion = inject<AccordionComponent>(forwardRef(() => AccordionComponent));
   accordionBodyId = inject(_IdGenerator).getId('accordion-item-body-');
   accordionTriggerId = inject(_IdGenerator).getId('accordion-item-trigger-');
-
-  expanded = input<boolean, boolean>(false, {
-    transform: (value) => {
-      if (value) {
-        this.accordion.open(this);
-      } else {
-        this.accordion.close(this);
-      }
-      return value;
-    },
-  });
-  isOpen = signal(false);
-
-  toggle() {
-    const isOpen = this.isOpen();
-    if (isOpen) {
-      this.accordion.close(this);
-    } else {
-      this.accordion.open(this);
-    }
-  }
 }

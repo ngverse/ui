@@ -2,20 +2,20 @@
   <button
     class="peer flex w-full cursor-pointer items-center focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-ring disabled:text-disabled-foreground aria-expanded:font-medium"
     (click)="toggle()"
-    [disabled]="disabled()"
-    [attr.aria-expanded]="isOpen()"
+    [disabled]="disabled"
+    [attr.aria-expanded]="expanded"
     [id]="accordionTriggerId"
     [attr.aria-controls]="accordionBodyId"
   >
     {{ label() }}
     <ng-content select="app-accordion-header"></ng-content>
     <app-expand-icon
-      [class.rotate-180]="isOpen()"
+      [class.rotate-180]="expanded"
       class="ml-auto transition-transform"
     ></app-expand-icon>
   </button>
 </h3>
-@if (isOpen()) {
+@if (expanded) {
   <div
     role="region"
     [id]="accordionBodyId"
