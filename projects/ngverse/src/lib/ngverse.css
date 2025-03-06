@@ -45,11 +45,9 @@
 
   --color-divider: #cbd5e1;
   --color-border: #d1d5db;
-  --border: 1px solid var(--color-border);
 
   --color-ring: #9ca3af;
-  --color-mute-start: #e0e0e0;
-  --color-mute-end: #f0f0f0;
+  --color-mute: #e0e0e0;
 }
 
 :root.cdk-overlay-backdrop {
@@ -93,12 +91,8 @@
   --color-divider: #6b7280;
 
   --color-border: #6b7280;
-  --border: 1px solid var(--color-border);
 
   --color-ring: #9ca3af;
-
-  --color-mute-start: #e0e0e0;
-  --color-mute-end: #f0f0f0;
 }
 
 :root.dark.cdk-overlay-backdrop {

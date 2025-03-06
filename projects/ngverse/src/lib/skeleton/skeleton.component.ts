@@ -3,7 +3,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'app-skeleton',
   template: ``,
-  styleUrl: './skeleton.component.css',
+  host: {
+    class: 'animate-pulse block bg-mute',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SkeletonComponent {}
