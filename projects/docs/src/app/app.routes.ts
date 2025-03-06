@@ -259,6 +259,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'table',
+        loadComponent: () =>
+          import('./features/table-page/table-page.component').then(
+            (p) => p.TablePageComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'introduction',
         pathMatch: 'full',

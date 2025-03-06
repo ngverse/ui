@@ -145,6 +145,10 @@ export const SIDEBAR_ROUTES = [
         name: 'Dark Mode',
         url: '/doc/dark-mode',
       },
+      {
+        name: 'Table',
+        url: '/doc/table',
+      },
     ].sort((a, b) => a.name.localeCompare(b.name)),
   },
   {

@@ -1,0 +1,28 @@
+<ng-content select="caption" />
+<ng-content select="colgroup, col" />
+
+<!--
+      Unprojected content throws a hydration error so we need this to capture it.
+      It gets removed on the client so it doesn't affect the layout.
+    -->
+@if (_isServer) {
+  <ng-content />
+}
+
+@if (_isNativeHtmlTable) {
+  <thead role="rowgroup">
+    <ng-container headerRowOutlet />
+  </thead>
+  <tbody class="mdc-data-table__content" role="rowgroup">
+    <ng-container rowOutlet />
+    <ng-container noDataRowOutlet />
+  </tbody>
+  <tfoot role="rowgroup">
+    <ng-container footerRowOutlet />
+  </tfoot>
+} @else {
+  <ng-container headerRowOutlet />
+  <ng-container rowOutlet />
+  <ng-container noDataRowOutlet />
+  <ng-container footerRowOutlet />
+}

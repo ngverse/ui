@@ -1,0 +1,28 @@
+<table app-table [dataSource]="dataSource" class="w-full">
+  <!-- Position Column -->
+  <ng-container appColumnDef="position">
+    <th app-header-cell *appHeaderCellDef app-sort-header>No.</th>
+    <td app-cell *appCellDef="let element">{{ element.position }}</td>
+    <td app-footer-cell *appFooterCellDef>User name</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container appColumnDef="name">
+    <th app-header-cell *appHeaderCellDef>Name</th>
+    <td app-cell *appCellDef="let element">{{ element.name }}</td>
+    <td app-footer-cell *appFooterCellDef>User name</td>
+  </ng-container>
+  <ng-container appColumnDef="weight">
+    <th app-header-cell *appHeaderCellDef>Weight</th>
+    <td app-cell *appCellDef="let element">{{ element.weight }}</td>
+    <td app-footer-cell *appFooterCellDef>User name</td>
+  </ng-container>
+  <ng-container appColumnDef="symbol">
+    <th app-header-cell *appHeaderCellDef>Symbol</th>
+    <td app-cell *appCellDef="let element">{{ element.symbol }}</td>
+    <td app-footer-cell *appFooterCellDef>User name</td>
+  </ng-container>
+  <tr app-footer-row *appFooterRowDef="displayedColumns"></tr>
+  <tr app-header-row *appHeaderRowDef="displayedColumns"></tr>
+  <tr app-row *appRowDef="let row; columns: displayedColumns"></tr>
+</table>
