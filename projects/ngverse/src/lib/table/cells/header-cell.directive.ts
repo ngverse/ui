@@ -11,7 +11,7 @@ export class HeaderCellDefDirective extends CdkHeaderCellDef {}
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: 'app-header-cell, th[app-header-cell]',
+  selector: 'th[app-header-cell]',
   host: {
     class: 'px-6 py-3',
     role: 'columnheader',

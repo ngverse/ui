@@ -1,10 +1,11 @@
 import { CdkTextColumn } from '@angular/cdk/table';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CellDefDirective } from '../cells/cell-def.directive';
-import { CellDirective } from '../cells/cell.directive';
+import { CellDefDirective, CellDirective } from '../cells/cell.directive';
 import { ColumnDefDirective } from '../cells/column-def.directive';
-import { HeaderCellDefDirective } from '../cells/header-cell-def.directive';
-import { HeaderCellDirective } from '../cells/header-cell.directive';
+import {
+  HeaderCellDefDirective,
+  HeaderCellDirective,
+} from '../cells/header-cell.directive';
 
 @Component({
   selector: 'app-text-column',

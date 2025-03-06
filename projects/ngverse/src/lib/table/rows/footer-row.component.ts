@@ -26,7 +26,8 @@ import {
 export class FooterRowDefDirective extends CdkFooterRowDef {}
 
 @Component({
-  selector: 'app-footer-row, tr[app-footer-row]',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'tr[app-footer-row]',
   template: `<ng-container cdkCellOutlet></ng-container>`,
   host: {
     class: 'mat-mdc-footer-row mdc-data-table__row',

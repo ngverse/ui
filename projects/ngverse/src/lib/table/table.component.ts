@@ -15,7 +15,8 @@ import {
 } from '@angular/cdk/table';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
-  selector: 'app-table, table[app-table]',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'table[app-table]',
   imports: [HeaderRowOutlet, DataRowOutlet, NoDataRowOutlet, FooterRowOutlet],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',

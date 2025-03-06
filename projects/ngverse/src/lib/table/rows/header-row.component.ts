@@ -26,7 +26,8 @@ import {
 export class HeaderRowDefDirective extends CdkHeaderRowDef {}
 
 @Component({
-  selector: 'app-header-row, tr[app-header-row]',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'tr[app-header-row]',
   template: `<ng-container cdkCellOutlet></ng-container>`,
   host: {
     class: 'text-xs text-left text-on-surface uppercase bg-surface',

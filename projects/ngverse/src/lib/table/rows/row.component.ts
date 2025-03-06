@@ -13,7 +13,8 @@ import { ChangeDetectionStrategy, Component, Directive } from '@angular/core';
 export class RowDefDirective<T> extends CdkRowDef<T> {}
 
 @Component({
-  selector: 'app-row, tr[app-row]',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'tr[app-row]',
   template: `<ng-container cdkCellOutlet></ng-container>`,
   host: {
     class: 'bg-background border-b border-border',
