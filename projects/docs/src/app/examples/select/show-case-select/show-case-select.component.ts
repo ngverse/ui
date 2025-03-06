@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OptionGroupLabelComponent } from '@/ui/select/option-group-label.component';
 import { OptionGroupComponent } from '@/ui/select/option-group.component';
 import { OptionComponent } from '@/ui/select/option.component';
 import { SelectComponent } from '@/ui/select/select.component';
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 const countries = [
   { code: 'KA', name: 'Georgia' },
   { code: 'US', name: 'United States' },
