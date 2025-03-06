@@ -25,10 +25,10 @@ describe('CardComponent', () => {
     await fixture.whenStable();
   });
 
-  it('should add outline class', async () => {
-    fixture.componentInstance.outline.set(true);
+  it('should add outlined class', async () => {
+    fixture.componentInstance.outlined.set(true);
     await fixture.whenStable();
-    expect(cardFixture.nativeElement.classList).toContain('outline');
+    expect(cardFixture.nativeElement.classList).toContain('outlined');
   });
   it('should add shadow class', async () => {
     fixture.componentInstance.shadow.set(true);
@@ -50,7 +50,7 @@ describe('CardComponent', () => {
 @Component({
   template: `
     <app-card
-      [outline]="outline()"
+      [outlined]="outlined()"
       [surface]="surface()"
       [shadow]="shadow()"
       [gap]="gap()"
@@ -62,7 +62,7 @@ describe('CardComponent', () => {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class CardTestComponent {
-  outline = signal(false);
+  outlined = signal(false);
   shadow = signal(false);
   gap = signal(false);
   surface = signal(false);
