@@ -1,7 +1,6 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { ComponentType } from '@angular/cdk/portal';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import {
   AlertDialogComponent,
   AlertDialogOption,
@@ -11,11 +10,6 @@ import {
   ConfirmDialogOptions,
 } from './confirm-dialog/confirm-dialog.component';
 import { DialogComponent, DialogOptions } from './dialog/dialog.component';
-
-interface DialogReturn<T> {
-  close: () => void;
-  closed: Observable<T | undefined>;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +35,7 @@ export class DialogService {
     return dialogRef;
   }
 
-  confirm(options: ConfirmDialogOptions): DialogReturn<boolean> {
+  confirm(options: ConfirmDialogOptions) {
     const yesLabel = options.yesLabel ?? 'Yes';
     const noLabel = options.noLabel ?? 'No';
     const title = options.title;
@@ -60,10 +54,10 @@ export class DialogService {
         hasBackdrop: true,
       }
     );
-    return { close: dialogRef.close, closed: dialogRef.closed };
+    return dialogRef;
   }
 
-  alert<T>(options: AlertDialogOption): DialogReturn<T> {
+  alert<T>(options: AlertDialogOption) {
     const dialogRef = this._dialogService.open<T>(AlertDialogComponent, {
       disableClose: false,
       hasBackdrop: true,
@@ -74,6 +68,6 @@ export class DialogService {
         description: options.description,
       },
     });
-    return { close: dialogRef.close, closed: dialogRef.closed };
+    return dialogRef;
   }
 }
