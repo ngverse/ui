@@ -14,7 +14,7 @@ export type TOAST_POSITION =
   | 'bottom_left'
   | 'left_center';
 
-export type TOAST_TYPE = 'success' | 'warning' | 'danger' | 'default';
+export type TOAST_TYPE = 'success' | 'warning' | 'danger' | undefined;
 
 interface ToastOptions {
   closeDelay?: number;
@@ -56,36 +56,33 @@ export class ToastService {
     }
   }
 
-  private getOptions(options: ToastOptions): Required<ToastOptions> {
-    return {
-      closeDelay: options.closeDelay ?? 3000,
-      autoClose: options.autoClose ?? true,
-      showCloseIcon: options.showCloseIcon ?? true,
-      message: options.message,
-      type: options.type || 'default',
-      position: options.position ?? 'bottom_center',
-    };
-  }
-
   open(options: ToastOptions) {
     this.close();
 
     const portal = new ComponentPortal(ToastComponent);
-    const genOptions = this.getOptions(options);
-    const position = this.resolvePosition(genOptions.position);
+    // const genOptions = this.getOptions(options);
+    const position = options.position ?? 'bottom_center';
+    const showCloseIcon = options.showCloseIcon ?? true;
+    const closeDelay = options.closeDelay ?? 3000;
+    const autoClose = options.autoClose ?? true;
+    const message = options.message;
+    const type = options.type ?? undefined;
+
+    const globalPosition = this.resolvePosition(position);
+
     this.overlayRef = this.overlay.create({
-      positionStrategy: position,
+      positionStrategy: globalPosition,
     });
     const compRef = this.overlayRef.attach(portal);
     const instance = compRef.instance;
-    instance.message.set(genOptions.message);
-    instance.type.set(genOptions.type);
-    instance.showCloseIcon.set(genOptions.showCloseIcon);
-    instance.position.set(genOptions.position);
-    if (genOptions.autoClose) {
+    instance.message.set(message);
+    instance.type.set(type);
+    instance.showCloseIcon.set(showCloseIcon);
+    instance.position.set(position);
+    if (autoClose) {
       this.timeoutId = setTimeout(() => {
         instance.exit();
-      }, genOptions.closeDelay);
+      }, closeDelay);
     }
 
     instance.onExit.subscribe(() => {

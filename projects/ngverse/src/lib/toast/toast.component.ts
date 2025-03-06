@@ -5,6 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ToastCloseIconComponent } from './toast-close.component';
@@ -12,7 +13,7 @@ import { TOAST_POSITION } from './toast.service';
 
 @Component({
   selector: 'app-toast',
-  imports: [ToastCloseIconComponent],
+  imports: [ToastCloseIconComponent, NgClass],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,7 +38,7 @@ import { TOAST_POSITION } from './toast.service';
 })
 export class ToastComponent {
   message = signal<string>('');
-  type = signal<string>('');
+  type = signal<string | undefined>(undefined);
   showCloseIcon = signal<boolean>(true);
   position = signal<TOAST_POSITION>('right_bottom');
   animationState = signal<'enter' | 'exit'>('enter');

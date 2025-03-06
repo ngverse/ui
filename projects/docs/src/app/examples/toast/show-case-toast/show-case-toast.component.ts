@@ -1,5 +1,3 @@
-import { Component, inject, model } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '@/ui/button/button.component';
 import { FormFieldComponent } from '@/ui/form-field/form-field.component';
 import { LabelComponent } from '@/ui/form-field/label/label.component';
@@ -10,6 +8,8 @@ import {
   TOAST_TYPE,
   ToastService,
 } from '@/ui/toast/toast.service';
+import { Component, inject, model } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'doc-show-case-toast',
@@ -40,16 +40,16 @@ export class ShowCaseToastComponent {
     { value: 'right_bottom', name: 'Right Bottom' },
   ];
 
-  types = ['default', 'success', 'warning', 'danger'];
+  types = ['success', 'warning', 'danger'];
 
-  type = model<TOAST_TYPE>('default');
+  type = model<TOAST_TYPE | undefined>(undefined);
 
   showToast() {
     this.toastService.open({
       position: this.position(),
       type: this.type(),
       message: 'Current time is: ' + new Date().toLocaleTimeString(),
-      closeDelay: 1000,
+      closeDelay: 500000,
     });
   }
 }

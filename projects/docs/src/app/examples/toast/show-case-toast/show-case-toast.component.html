@@ -12,7 +12,7 @@
     </app-form-field>
     <app-form-field>
       <app-label>Type</app-label>
-      <app-select class="option" [(ngModel)]="type">
+      <app-select placeholder="Default" class="option" [(ngModel)]="type">
         @for (type of types; track $index) {
           <app-option [value]="type">
             {{ type }}
