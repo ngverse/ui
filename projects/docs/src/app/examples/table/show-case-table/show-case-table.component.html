@@ -1,28 +1,55 @@
-<table app-table [dataSource]="dataSource" class="w-full">
-  <!-- Position Column -->
-  <ng-container appColumnDef="position">
-    <th app-header-cell *appHeaderCellDef app-sort-header>No.</th>
-    <td app-cell *appCellDef="let element">{{ element.position }}</td>
-    <td app-footer-cell *appFooterCellDef>User name</td>
-  </ng-container>
+<!-- <app-table-layout>
+  <table appTable appSort (sortChange)="sortChange($event)" class="w-full">
+    <thead>
+      <tr appHeadTr sticky>
+        <th appTh appSortHeader scope="col">Name</th>
+        <th appTh scope="col">Position</th>
+        <th appTh scope="col">Weight</th>
+        <th appTh scope="col">Symbol</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of data(); track $index) {
+        <tr appTr>
+          <td appTd sticky>{{ row.name }}</td>
+          <td appTd>{{ row.position }}</td>
+          <td appTd>{{ row.weight }}</td>
+          <td appTd>{{ row.symbol }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <app-table-pagination
+    (pageChange)="setPage($event)"
+    [totalPages]="totalPages()"
+    [currentPage]="currentPage()"
+  ></app-table-pagination>
+</app-table-layout> -->
 
-  <!-- Name Column -->
-  <ng-container appColumnDef="name">
-    <th app-header-cell *appHeaderCellDef>Name</th>
-    <td app-cell *appCellDef="let element">{{ element.name }}</td>
-    <td app-footer-cell *appFooterCellDef>User name</td>
-  </ng-container>
-  <ng-container appColumnDef="weight">
-    <th app-header-cell *appHeaderCellDef>Weight</th>
-    <td app-cell *appCellDef="let element">{{ element.weight }}</td>
-    <td app-footer-cell *appFooterCellDef>User name</td>
-  </ng-container>
-  <ng-container appColumnDef="symbol">
-    <th app-header-cell *appHeaderCellDef>Symbol</th>
-    <td app-cell *appCellDef="let element">{{ element.symbol }}</td>
-    <td app-footer-cell *appFooterCellDef>User name</td>
-  </ng-container>
-  <tr app-footer-row *appFooterRowDef="displayedColumns"></tr>
-  <tr app-header-row *appHeaderRowDef="displayedColumns"></tr>
-  <tr app-row *appRowDef="let row; columns: displayedColumns"></tr>
-</table>
+<app-table-layout>
+  <table appTable appSort (sortChange)="sortChange($event)" class="w-full">
+    <thead>
+      <tr appHeadTr sticky>
+        <th appTh appSortHeader scope="col">Name</th>
+        <th appTh scope="col">Position</th>
+        <th appTh scope="col">Weight</th>
+        <th appTh scope="col">Symbol</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of data(); track $index) {
+        <tr appTr>
+          <td appTd sticky>{{ row.name }}</td>
+          <td appTd>{{ row.position }}</td>
+          <td appTd>{{ row.weight }}</td>
+          <td appTd>{{ row.symbol }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <app-table-pagination
+    (pageChange)="setPage($event)"
+    [totalPages]="totalPages()"
+    [currentPage]="currentPage()"
+  ></app-table-pagination>
+</app-table-layout>

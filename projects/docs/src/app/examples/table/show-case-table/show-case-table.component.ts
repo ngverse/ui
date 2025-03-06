@@ -1,30 +1,15 @@
-import {
-  CellDefDirective,
-  CellDirective,
-} from '@/ui/table/cells/cell.directive';
-import { ColumnDefDirective } from '@/ui/table/cells/column-def.directive';
-import {
-  FooterCellDefDirective,
-  FooterCellDirective,
-} from '@/ui/table/cells/footer-cell.directive';
-import {
-  HeaderCellDefDirective,
-  HeaderCellDirective,
-} from '@/ui/table/cells/header-cell.directive';
-import {
-  FooterRowComponent,
-  FooterRowDefDirective,
-} from '@/ui/table/rows/footer-row.component';
-import {
-  HeaderRowComponent,
-  HeaderRowDefDirective,
-} from '@/ui/table/rows/header-row.component';
-import { RowComponent, RowDefDirective } from '@/ui/table/rows/row.component';
-import { SortHeaderComponent } from '@/ui/table/sort/sort-header/sort-header.component';
-import { TableComponent } from '@/ui/table/table.component';
-import { DataSource } from '@angular/cdk/collections';
+import { HeadTrDirective } from '@/ui/table/head-tr.directive';
+import { SortHeaderComponent } from '@/ui/table/sort-header.component';
+import { SortDirective } from '@/ui/table/sort.directive';
+import { TableLayoutComponent } from '@/ui/table/table-layout.component';
+import { TableLocalSource } from '@/ui/table/table-local-source';
+import { TablePaginationComponent } from '@/ui/table/table-pagination.component';
+import { TableDirective } from '@/ui/table/table.directive';
+import { SortChangeType } from '@/ui/table/table.types';
+import { TdDirective } from '@/ui/table/td.directive';
+import { ThDirective } from '@/ui/table/th.directive';
+import { TrDirective } from '@/ui/table/tr.directive';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface PeriodicElement {
   name: string;
@@ -33,56 +18,75 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+const LIMIT = 30;
+
+const elementNames = [
+  'Hydrogen',
+  'Helium',
+  'Lithium',
+  'Beryllium',
+  'Boron',
+  'Carbon',
+  'Nitrogen',
+  'Oxygen',
+  'Fluorine',
+  'Neon',
 ];
+const elementSymbols = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne'];
 
-export class ExampleDataSource extends DataSource<PeriodicElement> {
-  /** Stream of data that is provided to the table. */
-  data = new BehaviorSubject<PeriodicElement[]>(ELEMENT_DATA);
+export function generatePeriodicElements(count = 500): PeriodicElement[] {
+  const elements: PeriodicElement[] = [];
 
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<PeriodicElement[]> {
-    return this.data;
+  for (let i = 0; i < count; i++) {
+    const randomIndex = Math.floor(Math.random() * elementNames.length);
+    elements.push({
+      name: elementNames[randomIndex],
+      position: i + 1,
+      weight: parseFloat((Math.random() * 200).toFixed(2)),
+      symbol: elementSymbols[randomIndex],
+    });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  disconnect() {}
+  return elements;
 }
+
+// Example usage
+const ELEMENT_DATA = generatePeriodicElements();
 
 @Component({
   selector: 'doc-show-case-table',
   imports: [
-    TableComponent,
-    ColumnDefDirective,
-    HeaderCellDirective,
-    HeaderCellDefDirective,
-    CellDirective,
-    CellDefDirective,
-    HeaderRowDefDirective,
-    RowComponent,
-    HeaderRowComponent,
-    RowDefDirective,
-    FooterCellDirective,
-    FooterCellDefDirective,
-    FooterRowDefDirective,
-    FooterRowComponent,
+    SortDirective,
+    TableDirective,
+    TrDirective,
+    TdDirective,
+    ThDirective,
+    HeadTrDirective,
+    TableLayoutComponent,
     SortHeaderComponent,
+    SortDirective,
+    TablePaginationComponent,
   ],
   templateUrl: './show-case-table.component.html',
   styleUrl: './show-case-table.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowCaseTableComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new ExampleDataSource();
+  // data = signal(ELEMENT_DATA);
+  // currentPage = signal(0);
+  // totalPages = computed(() => Math.ceil(this.data().length / LIMIT));
+
+  tableLocalSource = new TableLocalSource({ limit: LIMIT, data: ELEMENT_DATA });
+
+  currentPage = this.tableLocalSource.currentPage;
+  totalPages = this.tableLocalSource.totalPages;
+  data = this.tableLocalSource.data;
+
+  sortChange($event: SortChangeType) {
+    this.tableLocalSource.sort($event);
+  }
+
+  setPage(page: number) {
+    this.tableLocalSource.setPage(page);
+  }
 }
