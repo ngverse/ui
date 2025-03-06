@@ -1,0 +1,34 @@
+<div class="tooltips">
+  <button appButton appTooltip="Top tooltip" tooltipPosition="top">
+    Top Tooltip
+  </button>
+  <button appButton appTooltip="Right tooltip" tooltipPosition="right">
+    Right Tooltip
+  </button>
+  <input
+    appInput
+    appTooltip="Bottom Tooltip"
+    tooltipPosition="bottom"
+    placeholder="Focus to show"
+    tooltipEvent="focus"
+  />
+  <button
+    appButton
+    appTooltip
+    tooltipPosition="left"
+    [tooltipContent]="customContent"
+  >
+    Custom Content Tooltip
+  </button>
+  <ng-template #customContent>
+    <div class="custom-tooltip-content">
+      <img
+        src="show-case-tooltip/thanos.webp"
+        alt="thanos"
+        width="100"
+        height="100"
+      />
+      I love NgVerse!
+    </div>
+  </ng-template>
+</div>

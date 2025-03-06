@@ -1,0 +1,28 @@
+.show-case {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.card {
+  max-width: 300px;
+}
+
+.card-header {
+  margin-bottom: 12px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

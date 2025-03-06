@@ -1,0 +1,17 @@
+<div class="show-case">
+  <textarea
+    appTextarea
+    rows="30"
+    class="h-[200px]"
+    placeholder="Non resizable, fixed rows with required validation"
+    required
+    [(ngModel)]="title"
+  ></textarea>
+
+  <textarea
+    resize="vertical"
+    appTextarea
+    placeholder="Resizable"
+    [(ngModel)]="description"
+  ></textarea>
+</div>

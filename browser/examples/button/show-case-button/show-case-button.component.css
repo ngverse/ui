@@ -1,0 +1,17 @@
+.show-case {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.buttons-label {
+  margin-top: 16px;
+  margin-bottom: 10px;
+}

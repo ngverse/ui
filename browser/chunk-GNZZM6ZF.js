@@ -1,0 +1,1 @@
+import{Ib as e,wb as r}from"./chunk-4E37DFQL.js";var n=class i{static \u0275fac=function(t){return new(t||i)};static \u0275dir=r({type:i,selectors:[["input","appInput",""]],hostVars:2,hostBindings:function(t,c){t&2&&e("input",!0)}})};export{n as a};

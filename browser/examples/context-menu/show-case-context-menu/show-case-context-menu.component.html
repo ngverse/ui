@@ -1,0 +1,10 @@
+<div [appContextMenuTrigger]="contextMenu">
+  <p #content [style.color]="color()">Right click to open context menu</p>
+</div>
+
+<ng-template #contextMenu>
+  <div appContextMenu>
+    <button appContextMenuItem (click)="copy(content.textContent)">Copy</button>
+    <button appContextMenuItem (click)="markRead()">Mark as Red</button>
+  </div>
+</ng-template>

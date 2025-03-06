@@ -1,0 +1,20 @@
+.alert {
+  background: var(--color-background);
+  border-radius: var(--border-radius);
+  border: var(--border);
+  box-shadow: var(--color-shadow);
+  min-width: 300px;
+  padding: 16px;
+}
+
+.alert-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.alert-actions {
+  display: flex;
+  margin-top: 10px;
+  justify-content: end;
+  align-items: center;
+}

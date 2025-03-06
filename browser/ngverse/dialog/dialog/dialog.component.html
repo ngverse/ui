@@ -1,0 +1,13 @@
+<div @dialogEnter class="rounded-md bg-background shadow-md">
+  <div class="flex p-3">
+    @if (title) {
+      <p>{{ title }}</p>
+    }
+    @if (showClose) {
+      <button appDialogClose aria-label="Close the dialog" class="ml-auto">
+        <app-dialog-close-icon></app-dialog-close-icon>
+      </button>
+    }
+  </div>
+  <ng-template [cdkPortalOutlet]="componentPortal"></ng-template>
+</div>

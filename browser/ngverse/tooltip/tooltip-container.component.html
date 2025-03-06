@@ -1,0 +1,7 @@
+<div class="tooltip" role="tooltip" [ngClass]="position()" [id]="id()">
+  @if (contentPortal()) {
+    <ng-container [cdkPortalOutlet]="contentPortal()"></ng-container>
+  } @else {
+    {{ message() }}
+  }
+</div>

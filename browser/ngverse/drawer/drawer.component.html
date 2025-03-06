@@ -1,0 +1,13 @@
+<div class="drawer-header">
+  @if (title()) {
+    <h1 class="drawer-title">
+      {{ title() }}
+    </h1>
+  }
+
+  <button class="close-button" appDrawerClose>
+    <app-drawer-close-icon />
+  </button>
+</div>
+
+<ng-container *ngComponentOutlet="component" />

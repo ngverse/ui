@@ -1,0 +1,14 @@
+<button
+  [disabled]="disabled()"
+  [id]="buttonId"
+  role="switch"
+  class="switch-button"
+  [class.checked]="value()"
+  [attr.aria-checked]="value()"
+  (click)="toggle()"
+>
+  <div class="toggle"></div>
+</button>
+<label [htmlFor]="buttonId" [id]="labelId">
+  <ng-content></ng-content>
+</label>

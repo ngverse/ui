@@ -1,0 +1,11 @@
+.popover {
+  padding: 10px;
+  width: 200px;
+}
+.popover-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: end;
+}

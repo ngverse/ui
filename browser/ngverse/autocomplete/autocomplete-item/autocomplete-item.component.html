@@ -1,0 +1,8 @@
+<button
+  (click)="select()"
+  class="autocomplete-item"
+  [class.is-active]="isActive()"
+  tabindex="-1"
+>
+  <ng-content></ng-content>
+</button>

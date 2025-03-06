@@ -1,0 +1,20 @@
+<div class="form-field">
+  <!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
+  <label class="form-field-content">
+    <ng-content select="app-label"></ng-content>
+    <ng-content></ng-content>
+  </label>
+
+  <div class="form-field-errors">
+    @if (invalid() && touched()) {
+      @if (showErrors()) {
+        @for (error of errors(); track $index) {
+          <app-error>{{ error }}</app-error>
+        }
+      }
+      @if (showCustomErrors()) {
+        <ng-content select="app-error"></ng-content>
+      }
+    }
+  </div>
+</div>

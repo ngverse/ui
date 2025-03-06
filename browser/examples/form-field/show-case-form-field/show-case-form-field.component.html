@@ -1,0 +1,34 @@
+<form class="show-case" [formGroup]="group">
+  <app-form-field>
+    <app-label>First Name</app-label>
+    <input appInput class="w-full" formControlName="firstName" />
+  </app-form-field>
+  <app-form-field [silentErrors]="['required']">
+    <app-label>Last Name</app-label>
+    <input appInput class="w-full" formControlName="lastName" />
+    @if (group.controls.lastName.errors?.['required']) {
+      <app-error>Lastname is important please fill</app-error>
+    }
+  </app-form-field>
+  <app-form-field>
+    <app-label>Email</app-label>
+    <input appInput class="w-full" type="email" formControlName="email" />
+  </app-form-field>
+  <app-form-field>
+    <app-label>Age</app-label>
+    <input appInput class="w-full" type="number" formControlName="age" />
+  </app-form-field>
+  <app-form-field>
+    <app-label>Country</app-label>
+    <app-select
+      class="w-full"
+      formControlName="country"
+      placeholder="Select a country"
+    >
+      @for (country of countries; track $index) {
+        <app-option [value]="country.code">{{ country.name }}</app-option>
+      }
+    </app-select>
+  </app-form-field>
+  <button appButton (click)="register()">Register</button>
+</form>

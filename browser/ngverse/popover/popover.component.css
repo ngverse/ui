@@ -1,0 +1,6 @@
+.styled {
+  box-shadow: var(--color-shadow);
+  background-color: var(--color-background);
+  border-radius: var(--border-radius);
+  border: var(--border);
+}

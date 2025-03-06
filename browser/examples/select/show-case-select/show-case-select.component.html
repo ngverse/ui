@@ -1,0 +1,38 @@
+<p class="mb-2">Single select</p>
+<app-select
+  [formControl]="formControlSingle"
+  placeholder="Countries"
+  class="w-[250px]"
+>
+  @for (option of countries; track $index) {
+    <app-option [value]="option.code">{{ option.name }}</app-option>
+  }
+</app-select>
+
+<p class="mt-4 mb-2">Multiple select</p>
+<app-select
+  [formControl]="formControlMulti"
+  placeholder="Countries"
+  class="w-[250px]"
+  [multiple]="true"
+>
+  @for (option of countries; track $index) {
+    <app-option [value]="option.code">{{ option.name }}</app-option>
+  }
+</app-select>
+
+<p class="mt-4 mb-2">Directories</p>
+<app-select
+  [formControl]="dirFormControl"
+  placeholder="Countries"
+  class="w-[250px]"
+>
+  @for (dir of directories; track $index) {
+    <app-option-group>
+      <app-option-group-label>{{ dir.name }}</app-option-group-label>
+      @for (file of dir.files; track $index) {
+        <app-option [value]="file.name">{{ file.name }}</app-option>
+      }
+    </app-option-group>
+  }
+</app-select>

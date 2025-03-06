@@ -1,0 +1,9 @@
+<div class="show-case">
+  <app-accordion [multi]="true">
+    @for (item of items; track $index) {
+      <app-accordion-item [label]="item.title" [expanded]="$index === 0">
+        <app-accordion-body>{{ item.description }}</app-accordion-body>
+      </app-accordion-item>
+    }
+  </app-accordion>
+</div>

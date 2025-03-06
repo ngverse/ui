@@ -1,0 +1,37 @@
+<div
+  (paste)="_onPaste($event)"
+  class="code-container"
+  role="group"
+  attr.aria-label="Enter the {{
+    codeLength()
+  }}-digit verification code sent to your phone."
+  aria-labelledby="otp-label"
+>
+  <!--First input is rendered statically, so we can implement auto-complete feature-->
+  <input
+    appInput
+    #firstInput
+    autocomplete="one-time-code"
+    (cdkAutofill)="_autoFilled()"
+    (input)="_onInput($event, 0)"
+    (keydown)="_onKeydown($event, 0)"
+    maxlength="1"
+    class="code-input"
+    [inputMode]="inputMode()"
+    [attr.aria-label]="'OTP Digit 1'"
+    #inputs
+  />
+  @for (item of codeLengthArray(); track $index) {
+    <input
+      appInput
+      autocomplete="off"
+      #inputs
+      (input)="_onInput($event, $index + 1)"
+      (keydown)="_onKeydown($event, $index + 1)"
+      maxlength="1"
+      class="code-input"
+      [inputMode]="inputMode()"
+      [attr.aria-label]="'OTP Digit ' + ($index + 2)"
+    />
+  }
+</div>

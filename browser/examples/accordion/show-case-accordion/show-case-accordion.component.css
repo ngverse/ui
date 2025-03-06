@@ -1,0 +1,8 @@
+.show-case {
+  display: flex;
+  gap: 8px;
+}
+
+app-accordion {
+  width: 100%;
+}

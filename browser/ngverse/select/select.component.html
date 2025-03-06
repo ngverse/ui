@@ -1,0 +1,43 @@
+<button
+  class="select-button"
+  [class.stretch]="stretch()"
+  appPopoverOrigin
+  #origin="appPopoverOrigin"
+  (click)="togglePanel()"
+  [disabled]="disabled()"
+>
+  <span class="select-button-label">{{
+    selectedOptionsLabel() || placeholder()
+  }}</span>
+  <app-select-icon
+    class="select-button-icon"
+    [class.opened]="isOpen()"
+  ></app-select-icon>
+</button>
+<app-popover
+  [outsideClose]="true"
+  [restoreFocus]="true"
+  [blockScroll]="true"
+  [styled]="true"
+  [stretchToOrigin]="true"
+  (opened)="panelOpened()"
+  (closed)="panelClosed()"
+  [(isOpen)]="isOpen"
+  [origin]="origin"
+  [offsetY]="8"
+>
+  <ng-template>
+    <div
+      [ariaMultiSelectable]="multiple()"
+      [attr.aria-activedescendant]="activeDescendantId()"
+      tabindex="0"
+      #selectOption
+      (keydown)="onKeydown($event)"
+      class="select-options"
+      role="listbox"
+    >
+      <ng-content select="app-option-group"></ng-content>
+      <ng-content select="app-option"></ng-content>
+    </div>
+  </ng-template>
+</app-popover>

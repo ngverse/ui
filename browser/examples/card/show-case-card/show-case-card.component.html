@@ -1,0 +1,41 @@
+<div class="show-case">
+  <app-card class="card">
+    <div class="card-header">With Outline</div>
+    <div class="card-content">
+      <input appInput [(ngModel)]="username" placeholder="Username" />
+      <input appInput [(ngModel)]="password" placeholder="Password" />
+    </div>
+    <div class="card-footer">
+      <button appButton variant="outline" color="primary" size="sm">
+        Back
+      </button>
+      <button appButton color="primary" size="sm">Login</button>
+    </div>
+  </app-card>
+  <app-card class="card" [surface]="true">
+    <div class="card-header">With Surface</div>
+    <div class="card-content">
+      <input appInput [(ngModel)]="username" placeholder="Username" />
+      <input appInput [(ngModel)]="password" placeholder="Password" />
+    </div>
+    <div class="card-footer">
+      <button appButton variant="outline" color="primary" size="sm">
+        Back
+      </button>
+      <button appButton color="primary" size="sm">Login</button>
+    </div>
+  </app-card>
+  <app-card class="card" [shadow]="true">
+    <div class="card-header">With Shadow</div>
+    <div class="card-content">
+      <input appInput [(ngModel)]="username" placeholder="Username" />
+      <input appInput [(ngModel)]="password" placeholder="Password" />
+    </div>
+    <div class="card-footer">
+      <button appButton variant="outline" color="primary" size="sm">
+        Back
+      </button>
+      <button appButton color="primary" size="sm">Login</button>
+    </div>
+  </app-card>
+</div>

@@ -1,0 +1,194 @@
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --field-height: 36px;
+  --field-padding: 6px 10px;
+  --border-radius: 6px;
+}
+
+@theme static {
+  --radius-default: 6px;
+}
+
+@theme static {
+  --color-background: white;
+  --color-foreground: #030712;
+  --color-primary: #2563eb;
+  --color-primary-foreground: white;
+
+  --color-inverse: #1f2937;
+  --color-inverse-foreground: white;
+
+  --color-secondary: #4b5563;
+  --color-secondary-foreground: white;
+
+  --color-accent: #f3f4f6;
+  --color-accent-foreground: #111827;
+
+  --color-danger: #dc2626;
+  --color-danger-foreground: white;
+
+  --color-warning: #ea580c;
+  --color-warning-foreground: white;
+
+  --color-success: #16a34a;
+  --color-success-foreground: white;
+
+  --color-disabled: #f9fafb;
+  --color-disabled-foreground: #9ca3af;
+
+  --color-surface: #f9fafb;
+
+  --color-surface-2: #d1d5db;
+
+  --overlay: 0, 0, 0;
+
+  --color-divider: #cbd5e1;
+  --color-border: #d1d5db;
+  --border: 1px solid var(--color-border);
+
+  --color-ring: #9ca3af;
+  --shadow-default: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1), 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --color-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1), 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --color-mute-start: #e0e0e0;
+  --color-mute-end: #f0f0f0;
+}
+
+:root.cdk-overlay-backdrop {
+  background: rgba(var(--overlay), 0.3);
+}
+
+@variant dark {
+  --color-background: #030712;
+  --color-foreground: white;
+
+  --color-primary: #8b5cf6;
+  --color-primary-foreground: black;
+
+  --color-inverse: white;
+  --color-inverse-foreground: #030712;
+
+  --color-secondary: #d1d5db;
+  --color-secondary-foreground: black;
+
+  --color-accent: #d1d5db;
+  --color-accent-foreground: black;
+
+  --color-danger: #dc2626;
+  --color-danger-foreground: white;
+
+  --color-warning: #ea580c;
+  --color-warning-foreground: white;
+
+  --color-success: #16a34a;
+  --color-success-foreground: white;
+
+  --color-disabled: #6b7280;
+  --color-disabled-foreground: #9ca3af;
+
+  --color-surface: #1f2937;
+
+  --color-surface-2: #d1d5db;
+
+  --overlay: 255, 255, 255;
+
+  --color-divider: #6b7280;
+
+  --color-border: #6b7280;
+  --border: 1px solid var(--color-border);
+
+  --color-ring: #9ca3af;
+
+  --shadow-default: 0 10px 15px -3px rgba(255, 255, 255, 0.1),
+    0 4px 6px -4px rgba(255, 255, 255, 0.1),
+    0 10px 15px -3px rgba(255, 255, 255, 0.1),
+    0 4px 6px -4px rgba(255, 255, 255, 0.1);
+
+  --color-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1),
+    0 4px 6px -4px rgba(255, 255, 255, 0.1),
+    0 10px 15px -3px rgba(255, 255, 255, 0.1),
+    0 4px 6px -4px rgba(255, 255, 255, 0.1);
+
+  --color-mute-start: #e0e0e0;
+  --color-mute-end: #f0f0f0;
+}
+
+:root.dark.cdk-overlay-backdrop {
+  background: rgba(var(--overlay), 0.3);
+}
+
+html,
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/**
+  Directives doesn't have it's own style, so we define them here, for example input,textarea...
+**/
+@layer components {
+  .input {
+    height: var(--field-height);
+  }
+  .input,
+  .textarea {
+    background: var(--color-background);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: var(--field-padding);
+    font-size: 1rem;
+    &:focus-visible {
+      outline: 1px solid var(--color-ring);
+    }
+    &:disabled,
+    &[readonly] {
+      background: var(--color-disabled);
+      color: var(--color-disabled-foreground);
+      &::placeholder {
+        color: var(--color-disabled-foreground);
+      }
+    }
+
+    &.ng-invalid.ng-touched {
+      border-color: var(--color-danger);
+      outline-color: transparent;
+    }
+  }
+
+  .context-menu {
+    box-shadow: var(--color-shadow);
+    background-color: var(--color-background);
+    border-radius: var(--border-radius);
+    border: var(--border);
+  }
+
+  .context-menu-item {
+    width: 100%;
+    text-align: left;
+    padding: 6px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    font-size: 1rem;
+    &:focus-visible,
+    &:hover:not([aria-disabled]),
+    &.selected {
+      background: var(--color-accent);
+      color: var(--color-accent-foreground);
+    }
+    &:focus-visible {
+      outline: none;
+    }
+
+    &[aria-disabled] {
+      background: var(--color-disabled);
+      color: var(--color-disabled-foreground);
+    }
+  }
+}

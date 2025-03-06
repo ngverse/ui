@@ -1,0 +1,6 @@
+<div class="show-case">
+  <app-otp-input #otpInput (filled)="codeFilled($event)"></app-otp-input>
+  <button appButton (click)="recieveCode()" [loading]="loading()">
+    Recieve Code
+  </button>
+</div>

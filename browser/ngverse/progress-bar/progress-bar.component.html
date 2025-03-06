@@ -1,0 +1,13 @@
+<div class="progress-bar-container">
+  @if (indeterminate()) {
+    <div class="indeterminate-line"></div>
+    <div class="indeterminate-subline inc"></div>
+    <div class="indeterminate-subline dec"></div>
+  } @else {
+    <div
+      class="determinate-bar"
+      role="progressbar"
+      [style.transform]="transformValue()"
+    ></div>
+  }
+</div>

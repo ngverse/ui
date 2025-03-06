@@ -1,0 +1,21 @@
+.show-case {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.infinite-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+app-card {
+  width: 200px;
+}
+
+input,
+button {
+  width: 100%;
+}

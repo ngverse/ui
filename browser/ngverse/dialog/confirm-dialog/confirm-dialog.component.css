@@ -1,0 +1,21 @@
+.confirm {
+  background: var(--color-background);
+  border-radius: var(--border-radius);
+  border: var(--border);
+  box-shadow: var(--color-shadow);
+  min-width: 300px;
+  padding: 16px;
+}
+
+.confirm-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.confirm-actions {
+  display: flex;
+  margin-top: 10px;
+  justify-content: end;
+  align-items: center;
+  gap: 6px;
+}

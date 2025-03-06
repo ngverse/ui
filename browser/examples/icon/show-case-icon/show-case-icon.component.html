@@ -1,0 +1,23 @@
+<div class="show-case">
+  <div class="header">
+    <input
+      type="range"
+      id="volume"
+      name="volume"
+      min="10"
+      max="100"
+      [(ngModel)]="size"
+    />
+    <input type="color" [(ngModel)]="color" />
+  </div>
+  <div class="body">
+    @for (icon of icons; track $index) {
+      <app-icon
+        [name]="icon"
+        [style.color]="color()"
+        [width]="size()"
+        [height]="size()"
+      ></app-icon>
+    }
+  </div>
+</div>

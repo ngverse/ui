@@ -1,0 +1,8 @@
+<div class="show-case">
+  <div>
+    Notifications <app-badge [value]="count()" [hide]="!count()"></app-badge>
+  </div>
+  <button appButton variant="outline" (click)="decreese()" size="sm">
+    Decrease Notification
+  </button>
+</div>

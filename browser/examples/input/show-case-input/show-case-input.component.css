@@ -1,0 +1,17 @@
+.show-case {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  margin: 0 auto;
+  gap: 20px;
+
+  > * {
+    width: 100%;
+  }
+}
+
+.age-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
