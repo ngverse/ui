@@ -23,13 +23,15 @@ import { SORT_DIRECTION } from './table.types';
     <ng-content></ng-content>
     @if (isAsc()) {
       <lucide-angular [size]="16" [img]="ArrowUpNarrowWide"></lucide-angular>
-    } @else {
+    }
+    @if (isDesc()) {
       <lucide-angular [size]="16" [img]="ArrowDownNarrowWide"></lucide-angular>
     }
   </div> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(click)': 'onClick()',
+    class: 'cursor-pointer',
   },
 })
 export class SortHeaderComponent {
