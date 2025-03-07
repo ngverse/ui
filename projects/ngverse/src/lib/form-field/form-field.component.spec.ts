@@ -41,9 +41,9 @@ describe('FormFieldComponent', () => {
     errorRegistry = TestBed.inject(FormFieldErrorRegistry);
   });
   function expectErrorContentIsEmpty(onlyCustom?: boolean) {
-    expect(
-      fixture.nativeElement.querySelector('.form-field-errors').textContent
-    ).toBe(onlyCustom ? 'I am error' : '');
+    expect(fixture.nativeElement.querySelector('div > div').textContent).toBe(
+      onlyCustom ? 'I am error' : ''
+    );
   }
 
   it('should create', () => {
