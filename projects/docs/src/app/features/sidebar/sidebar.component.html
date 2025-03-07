@@ -10,6 +10,13 @@
               class="sidebar-link my-3 ml-0 flex h-8 cursor-pointer items-center justify-between rounded-md pr-2 pl-4 hover:bg-slate-100"
               [routerLink]="link.url"
               >{{ link.name }}
+              @if (link.mode === 'experimental') {
+                <span
+                  class="inline-flex items-center gap-1 rounded-xl bg-slate-200 px-2 py-1 text-xs"
+                >
+                  {{ link.mode }}
+                </span>
+              }
             </a>
           </li>
         }

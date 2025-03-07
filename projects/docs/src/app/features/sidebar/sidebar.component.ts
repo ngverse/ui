@@ -9,7 +9,7 @@ interface Group {
 export interface SidebarLink {
   name: string;
   url: string;
-  done?: boolean;
+  mode?: 'experimental';
 }
 
 export const SIDEBAR_ROUTES = [
@@ -148,6 +148,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'Table',
         url: '/doc/table',
+        mode: 'experimental',
       },
     ].sort((a, b) => a.name.localeCompare(b.name)),
   },
