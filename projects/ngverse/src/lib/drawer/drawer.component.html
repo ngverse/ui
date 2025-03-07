@@ -7,11 +7,16 @@
     }
 
     <button
-      class="ml-auto cursor-pointer"
       appDrawerClose
-      aria-label="Close drawer"
+      appButton
+      icon
+      size="sm"
+      variant="link"
+      color="secondary"
+      aria-label="Close the drawer"
+      class="ml-auto"
     >
-      <app-drawer-close-icon />
+      <ng-icon size="20" [svg]="CLOSE_ICON"></ng-icon>
     </button>
   </div>
 

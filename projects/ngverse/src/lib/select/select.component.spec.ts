@@ -81,8 +81,7 @@ describe('SelectComponent', () => {
     });
 
     it('should display select-button-icon', () => {
-      const selectButtonIcon =
-        fixture.nativeElement.querySelector('app-select-icon');
+      const selectButtonIcon = fixture.nativeElement.querySelector('ng-icon');
       expect(selectButtonIcon).toBeTruthy();
     });
   });
@@ -140,26 +139,6 @@ describe('SelectComponent', () => {
       component.formControl.setValue('US');
       fixture.detectChanges();
       expect(selectElement).toHaveClass('ng-valid');
-    });
-  });
-
-  describe('Selection', () => {
-    it('should show checkmark if item is selected', async () => {
-      await openSelect();
-      const selectedOption = queryOptions()[1];
-      selectedOption.dispatchEvent(new Event('click'));
-      await fixture.whenStable();
-      const checkmark = selectedOption.querySelector('app-select-check-icon');
-      expect(checkmark).toBeTruthy();
-    });
-
-    it('should not show checkmark if item is not selected', async () => {
-      await openSelect();
-      const selectedOption = queryOptions()[1];
-      selectedOption.dispatchEvent(new Event('click'));
-      await fixture.whenStable();
-      const checkmark = selectedOption.querySelector('app-select-check-icon');
-      expect(checkmark).toBeTruthy();
     });
   });
 

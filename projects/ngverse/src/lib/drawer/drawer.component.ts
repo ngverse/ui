@@ -1,3 +1,4 @@
+import { ButtonComponent } from '@/ui/button/button.component';
 import {
   animate,
   AnimationEvent,
@@ -8,13 +9,14 @@ import {
 import { ComponentType } from '@angular/cdk/portal';
 import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { NgIcon } from '@ng-icons/core';
+import { matClose } from '@ng-icons/material-icons/baseline';
 import { Subject } from 'rxjs';
-import { DrawerCloseIconComponent } from './drawer-close-icon.component';
 import { DrawerCloseDirective } from './drawer-close.directive';
 
 @Component({
   selector: 'app-drawer',
-  imports: [DrawerCloseIconComponent, DrawerCloseDirective, NgComponentOutlet],
+  imports: [DrawerCloseDirective, NgIcon, ButtonComponent, NgComponentOutlet],
   templateUrl: './drawer.component.html',
   styleUrl: './drawer.component.css',
   animations: [
@@ -46,6 +48,7 @@ export class DrawerComponent {
   component!: ComponentType<unknown>;
   private _onExit = new Subject<void>();
   onExit = this._onExit.asObservable();
+  CLOSE_ICON = matClose;
 
   onDone($event: AnimationEvent) {
     if ($event.toState === 'exit') {

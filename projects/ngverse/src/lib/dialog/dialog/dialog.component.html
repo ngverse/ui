@@ -1,11 +1,20 @@
 <div @dialogEnter class="rounded-md bg-background shadow-md">
-  <div class="flex p-3">
+  <div class="flex items-center p-3">
     @if (title) {
       <p>{{ title }}</p>
     }
     @if (showClose) {
-      <button appDialogClose aria-label="Close the dialog" class="ml-auto">
-        <app-dialog-close-icon></app-dialog-close-icon>
+      <button
+        appDialogClose
+        appButton
+        icon
+        size="sm"
+        variant="link"
+        color="secondary"
+        aria-label="Close the dialog"
+        class="ml-auto"
+      >
+        <ng-icon size="20" [svg]="CLOSE_ICON"></ng-icon>
       </button>
     }
   </div>

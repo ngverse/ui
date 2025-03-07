@@ -60,11 +60,6 @@
           "path": "accordion/accordion.component.ts",
           "name": "accordion.component.ts",
           "language": "ts"
-        },
-        {
-          "path": "accordion/expand-icon.component.ts",
-          "name": "expand-icon.component.ts",
-          "language": "ts"
         }
       ]
     },
@@ -249,11 +244,6 @@
       "name": "checkbox",
       "files": [
         {
-          "path": "checkbox/checkbox-icon.component.ts",
-          "name": "checkbox-icon.component.ts",
-          "language": "ts"
-        },
-        {
           "path": "checkbox/checkbox.component.css",
           "name": "checkbox.component.css",
           "language": "css"
@@ -315,11 +305,6 @@
       "path": "dark-mode",
       "name": "dark-mode",
       "files": [
-        {
-          "path": "dark-mode/dark-mode-icon.component.ts",
-          "name": "dark-mode-icon.component.ts",
-          "language": "ts"
-        },
         {
           "path": "dark-mode/dark-mode-toggle.component.css",
           "name": "dark-mode-toggle.component.css",
@@ -447,11 +432,6 @@
         {
           "path": "dialog/dialog-animations.ts",
           "name": "dialog-animations.ts",
-          "language": "ts"
-        },
-        {
-          "path": "dialog/dialog-close-icon.component.ts",
-          "name": "dialog-close-icon.component.ts",
           "language": "ts"
         },
         {
@@ -777,16 +757,6 @@
       "name": "pagination",
       "files": [
         {
-          "path": "pagination/pagination-next-icon.component.ts",
-          "name": "pagination-next-icon.component.ts",
-          "language": "ts"
-        },
-        {
-          "path": "pagination/pagination-prev-icon.component.ts",
-          "name": "pagination-prev-icon.component.ts",
-          "language": "ts"
-        },
-        {
           "path": "pagination/pagination.component.css",
           "name": "pagination.component.css",
           "language": "css"
@@ -875,11 +845,6 @@
       "name": "radio-button",
       "files": [
         {
-          "path": "radio-button/radio-button-icon.component.ts",
-          "name": "radio-button-icon.component.ts",
-          "language": "ts"
-        },
-        {
           "path": "radio-button/radio-button.component.css",
           "name": "radio-button.component.css",
           "language": "css"
@@ -958,16 +923,6 @@
         {
           "path": "select/option.component.ts",
           "name": "option.component.ts",
-          "language": "ts"
-        },
-        {
-          "path": "select/select-check-icon.component.ts",
-          "name": "select-check-icon.component.ts",
-          "language": "ts"
-        },
-        {
-          "path": "select/select-icon.component.ts",
-          "name": "select-icon.component.ts",
           "language": "ts"
         },
         {
@@ -1116,11 +1071,6 @@
       "name": "table",
       "files": [
         {
-          "path": "table/head-tr.directive.ts",
-          "name": "head-tr.directive.ts",
-          "language": "ts"
-        },
-        {
           "path": "table/sort-header.component.ts",
           "name": "sort-header.component.ts",
           "language": "ts"
@@ -1173,6 +1123,11 @@
         {
           "path": "table/th.directive.ts",
           "name": "th.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/tr-head.directive.ts",
+          "name": "tr-head.directive.ts",
           "language": "ts"
         },
         {

@@ -1,3 +1,4 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,26 +7,26 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { RadioButtonIconComponent } from './radio-button-icon.component';
+import { NgIcon } from '@ng-icons/core';
+import {
+  matRadioButtonChecked,
+  matRadioButtonUnchecked,
+} from '@ng-icons/material-icons/baseline';
 import { RadioGroupComponent } from './radio-group.component';
-
-let inputId = 0;
-
-function genInputId() {
-  return `radio-button-${inputId++}`;
-}
-
 @Component({
   selector: 'app-radio-button',
-  imports: [RadioButtonIconComponent],
+  imports: [NgIcon],
   templateUrl: './radio-button.component.html',
   styleUrl: './radio-button.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioButtonComponent {
   disabled = input<boolean>();
-  id = input(genInputId());
+  id = input(inject(_IdGenerator).getId('radio-button-'));
   value = input.required<unknown>();
+
+  RADIO_BUTTON_CHECKED = matRadioButtonChecked;
+  RADIO_BUTTON_UNCHECKED = matRadioButtonUnchecked;
 
   private radioGroup = inject<RadioGroupComponent>(
     forwardRef(() => RadioGroupComponent)

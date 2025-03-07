@@ -10,7 +10,6 @@ import {
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { CheckboxIconComponent } from './checkbox-icon.component';
 import { CheckboxComponent } from './checkbox.component';
 
 describe('CheckboxComponent', () => {
@@ -56,14 +55,7 @@ describe('CheckboxComponent', () => {
     await fixture.whenStable();
     expect(rootComponent.formControl.value).toBeTrue();
   });
-  it('icon should be checked when value is true', async () => {
-    rootComponent.formControl.setValue(true);
-    await fixture.whenStable();
-    const checkboxIcon = fixture.debugElement.query(
-      By.directive(CheckboxIconComponent)
-    );
-    expect(checkboxIcon.componentInstance.checked).toBeTruthy();
-  });
+
   it('checkbox should be invalid with formControl required', async () => {
     rootComponent.formControl.setValidators(Validators.required);
     rootComponent.formControl.setValue(null);

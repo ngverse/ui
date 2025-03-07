@@ -8,7 +8,7 @@
       [href]="api.articleLink"
       target="_blank"
       >Article
-      <app-icon width="18" height="18" name="external-link"></app-icon>
+      <ng-icon [svg]="EXTERNAL_LINK" size="18"></ng-icon>
     </a>
   </p>
 }
@@ -21,7 +21,7 @@
       target="_blank"
       class="inline-flex items-center gap-1 rounded-xl bg-slate-200 px-2 py-1 text-xs"
     >
-      WAI-ARIA <external-link-icon size="14"> </external-link-icon>
+      WAI-ARIA <ng-icon [svg]="EXTERNAL_LINK" size="14"></ng-icon>
     </a>
   }
   @if (api.reliesOn) {
@@ -30,12 +30,12 @@
       target="_blank"
       class="inline-flex items-center gap-1 rounded-xl bg-slate-200 px-2 py-1 text-xs"
     >
-      Relies on<external-link-icon size="14"> </external-link-icon>
+      Relies on<ng-icon [svg]="EXTERNAL_LINK" size="14"></ng-icon>
     </a>
   }
 </div>
 
-<app-divider class="mb-6"></app-divider>
+<app-divider class="mt-2 mb-6"></app-divider>
 @if (api; as api) {
   @if (api.ariaDescription) {
     <p class="mb-6">WAI-ARIA: {{ api.ariaDescription }}</p>
