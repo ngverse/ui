@@ -1013,11 +1013,6 @@
       "name": "skeleton",
       "files": [
         {
-          "path": "skeleton/skeleton.component.css",
-          "name": "skeleton.component.css",
-          "language": "css"
-        },
-        {
           "path": "skeleton/skeleton.component.spec.ts",
           "name": "skeleton.component.spec.ts",
           "language": "spec.ts"
@@ -1112,6 +1107,77 @@
         {
           "path": "tab/tab.component.ts",
           "name": "tab.component.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
+      "path": "table",
+      "name": "table",
+      "files": [
+        {
+          "path": "table/head-tr.directive.ts",
+          "name": "head-tr.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/sort-header.component.ts",
+          "name": "sort-header.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/sort.directive.ts",
+          "name": "sort.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/table-layout.component.ts",
+          "name": "table-layout.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/table-local-source.ts",
+          "name": "table-local-source.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/table-pagination.component.css",
+          "name": "table-pagination.component.css",
+          "language": "css"
+        },
+        {
+          "path": "table/table-pagination.component.html",
+          "name": "table-pagination.component.html",
+          "language": "html"
+        },
+        {
+          "path": "table/table-pagination.component.ts",
+          "name": "table-pagination.component.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/table.directive.ts",
+          "name": "table.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/table.types.ts",
+          "name": "table.types.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/td.directive.ts",
+          "name": "td.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/th.directive.ts",
+          "name": "th.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/tr.directive.ts",
+          "name": "tr.directive.ts",
           "language": "ts"
         }
       ]

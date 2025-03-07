@@ -1,17 +1,17 @@
+@reference "tailwindcss";
 :host {
-  &.outline {
-    border-radius: var(--border-radius);
-    border: var(--border);
+  &.outlined {
+    @apply rounded-md border border-solid;
+    border-color: var(--color-border);
   }
   &.surface {
     background: var(--color-surface);
   }
   &.shadow {
-    box-shadow: var(--color-shadow);
+    @apply shadow-md shadow-gray-300;
   }
-  outline: 0;
 
   &.gap {
-    padding: 10px;
+    @apply p-3;
   }
 }

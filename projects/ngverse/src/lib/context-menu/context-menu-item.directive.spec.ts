@@ -13,7 +13,6 @@ import { ContextMenuDirective } from './context-menu.directive';
 
 describe('ContextMenuItemDirective', () => {
   let fixture: ComponentFixture<ContextMenuItemTestComponent>;
-  let element: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,15 +23,11 @@ describe('ContextMenuItemDirective', () => {
       imports: [ContextMenuItemTestComponent],
     }).compileComponents();
     fixture = TestBed.createComponent(ContextMenuItemTestComponent);
-    element = fixture.nativeElement as HTMLElement;
     await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(new ContextMenuItemDirective()).toBeTruthy();
-  });
-  it('should have context-menu-item class', () => {
-    expect(element.querySelector('button')).toHaveClass('context-menu-item');
   });
   it('should have CdkMenuItem attached', () => {
     const contextMenuItem = fixture.debugElement.query(

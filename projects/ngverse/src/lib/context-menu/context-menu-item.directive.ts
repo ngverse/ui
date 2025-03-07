@@ -10,7 +10,8 @@ import { Directive } from '@angular/core';
     },
   ],
   host: {
-    '[class.context-menu-item]': 'true',
+    class:
+      'w-full text-left p-2.5 hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground focus-visible:outline-hidden',
   },
 })
 export class ContextMenuItemDirective {}

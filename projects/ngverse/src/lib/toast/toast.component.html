@@ -1,6 +1,16 @@
-<div>{{ message() }}</div>
-@if (showCloseIcon()) {
-  <button (click)="exit()" class="toast-close-button">
-    <app-toast-close-icon class="toast-close-icon"></app-toast-close-icon>
-  </button>
-}
+<div
+  class="flex items-center justify-center rounded-md px-4 py-3 shadow-md"
+  [ngClass]="{
+    'bg-inverse text-inverse-foreground': !type(),
+    'bg-success text-success-foreground': type() === 'success',
+    'bg-danger text-danger-foreground': type() === 'danger',
+    'bg-warning text-warning-foreground': type() === 'warning',
+  }"
+>
+  <div>{{ message() }}</div>
+  @if (showCloseIcon()) {
+    <button (click)="exit()" class="cursor-pointer" aria-label="Close toast">
+      <app-toast-close-icon class="toast-close-icon"></app-toast-close-icon>
+    </button>
+  }
+</div>
