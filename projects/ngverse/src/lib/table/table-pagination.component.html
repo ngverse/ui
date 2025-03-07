@@ -1,4 +1,4 @@
-<div class="flex items-center justify-end gap-2">
+<div class="flex items-center justify-end gap-1">
   <div>{{ currentPage() }} / {{ totalPages() }}</div>
 
   <button
@@ -11,7 +11,7 @@
     (click)="firstPage()"
     [disabled]="!hasPrevPage()"
   >
-    <lucide-angular [size]="18" [img]="ChevronFirst"></lucide-angular>
+    <ng-icon [svg]="ChevronFirst" size="24"></ng-icon>
   </button>
   <button
     icon
@@ -24,7 +24,7 @@
     [disabled]="hasPrevPage()"
     [disabled]="!hasPrevPage()"
   >
-    <lucide-angular [size]="18" [img]="ChevronLeft"></lucide-angular>
+    <ng-icon [svg]="ChevronLeft" size="24"></ng-icon>
   </button>
   <button
     icon
@@ -36,7 +36,7 @@
     (click)="nextPage()"
     [disabled]="!hasNextPage()"
   >
-    <lucide-angular [size]="18" [img]="ChevronRight"></lucide-angular>
+    <ng-icon [svg]="ChevronRight" size="24"></ng-icon>
   </button>
   <button
     variant="link"
@@ -48,6 +48,6 @@
     [disabled]="!hasNextPage()"
     (click)="lastPage()"
   >
-    <lucide-angular [size]="18" [img]="ChevrontLast"></lucide-angular>
+    <ng-icon [svg]="ChevrontLast" size="24"></ng-icon>
   </button>
 </div>

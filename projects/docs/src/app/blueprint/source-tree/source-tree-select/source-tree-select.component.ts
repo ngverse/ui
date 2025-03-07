@@ -1,3 +1,7 @@
+import { OptionGroupLabelComponent } from '@/ui/select/option-group-label.component';
+import { OptionGroupComponent } from '@/ui/select/option-group.component';
+import { OptionComponent } from '@/ui/select/option.component';
+import { SelectComponent } from '@/ui/select/select.component';
 import {
   Component,
   computed,
@@ -8,17 +12,11 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ChevronDown, Folder, LucideAngularModule } from 'lucide-angular';
-import { OptionGroupLabelComponent } from '@/ui/select/option-group-label.component';
-import { OptionGroupComponent } from '@/ui/select/option-group.component';
-import { OptionComponent } from '@/ui/select/option.component';
-import { SelectComponent } from '@/ui/select/select.component';
 import { SourceTreeFile, SourceTreeFolder } from '../source-tree-builder';
 
 @Component({
   selector: 'doc-source-tree-select',
   imports: [
-    LucideAngularModule,
     SelectComponent,
     OptionComponent,
     FormsModule,
@@ -37,9 +35,6 @@ export class SourceTreeSelectComponent {
   sourceTree = input<SourceTreeFolder[]>([]);
 
   allFiles = computed(() => this.sourceTree().flatMap((sour) => sour.files));
-
-  ChevronDown = ChevronDown;
-  Folder = Folder;
 
   constructor() {
     effect(() => {

@@ -6,17 +6,17 @@ import {
   input,
   output,
 } from '@angular/core';
+import { NgIcon } from '@ng-icons/core';
 import {
-  ChevronFirst,
-  ChevronLast,
-  ChevronLeft,
-  ChevronRight,
-  LucideAngularModule,
-} from 'lucide-angular';
+  matChevronLeft,
+  matChevronRight,
+  matFirstPage,
+  matLastPage,
+} from '@ng-icons/material-icons/baseline';
 
 @Component({
   selector: 'app-table-pagination',
-  imports: [LucideAngularModule, ButtonComponent],
+  imports: [ButtonComponent, NgIcon],
   templateUrl: './table-pagination.component.html',
   styleUrl: './table-pagination.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,10 +31,10 @@ export class TablePaginationComponent {
   prevPageAriaLabel = input<string>('Previus Page');
   nextPageAriaLabel = input<string>('Next Page');
   pageAriaLabel = input<string>('Page ');
-  ChevronFirst = ChevronFirst;
-  ChevronRight = ChevronRight;
-  ChevrontLast = ChevronLast;
-  ChevronLeft = ChevronLeft;
+  ChevronFirst = matFirstPage;
+  ChevronRight = matChevronRight;
+  ChevrontLast = matLastPage;
+  ChevronLeft = matChevronLeft;
 
   pageChange = output<number>();
 
