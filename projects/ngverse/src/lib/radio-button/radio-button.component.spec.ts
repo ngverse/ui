@@ -40,11 +40,9 @@ describe('RadioButtonComponent', () => {
     const input = fixture.nativeElement.querySelector(
       'input'
     ) as HTMLInputElement;
-    const icon = fixture.nativeElement.querySelector('.radio-button-icon');
     input.dispatchEvent(new Event('change'));
     await fixture.whenStable();
     expect(input.checked).toBeTrue();
-    expect(icon.classList.contains('checked')).toBeTrue();
   });
   it('disable should disable radio-button', async () => {
     const input = fixture.nativeElement.querySelector(

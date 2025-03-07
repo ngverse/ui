@@ -249,11 +249,6 @@
       "name": "checkbox",
       "files": [
         {
-          "path": "checkbox/checkbox-icon.component.ts",
-          "name": "checkbox-icon.component.ts",
-          "language": "ts"
-        },
-        {
           "path": "checkbox/checkbox.component.css",
           "name": "checkbox.component.css",
           "language": "css"
@@ -315,11 +310,6 @@
       "path": "dark-mode",
       "name": "dark-mode",
       "files": [
-        {
-          "path": "dark-mode/dark-mode-icon.component.ts",
-          "name": "dark-mode-icon.component.ts",
-          "language": "ts"
-        },
         {
           "path": "dark-mode/dark-mode-toggle.component.css",
           "name": "dark-mode-toggle.component.css",
@@ -875,11 +865,6 @@
       "name": "radio-button",
       "files": [
         {
-          "path": "radio-button/radio-button-icon.component.ts",
-          "name": "radio-button-icon.component.ts",
-          "language": "ts"
-        },
-        {
           "path": "radio-button/radio-button.component.css",
           "name": "radio-button.component.css",
           "language": "css"
@@ -958,11 +943,6 @@
         {
           "path": "select/option.component.ts",
           "name": "option.component.ts",
-          "language": "ts"
-        },
-        {
-          "path": "select/select-check-icon.component.ts",
-          "name": "select-check-icon.component.ts",
           "language": "ts"
         },
         {
