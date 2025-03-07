@@ -1,8 +1,8 @@
 import { DividerComponent } from '@/ui/divider/divider.component';
-import { IconComponent } from '@/ui/icon/icon.component';
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ExternalLinkIcon } from '@ngverse/icons-lu';
+import { NgIcon } from '@ng-icons/core';
+import { matOpenInNew } from '@ng-icons/material-icons/baseline';
 import {
   ApiEntity,
   ApiInputsComponent,
@@ -18,16 +18,11 @@ export interface ApiInfo {
 }
 @Component({
   selector: 'doc-api-info',
-  imports: [
-    ApiInputsComponent,
-    ExternalLinkIcon,
-    RouterLink,
-    IconComponent,
-    DividerComponent,
-  ],
+  imports: [ApiInputsComponent, RouterLink, DividerComponent, NgIcon],
   templateUrl: './api-info.component.html',
   styleUrl: './api-info.component.css',
 })
 export class ApiInfoComponent {
   apiInfo = input.required<ApiInfo>();
+  EXTERNAL_LINK = matOpenInNew;
 }

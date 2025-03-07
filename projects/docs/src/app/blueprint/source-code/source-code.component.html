@@ -4,11 +4,7 @@
     (click)="copy()"
     class="copy-button"
   >
-    @if (copied()) {
-      <app-icon name="check" width="20" height="20"></app-icon>
-    } @else {
-      <app-icon name="copy" width="20" height="20"></app-icon>
-    }
+    <ng-icon size="20" [svg]="copied() ? CHECK_ICON : COPY_ICON"></ng-icon>
   </doc-icon-button>
 }
 <app-card

@@ -1,26 +1,25 @@
 import { ButtonComponent } from '@/ui/button/button.component';
-import { IconComponent } from '@/ui/icon/icon.component';
 import { DOCUMENT } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
+import { NgIcon } from '@ng-icons/core';
 import {
-  Clipboard,
-  ClipboardPaste,
-  LucideAngularModule,
-  Rocket,
-} from 'lucide-angular';
+  matContentCopy,
+  matContentPaste,
+  matRocketLaunch,
+} from '@ng-icons/material-icons/baseline';
 
 @Component({
   selector: 'doc-home-page',
-  imports: [RouterLink, LucideAngularModule, IconComponent, ButtonComponent],
+  imports: [RouterLink, NgIcon, ButtonComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
 export class HomePageComponent {
-  Clipboard = Clipboard;
-  ClipboardPaste = ClipboardPaste;
-  Rocket = Rocket;
+  Clipboard = matContentCopy;
+  ClipboardPaste = matContentPaste;
+  Rocket = matRocketLaunch;
   title = inject(Title);
   meta = inject(Meta);
   document = inject(DOCUMENT);

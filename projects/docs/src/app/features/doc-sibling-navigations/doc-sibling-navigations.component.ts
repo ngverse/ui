@@ -1,16 +1,19 @@
+import { ButtonComponent } from '@/ui/button/button.component';
 import { Component, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { ArrowLeft, ArrowRight, LucideAngularModule } from 'lucide-angular';
+import { NgIcon } from '@ng-icons/core';
+import {
+  matArrowBack,
+  matArrowForward,
+} from '@ng-icons/material-icons/baseline';
 import { filter } from 'rxjs';
-import { ButtonComponent } from '@/ui/button/button.component';
-import { IconComponent } from '@/ui/icon/icon.component';
 import { getAllSidebarLinks, SidebarLink } from '../sidebar/sidebar.component';
 
 const SIDEBAR_LINKS = getAllSidebarLinks();
 
 @Component({
   selector: 'doc-doc-sibling-navigations',
-  imports: [RouterLink, LucideAngularModule, ButtonComponent, IconComponent],
+  imports: [RouterLink, NgIcon, ButtonComponent],
   templateUrl: './doc-sibling-navigations.component.html',
   styleUrl: './doc-sibling-navigations.component.css',
 })
@@ -18,8 +21,8 @@ export class DocSiblingNavigationsComponent {
   router = inject(Router);
   prevRoute = signal<SidebarLink | undefined>(undefined);
   nextRoute = signal<SidebarLink | undefined>(undefined);
-  ArrowLeft = ArrowLeft;
-  ArrowRight = ArrowRight;
+  ARROW_LEFT = matArrowBack;
+  ARROW_RIGHT = matArrowForward;
 
   constructor() {
     this.router.events

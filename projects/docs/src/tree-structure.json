@@ -60,11 +60,6 @@
           "path": "accordion/accordion.component.ts",
           "name": "accordion.component.ts",
           "language": "ts"
-        },
-        {
-          "path": "accordion/expand-icon.component.ts",
-          "name": "expand-icon.component.ts",
-          "language": "ts"
         }
       ]
     },
@@ -440,11 +435,6 @@
           "language": "ts"
         },
         {
-          "path": "dialog/dialog-close-icon.component.ts",
-          "name": "dialog-close-icon.component.ts",
-          "language": "ts"
-        },
-        {
           "path": "dialog/dialog-close.directive.spec.ts",
           "name": "dialog-close.directive.spec.ts",
           "language": "spec.ts"
@@ -766,16 +756,6 @@
       "path": "pagination",
       "name": "pagination",
       "files": [
-        {
-          "path": "pagination/pagination-next-icon.component.ts",
-          "name": "pagination-next-icon.component.ts",
-          "language": "ts"
-        },
-        {
-          "path": "pagination/pagination-prev-icon.component.ts",
-          "name": "pagination-prev-icon.component.ts",
-          "language": "ts"
-        },
         {
           "path": "pagination/pagination.component.css",
           "name": "pagination.component.css",
