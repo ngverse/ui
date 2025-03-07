@@ -1,37 +1,30 @@
-name: Deploy to Netlify
+name: Release
 
 on:
-  push:
-    branches:
-      - main # Change this if you're deploying from another branch
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  release:
+    name: Release
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install # Change this if using yarn or pnpm
+        run: npm install
 
-      - name: Build the project
-        run: npm run build:docs # Adjust according to your project
+      - name: Build library
+        run: npm run build:ngverse
 
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2
-        with:
-          publish-dir: './dist/docs/browser' # Change if your build output folder is different
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Deployed from GitHub Actions'
+      - name: Run semantic-release
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm run semantic-release
