@@ -9,15 +9,19 @@ import {
   input,
   signal,
 } from '@angular/core';
+import { NgIcon } from '@ng-icons/core';
+import {
+  matCheckBox,
+  matCheckBoxOutlineBlank,
+} from '@ng-icons/material-icons/baseline';
 import { OptionGroupComponent } from './option-group.component';
-import { SelectCheckIconComponent } from './select-check-icon.component';
 import { SelectComponent } from './select.component';
 
 @Component({
   selector: 'app-option',
   templateUrl: './option.component.html',
   styleUrl: './option.component.css',
-  imports: [SelectCheckIconComponent],
+  imports: [NgIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'option',
@@ -34,6 +38,9 @@ export class OptionComponent implements Highlightable {
   value = input.required<unknown>();
   @Input()
   disabled?: boolean | undefined;
+
+  CHECK_ICON = matCheckBox;
+  UNCHECK_ICON = matCheckBoxOutlineBlank;
 
   id = input(inject(_IdGenerator).getId('option-'));
   isActive = signal(false);

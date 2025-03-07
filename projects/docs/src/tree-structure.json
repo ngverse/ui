@@ -966,11 +966,6 @@
           "language": "ts"
         },
         {
-          "path": "select/select-icon.component.ts",
-          "name": "select-icon.component.ts",
-          "language": "ts"
-        },
-        {
           "path": "select/select.component.css",
           "name": "select.component.css",
           "language": "css"
@@ -1116,11 +1111,6 @@
       "name": "table",
       "files": [
         {
-          "path": "table/head-tr.directive.ts",
-          "name": "head-tr.directive.ts",
-          "language": "ts"
-        },
-        {
           "path": "table/sort-header.component.ts",
           "name": "sort-header.component.ts",
           "language": "ts"
@@ -1173,6 +1163,11 @@
         {
           "path": "table/th.directive.ts",
           "name": "th.directive.ts",
+          "language": "ts"
+        },
+        {
+          "path": "table/tr-head.directive.ts",
+          "name": "tr-head.directive.ts",
           "language": "ts"
         },
         {
