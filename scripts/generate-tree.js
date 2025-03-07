@@ -65,7 +65,6 @@ function renameToFiles(node) {
 // Generate the directory tree
 let tree = dirTree(baseDir, {
   extensions: /\.(ts|js|json|html|css)$/, // Optional: Filter by file types
-  exclude: /\.spec\.ts$/, // Exclude .spec.ts files
 });
 
 // Clean up paths
