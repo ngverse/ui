@@ -9,11 +9,11 @@
       [name]="name()"
       [checked]="selected()"
     />
-    <app-radio-button-icon
-      [class.checked]="selected()"
+    <ng-icon
+      size="24"
       class="radio-button-icon"
-      [checked]="selected()"
-    ></app-radio-button-icon>
+      [svg]="selected() ? RADIO_BUTTON_CHECKED : RADIO_BUTTON_UNCHECKED"
+    ></ng-icon>
   </div>
   <label class="radio-button-label" [for]="id()">
     <ng-content></ng-content>

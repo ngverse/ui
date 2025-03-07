@@ -17,14 +17,14 @@ describe('SelectComponent', () => {
 
   async function openSelect(fixt?: ComponentFixture<unknown>) {
     const _fixture = fixt ?? fixture;
-    const selectButton = _fixture.nativeElement.querySelector('.select-button');
+    const selectButton = _fixture.nativeElement.querySelector('button');
     selectButton.dispatchEvent(new Event('click'));
     await _fixture.whenStable();
   }
 
   async function closeSelect() {
     const selectButton = fixture.nativeElement.querySelector(
-      '.select-button'
+      'button'
     ) as HTMLElement;
     selectButton.dispatchEvent(new Event('click'));
     await fixture.whenStable();
@@ -69,25 +69,19 @@ describe('SelectComponent', () => {
   describe('Placeholder', () => {
     it('should display placeholder text when no value is selected', async () => {
       await fixture.whenStable();
-      const selectButtonLabel = fixture.nativeElement.querySelector(
-        '.select-button-label'
-      );
+      const selectButtonLabel = fixture.nativeElement.querySelector('span');
       expect(selectButtonLabel.textContent).toBe('Select a country');
     });
 
     it('should display selected value label', async () => {
       component.formControl.setValue('US');
       await fixture.whenStable();
-      const selectButtonLabel = fixture.nativeElement.querySelector(
-        '.select-button-label'
-      );
+      const selectButtonLabel = fixture.nativeElement.querySelector('span');
       expect(selectButtonLabel.textContent.trim()).toBe('United States');
     });
 
     it('should display select-button-icon', () => {
-      const selectButtonIcon = fixture.nativeElement.querySelector(
-        '.select-button-icon'
-      );
+      const selectButtonIcon = fixture.nativeElement.querySelector('ng-icon');
       expect(selectButtonIcon).toBeTruthy();
     });
   });
@@ -148,26 +142,6 @@ describe('SelectComponent', () => {
     });
   });
 
-  describe('Selection', () => {
-    it('should show checkmark if item is selected', async () => {
-      await openSelect();
-      const selectedOption = queryOptions()[1];
-      selectedOption.dispatchEvent(new Event('click'));
-      await fixture.whenStable();
-      const checkmark = selectedOption.querySelector('app-select-check-icon');
-      expect(checkmark).toBeTruthy();
-    });
-
-    it('should not show checkmark if item is not selected', async () => {
-      await openSelect();
-      const selectedOption = queryOptions()[1];
-      selectedOption.dispatchEvent(new Event('click'));
-      await fixture.whenStable();
-      const checkmark = selectedOption.querySelector('app-select-check-icon');
-      expect(checkmark).toBeTruthy();
-    });
-  });
-
   describe('Multiselect', () => {
     let component: TestMultiselectComponent;
     let fixture: ComponentFixture<TestMultiselectComponent>;
@@ -182,9 +156,8 @@ describe('SelectComponent', () => {
       it('should display selected values separated by comma when a value is selected', async () => {
         component.formControl.setValue(['US', 'CA']);
         await fixture.whenStable();
-        const selectButtonLabel = fixture.nativeElement.querySelector(
-          '.select-button-label'
-        );
+        const selectButtonLabel =
+          fixture.nativeElement.querySelector('button span');
         expect(selectButtonLabel.textContent.trim()).toBe(
           'United States, Canada'
         );

@@ -11,7 +11,7 @@ import { Directive, ElementRef, inject, OnDestroy } from '@angular/core';
   selector: '[appContextMenu]',
   hostDirectives: [CdkMenu],
   host: {
-    '[class.context-menu]': 'true',
+    class: 'shadow-md bg-background rounded-md border border-border',
   },
 })
 export class ContextMenuDirective implements OnDestroy {

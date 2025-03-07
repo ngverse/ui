@@ -15,17 +15,34 @@
   <div>
     <p class="buttons-label">Icon Button</p>
     <div class="buttons-container">
-      <button appButton icon>
-        <app-icon name="arrow-right"></app-icon>
+      <button appButton icon aria-label="show case button icon">
+        <ng-icon size="24" [svg]="ARROW_RIGHT"></ng-icon>
       </button>
-      <button appButton icon color="secondary">
-        <app-icon name="arrow-right"></app-icon>
+      <button
+        appButton
+        icon
+        color="secondary"
+        aria-label="show case button icon"
+      >
+        <ng-icon size="24" [svg]="ARROW_RIGHT"></ng-icon>
       </button>
-      <button appButton icon color="danger" variant="outline">
-        <app-icon name="arrow-right"></app-icon>
+      <button
+        appButton
+        icon
+        color="danger"
+        variant="outline"
+        aria-label="show case button icon"
+      >
+        <ng-icon size="24" [svg]="ARROW_RIGHT"></ng-icon>
       </button>
-      <button appButton icon color="success" variant="link">
-        <app-icon name="arrow-right"></app-icon>
+      <button
+        appButton
+        icon
+        color="success"
+        variant="link"
+        aria-label="show case button icon"
+      >
+        <ng-icon size="24" [svg]="ARROW_RIGHT"></ng-icon>
       </button>
     </div>
   </div>

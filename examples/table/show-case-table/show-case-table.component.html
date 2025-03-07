@@ -1,0 +1,33 @@
+<app-table-layout class="h-[250px] overflow-auto">
+  <table
+    appTable
+    appSort
+    selectable
+    (sortChange)="sortChange($event)"
+    class="w-full"
+  >
+    <thead>
+      <tr appTrHead sticky>
+        <th appTh appSortHeader scope="col">Name</th>
+        <th appTh scope="col">Position</th>
+        <th appTh scope="col">Weight</th>
+        <th appTh scope="col">Symbol</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of data(); track $index) {
+        <tr appTr (click)="selectRow(row)" [isSelected]="row === selectedRow()">
+          <td appTd sticky>{{ row.name }}</td>
+          <td appTd>{{ row.position }}</td>
+          <td appTd>{{ row.weight }}</td>
+          <td appTd>{{ row.symbol }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <app-table-pagination
+    (pageChange)="setPage($event)"
+    [totalPages]="totalPages()"
+    [currentPage]="currentPage()"
+  ></app-table-pagination>
+</app-table-layout>

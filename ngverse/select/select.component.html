@@ -1,18 +1,20 @@
 <button
-  class="select-button"
-  [class.stretch]="stretch()"
+  class="flex h-9 cursor-pointer items-center justify-between gap-2.5 rounded-md border border-border p-2 group-[.ng-invalid.ng-touched]:border-danger focus-visible:outline focus-visible:outline-ring disabled:bg-disabled disabled:text-disabled-foreground"
+  [class.w-full]="stretch()"
   appPopoverOrigin
   #origin="appPopoverOrigin"
   (click)="togglePanel()"
   [disabled]="disabled()"
 >
-  <span class="select-button-label">{{
+  <span class="flex-1 truncate text-left">{{
     selectedOptionsLabel() || placeholder()
   }}</span>
-  <app-select-icon
-    class="select-button-icon"
-    [class.opened]="isOpen()"
-  ></app-select-icon>
+  <ng-icon
+    class="transition-transform"
+    [class.rotate-180]="isOpen()"
+    [svg]="EXPAND_MORE_ICON"
+    size="28"
+  ></ng-icon>
 </button>
 <app-popover
   [outsideClose]="true"
@@ -33,7 +35,7 @@
       tabindex="0"
       #selectOption
       (keydown)="onKeydown($event)"
-      class="select-options"
+      class="max-h-52 overflow-y-auto"
       role="listbox"
     >
       <ng-content select="app-option-group"></ng-content>

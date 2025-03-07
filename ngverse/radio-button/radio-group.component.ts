@@ -1,16 +1,12 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
   signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-let inputName = 0;
-
-function getInputName() {
-  return `radio-group-${inputName++}`;
-}
 
 export type OnTouchedFunction = (() => void) | undefined;
 export type OnChangeFunction = ((_: unknown) => void) | undefined;
@@ -34,7 +30,7 @@ export type CompareWith = (o1: any, o2: any) => boolean;
 })
 export class RadioGroupComponent implements ControlValueAccessor {
   compareWith = input<CompareWith>((o1, o2) => o1 === o2);
-  name = input(getInputName());
+  name = input(inject(_IdGenerator).getId('radio-group-'));
   vertical = input<boolean>(false);
 
   value = signal<unknown>(undefined);

@@ -1,0 +1,1 @@
+import{Xb as o,Yb as a,tb as n}from"./chunk-YNRYOK3S.js";var l=["*"],c=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-label"]],ngContentSelectors:l,decls:1,vars:0,template:function(e,s){e&1&&(o(),a(0))},encapsulation:2,changeDetection:0})};export{c as a};

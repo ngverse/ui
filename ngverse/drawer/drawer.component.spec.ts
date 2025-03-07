@@ -36,11 +36,9 @@ describe('DrawerComponent', () => {
   it('should display title', async () => {
     component.title.set('Title');
     await fixture.whenStable();
-    expect(
-      fixture.nativeElement
-        .querySelector('.drawer-header h1')
-        .textContent.trim()
-    ).toBe('Title');
+    expect(fixture.nativeElement.querySelector('h1').textContent.trim()).toBe(
+      'Title'
+    );
   });
   it('should display component', async () => {
     component.component = DrawerTestComponent;

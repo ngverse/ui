@@ -1,4 +1,4 @@
-<div class="native-checkbox-container relative h-6 w-6">
+<div class="relative h-6 w-6">
   <input
     [disabled]="disabled()"
     (change)="toggle()"
@@ -7,11 +7,11 @@
     [checked]="value()"
     type="checkbox"
   />
-  <app-checkbox-icon
+  <ng-icon
+    [svg]="value() ? CHECK_ICON : UNCHECK_ICON"
+    size="24"
     class="block rounded-sm peer-focus-visible:outline peer-focus-visible:outline-ring"
-    aria-hidden="true"
-    [checked]="value()"
-  ></app-checkbox-icon>
+  ></ng-icon>
 </div>
 <label [htmlFor]="inputId()">
   <ng-content></ng-content>

@@ -18,14 +18,15 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
+import { PopoverOriginDirective } from '@/ui/popover/popover-origin.directive';
+import { PopoverComponent } from '@/ui/popover/popover.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { NgIcon } from '@ng-icons/core';
+import { matExpandMore } from '@ng-icons/material-icons/baseline';
 import { map } from 'rxjs';
 import { OptionComponent } from './option.component';
-import { SelectIconComponent } from './select-icon.component';
-import { PopoverComponent } from '@/ui/popover/popover.component';
-import { PopoverOriginDirective } from '@/ui/popover/popover-origin.directive';
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -38,9 +39,9 @@ export type CompareWith = (o1: any, o2: any) => boolean;
   selector: 'app-select',
   imports: [
     ReactiveFormsModule,
-    SelectIconComponent,
     PopoverOriginDirective,
     PopoverComponent,
+    NgIcon,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.css',
@@ -54,12 +55,15 @@ export type CompareWith = (o1: any, o2: any) => boolean;
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'combobox',
+    class: 'inline-block group',
     '[attr.aria-expanded]': 'isOpen()',
   },
 })
 export class SelectComponent implements ControlValueAccessor, OnDestroy {
   multiple = input(false);
   placeholder = input<string>();
+  EXPAND_MORE_ICON = matExpandMore;
+
   options = contentChildren<OptionComponent>(
     forwardRef(() => OptionComponent),
     { descendants: true }

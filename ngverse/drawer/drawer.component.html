@@ -1,13 +1,40 @@
-<div class="drawer-header">
-  @if (title()) {
-    <h1 class="drawer-title">
-      {{ title() }}
-    </h1>
-  }
+<div class="h-screen w-auto overflow-auto bg-background p-4 text-foreground">
+  <div class="mb-3 flex items-center font-bold">
+    @if (title()) {
+      <h1>
+        {{ title() }}
+      </h1>
+    }
 
-  <button class="close-button" appDrawerClose>
-    <app-drawer-close-icon />
-  </button>
+    <button
+      appDrawerClose
+      appButton
+      icon
+      size="sm"
+      variant="link"
+      color="secondary"
+      aria-label="Close the drawer"
+      class="ml-auto"
+    >
+      <ng-icon size="20" [svg]="CLOSE_ICON"></ng-icon>
+    </button>
+  </div>
+
+  <ng-container *ngComponentOutlet="component" />
 </div>
 
-<ng-container *ngComponentOutlet="component" />
+<!--
+
+.close-button {
+  margin-left: auto;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.drawer-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+} -->

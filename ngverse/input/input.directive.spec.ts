@@ -22,12 +22,6 @@ describe('InputComponent', () => {
   it('should create', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
-  it('should apply input class', async () => {
-    await fixture.whenStable();
-    expect(fixture.nativeElement.querySelector('input').classList).toContain(
-      'input'
-    );
-  });
 });
 
 @Component({

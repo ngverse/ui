@@ -1,6 +1,6 @@
 <div>
   <ng-content></ng-content>
 </div>
-@if (isSelected()) {
-  <app-select-check-icon class="check-icon"></app-select-check-icon>
+@if (select.multiple()) {
+  <ng-icon [svg]="isSelected() ? CHECK_ICON : UNCHECK_ICON" size="28"></ng-icon>
 }

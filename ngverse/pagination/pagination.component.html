@@ -10,7 +10,7 @@
         (click)="prevPage()"
         [disabled]="!hasPrevPage()"
       >
-        <app-pagination-prev-icon class="nav-icon" />
+        <ng-icon size="20" [svg]="ARROW_PREV"></ng-icon>
         <span>Previous</span>
       </button>
     </li>
@@ -48,7 +48,7 @@
         [attr.aria-label]="nextPageAriaLabel()"
       >
         <span>Next</span>
-        <app-pagination-next-icon class="nav-icon" />
+        <ng-icon size="20" [svg]="ARROW_NEXT"></ng-icon>
       </button>
     </li>
   </ul>
