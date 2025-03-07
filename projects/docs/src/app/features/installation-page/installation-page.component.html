@@ -10,12 +10,15 @@
   <ul>
     <li>
       <a href="https://material.angular.io/cdk/categories" target="_blank">
-        <code>&#64;angular/cdk</code>
+        &#64;angular/cdk
       </a>
     </li>
     <li>
-      <a href="https://tailwindcss.com/" target="_blank"
-        ><code>Tailwind CSS</code></a
+      <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>
+    </li>
+    <li>
+      <a href="https://ng-icons.github.io/ng-icons/#/" target="_blank"
+        >ng-icons</a
       >
     </li>
   </ul>
@@ -63,7 +66,23 @@
   <h2>Add Angular animations</h2>
   <p>We use Angular animations for smooth transition between states</p>
   <doc-source-code language="ts" [code]="animationsCode"></doc-source-code>
-
+  <h2>Installing an Icons Library (Optional)</h2>
+  <p>
+    Some components, such as the <code>select</code> component, require icons.
+    We use the
+    <a href="https://ng-icons.github.io/ng-icons/#/" target="_blank"
+      >ng-icons</a
+    >
+    library (Material Icons preset) for this purpose.
+  </p>
+  <p>
+    If you prefer not to use this library, you can skip this step and update the
+    components manually when needed.
+  </p>
+  <doc-source-code
+    language="bash"
+    code=" npm install @ng-icons/core @ng-icons/material-icons"
+  ></doc-source-code>
   <h2>Update typescript import</h2>
   <p>
     In <doc-project-name [code]="true"></doc-project-name>, UI components use

@@ -6,8 +6,6 @@ export interface Schema {
 
   replace?: boolean;
 
-  includeTests?: string;
-
   prefix?: string;
 
   path?: string;

@@ -24,11 +24,6 @@
         "$source": "projectName"
       }
     },
-    "includeTests": {
-      "type": "boolean",
-      "default": false,
-      "description": "Whete to include tests or not by default is false"
-    },
     "prefix": {
       "type": "string",
       "description": "The prefix of the element. if not provided, it will take prefix from the project, if it is also null it will be 'app'"
