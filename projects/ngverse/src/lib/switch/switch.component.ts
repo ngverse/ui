@@ -1,7 +1,9 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  inject,
   input,
   signal,
 } from '@angular/core';
@@ -21,16 +23,6 @@ type OnTouchedFunction = (() => void) | undefined;
 type VALUE_TYPE = boolean | undefined | null;
 
 type ValidatorChangeFunction = (() => void) | undefined;
-
-let buttonId = 0;
-let labelId = 0;
-
-function genButtonId() {
-  return `switch-${buttonId++}`;
-}
-function genLabelId() {
-  return `switch-label-${labelId++}`;
-}
 
 type LABEL_ALIGN = 'start' | 'end';
 
@@ -65,8 +57,10 @@ export class SwitchComponent implements ControlValueAccessor, Validator {
   required = input<boolean>(false);
 
   value = signal<VALUE_TYPE>(undefined);
-  buttonId = genButtonId();
-  labelId = genLabelId();
+  private _idGenerator = inject(_IdGenerator);
+
+  buttonId = this._idGenerator.getId('switch-button-');
+  labelId = this._idGenerator.getId('switch-label-');
   disabled = signal<boolean>(false);
 
   private _registerOnChangefn: OnChangeFunction;

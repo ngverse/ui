@@ -1,7 +1,5 @@
 import { Component, inject, input, model, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonComponent } from '@/ui/button/button.component';
-import { CheckboxComponent } from '@/ui/checkbox/checkbox.component';
 import { FileService } from '../../services/file.service';
 import { SourceCodeComponent } from '../source-code/source-code.component';
 import {
@@ -14,13 +12,7 @@ import { SourceTreeResolver } from './source-tree.resolver';
 
 @Component({
   selector: 'doc-source-tree',
-  imports: [
-    SourceCodeComponent,
-    SourceTreeSelectComponent,
-    ButtonComponent,
-    CheckboxComponent,
-    FormsModule,
-  ],
+  imports: [SourceCodeComponent, SourceTreeSelectComponent, FormsModule],
   templateUrl: './source-tree.component.html',
   styleUrl: './source-tree.component.css',
 })
@@ -58,14 +50,5 @@ export class SourceTreeComponent implements OnInit {
     this.fileService.getFile(`ngverse/${file.path}`).subscribe((data) => {
       this.code.set(data);
     });
-  }
-
-  download() {
-    const sourceTree = this.sourceTreeAlpha();
-    this.fileService.downloadSourceTree(
-      this.name(),
-      sourceTree,
-      !!this.includeTests()
-    );
   }
 }
