@@ -1,15 +1,19 @@
-import { HeadTrDirective } from '@/ui/table/head-tr.directive';
 import { SortHeaderComponent } from '@/ui/table/sort-header.component';
 import { SortDirective } from '@/ui/table/sort.directive';
 import { TableLayoutComponent } from '@/ui/table/table-layout.component';
-import { TableLocalSource } from '@/ui/table/table-local-source';
 import { TablePaginationComponent } from '@/ui/table/table-pagination.component';
 import { TableDirective } from '@/ui/table/table.directive';
 import { SortChangeType } from '@/ui/table/table.types';
 import { TdDirective } from '@/ui/table/td.directive';
 import { ThDirective } from '@/ui/table/th.directive';
+import { HeadTrDirective } from '@/ui/table/tr-head.directive';
 import { TrDirective } from '@/ui/table/tr.directive';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  signal,
+} from '@angular/core';
 
 export interface PeriodicElement {
   name: string;
@@ -72,21 +76,15 @@ const ELEMENT_DATA = generatePeriodicElements();
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowCaseTableComponent {
-  // data = signal(ELEMENT_DATA);
-  // currentPage = signal(0);
-  // totalPages = computed(() => Math.ceil(this.data().length / LIMIT));
-
-  tableLocalSource = new TableLocalSource({ limit: LIMIT, data: ELEMENT_DATA });
-
-  currentPage = this.tableLocalSource.currentPage;
-  totalPages = this.tableLocalSource.totalPages;
-  data = this.tableLocalSource.data;
+  data = signal(ELEMENT_DATA);
+  currentPage = signal(0);
+  totalPages = computed(() => Math.ceil(this.data().length / LIMIT));
 
   sortChange($event: SortChangeType) {
-    this.tableLocalSource.sort($event);
+    console.log($event);
   }
 
   setPage(page: number) {
-    this.tableLocalSource.setPage(page);
+    this.currentPage.set(page);
   }
 }

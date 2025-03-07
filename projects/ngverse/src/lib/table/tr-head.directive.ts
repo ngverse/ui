@@ -1,7 +1,7 @@
 import { booleanAttribute, Directive, input } from '@angular/core';
 
 @Directive({
-  selector: '[appHeadTr]',
+  selector: '[appTrHead]',
   host: {
     class: 'text-xs text-left text-on-surface uppercase bg-surface',
     '[class.sticky]': 'sticky()',

@@ -6,12 +6,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   host: {
     class: 'block',
   },
-  template: `<div class="h-[250px] overflow-auto">
-      <ng-content select="table[appTable]"></ng-content>
-    </div>
-    <div>
+  template: `
+    <ng-content select="table[appTable]"></ng-content>
+    <div class="sticky bottom-0 bg-background">
       <ng-content select="app-table-pagination"></ng-content>
-    </div> `,
+    </div>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableLayoutComponent {}

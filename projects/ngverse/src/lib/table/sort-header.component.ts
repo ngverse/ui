@@ -34,7 +34,7 @@ import { SORT_DIRECTION } from './table.types';
 })
 export class SortHeaderComponent {
   private _sort = inject(SortDirective);
-  direction = signal<SORT_DIRECTION>('none');
+  direction = signal<SORT_DIRECTION | undefined>(undefined);
   ArrowUpNarrowWide = ArrowUpNarrowWide;
   ArrowDownNarrowWide = ArrowDownNarrowWide;
   isAsc = computed(() => this.direction() === 'asc');
@@ -50,22 +50,22 @@ export class SortHeaderComponent {
   }
 
   onClick() {
-    this.nextSortType();
+    const nextSort = this.nextSortType();
     const fieldKey = this.fieldKey;
-    if (fieldKey) {
+    this.direction.set(nextSort);
+    if (fieldKey && nextSort) {
       this._sort.sort({
         name: fieldKey,
-        direction: this.direction(),
+        direction: nextSort,
       });
     }
   }
 
   private nextSortType() {
     const direction = this.direction();
-    if (direction === 'asc') {
-      this.direction.set('desc');
-    } else {
-      this.direction.set('asc');
+    if (!direction || direction === 'desc') {
+      return 'asc';
     }
+    return 'desc';
   }
 }
