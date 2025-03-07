@@ -80,11 +80,17 @@ export class ShowCaseTableComponent {
   currentPage = signal(0);
   totalPages = computed(() => Math.ceil(this.data().length / LIMIT));
 
+  selectedRow = signal<PeriodicElement | undefined>(undefined);
+
   sortChange($event: SortChangeType) {
     console.log($event);
   }
 
   setPage(page: number) {
     this.currentPage.set(page);
+  }
+
+  selectRow($event: PeriodicElement) {
+    this.selectedRow.set($event);
   }
 }

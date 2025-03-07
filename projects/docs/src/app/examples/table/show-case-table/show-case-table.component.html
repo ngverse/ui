@@ -1,5 +1,11 @@
 <app-table-layout class="h-[250px] overflow-auto">
-  <table appTable appSort (sortChange)="sortChange($event)" class="w-full">
+  <table
+    appTable
+    appSort
+    selectable
+    (sortChange)="sortChange($event)"
+    class="w-full"
+  >
     <thead>
       <tr appTrHead sticky>
         <th appTh appSortHeader scope="col">Name</th>
@@ -10,7 +16,7 @@
     </thead>
     <tbody>
       @for (row of data(); track $index) {
-        <tr appTr>
+        <tr appTr (click)="selectRow(row)" [isSelected]="row === selectedRow()">
           <td appTd sticky>{{ row.name }}</td>
           <td appTd>{{ row.position }}</td>
           <td appTd>{{ row.weight }}</td>

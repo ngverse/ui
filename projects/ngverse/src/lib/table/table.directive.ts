@@ -1,6 +1,8 @@
-import { Directive } from '@angular/core';
+import { booleanAttribute, Directive, input } from '@angular/core';
 
 @Directive({
   selector: 'table[appTable]',
 })
-export class TableDirective {}
+export class TableDirective {
+  selectable = input(false, { transform: booleanAttribute });
+}
