@@ -56,6 +56,39 @@
       use by passing the project name. or it will try to use the default project
     </li>
   </ul>
+  <h3>4. <code>includeTests</code> (Optional, default: <code>false</code>)</h3>
+  <p>Specifies whether to include test files for the element.</p>
+  <ul>
+    <li>
+      NgVerse elements come with a full suite of tests to help ensure
+      reliability. However, including tests is optional for the following
+      reasons:
+      <ul>
+        <li>
+          <strong>Code changes may break tests:</strong><br />
+          After modifying an element, tests may fail because the behavior has
+          changed. In this case, you would need to debug and update the test
+          files, which can take extra time and effort.
+        </li>
+        <li>
+          <strong>Test framework compatibility:</strong><br />
+          Our tests are written in Jasmine, so if you're using another framework
+          like Jest, the tests will not run at all.<br />
+          Therefore, tests are disabled by default.
+        </li>
+      </ul>
+    </li>
+    <li>
+      If you want to include test files, use
+      <code>includeTests=true</code>.<br />
+      Example: <code>ng g ngverse:add button --includeTests=true</code>
+    </li>
+  </ul>
+  <p>
+    Keep in mind that we maintain and update our tests regularly. Tests are run
+    on every commit, merge, and release to ensure high quality. We take testing
+    seriously, so you don’t have to worry about test coverage! 🚀
+  </p>
   <h2>Global Configuration</h2>
   <p>
     You can set a global configuration for the
