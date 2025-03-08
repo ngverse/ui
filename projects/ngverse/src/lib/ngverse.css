@@ -92,7 +92,4 @@
 html,
 body {
   @apply bg-background text-foreground;
-
-  background-color: var(--color-background);
-  color: var(--color-foreground);
 }
