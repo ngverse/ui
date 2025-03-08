@@ -1,15 +1,5 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --field-height: 36px;
-  --field-padding: 6px 10px;
-  --border-radius: 6px;
-}
-
-@theme static {
-  --radius-default: 6px;
-}
-
 @theme static {
   --color-background: white;
   --color-foreground: #030712;
@@ -101,6 +91,8 @@
 
 html,
 body {
+  @apply bg-background text-foreground;
+
   background-color: var(--color-background);
   color: var(--color-foreground);
 }

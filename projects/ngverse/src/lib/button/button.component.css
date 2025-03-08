@@ -10,7 +10,7 @@
 
   --button-color: var(--color-background);
   --button-on-color: var(--color-foreground);
-  border-radius: var(--border-radius);
+  border-radius: 6px;
   border: var(--border);
   position: relative;
   cursor: pointer;
