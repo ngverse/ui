@@ -9,7 +9,7 @@
   gap: 10px;
   background: transparent;
   border: var(--border);
-  border-radius: var(--border-radius);
+  border-radius: 6px;
   padding: 4px 10px;
   width: 200px;
 

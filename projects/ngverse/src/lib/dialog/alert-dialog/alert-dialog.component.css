@@ -1,6 +1,6 @@
 .alert {
   background: var(--color-background);
-  border-radius: var(--border-radius);
+  border-radius: 6px;
   border: var(--border);
   box-shadow: var(--color-shadow);
   min-width: 300px;
