@@ -75,6 +75,12 @@ export class FormFieldPageComponent {
             description:
               'List of errors to ignore. This can be useful when you want to display most of the errors with error group, but handle specific errors with app-error and provide customized error messages',
           },
+          {
+            name: 'hideRequiredMarker',
+            type: 'boolean',
+            default: 'false',
+            description: 'Hides the required marker',
+          },
         ],
       },
       {

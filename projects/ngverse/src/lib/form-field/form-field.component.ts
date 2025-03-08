@@ -15,9 +15,10 @@ import {
   NgControl,
   StatusChangeEvent,
   TouchedChangeEvent,
+  Validators,
 } from '@angular/forms';
 import { filter, merge, Subscription } from 'rxjs';
-import { ErrorComponent } from './error/error.component';
+import { ErrorComponent } from './error.component';
 import { FormFieldErrorRegistry } from './form-field-error.registry';
 
 @Component({
@@ -30,6 +31,7 @@ import { FormFieldErrorRegistry } from './form-field-error.registry';
 export class FormFieldComponent implements OnDestroy {
   silentErrors = input<string[] | undefined>();
   showErrors = input<boolean>(true);
+  hideRequiredMarker = input<boolean>(false);
 
   errors = signal<string[]>([]);
   invalid = signal(false);
@@ -37,6 +39,17 @@ export class FormFieldComponent implements OnDestroy {
   showCustomErrors = computed(
     () => !this.showErrors() || this.errors().length === 0
   );
+
+  hasRequiredValidation = computed(() => {
+    const control = this.ngControl()?.control;
+    if (control) {
+      return (
+        control.hasValidator(Validators.required) ||
+        control.hasValidator(Validators.requiredTrue)
+      );
+    }
+    return false;
+  });
 
   private ngControl = contentChild(NgControl);
   private sub: Subscription | undefined;
