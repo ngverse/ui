@@ -1,7 +1,12 @@
 <div class="relative mb-1.5 flex flex-col gap-1.5 pb-5">
   <!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
   <label class="flex flex-col gap-1.5">
-    <ng-content select="app-label"></ng-content>
+    <div class="flex items-center gap-1">
+      <ng-content select="app-label"></ng-content>
+      @if (!hideRequiredMarker() && hasRequiredValidation()) {
+        <span class="text-danger">*</span>
+      }
+    </div>
     <ng-content></ng-content>
   </label>
 

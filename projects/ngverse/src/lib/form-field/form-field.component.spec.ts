@@ -8,10 +8,10 @@ import {
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { ErrorComponent } from './error/error.component';
+import { ErrorComponent } from './error.component';
 import { FormFieldErrorRegistry } from './form-field-error.registry';
 import { FormFieldComponent } from './form-field.component';
-import { LabelComponent } from './label/label.component';
+import { LabelComponent } from './label.component';
 
 describe('FormFieldComponent', () => {
   let component: FormFieldTestComponent;

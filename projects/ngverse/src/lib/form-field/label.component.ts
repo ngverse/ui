@@ -2,9 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-label',
-  imports: [],
-  templateUrl: './label.component.html',
-  styleUrl: './label.component.css',
+  template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LabelComponent {}

@@ -533,30 +533,14 @@
       "name": "form-field",
       "files": [
         {
-          "path": "form-field/error",
-          "name": "error",
-          "files": [
-            {
-              "path": "form-field/error/error.component.css",
-              "name": "error.component.css",
-              "language": "css"
-            },
-            {
-              "path": "form-field/error/error.component.html",
-              "name": "error.component.html",
-              "language": "html"
-            },
-            {
-              "path": "form-field/error/error.component.spec.ts",
-              "name": "error.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "form-field/error/error.component.ts",
-              "name": "error.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "form-field/error.component.spec.ts",
+          "name": "error.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "form-field/error.component.ts",
+          "name": "error.component.ts",
+          "language": "ts"
         },
         {
           "path": "form-field/form-field-error.registry.spec.ts",
@@ -589,30 +573,14 @@
           "language": "ts"
         },
         {
-          "path": "form-field/label",
-          "name": "label",
-          "files": [
-            {
-              "path": "form-field/label/label.component.css",
-              "name": "label.component.css",
-              "language": "css"
-            },
-            {
-              "path": "form-field/label/label.component.html",
-              "name": "label.component.html",
-              "language": "html"
-            },
-            {
-              "path": "form-field/label/label.component.spec.ts",
-              "name": "label.component.spec.ts",
-              "language": "spec.ts"
-            },
-            {
-              "path": "form-field/label/label.component.ts",
-              "name": "label.component.ts",
-              "language": "ts"
-            }
-          ]
+          "path": "form-field/label.component.spec.ts",
+          "name": "label.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "form-field/label.component.ts",
+          "name": "label.component.ts",
+          "language": "ts"
         }
       ]
     },
