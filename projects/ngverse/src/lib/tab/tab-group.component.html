@@ -8,16 +8,11 @@
   @for (tab of tabs(); track $index) {
     <app-tab-group-header
       [tab]="tab"
+      [isSelected]="$index === selectedIndex()"
       #tabHeader
       (click)="selectTab($index)"
     ></app-tab-group-header>
   }
-  <div
-    #tabInk
-    class="tab-ink"
-    [style.width.px]="tabInkWidth()"
-    [style.left.px]="tabInkLeft()"
-  ></div>
 </div>
 <!--we need explicitely set ng-content, in order ssr work properly see (https://github.com/angular/angular/issues/50543)-->
 <ng-content></ng-content>

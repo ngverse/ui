@@ -26,16 +26,16 @@ import { TabComponent } from './tab.component';
       display: flex;
       justify-content: center;
       cursor: pointer;
-      position: relative;
-      outline: none;
-      background: transparent;
-      border: 0;
-      font-size: 1rem;
+      border-bottom: 2px solid transparent;
+      &.selected {
+        border-bottom-color: var(--color-primary);
+      }
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.is-active]': 'enabledTabIndex()',
+    '[class.selected]': 'isSelected()',
   },
 })
 export class TabGroupHeaderComponent implements Highlightable {
@@ -47,6 +47,8 @@ export class TabGroupHeaderComponent implements Highlightable {
   element = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>)
     .nativeElement;
   enabledTabIndex = signal(false);
+  isSelected = input.required<boolean>();
+
   setActiveStyles(): void {
     this.enabledTabIndex.set(true);
     this.element.focus();
