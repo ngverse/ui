@@ -3,9 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-error',
-  imports: [],
-  templateUrl: './error.component.html',
-  styleUrl: './error.component.css',
+  template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('toggle', [
@@ -21,6 +19,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   ],
   host: {
     '[@toggle]': 'true',
+    class: 'text-sm text-danger',
   },
 })
 export class ErrorComponent {}
