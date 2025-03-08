@@ -3,20 +3,16 @@ import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { Directionality } from '@angular/cdk/bidi';
 import { NgTemplateOutlet } from '@angular/common';
 import {
-  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   computed,
   contentChildren,
-  ElementRef,
   inject,
   Injector,
   input,
   model,
-  OnDestroy,
   output,
   signal,
-  viewChild,
   viewChildren,
 } from '@angular/core';
 import { TabGroupHeaderComponent } from './tab-group-header.component';
@@ -37,19 +33,12 @@ import { TabComponent } from './tab.component';
     ]),
   ],
 })
-export class TabGroupComponent implements OnDestroy {
+export class TabGroupComponent {
   tabs = contentChildren(TabComponent);
   selectedIndex = model(0);
   bodyGap = input(true);
 
   tabHeaders = viewChildren(TabGroupHeaderComponent);
-
-  tabHeadersEl = computed(() =>
-    this.tabHeaders().map((tabHeader) => tabHeader.element)
-  );
-
-  tabGroupHeader =
-    viewChild.required<ElementRef<HTMLElement>>('tabGroupHeader');
 
   direction = inject(Directionality);
 
@@ -74,31 +63,9 @@ export class TabGroupComponent implements OnDestroy {
   tabInkWidth = signal(0);
   tabInkLeft = signal(0);
 
-  resizeObserver: ResizeObserver | undefined;
-
-  constructor() {
-    afterNextRender(() => {
-      this.resizeObserver = new ResizeObserver(() => this.moveInk());
-      this.resizeObserver.observe(this.tabGroupHeader().nativeElement);
-    });
-  }
-
   onTabGroupFocus() {
     if (!this.keyManager.activeItem) {
       this.keyManager.setFirstItemActive();
-    }
-  }
-
-  private moveInk() {
-    const index = this.selectedIndex();
-    const tabHeader = this.tabHeadersEl()[index];
-    const tabGroupHeader = this.tabGroupHeader();
-    if (tabHeader) {
-      const rects = tabHeader.getBoundingClientRect();
-      const tabGroupRects =
-        tabGroupHeader.nativeElement.getBoundingClientRect();
-      this.tabInkLeft.set(rects.left - tabGroupRects.left);
-      this.tabInkWidth.set(rects.width);
     }
   }
 
@@ -106,10 +73,5 @@ export class TabGroupComponent implements OnDestroy {
     this.keyManager.setActiveItem($event);
     this.selectedIndex.set($event);
     this.tabChanged.emit($event);
-    this.moveInk();
-  }
-
-  ngOnDestroy(): void {
-    this.resizeObserver?.disconnect();
   }
 }
