@@ -1,11 +1,12 @@
-<div class="progress-bar-container">
+<div class="relative h-3 overflow-x-hidden rounded-md border border-border">
   @if (indeterminate()) {
-    <div class="indeterminate-line"></div>
-    <div class="indeterminate-subline inc"></div>
-    <div class="indeterminate-subline dec"></div>
+    <div class="absolute h-full w-[150%] bg-surface opacity-40"></div>
+    <div class="inc absolute h-full bg-primary"></div>
+    <div class="dec absolute h-full bg-primary"></div>
   } @else {
     <div
-      class="determinate-bar"
+      aria-label="progress bar"
+      class="h-full origin-left bg-primary transition-transform duration-300 ease-in-out"
       role="progressbar"
       [style.transform]="transformValue()"
     ></div>

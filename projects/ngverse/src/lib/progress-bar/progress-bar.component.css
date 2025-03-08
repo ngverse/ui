@@ -1,42 +1,8 @@
-.progress-bar-container {
-  border-radius: 6px;
-  position: relative;
-  overflow-x: hidden;
-  height: 12px;
-  border: var(--border);
+.inc {
+  animation: indeterminateIncrease 2s infinite;
 }
-/* determinate */
-.determinate-bar {
-  color: white;
-  font-size: 8px;
-  transition: transform 0.3s ease-out;
-  transform-origin: left;
-  height: 100%;
-  background: var(--color-primary);
-  position: absolute;
-  text-align: center;
-  width: 100%;
-}
-
-/* indeterminate */
-
-.indeterminate-line {
-  position: absolute;
-  opacity: 0.4;
-  background: var(--color-surface);
-  width: 150%;
-  height: 100%;
-}
-.indeterminate-subline {
-  position: absolute;
-  background: var(--color-primary);
-  height: 100%;
-  &.inc {
-    animation: indeterminateIncrease 2s infinite;
-  }
-  &.dec {
-    animation: indeterminateDecrease 2s 0.5s infinite;
-  }
+.dec {
+  animation: indeterminateDecrease 2s 0.5s infinite;
 }
 
 @keyframes indeterminateIncrease {

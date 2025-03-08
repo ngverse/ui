@@ -29,7 +29,7 @@ describe('ProgressBarComponent', () => {
   it("should display indeterminate progress bar if 'indeterminate' is true", async () => {
     componentRef.setInput('indeterminate', true);
     await fixture.whenStable();
-    const element = fixture.nativeElement.querySelector('.indeterminate-line');
+    const element = fixture.nativeElement.querySelector('.inc');
     expect(element).toBeTruthy();
   });
 });
