@@ -6,9 +6,22 @@
   (click)="togglePanel()"
   [disabled]="disabled()"
 >
-  <span class="flex-1 truncate text-left">{{
-    selectedOptionsLabel() || placeholder()
-  }}</span>
+  <span class="flex-1 truncate text-left">
+    @if (selectedOptionsLabel(); as selectedOptionsLabel) {
+      @if (templateLabel(); as templateLabel) {
+        <ng-container
+          *ngTemplateOutlet="
+            templateLabel.templateRef;
+            context: { $implicit: selectedOptions() }
+          "
+        ></ng-container>
+      } @else {
+        {{ selectedOptionsLabel }}
+      }
+    } @else {
+      {{ placeholder() }}
+    }
+  </span>
   <ng-icon
     class="transition-transform"
     [class.rotate-180]="isOpen()"

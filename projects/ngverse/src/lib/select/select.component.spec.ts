@@ -70,7 +70,7 @@ describe('SelectComponent', () => {
     it('should display placeholder text when no value is selected', async () => {
       await fixture.whenStable();
       const selectButtonLabel = fixture.nativeElement.querySelector('span');
-      expect(selectButtonLabel.textContent).toBe('Select a country');
+      expect(selectButtonLabel.textContent.trim()).toBe('Select a country');
     });
 
     it('should display selected value label', async () => {
