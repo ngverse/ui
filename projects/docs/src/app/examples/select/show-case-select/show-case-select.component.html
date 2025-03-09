@@ -36,3 +36,19 @@
     </app-option-group>
   }
 </app-select>
+
+<p class="mt-4 mb-2">Custom label</p>
+<app-select
+  [formControl]="customLabelControl"
+  placeholder="Custom Label"
+  class="w-[250px]"
+>
+  <ng-template appSelectLabel let-options>
+    <ng-icon [svg]="options[0].value()"></ng-icon> {{ options[0].content }}
+  </ng-template>
+  @for (option of customOptions; track $index) {
+    <app-option [value]="option.value">
+      <ng-icon [svg]="option.value"></ng-icon> {{ option.label }}</app-option
+    >
+  }
+</app-select>

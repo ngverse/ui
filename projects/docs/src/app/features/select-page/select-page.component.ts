@@ -115,6 +115,13 @@ export class SelectPageComponent {
         ],
       },
       {
+        name: 'SelectLabelDirective',
+        type: 'directive',
+        selector: 'ng-template[appSelectLabel]',
+        description:
+          'The label of the select, you can use this directive instead of label input, when you need more customization. The template context will be the options array',
+      },
+      {
         name: 'OptionGroupComponent',
         type: 'component',
         selector: 'app-option-group',

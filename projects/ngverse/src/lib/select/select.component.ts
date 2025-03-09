@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  contentChild,
   contentChildren,
   ElementRef,
   forwardRef,
@@ -22,11 +23,13 @@ import { PopoverOriginDirective } from '@/ui/popover/popover-origin.directive';
 import { PopoverComponent } from '@/ui/popover/popover.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
+import { NgTemplateOutlet } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NgIcon } from '@ng-icons/core';
 import { matExpandMore } from '@ng-icons/material-icons/baseline';
 import { map } from 'rxjs';
 import { OptionComponent } from './option.component';
+import { SelectLabelDirective } from './select-label.directive';
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -42,6 +45,7 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     PopoverOriginDirective,
     PopoverComponent,
     NgIcon,
+    NgTemplateOutlet,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.css',
@@ -72,6 +76,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     this.options,
     inject(Injector)
   ).withTypeAhead();
+
+  templateLabel = contentChild<SelectLabelDirective>(SelectLabelDirective);
 
   selectOption = viewChild<ElementRef<HTMLElement>>('selectOption');
 
