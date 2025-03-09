@@ -4,6 +4,13 @@ import { OptionComponent } from '@/ui/select/option.component';
 import { SelectComponent } from '@/ui/select/select.component';
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgIcon } from '@ng-icons/core';
+import {
+  matBlender,
+  matElectricBolt,
+  matIron,
+} from '@ng-icons/material-icons/baseline';
+import { SelectLabelDirective } from '../../../../../../ngverse/src/lib/select/select-label.directive';
 const countries = [
   { code: 'KA', name: 'Georgia' },
   { code: 'US', name: 'United States' },
@@ -53,6 +60,12 @@ const directories = [
   },
 ];
 
+const customOptions = [
+  { label: 'Electricity', value: matElectricBolt },
+  { label: 'Blender', value: matBlender },
+  { label: 'Iron', value: matIron },
+];
+
 @Component({
   selector: 'doc-show-case-select',
   imports: [
@@ -61,6 +74,8 @@ const directories = [
     OptionComponent,
     OptionGroupComponent,
     OptionGroupLabelComponent,
+    SelectLabelDirective,
+    NgIcon,
   ],
   templateUrl: './show-case-select.component.html',
   styleUrl: './show-case-select.component.css',
@@ -68,9 +83,12 @@ const directories = [
 export class ShowCaseSelectComponent {
   countries = countries;
   directories = directories;
+  customOptions = customOptions;
   formControlSingle = new FormControl(null, Validators.required);
 
   formControlMulti = new FormControl(['US', 'CA'], Validators.required);
 
   dirFormControl = new FormControl(null);
+
+  customLabelControl = new FormControl(null);
 }
