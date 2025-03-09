@@ -15,20 +15,6 @@ coming—stay tuned!
    <img src="logo.png" alt="Logo" width="200px" />
 </p>
 
-## Usage
-
-### Installation
-
-```bash
-ng add ngverse
-```
-
-### Generate Elements
-
-```bash
-ng g ngverse:element button
-```
-
 ## Creators
 
 |                                                           |                                                                |
