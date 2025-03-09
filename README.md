@@ -9,7 +9,7 @@ For more info visit the [docs](https://ui.ngverse.dev)
 Thank you all for your feedback! The huge stable release is
 coming—stay tuned!
 
-[![npm](https://img.shields.io/npm/v/ngverse?label=npm&logo=npm)](https://www.npmjs.com/package/ngverse)
+[![npm](https://img.shields.io/npm/v/@ngverse/ui?label=npm&logo=npm)](https://www.npmjs.com/package/@ngverse/ui)
 
 <p align="center">
    <img src="logo.png" alt="Logo" width="200px" />
