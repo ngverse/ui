@@ -9,6 +9,6 @@ import { booleanAttribute, Directive, input } from '@angular/core';
     '[class.z-1]': 'sticky()',
   },
 })
-export class HeadTrDirective {
+export class TrHeadDirective {
   sticky = input(false, { transform: booleanAttribute });
 }
