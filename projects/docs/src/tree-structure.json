@@ -894,11 +894,6 @@
           "language": "ts"
         },
         {
-          "path": "select/select-label.directive.spec.ts",
-          "name": "select-label.directive.spec.ts",
-          "language": "spec.ts"
-        },
-        {
           "path": "select/select-label.directive.ts",
           "name": "select-label.directive.ts",
           "language": "ts"

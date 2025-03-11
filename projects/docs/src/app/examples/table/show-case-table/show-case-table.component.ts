@@ -6,7 +6,7 @@ import { TableDirective } from '@/ui/table/table.directive';
 import { SortChangeType } from '@/ui/table/table.types';
 import { TdDirective } from '@/ui/table/td.directive';
 import { ThDirective } from '@/ui/table/th.directive';
-import { HeadTrDirective } from '@/ui/table/tr-head.directive';
+import { TrHeadDirective } from '@/ui/table/tr-head.directive';
 import { TrDirective } from '@/ui/table/tr.directive';
 import {
   ChangeDetectionStrategy,
@@ -65,7 +65,7 @@ const ELEMENT_DATA = generatePeriodicElements();
     TrDirective,
     TdDirective,
     ThDirective,
-    HeadTrDirective,
+    TrHeadDirective,
     TableLayoutComponent,
     SortHeaderComponent,
     SortDirective,
