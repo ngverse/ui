@@ -56,7 +56,7 @@ export function add(options: Schema) {
       }
       let content = host.read(filePath)?.toString('utf-8');
 
-      if (content) {
+      if (content !== undefined) {
         if (!prefixIsDefault(prefix)) {
           content = updatePrefix(content, prefix);
         }
