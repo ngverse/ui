@@ -1,8 +1,8 @@
+import { ButtonComponent } from '@/ui/button/button.component';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { DIALOG_ENTER_ANIMATION } from '../dialog-animations';
+import { zoomInOnEnter } from '@ngverse/motion/animatecss';
 import { DialogCloseDirective } from '../dialog-close.directive';
-import { ButtonComponent } from '@/ui/button/button.component';
 
 export interface AlertDialogOption {
   title: string;
@@ -15,7 +15,7 @@ export interface AlertDialogOption {
   imports: [DialogCloseDirective, ButtonComponent],
   templateUrl: './alert-dialog.component.html',
   styleUrl: './alert-dialog.component.css',
-  animations: [DIALOG_ENTER_ANIMATION],
+  animations: [zoomInOnEnter({ duration: 250 })],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertDialogComponent {

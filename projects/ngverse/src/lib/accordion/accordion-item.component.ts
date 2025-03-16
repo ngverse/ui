@@ -8,17 +8,21 @@ import {
 } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 import { matExpandMore } from '@ng-icons/material-icons/baseline';
-import {
-  COLLAPSE_ON_LEAVE,
-  EXPAND_ON_ENTER_ANIMATION,
-} from './accordion-animations';
+import { collapseOnLeave, expandOnEnter } from '@ngverse/motion/generalcss';
 
 @Component({
   selector: 'app-accordion-item',
   imports: [NgIcon],
   templateUrl: './accordion-item.component.html',
   styleUrl: './accordion-item.component.css',
-  animations: [EXPAND_ON_ENTER_ANIMATION, COLLAPSE_ON_LEAVE],
+  animations: [
+    expandOnEnter({
+      duration: 150,
+    }),
+    collapseOnLeave({
+      duration: 150,
+    }),
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block mb-3 pb-3 border-b border-divider',

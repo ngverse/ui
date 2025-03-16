@@ -7,11 +7,6 @@
       "name": "accordion",
       "files": [
         {
-          "path": "accordion/accordion-animations.ts",
-          "name": "accordion-animations.ts",
-          "language": "ts"
-        },
-        {
           "path": "accordion/accordion-body.component.ts",
           "name": "accordion-body.component.ts",
           "language": "ts"
