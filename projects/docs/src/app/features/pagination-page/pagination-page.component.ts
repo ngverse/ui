@@ -38,7 +38,12 @@ const ROOT = 'pagination';
 export class PaginationPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
 
-  preps: Prerequisite[] = [{ name: 'button' }];
+  prerequisites: Prerequisite[] = [
+    {
+      name: 'button',
+      label: 'Button',
+    },
+  ];
 
   sourceTree: SourceTreeFolder[] = [
     {

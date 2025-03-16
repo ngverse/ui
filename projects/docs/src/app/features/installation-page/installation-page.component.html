@@ -21,6 +21,11 @@
         >ng-icons</a
       >
     </li>
+    <li>
+      <a href="https://motion.ngverse.dev" target="_blank"
+        >&#64;ngverse/motion</a
+      >
+    </li>
   </ul>
   <h2>Install &#64;angular/cdk</h2>
   <p>
@@ -64,9 +69,22 @@
     code='@import "tailwindcss";'
   ></doc-source-code>
   <h2>Add Angular animations</h2>
-  <p>We use Angular animations for smooth transition between states</p>
+  <p>
+    In order to do smooth transitions between states, we use
+    <a href="http://motion.ngverse.dev/" target="_blank">&#64;ngverse/motion</a>
+    library.
+  </p>
+  <p class="mb-0">Installation:</p>
+  <doc-source-code
+    language="bash"
+    code="npm install @ngverse/motion"
+  ></doc-source-code>
+  <p>
+    Then add <code>provideAnimationsAsync</code> provider to your
+    <code>appConfig</code> file to enable animations
+  </p>
   <doc-source-code language="ts" [code]="animationsCode"></doc-source-code>
-  <h2>Installing an Icons Library (Optional)</h2>
+  <h2>Installing an Icons Library</h2>
   <p>
     Some components, such as the <code>select</code> component, require icons.
     We use the
@@ -75,41 +93,11 @@
     >
     library (Material Icons preset) for this purpose.
   </p>
-  <p>
-    If you prefer not to use this library, you can skip this step and update the
-    components manually when needed.
-  </p>
   <doc-source-code
     language="bash"
     code=" npm install @ng-icons/core @ng-icons/material-icons"
   ></doc-source-code>
-  <h2>Update typescript import</h2>
-  <p>
-    In <doc-project-name [code]="true"></doc-project-name>, Components use
-    absolute paths for internal imports. It’s recommended that you follow the
-    same approach to keep your imports clean and maintainable. Instead of using
-    long and cumbersome relative imports like:
-  </p>
-  <doc-source-code
-    language="ts"
-    [allowCopy]="false"
-    code='import { ButtonComponent } from "../../../../button/button.component";'
-  ></doc-source-code>
-  <p>You should use an absolute path:</p>
-  <doc-source-code
-    language="ts"
-    [allowCopy]="false"
-    code='import { ButtonComponent } from "@ui/button/button.component";'
-  ></doc-source-code>
-  <p>
-    In order to do that, update your root <code>tsconfig.json</code> file with
-    following path
-  </p>
-  <doc-source-code language="json" [code]="tsImportCode"></doc-source-code>
-  <p>
-    <code>./src/app/ui</code> should be adjusted based on your project. In
-    general this is the most used path
-  </p>
+
   <h2>Install <doc-project-name></doc-project-name> schematics</h2>
   <doc-source-code
     language="bash"
@@ -147,5 +135,39 @@
   <p>
     You are now ready to start using
     <doc-project-name [code]="true"></doc-project-name> in your Angular project!
+  </p>
+  <h2>Update typescript import (Optional)</h2>
+  <p>
+    In general, you should place all your
+    <doc-project-name [code]="true"></doc-project-name> components in the same
+    folder. To import them, you can use either absolute or relative imports. The
+    recommended approach is to use absolute imports to prevent imports from
+    becoming too nested.
+  </p>
+  <p>
+    This configuration is not required for
+    <doc-project-name [code]="true"></doc-project-name> to work, but it is
+    considered a good practice.
+  </p>
+  <p>So Instead of this import:</p>
+  <doc-source-code
+    language="ts"
+    [allowCopy]="false"
+    code='import { ButtonComponent } from "../../../../button/button.component";'
+  ></doc-source-code>
+  <p>It will become this:</p>
+  <doc-source-code
+    language="ts"
+    [allowCopy]="false"
+    code='import { ButtonComponent } from "@ui/button/button.component";'
+  ></doc-source-code>
+  <p>
+    In order to do that, update your root <code>tsconfig.json</code> file with
+    following path
+  </p>
+  <doc-source-code language="json" [code]="tsImportCode"></doc-source-code>
+  <p>
+    <code>./src/app/ui</code> should be adjusted based on your project. In
+    general this is the most used path
   </p>
 </doc-blog-page>

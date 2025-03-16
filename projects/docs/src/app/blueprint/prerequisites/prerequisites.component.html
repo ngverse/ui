@@ -13,31 +13,18 @@
         .
       }
     }
+
     Ensure {{ prepsAuto.length === 1 ? 'it is ' : 'they are ' }} added to your
     project if
     {{ prepsAuto.length === 1 ? 'it is not ' : 'they are not' }} already.
     <br />
-  </p>
-
-  <div class="mt-4 flex flex-col gap-4">
-    @for (dep of preps(); track $index) {
-      <doc-source-code
-        [surface]="true"
-        [code]="getCode(dep)"
-        language="bash"
-      ></doc-source-code>
-    }
-  </div>
-  <p class="mt-2"></p>
-} @else {
-  <p class="mt-2">
-    <ng-content></ng-content>
+    (Component folders must be in the same directory for imports to work
+    correctly.)
     <br />
-    Element folders must be in the same directory for imports to work correctly.
   </p>
 
   <div class="mt-4 flex flex-col gap-4">
-    @for (dep of preps(); track $index) {
+    @for (dep of prepsAuto; track $index) {
       <doc-source-code
         [surface]="true"
         [code]="getCode(dep)"
