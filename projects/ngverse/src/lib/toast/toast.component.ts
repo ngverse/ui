@@ -1,12 +1,7 @@
-import {
-  animate,
-  AnimationEvent,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { zoomIn, zoomOut } from '@ngverse/motion/animatecss';
 import { Subject } from 'rxjs';
 import { ToastCloseIconComponent } from './toast-close.component';
 import { TOAST_POSITION } from './toast.service';
@@ -19,13 +14,8 @@ import { TOAST_POSITION } from './toast.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('toggle', [
-      transition('* => enter', [
-        style({ transform: 'scale(0.8)', opacity: 0 }),
-        animate('150ms ease-out', style({ transform: 'scale(1)', opacity: 1 })),
-      ]),
-      transition('* => exit', [
-        animate('150ms ease-in', style({ opacity: 0 })),
-      ]),
+      transition('* => enter', [zoomIn({ duration: 250 })]),
+      transition('* => exit', [zoomOut({ duration: 250 })]),
     ]),
   ],
   host: {

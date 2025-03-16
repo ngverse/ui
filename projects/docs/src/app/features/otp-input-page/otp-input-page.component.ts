@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import {
   ApiInfo,
   ApiInfoComponent,
@@ -29,7 +28,6 @@ const ROOT = 'otp-input';
     CommandInstallationComponent,
     ApiInfoComponent,
     PrerequisitesComponent,
-    RouterLink,
   ],
   templateUrl: './otp-input-page.component.html',
   styleUrl: './otp-input-page.component.css',

@@ -1,24 +1,17 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { fadeInOnEnter, fadeOutOnLeave } from '@ngverse/motion/animatecss';
 
 @Component({
   selector: 'app-error',
   template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    trigger('toggle', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('150ms', style({ opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ opacity: 1 }),
-        animate('150ms', style({ opacity: 0 })),
-      ]),
-    ]),
+    fadeInOnEnter({ duration: 250 }),
+    fadeOutOnLeave({ duration: 250 }),
   ],
   host: {
-    '[@toggle]': 'true',
+    '[@fadeInOnEnter]': 'true',
+    '[@fadeOutOnLeave]': 'true',
     class: 'text-sm text-danger',
   },
 })

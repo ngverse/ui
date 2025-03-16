@@ -49,7 +49,6 @@ export class ShowCaseToastComponent {
       position: this.position(),
       type: this.type(),
       message: 'Current time is: ' + new Date().toLocaleTimeString(),
-      closeDelay: 500000,
     });
   }
 }
