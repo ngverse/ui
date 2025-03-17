@@ -17,11 +17,6 @@
       <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>
     </li>
     <li>
-      <a href="https://ng-icons.github.io/ng-icons/#/" target="_blank"
-        >ng-icons</a
-      >
-    </li>
-    <li>
       <a href="https://motion.ngverse.dev" target="_blank"
         >&#64;ngverse/motion</a
       >
@@ -86,18 +81,36 @@
   <doc-source-code language="ts" [code]="animationsCode"></doc-source-code>
   <h2>Installing an Icons Library</h2>
   <p>
-    Some components, such as the <code>select</code> component, require icons.
-    We use the
-    <a href="https://ng-icons.github.io/ng-icons/#/" target="_blank"
-      >ng-icons</a
-    >
-    library (Material Icons preset) for this purpose.
+    Some components, such as the <code>checkbox</code> component, require icons.
+    We use <doc-project-name></doc-project-name>
+    <a href="https://ui.ngverse.dev/doc/icon" target="_blank"> font-icon</a>
+    component for that.
   </p>
-  <doc-source-code
-    language="bash"
-    code=" npm install @ng-icons/core @ng-icons/material-icons"
-  ></doc-source-code>
-
+  <p>
+    Internally <code>font-icon</code> relies on
+    <a href="https://fonts.google.com/icons" target="_blank"
+      >Material Symbols</a
+    >
+  </p>
+  so import the following link tag in your <code>index.html</code>
+  <doc-source-code language="html" [code]="iconLink"></doc-source-code>
+  <p>
+    This will only import the icons that are used across
+    <doc-project-name [code]="true"></doc-project-name> Components
+  </p>
+  <p>
+    You can also add all the material icons, if you are going to use them
+    extensively
+  </p>
+  <doc-source-code language="html" [code]="allIconsLink"></doc-source-code>
+  <p>
+    You can read the full documentation here:
+    <a
+      href="https://developers.google.com/fonts/docs/material_symbols"
+      target="_blank"
+      >Material Symbols</a
+    >
+  </p>
   <h2>Install <doc-project-name></doc-project-name> schematics</h2>
   <doc-source-code
     language="bash"
