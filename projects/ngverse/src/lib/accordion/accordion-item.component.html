@@ -9,12 +9,11 @@
   >
     {{ label() }}
     <ng-content select="app-accordion-header"></ng-content>
-    <ng-icon
-      [svg]="EXPAND_ICON"
+    <app-font-icon
       [class.rotate-180]="expanded"
       class="ml-auto transition-transform"
-      size="24"
-    ></ng-icon>
+      >keyboard_arrow_down</app-font-icon
+    >
   </button>
 </h3>
 @if (expanded) {

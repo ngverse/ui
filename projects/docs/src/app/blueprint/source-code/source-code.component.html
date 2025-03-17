@@ -4,7 +4,7 @@
     (click)="copy()"
     class="copy-button"
   >
-    <ng-icon size="20" [svg]="copied() ? CHECK_ICON : COPY_ICON"></ng-icon>
+    <app-font-icon>{{ copied() ? 'check' : 'content_copy' }}</app-font-icon>
   </doc-icon-button>
 }
 <app-card

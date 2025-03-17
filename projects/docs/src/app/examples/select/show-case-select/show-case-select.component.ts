@@ -1,16 +1,10 @@
 import { OptionGroupLabelComponent } from '@/ui/select/option-group-label.component';
 import { OptionGroupComponent } from '@/ui/select/option-group.component';
 import { OptionComponent } from '@/ui/select/option.component';
+import { SelectLabelDirective } from '@/ui/select/select-label.directive';
 import { SelectComponent } from '@/ui/select/select.component';
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgIcon } from '@ng-icons/core';
-import {
-  matBlender,
-  matElectricBolt,
-  matIron,
-} from '@ng-icons/material-icons/baseline';
-import { SelectLabelDirective } from '../../../../../../ngverse/src/lib/select/select-label.directive';
 const countries = [
   { code: 'KA', name: 'Georgia' },
   { code: 'US', name: 'United States' },
@@ -61,9 +55,9 @@ const directories = [
 ];
 
 const customOptions = [
-  { label: 'Electricity', value: matElectricBolt },
-  { label: 'Blender', value: matBlender },
-  { label: 'Iron', value: matIron },
+  { label: 'Danger', value: 'red' },
+  { label: 'Warning', value: 'orange' },
+  { label: 'OK', value: 'blue' },
 ];
 
 @Component({
@@ -75,7 +69,6 @@ const customOptions = [
     OptionGroupComponent,
     OptionGroupLabelComponent,
     SelectLabelDirective,
-    NgIcon,
   ],
   templateUrl: './show-case-select.component.html',
   styleUrl: './show-case-select.component.css',

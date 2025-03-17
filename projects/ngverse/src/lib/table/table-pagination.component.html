@@ -10,9 +10,7 @@
     size="sm"
     (click)="firstPage()"
     [disabled]="!hasPrevPage()"
-  >
-    <ng-icon [svg]="ChevronFirst" size="24"></ng-icon>
-  </button>
+  ></button>
   <button
     icon
     variant="link"
@@ -23,9 +21,7 @@
     (click)="prevPage()"
     [disabled]="hasPrevPage()"
     [disabled]="!hasPrevPage()"
-  >
-    <ng-icon [svg]="ChevronLeft" size="24"></ng-icon>
-  </button>
+  ></button>
   <button
     icon
     variant="link"
@@ -35,9 +31,7 @@
     aria-label="Go to next page"
     (click)="nextPage()"
     [disabled]="!hasNextPage()"
-  >
-    <ng-icon [svg]="ChevronRight" size="24"></ng-icon>
-  </button>
+  ></button>
   <button
     variant="link"
     color="secondary"
@@ -47,7 +41,5 @@
     aria-label="Go to last page"
     [disabled]="!hasNextPage()"
     (click)="lastPage()"
-  >
-    <ng-icon [svg]="ChevrontLast" size="24"></ng-icon>
-  </button>
+  ></button>
 </div>

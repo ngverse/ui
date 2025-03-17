@@ -59,10 +59,10 @@ describe('PaginationComponent', () => {
 
   it('should display prev and next buttons', () => {
     const pageButtons = fixture.debugElement.queryAll(By.css('button'));
-    expect(pageButtons[0].nativeElement.innerText).toBe('Previous');
-    expect(pageButtons[pageButtons.length - 1].nativeElement.innerText).toBe(
-      'Next'
-    );
+    expect(pageButtons[0].nativeElement.innerText).toContain('Previous');
+    expect(
+      pageButtons[pageButtons.length - 1].nativeElement.innerText
+    ).toContain('Next');
   });
 
   it('should disable previous button on first page', () => {

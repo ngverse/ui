@@ -22,12 +22,9 @@
       {{ placeholder() }}
     }
   </span>
-  <ng-icon
-    class="transition-transform"
-    [class.rotate-180]="isOpen()"
-    [svg]="EXPAND_MORE_ICON"
-    size="28"
-  ></ng-icon>
+  <app-font-icon class="transition-transform" [class.rotate-180]="isOpen()"
+    >keyboard_arrow_down</app-font-icon
+  >
 </button>
 <app-popover
   [outsideClose]="true"

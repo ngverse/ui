@@ -6,9 +6,8 @@ import {
   ComponentType,
 } from '@angular/cdk/portal';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { NgIcon } from '@ng-icons/core';
-import { matClose } from '@ng-icons/material-icons/baseline';
 import { zoomInOnEnter } from '@ngverse/motion/animatecss';
+import { FontIconComponent } from '../../icon/font-icon.component';
 import { DialogCloseDirective } from '../dialog-close.directive';
 
 export interface DialogOptions
@@ -20,7 +19,12 @@ export interface DialogOptions
 
 @Component({
   selector: 'app-dialog',
-  imports: [CdkPortalOutlet, DialogCloseDirective, ButtonComponent, NgIcon],
+  imports: [
+    CdkPortalOutlet,
+    DialogCloseDirective,
+    ButtonComponent,
+    FontIconComponent,
+  ],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,7 +33,6 @@ export interface DialogOptions
 export class DialogComponent {
   dialogData = inject<DialogOptions>(DIALOG_DATA);
   componentPortal: ComponentPortal<unknown>;
-  CLOSE_ICON = matClose;
 
   get showClose() {
     return this.dialogData.showClose;

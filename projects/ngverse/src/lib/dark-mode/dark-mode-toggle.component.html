@@ -7,5 +7,5 @@
   size="sm"
   aria-label="Dark Mode"
 >
-  <ng-icon size="20" [svg]="isEnabled() ? DARK_MODE : LIGHT_MODE"></ng-icon>
+  <app-font-icon>{{ isEnabled() ? 'dark_mode' : 'light_mode' }}</app-font-icon>
 </button>

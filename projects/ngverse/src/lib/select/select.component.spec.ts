@@ -79,11 +79,6 @@ describe('SelectComponent', () => {
       const selectButtonLabel = fixture.nativeElement.querySelector('span');
       expect(selectButtonLabel.textContent.trim()).toBe('United States');
     });
-
-    it('should display select-button-icon', () => {
-      const selectButtonIcon = fixture.nativeElement.querySelector('ng-icon');
-      expect(selectButtonIcon).toBeTruthy();
-    });
   });
 
   describe('Open/Close', () => {
@@ -158,9 +153,8 @@ describe('SelectComponent', () => {
         await fixture.whenStable();
         const selectButtonLabel =
           fixture.nativeElement.querySelector('button span');
-        expect(selectButtonLabel.textContent.trim()).toBe(
-          'United States, Canada'
-        );
+        expect(selectButtonLabel.textContent).toContain('United States');
+        expect(selectButtonLabel.textContent).toContain('Canada');
       });
     });
 

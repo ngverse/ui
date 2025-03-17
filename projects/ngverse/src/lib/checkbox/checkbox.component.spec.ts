@@ -75,7 +75,7 @@ describe('CheckboxComponent', () => {
     expect(checkboxNativeElement.id).toBe(id);
   });
   it("ng-content should be 'Test checkbox'", async () => {
-    expect(checkboxElement.textContent?.trim()).toBe('Test checkbox');
+    expect(checkboxElement.textContent?.trim()).toContain('Test checkbox');
   });
 });
 

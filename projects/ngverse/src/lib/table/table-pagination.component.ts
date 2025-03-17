@@ -6,17 +6,10 @@ import {
   input,
   output,
 } from '@angular/core';
-import { NgIcon } from '@ng-icons/core';
-import {
-  matChevronLeft,
-  matChevronRight,
-  matFirstPage,
-  matLastPage,
-} from '@ng-icons/material-icons/baseline';
 
 @Component({
   selector: 'app-table-pagination',
-  imports: [ButtonComponent, NgIcon],
+  imports: [ButtonComponent],
   templateUrl: './table-pagination.component.html',
   styleUrl: './table-pagination.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,10 +24,6 @@ export class TablePaginationComponent {
   prevPageAriaLabel = input<string>('Previus Page');
   nextPageAriaLabel = input<string>('Next Page');
   pageAriaLabel = input<string>('Page ');
-  ChevronFirst = matFirstPage;
-  ChevronRight = matChevronRight;
-  ChevrontLast = matLastPage;
-  ChevronLeft = matChevronLeft;
 
   pageChange = output<number>();
 

@@ -7,11 +7,10 @@
     [checked]="value()"
     type="checkbox"
   />
-  <ng-icon
-    [svg]="value() ? CHECK_ICON : UNCHECK_ICON"
-    size="24"
+  <app-font-icon
     class="block rounded-sm peer-focus-visible:outline peer-focus-visible:outline-ring"
-  ></ng-icon>
+    >{{ value() ? 'check_box' : 'check_box_outline_blank' }}</app-font-icon
+  >
 </div>
 <label [htmlFor]="inputId()">
   <ng-content></ng-content>

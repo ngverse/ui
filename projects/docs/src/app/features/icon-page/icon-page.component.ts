@@ -112,6 +112,30 @@ export class IconPageComponent {
           },
         ],
       },
+      {
+        name: 'FontIconComponent',
+        type: 'component',
+        selector: 'app-font-icon',
+        inputs: [
+          {
+            name: 'ng-content',
+            type: 'ng-content',
+            description: 'The name of the icon to display.',
+          },
+          {
+            name: 'size',
+            type: 'number | string',
+            default: '24px',
+            description: 'The size of the icon.',
+          },
+          {
+            name: 'variant',
+            type: 'outlined | rounded | sharp',
+            default: 'outlined',
+            description: 'The variant of the icon.',
+          },
+        ],
+      },
     ],
   };
 }
