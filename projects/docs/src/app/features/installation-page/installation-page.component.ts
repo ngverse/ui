@@ -32,6 +32,10 @@ export class InstallationPageComponent {
    ....
     `;
 
+  iconLink = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,check_box,check_box_outline_blank,close,dark_mode,keyboard_arrow_down,light_mode,radio_button_checked,radio_button_unchecked"/> `;
+
+  allIconsLink = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>`;
+
   constructor() {
     this.fileService.getFile(this.ngVersefile).subscribe((data) => {
       this.ngVerseStyleContent.set(data);
