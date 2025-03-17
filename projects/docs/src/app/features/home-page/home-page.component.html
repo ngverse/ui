@@ -16,18 +16,17 @@
           Just
           <span class="inline-flex items-center gap-1">
             Copy
-            <ng-icon [svg]="Clipboard" size="20"></ng-icon>
-            <!-- <app-icon width="20" height="20" name="clipboard"></app-icon> -->
+            <app-font-icon size="20">content_copy</app-font-icon>
           </span>
           <span class="inline-flex items-center gap-1"
             >, Paste
-            <ng-icon [svg]="ClipboardPaste" size="20"></ng-icon>
+            <app-font-icon size="20">content_paste</app-font-icon>
           </span>
           <span class="inline-flex items-center gap-1">
             , and Fly
-            <div class="pt-1 text-primary">
-              <ng-icon [svg]="Rocket" size="20"></ng-icon>
-            </div>
+            <app-font-icon class="text-primary" size="20"
+              >rocket_launch</app-font-icon
+            >
           </span>
         </div>
       </h2>

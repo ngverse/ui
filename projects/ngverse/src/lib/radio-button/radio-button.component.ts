@@ -7,15 +7,15 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { NgIcon } from '@ng-icons/core';
 import {
   matRadioButtonChecked,
   matRadioButtonUnchecked,
 } from '@ng-icons/material-icons/baseline';
+import { FontIconComponent } from '../icon/font-icon.component';
 import { RadioGroupComponent } from './radio-group.component';
 @Component({
   selector: 'app-radio-button',
-  imports: [NgIcon],
+  imports: [FontIconComponent],
   templateUrl: './radio-button.component.html',
   styleUrl: './radio-button.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

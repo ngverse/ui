@@ -23,9 +23,9 @@ import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { NgTemplateOutlet } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { NgIcon } from '@ng-icons/core';
 import { matExpandMore } from '@ng-icons/material-icons/baseline';
 import { map } from 'rxjs';
+import { FontIconComponent } from '../icon/font-icon.component';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
 import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
@@ -44,8 +44,8 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     ReactiveFormsModule,
     PopoverOriginDirective,
     PopoverComponent,
-    NgIcon,
     NgTemplateOutlet,
+    FontIconComponent,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.css',

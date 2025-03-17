@@ -9,11 +9,11 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { NgIcon } from '@ng-icons/core';
 import {
   matCheckBox,
   matCheckBoxOutlineBlank,
 } from '@ng-icons/material-icons/baseline';
+import { FontIconComponent } from '../icon/font-icon.component';
 import { OptionGroupComponent } from './option-group.component';
 import { SelectComponent } from './select.component';
 
@@ -21,7 +21,7 @@ import { SelectComponent } from './select.component';
   selector: 'app-option',
   templateUrl: './option.component.html',
   styleUrl: './option.component.css',
-  imports: [NgIcon],
+  imports: [FontIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'option',

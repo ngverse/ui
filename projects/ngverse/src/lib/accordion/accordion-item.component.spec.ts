@@ -48,7 +48,7 @@ describe('AccordionItemComponent', () => {
     await fixture.whenStable();
 
     const label = accordionHeader();
-    expect(label.textContent?.trim()).toBe('test label');
+    expect(label.textContent?.trim()).toContain('test label');
   });
 
   it('should show body on header click', async () => {
@@ -85,7 +85,7 @@ describe('AccordionItemComponent', () => {
   it('should display content header', async () => {
     component.showContentLabel.set('Content Label');
     await fixture.whenStable();
-    expect(accordionHeader().textContent?.trim()).toBe('Content Label');
+    expect(accordionHeader().textContent?.trim()).toContain('Content Label');
   });
 });
 

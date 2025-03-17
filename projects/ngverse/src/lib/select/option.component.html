@@ -2,5 +2,7 @@
   <ng-content></ng-content>
 </div>
 @if (select.multiple()) {
-  <ng-icon [svg]="isSelected() ? CHECK_ICON : UNCHECK_ICON" size="28"></ng-icon>
+  <app-font-icon>{{
+    isSelected() ? 'check_box' : 'check_box_outline_blank'
+  }}</app-font-icon>
 }

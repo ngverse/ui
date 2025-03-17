@@ -3,15 +3,20 @@ import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { ComponentType } from '@angular/cdk/portal';
 import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { NgIcon } from '@ng-icons/core';
 import { matClose } from '@ng-icons/material-icons/baseline';
 import { slideInRight, slideOutRight } from '@ngverse/motion/animatecss';
 import { Subject } from 'rxjs';
+import { FontIconComponent } from '../icon/font-icon.component';
 import { DrawerCloseDirective } from './drawer-close.directive';
 
 @Component({
   selector: 'app-drawer',
-  imports: [DrawerCloseDirective, NgIcon, ButtonComponent, NgComponentOutlet],
+  imports: [
+    DrawerCloseDirective,
+    ButtonComponent,
+    NgComponentOutlet,
+    FontIconComponent,
+  ],
   templateUrl: './drawer.component.html',
   styleUrl: './drawer.component.css',
   animations: [

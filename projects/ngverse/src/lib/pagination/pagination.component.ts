@@ -7,10 +7,7 @@ import {
   output,
 } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
-import {
-  matArrowBack,
-  matArrowForward,
-} from '@ng-icons/material-icons/baseline';
+import { FontIconComponent } from '../icon/font-icon.component';
 // We will keep always 7 visible items so it will prevent the width of the pagination from changing
 const ALWAYS_VISIBLE_ITEMS = 7;
 
@@ -56,7 +53,7 @@ function generatePages(totalPages: number, currentPage: number) {
 
 @Component({
   selector: 'app-pagination',
-  imports: [ButtonComponent, NgIcon],
+  imports: [ButtonComponent, NgIcon, FontIconComponent],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -68,9 +65,6 @@ export class PaginationComponent {
   prevPageAriaLabel = input<string>('Previus Page');
   nextPageAriaLabel = input<string>('Next Page');
   pageAriaLabel = input<string>('Page ');
-
-  ARROW_PREV = matArrowBack;
-  ARROW_NEXT = matArrowForward;
 
   pageChange = output<number>();
 

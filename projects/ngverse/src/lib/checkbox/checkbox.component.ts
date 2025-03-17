@@ -15,11 +15,11 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import { NgIcon } from '@ng-icons/core';
 import {
   matCheckBox,
   matCheckBoxOutlineBlank,
 } from '@ng-icons/material-icons/baseline';
+import { FontIconComponent } from '../icon/font-icon.component';
 
 type VALUE_TYPE = boolean | undefined | null;
 
@@ -33,7 +33,7 @@ type LABEL_ALIGN = 'start' | 'end';
 
 @Component({
   selector: 'app-checkbox',
-  imports: [NgIcon],
+  imports: [FontIconComponent],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.css',
   providers: [

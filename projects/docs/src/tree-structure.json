@@ -425,11 +425,6 @@
           ]
         },
         {
-          "path": "dialog/dialog-animations.ts",
-          "name": "dialog-animations.ts",
-          "language": "ts"
-        },
-        {
           "path": "dialog/dialog-close.directive.spec.ts",
           "name": "dialog-close.directive.spec.ts",
           "language": "spec.ts"
