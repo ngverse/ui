@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import {
   ApiInfo,
   ApiInfoComponent,
@@ -30,7 +29,6 @@ const ROOT = 'dark-mode';
     ShowCaseComponent,
     CommandInstallationComponent,
     PrerequisitesComponent,
-    RouterLink,
   ],
   templateUrl: './dark-mode-page.component.html',
   styleUrl: './dark-mode-page.component.css',
@@ -39,7 +37,10 @@ const ROOT = 'dark-mode';
 export class DarkModePageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
 
-  preps: Prerequisite[] = [{ name: 'button' }, { name: 'local-storage' }];
+  preps: Prerequisite[] = [
+    { name: 'button', label: 'Button' },
+    { name: 'local-storage', label: 'LocalStorage' },
+  ];
 
   sourceTree: SourceTreeFolder[] = [
     {

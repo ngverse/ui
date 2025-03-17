@@ -8,7 +8,7 @@ import {
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 import { matClose } from '@ng-icons/material-icons/baseline';
-import { DIALOG_ENTER_ANIMATION } from '../dialog-animations';
+import { zoomInOnEnter } from '@ngverse/motion/animatecss';
 import { DialogCloseDirective } from '../dialog-close.directive';
 
 export interface DialogOptions
@@ -24,7 +24,7 @@ export interface DialogOptions
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [DIALOG_ENTER_ANIMATION],
+  animations: [zoomInOnEnter({ duration: 250 })],
 })
 export class DialogComponent {
   dialogData = inject<DialogOptions>(DIALOG_DATA);

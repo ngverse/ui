@@ -1,7 +1,7 @@
+import { ButtonComponent } from '@/ui/button/button.component';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { DIALOG_ENTER_ANIMATION } from '../dialog-animations';
-import { ButtonComponent } from '@/ui/button/button.component';
+import { zoomInOnEnter } from '@ngverse/motion/animatecss';
 
 export interface ConfirmDialogOptions {
   title: string;
@@ -16,7 +16,7 @@ export interface ConfirmDialogOptions {
   templateUrl: './confirm-dialog.component.html',
   styleUrl: './confirm-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [DIALOG_ENTER_ANIMATION],
+  animations: [zoomInOnEnter({ duration: 250 })],
 })
 export class ConfirmDialogComponent {
   dialogData = inject<ConfirmDialogOptions>(DIALOG_DATA);

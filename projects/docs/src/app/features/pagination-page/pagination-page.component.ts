@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import {
   ApiInfo,
   ApiInfoComponent,
@@ -30,7 +29,6 @@ const ROOT = 'pagination';
     ApiInfoComponent,
     ShowCasePaginationComponent,
     PrerequisitesComponent,
-    RouterLink,
   ],
   templateUrl: './pagination-page.component.html',
   styleUrl: './pagination-page.component.css',
@@ -38,7 +36,12 @@ const ROOT = 'pagination';
 export class PaginationPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
 
-  preps: Prerequisite[] = [{ name: 'button' }];
+  prerequisites: Prerequisite[] = [
+    {
+      name: 'button',
+      label: 'Button',
+    },
+  ];
 
   sourceTree: SourceTreeFolder[] = [
     {

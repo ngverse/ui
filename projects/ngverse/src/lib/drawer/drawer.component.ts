@@ -1,16 +1,11 @@
 import { ButtonComponent } from '@/ui/button/button.component';
-import {
-  animate,
-  AnimationEvent,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { ComponentType } from '@angular/cdk/portal';
 import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 import { matClose } from '@ng-icons/material-icons/baseline';
+import { slideInRight, slideOutRight } from '@ngverse/motion/animatecss';
 import { Subject } from 'rxjs';
 import { DrawerCloseDirective } from './drawer-close.directive';
 
@@ -21,19 +16,8 @@ import { DrawerCloseDirective } from './drawer-close.directive';
   styleUrl: './drawer.component.css',
   animations: [
     trigger('toggle', [
-      transition('* => enter', [
-        style({ transform: 'translateX(100%)', opacity: 0 }),
-        animate(
-          '300ms ease-out',
-          style({ transform: 'translateX(0)', opacity: 1 })
-        ),
-      ]),
-      transition('* => exit', [
-        animate(
-          '200ms ease-in',
-          style({ transform: 'translateX(100%)', opacity: 0 })
-        ),
-      ]),
+      transition('* => enter', [slideInRight({ duration: 250 })]),
+      transition('* => exit', [slideOutRight({ duration: 250 })]),
     ]),
   ],
   host: {

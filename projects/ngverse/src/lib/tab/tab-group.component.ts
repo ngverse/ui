@@ -1,4 +1,4 @@
-import { animate, style, transition, trigger } from '@angular/animations';
+import { transition, trigger } from '@angular/animations';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { Directionality } from '@angular/cdk/bidi';
 import { NgTemplateOutlet } from '@angular/common';
@@ -15,6 +15,7 @@ import {
   signal,
   viewChildren,
 } from '@angular/core';
+import { fadeIn } from '@ngverse/motion/animatecss';
 import { TabGroupHeaderComponent } from './tab-group-header.component';
 import { TabComponent } from './tab.component';
 
@@ -25,12 +26,7 @@ import { TabComponent } from './tab.component';
   styleUrl: './tab-group.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    trigger('tabChange', [
-      transition('* => *', [
-        style({ opacity: 0 }),
-        animate('150ms ease-in', style({ opacity: 1 })),
-      ]),
-    ]),
+    trigger('tabChange', [transition('* => *', [fadeIn({ duration: 250 })])]),
   ],
 })
 export class TabGroupComponent {

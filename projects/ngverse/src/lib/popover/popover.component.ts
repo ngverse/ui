@@ -1,10 +1,4 @@
-import {
-  animate,
-  AnimationEvent,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { DomPortal } from '@angular/cdk/portal';
 import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
@@ -23,6 +17,7 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
+import { zoomIn, zoomOut } from '@ngverse/motion/animatecss';
 import {
   asyncScheduler,
   filter,
@@ -42,14 +37,8 @@ export type POPOVER_POSITIONS_Y = 'top' | 'right' | 'bottom' | 'left';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('toggle', [
-      transition('false => true', [
-        style({ transform: 'scale(0)', opacity: 0 }),
-        animate('150ms', style({ opacity: 1, transform: 'scale(1)' })),
-      ]),
-      transition('true => false', [
-        style({ opacity: 1, transform: 'scale(1)', display: 'block' }),
-        animate('150ms', style({ opacity: 0, transform: 'scale(0)' })),
-      ]),
+      transition('false => true', [zoomIn({ duration: 250 })]),
+      transition('true => false', [zoomOut({ duration: 250 })]),
     ]),
   ],
 })

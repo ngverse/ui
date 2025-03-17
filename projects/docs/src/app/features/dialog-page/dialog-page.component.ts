@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import {
   ApiInfo,
   ApiInfoComponent,
@@ -30,7 +29,6 @@ const ROOT = 'dialog';
     SourceTreeComponent,
     ApiInfoComponent,
     PrerequisitesComponent,
-    RouterLink,
   ],
   templateUrl: './dialog-page.component.html',
   styleUrl: './dialog-page.component.css',
@@ -41,9 +39,9 @@ export class DialogPageComponent {
   prerequisites: Prerequisite[] = [
     {
       name: 'button',
+      label: 'Button',
     },
   ];
-
   sourceTree: SourceTreeFolder[] = [
     {
       name: '/',
