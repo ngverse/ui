@@ -29,6 +29,7 @@ import { PopoverOriginDirective } from '../popover/popover-origin.directive';
 import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
 import { SelectLabelDirective } from './select-label.directive';
+import { SelectPlaceholderDirective } from './select-placeholder.directive';
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -76,6 +77,10 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   ).withTypeAhead();
 
   templateLabel = contentChild<SelectLabelDirective>(SelectLabelDirective);
+
+  templatePlaceholder = contentChild<SelectPlaceholderDirective>(
+    SelectPlaceholderDirective
+  );
 
   selectOption = viewChild<ElementRef<HTMLElement>>('selectOption');
 

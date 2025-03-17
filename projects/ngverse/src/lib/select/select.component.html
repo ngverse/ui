@@ -19,7 +19,13 @@
         {{ selectedOptionsLabel }}
       }
     } @else {
-      {{ placeholder() }}
+      @if (templatePlaceholder(); as templatePlaceholder) {
+        <ng-container
+          *ngTemplateOutlet="templatePlaceholder.templateRef"
+        ></ng-container>
+      } @else {
+        {{ placeholder() }}
+      }
     }
   </span>
   <app-font-icon class="transition-transform" [class.rotate-180]="isOpen()"

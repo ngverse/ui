@@ -8,6 +8,7 @@ import {
   Input,
   input,
   signal,
+  viewChild,
 } from '@angular/core';
 
 import { FontIconComponent } from '../icon/font-icon.component';
@@ -49,12 +50,14 @@ export class OptionComponent implements Highlightable {
 
   private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 
+  contentEl = viewChild.required<ElementRef<HTMLElement>>('content');
+
   get content() {
-    return this.host.nativeElement.textContent;
+    return this.contentEl().nativeElement.textContent;
   }
 
   getLabel(): string {
-    return this.host.nativeElement.textContent || '';
+    return this.contentEl().nativeElement.textContent || '';
   }
 
   onClick() {
