@@ -579,6 +579,16 @@
       "name": "icon",
       "files": [
         {
+          "path": "icon/font-icon.component.spec.ts",
+          "name": "font-icon.component.spec.ts",
+          "language": "spec.ts"
+        },
+        {
+          "path": "icon/font-icon.component.ts",
+          "name": "font-icon.component.ts",
+          "language": "ts"
+        },
+        {
           "path": "icon/icon-loader.service.spec.ts",
           "name": "icon-loader.service.spec.ts",
           "language": "spec.ts"

@@ -3,7 +3,6 @@ import { TabGroupComponent } from '@/ui/tab/tab-group.component';
 import { TabHeaderDirective } from '@/ui/tab/tab-header.directive';
 import { TabComponent } from '@/ui/tab/tab.component';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { matCheck } from '@ng-icons/material-icons/baseline';
 import { LazyTabComponent } from '../lazy-tab/lazy-tab.component';
 
 @Component({
@@ -19,6 +18,4 @@ import { LazyTabComponent } from '../lazy-tab/lazy-tab.component';
   styleUrl: './show-case-tab.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ShowCaseTabComponent {
-  CHECK_ICON = matCheck;
-}
+export class ShowCaseTabComponent {}

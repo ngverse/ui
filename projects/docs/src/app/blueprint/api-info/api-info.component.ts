@@ -1,7 +1,6 @@
 import { DividerComponent } from '@/ui/divider/divider.component';
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { matOpenInNew } from '@ng-icons/material-icons/baseline';
 import {
   ApiEntity,
   ApiInputsComponent,
@@ -23,5 +22,4 @@ export interface ApiInfo {
 })
 export class ApiInfoComponent {
   apiInfo = input.required<ApiInfo>();
-  EXTERNAL_LINK = matOpenInNew;
 }

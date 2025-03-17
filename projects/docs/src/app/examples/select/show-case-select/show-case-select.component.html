@@ -44,7 +44,11 @@
   class="w-[250px]"
 >
   <ng-template appSelectLabel let-options>
-    <ng-icon [svg]="options[0].value()"></ng-icon> {{ options[0].content }}
+    <span
+      class="mr-1 ml-1 inline-block h-4 w-4 rounded-full pt-1"
+      [style.background]="options[0].value"
+    ></span>
+    {{ options[0].content }}
   </ng-template>
   @for (option of customOptions; track $index) {
     <app-option [value]="option.value">

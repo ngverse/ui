@@ -15,10 +15,6 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import {
-  matCheckBox,
-  matCheckBoxOutlineBlank,
-} from '@ng-icons/material-icons/baseline';
 import { FontIconComponent } from '../icon/font-icon.component';
 
 type VALUE_TYPE = boolean | undefined | null;
@@ -64,9 +60,6 @@ export class CheckboxComponent implements ControlValueAccessor, Validator {
 
   value = signal<VALUE_TYPE>(undefined);
   disabled = signal<boolean>(false);
-
-  CHECK_ICON = matCheckBox;
-  UNCHECK_ICON = matCheckBoxOutlineBlank;
 
   private _registerOnChangefn: OnChangeFunction;
   private _onTouchedfn: OnTouchedFunction;

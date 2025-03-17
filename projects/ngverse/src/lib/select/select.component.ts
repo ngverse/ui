@@ -23,7 +23,6 @@ import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { NgTemplateOutlet } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { matExpandMore } from '@ng-icons/material-icons/baseline';
 import { map } from 'rxjs';
 import { FontIconComponent } from '../icon/font-icon.component';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
@@ -66,7 +65,6 @@ export type CompareWith = (o1: any, o2: any) => boolean;
 export class SelectComponent implements ControlValueAccessor, OnDestroy {
   multiple = input(false);
   placeholder = input<string>();
-  EXPAND_MORE_ICON = matExpandMore;
 
   options = contentChildren<OptionComponent>(
     forwardRef(() => OptionComponent),

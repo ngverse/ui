@@ -7,10 +7,6 @@ import {
   inject,
   input,
 } from '@angular/core';
-import {
-  matRadioButtonChecked,
-  matRadioButtonUnchecked,
-} from '@ng-icons/material-icons/baseline';
 import { FontIconComponent } from '../icon/font-icon.component';
 import { RadioGroupComponent } from './radio-group.component';
 @Component({
@@ -24,9 +20,6 @@ export class RadioButtonComponent {
   disabled = input<boolean>();
   id = input(inject(_IdGenerator).getId('radio-button-'));
   value = input.required<unknown>();
-
-  RADIO_BUTTON_CHECKED = matRadioButtonChecked;
-  RADIO_BUTTON_UNCHECKED = matRadioButtonUnchecked;
 
   private radioGroup = inject<RadioGroupComponent>(
     forwardRef(() => RadioGroupComponent)

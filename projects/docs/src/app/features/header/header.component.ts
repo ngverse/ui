@@ -7,7 +7,6 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { afterNextRender, Component, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import docsearch from '@docsearch/js';
-import { matMenu } from '@ng-icons/material-icons/baseline';
 import { filter, take, takeUntil } from 'rxjs';
 import { ProjectNameComponent } from '../../core/project-name/project-name.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -29,7 +28,6 @@ export class HeaderComponent {
   overlay = inject(Overlay);
   overlayRef: OverlayRef | undefined;
   router = inject(Router);
-  MENU_ICON = matMenu;
 
   constructor() {
     afterNextRender(() => {

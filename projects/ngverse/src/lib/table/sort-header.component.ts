@@ -7,10 +7,6 @@ import {
   input,
   signal,
 } from '@angular/core';
-import {
-  matArrowDownward,
-  matArrowUpward,
-} from '@ng-icons/material-icons/baseline';
 
 import { SortDirective } from './sort.directive';
 import { SORT_DIRECTION } from './table.types';
@@ -30,8 +26,6 @@ import { SORT_DIRECTION } from './table.types';
 export class SortHeaderComponent {
   private _sort = inject(SortDirective);
   direction = signal<SORT_DIRECTION | undefined>(undefined);
-  ARROW_DOWN = matArrowDownward;
-  ARROW_UP = matArrowUpward;
   isAsc = computed(() => this.direction() === 'asc');
   isDesc = computed(() => this.direction() === 'desc');
   field = input<string | undefined>(undefined, { alias: 'appSortHeader' });
