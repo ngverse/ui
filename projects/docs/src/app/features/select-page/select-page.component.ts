@@ -122,6 +122,13 @@ export class SelectPageComponent {
           'The label of the select, you can use this directive instead of label input, when you need more customization. The template context will be the options array',
       },
       {
+        name: 'SelectPlaceholderDirective',
+        type: 'directive',
+        selector: 'ng-template[appSelectPlaceholder]',
+        description:
+          'The placeholder of the select, you can use this directive instead of placeholder input, when you need more customization',
+      },
+      {
         name: 'OptionGroupComponent',
         type: 'component',
         selector: 'app-option-group',

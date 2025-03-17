@@ -60,3 +60,13 @@
     >
   }
 </app-select>
+
+<p class="mt-4 mb-2">Custom Placeholder</p>
+<app-select [formControl]="customLabelControl" class="w-[250px]">
+  <ng-template appSelectPlaceholder>
+    <span class="text-primary">Select a country</span>
+  </ng-template>
+  @for (option of countries; track $index) {
+    <app-option [value]="option.code">{{ option.name }}</app-option>
+  }
+</app-select>

@@ -899,6 +899,11 @@
           "language": "ts"
         },
         {
+          "path": "select/select-placeholder.directive.ts",
+          "name": "select-placeholder.directive.ts",
+          "language": "ts"
+        },
+        {
           "path": "select/select.component.css",
           "name": "select.component.css",
           "language": "css"
