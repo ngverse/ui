@@ -48,7 +48,11 @@
   </ng-template>
   @for (option of customOptions; track $index) {
     <app-option [value]="option.value">
-      <ng-icon [svg]="option.value"></ng-icon> {{ option.label }}</app-option
+      <span
+        class="mr-1 ml-1 inline-block h-4 w-4 rounded-full pt-1"
+        [style.background]="option.value"
+      ></span>
+      {{ option.label }}</app-option
     >
   }
 </app-select>

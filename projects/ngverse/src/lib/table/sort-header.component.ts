@@ -7,7 +7,6 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { NgIcon } from '@ng-icons/core';
 import {
   matArrowDownward,
   matArrowUpward,
@@ -19,15 +18,8 @@ import { SORT_DIRECTION } from './table.types';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'th[appSortHeader]',
-  imports: [NgIcon],
   template: `<div class="flex items-center gap-1">
     <ng-content></ng-content>
-    @if (isAsc()) {
-      <ng-icon [svg]="ARROW_DOWN" size="16"></ng-icon>
-    }
-    @if (isDesc()) {
-      <ng-icon [svg]="ARROW_UP" size="16"></ng-icon>
-    }
   </div> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

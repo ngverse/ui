@@ -6,7 +6,6 @@ import {
   input,
   output,
 } from '@angular/core';
-import { NgIcon } from '@ng-icons/core';
 import {
   matChevronLeft,
   matChevronRight,
@@ -16,7 +15,7 @@ import {
 
 @Component({
   selector: 'app-table-pagination',
-  imports: [ButtonComponent, NgIcon],
+  imports: [ButtonComponent],
   templateUrl: './table-pagination.component.html',
   styleUrl: './table-pagination.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

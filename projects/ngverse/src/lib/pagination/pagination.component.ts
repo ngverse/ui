@@ -6,7 +6,6 @@ import {
   input,
   output,
 } from '@angular/core';
-import { NgIcon } from '@ng-icons/core';
 import { FontIconComponent } from '../icon/font-icon.component';
 // We will keep always 7 visible items so it will prevent the width of the pagination from changing
 const ALWAYS_VISIBLE_ITEMS = 7;
@@ -53,7 +52,7 @@ function generatePages(totalPages: number, currentPage: number) {
 
 @Component({
   selector: 'app-pagination',
-  imports: [ButtonComponent, NgIcon, FontIconComponent],
+  imports: [ButtonComponent, FontIconComponent],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

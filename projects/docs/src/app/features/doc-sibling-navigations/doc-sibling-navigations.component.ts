@@ -1,11 +1,7 @@
 import { ButtonComponent } from '@/ui/button/button.component';
+import { FontIconComponent } from '@/ui/icon/font-icon.component';
 import { Component, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { NgIcon } from '@ng-icons/core';
-import {
-  matArrowBack,
-  matArrowForward,
-} from '@ng-icons/material-icons/baseline';
 import { filter } from 'rxjs';
 import { getAllSidebarLinks, SidebarLink } from '../sidebar/sidebar.component';
 
@@ -13,7 +9,7 @@ const SIDEBAR_LINKS = getAllSidebarLinks();
 
 @Component({
   selector: 'doc-doc-sibling-navigations',
-  imports: [RouterLink, NgIcon, ButtonComponent],
+  imports: [RouterLink, ButtonComponent, FontIconComponent],
   templateUrl: './doc-sibling-navigations.component.html',
   styleUrl: './doc-sibling-navigations.component.css',
 })
@@ -21,8 +17,6 @@ export class DocSiblingNavigationsComponent {
   router = inject(Router);
   prevRoute = signal<SidebarLink | undefined>(undefined);
   nextRoute = signal<SidebarLink | undefined>(undefined);
-  ARROW_LEFT = matArrowBack;
-  ARROW_RIGHT = matArrowForward;
 
   constructor() {
     this.router.events

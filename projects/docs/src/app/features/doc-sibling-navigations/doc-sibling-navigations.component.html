@@ -8,7 +8,7 @@
     [class.invisible]="!prevRoute()"
     [routerLink]="[prevRoute()?.url]"
   >
-    <ng-icon size="24" [svg]="ARROW_LEFT"></ng-icon>
+    <app-font-icon>arrow_back</app-font-icon>
     {{ prevRoute()?.name }}
   </button>
   <button
@@ -21,6 +21,6 @@
     [routerLink]="[nextRoute()?.url]"
   >
     {{ nextRoute()?.name }}
-    <ng-icon size="24" [svg]="ARROW_RIGHT"></ng-icon>
+    <app-font-icon>arrow_forward</app-font-icon>
   </button>
 </div>
