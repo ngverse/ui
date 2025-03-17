@@ -10,6 +10,8 @@
     />
     <input type="color" [(ngModel)]="color" />
   </div>
+  <p>SVG Icons</p>
+
   <div class="body">
     @for (icon of icons; track $index) {
       <app-icon
@@ -18,6 +20,15 @@
         [width]="size()"
         [height]="size()"
       ></app-icon>
+    }
+  </div>
+  <app-divider></app-divider>
+  <p>Font Icons</p>
+  <div class="flex items-center gap-1">
+    @for (fontIcon of fontIcons; track $index) {
+      <app-font-icon [style.color]="color()" [size]="size()">{{
+        fontIcon
+      }}</app-font-icon>
     }
   </div>
 </div>

@@ -27,7 +27,7 @@ export type FONT_ICON_VARIANT = 'outlined' | 'rounded' | 'sharp';
   },
 })
 export class FontIconComponent {
-  size = input<string | number, string>('24px', {
+  size = input<string | number, string | number>('24px', {
     transform: (value) => coerceCssPixelValue(numberAttribute(value)),
   });
   variant = input<FONT_ICON_VARIANT>('outlined');
