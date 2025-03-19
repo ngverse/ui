@@ -66,6 +66,7 @@ export type CompareWith = (o1: any, o2: any) => boolean;
 export class SelectComponent implements ControlValueAccessor, OnDestroy {
   multiple = input(false);
   placeholder = input<string>();
+  emptyText = input<string>();
 
   options = contentChildren<OptionComponent>(
     forwardRef(() => OptionComponent),
