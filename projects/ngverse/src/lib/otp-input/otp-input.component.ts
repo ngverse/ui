@@ -13,7 +13,7 @@ import {
   viewChildren,
 } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
-import { InputDirective } from '@/ui/input/input.directive';
+import { InputDirective } from '../input/input.directive';
 
 @Component({
   selector: 'app-otp-input',

@@ -1,10 +1,10 @@
-import { ButtonComponent } from '@/ui/button/button.component';
 import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { ComponentType } from '@angular/cdk/portal';
 import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { slideInRight, slideOutRight } from '@ngverse/motion/animatecss';
 import { Subject } from 'rxjs';
+import { ButtonComponent } from '../button/button.component';
 import { FontIconComponent } from '../icon/font-icon.component';
 import { DrawerCloseDirective } from './drawer-close.directive';
 
