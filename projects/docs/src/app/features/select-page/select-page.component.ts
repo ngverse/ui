@@ -93,6 +93,13 @@ export class SelectPageComponent {
             description:
               'determines whether the select button should take the full width of the container',
           },
+          {
+            name: 'emptyText',
+            type: 'string',
+            default: EMPTY_API_INPUT_DEFAULT_VALUE,
+            description:
+              'determines the empty text to be displayed when no options are available',
+          },
         ],
       },
       {

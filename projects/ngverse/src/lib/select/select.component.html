@@ -45,6 +45,9 @@
   [offsetY]="8"
 >
   <ng-template>
+    @if (!options().length && emptyText()) {
+      <div class="p-2">{{ emptyText() }}</div>
+    }
     <div
       [ariaMultiSelectable]="multiple()"
       [attr.aria-activedescendant]="activeDescendantId()"
