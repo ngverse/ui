@@ -165,6 +165,15 @@ export const SIDEBAR_ROUTES = [
       },
     ],
   },
+  {
+    name: 'Pipes',
+    children: [
+      {
+        name: 'CharAt',
+        url: '/doc/pipe/char-at',
+      },
+    ],
+  },
 ] as Group[];
 
 export function getAllSidebarLinks() {

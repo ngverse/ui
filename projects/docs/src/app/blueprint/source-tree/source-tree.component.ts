@@ -26,22 +26,20 @@ export class SourceTreeComponent implements OnInit {
 
   language = signal<SOURCE_FILE_EXTENSION_TYPE>('ts');
 
-  /**
-   * Deprecated source tree should be resolved automatically
-   * by name
-   */
-  sourceTree = model<SourceTreeFolder[]>();
+  sourceTree = model<SourceTreeFolder[]>([]);
 
-  sourceTreeAlpha = signal<SourceTreeFolder[]>([]);
+  auto = input(true);
 
   includeTests = model();
 
   name = input.required<string>();
 
   ngOnInit(): void {
-    const dir = this.sourceTreeResolver.getSourceTree(this.name());
-    if (dir) {
-      this.sourceTreeAlpha.set(dir);
+    if (this.auto()) {
+      const dir = this.sourceTreeResolver.getSourceTree(this.name());
+      if (dir) {
+        this.sourceTree.set(dir);
+      }
     }
   }
 

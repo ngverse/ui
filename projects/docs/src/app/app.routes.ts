@@ -9,6 +9,18 @@ export const routes: Routes = [
       ),
     children: [
       {
+        path: 'pipe',
+        children: [
+          {
+            path: 'char-at',
+            loadComponent: () =>
+              import('./features/chart-at-page/chart-at-page.component').then(
+                (c) => c.ChartAtPageComponent
+              ),
+          },
+        ],
+      },
+      {
         path: 'introduction',
         loadComponent: () =>
           import(
@@ -265,6 +277,7 @@ export const routes: Routes = [
             (p) => p.TablePageComponent
           ),
       },
+
       {
         path: '',
         redirectTo: 'introduction',
