@@ -171,6 +171,7 @@ export const SIDEBAR_ROUTES = [
       {
         name: 'CharAt',
         url: '/doc/pipe/char-at',
+        mode: 'experimental',
       },
     ],
   },
