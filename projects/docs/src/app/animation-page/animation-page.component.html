@@ -1,0 +1,36 @@
+<div>
+  <h1 class="mb-2 text-4xl font-bold capitalize lg:text-5xl">
+    {{ name() }}
+  </h1>
+  @if (subTitle()) {
+    <p class="m-0 text-lg font-light">{{ subTitle() }}</p>
+  }
+</div>
+<div class="my-6 w-full rounded-md border border-slate-300 p-4">
+  <div class="mb-4 flex justify-center">
+    <button
+      title="Replay animation"
+      class="text-on-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary text-white hover:bg-blue-500"
+      aria-label="Replay animation"
+      (click)="play()"
+    >
+      <app-font-icon>replay</app-font-icon>
+    </button>
+  </div>
+
+  <div
+    #playable
+    class="h-[86px] w-full border border-primary bg-blue-100 text-center text-3xl leading-[86px] font-medium text-primary"
+  >
+    <doc-project-name></doc-project-name>
+  </div>
+</div>
+<doc-command-installation
+  [name]="fileName()"
+  cmd="animation"
+  class="mb-8 block"
+></doc-command-installation>
+<doc-source-tree
+  [sourceTree]="sourceTree()"
+  type="animations"
+></doc-source-tree>

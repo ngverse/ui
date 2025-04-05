@@ -35,7 +35,7 @@ export class PipePageComponent {
         files: [
           {
             name: `${this.fileName()}.pipe.ts`,
-            path: `pipes/${this.fileName()}.pipe.ts`,
+            path: `${this.fileName()}.pipe.ts`,
             language: 'ts',
           },
         ],

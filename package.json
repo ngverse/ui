@@ -20,7 +20,7 @@
     "serve:ssr:docs": "node dist/docs/server/server.mjs",
     "schema:test-watch": "nodemon --watch dist/ngverse --ext js --exec 'jasmine dist/ngverse/**/*_spec.js'",
     "build:ngverse": "ng build --project=ngverse && cd projects/ngverse && npm run build",
-    "build:docs": "node scripts/generate-tree.js && ng build --project=docs && node scripts/generate-sitemap.js",
+    "build:docs": "ng build --project=docs && node scripts/generate-sitemap.js",
     "check:docs": "npm run build:docs && ng lint docs && npm run format:check",
     "check:ngverse": "ng lint ngverse && npm run format:check && ng test --no-watch --no-progress --browsers=ChromeHeadless --project=ngverse && ng build --project=ngverse && cd projects/ngverse && npm run build"
   },

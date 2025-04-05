@@ -4,7 +4,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@/ui/*": ["./projects/ngverse/src/lib/*"]
+      "@/ui/*": ["./projects/ngverse/src/lib/ui/*"],
+      "@/animations/*": ["./projects/ngverse/src/lib/animations/*"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

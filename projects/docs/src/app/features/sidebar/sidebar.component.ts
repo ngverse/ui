@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LowerCasePipe } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
+import {
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
+import { filter } from 'rxjs';
 
 interface Group {
   name: string;
@@ -14,23 +21,23 @@ export interface SidebarLink {
 
 export const SIDEBAR_ROUTES = [
   {
-    name: 'Getting Started',
+    name: 'Guides',
     children: [
       {
         name: 'Introduction',
-        url: '/doc/introduction',
+        url: 'introduction',
       },
       {
         name: 'Installation',
-        url: '/doc/installation',
+        url: 'installation',
       },
       {
         name: 'Usage',
-        url: '/doc/usage',
+        url: 'usage',
       },
       {
         name: 'Theming',
-        url: '/doc/theming',
+        url: 'theming',
       },
     ],
   },
@@ -39,115 +46,115 @@ export const SIDEBAR_ROUTES = [
     children: [
       {
         name: 'Accordion',
-        url: '/doc/accordion',
+        url: 'accordion',
       },
       {
         name: 'Alert',
-        url: '/doc/alert',
+        url: 'alert',
       },
       {
         name: 'Button',
-        url: '/doc/button',
+        url: 'button',
       },
       {
         name: 'Badge',
-        url: '/doc/badge',
+        url: 'badge',
       },
       {
         name: 'Drawer',
-        url: '/doc/drawer',
+        url: 'drawer',
       },
       {
         name: 'Checkbox',
-        url: '/doc/checkbox',
+        url: 'checkbox',
       },
       {
         name: 'Card',
-        url: '/doc/card',
+        url: 'card',
       },
       {
         name: 'Divider',
-        url: '/doc/divider',
+        url: 'divider',
       },
       {
         name: 'Skeleton',
-        url: '/doc/skeleton',
+        url: 'skeleton',
       },
       {
         name: 'Loader',
-        url: '/doc/loader',
+        url: 'loader',
       },
       {
         name: 'Radio Button',
-        url: '/doc/radio-button',
+        url: 'radio-button',
       },
       {
         name: 'Switch',
-        url: '/doc/switch',
+        url: 'switch',
       },
       {
         name: 'Toast',
-        url: '/doc/toast',
+        url: 'toast',
       },
       {
         name: 'Tooltip',
-        url: '/doc/tooltip',
+        url: 'tooltip',
       },
       {
         name: 'Textarea',
-        url: '/doc/textarea',
+        url: 'textarea',
       },
       {
         name: 'Select',
-        url: '/doc/select',
+        url: 'select',
       },
       {
         name: 'Progress Bar',
-        url: '/doc/progress-bar',
+        url: 'progress-bar',
       },
       {
         name: 'Dialog',
-        url: '/doc/dialog',
+        url: 'dialog',
       },
       {
         name: 'Tab',
-        url: '/doc/tab',
+        url: 'tab',
       },
       {
         name: 'Input',
-        url: '/doc/input',
+        url: 'input',
       },
       {
         name: 'Form Field',
-        url: '/doc/form-field',
+        url: 'form-field',
       },
       {
         name: 'OTP Input',
-        url: '/doc/otp-input',
+        url: 'otp-input',
       },
       {
         name: 'Icon',
-        url: '/doc/icon',
+        url: 'icon',
       },
       {
         name: 'Popover',
-        url: '/doc/popover',
+        url: 'popover',
       },
       {
         name: 'Pagination',
-        url: '/doc/pagination',
+        url: 'pagination',
       },
       {
         name: 'Context Menu',
-        url: '/doc/context-menu',
+        url: 'context-menu',
       },
       {
         name: 'Dark Mode',
-        url: '/doc/dark-mode',
+        url: 'dark-mode',
       },
       {
         name: 'Table',
-        url: '/doc/table',
+        url: 'table',
         mode: 'experimental',
       },
     ].sort((a, b) => a.name.localeCompare(b.name)),
@@ -157,11 +164,11 @@ export const SIDEBAR_ROUTES = [
     children: [
       {
         name: 'LocalStorage',
-        url: '/doc/local-storage',
+        url: 'local-storage',
       },
       {
         name: 'SessionStorage',
-        url: '/doc/session-storage',
+        url: 'session-storage',
       },
     ],
   },
@@ -170,8 +177,17 @@ export const SIDEBAR_ROUTES = [
     children: [
       {
         name: 'CharAt',
-        url: '/doc/pipe/char-at',
+        url: 'char-at',
         mode: 'experimental',
+      },
+    ],
+  },
+  {
+    name: 'Animations',
+    children: [
+      {
+        name: 'Fade In',
+        url: 'fade-in',
       },
     ],
   },
@@ -183,10 +199,29 @@ export function getAllSidebarLinks() {
 
 @Component({
   selector: 'doc-sidebar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, LowerCasePipe],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent {
   routes: Group[] = SIDEBAR_ROUTES;
+  routeGroup = signal<Group | undefined>(undefined);
+  private _router = inject(Router);
+  constructor() {
+    this._router.events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe(() => {
+        if (this._router.url.includes('guides')) {
+          this.routeGroup.set(this.routes[0]);
+        } else if (this._router.url.includes('ui')) {
+          this.routeGroup.set(this.routes[1]);
+        } else if (this._router.url.includes('utils')) {
+          this.routeGroup.set(this.routes[2]);
+        } else if (this._router.url.includes('pipes')) {
+          this.routeGroup.set(this.routes[3]);
+        } else if (this._router.url.includes('animations')) {
+          this.routeGroup.set(this.routes[4]);
+        }
+      });
+  }
 }

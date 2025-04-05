@@ -9,15 +9,11 @@
   </div>
   <div class="mt-8">
     <doc-command-installation
-      name="char-at"
+      [name]="fileName()"
       cmd="pipe"
       class="mb-8 block"
     ></doc-command-installation>
-    <doc-source-tree
-      [auto]="false"
-      [sourceTree]="sourceTree()"
-      name="pipes"
-    ></doc-source-tree>
+    <doc-source-tree [sourceTree]="sourceTree()" type="pipes"></doc-source-tree>
 
     <div class="mt-8 mb-8">
       @if (params()) {
