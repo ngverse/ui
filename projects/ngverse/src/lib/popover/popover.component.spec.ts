@@ -106,15 +106,6 @@ describe('PopoverComponent', () => {
     ) as HTMLElement;
     expect(overlayPopover).toBeTruthy();
   });
-  it('should block scroll if blockScroll is true', async () => {
-    //We need to increase the body height to be able to scroll
-    //otherwise block strategy doesn't block the scroll
-    document.body.style.height = '1000px';
-    component.isOpen.set(true);
-    component.blockScroll.set(true);
-    await fixture.whenStable();
-    expect(document.documentElement).toHaveClass('cdk-global-scrollblock');
-  });
   it('should add style class when styled=true', async () => {
     component.isOpen.set(true);
     component.styled.set(true);

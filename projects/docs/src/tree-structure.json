@@ -747,6 +747,17 @@
       ]
     },
     {
+      "path": "pipes",
+      "name": "pipes",
+      "files": [
+        {
+          "path": "pipes/chart-at.pipe.ts",
+          "name": "chart-at.pipe.ts",
+          "language": "ts"
+        }
+      ]
+    },
+    {
       "path": "popover",
       "name": "popover",
       "files": [
@@ -891,16 +902,6 @@
         {
           "path": "select/option.component.ts",
           "name": "option.component.ts",
-          "language": "ts"
-        },
-        {
-          "path": "select/select-empty.directive.spec.ts",
-          "name": "select-empty.directive.spec.ts",
-          "language": "spec.ts"
-        },
-        {
-          "path": "select/select-empty.directive.ts",
-          "name": "select-empty.directive.ts",
           "language": "ts"
         },
         {
