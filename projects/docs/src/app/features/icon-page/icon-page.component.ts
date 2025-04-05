@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { ApiDescriptionComponent } from '../../blueprint/api-info/api-description/api-description.component';
 import {
   ApiInfo,
   ApiInfoComponent,
@@ -26,7 +25,6 @@ const ROOT = 'icon';
     SourceTreeComponent,
     CommandInstallationComponent,
     ApiInfoComponent,
-    ApiDescriptionComponent,
   ],
   templateUrl: './icon-page.component.html',
   styleUrl: './icon-page.component.css',
