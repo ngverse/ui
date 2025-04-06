@@ -1,0 +1,16 @@
+.value-selector {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-button {
+  cursor: pointer;
+}
+
+.current-value {
+  font-size: 14px;
+}

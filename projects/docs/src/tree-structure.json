@@ -1380,6 +1380,58 @@
           ]
         },
         {
+          "path": "ui/timepicker",
+          "name": "timepicker",
+          "files": [
+            {
+              "path": "ui/timepicker/timepicker.component.css",
+              "name": "timepicker.component.css",
+              "language": "css"
+            },
+            {
+              "path": "ui/timepicker/timepicker.component.html",
+              "name": "timepicker.component.html",
+              "language": "html"
+            },
+            {
+              "path": "ui/timepicker/timepicker.component.spec.ts",
+              "name": "timepicker.component.spec.ts",
+              "language": "spec.ts"
+            },
+            {
+              "path": "ui/timepicker/timepicker.component.ts",
+              "name": "timepicker.component.ts",
+              "language": "ts"
+            },
+            {
+              "path": "ui/timepicker/value-selector",
+              "name": "value-selector",
+              "files": [
+                {
+                  "path": "ui/timepicker/value-selector/value-selector.component.css",
+                  "name": "value-selector.component.css",
+                  "language": "css"
+                },
+                {
+                  "path": "ui/timepicker/value-selector/value-selector.component.html",
+                  "name": "value-selector.component.html",
+                  "language": "html"
+                },
+                {
+                  "path": "ui/timepicker/value-selector/value-selector.component.spec.ts",
+                  "name": "value-selector.component.spec.ts",
+                  "language": "spec.ts"
+                },
+                {
+                  "path": "ui/timepicker/value-selector/value-selector.component.ts",
+                  "name": "value-selector.component.ts",
+                  "language": "ts"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "path": "ui/toast",
           "name": "toast",
           "files": [
