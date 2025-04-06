@@ -1,0 +1,24 @@
+<div>
+  @switch (viewType()) {
+    @case ('day') {
+      <app-day-view
+        [day]="day()"
+        (daySelected)="daySelected($event)"
+        (changeView)="changeViewType($event)"
+      ></app-day-view>
+    }
+    @case ('month') {
+      <app-month-view
+        [month]="month()"
+        (monthSelected)="monthSelected($event)"
+        (changeView)="changeViewType($event)"
+      ></app-month-view>
+    }
+    @case ('year') {
+      <app-year-view
+        [year]="year()"
+        (yearSelected)="yearSelected($event)"
+      ></app-year-view>
+    }
+  }
+</div>

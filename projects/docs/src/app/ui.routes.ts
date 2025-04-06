@@ -228,6 +228,13 @@ export const UI_ROUTES: Route = {
         ),
     },
     {
+      path: 'datepicker',
+      loadComponent: () =>
+        import('./pages/datepicker-page/datepicker-page.component').then(
+          (d) => d.DatepickerPageComponent
+        ),
+    },
+    {
       path: '',
       redirectTo: '/doc/ui/accordion',
       pathMatch: 'full',

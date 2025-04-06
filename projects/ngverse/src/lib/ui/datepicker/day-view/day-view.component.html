@@ -1,0 +1,32 @@
+<div>
+  <button (click)="changeView.emit('month')">Month</button>
+  <button (click)="changeView.emit('year')">Year</button>
+</div>
+<table role="grid">
+  <thead>
+    <tr>
+      @for (day of weeks; track $index) {
+        <th scope="col">{{ day }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ day() }}</td>
+    </tr>
+    @for (weekDay of weekDays(); track $index) {
+      <tr>
+        @for (_day of weekDay; track $index) {
+          <td
+            [style.color]="day() === _day.value ? 'red' : null"
+            [class.prev]="!_day.isInMonth"
+          >
+            <button (click)="daySelected.emit(_day.value)">
+              {{ _day.display }}
+            </button>
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

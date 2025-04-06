@@ -65,6 +65,10 @@ export const SIDEBAR_ROUTES = [
         url: 'drawer',
       },
       {
+        name: 'Datepicker',
+        url: 'datepicker',
+      },
+      {
         name: 'Checkbox',
         url: 'checkbox',
       },
