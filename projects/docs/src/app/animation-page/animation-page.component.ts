@@ -17,11 +17,11 @@ import {
   viewChild,
 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { FontIconComponent } from '../../../../../dist/ngverse/src/lib/icon/font-icon.component';
 import { CommandInstallationComponent } from '../blueprint/command-installation/command-installation.component';
 import { SourceTreeFolder } from '../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../blueprint/source-tree/source-tree.component';
 import { ProjectNameComponent } from '../core/project-name/project-name.component';
+import { FontIconComponent } from '@/ui/icon/font-icon.component';
 
 @Component({
   selector: 'doc-animation-page',

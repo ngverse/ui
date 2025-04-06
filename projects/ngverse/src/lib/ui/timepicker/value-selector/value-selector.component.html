@@ -1,0 +1,11 @@
+<div class="value-selector">
+  <button class="step-button" (click)="increaseValue()">
+    <app-font-icon class="rotate-180">keyboard_arrow_down</app-font-icon>
+  </button>
+
+  <span class="current-value">{{ formattedValue() }}</span>
+
+  <button class="step-button" (click)="decreaseValue()">
+    <app-font-icon>keyboard_arrow_down</app-font-icon>
+  </button>
+</div>
