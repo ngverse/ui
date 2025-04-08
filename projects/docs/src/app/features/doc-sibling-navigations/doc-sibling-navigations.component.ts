@@ -3,7 +3,8 @@ import { FontIconComponent } from '@/ui/icon/font-icon.component';
 import { Component, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
-import { getAllSidebarLinks, SidebarLink } from '../sidebar/sidebar.component';
+import { SidebarLink } from '../sidebar/sidebar-types';
+import { getAllSidebarLinks } from '../sidebar/sidebar.component';
 
 const SIDEBAR_LINKS = getAllSidebarLinks();
 

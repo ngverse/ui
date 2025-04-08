@@ -1,3 +1,4 @@
+import { OrderByPipe } from '@/pipes/order-by.pipe';
 import { LowerCasePipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import {
@@ -7,162 +8,15 @@ import {
   RouterLinkActive,
 } from '@angular/router';
 import { filter } from 'rxjs';
-
-interface Group {
-  name: string;
-  children: SidebarLink[];
-}
-
-export interface SidebarLink {
-  name: string;
-  url: string;
-  mode?: 'experimental';
-}
+import { ANIMATION_LINKS } from './animation-links';
+import { GUIDES_LINKS } from './guide-links';
+import { PIPE_LINKS } from './pipe-links';
+import { Group } from './sidebar-types';
+import { UI_LINKS } from './ui-links';
 
 export const SIDEBAR_ROUTES = [
-  {
-    name: 'Guides',
-    children: [
-      {
-        name: 'Introduction',
-        url: 'introduction',
-      },
-      {
-        name: 'Installation',
-        url: 'installation',
-      },
-      {
-        name: 'Usage',
-        url: 'usage',
-      },
-      {
-        name: 'Theming',
-        url: 'theming',
-      },
-    ],
-  },
-  {
-    name: 'UI',
-    children: [
-      {
-        name: 'Accordion',
-        url: 'accordion',
-      },
-      {
-        name: 'Alert',
-        url: 'alert',
-      },
-      {
-        name: 'Button',
-        url: 'button',
-      },
-      {
-        name: 'Badge',
-        url: 'badge',
-      },
-      {
-        name: 'Drawer',
-        url: 'drawer',
-      },
-      {
-        name: 'Datepicker',
-        url: 'datepicker',
-      },
-      {
-        name: 'Checkbox',
-        url: 'checkbox',
-      },
-      {
-        name: 'Card',
-        url: 'card',
-      },
-      {
-        name: 'Divider',
-        url: 'divider',
-      },
-      {
-        name: 'Skeleton',
-        url: 'skeleton',
-      },
-      {
-        name: 'Loader',
-        url: 'loader',
-      },
-      {
-        name: 'Radio Button',
-        url: 'radio-button',
-      },
-      {
-        name: 'Switch',
-        url: 'switch',
-      },
-      {
-        name: 'Toast',
-        url: 'toast',
-      },
-      {
-        name: 'Tooltip',
-        url: 'tooltip',
-      },
-      {
-        name: 'Textarea',
-        url: 'textarea',
-      },
-      {
-        name: 'Select',
-        url: 'select',
-      },
-      {
-        name: 'Progress Bar',
-        url: 'progress-bar',
-      },
-      {
-        name: 'Dialog',
-        url: 'dialog',
-      },
-      {
-        name: 'Tab',
-        url: 'tab',
-      },
-      {
-        name: 'Input',
-        url: 'input',
-      },
-      {
-        name: 'Form Field',
-        url: 'form-field',
-      },
-      {
-        name: 'OTP Input',
-        url: 'otp-input',
-      },
-      {
-        name: 'Icon',
-        url: 'icon',
-      },
-      {
-        name: 'Popover',
-        url: 'popover',
-      },
-      {
-        name: 'Pagination',
-        url: 'pagination',
-      },
-      {
-        name: 'Context Menu',
-        url: 'context-menu',
-      },
-      {
-        name: 'Dark Mode',
-        url: 'dark-mode',
-      },
-      {
-        name: 'Table',
-        url: 'table',
-        mode: 'experimental',
-      },
-    ].sort((a, b) => a.name.localeCompare(b.name)),
-  },
+  GUIDES_LINKS,
+  UI_LINKS,
   {
     name: 'Utils',
     children: [
@@ -176,25 +30,8 @@ export const SIDEBAR_ROUTES = [
       },
     ],
   },
-  {
-    name: 'Pipes',
-    children: [
-      {
-        name: 'CharAt',
-        url: 'char-at',
-        mode: 'experimental',
-      },
-    ],
-  },
-  {
-    name: 'Animations',
-    children: [
-      {
-        name: 'Fade In',
-        url: 'fade-in',
-      },
-    ],
-  },
+  PIPE_LINKS,
+  ANIMATION_LINKS,
 ] as Group[];
 
 export function getAllSidebarLinks() {
@@ -203,7 +40,7 @@ export function getAllSidebarLinks() {
 
 @Component({
   selector: 'doc-sidebar',
-  imports: [RouterLink, RouterLinkActive, LowerCasePipe],
+  imports: [RouterLink, RouterLinkActive, LowerCasePipe, OrderByPipe],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })

@@ -116,6 +116,13 @@ export const UI_ROUTES: Route = {
         ),
     },
     {
+      path: 'multi-select',
+      loadComponent: () =>
+        import('./pages/ui/multi-select-page/multi-select-page.component').then(
+          (c) => c.MultiSelectPageComponent
+        ),
+    },
+    {
       path: 'dialog',
       loadComponent: () =>
         import('./features/dialog-page/dialog-page.component').then(
