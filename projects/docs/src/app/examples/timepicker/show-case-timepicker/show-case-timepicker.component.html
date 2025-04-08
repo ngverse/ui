@@ -1,1 +1,4 @@
-<app-timepicker [(ngModel)]="time" />
+<p>Selected time: {{ time() | date: 'shortTime' }}</p>
+
+<br />
+<app-timepicker [(ngModel)]="time" required />

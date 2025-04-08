@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ValueSelectorComponent } from './value-selector.component';
+import { PartSelectorComponent } from './part-selector.component';
 
 xdescribe('ValueSelectorComponent', () => {
-  let component: ValueSelectorComponent;
-  let fixture: ComponentFixture<ValueSelectorComponent>;
+  let component: PartSelectorComponent;
+  let fixture: ComponentFixture<PartSelectorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ValueSelectorComponent],
+      imports: [PartSelectorComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ValueSelectorComponent);
+    fixture = TestBed.createComponent(PartSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
