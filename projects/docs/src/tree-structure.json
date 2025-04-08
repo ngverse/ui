@@ -905,11 +905,6 @@
           "name": "multi-select",
           "files": [
             {
-              "path": "ui/multi-select/multi-select-option",
-              "name": "multi-select-option",
-              "children": []
-            },
-            {
               "path": "ui/multi-select/multi-select-option.component.css",
               "name": "multi-select-option.component.css",
               "language": "css"
@@ -918,11 +913,6 @@
               "path": "ui/multi-select/multi-select-option.component.html",
               "name": "multi-select-option.component.html",
               "language": "html"
-            },
-            {
-              "path": "ui/multi-select/multi-select-option.component.spec.ts",
-              "name": "multi-select-option.component.spec.ts",
-              "language": "spec.ts"
             },
             {
               "path": "ui/multi-select/multi-select-option.component.ts",
@@ -938,11 +928,6 @@
               "path": "ui/multi-select/multi-select.component.html",
               "name": "multi-select.component.html",
               "language": "html"
-            },
-            {
-              "path": "ui/multi-select/multi-select.component.spec.ts",
-              "name": "multi-select.component.spec.ts",
-              "language": "spec.ts"
             },
             {
               "path": "ui/multi-select/multi-select.component.ts",
