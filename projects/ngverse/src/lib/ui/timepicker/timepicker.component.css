@@ -1,3 +1,9 @@
+:host(.ng-invalid.ng-touched) {
+  input {
+    border-color: var(--color-danger);
+  }
+}
+
 .timepicker {
   display: flex;
   column-gap: 14px;

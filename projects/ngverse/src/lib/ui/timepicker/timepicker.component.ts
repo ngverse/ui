@@ -15,7 +15,7 @@ import {
   FormsModule,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import { ValueSelectorComponent } from '@/ui/timepicker/value-selector/value-selector.component';
+import { PartSelectorComponent } from '@/ui/timepicker/part-selector/part-selector.component';
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -32,7 +32,7 @@ function isValidTime(time: string) {
     InputDirective,
     PopoverComponent,
     PopoverOriginDirective,
-    ValueSelectorComponent,
+    PartSelectorComponent,
     FormsModule,
   ],
   templateUrl: './timepicker.component.html',
@@ -51,27 +51,19 @@ function isValidTime(time: string) {
 })
 export class TimepickerComponent implements ControlValueAccessor {
   placeholder = input<string>();
-
   isOpen = signal(false);
+  disabled = signal(false);
+  hours = signal<number>(0);
+  minutes = signal<number>(0);
+  selectedTime = signal<string>('');
 
   private _onTouched: OnTouchedFunction;
   private _onChangeFn: OnChangeFunction;
 
-  disabled = signal(false);
-
-  hours = signal<number>(0);
-  minutes = signal<number>(0);
-
-  selectedTime = signal<string>('');
-
-  private modelValue: Date | null | undefined;
-
+  /*Because we work with date object we will keep the passed date and modify only the time part*/
+  private originalModelValue: Date | null | undefined;
   private readonly elementRef = inject(ElementRef);
   private timepickerContainer = viewChild<ElementRef>('timepickerContainer');
-
-  togglePanel() {
-    this.isOpen.update((isOpen) => !isOpen);
-  }
 
   openPanel() {
     this.isOpen.set(true);
@@ -94,7 +86,7 @@ export class TimepickerComponent implements ControlValueAccessor {
   }
 
   writeValue(value: Date | null | undefined): void {
-    this.modelValue = value;
+    this.originalModelValue = value;
     if (value instanceof Date) {
       this.hours.set(value.getHours());
       this.minutes.set(value.getMinutes());
@@ -102,14 +94,12 @@ export class TimepickerComponent implements ControlValueAccessor {
       const now = new Date();
       this.hours.set(now.getHours());
       this.minutes.set(now.getMinutes());
+      this.originalModelValue = now;
     }
   }
 
   onDocumentClick(event: Event) {
-    if (
-      !this.elementRef.nativeElement.contains(event.target) &&
-      !this.timepickerContainer()?.nativeElement.contains(event.target)
-    ) {
+    if (!this.isClickInside(event)) {
       this.isOpen.set(false);
     }
   }
@@ -142,24 +132,41 @@ export class TimepickerComponent implements ControlValueAccessor {
   }
 
   updateMinutes(minutes: number) {
+    if (minutes < 0) {
+      minutes = 59;
+    } else if (minutes > 59) {
+      minutes = 0;
+    }
     this.minutes.set(minutes);
     this.selectedTime.set(`${this.hours()}:${minutes}`);
     this.updateModel();
   }
 
   updateHours(hours: number) {
+    if (hours < 0) {
+      hours = 23;
+    } else if (hours > 23) {
+      hours = 0;
+    }
     this.hours.set(hours);
     this.selectedTime.set(`${hours}:${this.minutes()}`);
     this.updateModel();
   }
 
   private updateModel() {
-    const originalDate = this.modelValue;
+    const originalDate = this.originalModelValue;
     if (originalDate) {
       const clonedDate = new Date(originalDate.getTime());
       clonedDate.setHours(this.hours());
       clonedDate.setMinutes(this.minutes());
       this._onChangeFn?.(clonedDate);
     }
+  }
+
+  private isClickInside(event: Event) {
+    return (
+      this.elementRef.nativeElement.contains(event.target) ||
+      this.timepickerContainer()?.nativeElement.contains(event.target)
+    );
   }
 }

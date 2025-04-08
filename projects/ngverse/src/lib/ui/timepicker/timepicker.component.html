@@ -24,18 +24,12 @@
 >
   <ng-template>
     <div class="timepicker" #timepickerContainer>
-      <app-value-selector
-        [padLeft]="true"
+      <app-part-selector
         [value]="hours()"
-        [min]="0"
-        [max]="23"
         (valueChange)="updateHours($event)"
       />
       <span>:</span>
-      <app-value-selector
-        [padLeft]="true"
-        [min]="0"
-        [max]="59"
+      <app-part-selector
         [value]="minutes()"
         (valueChange)="updateMinutes($event)"
       />

@@ -1384,6 +1384,32 @@
           "name": "timepicker",
           "files": [
             {
+              "path": "ui/timepicker/part-selector",
+              "name": "part-selector",
+              "files": [
+                {
+                  "path": "ui/timepicker/part-selector/part-selector.component.css",
+                  "name": "part-selector.component.css",
+                  "language": "css"
+                },
+                {
+                  "path": "ui/timepicker/part-selector/part-selector.component.html",
+                  "name": "part-selector.component.html",
+                  "language": "html"
+                },
+                {
+                  "path": "ui/timepicker/part-selector/part-selector.component.spec.ts",
+                  "name": "part-selector.component.spec.ts",
+                  "language": "spec.ts"
+                },
+                {
+                  "path": "ui/timepicker/part-selector/part-selector.component.ts",
+                  "name": "part-selector.component.ts",
+                  "language": "ts"
+                }
+              ]
+            },
+            {
               "path": "ui/timepicker/timepicker.component.css",
               "name": "timepicker.component.css",
               "language": "css"
@@ -1402,32 +1428,6 @@
               "path": "ui/timepicker/timepicker.component.ts",
               "name": "timepicker.component.ts",
               "language": "ts"
-            },
-            {
-              "path": "ui/timepicker/value-selector",
-              "name": "value-selector",
-              "files": [
-                {
-                  "path": "ui/timepicker/value-selector/value-selector.component.css",
-                  "name": "value-selector.component.css",
-                  "language": "css"
-                },
-                {
-                  "path": "ui/timepicker/value-selector/value-selector.component.html",
-                  "name": "value-selector.component.html",
-                  "language": "html"
-                },
-                {
-                  "path": "ui/timepicker/value-selector/value-selector.component.spec.ts",
-                  "name": "value-selector.component.spec.ts",
-                  "language": "spec.ts"
-                },
-                {
-                  "path": "ui/timepicker/value-selector/value-selector.component.ts",
-                  "name": "value-selector.component.ts",
-                  "language": "ts"
-                }
-              ]
             }
           ]
         },
