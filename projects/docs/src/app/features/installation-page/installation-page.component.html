@@ -1,27 +1,14 @@
 <doc-blog-page label="Installation">
   <p class="!m-0">
     The minimum required Angular version for installation is
-    <strong>&gt;=19.0.2</strong>.
+    <strong>&gt;=19.0.0</strong>.
   </p>
-  <p>
-    <code><doc-project-name></doc-project-name></code> Relies on following
-    third-party libraries to get maximum flexibility and performance
-  </p>
-  <ul>
-    <li>
-      <a href="https://material.angular.io/cdk/categories" target="_blank">
-        &#64;angular/cdk
-      </a>
-    </li>
-    <li>
-      <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>
-    </li>
-    <li>
-      <a href="https://motion.ngverse.dev" target="_blank"
-        >&#64;ngverse/motion</a
-      >
-    </li>
-  </ul>
+  <h2>Install <doc-project-name></doc-project-name> schematics</h2>
+  <doc-source-code
+    language="bash"
+    code="npm install @ngverse/ui"
+  ></doc-source-code>
+
   <h2>Install &#64;angular/cdk</h2>
   <p>
     <doc-project-name [code]="true"></doc-project-name> leverages Angular CDK as
@@ -64,123 +51,10 @@
     code='@import "tailwindcss";'
   ></doc-source-code>
   <h2>Add Angular animations</h2>
+  <p>In order to do smooth transitions between states, we use animations.</p>
   <p>
-    In order to do smooth transitions between states, we use
-    <a href="http://motion.ngverse.dev/" target="_blank">&#64;ngverse/motion</a>
-    library.
-  </p>
-  <p class="mb-0">Installation:</p>
-  <doc-source-code
-    language="bash"
-    code="npm install @ngverse/motion"
-  ></doc-source-code>
-  <p>
-    Then add <code>provideAnimationsAsync</code> provider to your
+    Add <code>provideAnimationsAsync</code> provider to your
     <code>appConfig</code> file to enable animations
   </p>
   <doc-source-code language="ts" [code]="animationsCode"></doc-source-code>
-  <h2>Installing an Icons Library</h2>
-  <p>
-    Some components, such as the <code>checkbox</code> component, require icons.
-    We use <doc-project-name></doc-project-name>
-    <a href="https://ui.ngverse.dev/doc/icon" target="_blank"> font-icon</a>
-    component for that.
-  </p>
-  <p>
-    Internally <code>font-icon</code> relies on
-    <a href="https://fonts.google.com/icons" target="_blank"
-      >Material Symbols</a
-    >
-  </p>
-  so import the following link tag in your <code>index.html</code>
-  <doc-source-code language="html" [code]="iconLink"></doc-source-code>
-  <p>
-    This will only import the icons that are used across
-    <doc-project-name [code]="true"></doc-project-name> Components
-  </p>
-  <p>
-    You can also add all the material icons, if you are going to use them
-    extensively
-  </p>
-  <doc-source-code language="html" [code]="allIconsLink"></doc-source-code>
-  <p>
-    You can read the full documentation here:
-    <a
-      href="https://developers.google.com/fonts/docs/material_symbols"
-      target="_blank"
-      >Material Symbols</a
-    >
-  </p>
-  <h2>Install <doc-project-name></doc-project-name> schematics</h2>
-  <doc-source-code
-    language="bash"
-    code="npm install @ngverse/ui"
-  ></doc-source-code>
-  <p>
-    Most of the time, you'll want to group generated components within the same
-    root folder. Instead of manually passing the <br />
-    <code>--path</code> option every time you generate a component, you can
-    configure it globally in your
-    <code>angular.json</code>
-    file.
-  </p>
-  <doc-source-code [code]="configCode" language="json"></doc-source-code>
-  <p>This will generate components in <code>ui</code> folder</p>
-  <h2>Add <doc-project-name></doc-project-name> styles to styles.css</h2>
-  <p>
-    The <doc-project-name [code]="true"></doc-project-name> styles include
-    generic styles that are shared across all components. These styles ensure
-    consistency and maintain a unified look throughout the project.
-    Additionally, two versions are provided:
-  </p>
-  <ul>
-    <li>Light mode.</li>
-    <li>Dark mode.</li>
-  </ul>
-  <p>
-    Copy the styles content and paste it into
-    <code>styles.css</code>
-  </p>
-  <doc-source-code
-    [code]="ngVerseStyleContent()"
-    language="css"
-  ></doc-source-code>
-  <p>
-    You are now ready to start using
-    <doc-project-name [code]="true"></doc-project-name> in your Angular project!
-  </p>
-  <h2>Update typescript import (Optional)</h2>
-  <p>
-    In general, you should place all your
-    <doc-project-name [code]="true"></doc-project-name> components in the same
-    folder. To import them, you can use either absolute or relative imports. The
-    recommended approach is to use absolute imports to prevent imports from
-    becoming too nested.
-  </p>
-  <p>
-    This configuration is not required for
-    <doc-project-name [code]="true"></doc-project-name> to work, but it is
-    considered a good practice.
-  </p>
-  <p>So Instead of this import:</p>
-  <doc-source-code
-    language="ts"
-    [allowCopy]="false"
-    code='import { ButtonComponent } from "../../../../button/button.component";'
-  ></doc-source-code>
-  <p>It will become this:</p>
-  <doc-source-code
-    language="ts"
-    [allowCopy]="false"
-    code='import { ButtonComponent } from "@ui/button/button.component";'
-  ></doc-source-code>
-  <p>
-    In order to do that, update your root <code>tsconfig.json</code> file with
-    following path
-  </p>
-  <doc-source-code language="json" [code]="tsImportCode"></doc-source-code>
-  <p>
-    <code>./src/app/ui</code> should be adjusted based on your project. In
-    general this is the most used path
-  </p>
 </doc-blog-page>
