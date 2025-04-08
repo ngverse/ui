@@ -1,12 +1,13 @@
 import { OrderByPipe } from '@/pipes/order-by.pipe';
 import { LowerCasePipe } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import {
   NavigationEnd,
   Router,
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
+import { orderBy } from 'lodash';
 import { filter } from 'rxjs';
 import { ANIMATION_LINKS } from './animation-links';
 import { GUIDES_LINKS } from './guide-links';
@@ -48,6 +49,14 @@ export class SidebarComponent {
   routes: Group[] = SIDEBAR_ROUTES;
   routeGroup = signal<Group | undefined>(undefined);
   private _router = inject(Router);
+
+  links = computed(() => {
+    if (this.routeGroup()?.sort) {
+      return orderBy(this.routeGroup()?.children, 'name');
+    }
+    return this.routeGroup()?.children;
+  });
+
   constructor() {
     this._router.events
       .pipe(filter((e) => e instanceof NavigationEnd))

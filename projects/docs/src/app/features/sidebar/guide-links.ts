@@ -2,6 +2,7 @@ import { Group } from './sidebar-types';
 
 export const GUIDES_LINKS: Group = {
   name: 'Guides',
+  sort: false,
   children: [
     {
       name: 'Introduction',

@@ -1,6 +1,7 @@
 export interface Group {
   name: string;
   children: SidebarLink[];
+  sort?: boolean;
 }
 
 export interface SidebarLink {

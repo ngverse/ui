@@ -3,7 +3,7 @@
     @if (routeGroup(); as group) {
       <ul class="list-none pl-0">
         <li class="mb-3 font-medium">{{ group.name }}</li>
-        @for (link of group.children | orderBy: 'name'; track $index) {
+        @for (link of links(); track $index) {
           <li>
             <a
               [routerLinkActive]="'selected'"
