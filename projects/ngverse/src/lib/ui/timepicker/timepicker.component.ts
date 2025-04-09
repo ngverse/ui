@@ -16,6 +16,8 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { PartSelectorComponent } from '@/ui/timepicker/part-selector/part-selector.component';
+import { injectDpDateAdapter } from '@/ui/datepicker/adapter/date.token';
+import { CdkTrapFocus } from '@angular/cdk/a11y';
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -34,6 +36,7 @@ function isValidTime(time: string) {
     PopoverOriginDirective,
     PartSelectorComponent,
     FormsModule,
+    CdkTrapFocus,
   ],
   templateUrl: './timepicker.component.html',
   styleUrl: './timepicker.component.css',
@@ -61,9 +64,10 @@ export class TimepickerComponent implements ControlValueAccessor {
   private _onChangeFn: OnChangeFunction;
 
   /*Because we work with date object we will keep the passed date and modify only the time part*/
-  private originalModelValue: Date | null | undefined;
+  private originalModelValue: unknown | null | undefined;
   private readonly elementRef = inject(ElementRef);
   private timepickerContainer = viewChild<ElementRef>('timepickerContainer');
+  private readonly _dateAdapter = injectDpDateAdapter();
 
   openPanel() {
     this.isOpen.set(true);
@@ -88,12 +92,12 @@ export class TimepickerComponent implements ControlValueAccessor {
   writeValue(value: Date | null | undefined): void {
     this.originalModelValue = value;
     if (value instanceof Date) {
-      this.hours.set(value.getHours());
-      this.minutes.set(value.getMinutes());
+      this.hours.set(this._dateAdapter.getHours(value));
+      this.minutes.set(this._dateAdapter.getMinutes(value));
     } else {
-      const now = new Date();
-      this.hours.set(now.getHours());
-      this.minutes.set(now.getMinutes());
+      const now = this._dateAdapter.currentDate();
+      this.hours.set(this._dateAdapter.getHours(now));
+      this.minutes.set(this._dateAdapter.getMinutes(now));
       this.originalModelValue = now;
     }
   }
@@ -113,9 +117,9 @@ export class TimepickerComponent implements ControlValueAccessor {
       this.minutes.set(parseInt(minutes));
     } else {
       this.selectedTime.set('');
-      const now = new Date();
-      this.hours.set(now.getHours());
-      this.minutes.set(now.getMinutes());
+      const now = this._dateAdapter.currentDate();
+      this.hours.set(this._dateAdapter.getHours(now));
+      this.minutes.set(this._dateAdapter.getMinutes(now));
       this.updateModel();
     }
   }
@@ -156,9 +160,9 @@ export class TimepickerComponent implements ControlValueAccessor {
   private updateModel() {
     const originalDate = this.originalModelValue;
     if (originalDate) {
-      const clonedDate = new Date(originalDate.getTime());
-      clonedDate.setHours(this.hours());
-      clonedDate.setMinutes(this.minutes());
+      let clonedDate = this._dateAdapter.clone(originalDate);
+      clonedDate = this._dateAdapter.setHours(clonedDate, this.hours());
+      clonedDate = this._dateAdapter.setMinutes(clonedDate, this.minutes());
       this._onChangeFn?.(clonedDate);
     }
   }

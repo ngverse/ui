@@ -23,7 +23,7 @@
   [offsetY]="8"
 >
   <ng-template>
-    <div class="timepicker" #timepickerContainer>
+    <div class="timepicker" #timepickerContainer cdkTrapFocus>
       <app-part-selector
         [value]="hours()"
         (valueChange)="updateHours($event)"
