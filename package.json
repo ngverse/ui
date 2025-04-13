@@ -64,7 +64,6 @@
     "@angular/compiler-cli": "^19.0.6",
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.7.1",
-    "@ngverse/ui": "^2.0.8",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
