@@ -12,7 +12,6 @@ export const PIPE_LINKS: SidebarGroup = {
     {
       name: 'CharAt',
       url: 'char-at',
-      mode: 'experimental',
     },
   ],
 };
