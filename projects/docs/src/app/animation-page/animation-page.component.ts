@@ -1,4 +1,5 @@
 import { CardComponent } from '@/ui/card/card.component';
+import { FontIconComponent } from '@/ui/icon/font-icon.component';
 import {
   AnimationBuilder,
   AnimationMetadata,
@@ -19,7 +20,6 @@ import {
 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { capitalCase, kebabCase } from 'change-case';
-import { FontIconComponent } from '../../../../../dist/ngverse/src/lib/icon/font-icon.component';
 import { CommandInstallationComponent } from '../blueprint/command-installation/command-installation.component';
 import { SourceTreeFolder } from '../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../blueprint/source-tree/source-tree.component';
