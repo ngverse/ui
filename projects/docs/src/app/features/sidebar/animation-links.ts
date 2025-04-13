@@ -1,7 +1,13 @@
-import { Group } from './sidebar-types';
+import { SidebarGroup } from './sidebar-types';
 
-export const ANIMATION_LINKS: Group = {
+export const ANIMATION_LINKS: SidebarGroup = {
   name: 'Animations',
+  statics: [
+    {
+      name: 'Configuration',
+      url: 'configuration',
+    },
+  ],
   children: [
     {
       name: 'Fade In',

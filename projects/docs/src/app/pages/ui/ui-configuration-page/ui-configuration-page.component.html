@@ -1,0 +1,112 @@
+<doc-blog-page label="Configuration">
+  <p>
+    The <span class="font-bold">UI</span> module provides a collection of
+    feature-rich UI components and directives such as button, select, tab, and
+    more. These components are built with the
+    <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS (v4)</a> and
+    <a href="https://material.angular.io/cdk/categories" target="_blank"
+      >&#64;angular/cdk</a
+    >
+  </p>
+  <h2>Install &#64;angular/cdk</h2>
+  <doc-source-code
+    language="bash"
+    [code]="'npm install @angular/cdk'"
+  ></doc-source-code>
+  <p>import <code>&#64;angular/cdk</code> styles to your styles.css file</p>
+  <doc-source-code
+    language="css"
+    [code]="angularCDKStyleImport"
+  ></doc-source-code>
+  <h2>Install tailwind (v4)</h2>
+  <p>
+    Follow the instructions here:
+    <a
+      target="_blank"
+      href="https://tailwindcss.com/docs/installation/framework-guides/angular"
+      >link</a
+    >
+  </p>
+  <h2>Add Angular animations</h2>
+  <p>In order to do smooth transitions between states, we use animations.</p>
+  <p>
+    Add <code>provideAnimationsAsync</code> provider to your
+    <code>appConfig</code> file to enable animations
+  </p>
+  <doc-source-code language="ts" [code]="animationsCode"></doc-source-code>
+
+  <h2>Schematic Usage</h2>
+  <doc-source-code
+    language="bash"
+    [code]="'ng g @ngverse/ui:ui [name]'"
+  ></doc-source-code>
+  <h4>Options</h4>
+  <ul>
+    <li>
+      <span class="font-bold"><code>path</code></span
+      >: Specifies where to place the component folder.
+    </li>
+    <li>
+      <span class="font-bold"><code>prefix</code></span
+      >: Specifies the prefix of component. By default, it will use the
+      project's prefix, or 'app' if no project is provided.
+    </li>
+    <li>
+      <span class="font-bold"><code>project</code></span
+      >: The name of the Angular project where the component should be added. By
+      default it will use defaultProject
+    </li>
+    <li>
+      <span class="font-bold"><code>includeTests</code></span
+      >: Specifies whether to include test files for the element.
+      <code>False</code> by Default
+    </li>
+  </ul>
+  <h2>Global Schematic Configuration (Recommended)</h2>
+  <p>
+    In order to have same schematic options while generating components, add the
+    following configuration in your <code>angular.json</code> file
+  </p>
+  <doc-source-code language="json" [code]="configCode"></doc-source-code>
+  <h2>Add Typescript Import Path</h2>
+  <p>Add the following path to your <code>tsconfig.json</code></p>
+  <doc-source-code language="json" [code]="tsImportPath"></doc-source-code>
+  <p>
+    By that you will import <span class="bold">UI</span> components, like that
+  </p>
+  <doc-source-code
+    language="ts"
+    code="import { ButtonComponent } from '@/ui/button/button.component';"
+  ></doc-source-code>
+  <h2>Theming</h2>
+
+  <p>
+    <span class="font-bold">UI</span> module comes with a predefined Tailwind
+    CSS theme configuration, that is shared across the components. It includes
+    light and dark mode. copy the styles and paste it into your
+    <code>styles.css</code>
+  </p>
+  <p>
+    For example, by default, the primary color is:
+    <code>--color-blue-500 </code> If you want to change it to amber, simply
+    update it to: <code>--color-amber-500</code>
+    This makes customization easy and ensures design consistency across your
+    project.
+  </p>
+
+  <doc-source-code language="css" [code]="globalsCode()"></doc-source-code>
+
+  <p class="!mt-6">CSS Variables follow the following pattern:</p>
+  <ul>
+    <li><code>--color-name</code>: Background color</li>
+    <li><code>--color-name-foreground</code>: Text color</li>
+  </ul>
+  <p>
+    These styles are meant to help you get started quickly with beautiful
+    components that share a consistent look and feel. Your designers can explore
+    countless ways to customize the design—such as updating color tokens and
+    more. Don’t hesitate to modify the component styles directly to suit your
+    needs.
+  </p>
+  <p class="italic">After all the steps you are ready to add components.</p>
+</doc-blog-page>

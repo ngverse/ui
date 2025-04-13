@@ -2,24 +2,20 @@
   <p>
     After installing <doc-project-name [code]="true"></doc-project-name>, you
     can immediately start adding features to your app. Features are organized
-    into three main categories:
+    into different categories. they have their own schematics to work with. Pick
+    the one to get started:
   </p>
-  <ul class="ml-4 list-inside list-disc">
-    <li>
-      <strong>UI</strong> – reusable components (e.g., buttons, inputs, modals)
-    </li>
-    <li><strong>Pipes</strong>- Angular pipes</li>
-    <li><strong>Animations</strong>- Angular animations</li>
-  </ul>
-  <p>
-    Each category has its own schematic for adding features to your project.
-  </p>
-  <p>for example: in order to add button component run</p>
-  <pre><code>ng g &#64;ngverse/ui:ui button</code></pre>
-  to add <code>fade-in</code> animation run
-  <pre><code>ng g &#64;ngverse/ui:animation fade-in</code></pre>
-  <p>
-    Each schematic has a different configuration, available on its respective
-    category page.
-  </p>
+  <div class="not-prose mt-10 flex gap-3">
+    @for (item of categories(); track $index) {
+      <a
+        [routerLink]="item.url"
+        class="flex h-80 flex-1 flex-col items-center justify-center rounded-xl border border-slate-300 hover:bg-slate-100"
+      >
+        <app-font-icon size="120" class="text-blue-500">{{
+          item.icon
+        }}</app-font-icon>
+        <p class="mt-6 text-4xl font-bold">{{ item.name }}</p>
+      </a>
+    }
+  </div>
 </doc-blog-page>

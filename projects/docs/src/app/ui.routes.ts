@@ -4,6 +4,13 @@ export const UI_ROUTES: Route = {
   path: 'ui',
   children: [
     {
+      path: 'configuration',
+      loadComponent: () =>
+        import(
+          './pages/ui/ui-configuration-page/ui-configuration-page.component'
+        ).then((b) => b.UiConfigurationPageComponent),
+    },
+    {
       path: 'accordion',
       loadComponent: () =>
         import('./features/accordion-page/accordion-page.component').then(
@@ -243,7 +250,7 @@ export const UI_ROUTES: Route = {
     },
     {
       path: '',
-      redirectTo: '/doc/ui/accordion',
+      redirectTo: '/doc/ui/configuration',
       pathMatch: 'full',
     },
   ],

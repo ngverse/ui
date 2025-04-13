@@ -5,7 +5,7 @@ import { ProjectNameComponent } from '../../core/project-name/project-name.compo
 
 @Component({
   selector: 'doc-introduction-page',
-  imports: [BlogPageComponent, SourceCodeComponent, ProjectNameComponent],
+  imports: [BlogPageComponent, ProjectNameComponent, SourceCodeComponent],
   templateUrl: './introduction-page.component.html',
   styleUrl: './introduction-page.component.css',
 })

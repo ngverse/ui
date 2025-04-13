@@ -11,26 +11,24 @@
   <p>
     <doc-project-name [code]="true"></doc-project-name> is a powerful Angular
     library packed with high-quality, production-ready components, directives,
-    pipes animations—just to name a few. It’s built on top of
-    <a href="https://material.angular.io/cdk/categories" target="_blank"
-      >&#64;angular/cdk</a
-    >
-    and
-    <a href="https://material.angular.io/cdk/categories" target="_blank"
-      >Tailwind CSS</a
-    >
-    to ensure everything is robust, flexible, and easy to customize.
+    pipes animations—just to name a few. robust, flexible, and of course easy to
+    customize.
   </p>
   <p>
     Using <doc-project-name [code]="true"></doc-project-name> feels just like
     copying code from an AI tool into your app—but with a big difference:
     everything here is tested, stable, and feature-rich.
   </p>
+  <div class="italic">
+    Even though the project name is <doc-project-name></doc-project-name>. It
+    not only includes <span class="font-bold">UI</span> components, but plenty
+    of other Angular features.
+  </div>
   <h2>How it works</h2>
   <p>
     <doc-project-name [code]="true"></doc-project-name> includes Angular
     schematics that automatically add the source code of components, directives,
-    and other UI features directly into your app.
+    and other Angular features directly into your app.
   </p>
   <p>For example, if you want to add a select component, just run:</p>
   <pre><code>ng g &#64;ngverse/ui:ui select</code></pre>
@@ -38,42 +36,18 @@
     This will generate the complete, fully functional source code for the select
     component—right inside your project.
   </p>
-  <p>
-    You get complete control over the code: it’s customizable, tested, and ready
-    to use—as if you had written it yourself, but without the hassle.
-  </p>
   <h2>Dependencies</h2>
   <p>
-    The core dependencies behind
-    <doc-project-name [code]="true"></doc-project-name> are:
-  </p>
-  <ul>
-    <li>&#64;angular/cdk</li>
-    <li>Tailwind CSS</li>
-  </ul>
-  <p>
-    These two libraries form the backbone of most features in
-    <doc-project-name [code]="true"></doc-project-name>
+    <doc-project-name [code]="true"></doc-project-name> features depend on
+    low-level libraries—only when it makes the code more readable, stable, and
+    avoids overly complex or “crypto-like” logic in your app. However source
+    code is yours, you can update it however you want.
   </p>
   <p>
-    However, in some edge cases, we rely on a few lightweight, low-level
-    libraries—only when it makes the code more readable, stable, and avoids
-    overly complex or “crypto-like” logic in your app.
+    Each module will contain its own dependencies list and installation
+    instructions.
   </p>
-  <p>For example:</p>
-  <ul>
-    <li>
-      The <code>kebabCase</code> pipe uses the popular
-      <a href="https://www.npmjs.com/package/change-case">change-case</a>
-      library to keep the implementation simple and reliable.
-    </li>
-  </ul>
-  <div
-    class="rounded border-l-4 border-yellow-400 bg-yellow-50 p-4 text-yellow-800"
-  >
-    You only need to install The Optional dependencies when a specific feature
-    requires them.
-  </div>
+
   <h2>Have a Generic Feature Idea?</h2>
   <p>
     As developers, we often find ourselves building the same features across

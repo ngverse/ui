@@ -1,7 +1,8 @@
-export interface Group {
+export interface SidebarGroup {
   name: string;
   children: SidebarLink[];
   sort?: boolean;
+  statics?: SidebarLink[];
 }
 
 export interface SidebarLink {

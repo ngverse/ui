@@ -1,5 +1,13 @@
-export const UI_LINKS = {
+import { SidebarGroup } from './sidebar-types';
+
+export const UI_LINKS: SidebarGroup = {
   name: 'UI',
+  statics: [
+    {
+      name: 'Configuration',
+      url: 'configuration',
+    },
+  ],
   children: [
     {
       name: 'Accordion',

@@ -6,55 +6,6 @@
   <h2>Install <doc-project-name></doc-project-name> schematics</h2>
   <doc-source-code
     language="bash"
-    code="npm install @ngverse/ui"
+    code="npm install @ngverse/ui --save-dev"
   ></doc-source-code>
-
-  <h2>Install &#64;angular/cdk</h2>
-  <p>
-    <doc-project-name [code]="true"></doc-project-name> leverages Angular CDK as
-    a low-level toolkit to handle essential functionalities such as
-    accessibility, floating panels, and other foundational UI behaviors.
-  </p>
-  <doc-source-code
-    language="bash"
-    code="npm install @angular/cdk"
-  ></doc-source-code>
-  <p>
-    import <code>&#64;angular/cdk</code> styles to your
-    <code>styles.css</code> file
-  </p>
-  <doc-source-code
-    language="css"
-    code="@import '@angular/cdk/overlay-prebuilt.css';"
-  ></doc-source-code>
-  <h2>Install tailwind (v4)</h2>
-  <p>
-    <doc-project-name [code]="true"></doc-project-name> uses Tailwind CSS as a
-    CSS framework
-  </p>
-  <doc-source-code
-    language="bash"
-    code="npm install tailwindcss @tailwindcss/postcss postcss --force  "
-  ></doc-source-code>
-  <p>
-    Create a <code>.postcssrc.json</code> file in the root of your project and
-    add the <code>&#64;tailwindcss/postcss</code> plugin to your PostCSS
-    configuration.
-  </p>
-  <doc-source-code language="json" [code]="postcssCode"></doc-source-code>
-  <p>
-    Add an <code>&#64;import</code> to <code>styles.css</code> that imports
-    Tailwind CSS.
-  </p>
-  <doc-source-code
-    language="css"
-    code='@import "tailwindcss";'
-  ></doc-source-code>
-  <h2>Add Angular animations</h2>
-  <p>In order to do smooth transitions between states, we use animations.</p>
-  <p>
-    Add <code>provideAnimationsAsync</code> provider to your
-    <code>appConfig</code> file to enable animations
-  </p>
-  <doc-source-code language="ts" [code]="animationsCode"></doc-source-code>
 </doc-blog-page>
