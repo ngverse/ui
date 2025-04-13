@@ -3,9 +3,8 @@ import { FontIconComponent } from '@/ui/icon/font-icon.component';
 import { Component, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
-import { getAllSidebarLinks, SidebarLink } from '../sidebar/sidebar.component';
-
-const SIDEBAR_LINKS = getAllSidebarLinks();
+import { SidebarLink } from '../sidebar/sidebar-types';
+import { SidebarState } from '../sidebar/sidebar.state';
 
 @Component({
   selector: 'doc-doc-sibling-navigations',
@@ -15,6 +14,7 @@ const SIDEBAR_LINKS = getAllSidebarLinks();
 })
 export class DocSiblingNavigationsComponent {
   router = inject(Router);
+  private _sidebarState = inject(SidebarState);
   prevRoute = signal<SidebarLink | undefined>(undefined);
   nextRoute = signal<SidebarLink | undefined>(undefined);
 
@@ -23,18 +23,33 @@ export class DocSiblingNavigationsComponent {
       .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe(() => {
         const currentPath = this.router.url;
+        const group = this._sidebarState.group();
+        const allLinks = this._sidebarState.allLinks();
+        if (!allLinks.length || !group) {
+          return;
+        }
 
-        const foundRouteIndex = SIDEBAR_LINKS.findIndex(
-          (r) => r.url === currentPath
-        );
+        const foundRouteIndex = this._sidebarState
+          .allLinks()
+          .findIndex((r) => currentPath.includes(r.url));
         this.prevRoute.set(undefined);
         this.nextRoute.set(undefined);
         if (foundRouteIndex !== -1) {
           if (foundRouteIndex !== 0) {
-            this.prevRoute.set(SIDEBAR_LINKS[foundRouteIndex - 1]);
+            const prevRouteIndex = foundRouteIndex - 1;
+            this.prevRoute.set({
+              name: allLinks[prevRouteIndex].name,
+              url:
+                group.name.toLowerCase() + '/' + allLinks[prevRouteIndex].url,
+            });
           }
-          if (foundRouteIndex !== SIDEBAR_LINKS.length - 1) {
-            this.nextRoute.set(SIDEBAR_LINKS[foundRouteIndex + 1]);
+          if (foundRouteIndex !== allLinks.length - 1) {
+            const nextRouteIndex = foundRouteIndex + 1;
+            this.nextRoute.set({
+              name: allLinks[nextRouteIndex].name,
+              url:
+                group.name.toLowerCase() + '/' + allLinks[nextRouteIndex].url,
+            });
           }
         }
       });

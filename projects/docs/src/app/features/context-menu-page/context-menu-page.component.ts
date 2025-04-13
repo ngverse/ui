@@ -8,9 +8,13 @@ import { EMPTY_API_INPUT_DEFAULT_VALUE } from '../../blueprint/api-info/api-inpu
 import { BlueprintPageComponent } from '../../blueprint/blueprint-page/blueprint-page.component';
 import { CommandInstallationComponent } from '../../blueprint/command-installation/command-installation.component';
 import { ShowCaseComponent } from '../../blueprint/show-case/show-case.component';
-import { SourceTreeBuilder } from '../../blueprint/source-tree/source-tree-builder';
+import {
+  SourceTreeBuilder,
+  SourceTreeFolder,
+} from '../../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../../blueprint/source-tree/source-tree.component';
 import { ShowCaseContextMenuComponent } from '../../examples/context-menu/show-case-context-menu/show-case-context-menu.component';
+const ROOT = 'context-menu';
 
 @Component({
   selector: 'doc-context-menu-page',
@@ -29,6 +33,18 @@ import { ShowCaseContextMenuComponent } from '../../examples/context-menu/show-c
 })
 export class ContextMenuPageComponent {
   sourceTreeBuilder = inject(SourceTreeBuilder);
+
+  sourceTree: SourceTreeFolder[] = [
+    {
+      name: ROOT,
+      files: [
+        ...this.sourceTreeBuilder.directive(ROOT, ROOT),
+        ...this.sourceTreeBuilder.directive('context-menu-trigger', ROOT),
+        ...this.sourceTreeBuilder.directive('context-menu-item', ROOT),
+      ],
+      hideName: true,
+    },
+  ];
 
   apiInfo: ApiInfo = {
     stylesInGlobal: true,

@@ -7,6 +7,11 @@
       "name": "animations",
       "files": [
         {
+          "path": "animations/fade-in-up.animation.ts",
+          "name": "fade-in-up.animation.ts",
+          "language": "ts"
+        },
+        {
           "path": "animations/fade-in.animation.ts",
           "name": "fade-in.animation.ts",
           "language": "ts"
@@ -25,6 +30,11 @@
         {
           "path": "pipes/char-at.pipe.ts",
           "name": "char-at.pipe.ts",
+          "language": "ts"
+        },
+        {
+          "path": "pipes/order-by.pipe.ts",
+          "name": "order-by.pipe.ts",
           "language": "ts"
         }
       ]
@@ -360,6 +370,187 @@
               "path": "ui/dark-mode/dark-mode.service.ts",
               "name": "dark-mode.service.ts",
               "language": "ts"
+            }
+          ]
+        },
+        {
+          "path": "ui/datepicker",
+          "name": "datepicker",
+          "files": [
+            {
+              "path": "ui/datepicker/adapter",
+              "name": "adapter",
+              "files": [
+                {
+                  "path": "ui/datepicker/adapter/date.adapter.ts",
+                  "name": "date.adapter.ts",
+                  "language": "ts"
+                },
+                {
+                  "path": "ui/datepicker/adapter/date.token.ts",
+                  "name": "date.token.ts",
+                  "language": "ts"
+                }
+              ]
+            },
+            {
+              "path": "ui/datepicker/calendar",
+              "name": "calendar",
+              "files": [
+                {
+                  "path": "ui/datepicker/calendar/calendar.component.css",
+                  "name": "calendar.component.css",
+                  "language": "css"
+                },
+                {
+                  "path": "ui/datepicker/calendar/calendar.component.html",
+                  "name": "calendar.component.html",
+                  "language": "html"
+                },
+                {
+                  "path": "ui/datepicker/calendar/calendar.component.ts",
+                  "name": "calendar.component.ts",
+                  "language": "ts"
+                }
+              ]
+            },
+            {
+              "path": "ui/datepicker/core",
+              "name": "core",
+              "files": [
+                {
+                  "path": "ui/datepicker/core/cell.directive.ts",
+                  "name": "cell.directive.ts",
+                  "language": "ts"
+                },
+                {
+                  "path": "ui/datepicker/core/day-cell.ts",
+                  "name": "day-cell.ts",
+                  "language": "ts"
+                }
+              ]
+            },
+            {
+              "path": "ui/datepicker/datepicker",
+              "name": "datepicker",
+              "files": [
+                {
+                  "path": "ui/datepicker/datepicker/datepicker.component.css",
+                  "name": "datepicker.component.css",
+                  "language": "css"
+                },
+                {
+                  "path": "ui/datepicker/datepicker/datepicker.component.html",
+                  "name": "datepicker.component.html",
+                  "language": "html"
+                },
+                {
+                  "path": "ui/datepicker/datepicker/datepicker.component.ts",
+                  "name": "datepicker.component.ts",
+                  "language": "ts"
+                }
+              ]
+            },
+            {
+              "path": "ui/datepicker/day-view",
+              "name": "day-view",
+              "files": [
+                {
+                  "path": "ui/datepicker/day-view/day-view.component.css",
+                  "name": "day-view.component.css",
+                  "language": "css"
+                },
+                {
+                  "path": "ui/datepicker/day-view/day-view.component.html",
+                  "name": "day-view.component.html",
+                  "language": "html"
+                },
+                {
+                  "path": "ui/datepicker/day-view/day-view.component.ts",
+                  "name": "day-view.component.ts",
+                  "language": "ts"
+                }
+              ]
+            },
+            {
+              "path": "ui/datepicker/dayjs",
+              "name": "dayjs",
+              "files": [
+                {
+                  "path": "ui/datepicker/dayjs/dayjs-date.adapter.token.ts",
+                  "name": "dayjs-date.adapter.token.ts",
+                  "language": "ts"
+                },
+                {
+                  "path": "ui/datepicker/dayjs/dayjs-date.adapter.ts",
+                  "name": "dayjs-date.adapter.ts",
+                  "language": "ts"
+                }
+              ]
+            },
+            {
+              "path": "ui/datepicker/month-view",
+              "name": "month-view",
+              "files": [
+                {
+                  "path": "ui/datepicker/month-view/month-view.component.css",
+                  "name": "month-view.component.css",
+                  "language": "css"
+                },
+                {
+                  "path": "ui/datepicker/month-view/month-view.component.html",
+                  "name": "month-view.component.html",
+                  "language": "html"
+                },
+                {
+                  "path": "ui/datepicker/month-view/month-view.component.ts",
+                  "name": "month-view.component.ts",
+                  "language": "ts"
+                }
+              ]
+            },
+            {
+              "path": "ui/datepicker/state",
+              "name": "state",
+              "files": [
+                {
+                  "path": "ui/datepicker/state/key.state.ts",
+                  "name": "key.state.ts",
+                  "language": "ts"
+                }
+              ]
+            },
+            {
+              "path": "ui/datepicker/types",
+              "name": "types",
+              "files": [
+                {
+                  "path": "ui/datepicker/types/view-type.ts",
+                  "name": "view-type.ts",
+                  "language": "ts"
+                }
+              ]
+            },
+            {
+              "path": "ui/datepicker/year-view",
+              "name": "year-view",
+              "files": [
+                {
+                  "path": "ui/datepicker/year-view/year-view.component.css",
+                  "name": "year-view.component.css",
+                  "language": "css"
+                },
+                {
+                  "path": "ui/datepicker/year-view/year-view.component.html",
+                  "name": "year-view.component.html",
+                  "language": "html"
+                },
+                {
+                  "path": "ui/datepicker/year-view/year-view.component.ts",
+                  "name": "year-view.component.ts",
+                  "language": "ts"
+                }
+              ]
             }
           ]
         },
@@ -705,6 +896,42 @@
             {
               "path": "ui/local-storage/local-storage.service.ts",
               "name": "local-storage.service.ts",
+              "language": "ts"
+            }
+          ]
+        },
+        {
+          "path": "ui/multi-select",
+          "name": "multi-select",
+          "files": [
+            {
+              "path": "ui/multi-select/multi-select-option.component.css",
+              "name": "multi-select-option.component.css",
+              "language": "css"
+            },
+            {
+              "path": "ui/multi-select/multi-select-option.component.html",
+              "name": "multi-select-option.component.html",
+              "language": "html"
+            },
+            {
+              "path": "ui/multi-select/multi-select-option.component.ts",
+              "name": "multi-select-option.component.ts",
+              "language": "ts"
+            },
+            {
+              "path": "ui/multi-select/multi-select.component.css",
+              "name": "multi-select.component.css",
+              "language": "css"
+            },
+            {
+              "path": "ui/multi-select/multi-select.component.html",
+              "name": "multi-select.component.html",
+              "language": "html"
+            },
+            {
+              "path": "ui/multi-select/multi-select.component.ts",
+              "name": "multi-select.component.ts",
               "language": "ts"
             }
           ]
