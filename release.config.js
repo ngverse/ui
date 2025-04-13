@@ -9,7 +9,7 @@ module.exports = {
     [
       '@semantic-release/npm',
       {
-        pkgRoot: 'dist/ngverse',
+        pkgRoot: 'dist/@ngverse/ui',
       },
     ],
     [
