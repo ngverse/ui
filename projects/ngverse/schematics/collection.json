@@ -1,10 +1,20 @@
 {
   "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "add": {
+    "ui": {
       "description": "Generate a component in the project.",
-      "factory": "./add/index#add",
-      "schema": "./add/schema.json"
+      "factory": "./ui/index#ui",
+      "schema": "./ui/schema.json"
+    },
+    "pipe": {
+      "description": "Generate a pipe in the project.",
+      "factory": "./pipe/index#pipe",
+      "schema": "./pipe/schema.json"
+    },
+    "animation": {
+      "description": "Generate a animation in the project.",
+      "factory": "./animation/index#animation",
+      "schema": "./animation/schema.json"
     }
   }
 }

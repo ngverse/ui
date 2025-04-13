@@ -13,7 +13,7 @@ function getElementName(inputPath: string): string {
   return basename(normalizedPath);
 }
 
-export function pipe(options: Schema) {
+export function animation(options: Schema) {
   return async (host: Tree) => {
     const workspace = await getWorkspace(host);
 
@@ -30,64 +30,64 @@ export function pipe(options: Schema) {
       path = `./${options.path}`;
     }
     const applicationPath = normalize(
-      join(rootPath, path, `${options.name}.pipe.ts`)
+      join(rootPath, path, `${options.name}.animation.ts`)
     );
     const elementName = getElementName(options.name);
 
-    const pipePath = normalize(
+    const animationPath = normalize(
       join(
         'node_modules',
         '@ngverse',
         'ui',
         'src',
         'lib',
-        'pipes',
-        `${elementName}.pipe.ts`
+        'animations',
+        `${elementName}.animation.ts`
       )
     );
 
-    const pipeFile = host.get(pipePath);
-    if (pipeFile === null) {
+    const animationFile = host.get(animationPath);
+    if (animationFile === null) {
       throw new SchematicsException(`Could not find ${elementName}`);
     }
-    const pipeContent = pipeFile.content.toString('utf-8');
+    const animationContent = animationFile.content.toString('utf-8');
 
-    const appPipeFile = host.get(applicationPath);
+    const appanimationFile = host.get(applicationPath);
 
-    if (appPipeFile && !options.replace) {
+    if (appanimationFile && !options.replace) {
       throw new SchematicsException(
         `the ${elementName} already exists in ${applicationPath}, use --replace=true option to overwrite`
       );
     }
 
-    // const pipeTestPath = normalize(
+    // const animationTestPath = normalize(
     //   join(
     //     'node_modules',
     //     '@ngverse',
     //     'ui',
     //     'src',
     //     'lib',
-    //     'pipes',
-    //     `${elementName}.pipe.spec.ts`
+    //     'animations',
+    //     `${elementName}.animation.spec.ts`
     //   )
     // );
 
-    // const pipeTestFile = host.get(pipeTestPath);
+    // const animationTestFile = host.get(animationTestPath);
 
-    // if (pipeTestFile) {
+    // if (animationTestFile) {
     //   if (options.includeTests) {
-    //     const pipeTestContent = pipeTestFile.content.toString('utf-8');
+    //     const animationTestContent = animationTestFile.content.toString('utf-8');
     //     host.create(
-    //       applicationPath.replace('.pipe.ts', '.pipe.spec.ts'),
-    //       pipeTestContent
+    //       applicationPath.replace('.animation.ts', '.animation.spec.ts'),
+    //       animationTestContent
     //     );
     //   }
     // }
 
-    if (appPipeFile) {
-      host.overwrite(applicationPath, pipeContent);
+    if (appanimationFile) {
+      host.overwrite(applicationPath, animationContent);
     } else {
-      host.create(applicationPath, pipeContent);
+      host.create(applicationPath, animationContent);
     }
     return host;
   };
