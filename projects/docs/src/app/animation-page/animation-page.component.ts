@@ -1,3 +1,5 @@
+import { CardComponent } from '@/ui/card/card.component';
+import { FontIconComponent } from '@/ui/icon/font-icon.component';
 import {
   AnimationBuilder,
   AnimationMetadata,
@@ -17,11 +19,27 @@ import {
   viewChild,
 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { capitalCase, kebabCase } from 'change-case';
 import { CommandInstallationComponent } from '../blueprint/command-installation/command-installation.component';
 import { SourceTreeFolder } from '../blueprint/source-tree/source-tree-builder';
 import { SourceTreeComponent } from '../blueprint/source-tree/source-tree.component';
 import { ProjectNameComponent } from '../core/project-name/project-name.component';
 import { FontIconComponent } from '@/ui/icon/font-icon.component';
+
+type TRIGGER_TYPES = 'all' | 'enter' | 'leave' | 'none';
+
+interface TriggerType {
+  name: string;
+  type: ':enter' | ':leave' | ':increment' | ':decrement';
+  description: string;
+}
+
+interface AnimationOption {
+  name: string;
+  type: string;
+  default: string;
+  description: string;
+}
 
 @Component({
   selector: 'doc-animation-page',
@@ -30,6 +48,7 @@ import { FontIconComponent } from '@/ui/icon/font-icon.component';
     ProjectNameComponent,
     SourceTreeComponent,
     CommandInstallationComponent,
+    CardComponent,
   ],
   templateUrl: './animation-page.component.html',
   styleUrl: './animation-page.component.css',
@@ -45,11 +64,55 @@ export class AnimationPageComponent {
   title = inject(Title);
   meta = inject(Meta);
 
-  libraryName = signal<string>('');
+  label = computed(() => capitalCase(this.name()));
+
+  defaultOptions: AnimationOption = {
+    name: 'duration',
+    type: 'number',
+    default: '250ms',
+    description: 'duration of the animation',
+  };
+
+  options = input<AnimationOption[]>();
 
   platform = inject(Platform);
 
-  fileName = input.required<string>();
+  fileName = computed(() => kebabCase(this.name()));
+
+  trigger = input.required<TRIGGER_TYPES>();
+
+  name = input.required<string>();
+
+  triggers = computed(() => {
+    const triggers: TriggerType[] = [];
+    const trigger = this.trigger();
+
+    if (trigger === 'all' || trigger === 'enter') {
+      triggers.push({
+        name: `${this.name()}OnEnter`,
+        type: ':enter',
+        description: 'triggers when element enters the view',
+      });
+      triggers.push({
+        name: `${this.name()}OnIncr`,
+        type: ':increment',
+        description: 'triggers when numeric value increases',
+      });
+    }
+    if (trigger === 'all' || trigger === 'leave') {
+      triggers.push({
+        name: `${this.name()}OnLeave`,
+        type: ':leave',
+        description: 'triggers when element leaves the view',
+      });
+      triggers.push({
+        name: `${this.name()}OnDecr`,
+        type: ':decrement',
+        description: 'triggers when numeric value decreases',
+      });
+    }
+    return triggers;
+  });
 
   sourceTree = computed<SourceTreeFolder[]>(() => {
     return [
@@ -66,10 +129,6 @@ export class AnimationPageComponent {
       },
     ];
   });
-
-  name = input.required<string>();
-
-  subTitle = input.required<string>();
 
   constructor() {
     effect(() => {

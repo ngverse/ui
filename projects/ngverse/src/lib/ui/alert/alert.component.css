@@ -1,43 +1,42 @@
+@reference "tailwindcss";
+
 :host {
   padding: 16px;
   display: block;
   border-radius: 6px;
   &.fill {
     &.success {
-      background: var(--color-success);
-      color: var(--color-success-foreground);
+      @apply bg-green-600 text-white;
     }
 
     &.danger {
-      background: var(--color-danger);
-      color: var(--color-danger-foreground);
+      @apply bg-red-600 text-white;
     }
     &.default {
-      background: var(--color-inverse);
-      color: var(--color-inverse-foreground);
+      @apply bg-slate-950 text-white;
     }
 
     &.warning {
-      background: var(--color-warning);
-      color: var(--color-warning-foreground);
+      @apply bg-amber-600 text-white;
     }
   }
 
   &.outline {
     background: transparent;
+    @apply border;
     &.success {
-      color: var(--color-success);
+      @apply border-green-600 text-green-600;
     }
 
     &.danger {
-      color: var(--color-danger);
+      @apply border-red-600 text-red-600;
     }
     &.default {
-      border: var(--border);
+      @apply border-slate-300;
     }
 
     &.warning {
-      color: var(--color-warning);
+      @apply border-amber-600 text-amber-600;
     }
   }
 }

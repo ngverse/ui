@@ -1,75 +1,59 @@
 <doc-blog-page label="Introduction">
   <p>
-    <code><doc-project-name></doc-project-name></code> is a collection of
-    feature-rich Angular components. It has one key difference from other UI
-    libraries: <br />
-    <strong>you don’t install it as a dependency</strong>. Instead, you add the
-    source code of the components directly into your project.
+    The world has changed since the AI revolution—and it continues to change
+    rapidly. In the past, we relied on third-party libraries to integrate
+    prebuilt components into our apps. Today, we often ask AI to generate these
+    components on demand. While this can be powerful, it comes with a cost:
+    AI-generated code is often unpredictable, inconsistent, and prone to subtle
+    bugs.
   </p>
-
-  <h2>What does that mean?</h2>
-
+  <p>That’s exactly what ngverse/ui aims to solve.</p>
   <p>
-    Typically, when you use a UI library, you install the library as a
-    dependency and then import components from it.<br />
-    <doc-project-name [code]="true"></doc-project-name> is different. You
-    install the schematics and selectively add the components you need. The
-    component's source code is injected into your project, making it
-    <strong>fully customizable</strong>. You can explore, update, or leave it as
-    is.
+    <doc-project-name [code]="true"></doc-project-name> is a powerful Angular
+    library packed with high-quality, production-ready components, directives,
+    pipes animations—just to name a few. robust, flexible, and of course easy to
+    customize.
   </p>
-
   <p>
-    For example, if you were using a traditional Angular UI library, the steps
-    would look like this:
+    Using <doc-project-name [code]="true"></doc-project-name> feels just like
+    copying code from an AI tool into your app—but with a big difference:
+    everything here is tested, stable, and feature-rich.
   </p>
-  <doc-source-code
-    language="bash"
-    code="npm install angular-ui-library"
-  ></doc-source-code>
-
-  <p>And to use a button component:</p>
-  <doc-source-code
-    language="bash"
-    code="import { ButtonComponent } from 'angular-ui-library'"
-  ></doc-source-code>
-
+  <div class="italic">
+    Even though the project name is <doc-project-name></doc-project-name>. It
+    not only includes <span class="font-bold">UI</span> components, but plenty
+    of other Angular features.
+  </div>
+  <h2>How it works</h2>
   <p>
-    In the case of <code><doc-project-name></doc-project-name></code>, the
-    process is different, your run:
+    <doc-project-name [code]="true"></doc-project-name> includes Angular
+    schematics that automatically add the source code of components, directives,
+    and other Angular features directly into your app.
   </p>
-
-  <doc-source-code
-    language="bash"
-    code="ng g @ngverse/ui:add button"
-  ></doc-source-code>
-
+  <p>For example, if you want to add a select component, just run:</p>
+  <pre><code>ng g &#64;ngverse/ui:ui select</code></pre>
   <p>
-    This command adds the full source code for the button component to your
-    project. It behaves just as if you had created it yourself.
+    This will generate the complete, fully functional source code for the select
+    component—right inside your project.
+  </p>
+  <h2>Dependencies</h2>
+  <p>
+    <doc-project-name [code]="true"></doc-project-name> features depend on
+    low-level libraries—only when it makes the code more readable, stable, and
+    avoids overly complex or “crypto-like” logic in your app. However source
+    code is yours, you can update it however you want.
+  </p>
+  <p>
+    Each module will contain its own dependencies list and installation
+    instructions.
   </p>
 
-  <h2>Key Features</h2>
-
-  <ul>
-    <li><strong>Tailwind:</strong> We use Tailwind CSS as a CSS framework</li>
-    <li>
-      <strong>Zoneless:</strong> We don't rely on <code>zone.js</code>. All
-      components are zoneless, meaning they will work regardless of whether your
-      app includes <code>zone.js</code> or not.
-    </li>
-    <li>
-      <strong>Fully Customizable:</strong> The complete source code is yours, so
-      it is 100% customizable.
-    </li>
-    <li>
-      <strong>Accessibility:</strong> We prioritize accessibility, including
-      features like keyboard navigation and focus management. Generated
-      components have these behaviors by default.
-    </li>
-    <li>
-      <strong>Modular Approach:</strong> You only add what you need. No
-      unnecessary components or features are bundled into your project.
-    </li>
-  </ul>
+  <h2>Have a Generic Feature Idea?</h2>
+  <p>
+    As developers, we often find ourselves building the same features across
+    different projects and companies. If you have a feature in mind that you
+    think is generic and reusable, we'd love to hear about it! You’re welcome to
+    submit a feature request
+    <a href="https://github.com/ngverse/ui/issues" target="_blank">here.</a>
+  </p>
 </doc-blog-page>

@@ -30,16 +30,9 @@ export const GUIDES_ROUTES: Route = {
         ),
     },
     {
-      path: 'theming',
-      loadComponent: () =>
-        import('./features/theming-page/theming-page.component').then(
-          (t) => t.ThemingPageComponent
-        ),
-    },
-    {
       path: '',
-      redirectTo: '/doc/guides/introduction',
       pathMatch: 'full',
+      redirectTo: 'introduction',
     },
   ],
 };

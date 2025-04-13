@@ -54,7 +54,7 @@
             "styles": ["projects/docs/src/styles.css"],
             "scripts": [],
             "server": "projects/docs/src/main.server.ts",
-            "prerender": true,
+            "prerender": false,
             "ssr": false
           },
           "configurations": {

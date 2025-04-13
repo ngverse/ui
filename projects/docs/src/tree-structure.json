@@ -7,6 +7,11 @@
       "name": "animations",
       "files": [
         {
+          "path": "animations/fade-in-up.animation.ts",
+          "name": "fade-in-up.animation.ts",
+          "language": "ts"
+        },
+        {
           "path": "animations/fade-in.animation.ts",
           "name": "fade-in.animation.ts",
           "language": "ts"
@@ -25,6 +30,11 @@
         {
           "path": "pipes/char-at.pipe.ts",
           "name": "char-at.pipe.ts",
+          "language": "ts"
+        },
+        {
+          "path": "pipes/order-by.pipe.ts",
+          "name": "order-by.pipe.ts",
           "language": "ts"
         }
       ]
@@ -886,6 +896,42 @@
             {
               "path": "ui/local-storage/local-storage.service.ts",
               "name": "local-storage.service.ts",
+              "language": "ts"
+            }
+          ]
+        },
+        {
+          "path": "ui/multi-select",
+          "name": "multi-select",
+          "files": [
+            {
+              "path": "ui/multi-select/multi-select-option.component.css",
+              "name": "multi-select-option.component.css",
+              "language": "css"
+            },
+            {
+              "path": "ui/multi-select/multi-select-option.component.html",
+              "name": "multi-select-option.component.html",
+              "language": "html"
+            },
+            {
+              "path": "ui/multi-select/multi-select-option.component.ts",
+              "name": "multi-select-option.component.ts",
+              "language": "ts"
+            },
+            {
+              "path": "ui/multi-select/multi-select.component.css",
+              "name": "multi-select.component.css",
+              "language": "css"
+            },
+            {
+              "path": "ui/multi-select/multi-select.component.html",
+              "name": "multi-select.component.html",
+              "language": "html"
+            },
+            {
+              "path": "ui/multi-select/multi-select.component.ts",
+              "name": "multi-select.component.ts",
               "language": "ts"
             }
           ]

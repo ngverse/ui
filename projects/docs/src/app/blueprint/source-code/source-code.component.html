@@ -1,11 +1,13 @@
 @if (showCopy()) {
-  <doc-icon-button
-    [cdkCopyToClipboard]="code()"
-    (click)="copy()"
-    class="copy-button"
-  >
-    <app-font-icon>{{ copied() ? 'check' : 'content_copy' }}</app-font-icon>
-  </doc-icon-button>
+  <div class="hidden md:block">
+    <doc-icon-button
+      [cdkCopyToClipboard]="code()"
+      (click)="copy()"
+      class="copy-button"
+    >
+      <app-font-icon>{{ copied() ? 'check' : 'content_copy' }}</app-font-icon>
+    </doc-icon-button>
+  </div>
 }
 <app-card
   [gap]="false"

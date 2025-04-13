@@ -11,6 +11,9 @@ import {
 const name = `fadeIn`;
 
 interface AnimationParams {
+  /**
+   * animation duration`
+   */
   duration?: number;
 }
 
@@ -47,8 +50,8 @@ export const fadeInOnEnter = (params?: AnimationParams) =>
   trigger(`${name}OnEnter`, [transition(':enter', fadeIn(params))]);
 
 /**
- * fadeIn animation on :incr
+ * fadeIn animation on :increment
  * @remarks triggerName: `fadeInOnEnter`
  */
 export const fadeInOnIncr = (params?: AnimationParams) =>
-  trigger(`${name}OnEnter`, [transition(':incr', fadeIn(params))]);
+  trigger(`${name}OnEnter`, [transition(':increment', fadeIn(params))]);

@@ -1,36 +1,106 @@
-<div>
-  <h1 class="mb-2 text-4xl font-bold capitalize lg:text-5xl">
-    {{ name() }}
-  </h1>
-  @if (subTitle()) {
-    <p class="m-0 text-lg font-light">{{ subTitle() }}</p>
-  }
-</div>
-<div class="my-6 w-full rounded-md border border-slate-300 p-4">
-  <div class="mb-4 flex justify-center">
-    <button
-      title="Replay animation"
-      class="text-on-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary text-white hover:bg-blue-500"
-      aria-label="Replay animation"
-      (click)="play()"
+<div class="blueprint-page px-5 pt-10 lg:px-0">
+  <div>
+    <h1 class="mb-2 text-4xl font-bold lg:text-5xl">
+      {{ label() }}
+    </h1>
+  </div>
+  <div class="my-6 w-full rounded-md border border-slate-300 p-4">
+    <div class="mb-4 flex justify-center">
+      <button
+        title="Replay animation"
+        class="text-on-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary text-white hover:bg-blue-500"
+        aria-label="Replay animation"
+        (click)="play()"
+      >
+        <app-font-icon>replay</app-font-icon>
+      </button>
+    </div>
+
+    <div
+      #playable
+      class="h-[86px] w-full border border-primary bg-blue-100 text-center text-3xl leading-[86px] font-medium text-primary"
     >
-      <app-font-icon>replay</app-font-icon>
-    </button>
+      <doc-project-name></doc-project-name>
+    </div>
+  </div>
+  <doc-command-installation
+    [name]="fileName()"
+    cmd="animation"
+    class="mb-8 block"
+  ></doc-command-installation>
+  <doc-source-tree
+    [sourceTree]="sourceTree()"
+    type="animations"
+  ></doc-source-tree>
+
+  <div class="mt-8 mb-8">
+    <h4 class="m-0 mb-3 text-xl font-normal">Triggers</h4>
+    <app-card class="card" [gap]="false">
+      <table class="table">
+        <thead class="head">
+          <tr>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">Type</th>
+            <th scope="col" class="px-6 py-3">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (trigger of triggers(); track $index) {
+            <tr class="border-b">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white"
+              >
+                {{ trigger.name }}
+              </th>
+              <td class="px-6 py-4">{{ trigger.type }}</td>
+              <td class="px-6 py-4">{{ trigger.description }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </app-card>
   </div>
 
-  <div
-    #playable
-    class="h-[86px] w-full border border-primary bg-blue-100 text-center text-3xl leading-[86px] font-medium text-primary"
-  >
-    <doc-project-name></doc-project-name>
+  <div class="mt-8 mb-8">
+    <h4 class="m-0 mb-3 text-xl font-normal">Options</h4>
+    <app-card class="card" [gap]="false">
+      <table class="table">
+        <thead class="head">
+          <tr>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">Type</th>
+            <th scope="col" class="px-6 py-3">Default</th>
+            <th scope="col" class="px-6 py-3">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <th
+              scope="row"
+              class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white"
+            >
+              {{ defaultOptions.name }}
+            </th>
+            <td class="px-6 py-4">{{ defaultOptions.type }}</td>
+            <td class="px-6 py-4">{{ defaultOptions.default }}</td>
+            <td class="px-6 py-4">{{ defaultOptions.description }}</td>
+          </tr>
+          @for (option of options(); track $index) {
+            <tr class="border-b">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white"
+              >
+                {{ option.name }}
+              </th>
+              <td class="px-6 py-4">{{ option.type }}</td>
+              <td class="px-6 py-4">{{ option.default }}</td>
+              <td class="px-6 py-4">{{ option.description }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </app-card>
   </div>
 </div>
-<doc-command-installation
-  [name]="fileName()"
-  cmd="animation"
-  class="mb-8 block"
-></doc-command-installation>
-<doc-source-tree
-  [sourceTree]="sourceTree()"
-  type="animations"
-></doc-source-tree>
