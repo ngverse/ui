@@ -1,120 +1,21 @@
 <doc-blog-page label="Usage">
-  <p>To add a component to your project, run the following command:</p>
-  <doc-source-code
-    language="bash"
-    code="ng g @ngverse/ui:add button"
-  ></doc-source-code>
   <p>
-    This will generate a <code>button</code> folder in your project's root
-    directory, containing the <code>ButtonComponent</code>. Additionally, the
-    generator provides the following options:
+    After installing <doc-project-name [code]="true"></doc-project-name>, you
+    can immediately start adding features to your app. Features are organized
+    into different categories. they have their own schematics to work with. Pick
+    the one to get started:
   </p>
-  <h2>Options</h2>
-  <h3>1. <code>path</code> (Optional)</h3>
-  <p>Specifies where to place the component folder.</p>
-  <ul>
-    <li>
-      By default, the component is added to the root folder
-      (<code>/src/app</code>).
-    </li>
-    <li>
-      You can specify a different location using the
-      <code>--path</code> parameter. Example:
-      <code>ng g ngverse:component button --path=ui</code>
-      This will place the component in <code>/src/app/ui</code>.
-    </li>
-  </ul>
-  <h3>2. <code>prefix</code> (Optional)</h3>
-  <p>Specifies the prefix of component</p>
-  <ul>
-    <li>
-      By default, it will use the project's prefix. If no prefix is provided, it
-      will default to 'app'.
-    </li>
-  </ul>
-  <h3>3. <code>replace</code> (Optional, default: <code>false</code>)</h3>
-  <p>Determines whether to replace existing files with the same name.</p>
-  <ul>
-    <li>
-      If a folder with the same name as the component already exists, the
-      schematic will throw an error to prevent accidental file deletions.
-    </li>
-    <li>
-      If you want to override the existing files, set <code>replace=true</code>.
-    </li>
-    <li>Example: <code>ng g ngverse:component button --replace=true</code></li>
-  </ul>
-  <h3>4. <code>project</code> (Optional)</h3>
-  <p>The name of the Angular project where the component should be added.</p>
-  <ul>
-    <li>
-      If your workspace has only one project, the component will be added
-      automatically without needing this parameter.
-    </li>
-    <li>
-      If your workspace contains multiple projects, you can specify which one to
-      use by passing the project name. or it will try to use the default project
-    </li>
-  </ul>
-  <h3>4. <code>includeTests</code> (Optional, default: <code>false</code>)</h3>
-  <p>Specifies whether to include test files for the element.</p>
-  <ul>
-    <li>
-      NgVerse elements come with a full suite of tests to help ensure
-      reliability. However, including tests is optional for the following
-      reasons:
-      <ul>
-        <li>
-          <strong>Code changes may break tests:</strong><br />
-          After modifying an element, tests may fail because the behavior has
-          changed. In this case, you would need to debug and update the test
-          files, which can take extra time and effort.
-        </li>
-        <li>
-          <strong>Test framework compatibility:</strong><br />
-          Our tests are written in Jasmine, so if you're using another framework
-          like Jest, the tests will not run at all.<br />
-          Therefore, tests are disabled by default.
-        </li>
-      </ul>
-    </li>
-    <li>
-      If you want to include test files, use
-      <code>includeTests=true</code>.<br />
-      Example: <code>ng g ngverse:add button --includeTests=true</code>
-    </li>
-  </ul>
-  <p>
-    Keep in mind that we maintain and update our tests regularly. Tests are run
-    on every commit, merge, and release to ensure high quality. We take testing
-    seriously, so you don’t have to worry about test coverage! 🚀
-  </p>
-  <h2>Global Configuration</h2>
-  <p>
-    You can set a global configuration for the
-    <code>ng g &#64;ngverse/ui:add</code> schematics.
-  </p>
-  <p>
-    For example, if you want to place all components inside the
-    <code>ui</code> folder by default, you can add the following configuration
-    in your <code>angular.json</code> file:
-  </p>
-
-  <doc-source-code
-    language="json"
-    [allowCopy]="false"
-    [code]="configCode"
-  ></doc-source-code>
-
-  <p>Once this is configured, running the command:</p>
-  <doc-source-code
-    language="bash"
-    [code]="'ng g @ngverse/ui:add button'"
-  ></doc-source-code>
-
-  <p>
-    will automatically place the component inside the
-    <code>ui</code> folder, without needing to specify the
-    <code>--path</code> parameter every time.
-  </p>
+  <div class="not-prose mt-10 flex gap-3">
+    @for (item of categories(); track $index) {
+      <a
+        [routerLink]="item.url"
+        class="flex h-80 flex-1 flex-col items-center justify-center rounded-xl border border-slate-300 hover:bg-slate-100"
+      >
+        <app-font-icon size="120" class="text-blue-500">{{
+          item.icon
+        }}</app-font-icon>
+        <p class="mt-6 text-4xl font-bold">{{ item.name }}</p>
+      </a>
+    }
+  </div>
 </doc-blog-page>

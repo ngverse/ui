@@ -1,0 +1,42 @@
+@reference "tailwindcss";
+
+:host {
+  padding: 16px;
+  display: block;
+  border-radius: 6px;
+  &.fill {
+    &.success {
+      @apply bg-green-600 text-white;
+    }
+
+    &.danger {
+      @apply bg-red-600 text-white;
+    }
+    &.default {
+      @apply bg-slate-950 text-white;
+    }
+
+    &.warning {
+      @apply bg-amber-600 text-white;
+    }
+  }
+
+  &.outline {
+    background: transparent;
+    @apply border;
+    &.success {
+      @apply border-green-600 text-green-600;
+    }
+
+    &.danger {
+      @apply border-red-600 text-red-600;
+    }
+    &.default {
+      @apply border-slate-300;
+    }
+
+    &.warning {
+      @apply border-amber-600 text-amber-600;
+    }
+  }
+}

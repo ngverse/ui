@@ -5,9 +5,9 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/Thumbs.db": true,
-    "node_modules": true,
-    "dist": true
+    "**/Thumbs.db": true
+    // "node_modules": true,
+    // "dist": true
   },
   "files.associations": {
     "*.css": "tailwindcss"

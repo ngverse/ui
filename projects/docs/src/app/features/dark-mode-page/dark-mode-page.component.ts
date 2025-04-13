@@ -46,18 +46,9 @@ export class DarkModePageComponent {
     {
       name: 'dark-mode',
       files: [
-        ...this.sourceTreeBuilder.fullComponent(
-          'dark-mode-toggle',
-          `${ROOT}/dark-mode-toggle`
-        ),
-        this.sourceTreeBuilder.component(
-          'dark-mode-icon',
-          `${ROOT}/dark-mode-toggle`
-        ),
-        this.sourceTreeBuilder.component(
-          'light-mode-icon',
-          `${ROOT}/dark-mode-toggle`
-        ),
+        ...this.sourceTreeBuilder.fullComponent('dark-mode-toggle', ROOT),
+        this.sourceTreeBuilder.component('dark-mode-icon', ROOT),
+        this.sourceTreeBuilder.component('light-mode-icon', ROOT),
       ],
       hideName: true,
     },
