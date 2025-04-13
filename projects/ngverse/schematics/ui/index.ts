@@ -13,7 +13,7 @@ function getElementName(inputPath: string): string {
   return basename(normalizedPath);
 }
 
-export function add(options: Schema) {
+export function ui(options: Schema) {
   return async (host: Tree) => {
     const workspace = await getWorkspace(host);
 
@@ -34,7 +34,7 @@ export function add(options: Schema) {
     const elementName = getElementName(options.name);
 
     const elementsPath = normalize(
-      join('node_modules', '@ngverse/ui', 'src', 'lib', elementName)
+      join('node_modules', '@ngverse/ui', 'src', 'lib', 'ui', elementName)
     );
     const dir = host.getDir(elementsPath);
     const directoryExists = dir.subfiles.length > 0 || dir.subdirs.length > 0;

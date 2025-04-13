@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.schematics.json",
-    "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json ../../dist/ngverse/ && cp ../../README.md ../../dist/ngverse/",
+    "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json ../../dist/@ngverse/ui && cp ../../README.md ../../dist/@ngverse/ui",
     "schema:watch": "tsc -w -p tsconfig.schematics.json"
   },
   "dependencies": {

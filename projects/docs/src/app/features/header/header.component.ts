@@ -57,9 +57,9 @@ export class HeaderComponent {
   constructor() {
     afterNextRender(() => {
       docsearch({
-        appId: 'X673ZXLVHG',
-        apiKey: 'bad40449d2ac4f445576ed2d6a65176b',
-        indexName: 'ngverse',
+        appId: 'PZQBHX8UM8',
+        apiKey: '0b17f25c05f2160dbe75a2b43de39c0d',
+        indexName: 'ui',
         container: '#docsearch',
       });
     });

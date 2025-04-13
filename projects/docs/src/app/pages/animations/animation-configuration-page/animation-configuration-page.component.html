@@ -1,1 +1,44 @@
-<p>animation-configuration-page works!</p>
+<doc-blog-page label="Configuration">
+  <p>
+    <span class="font-bold">Animations</span> module includes collection of
+    animations build with<code>&#64;angular/animations</code>.
+  </p>
+  <h2>Schematic Usage</h2>
+  <doc-source-code
+    language="bash"
+    [code]="'ng g @ngverse/ui:animation [name]'"
+  ></doc-source-code>
+  <h4>Options</h4>
+  <ul>
+    <li>
+      <span class="font-bold"><code>path</code></span
+      >: Specifies where to place the component folder.
+    </li>
+    <li>
+      <span class="font-bold"><code>project</code></span
+      >: The name of the Angular project where the component should be added. By
+      default it will use defaultProject
+    </li>
+    <li>
+      <span class="font-bold"><code>replace</code></span
+      >: Determines whether to replace existing files with the same name.
+      <code>False</code> by Default
+    </li>
+  </ul>
+  <h2>Global Schematic Configuration (Recommended)</h2>
+  <p>
+    In order to have same schematic options while generating components, add the
+    following configuration in your <code>angular.json</code> file
+  </p>
+  <doc-source-code language="json" [code]="configCode"></doc-source-code>
+  <h2>Add Typescript Import Path</h2>
+  <p>Add the following path to your <code>tsconfig.json</code></p>
+  <doc-source-code language="json" [code]="tsImportPath"></doc-source-code>
+  <p>
+    By that you will import <span class="bold">UI</span> components, like that
+  </p>
+  <doc-source-code
+    language="ts"
+    code="import { CharAtPipe } from '@/pipes/char-at.pipe';"
+  ></doc-source-code>
+</doc-blog-page>

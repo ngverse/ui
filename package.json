@@ -8,7 +8,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "node scripts/generate-tree.js && ng serve --project=docs --no-hmr",
+    "start": "ng serve --project=docs --no-hmr",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --project=ngverse",
@@ -18,7 +18,7 @@
     "format:write": "prettier --write .",
     "semantic-release": "semantic-release",
     "serve:ssr:docs": "node dist/docs/server/server.mjs",
-    "schema:test-watch": "nodemon --watch dist/ngverse --ext js --exec 'jasmine dist/ngverse/**/*_spec.js'",
+    "schema:test-watch": "nodemon --watch dist/@ngverse/ui --ext js --exec 'jasmine dist/@ngverse/ui/**/*_spec.js'",
     "build:ngverse": "ng build --project=ngverse && cd projects/ngverse && npm run build",
     "build:docs": "ng build --project=docs",
     "check:docs": "npm run build:docs && ng lint docs && npm run format:check",

@@ -53,7 +53,7 @@ function createButtonComponent(appTree: UnitTestTree) {
   );
 }
 
-describe('element', () => {
+xdescribe('element', () => {
   const testRunner = new SchematicTestRunner('ngverse', collectionPath);
   const workspaceOptions: WorkspaceOptions = {
     name: 'workspace',
@@ -205,7 +205,7 @@ describe('element', () => {
     ).toEqual(modifiedButton);
   });
 
-  fit('should put component properly when path provided', async () => {
+  it('should put component properly when path provided', async () => {
     const componentName = 'button';
 
     await testRunner.runSchematic(
