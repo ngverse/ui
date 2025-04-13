@@ -1,5 +1,16 @@
 <div class="sidebar h-[600px] w-[250px] overflow-auto px-5 pt-4 lg:w-[300px]">
   <nav>
+    <div class="w-full overflow-x-auto p-2 pb-4 lg:hidden">
+      @for (nav of navigations; track $index) {
+        <a
+          class="rounded-md px-4 py-2 font-medium hover:bg-slate-100"
+          [routerLinkActive]="'bg-slate-200'"
+          [routerLink]="nav.url"
+          >{{ nav.label }}</a
+        >
+      }
+    </div>
+    <app-divider class="mb-4"></app-divider>
     @if (sidebarState.group(); as group) {
       <ul class="list-none pl-0">
         <li class="mb-3 font-medium">{{ group.name }}</li>

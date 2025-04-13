@@ -12,4 +12,23 @@ import { SidebarState } from './sidebar.state';
 })
 export class SidebarComponent {
   sidebarState = inject(SidebarState);
+
+  navigations: { label: string; url: string }[] = [
+    {
+      label: 'Guides',
+      url: '/doc/guides',
+    },
+    {
+      label: 'UI',
+      url: '/doc/ui',
+    },
+    {
+      label: 'Pipes',
+      url: '/doc/pipes',
+    },
+    {
+      label: 'Animations',
+      url: '/doc/animations',
+    },
+  ];
 }
