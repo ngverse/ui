@@ -5,11 +5,11 @@
     into different categories. they have their own schematics to work with. Pick
     the one to get started:
   </p>
-  <div class="not-prose mt-10 flex gap-3">
+  <div class="not-prose mt-10 flex flex-col gap-3 lg:flex-row">
     @for (item of categories(); track $index) {
       <a
         [routerLink]="item.url"
-        class="flex h-80 flex-1 flex-col items-center justify-center rounded-xl border border-slate-300 hover:bg-slate-100"
+        class="flex flex-1 flex-col items-center justify-center rounded-xl border border-slate-300 p-3 hover:bg-slate-100 lg:h-80"
       >
         <app-font-icon size="120" class="text-blue-500">{{
           item.icon
