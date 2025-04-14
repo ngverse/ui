@@ -89,6 +89,7 @@ export class TimepickerComponent implements ControlValueAccessor {
     this.disabled.set(isDisabled);
   }
 
+  // If passed value is date, we will set hours and minutes otherwise will use the current date
   writeValue(value: Date | null | undefined): void {
     this.originalModelValue = value;
     if (value instanceof Date) {
@@ -124,7 +125,8 @@ export class TimepickerComponent implements ControlValueAccessor {
     }
   }
 
-  updateTime($event: Event) {
+  // Parse and sets hours and minutes
+  updateTimeOnInput($event: Event) {
     const value = ($event.target as HTMLInputElement)?.value.trim() ?? '';
 
     if (isValidTime(value)) {
@@ -135,6 +137,7 @@ export class TimepickerComponent implements ControlValueAccessor {
     }
   }
 
+  // Checks if minutes are between 0 and 59 and sets them
   updateMinutes(minutes: number) {
     if (minutes < 0) {
       minutes = 59;
@@ -146,6 +149,7 @@ export class TimepickerComponent implements ControlValueAccessor {
     this.updateModel();
   }
 
+  // Checks if hours are between 0 and 23 and sets them
   updateHours(hours: number) {
     if (hours < 0) {
       hours = 23;
@@ -157,6 +161,7 @@ export class TimepickerComponent implements ControlValueAccessor {
     this.updateModel();
   }
 
+  // Clones the original date and sets hours and minutes and then updates the ngModel with the new date
   private updateModel() {
     const originalDate = this.originalModelValue;
     if (originalDate) {
@@ -167,6 +172,7 @@ export class TimepickerComponent implements ControlValueAccessor {
     }
   }
 
+  // Checks if the click is inside the input or inside the container
   private isClickInside(event: Event) {
     return (
       this.elementRef.nativeElement.contains(event.target) ||

@@ -6,7 +6,7 @@
   (focus)="openPanel()"
   (click)="openPanel()"
   (blur)="onBlur($event)"
-  (input)="updateTime($event)"
+  (input)="updateTimeOnInput($event)"
   [disabled]="disabled()"
   [ngModel]="selectedTime()"
   (ngModelChange)="selectedTime.set($event)"
