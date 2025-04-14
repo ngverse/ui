@@ -6,29 +6,9 @@
       >
         &#64;ngverse/ui
       </h1>
-      <h2 class="mt-0 mb-4 text-center text-4xl font-bold lg:text-7xl">
-        <div>Not Just Another</div>
-        <div>UI Library</div>
-      </h2>
-      <h2 class="text-center text-xl leading-normal font-medium capitalize">
-        <div>Complete Zoneless Angular Components</div>
-        <div>
-          Just
-          <span class="inline-flex items-center gap-1">
-            Copy
-            <app-font-icon size="20">content_copy</app-font-icon>
-          </span>
-          <span class="inline-flex items-center gap-1"
-            >, Paste
-            <app-font-icon size="20">content_paste</app-font-icon>
-          </span>
-          <span class="inline-flex items-center gap-1">
-            , and Fly
-            <app-font-icon class="text-primary" size="20"
-              >rocket_launch</app-font-icon
-            >
-          </span>
-        </div>
+      <h2 class="mt-0 mb-4 text-center text-4xl font-bold lg:text-6xl">
+        <div>Countless Angular</div>
+        <div>Features</div>
       </h2>
       <div class="mt-6 flex items-center justify-center gap-2">
         <a [routerLink]="['/doc/guides/introduction']">
@@ -37,6 +17,20 @@
           </button>
         </a>
       </div>
+    </div>
+    <h2 class="mt-20 text-center text-4xl">Pick the module</h2>
+    <div class="not-prose flex flex-col gap-3 p-10 lg:flex-row">
+      @for (item of modules; track $index) {
+        <a
+          [routerLink]="item.url"
+          class="flex flex-1 flex-col items-center justify-center rounded-xl border border-slate-300 p-3 hover:bg-slate-100 lg:h-80"
+        >
+          <app-font-icon size="120" class="text-blue-500">{{
+            item.icon
+          }}</app-font-icon>
+          <p class="mt-6 text-4xl font-bold">{{ item.name }}</p>
+        </a>
+      }
     </div>
   </div>
 </div>

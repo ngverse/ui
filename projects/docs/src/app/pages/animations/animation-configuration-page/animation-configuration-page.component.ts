@@ -25,7 +25,7 @@ export class AnimationConfigurationPageComponent {
   tsImportPath = `
   ...
    "paths": {
-      "@/animations/*": ["./src/app/animations/*"] // the path where ui components will be, adjust as needed
+      "@/animations/*": ["./src/app/animations/*"] // the path where animationss will be, adjust as needed
     },
   ...
   `;
