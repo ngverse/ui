@@ -25,7 +25,7 @@ export class PipeConfigurationPageComponent {
   tsImportPath = `
   ...
    "paths": {
-      "@/pipes/*": ["./src/app/pipes/*"] // the path where ui components will be, adjust as needed
+      "@/pipes/*": ["./src/app/pipes/*"] // the path where pipess will be, adjust as needed
     },
   ...
   `;
