@@ -56,6 +56,10 @@ export class SelectPageComponent {
       name: 'popover',
       label: 'Popover',
     },
+    {
+      name: 'font-icon',
+      label: 'Font Icon',
+    },
   ];
 
   apiInfo: ApiInfo = {

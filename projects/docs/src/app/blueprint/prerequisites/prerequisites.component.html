@@ -1,30 +1,13 @@
 <h4 class="m-0 text-xl font-normal">Prerequisites</h4>
 
 @if (preprsAuto(); as prepsAuto) {
-  <p class="mt-2">
-    {{ name() }} element uses
-    @for (item of prepsAuto; track $index) {
-      <a class="underline" [routerLink]="['../', item.name]">{{
-        item.label
-      }}</a>
-      @if ($index < prepsAuto.length - 1) {
-        and
-      } @else {
-        .
-      }
-    }
-
-    Ensure {{ prepsAuto.length === 1 ? 'it is ' : 'they are ' }} added to your
-    project if
-    {{ prepsAuto.length === 1 ? 'it is not ' : 'they are not' }} already.
-    <br />
-    (Component folders must be in the same directory for imports to work
-    correctly.)
-    <br />
-  </p>
-
-  <div class="mt-4 flex flex-col gap-4">
+  <div class="mt-4 flex flex-col gap-2">
     @for (dep of prepsAuto; track $index) {
+      <div>
+        <a class="underline" [routerLink]="['../', dep.name]">{{
+          dep.label
+        }}</a>
+      </div>
       <doc-source-code
         [surface]="true"
         [code]="getCode(dep)"

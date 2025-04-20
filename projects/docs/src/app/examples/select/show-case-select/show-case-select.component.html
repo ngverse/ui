@@ -3,6 +3,7 @@
   [formControl]="formControlSingle"
   placeholder="Countries"
   class="w-[250px]"
+  [showClear]="true"
 >
   @for (option of countries; track $index) {
     <app-option [value]="option.code">{{ option.name }}</app-option>
@@ -14,7 +15,6 @@
   [formControl]="formControlMulti"
   placeholder="Countries"
   class="w-[250px]"
-  [multiple]="true"
 >
   @for (option of countries; track $index) {
     <app-option [value]="option.code">{{ option.name }}</app-option>
@@ -34,39 +34,5 @@
         <app-option [value]="file.name">{{ file.name }}</app-option>
       }
     </app-option-group>
-  }
-</app-select>
-
-<p class="mt-4 mb-2">Custom label</p>
-<app-select
-  [formControl]="customLabelControl"
-  placeholder="Custom Label"
-  class="w-[250px]"
->
-  <ng-template appSelectLabel let-options>
-    <span
-      class="mr-1 ml-1 inline-block h-4 w-4 rounded-full pt-1"
-      [style.background]="options[0].value"
-    ></span>
-    {{ options[0].content }}
-  </ng-template>
-  @for (option of customOptions; track $index) {
-    <app-option [value]="option.value">
-      <span
-        class="mr-1 ml-1 inline-block h-4 w-4 rounded-full pt-1"
-        [style.background]="option.value"
-      ></span>
-      {{ option.label }}</app-option
-    >
-  }
-</app-select>
-
-<p class="mt-4 mb-2">Custom Placeholder</p>
-<app-select [formControl]="customLabelControl" class="w-[250px]">
-  <ng-template appSelectPlaceholder>
-    <span class="text-primary">Select a country</span>
-  </ng-template>
-  @for (option of countries; track $index) {
-    <app-option [value]="option.code">{{ option.name }}</app-option>
   }
 </app-select>

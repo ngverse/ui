@@ -32,8 +32,8 @@ import { SelectComponent } from './select.component';
     '[attr.aria-disabled]': 'disabled',
   },
 })
-export class OptionComponent implements Highlightable {
-  value = input.required<unknown>();
+export class OptionComponent<T> implements Highlightable {
+  value = input.required<T>();
   @Input()
   disabled?: boolean | undefined;
 
@@ -44,11 +44,9 @@ export class OptionComponent implements Highlightable {
 
   element = inject(ElementRef<HTMLElement>).nativeElement as HTMLElement;
 
-  select = inject<SelectComponent>(forwardRef(() => SelectComponent));
+  select = inject<SelectComponent<T>>(forwardRef(() => SelectComponent));
 
   inGroup = !!this.optionGroup;
-
-  private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 
   contentEl = viewChild.required<ElementRef<HTMLElement>>('content');
 

@@ -2,6 +2,7 @@ import { SidebarGroup } from './sidebar-types';
 
 export const UI_LINKS: SidebarGroup = {
   name: 'UI',
+  sort: true,
   statics: [
     {
       name: 'Configuration',

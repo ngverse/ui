@@ -1,36 +1,28 @@
 <button
-  class="flex h-9 cursor-pointer items-center justify-between gap-2.5 rounded-md border border-border p-2 group-[.ng-invalid.ng-touched]:border-danger focus-visible:outline focus-visible:outline-ring disabled:bg-disabled disabled:text-disabled-foreground"
+  class="flex h-9 cursor-pointer items-center justify-between rounded-md border border-border p-2 group-[.ng-invalid.ng-touched]:border-danger focus-visible:outline focus-visible:outline-ring disabled:bg-disabled disabled:text-disabled-foreground"
   [class.w-full]="stretch()"
   appPopoverOrigin
   #origin="appPopoverOrigin"
   (click)="togglePanel()"
   [disabled]="disabled()"
 >
-  <span class="flex-1 truncate text-left">
-    @if (selectedOptionsLabel(); as selectedOptionsLabel) {
-      @if (templateLabel(); as templateLabel) {
-        <ng-container
-          *ngTemplateOutlet="
-            templateLabel.templateRef;
-            context: { $implicit: selectedOptions() }
-          "
-        ></ng-container>
-      } @else {
-        {{ selectedOptionsLabel }}
-      }
+  <span class="mr-auto flex-1 truncate text-left">
+    @if (selectedOptionLabel(); as selectedOptionsLabel) {
+      {{ selectedOptionsLabel }}
     } @else {
-      @if (templatePlaceholder(); as templatePlaceholder) {
-        <ng-container
-          *ngTemplateOutlet="templatePlaceholder.templateRef"
-        ></ng-container>
-      } @else {
-        {{ placeholder() }}
-      }
+      {{ placeholder() }}
     }
   </span>
-  <app-font-icon class="transition-transform" [class.rotate-180]="isOpen()"
-    >keyboard_arrow_down</app-font-icon
-  >
+  @if (showClear() && selectedOption()) {
+    <button>
+      <app-font-icon size="20" (click)="clear($event)">clear</app-font-icon>
+    </button>
+  }
+  <button>
+    <app-font-icon class="transition-transform" [class.rotate-180]="isOpen()"
+      >keyboard_arrow_down</app-font-icon
+    >
+  </button>
 </button>
 <app-popover
   [outsideClose]="true"
@@ -49,7 +41,6 @@
       <div class="p-2">{{ emptyText() }}</div>
     }
     <div
-      [ariaMultiSelectable]="multiple()"
       [attr.aria-activedescendant]="activeDescendantId()"
       tabindex="0"
       #selectOption
