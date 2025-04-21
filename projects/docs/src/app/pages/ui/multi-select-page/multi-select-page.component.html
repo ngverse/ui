@@ -2,13 +2,18 @@
   label="Multi Select"
   subTitle="Displays a list of options for the user to select from, supporting multiple selections."
 >
-  <doc-show-case name="select">
+  <doc-show-case name="multi-select">
     <doc-show-case-multi-select></doc-show-case-multi-select>
   </doc-show-case>
-  <doc-prerequisites name="Select" [preprsAuto]="prerequisites">
+  <doc-prerequisites name="Multi Select" [preprsAuto]="prerequisites">
   </doc-prerequisites>
-  <doc-command-installation type="component" name="select">
+  <doc-command-installation type="component" name="multi-select">
   </doc-command-installation>
   <doc-source-tree [sourceTree]="sourceTree" name="select"></doc-source-tree>
-  <doc-api-info [apiInfo]="apiInfo"> </doc-api-info>
+  <doc-api-info [apiInfo]="apiInfo">
+    <doc-api-description>
+      For single selection, check
+      <a [routerLink]="['../', 'select']" class="underline">Select</a>
+    </doc-api-description>
+  </doc-api-info>
 </doc-blueprint-page>

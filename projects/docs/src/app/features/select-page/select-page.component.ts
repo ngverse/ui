@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { ApiDescriptionComponent } from '../../blueprint/api-info/api-description/api-description.component';
 import {
   ApiInfo,
   ApiInfoComponent,
@@ -30,6 +32,8 @@ const ROOT = 'select';
     SourceTreeComponent,
     ApiInfoComponent,
     PrerequisitesComponent,
+    ApiDescriptionComponent,
+    RouterLink,
   ],
   templateUrl: './select-page.component.html',
   styleUrl: './select-page.component.css',
@@ -44,8 +48,6 @@ export class SelectPageComponent {
         ...this.sourceTreeBuilder.fullComponent('option', ROOT),
         this.sourceTreeBuilder.component('option-group', ROOT),
         this.sourceTreeBuilder.component('option-group-label', ROOT),
-        this.sourceTreeBuilder.file('select-check-icon.component', ROOT),
-        this.sourceTreeBuilder.file('select-icon.component', ROOT),
       ],
       hideName: true,
     },
@@ -71,13 +73,6 @@ export class SelectPageComponent {
         selector: 'app-select',
         formBindable: true,
         inputs: [
-          {
-            name: 'multiple',
-            type: 'boolean',
-            default: 'false',
-            description:
-              'determines whether the select allows multiple selection',
-          },
           {
             name: 'placeholder',
             type: 'string',
