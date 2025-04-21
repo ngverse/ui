@@ -23,6 +23,12 @@ module.exports = tseslint.config(
           style: 'kebab-case',
         },
       ],
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['**/dist/**', '../../dist/**'],
+        },
+      ],
     },
   },
   {

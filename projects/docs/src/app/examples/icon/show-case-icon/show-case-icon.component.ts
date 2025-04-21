@@ -1,5 +1,5 @@
 import { DividerComponent } from '@/ui/divider/divider.component';
-import { FontIconComponent } from '@/ui/icon/font-icon.component';
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import { IconComponent } from '@/ui/icon/icon.component';
 import { IconRegistry } from '@/ui/icon/icon.registry';
 import { Component, inject, model } from '@angular/core';

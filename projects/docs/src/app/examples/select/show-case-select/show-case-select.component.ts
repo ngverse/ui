@@ -2,7 +2,6 @@ import { OptionGroupLabelComponent } from '@/ui/select/option-group-label.compon
 import { OptionGroupComponent } from '@/ui/select/option-group.component';
 import { OptionComponent } from '@/ui/select/option.component';
 import { SelectLabelDirective } from '@/ui/select/select-label.directive';
-import { SelectPlaceholderDirective } from '@/ui/select/select-placeholder.directive';
 import { SelectComponent } from '@/ui/select/select.component';
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -70,7 +69,6 @@ const customOptions = [
     OptionGroupComponent,
     OptionGroupLabelComponent,
     SelectLabelDirective,
-    SelectPlaceholderDirective,
   ],
   templateUrl: './show-case-select.component.html',
   styleUrl: './show-case-select.component.css',
@@ -81,7 +79,7 @@ export class ShowCaseSelectComponent {
   customOptions = customOptions;
   formControlSingle = new FormControl(null, Validators.required);
 
-  formControlMulti = new FormControl(['US', 'CA'], Validators.required);
+  formControlMulti = new FormControl(null, Validators.required);
 
   dirFormControl = new FormControl(null);
 

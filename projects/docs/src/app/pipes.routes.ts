@@ -17,7 +17,20 @@ export const PIPES_ROUTES: Route = {
           (c) => c.ChartAtPageComponent
         ),
     },
-
+    {
+      path: 'join',
+      loadComponent: () =>
+        import('./pages/pipes/join-page/join-page.component').then(
+          (c) => c.JoinPageComponent
+        ),
+    },
+    {
+      path: 'map',
+      loadComponent: () =>
+        import('./pages/pipes/map-page/map-page.component').then(
+          (c) => c.MapPageComponent
+        ),
+    },
     {
       path: '',
       redirectTo: '/doc/pipes/configuration',

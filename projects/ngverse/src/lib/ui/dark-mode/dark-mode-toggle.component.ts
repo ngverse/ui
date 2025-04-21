@@ -1,6 +1,6 @@
+import { ButtonComponent } from '@/ui/button/button.component';
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ButtonComponent } from '../button/button.component';
-import { FontIconComponent } from '../icon/font-icon.component';
 import { DarkModeService } from './dark-mode.service';
 
 @Component({

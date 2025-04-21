@@ -1,5 +1,5 @@
 import { CardComponent } from '@/ui/card/card.component';
-import { FontIconComponent } from '@/ui/icon/font-icon.component';
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { Component, computed, input, signal } from '@angular/core';
 import { Highlight } from 'ngx-highlightjs';

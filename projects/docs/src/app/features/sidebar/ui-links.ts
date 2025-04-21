@@ -2,6 +2,7 @@ import { SidebarGroup } from './sidebar-types';
 
 export const UI_LINKS: SidebarGroup = {
   name: 'UI',
+  sort: true,
   statics: [
     {
       name: 'Configuration',
@@ -9,6 +10,10 @@ export const UI_LINKS: SidebarGroup = {
     },
   ],
   children: [
+    {
+      name: 'Font Icon',
+      url: 'font-icon',
+    },
     {
       name: 'Accordion',
       url: 'accordion',

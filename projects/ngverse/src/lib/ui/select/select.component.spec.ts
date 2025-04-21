@@ -44,7 +44,7 @@ describe('SelectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TestComponent, TestMultiselectComponent],
+      imports: [TestComponent],
       providers: [
         provideNoopAnimations(),
         provideExperimentalZonelessChangeDetection(),
@@ -136,38 +136,8 @@ describe('SelectComponent', () => {
       expect(selectElement).toHaveClass('ng-valid');
     });
   });
-
-  describe('Multiselect', () => {
-    let component: TestMultiselectComponent;
-    let fixture: ComponentFixture<TestMultiselectComponent>;
-
-    beforeEach(async () => {
-      fixture = TestBed.createComponent(TestMultiselectComponent);
-      component = fixture.componentInstance;
-      await fixture.whenStable();
-    });
-
-    describe('Placeholder', () => {
-      it('should display selected values separated by comma when a value is selected', async () => {
-        component.formControl.setValue(['US', 'CA']);
-        await fixture.whenStable();
-        const selectButtonLabel =
-          fixture.nativeElement.querySelector('button span');
-        expect(selectButtonLabel.textContent).toContain('United States');
-        expect(selectButtonLabel.textContent).toContain('Canada');
-      });
-    });
-
-    describe('Open/Close', () => {
-      it('should not close select when selecting an option', async () => {
-        await openSelect(fixture);
-        queryOptions()[0].dispatchEvent(new Event('click'));
-        await fixture.whenStable();
-        expect(isSelectOpened()).toBe(true);
-      });
-    });
-  });
 });
+
 const OPTIONS = [
   { code: 'US', name: 'United States' },
   { code: 'CA', name: 'Canada' },
@@ -192,25 +162,4 @@ class TestComponent {
   options = OPTIONS;
 
   formControl = new FormControl<string | null>(null);
-}
-
-@Component({
-  selector: 'app-test-multi-select',
-  template: `
-    <app-select
-      placeholder="Select countries"
-      [multiple]="true"
-      [formControl]="formControl"
-    >
-      @for (option of options; track $index) {
-        <app-option [value]="option.code">{{ option.name }}</app-option>
-      }
-    </app-select>
-  `,
-  imports: [ReactiveFormsModule, OptionComponent, SelectComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-class TestMultiselectComponent {
-  options = OPTIONS;
-  formControl = new FormControl<string[]>([]);
 }

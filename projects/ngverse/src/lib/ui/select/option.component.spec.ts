@@ -16,7 +16,7 @@ describe('OptionComponent', () => {
   let component: OptionTestComponent;
   let fixture: ComponentFixture<OptionTestComponent>;
   let optionEl: HTMLElement;
-  let option: OptionComponent;
+  let option: OptionComponent<unknown>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
