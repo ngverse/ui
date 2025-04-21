@@ -1,5 +1,3 @@
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { SelectionModel } from '@angular/cdk/collections';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,12 +13,21 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+} from '@angular/forms';
+
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { NgTemplateOutlet } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ControlValueAccessor } from '@angular/forms';
 import { map } from 'rxjs';
-import { SelectLabelDirective } from '../select/select-label.directive';
-import { SelectPlaceholderDirective } from '../select/select-placeholder.directive';
-import { MultiSelectOptionComponent } from './multi-select-option.component';
+import { FontIconComponent } from '../font-icon/font-icon.component';
+import { PopoverOriginDirective } from '../popover/popover-origin.directive';
+import { PopoverComponent } from '../popover/popover.component';
+import { MultiOptionComponent } from './multi-option.component';
+import { MultiSelectLabelDirective } from './multi-select-label.directive';
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -31,17 +38,40 @@ export type CompareWith = (o1: any, o2: any) => boolean;
 
 @Component({
   selector: 'app-multi-select',
-  imports: [],
+  imports: [
+    ReactiveFormsModule,
+    PopoverOriginDirective,
+    PopoverComponent,
+    FontIconComponent,
+    NgTemplateOutlet,
+  ],
   templateUrl: './multi-select.component.html',
   styleUrl: './multi-select.component.css',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: MultiSelectComponent,
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'combobox',
+    class: 'inline-block group',
+    '[attr.aria-expanded]': 'isOpen()',
+  },
 })
-export class MultiSelectComponent implements ControlValueAccessor, OnDestroy {
+export class MultiSelectComponent<T>
+  implements ControlValueAccessor, OnDestroy
+{
   placeholder = input<string>();
   emptyText = input<string>();
+  selectLabel = contentChild<MultiSelectLabelDirective>(
+    MultiSelectLabelDirective
+  );
 
-  options = contentChildren<MultiSelectOptionComponent>(
-    forwardRef(() => MultiSelectOptionComponent),
+  options = contentChildren<MultiOptionComponent<T>>(
+    forwardRef(() => MultiOptionComponent),
     { descendants: true }
   );
   private keyManager = new ActiveDescendantKeyManager(
@@ -49,24 +79,9 @@ export class MultiSelectComponent implements ControlValueAccessor, OnDestroy {
     inject(Injector)
   ).withTypeAhead();
 
-  templateLabel = contentChild<SelectLabelDirective>(SelectLabelDirective);
+  optionsList = viewChild<ElementRef<HTMLElement>>('optionsList');
 
-  templatePlaceholder = contentChild<SelectPlaceholderDirective>(
-    SelectPlaceholderDirective
-  );
-
-  selectOption = viewChild<ElementRef<HTMLElement>>('selectOption');
-
-  compareWith = input<CompareWith, CompareWith>(
-    (o1: unknown, o2: unknown) => o1 === o2,
-    {
-      transform: (value) => {
-        this._selectionModel.compareWith = value;
-        this._selectionModel.setSelection(this._selectionModel.selected);
-        return value;
-      },
-    }
-  );
+  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
   isOpen = signal(false);
   disabled = signal(false);
   stretch = input(true);
@@ -81,50 +96,49 @@ export class MultiSelectComponent implements ControlValueAccessor, OnDestroy {
     }
     this.keyManager.onKeydown($event);
   }
+  private _values = signal<T[]>([]);
 
-  private _selectionModel = new SelectionModel(true);
   private _onTouched: OnTouchedFunction;
   private _registerOnChangeFn: OnChangeFunction;
 
-  values = toSignal(
-    this._selectionModel.changed.pipe(map(() => this._selectionModel.selected))
-  );
-
   selectedOptions = computed(() => {
-    const valueOptions = this.options().filter((option) =>
-      this.isSelected(option.value())
+    const selectedOptions = this.options().filter((option) =>
+      this._values().some((v) => this.compareWith()(v, option.value()))
     );
-    return valueOptions;
+    return selectedOptions;
   });
 
   selectedOptionsLabel = computed(() => {
-    const selectedOptions = this.selectedOptions();
-    if (selectedOptions?.length) {
-      return selectedOptions.map((opt) => opt.content).join(', ');
-    }
-    return;
+    return this.selectedOptions()
+      ?.map((opt) => opt.content)
+      .join(', ');
   });
 
   isSelected(value: unknown) {
-    this.values();
-    return this._selectionModel.isSelected(value);
+    return this._values().some((v) => this.compareWith()(v, value));
   }
 
-  writeValue(values: unknown): void {
-    if (values === null || values === undefined || values === '') {
-      this._selectionModel.clear();
-      return;
+  writeValue(value: T[] | null | undefined): void {
+    if (value === null || value === undefined) {
+      this._values.set([]);
+    } else {
+      this._values.set(value);
     }
-    this._selectionModel.setSelection(...(values as unknown[]));
   }
 
-  toggleValue(option: MultiSelectOptionComponent) {
+  toggleValue(option: MultiOptionComponent<T>) {
     this.keyManager.setActiveItem(option);
-    const value = option.value();
+    const isSelected = this.isSelected(option.value());
 
-    this._selectionModel.toggle(value);
+    if (isSelected) {
+      this._values.update((values) =>
+        values.filter((v) => !this.compareWith()(v, option.value()))
+      );
+    } else {
+      this._values.update((values) => [...values, option.value()]);
+    }
 
-    this._registerOnChangeFn?.(this._selectionModel.selected);
+    this._registerOnChangeFn?.(this._values());
   }
 
   registerOnChange(fn: OnChangeFunction): void {
@@ -144,12 +158,12 @@ export class MultiSelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   panelOpened() {
-    this.selectOption()?.nativeElement.focus();
+    this.optionsList()?.nativeElement.focus();
     this.keyManager.activeItem?.scrollIntoView();
-    const selectedOptions = this.selectedOptions();
+    const selectedOption = this.selectedOptions();
 
-    if (selectedOptions.length) {
-      this.keyManager.setActiveItem(selectedOptions[0]);
+    if (selectedOption.length) {
+      this.keyManager.setActiveItem(selectedOption[0]);
     }
   }
   panelClosed() {
@@ -158,5 +172,11 @@ export class MultiSelectComponent implements ControlValueAccessor, OnDestroy {
 
   ngOnDestroy(): void {
     this.keyManager.destroy();
+  }
+
+  clear($event: Event) {
+    this._values.set([]);
+    this._registerOnChangeFn?.(this._values());
+    $event.stopPropagation();
   }
 }

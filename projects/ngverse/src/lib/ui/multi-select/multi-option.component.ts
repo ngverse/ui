@@ -2,23 +2,24 @@ import { _IdGenerator, Highlightable } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
+  contentChild,
   ElementRef,
   forwardRef,
   inject,
-  input,
   Input,
+  input,
   signal,
   viewChild,
 } from '@angular/core';
-import { FontIconComponent } from '../icon/font-icon.component';
-import { OptionGroupComponent } from '../select/option-group.component';
+import { FontIconComponent } from '../font-icon/font-icon.component';
+import { MultiOptionContentDirective } from './multi-option-content.directive';
+import { MultiOptionGroupComponent } from './multi-option-group.component';
 import { MultiSelectComponent } from './multi-select.component';
 
 @Component({
-  selector: 'app-multi-select-option',
-  imports: [FontIconComponent],
-  templateUrl: './multi-select-option.component.html',
-  styleUrl: './multi-select-option.component.css',
+  selector: 'app-multi-option',
+  templateUrl: './multi-option.component.html',
+  styleUrl: './multi-option.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'option',
@@ -30,33 +31,38 @@ import { MultiSelectComponent } from './multi-select.component';
     '[attr.aria-selected]': 'isSelected()',
     '[attr.aria-disabled]': 'disabled',
   },
+  imports: [FontIconComponent],
 })
-export class MultiSelectOptionComponent implements Highlightable {
-  value = input.required<unknown>();
+export class MultiOptionComponent<T> implements Highlightable {
+  value = input.required<T>();
   @Input()
   disabled?: boolean | undefined;
 
-  id = input(inject(_IdGenerator).getId('multi-option-'));
+  id = input(inject(_IdGenerator).getId('option-'));
   isActive = signal(false);
   isSelected = () => this.select.isSelected(this.value());
-  optionGroup = inject(OptionGroupComponent, { optional: true });
-
+  optionGroup = inject(MultiOptionGroupComponent, { optional: true });
+  optionContent = contentChild<MultiOptionContentDirective>(
+    MultiOptionContentDirective
+  );
+  contentEl = viewChild.required<ElementRef<HTMLElement>>('content');
   element = inject(ElementRef<HTMLElement>).nativeElement as HTMLElement;
 
-  select = inject<MultiSelectComponent>(forwardRef(() => MultiSelectComponent));
+  select = inject<MultiSelectComponent<T>>(
+    forwardRef(() => MultiSelectComponent)
+  );
 
   inGroup = !!this.optionGroup;
 
-  private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
-
-  contentEl = viewChild.required<ElementRef<HTMLElement>>('content');
-
   get content() {
-    return this.contentEl().nativeElement.textContent;
+    const optionContent = this.optionContent();
+    return optionContent
+      ? optionContent.content
+      : this.contentEl().nativeElement.textContent;
   }
 
   getLabel(): string {
-    return this.contentEl().nativeElement.textContent || '';
+    return this.content ?? '';
   }
 
   onClick() {

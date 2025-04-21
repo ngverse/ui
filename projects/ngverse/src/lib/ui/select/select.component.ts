@@ -76,7 +76,7 @@ export class SelectComponent<T> implements ControlValueAccessor, OnDestroy {
     inject(Injector)
   ).withTypeAhead();
 
-  selectOption = viewChild<ElementRef<HTMLElement>>('selectOption');
+  optionsList = viewChild<ElementRef<HTMLElement>>('optionsList');
 
   compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
   isOpen = signal(false);
@@ -145,7 +145,7 @@ export class SelectComponent<T> implements ControlValueAccessor, OnDestroy {
   }
 
   panelOpened() {
-    this.selectOption()?.nativeElement.focus();
+    this.optionsList()?.nativeElement.focus();
     this.keyManager.activeItem?.scrollIntoView();
     const selectedOption = this.selectedOption();
 
