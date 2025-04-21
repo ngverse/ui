@@ -19,13 +19,13 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
+import { PopoverOriginDirective } from '@/ui/popover/popover-origin.directive';
+import { PopoverComponent } from '@/ui/popover/popover.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { NgTemplateOutlet } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { FontIconComponent } from '../font-icon/font-icon.component';
-import { PopoverOriginDirective } from '../popover/popover-origin.directive';
-import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
 import { SelectLabelDirective } from './select-label.directive';
 

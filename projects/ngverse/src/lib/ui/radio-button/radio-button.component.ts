@@ -1,3 +1,4 @@
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
@@ -7,7 +8,6 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { FontIconComponent } from '../font-icon/font-icon.component';
 import { RadioGroupComponent } from './radio-group.component';
 @Component({
   selector: 'app-radio-button',

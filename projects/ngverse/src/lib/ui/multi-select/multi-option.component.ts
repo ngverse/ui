@@ -1,3 +1,4 @@
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import { _IdGenerator, Highlightable } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
@@ -11,7 +12,6 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { FontIconComponent } from '../font-icon/font-icon.component';
 import { MultiOptionContentDirective } from './multi-option-content.directive';
 import { MultiOptionGroupComponent } from './multi-option-group.component';
 import { MultiSelectComponent } from './multi-select.component';

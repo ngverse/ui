@@ -1,3 +1,5 @@
+import { ButtonComponent } from '@/ui/button/button.component';
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,8 +7,6 @@ import {
   input,
   output,
 } from '@angular/core';
-import { ButtonComponent } from '../button/button.component';
-import { FontIconComponent } from '../font-icon/font-icon.component';
 // We will keep always 7 visible items so it will prevent the width of the pagination from changing
 const ALWAYS_VISIBLE_ITEMS = 7;
 

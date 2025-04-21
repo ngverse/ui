@@ -27,7 +27,15 @@ module.exports = tseslint.config(
       'no-restricted-imports': [
         'error',
         {
-          patterns: ['**/dist/**', '../../dist/**'],
+          patterns: [
+            '**/dist/**',
+            '../../dist/**',
+            '../popover/**',
+            '../font-icon',
+            '../../font-icon',
+            '../button',
+            '../../button',
+          ],
         },
       ],
     },
