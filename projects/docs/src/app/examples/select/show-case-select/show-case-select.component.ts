@@ -1,4 +1,3 @@
-import { OptionContentDirective } from '@/ui/select/option-content.directive';
 import { OptionGroupLabelComponent } from '@/ui/select/option-group-label.component';
 import { OptionGroupComponent } from '@/ui/select/option-group.component';
 import { OptionComponent } from '@/ui/select/option.component';
@@ -6,7 +5,6 @@ import { SelectLabelDirective } from '@/ui/select/select-label.directive';
 import { SelectComponent } from '@/ui/select/select.component';
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FontIconComponent } from '../../../../../../../dist/@ngverse/ui/src/lib/ui/icon/font-icon.component';
 const countries = [
   { code: 'KA', name: 'Georgia' },
   { code: 'US', name: 'United States' },
@@ -71,8 +69,6 @@ const customOptions = [
     OptionGroupComponent,
     OptionGroupLabelComponent,
     SelectLabelDirective,
-    FontIconComponent,
-    OptionContentDirective,
   ],
   templateUrl: './show-case-select.component.html',
   styleUrl: './show-case-select.component.css',
