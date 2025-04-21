@@ -1,5 +1,5 @@
 import { CardComponent } from '@/ui/card/card.component';
-import { FontIconComponent } from '@/ui/icon/font-icon.component';
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import {
   AnimationBuilder,
   AnimationMetadata,

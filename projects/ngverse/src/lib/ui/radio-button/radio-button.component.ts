@@ -7,7 +7,7 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { FontIconComponent } from '../icon/font-icon.component';
+import { FontIconComponent } from '../font-icon/font-icon.component';
 import { RadioGroupComponent } from './radio-group.component';
 @Component({
   selector: 'app-radio-button',

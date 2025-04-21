@@ -11,6 +11,10 @@ export const UI_LINKS: SidebarGroup = {
   ],
   children: [
     {
+      name: 'Font Icon',
+      url: 'font-icon',
+    },
+    {
       name: 'Accordion',
       url: 'accordion',
     },

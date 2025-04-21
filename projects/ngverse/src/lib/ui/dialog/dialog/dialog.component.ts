@@ -1,3 +1,4 @@
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import { DIALOG_DATA, DialogConfig } from '@angular/cdk/dialog';
 import {
   CdkPortalOutlet,
@@ -7,7 +8,6 @@ import {
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { zoomInOnEnter } from '@ngverse/motion/animatecss';
 import { ButtonComponent } from '../../button/button.component';
-import { FontIconComponent } from '../../icon/font-icon.component';
 import { DialogCloseDirective } from '../dialog-close.directive';
 
 export interface DialogOptions

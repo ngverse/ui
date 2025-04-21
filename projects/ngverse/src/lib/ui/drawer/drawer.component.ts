@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { slideInRight, slideOutRight } from '@ngverse/motion/animatecss';
 import { Subject } from 'rxjs';
 import { ButtonComponent } from '../button/button.component';
-import { FontIconComponent } from '../icon/font-icon.component';
+import { FontIconComponent } from '../font-icon/font-icon.component';
 import { DrawerCloseDirective } from './drawer-close.directive';
 
 @Component({

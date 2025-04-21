@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  contentChild,
   contentChildren,
   ElementRef,
   forwardRef,
@@ -19,12 +20,14 @@ import {
 } from '@angular/forms';
 
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { NgTemplateOutlet } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { FontIconComponent } from '../icon/font-icon.component';
+import { FontIconComponent } from '../font-icon/font-icon.component';
 import { PopoverOriginDirective } from '../popover/popover-origin.directive';
 import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
+import { SelectLabelDirective } from './select-label.directive';
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -40,6 +43,7 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     PopoverOriginDirective,
     PopoverComponent,
     FontIconComponent,
+    NgTemplateOutlet,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.css',
@@ -61,6 +65,7 @@ export class SelectComponent<T> implements ControlValueAccessor, OnDestroy {
   placeholder = input<string>();
   emptyText = input<string>();
   showClear = input(false);
+  selectLabel = contentChild<SelectLabelDirective>(SelectLabelDirective);
 
   options = contentChildren<OptionComponent<T>>(
     forwardRef(() => OptionComponent),

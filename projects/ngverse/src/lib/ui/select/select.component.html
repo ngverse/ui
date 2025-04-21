@@ -8,7 +8,16 @@
 >
   <span class="mr-auto flex-1 truncate text-left">
     @if (selectedOptionLabel(); as selectedOptionsLabel) {
-      {{ selectedOptionsLabel }}
+      @if (selectLabel(); as selectLabel) {
+        <ng-container
+          *ngTemplateOutlet="
+            selectLabel.ref;
+            context: { $implicit: selectedOption() }
+          "
+        ></ng-container>
+      } @else {
+        {{ selectedOptionsLabel }}
+      }
     } @else {
       {{ placeholder() }}
     }

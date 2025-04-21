@@ -1,6 +1,6 @@
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FontIconComponent } from '../../../../../ngverse/src/lib/ui/icon/font-icon.component';
 import { BlogPageComponent } from '../../blog/blog-page/blog-page.component';
 import { ProjectNameComponent } from '../../core/project-name/project-name.component';
 import { MODULE_NAVIGATIONS } from '../../module-navigations';

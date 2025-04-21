@@ -7,7 +7,7 @@ import {
   input,
 } from '@angular/core';
 import { collapseOnLeave, expandOnEnter } from '@ngverse/motion/generalcss';
-import { FontIconComponent } from '../icon/font-icon.component';
+import { FontIconComponent } from '../font-icon/font-icon.component';
 
 @Component({
   selector: 'app-accordion-item',
