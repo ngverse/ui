@@ -1,3 +1,5 @@
+import { JoinPipe } from '@/pipes/join.pipe';
+import { MapPipe } from '@/pipes/map.pipe';
 import { MultiOptionGroupLabelComponent } from '@/ui/multi-select/multi-option-group-label.component';
 import { MultiOptionGroupComponent } from '@/ui/multi-select/multi-option-group.component';
 import { MultiOptionComponent } from '@/ui/multi-select/multi-option.component';
@@ -68,6 +70,8 @@ const customOptions = [
     MultiOptionGroupComponent,
     MultiOptionGroupLabelComponent,
     MultiSelectLabelDirective,
+    MapPipe,
+    JoinPipe,
   ],
   templateUrl: './show-case-multi-select.component.html',
   styleUrl: './show-case-multi-select.component.css',

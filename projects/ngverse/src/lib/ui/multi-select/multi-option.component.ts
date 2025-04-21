@@ -41,14 +41,15 @@ export class MultiOptionComponent<T> implements Highlightable {
   id = input(inject(_IdGenerator).getId('option-'));
   isActive = signal(false);
   isSelected = () => this.select.isSelected(this.value());
-  optionGroup = inject(MultiOptionGroupComponent, { optional: true });
-  optionContent = contentChild<MultiOptionContentDirective>(
+  private optionGroup = inject(MultiOptionGroupComponent, { optional: true });
+  private optionContent = contentChild<MultiOptionContentDirective>(
     MultiOptionContentDirective
   );
-  contentEl = viewChild.required<ElementRef<HTMLElement>>('content');
-  element = inject(ElementRef<HTMLElement>).nativeElement as HTMLElement;
+  private contentEl = viewChild.required<ElementRef<HTMLElement>>('content');
+  private element = inject(ElementRef<HTMLElement>)
+    .nativeElement as HTMLElement;
 
-  select = inject<MultiSelectComponent<T>>(
+  private select = inject<MultiSelectComponent<T>>(
     forwardRef(() => MultiSelectComponent)
   );
 

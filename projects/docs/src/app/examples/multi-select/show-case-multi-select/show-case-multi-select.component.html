@@ -16,7 +16,7 @@
   class="w-[250px]"
 >
   <ng-template appMultiSelectLabel let-options>
-    <p>The value is: {{ options[0].content }}</p>
+    <p>values: {{ options | map: 'content' | join: ',' }}</p>
   </ng-template>
   @for (option of countries; track $index) {
     <app-multi-option [value]="option.code">
