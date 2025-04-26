@@ -11,6 +11,13 @@ export const UI_ROUTES: Route = {
         ).then((b) => b.UiConfigurationPageComponent),
     },
     {
+      path: 'font-icon',
+      loadComponent: () =>
+        import('./pages/ui/font-icon-page/font-icon-page.component').then(
+          (f) => f.FontIconPageComponent
+        ),
+    },
+    {
       path: 'accordion',
       loadComponent: () =>
         import('./features/accordion-page/accordion-page.component').then(

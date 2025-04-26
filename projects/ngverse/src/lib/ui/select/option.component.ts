@@ -2,16 +2,15 @@ import { _IdGenerator, Highlightable } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
+  contentChild,
   ElementRef,
   forwardRef,
   inject,
   Input,
   input,
   signal,
-  viewChild,
 } from '@angular/core';
-
-import { FontIconComponent } from '../icon/font-icon.component';
+import { OptionContentDirective } from './option-content.directive';
 import { OptionGroupComponent } from './option-group.component';
 import { SelectComponent } from './select.component';
 
@@ -19,7 +18,6 @@ import { SelectComponent } from './select.component';
   selector: 'app-option',
   templateUrl: './option.component.html',
   styleUrl: './option.component.css',
-  imports: [FontIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'option',
@@ -32,8 +30,8 @@ import { SelectComponent } from './select.component';
     '[attr.aria-disabled]': 'disabled',
   },
 })
-export class OptionComponent implements Highlightable {
-  value = input.required<unknown>();
+export class OptionComponent<T> implements Highlightable {
+  value = input.required<T>();
   @Input()
   disabled?: boolean | undefined;
 
@@ -41,23 +39,23 @@ export class OptionComponent implements Highlightable {
   isActive = signal(false);
   isSelected = () => this.select.isSelected(this.value());
   optionGroup = inject(OptionGroupComponent, { optional: true });
-
+  optionContent = contentChild<OptionContentDirective>(OptionContentDirective);
+  host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
   element = inject(ElementRef<HTMLElement>).nativeElement as HTMLElement;
 
-  select = inject<SelectComponent>(forwardRef(() => SelectComponent));
+  select = inject<SelectComponent<T>>(forwardRef(() => SelectComponent));
 
   inGroup = !!this.optionGroup;
 
-  private host = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
-
-  contentEl = viewChild.required<ElementRef<HTMLElement>>('content');
-
   get content() {
-    return this.contentEl().nativeElement.textContent;
+    const optionContent = this.optionContent();
+    return optionContent
+      ? optionContent.content
+      : this.host.nativeElement.textContent;
   }
 
   getLabel(): string {
-    return this.contentEl().nativeElement.textContent || '';
+    return this.content ?? '';
   }
 
   onClick() {

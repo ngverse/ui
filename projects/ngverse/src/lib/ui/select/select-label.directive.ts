@@ -4,5 +4,5 @@ import { Directive, inject, TemplateRef } from '@angular/core';
   selector: 'ng-template[appSelectLabel]',
 })
 export class SelectLabelDirective {
-  templateRef = inject(TemplateRef<unknown>);
+  ref = inject(TemplateRef);
 }

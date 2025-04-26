@@ -1,3 +1,5 @@
+import { PopoverOriginDirective } from '@/ui/popover/popover-origin.directive';
+import { PopoverComponent } from '@/ui/popover/popover.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
@@ -17,8 +19,6 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { PopoverOriginDirective } from '../popover/popover-origin.directive';
-import { PopoverComponent } from '../popover/popover.component';
 import { AutocompleteItemComponent } from './autocomplete-item/autocomplete-item.component';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type OnChangeFunction = ((_: any) => void) | undefined;

@@ -14,5 +14,11 @@ import { SidebarState } from './sidebar.state';
 export class SidebarComponent {
   sidebarState = inject(SidebarState);
 
-  navigations = MODULE_NAVIGATIONS;
+  navigations = [
+    {
+      name: 'Guides',
+      url: '/doc/guides',
+    },
+    ...MODULE_NAVIGATIONS,
+  ];
 }

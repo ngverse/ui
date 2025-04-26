@@ -1,5 +1,5 @@
 import { ButtonComponent } from '@/ui/button/button.component';
-import { FontIconComponent } from '@/ui/icon/font-icon.component';
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import { DOCUMENT } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';

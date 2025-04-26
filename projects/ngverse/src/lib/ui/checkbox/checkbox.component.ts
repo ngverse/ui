@@ -1,3 +1,4 @@
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
@@ -15,7 +16,6 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import { FontIconComponent } from '../icon/font-icon.component';
 
 type VALUE_TYPE = boolean | undefined | null;
 

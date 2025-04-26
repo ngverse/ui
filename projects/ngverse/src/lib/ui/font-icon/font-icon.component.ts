@@ -1,5 +1,6 @@
 import { coerceCssPixelValue } from '@angular/cdk/coercion';
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -24,6 +25,7 @@ export type FONT_ICON_VARIANT = 'outlined' | 'rounded' | 'sharp';
     '[attr.aria-hidden]': 'true',
     '[class]': 'variantClass()',
     '[style.fontSize]': 'size()',
+    '[style]': 'fillStyles()',
   },
 })
 export class FontIconComponent {
@@ -34,6 +36,13 @@ export class FontIconComponent {
   variantClass = computed(() => {
     if (this.variant()) {
       return `material-symbols-${this.variant()}`;
+    }
+    return undefined;
+  });
+  fill = input(false, { transform: booleanAttribute });
+  fillStyles = computed(() => {
+    if (this.fill()) {
+      return { fontVariationSettings: "'FILL' 1" };
     }
     return undefined;
   });

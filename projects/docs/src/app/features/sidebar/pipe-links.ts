@@ -2,6 +2,7 @@ import { SidebarGroup } from './sidebar-types';
 
 export const PIPE_LINKS: SidebarGroup = {
   name: 'Pipes',
+  sort: true,
   statics: [
     {
       name: 'Configuration',
@@ -12,6 +13,14 @@ export const PIPE_LINKS: SidebarGroup = {
     {
       name: 'CharAt',
       url: 'char-at',
+    },
+    {
+      name: 'Join',
+      url: 'join',
+    },
+    {
+      name: 'Map',
+      url: 'map',
     },
   ],
 };

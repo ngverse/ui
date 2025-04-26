@@ -1,3 +1,4 @@
+import { ButtonComponent } from '@/ui/button/button.component';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,7 +6,6 @@ import {
   input,
   output,
 } from '@angular/core';
-import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-table-pagination',

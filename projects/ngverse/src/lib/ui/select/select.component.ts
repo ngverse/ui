@@ -19,17 +19,15 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
+import { PopoverOriginDirective } from '@/ui/popover/popover-origin.directive';
+import { PopoverComponent } from '@/ui/popover/popover.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { SelectionModel } from '@angular/cdk/collections';
 import { NgTemplateOutlet } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { FontIconComponent } from '../icon/font-icon.component';
-import { PopoverOriginDirective } from '../popover/popover-origin.directive';
-import { PopoverComponent } from '../popover/popover.component';
 import { OptionComponent } from './option.component';
 import { SelectLabelDirective } from './select-label.directive';
-import { SelectPlaceholderDirective } from './select-placeholder.directive';
 
 type OnTouchedFunction = (() => void) | undefined;
 
@@ -44,8 +42,8 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     ReactiveFormsModule,
     PopoverOriginDirective,
     PopoverComponent,
-    NgTemplateOutlet,
     FontIconComponent,
+    NgTemplateOutlet,
   ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.css',
@@ -63,12 +61,13 @@ export type CompareWith = (o1: any, o2: any) => boolean;
     '[attr.aria-expanded]': 'isOpen()',
   },
 })
-export class SelectComponent implements ControlValueAccessor, OnDestroy {
-  multiple = input(false);
+export class SelectComponent<T> implements ControlValueAccessor, OnDestroy {
   placeholder = input<string>();
   emptyText = input<string>();
+  showClear = input(false);
+  selectLabel = contentChild<SelectLabelDirective>(SelectLabelDirective);
 
-  options = contentChildren<OptionComponent>(
+  options = contentChildren<OptionComponent<T>>(
     forwardRef(() => OptionComponent),
     { descendants: true }
   );
@@ -77,24 +76,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     inject(Injector)
   ).withTypeAhead();
 
-  templateLabel = contentChild<SelectLabelDirective>(SelectLabelDirective);
+  optionsList = viewChild<ElementRef<HTMLElement>>('optionsList');
 
-  templatePlaceholder = contentChild<SelectPlaceholderDirective>(
-    SelectPlaceholderDirective
-  );
-
-  selectOption = viewChild<ElementRef<HTMLElement>>('selectOption');
-
-  compareWith = input<CompareWith, CompareWith>(
-    (o1: unknown, o2: unknown) => o1 === o2,
-    {
-      transform: (value) => {
-        this._selectionModel.compareWith = value;
-        this._selectionModel.setSelection(this._selectionModel.selected);
-        return value;
-      },
-    }
-  );
+  compareWith = input<CompareWith>((o1: unknown, o2: unknown) => o1 === o2);
   isOpen = signal(false);
   disabled = signal(false);
   stretch = input(true);
@@ -109,63 +93,39 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     }
     this.keyManager.onKeydown($event);
   }
+  private _value = signal<T | null | undefined>(null);
 
-  private _selectionModel = new SelectionModel(true);
   private _onTouched: OnTouchedFunction;
   private _registerOnChangeFn: OnChangeFunction;
 
-  values = toSignal(
-    this._selectionModel.changed.pipe(map(() => this._selectionModel.selected))
-  );
-
-  selectedOptions = computed(() => {
-    const valueOptions = this.options().filter((option) =>
-      this.isSelected(option.value())
+  selectedOption = computed(() => {
+    const selectedOption = this.options().find((option) =>
+      this.compareWith()(option.value(), this._value())
     );
-    return valueOptions;
+
+    return selectedOption;
   });
 
-  selectedOptionsLabel = computed(() => {
-    const selectedOptions = this.selectedOptions();
-    if (selectedOptions?.length) {
-      return selectedOptions.map((opt) => opt.content).join(', ');
-    }
-    return;
+  selectedOptionLabel = computed(() => {
+    const selectedOption = this.selectedOption();
+    return selectedOption?.getLabel();
   });
 
   isSelected(value: unknown) {
-    this.values();
-    return this._selectionModel.isSelected(value);
+    return this.compareWith()(value, this._value());
   }
 
-  writeValue(values: unknown): void {
-    if (values === null || values === undefined || values === '') {
-      this._selectionModel.clear();
-      return;
-    }
-    if (this.multiple()) {
-      this._selectionModel.setSelection(...(values as unknown[]));
-    } else {
-      this._selectionModel.setSelection(values);
-    }
+  writeValue(value: T | null | undefined): void {
+    this._value.set(value);
   }
 
-  toggleValue(option: OptionComponent) {
+  toggleValue(option: OptionComponent<T>) {
     this.keyManager.setActiveItem(option);
-    const value = option.value();
-    if (!this.multiple()) {
-      this._selectionModel.clear(false);
-    }
-    this._selectionModel.toggle(value);
-    const flattenedValues = this.multiple()
-      ? this._selectionModel.selected
-      : this._selectionModel.selected[0];
 
-    this._registerOnChangeFn?.(flattenedValues);
+    this._value.set(option.value() as T);
 
-    if (!this.multiple()) {
-      this.isOpen.set(false);
-    }
+    this._registerOnChangeFn?.(this._value());
+    this.isOpen.set(false);
   }
 
   registerOnChange(fn: OnChangeFunction): void {
@@ -185,12 +145,12 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   panelOpened() {
-    this.selectOption()?.nativeElement.focus();
+    this.optionsList()?.nativeElement.focus();
     this.keyManager.activeItem?.scrollIntoView();
-    const selectedOptions = this.selectedOptions();
+    const selectedOption = this.selectedOption();
 
-    if (selectedOptions.length) {
-      this.keyManager.setActiveItem(selectedOptions[0]);
+    if (selectedOption) {
+      this.keyManager.setActiveItem(selectedOption);
     }
   }
   panelClosed() {
@@ -199,5 +159,11 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   ngOnDestroy(): void {
     this.keyManager.destroy();
+  }
+
+  clear($event: Event) {
+    this._value.set(null);
+    this._registerOnChangeFn?.(this._value());
+    $event.stopPropagation();
   }
 }

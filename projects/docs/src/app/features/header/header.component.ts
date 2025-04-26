@@ -1,6 +1,6 @@
 import { ButtonComponent } from '@/ui/button/button.component';
 import { DarkModeToggleComponent } from '@/ui/dark-mode/dark-mode-toggle.component';
-import { FontIconComponent } from '@/ui/icon/font-icon.component';
+import { FontIconComponent } from '@/ui/font-icon/font-icon.component';
 import { IconComponent } from '@/ui/icon/icon.component';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';

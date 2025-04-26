@@ -1,0 +1,60 @@
+<button
+  class="flex h-9 cursor-pointer items-center justify-between rounded-md border border-border p-2 group-[.ng-invalid.ng-touched]:border-danger focus-visible:outline focus-visible:outline-ring disabled:bg-disabled disabled:text-disabled-foreground"
+  [class.w-full]="stretch()"
+  appPopoverOrigin
+  #origin="appPopoverOrigin"
+  (click)="togglePanel()"
+  [disabled]="disabled()"
+>
+  <span class="mr-auto flex-1 truncate text-left">
+    @if (selectedOptionsLabel(); as selectedOptionsLabel) {
+      @if (selectLabel(); as selectLabel) {
+        <ng-container
+          *ngTemplateOutlet="
+            selectLabel.ref;
+            context: { $implicit: selectedOptions() }
+          "
+        ></ng-container>
+      } @else {
+        {{ selectedOptionsLabel }}
+      }
+    } @else {
+      {{ placeholder() }}
+    }
+  </span>
+
+  <button>
+    <app-font-icon class="transition-transform" [class.rotate-180]="isOpen()"
+      >keyboard_arrow_down</app-font-icon
+    >
+  </button>
+</button>
+<app-popover
+  [outsideClose]="true"
+  [restoreFocus]="true"
+  [blockScroll]="true"
+  [styled]="true"
+  [stretchToOrigin]="true"
+  (opened)="panelOpened()"
+  (closed)="panelClosed()"
+  [(isOpen)]="isOpen"
+  [origin]="origin"
+  [offsetY]="8"
+>
+  <ng-template>
+    @if (!options().length && emptyText()) {
+      <div class="p-2">{{ emptyText() }}</div>
+    }
+    <div
+      [attr.aria-activedescendant]="activeDescendantId()"
+      tabindex="0"
+      #optionsList
+      (keydown)="onKeydown($event)"
+      class="max-h-52 overflow-y-auto"
+      role="listbox"
+    >
+      <ng-content select="app-multi-option-group"></ng-content>
+      <ng-content select="app-multi-option"></ng-content>
+    </div>
+  </ng-template>
+</app-popover>

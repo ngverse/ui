@@ -1,1 +1,44 @@
-<p>show-case-multi-select works!</p>
+<p class="mb-2">Single select</p>
+<app-multi-select
+  [formControl]="formControlSingle"
+  placeholder="Countries"
+  class="w-[250px]"
+>
+  @for (option of countries; track $index) {
+    <app-multi-option [value]="option.code">{{ option.name }}</app-multi-option>
+  }
+</app-multi-select>
+
+<p class="mt-4 mb-2">Custom label</p>
+<app-multi-select
+  [formControl]="formControlMulti"
+  placeholder="Countries"
+  class="w-[250px]"
+>
+  <ng-template appMultiSelectLabel let-options>
+    <p>values: {{ options | map: 'content' | join: ',' }}</p>
+  </ng-template>
+  @for (option of countries; track $index) {
+    <app-multi-option [value]="option.code">
+      {{ option.name }}
+    </app-multi-option>
+  }
+</app-multi-select>
+
+<p class="mt-4 mb-2">Directories</p>
+<app-multi-select
+  [formControl]="dirFormControl"
+  placeholder="Countries"
+  class="w-[250px]"
+>
+  @for (dir of directories; track $index) {
+    <app-multi-option-group>
+      <app-multi-option-group-label>{{
+        dir.name
+      }}</app-multi-option-group-label>
+      @for (file of dir.files; track $index) {
+        <app-multi-option [value]="file.name">{{ file.name }}</app-multi-option>
+      }
+    </app-multi-option-group>
+  }
+</app-multi-select>
