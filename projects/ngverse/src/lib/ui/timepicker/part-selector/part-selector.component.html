@@ -1,0 +1,26 @@
+<div class="part-selector">
+  <button
+    class="step-button increment-button"
+    (click)="increaseValue()"
+    role="button"
+    aria-label="Increase hours"
+  >
+    <app-font-icon class="rotate-180">keyboard_arrow_down</app-font-icon>
+  </button>
+
+  <span
+    aria-label="Selected value"
+    [attr.aria-valuenow]="formattedValue()"
+    class="current-value"
+    >{{ formattedValue() }}</span
+  >
+
+  <button
+    class="step-button decrement-button"
+    (click)="decreaseValue()"
+    role="button"
+    aria-label="Decrease hours"
+  >
+    <app-font-icon>keyboard_arrow_down</app-font-icon>
+  </button>
+</div>

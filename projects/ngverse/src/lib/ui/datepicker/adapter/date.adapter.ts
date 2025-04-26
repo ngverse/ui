@@ -26,4 +26,12 @@ export interface DpDateAdapter<T> {
   isBefore(date1: T, date2: T): boolean;
 
   format(date: T, format: string): string;
+
+  getHours(date: T): number;
+
+  getMinutes(date: T): number;
+
+  setHours(date: T, hours: number): T;
+
+  setMinutes(date: T, minutes: number): T;
 }

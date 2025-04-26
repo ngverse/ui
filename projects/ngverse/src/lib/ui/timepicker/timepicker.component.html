@@ -1,0 +1,38 @@
+<input
+  appPopoverOrigin
+  #origin="appPopoverOrigin"
+  appInput
+  type="text"
+  (focus)="openPanel()"
+  (click)="openPanel()"
+  (blur)="onBlur($event)"
+  (input)="updateTimeOnInput($event)"
+  [disabled]="disabled()"
+  [ngModel]="selectedTime()"
+  (ngModelChange)="selectedTime.set($event)"
+/>
+
+<app-popover
+  [outsideClose]="false"
+  [blockScroll]="true"
+  [styled]="true"
+  [stretchToOrigin]="true"
+  (closed)="panelClosed()"
+  [(isOpen)]="isOpen"
+  [origin]="origin"
+  [offsetY]="8"
+>
+  <ng-template>
+    <div class="timepicker" #timepickerContainer cdkTrapFocus>
+      <app-part-selector
+        [value]="hours()"
+        (valueChange)="updateHours($event)"
+      />
+      <span>:</span>
+      <app-part-selector
+        [value]="minutes()"
+        (valueChange)="updateMinutes($event)"
+      />
+    </div>
+  </ng-template>
+</app-popover>

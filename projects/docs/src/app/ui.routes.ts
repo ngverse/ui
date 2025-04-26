@@ -256,6 +256,13 @@ export const UI_ROUTES: Route = {
         ),
     },
     {
+      path: 'timepicker',
+      loadComponent: () =>
+        import('./pages/timepicker-page/timepicker-page.component').then(
+          (d) => d.TimepickerPageComponent
+        ),
+    },
+    {
       path: '',
       redirectTo: '/doc/ui/configuration',
       pathMatch: 'full',

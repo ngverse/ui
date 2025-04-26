@@ -1380,6 +1380,58 @@
           ]
         },
         {
+          "path": "ui/timepicker",
+          "name": "timepicker",
+          "files": [
+            {
+              "path": "ui/timepicker/part-selector",
+              "name": "part-selector",
+              "files": [
+                {
+                  "path": "ui/timepicker/part-selector/part-selector.component.css",
+                  "name": "part-selector.component.css",
+                  "language": "css"
+                },
+                {
+                  "path": "ui/timepicker/part-selector/part-selector.component.html",
+                  "name": "part-selector.component.html",
+                  "language": "html"
+                },
+                {
+                  "path": "ui/timepicker/part-selector/part-selector.component.spec.ts",
+                  "name": "part-selector.component.spec.ts",
+                  "language": "spec.ts"
+                },
+                {
+                  "path": "ui/timepicker/part-selector/part-selector.component.ts",
+                  "name": "part-selector.component.ts",
+                  "language": "ts"
+                }
+              ]
+            },
+            {
+              "path": "ui/timepicker/timepicker.component.css",
+              "name": "timepicker.component.css",
+              "language": "css"
+            },
+            {
+              "path": "ui/timepicker/timepicker.component.html",
+              "name": "timepicker.component.html",
+              "language": "html"
+            },
+            {
+              "path": "ui/timepicker/timepicker.component.spec.ts",
+              "name": "timepicker.component.spec.ts",
+              "language": "spec.ts"
+            },
+            {
+              "path": "ui/timepicker/timepicker.component.ts",
+              "name": "timepicker.component.ts",
+              "language": "ts"
+            }
+          ]
+        },
+        {
           "path": "ui/toast",
           "name": "toast",
           "files": [
